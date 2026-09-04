@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Molin Design: hemsidor åt företag i Bohuslän</title>
+<meta name="description" content="Isac Molin bygger hemsidor åt små företag i Lysekil, Uddevalla och resten av Bohuslän. Fast pris 4 900 kr. Du betalar när du är nöjd.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23153f52'/%3E%3Cpath d='M5 21c3.5-3 6-3 8 0s5.5 3 9 0' stroke='%23e0e4e6' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3Cpath d='M5 12c3.5-3 6-3 8 0s5.5 3 9 0' stroke='%23c2542a' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta property="og:title" content="Molin Design: hemsidor åt företag i Bohuslän">
+<meta property="og:description" content="Fast pris 4 900 kr. Du ser sidan färdig innan du bestämmer dig, och betalar när du är nöjd.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#eceef0; --paper:#ffffff; --paper-2:#f5f6f7;
+    --ink:#14181c; --ink-2:#42505a; --ink-3:#76858f;
+    --line:#d3d9dd; --line-2:#e3e8eb;
+    --sea:#153f52; --sea-2:#1c5470;
+    --lack:#c2542a;
+    --shadow:0 1px 2px rgba(20,24,28,.05), 0 16px 40px -28px rgba(20,24,28,.5);
+    --on-sea:#ffffff;
+    --fd:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+    --fb:"Source Serif 4",Georgia,"Times New Roman",serif;
+    --fm:"DM Mono",ui-monospace,Consolas,monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0f1418; --paper:#161d22; --paper-2:#131a1e;
+      --ink:#e7ecef; --ink-2:#a7b5bd; --ink-3:#788790;
+      --line:#27333a; --line-2:#1e282e;
+      --sea:#7fc0da; --sea-2:#9ad2e8;
+      --lack:#e8814f;
+      --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 44px -30px rgba(0,0,0,.9);
+      --on-sea:#0f1418;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0f1418; --paper:#161d22; --paper-2:#131a1e;
+    --ink:#e7ecef; --ink-2:#a7b5bd; --ink-3:#788790;
+    --line:#27333a; --line-2:#1e282e;
+    --sea:#7fc0da; --sea-2:#9ad2e8;
+    --lack:#e8814f;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 18px 44px -30px rgba(0,0,0,.9);
+    --on-sea:#0f1418;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.62;
+    -webkit-font-smoothing:antialiased}
+  img{max-width:100%}
+  h1,h2,h3,.d{font-family:var(--fd);text-wrap:balance;margin:0;letter-spacing:-.015em}
+  a{color:var(--sea)}
+  .wrap{max-width:980px;margin:0 auto;padding:0 24px}
+  .eyebrow{font-family:var(--fm);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin:0 0 14px}
+
+  /* nav */
+  nav{border-bottom:1px solid var(--line);background:var(--ground)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;padding-bottom:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--fd);font-weight:700;font-size:17px;letter-spacing:-.02em;
+    color:var(--ink);text-decoration:none}
+  .logo svg{display:block}
+  nav .links{display:flex;gap:22px;font-family:var(--fd);font-size:14.5px}
+  nav .links a{color:var(--ink-2);text-decoration:none}
+  nav .links a:hover{color:var(--ink)}
+  @media (max-width:620px){nav .links{display:none}}
+
+  /* hero */
+  header.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  header.hero canvas{position:absolute;inset:auto 0 0 0;width:100%;height:190px;display:block;opacity:.9}
+  header.hero .wrap{position:relative;padding-top:78px;padding-bottom:230px}
+  h1{font-size:clamp(34px,6.2vw,60px);font-weight:700;line-height:1.05;max-width:15ch}
+  h1 em{font-style:normal;color:var(--lack)}
+  .lede{font-size:clamp(18px,2.3vw,21px);color:var(--ink-2);max-width:52ch;margin:22px 0 30px}
+  .cta{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:center}
+  .btn{display:inline-block;font-family:var(--fd);font-weight:600;font-size:15.5px;text-decoration:none;
+    padding:12px 22px;border-radius:2px;border:1.5px solid var(--sea);color:var(--on-sea);background:var(--sea)}
+  .btn.ghost{background:transparent;color:var(--sea)}
+  .btn:hover{filter:brightness(1.08)}
+  .cta .note{font-family:var(--fm);font-size:12.5px;color:var(--ink-3)}
+
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:none}
+  h2{font-size:clamp(24px,3.4vw,32px);font-weight:600;max-width:22ch}
+  .sub{color:var(--ink-2);max-width:58ch;margin:14px 0 0}
+
+  /* steg */
+  ol.steg{list-style:none;counter-reset:s;margin:34px 0 0;padding:0;display:grid;gap:1px;background:var(--line);
+    border:1px solid var(--line);grid-template-columns:repeat(3,1fr)}
+  @media (max-width:720px){ol.steg{grid-template-columns:1fr}}
+  ol.steg li{counter-increment:s;background:var(--paper);padding:24px 22px 26px}
+  ol.steg li::before{content:counter(s);font-family:var(--fm);font-size:12px;color:var(--lack);display:block;margin-bottom:10px}
+  ol.steg h3{font-size:18px;font-weight:600;margin-bottom:8px}
+  ol.steg p{margin:0;font-size:15.5px;color:var(--ink-2)}
+
+  /* pris */
+  .pris{display:grid;grid-template-columns:1.1fr 1fr;gap:0;margin-top:34px;border:1px solid var(--line);
+    background:var(--paper);box-shadow:var(--shadow)}
+  @media (max-width:760px){.pris{grid-template-columns:1fr}}
+  .pris .a{padding:32px 30px;border-right:1px solid var(--line)}
+  @media (max-width:760px){.pris .a{border-right:none;border-bottom:1px solid var(--line)}}
+  .pris .b{padding:32px 30px;background:var(--paper-2)}
+  .tal{font-family:var(--fd);font-weight:700;font-size:46px;letter-spacing:-.03em;line-height:1.05;
+    font-variant-numeric:tabular-nums}
+  .tal small{font-size:17px;font-weight:500;color:var(--ink-2);letter-spacing:0}
+  .pris .rad{font-family:var(--fm);font-size:12.5px;color:var(--ink-3);margin-top:8px}
+  .pris h3{font-size:15px;font-weight:600;margin-bottom:14px}
+  ul.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:15.5px}
+  ul.check li{display:grid;grid-template-columns:18px 1fr;gap:10px;color:var(--ink-2)}
+  ul.check li::before{content:"";width:9px;height:9px;margin-top:9px;border-left:2px solid var(--lack);
+    border-bottom:2px solid var(--lack);transform:rotate(-45deg)}
+  .efter{margin-top:26px;padding-top:22px;border-top:1px solid var(--line);font-size:15.5px;color:var(--ink-2)}
+
+  /* arbete */
+  .kort{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:34px}
+  @media (max-width:720px){.kort{grid-template-columns:1fr}}
+  .kort article{background:var(--paper);border:1px solid var(--line);padding:24px 24px 26px}
+  .kort h3{font-size:18px;font-weight:600;margin-bottom:6px}
+  .kort .typ{font-family:var(--fm);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px}
+  .kort p{margin:0;font-size:15.5px;color:var(--ink-2)}
+
+  /* om */
+  .om{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+  @media (max-width:760px){.om{grid-template-columns:1fr;gap:24px}}
+  .om p{margin:0 0 16px}
+  dl.fakta{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 18px;font-size:15px;
+    border-left:2px solid var(--lack);padding-left:20px}
+  dl.fakta dt{font-family:var(--fm);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);
+    align-self:center}
+  dl.fakta dd{margin:0;color:var(--ink-2)}
+
+  /* kontakt */
+  #kontakt{background:var(--paper);border-top:1px solid var(--line)}
+  .mejl{font-family:var(--fd);font-weight:600;font-size:clamp(22px,4vw,34px);letter-spacing:-.02em;
+    color:var(--sea);text-decoration:none;display:inline-block;margin:22px 0 6px;word-break:break-all}
+  .mejl:hover{text-decoration:underline}
+
+  footer{padding:30px 0 44px;font-family:var(--fm);font-size:12px;color:var(--ink-3);
+    display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+  footer a{color:var(--ink-3)}
+  :focus-visible{outline:2px solid var(--lack);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M5 21c3.5-3 6-3 8 0s5.5 3 9 0" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+        <path d="M5 12c3.5-3 6-3 8 0s5.5 3 9 0" stroke="#c2542a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      Molin Design
+    </a>
+    <div class="links">
+      <a href="#sahar">Så går det till</a>
+      <a href="#pris">Pris</a>
+      <a href="#arbete">Vad jag bygger</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">Webbdesign i Lysekil</p>
+    <h1>Din sida är redan byggd. <em>Titta först, betala sen.</em></h1>
+    <p class="lede">Jag gör hemsidor åt små företag i Bohuslän. Fast pris, ingen timdebitering,
+      inga möten. Du ser sidan färdig innan du bestämmer dig, och betalar först när du är nöjd.</p>
+    <div class="cta">
+      <a class="btn" href="#kontakt">Mejla mig</a>
+      <a class="btn ghost" href="#pris">Vad kostar det</a>
+      <span class="note">Svar samma dag, oftast inom en timme</span>
+    </div>
+  </div>
+  <canvas id="hav" aria-hidden="true"></canvas>
+</header>
+
+<section id="sahar">
+  <div class="wrap">
+    <p class="eyebrow">Så går det till</p>
+    <h2>Tre steg, och du kan hoppa av efter vilket som helst.</h2>
+    <ol class="steg">
+      <li>
+        <h3>Du hör av dig</h3>
+        <p>Ett mejl räcker. Berätta vad ni gör och var. Jag tittar på hur ni syns idag och
+          säger rakt ut om jag tror att en sida är värd pengarna för er.</p>
+      </li>
+      <li>
+        <h3>Jag bygger klart</h3>
+        <p>Du får se hela sidan, inte en skiss. Text, bilder, karta, öppettider, allt på plats.
+          Vill du ändra något så ändrar jag samma dag.</p>
+      </li>
+      <li>
+        <h3>Du betalar när du är nöjd</h3>
+        <p>Först när du säger att sidan är klar. Den ligger uppe på din egen adress inom
+          två arbetsdagar. Är du inte nöjd betalar du ingenting.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="pris">
+  <div class="wrap">
+    <p class="eyebrow">Pris</p>
+    <h2>Ett pris, hela vägen. Inga tillägg efteråt.</h2>
+    <div class="pris">
+      <div class="a">
+        <div class="tal">4 900 kr <small>en gång</small></div>
+        <div class="rad">färdig hemsida, inklusive moms för företag tillkommer</div>
+        <div class="efter" style="margin-top:22px">
+          <div class="tal" style="font-size:30px">199 kr <small>per månad</small></div>
+          <div class="rad">domän, drift, säkerhetskopior och ändringar när du vill.
+            Ingen bindningstid, säg upp när du vill.</div>
+        </div>
+      </div>
+      <div class="b">
+        <h3>Det här ingår</h3>
+        <ul class="check">
+          <li>Design gjord för just ditt företag, inte en mall</li>
+          <li>Fungerar lika bra i mobilen som på datorn</li>
+          <li>Klickbart telefonnummer, karta och öppettider</li>
+          <li>Din egen domän, jag fixar den åt dig</li>
+          <li>Laddar på under en sekund</li>
+          <li>Google-företagsprofilen genomgången</li>
+          <li>Text skriven så det låter som du, inte som en broschyr</li>
+        </ul>
+      </div>
+    </div>
+    <p class="sub" style="margin-top:22px">Behöver du något mer, som bokning, fler sidor eller en webbshop,
+      säger jag vad det kostar innan jag börjar. Jag skickar aldrig en faktura du inte har sett komma.</p>
+  </div>
+</section>
+
+<section id="arbete">
+  <div class="wrap">
+    <p class="eyebrow">Vad jag bygger</p>
+    <h2>Sidor för företag som folk googlar när de behöver något nu.</h2>
+    <p class="sub">Varv och båtservice, snickare och elektriker, frisörer, caféer, verkstäder.
+      Gemensamt: kunden söker, hittar, och ringer. Då ska sidan svara på tre saker direkt.
+      Vad gör ni, var finns ni, hur når jag er.</p>
+    <div class="kort">
+      <article>
+        <div class="typ">Marint</div>
+        <h3>Varv, båtservice, dykfirmor</h3>
+        <p>Jag har jobbat på sjön i femton år och vet skillnaden mellan bottenmålning och
+          osmosbehandling. Det märks i texten, och kunderna märker det.</p>
+      </article>
+      <article>
+        <div class="typ">Bygg och hantverk</div>
+        <h3>Snickare, el, VVS, mark</h3>
+        <p>Referensbilder på riktiga jobb, tydligt upptagningsområde och ett telefonnummer
+          som går att trycka på. Det är oftast allt som saknas.</p>
+      </article>
+      <article>
+        <div class="typ">Salong och kropp</div>
+        <h3>Frisör, barberare, hudvård</h3>
+        <p>Kopplad till bokningssystemet du redan använder, så du slipper byta.
+          Priser och öppettider överst, för det är det folk letar efter.</p>
+      </article>
+      <article>
+        <div class="typ">Mat och besök</div>
+        <h3>Café, restaurang, stugor</h3>
+        <p>Säsongsanpassad förstasida, meny som går att uppdatera på en minut,
+          och bilder som ser aptitliga ut även i mobilen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="om">
+  <div class="wrap">
+    <p class="eyebrow">Om mig</p>
+    <div class="om">
+      <div>
+        <h2 style="margin-bottom:20px">Isac Molin</h2>
+        <p>Jag bor i Bohuslän och bygger hemsidor. Vid sidan av det driver jag ett företag
+          inom marin anläggning och dykeri, med uppdrag åt bland andra Trafikverket och
+          Göteborgs Hamn, så jag vet ungefär hur en liten firma har det.</p>
+        <p>Jag bygger sidorna själv, från grunden, utan Wordpress-mallar och utan att
+          lägga ut jobbet. Det är därför jag kan hålla priset nere och svara samma dag
+          när du vill ändra något.</p>
+        <p>Jag tar sex sidor i månaden. Fler hinner jag inte göra ordentligt.</p>
+      </div>
+      <dl class="fakta">
+        <dt>Bas</dt><dd>Lysekil, Bohuslän</dd>
+        <dt>Område</dt><dd>Lysekil, Uddevalla, Munkedal, Sotenäs, Orust</dd>
+        <dt>Byggs i</dt><dd>Handskriven kod, inga mallar</dd>
+        <dt>Leverans</dt><dd>Två arbetsdagar efter godkänt</dd>
+        <dt>Kapacitet</dt><dd>Sex sidor per månad</dd>
+        <dt>Även</dt><dd>Marin anläggning och dykeri</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <p class="eyebrow">Kontakt</p>
+    <h2>Skriv en rad så tittar jag på ert företag i kväll.</h2>
+    <p class="sub">Ni behöver inte veta vad ni vill ha. Skriv företagsnamnet och orten,
+      så återkommer jag med vad jag skulle göra och vad det kostar. Kostar ingenting att fråga.</p>
+    <a class="mejl" href="mailto:isacmolin@gmail.com?subject=Hemsida%20till%20mitt%20f%C3%B6retag">isacmolin@gmail.com</a>
+    <p class="sub" style="margin-top:4px">Svar samma dag. Inga säljsamtal, inga möten om du inte vill.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <span>Molin Design, Isac Molin. Lysekil, Bohuslän.</span>
+    <span><a href="mailto:isacmolin@gmail.com">isacmolin@gmail.com</a></span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var c=document.getElementById("hav");
+  if(!c) return;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var ctx=c.getContext("2d"), w=0, h=0, dpr=Math.min(window.devicePixelRatio||1,2), t=0;
+
+  function colors(){
+    var cs=getComputedStyle(document.documentElement);
+    return {
+      sea: cs.getPropertyValue("--sea").trim() || "#153f52",
+      lack: cs.getPropertyValue("--lack").trim() || "#c2542a",
+      line: cs.getPropertyValue("--line").trim() || "#d3d9dd"
+    };
+  }
+  function size(){
+    w=c.clientWidth; h=c.clientHeight;
+    c.width=Math.round(w*dpr); c.height=Math.round(h*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  // Gerstner-liknande summa av tre sinusvågor, tecknade som horisontlinjer.
+  function wave(y0, amp, len, speed, phase, stroke, alpha, fill){
+    ctx.beginPath();
+    for(var x=0;x<=w;x+=3){
+      var y = y0
+        + Math.sin((x/len) + t*speed + phase)*amp
+        + Math.sin((x/(len*0.43)) + t*speed*1.7 + phase*2)*amp*0.35
+        + Math.sin((x/(len*2.1)) - t*speed*0.6 + phase)*amp*0.6;
+      if(x===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    if(fill){
+      ctx.lineTo(w,h); ctx.lineTo(0,h); ctx.closePath();
+      ctx.globalAlpha=alpha; ctx.fillStyle=stroke; ctx.fill(); ctx.globalAlpha=1;
+    }else{
+      ctx.globalAlpha=alpha; ctx.strokeStyle=stroke; ctx.lineWidth=1.6; ctx.stroke(); ctx.globalAlpha=1;
+    }
+  }
+  function frame(){
+    var col=colors();
+    ctx.clearRect(0,0,w,h);
+    wave(h*0.62, 7, 120, 0.020, 0.0, col.sea,  0.10, true);
+    wave(h*0.52, 9, 165, 0.014, 1.7, col.sea,  0.30, false);
+    wave(h*0.70, 6, 100, 0.026, 3.1, col.line, 0.85, false);
+    wave(h*0.40, 5, 210, 0.011, 4.4, col.lack, 0.35, false);
+    if(!reduce){ t+=1; requestAnimationFrame(frame); }
+  }
+  size(); frame();
+  var to; window.addEventListener("resize", function(){
+    clearTimeout(to); to=setTimeout(function(){ size(); if(reduce) frame(); }, 150);
+  });
+})();
+</script>
+</body>
+</html>
