@@ -26,3 +26,12 @@
 .demo-note{font-size:.8125rem;color:var(--muted);padding-bottom:30px;margin-top:0}
 @media(max-width:400px){.demo-banner .wrap{gap:8px;font-size:.6875rem}}
 @media print{.demo-banner{display:none}}
+
+.visit-map{margin-top:54px}
+.map-heading{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-bottom:22px}
+.map-heading .eyebrow{margin-bottom:8px;color:var(--muted)}
+.map-heading h3{font:normal 2.5rem/1.15 var(--serif);margin:0}
+.restaurant-map{display:block;width:100%;height:440px;border:1px solid var(--line);border-radius:12px;background:#eaf0e0}
+.map-caption{font-size:.8125rem;color:var(--muted);margin:12px 0 0}
+@media(max-width:600px){.visit-map{margin-top:36px}.map-heading{align-items:flex-start;flex-direction:column;gap:18px}.map-heading .button{min-height:48px}.restaurant-map{height:340px}.mobile-bar a{padding:12px 6px;font-size:.75rem;gap:5px}.mobile-bar{gap:6px}}
+@media print{.restaurant-map{display:none}}
