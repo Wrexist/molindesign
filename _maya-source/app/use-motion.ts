@@ -30,12 +30,15 @@ export function useMotion() {
       }, {threshold: 0.08});
       container.querySelectorAll('[data-reveal]').forEach(element => observer?.observe(element));
     }
-    start();
+    // While the boot loader still covers the page, hold the entrance until it lifts.
+    if (document.documentElement.classList.contains('is-booting')) window.addEventListener('maya:reveal', start, {once: true});
+    else start();
     preference.addEventListener('change', start);
     return () => {
       observer?.disconnect();
       animations.forEach(animation => animation.cancel());
       preference.removeEventListener('change', start);
+      window.removeEventListener('maya:reveal', start);
     };
   }, []);
   return root;
