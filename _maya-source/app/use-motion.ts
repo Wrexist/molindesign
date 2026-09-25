@@ -10,11 +10,24 @@ export function useMotion() {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const animations = new Set<Animation>();
     let observer: IntersectionObserver | undefined;
+    let kitObserver: IntersectionObserver | undefined;
     function start() {
       observer?.disconnect();
       animations.forEach(animation => animation.cancel());
       animations.clear();
+      // Card equipment plays its landing once it is well in view; without motion it simply stays put.
+      kitObserver?.disconnect();
+      const kits = container?.querySelectorAll<HTMLElement>('[data-kit]') ?? [];
+      kits.forEach(kit => kit.classList.remove('is-armed', 'is-in'));
       if (preference.matches || !container) return;
+      kitObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          kitObserver?.unobserve(entry.target);
+          entry.target.classList.add('is-in');
+        });
+      }, {threshold: 0.6});
+      kits.forEach(kit => { kit.classList.add('is-armed'); kitObserver?.observe(kit); });
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -36,6 +49,7 @@ export function useMotion() {
     preference.addEventListener('change', start);
     return () => {
       observer?.disconnect();
+      kitObserver?.disconnect();
       animations.forEach(animation => animation.cancel());
       preference.removeEventListener('change', start);
       window.removeEventListener('maya:reveal', start);

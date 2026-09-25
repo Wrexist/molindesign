@@ -104,3 +104,31 @@
  .brand .brand-symbol{margin:0!important;letter-spacing:0!important}.brand .brand-symbol img{display:block;width:100%;height:100%;filter:brightness(0) invert(1)}
 
 .brand .brand-wordmark,.public-site .brand .brand-wordmark{display:block;font-family:Manrope,sans-serif;font-size:23px;font-weight:650;line-height:1.1;letter-spacing:-1px;text-transform:none;margin:0;color:inherit}
+
+/* Card equipment: layers, floor shadows and keyframes are shared with the boot loader in index.html. */
+.public-site .card{position:relative;--img-h:295px}
+.public-site .card-kit{position:absolute;z-index:2;right:var(--kr);top:calc(var(--img-h) + 22px - var(--kw) * .75);width:var(--kw);aspect-ratio:1000/833;pointer-events:none;filter:drop-shadow(0 10px 12px #12251b1f);transition:transform 500ms cubic-bezier(.2,.75,.25,1)}
+.public-site .card-kit-pt{--kw:196px;--kr:-78px}
+.public-site .card-kit-duo,.public-site .card-kit-group{--kw:168px;--kr:-6px}
+.public-site .card:hover .card-kit img{transform:none}
+@media(prefers-reduced-motion:no-preference){
+.public-site .card-kit.is-armed .kit,.public-site .card-kit.is-armed .boot-floor{opacity:0}
+.public-site .card-kit.is-in .kit-kb{animation:boot-kb 820ms var(--kd) both}
+.public-site .card-kit.is-in .floor-kb{animation:boot-floor-kb 820ms var(--kd) both}
+.public-site .card-kit.is-in .kit-ball{animation:boot-ball 1200ms calc(var(--kd) + 170ms) both}
+.public-site .card-kit.is-in .floor-ball{animation:boot-floor-ball 1200ms calc(var(--kd) + 170ms) both}
+.public-site .card-kit.is-in .kit-bandback,.public-site .card-kit.is-in .kit-bandfront{animation:boot-band 900ms calc(var(--kd) + 560ms) both}
+.public-site .card-kit.is-in .floor-band{animation:boot-floor-band 900ms calc(var(--kd) + 560ms) both}
+.public-site .card-kit.is-in .kit-kbshadow,.public-site .card-kit.is-in .kit-bandshadow{animation:boot-fade 260ms calc(var(--kd) + 1180ms) both}}
+@media(hover:hover) and (pointer:fine){.public-site .card:hover .card-kit{transform:translateY(-5px)}}
+@media(max-width:1050px){.public-site .card{--img-h:250px}.public-site .card-kit-pt{--kw:150px;--kr:-58px}.public-site .card-kit-duo,.public-site .card-kit-group{--kw:124px;--kr:-3px}}
+@media(max-width:1050px) and (min-width:701px){.public-site .card:has(.card-kit) .tag{max-width:calc(100% - 136px);line-height:1.5;border-radius:14px}}
+@media(max-width:700px){.public-site .card{--img-h:320px}.public-site .card-kit-pt{--kw:196px;--kr:-78px}.public-site .card-kit-duo,.public-site .card-kit-group{--kw:168px;--kr:-6px}}
+/* Schedule loading: the small ball from the loader */
+.public-site .schedule-loading{gap:14px;font-size:15px;color:var(--muted)}
+.public-site .mini-ball{position:relative;display:block;width:46px;height:68px}
+.public-site .mini-ball img{position:absolute;left:0;bottom:5px;width:46px;height:46px;object-fit:contain;transform-origin:50% 100%}
+.public-site .mini-ball:after{content:'';position:absolute;left:5px;right:5px;bottom:0;height:8px;border-radius:50%;background:radial-gradient(closest-side,rgba(28,40,30,.28),rgba(28,40,30,0))}
+@media(prefers-reduced-motion:no-preference){.public-site .mini-ball img{animation:mini-bounce 900ms infinite}.public-site .mini-ball:after{animation:mini-shadow 900ms infinite}}
+@keyframes mini-bounce{0%{transform:translateY(0) scale(1.07,.92);animation-timing-function:cubic-bezier(.5,1,.89,1)}10%{transform:translateY(-3px) scale(.97,1.04);animation-timing-function:cubic-bezier(.5,1,.89,1)}50%{transform:translateY(-20px) scale(1);animation-timing-function:cubic-bezier(.11,0,.5,0)}92%{transform:translateY(-1px) scale(.98,1.03)}100%{transform:translateY(0) scale(1.07,.92)}}
+@keyframes mini-shadow{0%,100%{opacity:1;transform:scale(1.05)}50%{opacity:.4;transform:scale(.6)}}
