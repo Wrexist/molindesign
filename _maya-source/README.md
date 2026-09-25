@@ -1,14 +1,14 @@
-# Maya Haglund: prepared GitHub admin migration
+# Maya Haglund website and admin
 
-Status: source builds and ten tests pass. The Netlify API is deployed, but login returns 503 because its production password and signing key are unavailable. The static GitHub frontend has deliberately NOT been replaced. Do not switch it until authenticated integration tests and browser checks pass.
+The GitHub Pages frontend lives at `/molindesign/maya-haglund/` and `/molindesign/maya-haglund/admin/`. The Netlify project `maya-haglund-admin` handles API requests, authentication and persistent storage. The former ChatGPT Site remains a separate copy.
 
-The GitHub Pages frontend lives at `/molindesign/maya-haglund/` and `/molindesign/maya-haglund/admin/`. The Netlify project `maya-haglund-admin` handles API requests, authentication and persistent storage. The former ChatGPT Site remains the active admin until cutover.
+Production integration checks passed: authentication, origin restrictions, draft save/readback, conflict protection, publication isolation and recurring private classes. Ten unit tests and TypeScript checks also pass.
 
 ## Maintain
 
 Run `npm ci`, `npm test`, `npx tsc --noEmit`, and `npm run build` here. Copy `dist/` into the repository's `maya-haglund/` directory to update GitHub Pages. Preserve root Molin Design and Singha Thai files. This source directory is prefixed with `_` in the repository so Jekyll does not publish it.
 
-Deploy this source directory to Netlify project ID `7f39c838-5d0d-48f5-ba7a-aa9ad1f72fdd` using its existing project connection. `netlify.toml` builds the frontend and functions. Set `ADMIN_PASSWORD` and a random `SESSION_SECRET` as secret production function environment variables. Never commit their values. Rotating SESSION_SECRET invalidates every session.
+Deploy this source directory to Netlify project ID `7f39c838-5d0d-48f5-ba7a-aa9ad1f72fdd` using its existing project connection. `netlify.toml` builds the frontend and functions. Set `MAYA_PASSWORD_HASH` and a random `SESSION_SECRET` as encrypted production environment variables. The password verifier format is `saltHex:scryptHex`, using Node scrypt with N=65536, r=8, p=1, output length 64 bytes, maxmem=134217728 and a random salt. Never commit their values. Rotating SESSION_SECRET invalidates every session.
 
 Published content and the two public classes were migrated on 2026-09-25. Netlify Blobs stores drafts, publication and classes together with conditional writes to prevent silent overwrites. Uploaded JPEG, PNG and WebP images are served by the media API. Drafts are authenticated. Public content updates become visible on the next page load, without a GitHub deploy. Old unpublished drafts remain only on the old Site.
 

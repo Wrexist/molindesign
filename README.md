@@ -16,14 +16,14 @@ Before customer launch: confirm all menu entries (including dish 37's price), op
 
 To update the preview, edit files under `singha-thai/`, review and push to `main`. GitHub Pages publishes automatically. Sales material is kept outside this public repository.
 
-## Maya Haglund PT demo
+## Maya Haglund PT
 
-URL: https://wrexist.github.io/molindesign/maya-haglund/
+Website: https://wrexist.github.io/molindesign/maya-haglund/
 
-The standalone `maya-haglund/` directory contains plain HTML, CSS, JavaScript and local assets. No build step, environment variables or backend are required. Relative asset paths support the GitHub Pages project prefix. Existing Molin Design and Singha Thai pages are unchanged.
+Admin: https://wrexist.github.io/molindesign/maya-haglund/admin/
 
-Exported on 2026-09-25 from the owner's Maya Haglund PT website, including package prices, contact links, professional SVG icons, motion effects and an illustrative 3D fitness asset. Google Fonts is an external stylesheet dependency with system fallbacks. Motion respects reduced-motion preferences.
+The Vite React frontend in `maya-haglund/` uses the Netlify API at https://maya-haglund-admin.netlify.app for authenticated administration, published content, recurring classes and image storage. Source and maintenance instructions are in `_maya-source/`. Existing Molin Design and Singha Thai pages are preserved.
 
-This is a static demo with `noindex, nofollow`. The schedule in `classes.json` and package prices are snapshots; changes in the original admin do not automatically sync here. The Admin link opens the original authenticated website. No admin credentials, private records, database or authentication backend are included. Booking links contact Maya or use the event's booking URL; the demo does not process bookings or payments.
+The admin supports searchable content, PT and online packages, draft previews and publication. Changes are loaded on the next page visit without rebuilding GitHub Pages. The former ChatGPT Site is a separate copy; its unpublished drafts were not migrated. No credentials are committed.
 
-To update, edit files under `maya-haglund/`, review and push to `main`. GitHub Pages publishes automatically. Confirm current prices, classes, content and image approval before a customer launch.
+The demo includes professional icons, reduced-motion-aware animations, an illustrative 3D fitness asset and a white transparent fitness logo. Booking links contact Maya or open the configured booking URL; payments are not processed here.
