@@ -4,6 +4,12 @@ The GitHub Pages frontend lives at `/molindesign/maya-haglund/` and `/molindesig
 
 Production integration checks passed: authentication, origin restrictions, draft save/readback, conflict protection, publication isolation and recurring private classes. Ten unit tests and TypeScript checks also pass.
 
+## Loading screen
+
+`index.html` contains the loading screen as static markup with inline CSS and a small inline script, so it paints before the app bundle arrives. `app/boot.ts` reports progress from `main.tsx`, shows load errors with a retry button inside the loader, and hands the equipment over to the hero: once content has rendered, the kit flies onto `.equipment-art` and dissolves into `fitness-sculpture.webp`. When that spot is off screen (phones, links with a `#section`) or reduced motion is preferred, the loader fades out instead. The admin skips the loader. Repeat visits in the same browser session play it faster.
+
+`public/assets/loader/` holds the kettlebell, ball and band as separate layers cut from `fitness-sculpture.webp`, with the hidden parts rebuilt so each object can move on its own, plus two contact-shadow layers that belong to the kettlebell and the band. Their positions in `index.html` are percentages of the 1000×833 sculpture frame, so they recompose to the original image. If the sculpture changes, regenerate the layers as well. Web fonts load from `index.html` without blocking the first paint.
+
 ## Maintain
 
 Run `npm ci`, `npm test`, `npx tsc --noEmit`, and `npm run build` here. Copy `dist/` into the repository's `maya-haglund/` directory to update GitHub Pages. Preserve root Molin Design and Singha Thai files. This source directory is prefixed with `_` in the repository so Jekyll does not publish it.

@@ -1,3 +1,226 @@
-<!doctype html><html lang="sv"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Maya Haglund | Personlig träning</title><link rel="icon" type="image/svg+xml" href="/molindesign/maya-haglund/favicon.svg"><link rel="icon" type="image/png" sizes="48x48" href="/molindesign/maya-haglund/favicon.png"><link rel="apple-touch-icon" href="/molindesign/maya-haglund/apple-touch-icon.png">  <script type="module" crossorigin src="/molindesign/maya-haglund/assets/index-DNQtzy8q.js"></script>
-  <link rel="stylesheet" crossorigin href="/molindesign/maya-haglund/assets/index-D5p_hBX4.css">
-</head><body><div id="root"></div></body></html>
+<!doctype html><html lang="sv"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f8f9f6"><title>Maya Haglund | Personlig träning</title><link rel="icon" type="image/svg+xml" href="/molindesign/maya-haglund/favicon.svg"><link rel="icon" type="image/png" sizes="48x48" href="/molindesign/maya-haglund/favicon.png"><link rel="apple-touch-icon" href="/molindesign/maya-haglund/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"></noscript>
+<style>
+/* Boot loader: painted before the app bundle arrives, handed over to the hero by app/boot.ts. */
+html.is-booting,html.boot-handoff{overflow:hidden;scrollbar-gutter:stable}
+.boot{--ink:#232925;--muted:#626c65;--paper:#f8f9f6;--line:#e2e7df;--t:1;position:fixed;inset:0;z-index:100;color:var(--ink);font-family:'DM Sans',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.boot[hidden]{display:none}
+.boot-bg{position:absolute;inset:0;background:radial-gradient(58% 52% at 50% 54%,#edf2d9 0%,rgba(237,242,217,0) 72%),var(--paper)}
+.boot-wrap{position:relative;width:min(1240px,calc(100% - 96px));margin:0 auto}
+.boot-head{height:110px;display:flex;align-items:center}
+.boot-brand{display:flex;align-items:center;gap:12px;font-family:Manrope,'DM Sans',Arial,sans-serif}
+.boot-symbol{display:block;width:52px;height:52px;padding:7px;border-radius:50%;background:#202020;flex-shrink:0;box-sizing:border-box}
+.boot-symbol img{display:block;width:100%;height:100%}
+.boot-word{display:block;font-size:23px;font-weight:650;line-height:1.1;letter-spacing:-1px}
+.boot-word span{display:block;font-family:'DM Sans',Arial,sans-serif;font-size:9px;font-weight:400;letter-spacing:2.5px;margin-top:8px;color:var(--muted)}
+.boot-stage{position:absolute;inset:110px 0 96px;display:grid;place-items:center;pointer-events:none}
+.boot-kit{position:relative;width:min(520px,74vw,calc((100vh - 250px) * 1.2));min-width:190px;aspect-ratio:1000/833;transform-origin:0 0}
+.kit,.boot-floor{position:absolute}
+.kit{inset:0}
+.kit img{position:absolute;display:block;height:auto;max-width:none;user-select:none}
+.kit-ball img{left:30.1%;top:6.363%;width:57.3%}
+.kit-kbshadow img{left:30.4%;top:23.529%;width:22.4%}
+.kit-bandshadow img{left:49.8%;top:51.981%;width:30.1%}
+.kit-bandback img{left:46.6%;top:53.902%;width:41.8%}
+.kit-kb img{left:12.9%;top:26.17%;width:37.5%}
+.kit-bandfront img{left:41.5%;top:71.669%;width:10.7%}
+.kit-ball{transform-origin:58.75% 74.6%}
+.kit-kb{transform-origin:31.3% 88.5%}
+.kit-bandback,.kit-bandfront{transform-origin:41.5% 90%}
+.boot-floor{border-radius:50%;background:radial-gradient(closest-side,rgba(28,40,30,.3),rgba(28,40,30,.12) 55%,rgba(28,40,30,0))}
+.floor-kb{left:13.3%;top:86.9%;width:36%;height:3.6%}
+.floor-ball{left:44%;top:73.35%;width:30%;height:3.2%;opacity:.7}
+.floor-band{left:41.5%;top:89.56%;width:47%;height:3.6%}
+.boot-foot{position:absolute;left:0;right:0;bottom:34px}
+.boot-meter{display:grid;grid-template-columns:1fr auto;align-items:end;gap:12px 20px}
+.boot-label{margin:0;font-size:11px;font-weight:500;line-height:1.6;letter-spacing:2.1px;text-transform:uppercase;color:var(--muted)}
+.boot-count{font-family:Manrope,'DM Sans',Arial,sans-serif;font-size:13px;font-weight:600;line-height:1.6;font-variant-numeric:tabular-nums;letter-spacing:.4px}
+.boot-count:after{content:'%';margin-left:2px;color:var(--muted);font-weight:500}
+.boot-line{grid-column:1/-1;height:2px;border-radius:2px;background:var(--line);overflow:hidden}
+.boot-line i{display:block;height:100%;background:var(--ink);transform:scaleX(0);transform-origin:0 50%}
+.boot-actions{display:none;gap:22px;align-items:center;flex-wrap:wrap;margin-top:18px;font-size:14px}
+.boot-actions button{display:inline-flex;align-items:center;min-height:50px;padding:0 26px;border:0;border-radius:100px;background:var(--ink);color:#fff;font:inherit;font-weight:500;cursor:pointer}
+.boot-actions a{color:inherit;border-bottom:1px solid #b3bcaa;text-decoration:none;padding-bottom:3px}
+.boot.is-error .boot-actions{display:flex}
+.boot.is-error .boot-count,.boot.is-error .boot-line{display:none}
+.boot.is-error .boot-label{font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink)}
+/* words wait for the web fonts (max 1s) so they never swap in place */
+.boot-word,.boot-meter{opacity:0;transition:opacity .45s ease}
+.boot.has-fonts .boot-word,.boot.has-fonts .boot-meter,.boot.is-error .boot-meter{opacity:1}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* choreography */
+.boot .kit,.boot .boot-floor{opacity:0}
+.boot.is-playing .kit-kb{animation:boot-kb calc(820ms*var(--t)) both}
+.boot.is-playing .floor-kb{animation:boot-floor-kb calc(820ms*var(--t)) both}
+.boot.is-playing .kit-ball{animation:boot-ball calc(1200ms*var(--t)) calc(170ms*var(--t)) both}
+.boot.is-playing .floor-ball{animation:boot-floor-ball calc(1200ms*var(--t)) calc(170ms*var(--t)) both}
+.boot.is-playing .kit-bandback,.boot.is-playing .kit-bandfront{animation:boot-band calc(900ms*var(--t)) calc(560ms*var(--t)) both}
+.boot.is-playing .floor-band{animation:boot-floor-band calc(900ms*var(--t)) calc(560ms*var(--t)) both}
+.boot.is-playing .kit-kbshadow,.boot.is-playing .kit-bandshadow{animation:boot-fade calc(260ms*var(--t)) calc(1180ms*var(--t)) both}
+.boot.is-idle .kit-ball{animation:boot-ball-idle 2600ms infinite}
+.boot.is-idle .floor-ball{animation:boot-floor-idle 2600ms infinite}
+.boot.is-idle .kit-kbshadow,.boot.is-idle .kit-bandshadow{animation:boot-shadow-idle 2600ms infinite}
+.boot.is-idle .kit-bandback,.boot.is-idle .kit-bandfront{animation:boot-band-idle 2600ms infinite}
+.boot.is-idle .kit,.boot.is-idle .boot-floor,.boot.is-leaving .kit,.boot.is-leaving .boot-floor{opacity:1}
+.boot.is-idle .floor-ball,.boot.is-leaving .floor-ball{opacity:.7}
+.boot.is-still .kit,.boot.is-still .boot-floor{animation:none!important;opacity:1}
+.boot.is-still .floor-ball{opacity:.7}
+.boot.is-leaving{pointer-events:none}
+/* the site underneath: hold the hero entrance until the reveal, hide the sculpture while the kit flies in */
+html.is-booting .public-site .equipment-art img,html.boot-handoff .public-site .equipment-art img,html.boot-landed .public-site .equipment-art img{animation:none}
+html.boot-handoff .public-site .equipment-art{visibility:hidden}
+html.is-booting .public-site .hero-visual>img{animation-play-state:paused}
+@keyframes boot-fade{from{opacity:0}to{opacity:1}}
+@keyframes boot-kb{
+0%{opacity:0;transform:translateY(-64%);animation-timing-function:cubic-bezier(.45,0,.9,.45)}
+14%{opacity:1}
+50%{transform:translateY(0) scale(1.035,.955);animation-timing-function:cubic-bezier(.2,.8,.4,1)}
+63%{transform:translateY(-3.4%) scale(.992,1.01);animation-timing-function:cubic-bezier(.55,0,.9,.5)}
+76%{transform:translateY(0) scale(1.012,.988);animation-timing-function:cubic-bezier(.3,.7,.4,1)}
+100%{opacity:1;transform:none}}
+@keyframes boot-floor-kb{
+0%{opacity:0;transform:scale(.4)}
+50%{opacity:1;transform:scale(1.06,1)}
+63%{opacity:.8;transform:scale(.95)}
+76%,100%{opacity:1;transform:none}}
+@keyframes boot-ball{
+0%{opacity:0;transform:translateY(-80%) scale(.97,1.03);animation-timing-function:cubic-bezier(.11,0,.5,0)}
+10%{opacity:1}
+30%{transform:translateY(-7%) scale(.965,1.045);animation-timing-function:linear}
+34%{transform:translateY(0) scale(1.075,.915);animation-timing-function:cubic-bezier(.5,1,.89,1)}
+50%{transform:translateY(-16%) scale(.985,1.02);animation-timing-function:cubic-bezier(.11,0,.5,0)}
+66%{transform:translateY(0) scale(1.04,.955);animation-timing-function:cubic-bezier(.5,1,.89,1)}
+74%{transform:translateY(-4%) scale(.995,1.006);animation-timing-function:cubic-bezier(.11,0,.5,0)}
+82%{transform:translateY(0) scale(1.014,.985);animation-timing-function:cubic-bezier(.5,1,.89,1)}
+87%{transform:translateY(-.7%);animation-timing-function:cubic-bezier(.11,0,.5,0)}
+91%{transform:translateY(0) scale(1.004,.996);animation-timing-function:ease-out}
+100%{opacity:1;transform:none}}
+@keyframes boot-floor-ball{
+0%{opacity:0;transform:scale(.3)}
+34%{opacity:.8;transform:scale(1.08,1)}
+50%{opacity:.4;transform:scale(.78)}
+66%{opacity:.75;transform:scale(1.04,1)}
+74%{opacity:.6;transform:scale(.92)}
+82%,100%{opacity:.7;transform:none}}
+@keyframes boot-band{
+0%{opacity:0;transform:scaleX(.3) scaleY(.94);animation-timing-function:cubic-bezier(.2,.6,.35,1)}
+12%{opacity:1}
+38%{transform:scaleX(1.085) scaleY(.975);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+56%{transform:scaleX(.968) scaleY(1.008);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+72%{transform:scaleX(1.018);animation-timing-function:cubic-bezier(.45,0,.55,1)}
+86%{transform:scaleX(.995);animation-timing-function:ease-out}
+100%{opacity:1;transform:none}}
+@keyframes boot-floor-band{
+0%{opacity:0;transform:scaleX(.3)}
+38%{opacity:1;transform:scaleX(1.06)}
+56%{transform:scaleX(.97)}
+100%{opacity:1;transform:none}}
+@keyframes boot-ball-idle{
+0%{transform:none;animation-timing-function:cubic-bezier(.3,0,.6,1)}
+6%{transform:scale(1.022,.975);animation-timing-function:cubic-bezier(.5,1,.89,1)}
+16%{transform:translateY(-5.5%) scale(.99,1.014);animation-timing-function:cubic-bezier(.11,0,.5,0)}
+26%{transform:translateY(0) scale(1.03,.964);animation-timing-function:cubic-bezier(.5,1,.89,1)}
+31%{transform:translateY(-.9%) scale(.997,1.004);animation-timing-function:cubic-bezier(.11,0,.5,0)}
+36%{transform:translateY(0) scale(1.006,.994);animation-timing-function:ease-out}
+40%,100%{transform:none}}
+@keyframes boot-floor-idle{
+0%,6%{opacity:.7;transform:none}
+16%{opacity:.4;transform:scale(.82)}
+26%{opacity:.8;transform:scale(1.05,1)}
+40%,100%{opacity:.7;transform:none}}
+@keyframes boot-shadow-idle{
+0%,6%{opacity:1}
+16%{opacity:.55}
+26%,100%{opacity:1}}
+@keyframes boot-band-idle{
+0%,25%{transform:none}
+29%{transform:scaleX(1.012) scaleY(.994)}
+33%{transform:scaleX(.996)}
+38%,100%{transform:none}}
+@media(max-width:1050px){.boot-wrap{width:calc(100% - 56px)}}
+@media(max-width:700px){.boot-wrap{width:calc(100% - 40px)}.boot-head{height:88px}.boot-brand{gap:8px}.boot-symbol{width:42px;height:42px;padding:6px}.boot-word span{font-size:8px;letter-spacing:1.8px}.boot-stage{inset:88px 0 92px}.boot-kit{width:min(440px,80vw,calc((100vh - 220px) * 1.2))}.boot-foot{bottom:26px}}
+@media(prefers-reduced-motion:reduce){
+.boot.is-playing .kit,.boot.is-playing .boot-floor{animation:none!important;opacity:1}
+.boot.is-playing .floor-ball{opacity:.7}
+.boot.is-playing .boot-kit{animation:boot-fade 500ms both}}
+</style>
+  <script type="module" crossorigin src="/molindesign/maya-haglund/assets/index-BibrqfTY.js"></script>
+  <link rel="stylesheet" crossorigin href="/molindesign/maya-haglund/assets/index-mz8pqkVE.css">
+</head><body>
+<div class="boot" id="boot">
+<div class="boot-bg"></div>
+<div class="boot-head boot-wrap"><div class="boot-brand"><span class="boot-symbol"><img src="/molindesign/maya-haglund/assets/maya-logo-white.svg" alt="" width="38" height="38"></span><span class="boot-word">maya haglund<span>PERSONLIG TRÄNARE</span></span></div></div>
+<div class="boot-stage" aria-hidden="true"><div class="boot-kit">
+<span class="boot-floor floor-ball"></span><span class="boot-floor floor-kb"></span><span class="boot-floor floor-band"></span>
+<div class="kit kit-ball"><img src="/molindesign/maya-haglund/assets/loader/ball.webp" alt="" width="573" height="572" decoding="async"></div>
+<div class="kit kit-kbshadow"><img src="/molindesign/maya-haglund/assets/loader/kettlebell-shadow.webp" alt="" width="224" height="419" decoding="async"></div>
+<div class="kit kit-bandshadow"><img src="/molindesign/maya-haglund/assets/loader/band-shadow.webp" alt="" width="301" height="192" decoding="async"></div>
+<div class="kit kit-bandback"><img src="/molindesign/maya-haglund/assets/loader/band-back.webp" alt="" width="418" height="317" decoding="async"></div>
+<div class="kit kit-kb"><img src="/molindesign/maya-haglund/assets/loader/kettlebell.webp" alt="" width="375" height="523" decoding="async"></div>
+<div class="kit kit-bandfront"><img src="/molindesign/maya-haglund/assets/loader/band-front.webp" alt="" width="107" height="169" decoding="async"></div>
+</div></div>
+<div class="boot-foot boot-wrap"><div class="boot-meter"><p class="boot-label" role="status"><span class="boot-text" aria-hidden="true">Värmer upp</span><span class="sr-only boot-sr">Hämtar hemsidan…</span></p><span class="boot-count" aria-hidden="true">0</span><span class="boot-line" aria-hidden="true"><i></i></span></div>
+<div class="boot-actions"><button type="button" onclick="location.reload()">Försök igen</button><a href="mailto:mayahaglund@outlook.com">Mejla Maya</a></div></div>
+</div>
+<script>
+(function () {
+  var boot = document.getElementById('boot'), root = document.documentElement;
+  if (/\/admin\/?$/.test(location.pathname)) { boot.remove(); return; }
+  root.classList.add('is-booting');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, speed = 1;
+  try { if (sessionStorage.getItem('maya-boot')) speed = 0.6; sessionStorage.setItem('maya-boot', '1'); } catch (e) {}
+  boot.style.setProperty('--t', speed);
+  var bar = boot.querySelector('.boot-line i'), count = boot.querySelector('.boot-count');
+  var start = performance.now(), shown = 0, floor = 0, done = null, running = true, idleStart = Infinity, introResolve;
+  var introDone = new Promise(function (resolve) { introResolve = resolve; });
+  function frame(now) {
+    var creep = 93 * (1 - Math.exp(-(now - start) / 2400));
+    var target = done ? 100 : Math.min(94, Math.max(floor, creep));
+    shown += (target - shown) * (done ? 0.24 : 0.07);
+    if (done && shown > 99.6) shown = 100;
+    bar.style.transform = 'scaleX(' + (shown / 100).toFixed(4) + ')';
+    count.textContent = Math.round(shown);
+    if (shown === 100 && done) { running = false; done(); return; }
+    if (running) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  var fontLink = document.querySelector('link[as=style][href*="fonts.googleapis"]');
+  function fontsIn() { boot.classList.add('has-fonts'); }
+  setTimeout(fontsIn, 1000);
+  if (document.fonts && fontLink) {
+    var fontsReady = function () { Promise.all([document.fonts.load('650 23px Manrope'), document.fonts.load('500 11px "DM Sans"')]).then(fontsIn, fontsIn); };
+    if (fontLink.rel === 'stylesheet') fontsReady(); else fontLink.addEventListener('load', fontsReady);
+  }
+  var imgs = [].slice.call(boot.querySelectorAll('.kit img'));
+  Promise.race([
+    Promise.all(imgs.map(function (img) { return img.decode ? img.decode().catch(function () {}) : 0; })),
+    new Promise(function (resolve) { setTimeout(resolve, 2200); })
+  ]).then(function () {
+    boot.classList.add('is-playing');
+    var intro = reduce ? 520 : 1460 * speed;
+    setTimeout(introResolve, intro * 0.82);  // everything has landed; the last wobbles overlap the count to 100
+    setTimeout(function () {
+      if (/is-(still|leaving|error)/.test(boot.className)) return;
+      boot.classList.add('is-idle'); idleStart = performance.now();
+    }, intro + 700 * speed);
+  });
+  function setText(text, sr) { boot.querySelector('.boot-text').textContent = text; boot.querySelector('.boot-sr').textContent = sr || text; }
+  var api = window.mayaBoot = {
+    el: boot, reduce: reduce, speed: speed, started: false,
+    step: function (v) {
+      api.started = true; floor = Math.max(floor, v);
+      if (boot.classList.contains('is-error')) { boot.classList.remove('is-error'); setText('Värmer upp', 'Hämtar hemsidan…'); }
+      if (!running && !done) { running = true; requestAnimationFrame(frame); }
+    },
+    complete: function () { return new Promise(function (resolve) { done = resolve; if (!running) { running = true; requestAnimationFrame(frame); } }); },
+    fail: function (message) { boot.classList.add('is-error', 'is-still'); running = false; setText(message); },
+    ready: function (text) { setText(text, 'Hemsidan är klar.'); },
+    introDone: function () { return introDone; }, idleStart: function () { return idleStart; }
+  };
+  setTimeout(function () { if (!api.started) api.fail('Sidan kunde inte laddas. Kontrollera anslutningen och försök igen.'); }, 15000);
+})();
+</script>
+<noscript><style>.boot{display:none}</style><p style="font-family:Arial,sans-serif;padding:40px 24px">Aktivera JavaScript för att visa hemsidan, eller mejla Maya på <a href="mailto:mayahaglund@outlook.com">mayahaglund@outlook.com</a>.</p></noscript>
+<div id="root"></div></body></html>
