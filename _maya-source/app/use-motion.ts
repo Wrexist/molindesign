@@ -10,24 +10,22 @@ export function useMotion() {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const animations = new Set<Animation>();
     let observer: IntersectionObserver | undefined;
-    let kitObserver: IntersectionObserver | undefined;
+    let plateObserver: IntersectionObserver | undefined;
     function start() {
       observer?.disconnect();
       animations.forEach(animation => animation.cancel());
       animations.clear();
-      // Card equipment plays its landing once it is well in view; without motion it simply stays put.
-      kitObserver?.disconnect();
-      const kits = container?.querySelectorAll<HTMLElement>('[data-kit]') ?? [];
-      kits.forEach(kit => kit.classList.remove('is-armed', 'is-in'));
+      // The weight plates land once the stack is well in view; without motion they simply stay put.
+      plateObserver?.disconnect();
+      const stacks = container?.querySelectorAll<HTMLElement>('[data-plates]') ?? [];
+      stacks.forEach(stack => stack.classList.remove('is-armed', 'is-in'));
       if (preference.matches || !container) return;
-      kitObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          kitObserver?.unobserve(entry.target);
-          entry.target.classList.add('is-in');
-        });
-      }, {threshold: 0.6});
-      kits.forEach(kit => { kit.classList.add('is-armed'); kitObserver?.observe(kit); });
+      plateObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        plateObserver?.unobserve(entry.target);
+        entry.target.classList.add('is-in');
+      }), {threshold: 0.7});
+      stacks.forEach(stack => { stack.classList.add('is-armed'); plateObserver?.observe(stack); });
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -49,7 +47,7 @@ export function useMotion() {
     preference.addEventListener('change', start);
     return () => {
       observer?.disconnect();
-      kitObserver?.disconnect();
+      plateObserver?.disconnect();
       animations.forEach(animation => animation.cancel());
       preference.removeEventListener('change', start);
       window.removeEventListener('maya:reveal', start);

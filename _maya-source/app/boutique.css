@@ -105,25 +105,6 @@
 
 .brand .brand-wordmark,.public-site .brand .brand-wordmark{display:block;font-family:Manrope,sans-serif;font-size:23px;font-weight:650;line-height:1.1;letter-spacing:-1px;text-transform:none;margin:0;color:inherit}
 
-/* Card equipment: layers, floor shadows and keyframes are shared with the boot loader in index.html. */
-.public-site .card{position:relative;--img-h:295px}
-.public-site .card-kit{position:absolute;z-index:2;right:var(--kr);top:calc(var(--img-h) + 22px - var(--kw) * .75);width:var(--kw);aspect-ratio:1000/833;pointer-events:none;filter:drop-shadow(0 10px 12px #12251b1f);transition:transform 500ms cubic-bezier(.2,.75,.25,1)}
-.public-site .card-kit-pt{--kw:196px;--kr:-78px}
-.public-site .card-kit-duo,.public-site .card-kit-group{--kw:168px;--kr:-6px}
-.public-site .card:hover .card-kit img{transform:none}
-@media(prefers-reduced-motion:no-preference){
-.public-site .card-kit.is-armed .kit,.public-site .card-kit.is-armed .boot-floor{opacity:0}
-.public-site .card-kit.is-in .kit-kb{animation:boot-kb 820ms var(--kd) both}
-.public-site .card-kit.is-in .floor-kb{animation:boot-floor-kb 820ms var(--kd) both}
-.public-site .card-kit.is-in .kit-ball{animation:boot-ball 1200ms calc(var(--kd) + 170ms) both}
-.public-site .card-kit.is-in .floor-ball{animation:boot-floor-ball 1200ms calc(var(--kd) + 170ms) both}
-.public-site .card-kit.is-in .kit-bandback,.public-site .card-kit.is-in .kit-bandfront{animation:boot-band 900ms calc(var(--kd) + 560ms) both}
-.public-site .card-kit.is-in .floor-band{animation:boot-floor-band 900ms calc(var(--kd) + 560ms) both}
-.public-site .card-kit.is-in .kit-kbshadow,.public-site .card-kit.is-in .kit-bandshadow{animation:boot-fade 260ms calc(var(--kd) + 1180ms) both}}
-@media(hover:hover) and (pointer:fine){.public-site .card:hover .card-kit{transform:translateY(-5px)}}
-@media(max-width:1050px){.public-site .card{--img-h:250px}.public-site .card-kit-pt{--kw:150px;--kr:-58px}.public-site .card-kit-duo,.public-site .card-kit-group{--kw:124px;--kr:-3px}}
-@media(max-width:1050px) and (min-width:701px){.public-site .card:has(.card-kit) .tag{max-width:calc(100% - 136px);line-height:1.5;border-radius:14px}}
-@media(max-width:700px){.public-site .card{--img-h:320px}.public-site .card-kit-pt{--kw:196px;--kr:-78px}.public-site .card-kit-duo,.public-site .card-kit-group{--kw:168px;--kr:-6px}}
 /* Schedule loading: the small ball from the loader */
 .public-site .schedule-loading{gap:14px;font-size:15px;color:var(--muted)}
 .public-site .mini-ball{position:relative;display:block;width:46px;height:68px}
@@ -132,3 +113,24 @@
 @media(prefers-reduced-motion:no-preference){.public-site .mini-ball img{animation:mini-bounce 900ms infinite}.public-site .mini-ball:after{animation:mini-shadow 900ms infinite}}
 @keyframes mini-bounce{0%{transform:translateY(0) scale(1.07,.92);animation-timing-function:cubic-bezier(.5,1,.89,1)}10%{transform:translateY(-3px) scale(.97,1.04);animation-timing-function:cubic-bezier(.5,1,.89,1)}50%{transform:translateY(-20px) scale(1);animation-timing-function:cubic-bezier(.11,0,.5,0)}92%{transform:translateY(-1px) scale(.98,1.03)}100%{transform:translateY(0) scale(1.07,.92)}}
 @keyframes mini-shadow{0%,100%{opacity:1;transform:scale(1.05)}50%{opacity:.4;transform:scale(.6)}}
+
+/* Weight plates beside the steps: a heavy landing like the loader's kettlebell, one plate at a time. */
+.public-site .steps-row{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:56px;align-items:end;margin-top:46px}
+.public-site .steps-row .steps{margin-top:0}
+.public-site .plate-stack{position:relative;width:100%;aspect-ratio:754/393;margin-bottom:6px}
+.public-site .plate-stack .plate-layer{position:absolute;height:auto;object-fit:contain}
+.public-site .plate-shadow0{left:1.194%;top:39.695%;width:98.143%;transform-origin:50.0% 100%}
+.public-site .plate-plate0{left:0.663%;top:27.735%;width:94.164%;transform-origin:50.01% 100%}
+.public-site .plate-shadow1{left:11.936%;top:29.008%;width:79.31%;transform-origin:50.0% 100%}
+.public-site .plate-plate1{left:11.538%;top:18.321%;width:75.729%;transform-origin:50.0% 100%}
+.public-site .plate-shadow2{left:17.109%;top:19.593%;width:62.334%;transform-origin:50.01% 100%}
+.public-site .plate-plate2{left:16.844%;top:9.924%;width:59.019%;transform-origin:49.99% 100%}
+@media(prefers-reduced-motion:no-preference){
+.public-site .plate-stack.is-armed .plate-layer{opacity:0}
+.public-site .plate-stack.is-in .plate-plate0{animation:plate-drop 820ms 0ms both}.public-site .plate-stack.is-in .plate-shadow0{animation:plate-shadow 820ms 0ms both}
+.public-site .plate-stack.is-in .plate-plate1{animation:plate-drop 820ms 480ms both}.public-site .plate-stack.is-in .plate-shadow1{animation:plate-shadow 820ms 480ms both}
+.public-site .plate-stack.is-in .plate-plate2{animation:plate-drop 820ms 960ms both}.public-site .plate-stack.is-in .plate-shadow2{animation:plate-shadow 820ms 960ms both}}
+@keyframes plate-shadow{0%,36%{opacity:0}50%,100%{opacity:1}}
+@keyframes plate-drop{0%{opacity:0;transform:translateY(-120px);animation-timing-function:cubic-bezier(.45,0,.9,.45)}14%{opacity:1}50%{transform:translateY(0) scale(1.03,.93);animation-timing-function:cubic-bezier(.2,.8,.4,1)}63%{transform:translateY(-7px) scale(.993,1.01);animation-timing-function:cubic-bezier(.55,0,.9,.5)}76%{transform:translateY(0) scale(1.01,.985);animation-timing-function:cubic-bezier(.3,.7,.4,1)}100%{opacity:1;transform:none}}
+@media(max-width:1050px){.public-site .steps-row{grid-template-columns:minmax(0,1fr) 180px;gap:32px}}
+@media(max-width:700px){.public-site .steps-row{grid-template-columns:1fr;gap:26px;margin-top:30px}.public-site .plate-stack{order:-1;width:190px}}
