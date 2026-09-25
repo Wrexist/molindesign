@@ -1,0 +1,10 @@
+[build]
+command = "npm run build"
+publish = "dist"
+[functions]
+directory = "netlify/functions"
+node_bundler = "esbuild"
+[[redirects]]
+from = "/molindesign/maya-haglund/*"
+to = "/:splat"
+status = 200
