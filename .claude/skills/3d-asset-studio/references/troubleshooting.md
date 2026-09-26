@@ -12,7 +12,7 @@ the exact fix for each.
 | `one-time setup: installing …` fails | The pinned three.js packages come from the npm registry once. Offline: install `three@0.170.0` anywhere and pass `--three <dir>/node_modules/three` (booleans and path tracing then need their packages too). |
 | WebGL fails, blank frame | The kit uses SwiftShader (software WebGL). If a sandbox blocks it, try `--browser` with a full Chrome instead of the headless shell. |
 | requests to localhost refused, proxy errors | Not used: files reach the page from a fake origin (`http://w3d.local/fs/…`) inside Playwright, so no server, port or `file://` is involved. |
-| slow (minutes) | Software rendering scales with pixels × passes. Iterate with `--draft`; use `ss: 1` or a smaller `width` for big scenes; icons render one by one, sequences frame by frame. A busy machine can double the times. `--gpu` helps where a GPU exists. |
+| slow (minutes) | Run renders one after another: parallel renders share the CPU (three at once took ~80 s each against ~12 s alone). Software rendering scales with pixels × passes. Iterate with `--draft`; use `ss: 1` or a smaller `width` for big scenes; icons render one by one, sequences frame by frame. A busy machine can double the times. `--gpu` helps where a GPU exists. |
 | `Timeout … exceeded` | `--timeout 1800` for large sequences, or split the work (fewer frames, smaller width). |
 | `path tracing needs a GPU` | Correct: in software the path tracer cannot finish. Render the raster still (studio `glass` for glass) or run where a GPU is available. |
 
@@ -45,6 +45,7 @@ the exact fix for each.
 | hard seams or faceting on small bevels | use `creased()` (size-aware welding) rather than three's `toCreasedNormals`, which welds on a fixed 1 mm grid |
 | a bevel notches sharp tips of a logo | lower `bevel` in `extrudeSVG`, or simplify very thin parts of the SVG |
 | an imported model is dark, flat or plastic | inspect it; replace materials with presets (importing.md) |
+| a dark liquid or screen mirrors the studio (reads grey) | lower its `material.envMapIntensity` (0.2–0.4) |
 | low-poly collapses thin parts | lower `lookOptions.cell`, or keep a mesh intact: `mesh.userData.w3dKeepDetail = true` |
 
 ## Layers and the rebuild check
@@ -69,6 +70,7 @@ the exact fix for each.
 | STL lies on its side in the slicer | STL exports are Z-up already; for imports use `up: 'z'` (the default for STL). |
 | GLB lacks the grain or looks smoother | Procedural grain is render-time only; exports carry plain PBR. |
 | USDZ missing textures in Quick Look | Keep textures as images or canvases (no procedural shaders); test on an iPhone. |
+| leaves or paper vanish from behind in AR | USDZ has no double-sided surfaces. Exports from this kit add back faces automatically; for other files, give thin parts two sides in Blender (Solidify) or re-export through `convert.mjs`. |
 | Draco / Meshopt GLB fails to load elsewhere | The viewer needs the decoder: `<model-viewer>` and `w3d-viewer` include it; other tools may not. |
 
 ## On the page

@@ -12,6 +12,7 @@ const HELP = `usage: node inspect.mjs <model.glb|gltf|obj|fbx|stl|ply|3mf|dae|us
   --out <dir>        where the sheet and info.json go (default: <model>.inspect/ next to the model)
   --height <len>     treat the model as this tall (78cm, 1.2m, …) instead of the file's units
   --size <len>       … or this long on its longest side
+  --by <pattern>     measure --height/--size on the parts whose names match (e.g. 'pot|leaf')
   --units <u>        mm | cm | m | in: what the file's numbers mean (default: glTF m, STL/3MF mm, FBX cm)
   --up z             the file is Z-up (default for STL/3MF)
   --look <l>         render the views as clay, lineart, … instead of the model's own materials
@@ -24,7 +25,7 @@ if (!fs.existsSync(model)) fail(`model not found: ${model}`);
 const base = path.basename(model).replace(/\.[^.]+$/, '');
 const out = path.resolve(args.out ?? path.join(path.dirname(model), `${base}.inspect`));
 const opts = {};
-for (const k of ['height', 'size', 'units', 'up']) if (args[k]) opts[k] = args[k];
+for (const k of ['height', 'size', 'units', 'up', 'by']) if (args[k]) opts[k] = args[k];
 if (args.smooth) opts.smooth = +args.smooth;
 
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'w3d-inspect-'));
@@ -58,6 +59,13 @@ const lines = [
   `  animations  ${s.animations?.length ? s.animations.map(a => `${a.name || '(unnamed)'} ${a.seconds}s`).join(', ') : 'none'}`,
 ];
 if (s.extensions?.length) lines.push(`  extensions  ${s.extensions.join(', ')}`);
+if (s.parts?.length > 1) {
+  const rows = [...s.parts].sort((a, b) => b.sizeCm[1] - a.sizeCm[1]).slice(0, 16);
+  const w = Math.max(...rows.map(p => (p.name + (p.count > 1 ? ` ×${p.count}` : '')).length));
+  lines.push('  parts       w × h × d cm (measure one with loadModel {by} or measure(model, by))');
+  for (const p of rows) lines.push(`    ${(p.name + (p.count > 1 ? ` ×${p.count}` : '')).padEnd(w)}  ${p.sizeCm.join(' × ')}  ${p.triangles.toLocaleString('en')} tris`);
+  if (s.parts.length > rows.length) lines.push(`    … ${s.parts.length - rows.length} more in info.json`);
+}
 // advice for the web
 const tips = [];
 if (s.triangles > 300000) tips.push(`heavy for the web (${Math.round(s.triangles / 1000)}k triangles): simplify, or ship a rendered image instead of the model`);

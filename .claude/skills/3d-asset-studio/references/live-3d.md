@@ -26,9 +26,11 @@ node <skill>/scripts/render.mjs product.scene.js --out public/3d --mode still --
 npx @gltf-transform/cli optimize public/3d/product.glb public/3d/product.glb --compress meshopt --texture-compress webp
 ```
 - GLB for the web and Android AR, USDZ for iOS AR Quick Look. Both come out at real size (metres), so AR places
-  the object at its true scale.
+  the object at its true scale. Thin double-sided parts get real back faces in the USDZ automatically. Serve
+  `.usdz` as `model/vnd.usdz+zip`, and link it with `<a rel="ar" href="product.usdz"><img src="product.webp"></a>`
+  for Quick Look without any viewer.
 - The poster is the still: the same object, camera and light, and it shows instantly.
-- Materials export as plain PBR. Procedural grain is a render-time effect and does not travel, so give live models
+- Materials export as plain PBR. Procedural grain is a render-time effect that other viewers do not draw, so give live models
   real textures if the grain matters, or accept a smoother look.
 
 ## `<model-viewer>`: product viewers and AR

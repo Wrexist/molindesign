@@ -69,7 +69,26 @@ async function main() {
   if (A.frames) S.sequence.frames = A.frames;
   if (A.turntable) { S.mode = 'sequence'; S.sequence.turntable = true; S.sequence.frames = A.turntable; }
   if (A.ao != null) S.ao = A.ao;
-  if (A.draft) { S.ss = 1; S.width = Math.min(S.width, 640); if (S.ao) S.ao = {...(typeof S.ao === 'object' ? S.ao : {}), samples: 12}; }
+  // --set path=value overrides any setting for one run (compare variants without editing the scene)
+  for (const kv of [].concat(A.set ?? [])) {
+    const i = String(kv).indexOf('=');
+    if (i < 1) throw new Error(`--set wants path=value (camera.elevation=24, studio=bright), got "${kv}"`);
+    const keys = kv.slice(0, i).split('.'), raw = kv.slice(i + 1);
+    let v; try { v = JSON.parse(raw); } catch { v = raw; }
+    let o = S;
+    for (const k of keys.slice(0, -1)) {
+      if (typeof o[k] === 'string' && k === 'studio') o[k] = {preset: o[k]}; // --set studio.key.softness=3 keeps the preset
+      else if (typeof o[k] !== 'object' || o[k] === null) o[k] = {};
+      o = o[k];
+    }
+    o[keys[keys.length - 1]] = v;
+  }
+  if (A.draft) {
+    S.ss = 1; S.width = Math.min(S.width, 640);
+    if (S.size) { const k = Math.min(1, 640 / Math.max(...S.size)); S.size = S.size.map(v => Math.round(v * k)); } // same framing, fewer pixels
+    S.icons.size = S.icons.size.map(v => Math.min(v, 256));
+    if (S.ao) S.ao = {...(typeof S.ao === 'object' ? S.ao : {}), samples: 12};
+  }
   const mode = S.mode;
   if (!['layers', 'still', 'icons', 'sequence', 'none'].includes(mode)) throw new Error(`Unknown mode "${mode}" (layers, still, icons, sequence, or none to only export models)`);
   const name = slug(A.name ?? S.name ?? A.sceneName);
@@ -125,6 +144,14 @@ async function main() {
     if (!o.customDepthMaterial) o.customDepthMaterial = new THREE.MeshDepthMaterial({depthPacking: THREE.RGBADepthPacking, alphaHash: true, opacity: 1 - 0.65 * through});
   });
   const studio = new Studio(renderer, scene, P, bounds, {azimuth, environment, transmissive, floor: S.floor === false ? false : {...S.floor, y: floorY}, contact: S.contact, shadowColor: S.shadowColor});
+  // per-material reflection strength: with scene.environment three applies scene.environmentIntensity to every
+  // material, so a material that asks for its own envMapIntensity (≠ 1) gets the environment directly
+  for (const L of layers) L.object.traverse(o => {
+    for (const m of [].concat(o.material ?? [])) {
+      if (!m?.isMeshStandardMaterial || m.envMap || m.envMapIntensity === 1) continue;
+      m.envMap = environment; m.envMapRotation.copy(scene.environmentRotation); m.envMapIntensity *= P.env; m.needsUpdate = true;
+    }
+  });
   const camera = aimCamera(camCfg, bounds);
   const shadowRgb = px.hexToRgb(S.shadowColor);
 
@@ -275,7 +302,7 @@ async function main() {
       root.rotation.x = f === 'stl' ? Math.PI / 2 : 0; // slicers and CAD are Z-up
       root.updateMatrixWorld(true);
       if (f === 'glb') data = new Blob([await toGLB(root)], {type: 'model/gltf-binary'});
-      else if (f === 'usdz') data = new Blob([await toUSDZ(root)], {type: 'model/vnd.usdz+zip'});
+      else if (f === 'usdz') { const u = await toUSDZ(root); data = new Blob([u.data], {type: 'model/vnd.usdz+zip'}); if (u.doubled) log(`usdz: ${u.doubled} double-sided parts given real back faces (USDZ has no double-sided surfaces)`); }
       else if (f === 'stl') data = new Blob([(await toSTL(root)).buffer], {type: 'model/stl'});
       else if (f === 'obj') data = new Blob([await toOBJ(root)], {type: 'text/plain'});
       else { warn(`unknown export format "${f}" (glb, usdz, stl, obj)`); continue; }

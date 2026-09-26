@@ -117,11 +117,15 @@ node scripts/preview.mjs public/assets/hero/meta.json --out hero.motion.png   # 
 `--no-ao` · `--frames <n>` · `--turntable <n>` (implies sequence) · `--video webp,webm,mp4` · `--export
 glb,usdz,stl,obj` (`--glb`) · `--pathtrace [n]` · `--gpu` · `--base <url>` (URL prefix in snippet.html) ·
 `--previews <dir>` (default `<scene dir>/<name>.preview/`) · `--browser <chrome>` · `--three <dir>` ·
-`--timeout <s>` (900).
+`--timeout <s>` (900) · `--set path=value` (repeatable; overrides any setting for one run: `--set camera.azimuth=-40
+--set studio=bright --set studio.key.softness=3`, values parsed as JSON when they can be). `--draft` renders at
+most 640 px, even with `size`, and without supersampling.
 
-**inspect.mjs** `<model>`: `--out <dir>` (default `<model>.inspect/`) · `--height <len>` / `--size <len>` ·
+**inspect.mjs** `<model>`: `--out <dir>` (default `<model>.inspect/`) · `--height <len>` / `--size <len>` (`--by <pattern>` to
+measure it on some parts) ·
 `--units mm|cm|m|in` · `--up z` · `--look <look>` · `--smooth <deg>`. It prints the format, the real size, meshes,
-triangles, materials, textures, animations and compression, plus advice for the web. It writes `info.json` and
+triangles, materials, textures, animations and compression, a table of every part's size, and advice for the web. It
+writes `info.json` and
 `sheet.png` (front, three-quarter, side, back).
 
 **convert.mjs** `<model> --to glb,usdz,stl,obj`: `--out <dir>` · `--name` · `--height` / `--size` · `--units`
@@ -172,5 +176,6 @@ meta.json (sequence) adds `"sequence": {"frames", "fps", "loop", "pattern": "fra
 
 Scene units are 10 cm. Exports are written at real size. GLB, USDZ and OBJ are in metres (the glTF standard,
 and what AR expects). STL is in millimetres and Z-up (what slicers assume). Importing reverses this.
-`loadModel` knows the units of each format (references/importing.md). Baked AO travels as vertex colour;
-procedural grain is a render-time shader and does not. Exported materials are plain PBR.
+`loadModel` knows the units of each format (references/importing.md). Baked AO travels as vertex colour.
+Procedural grain is a render-time shader: other viewers show the plain PBR base, but its parameters travel in glTF
+extras, and `loadModel` rebuilds it.

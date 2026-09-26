@@ -84,7 +84,8 @@ M.withGrain(material, {scale: 260, bump: 1, roughVar: 0.05, tintVar: 0.04, speck
 - `bump`: relief. Keep it ≤ 0.15 on metals (satin finish) and use 1–1.5 on iron.
 - `roughVar`, `tintVar`: roughness and colour variation. `pits`: sparse dents (cast iron, citrus skin).
   `cells`: cellular granules (cork, foam, felt). `veins`: marble veins.
-- It is render-time only: GLB exports carry the base material without it.
+- It is a render-time shader: other viewers show the plain base material. Its parameters travel in the GLB's
+  extras, so `loadModel` rebuilds the same surface.
 
 Judge grain at final resolution, not in drafts.
 
@@ -151,13 +152,15 @@ studio: {preset: 'soft', key: {dir: [-3, 5.5, 2.6], intensity: 2.4, softness: 3}
 | `neutral` | plain grey gradient | colour-critical, technical |
 | a URL | any equirectangular `.hdr`, `.exr`, `.jpg` or `.png` | a real place (Poly Haven has hundreds of free CC0 HDRIs) |
 
-`envRotation` (radians) turns the environment to place highlights. For HDRI files, keep them next to the scene
+`envRotation` (radians) turns the environment to place highlights. Per material, `material.envMapIntensity = 0.3`
+dims its reflections (a dark liquid that should not mirror the studio, a matte label), and `> 1` strengthens
+them. For HDRI files, keep them next to the scene
 and pass `new URL('./studio_small_08_2k.hdr', import.meta.url).href`. 1–2k HDRIs are plenty for reflections.
 
 ## Lighting recipes by subject
 
-- **Product on white / e-commerce**: `bright`, `camera.elevation` 12–20, floor shadow 0.3, contact 0.4, a light
-  backdrop (`#f7f7f5`) for stills.
+- **Product on white / e-commerce**: `bright`, `camera.elevation` 12–20, floor shadow 0.3, contact 0.4, and
+  `backdrop: '#ffffff'` for webshops (painted backdrops come out exactly as given, 255 stays 255).
 - **Hero on a light page**: `soft` with the fill tinted to the page, and shadows at about the page's own UI
   shadow strength.
 - **Dark premium**: `dramatic`, rim on, object colours a little lighter than on light pages, floor shadow 0.7

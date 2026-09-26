@@ -96,7 +96,9 @@ product: model it (proportions from the photo); do not try to reconstruct geomet
 
 Render times: rendering is software WebGL (SwiftShader), identical on every machine and needing no GPU. A
 draft takes 15–40 s. A full three-layer render takes 40–120 s, more on a busy machine. An icon set costs about
-10–30 s per icon, a 48-frame sequence 2–4 min. `--gpu` uses a graphics card when one exists.
+10–30 s per icon, a 48-frame sequence 2–4 min. Run renders one after another: parallel renders share the CPU and
+all slow down. `--set camera.elevation=24` tries a variant without editing the scene. `--gpu` uses a graphics card
+when one exists.
 `--pathtrace` (true global illumination) needs a GPU and refuses to run without one.
 
 ## A scene module
@@ -237,7 +239,7 @@ Environments (what reflections see): `room`, `softbox` (metals, gloss), `strips`
 - Lossy WebP stores colour at half resolution: saturated edges shift a little, and no quality setting fixes it.
   It is invisible at page size; `--png` if colour must be exact.
 - Exports are real size (glTF/USDZ/OBJ in metres, STL in millimetres and Z-up), so a mug comes out 9.5 cm tall in
-  AR, not 95 cm.
+  AR, not 95 cm. Check sizes you are given with `measure(model, part)` or the inspect table, and report them.
 - Web-kit pitfalls (`translate(%)`, restarting animations, global `img` rules) are in references/web-integration.md.
 
 ## Reference map

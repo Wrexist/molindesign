@@ -13,6 +13,7 @@ const HELP = `usage: node convert.mjs <model> --to glb,usdz,stl,obj [options]
   --out <dir>        output folder (default: next to the model)
   --name <name>      output file name (default: the model's)
   --height <len>     scale so it is this tall (78cm, 1.2m, …)      --size <len>  … or this long on its longest side
+  --by <pattern>     measure that on the parts whose names match (e.g. 'pot|leaf')
   --units <u>        mm | cm | m | in: what the input's numbers mean (default: glTF m, STL/3MF mm, FBX cm)
   --up z             the input is Z-up (default for STL/3MF)
   --smooth <deg>     recompute smooth normals with this crease angle`;
@@ -24,7 +25,7 @@ if (!fs.existsSync(model)) fail(`model not found: ${model}`);
 const base = args.name ?? path.basename(model).replace(/\.[^.]+$/, '');
 const out = path.resolve(args.out ?? path.dirname(model));
 const opts = {};
-for (const k of ['height', 'size', 'units', 'up']) if (args[k]) opts[k] = args[k];
+for (const k of ['height', 'size', 'units', 'up', 'by']) if (args[k]) opts[k] = args[k];
 if (args.smooth) opts.smooth = +args.smooth;
 
 const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'w3d-convert-'));
@@ -39,7 +40,8 @@ export default async function build(ctx) {
 }
 `);
 const tmpOut = path.join(dir, 'out');
-const r = spawnSync(process.execPath, [path.join(SKILL, 'scripts/render.mjs'), scene, '--out', tmpOut, '--export', String(args.to)], {stdio: 'inherit'});
+const r = spawnSync(process.execPath, [path.join(SKILL, 'scripts/render.mjs'), scene, '--out', tmpOut, '--export', String(args.to)], {stdio: ['ignore', 'pipe', 'inherit'], encoding: 'utf8'});
+process.stdout.write((r.stdout ?? '').split('\n').filter(l => !/models only|^rendering |^\s*$/.test(l) && !l.includes(tmpOut)).join('\n') + '\n');
 if (r.status === 0) {
   fs.mkdirSync(out, {recursive: true});
   for (const f of fs.readdirSync(tmpOut).filter(f => /\.(glb|usdz|stl|obj)$/.test(f))) {

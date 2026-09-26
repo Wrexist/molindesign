@@ -47,10 +47,46 @@ export async function toGLB(root) {
   return new GLTFExporter().parseAsync(root, {binary: true, maxTextureSize: 1024});
 }
 
+/** A copy of a geometry facing the other way: reversed triangles, flipped normals. */
+function flipped(g) {
+  const f = g.clone();
+  if (f.index) {
+    const a = f.index.array;
+    for (let i = 0; i < a.length; i += 3) { const t = a[i + 1]; a[i + 1] = a[i + 2]; a[i + 2] = t; }
+    f.index.needsUpdate = true;
+  } else {
+    for (const attr of Object.values(f.attributes)) {
+      const s = attr.itemSize, arr = attr.array;
+      for (let i = 0; i + 2 < attr.count; i += 3) for (let k = 0; k < s; k++) { const t = arr[(i + 1) * s + k]; arr[(i + 1) * s + k] = arr[(i + 2) * s + k]; arr[(i + 2) * s + k] = t; }
+      attr.needsUpdate = true;
+    }
+  }
+  const n = f.attributes.normal;
+  if (n) { for (let i = 0; i < n.array.length; i++) n.array[i] = -n.array[i]; n.needsUpdate = true; }
+  return f;
+}
+
+/**
+ * USDZ for AR Quick Look. USDZ has no double-sided surfaces (three drops DoubleSide with only a console
+ * warning), so thin double-sided parts (leaves, paper, fabric, cards) get real back faces here. Textures must be
+ * images or canvases; procedural shader effects do not carry over. Returns {data, doubled}.
+ */
 export async function toUSDZ(root) {
   const {USDZExporter} = await import('three/addons/exporters/USDZExporter.js');
-  // USDZ wants textures as images; canvas textures work; procedural shader effects do not carry over
-  return new USDZExporter().parseAsync(root, {quickLookCompatible: true});
+  const copy = root.clone(true);
+  let doubled = 0;
+  copy.traverse(o => {
+    if (!o.isMesh || o.isSkinnedMesh || o.userData.w3dBackFace) return;
+    const mats = [].concat(o.material);
+    if (!mats.some(m => m.side === THREE.DoubleSide)) return;
+    const front = mats.map(m => (m.side === THREE.DoubleSide ? Object.assign(m.clone(), {side: THREE.FrontSide}) : m));
+    o.material = Array.isArray(o.material) ? front : front[0];
+    const back = new THREE.Mesh(flipped(o.geometry), o.material);
+    back.name = (o.name || 'part') + '-back'; back.userData.w3dBackFace = true;
+    o.add(back); doubled++;
+  });
+  copy.updateMatrixWorld(true);
+  return {data: await new USDZExporter().parseAsync(copy, {quickLookCompatible: true}), doubled};
 }
 
 export async function toSTL(root) {

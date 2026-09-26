@@ -31,6 +31,7 @@ return [{name: 'chair', object: chair}];
 | option | meaning |
 |---|---|
 | `height`, `width`, `depth`, `size` | scale so this dimension matches (`'82cm'`, `'1.2m'`, `'300mm'`, `'12in'`, or scene units) |
+| `by` | measure that size on some parts only: a RegExp or string matched against mesh, material and parent names (`by: /pot|soil|leaf/`), or `(mesh) => bool` |
 | `units` | what the file's numbers mean when no size is given: `mm cm m in ft`. Defaults: glTF/USDZ/DAE metres, FBX centimetres, STL/3MF millimetres; OBJ/PLY/VOX have none (fitted to 30 cm with a note) |
 | `up` | `'z'` for Z-up files (the default for STL/3MF; CAD and printing are Z-up) |
 | `rotate` | `[x, y, z]` degrees after that: turn the front toward the camera |
@@ -42,8 +43,15 @@ return [{name: 'chair', object: chair}];
 | `mtl` | an OBJ's material file (default: the same name `.mtl`; `false` for none) |
 
 Every model comes back standing on y = 0, centred on x/z, casting shadows, with texture anisotropy raised.
-`model.userData.w3dModel` holds the stats. `copyModel(model)` makes more instances (skinned models included),
-and `fitTo(object, {height})` rescales anything.
+`model.userData.w3dModel` holds the stats, including `parts` (every named part with its size). `copyModel(model)`
+makes more instances (skinned models included), and `fitTo(object, {height})` rescales anything.
+
+**Check sizes, do not assume them.** `measure(model, /pot|leaf/)` returns `{width, height, depth}` in cm for the
+matching parts, and `inspect.mjs` prints a table of every part's size. When a request says "the plant should be
+27 cm", size by that part (`by`) and log the measurement in the scene (`ctx.log`), then report it.
+
+GLBs exported by this skill carry their grain parameters in glTF extras, and `loadModel` re-applies them, so a
+round trip looks the same. Other viewers show the plain base material.
 
 Draco, Meshopt and KTX2-compressed glTF files load directly. The decoders ship with three.js.
 
@@ -69,7 +77,10 @@ node <skill>/scripts/convert.mjs chair.fbx --to glb,usdz --height 82cm   # web +
 node <skill>/scripts/convert.mjs part.obj --to stl --units mm            # 3D printing
 ```
 It goes through three.js: the geometry, PBR materials and textures that three can read and write. Files are at
-real size: glTF/USDZ/OBJ in metres, STL in millimetres and Z-up. For anything three cannot read (STEP, IGES,
+real size: glTF/USDZ/OBJ in metres, STL in millimetres and Z-up. USDZ has no double-sided surfaces, so thin
+double-sided parts (leaves, paper, cloth, cards) automatically get real back faces; the log says how many. three
+writes USDZ as uncompressed text USD with generic part names, so several MB is normal and Quick Look does not
+mind. For a smaller file use Apple's Reality Converter. Serve `.usdz` as `model/vnd.usdz+zip`. For anything three cannot read (STEP, IGES,
 Blend, MAX, C4D), export glTF from the authoring tool (Blender: File › Export › glTF 2.0; CAD tools export STL
 or OBJ).
 

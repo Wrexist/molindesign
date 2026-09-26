@@ -103,7 +103,8 @@ float w3dHeight(vec3 p) {
 export function withGrain(material, {scale = 260, bump = 1, roughVar = 0.05, tintVar = 0.04, speckle = 1.6, pits = 0, seed = 7, cells = 0, cellScale = 0.25, veins = 0, veinScale = 1.5, veinSharp = 12, veinColor = 0x8a8f96} = {}) {
   const u = {w3dScale: {value: scale}, w3dBump: {value: bump}, w3dRoughVar: {value: roughVar}, w3dTintVar: {value: tintVar}, w3dSpeckle: {value: speckle}, w3dSeed: {value: seed}, w3dPits: {value: pits},
     w3dCellsAmt: {value: cells}, w3dCellsScale: {value: cellScale}, w3dVeins: {value: veins}, w3dVeinScale: {value: veinScale}, w3dVeinSharp: {value: veinSharp}, w3dVeinColor: {value: new THREE.Color(veinColor)}};
-  material.userData.grain = {scale, bump, roughVar, tintVar, speckle, pits, seed, cells, veins};
+  // every parameter, so a GLB round trip (glTF extras) can rebuild the same surface: loadModel re-applies it
+  material.userData.grain = {scale, bump, roughVar, tintVar, speckle, pits, seed, cells, cellScale, veins, veinScale, veinSharp, veinColor: new THREE.Color(veinColor).getHex()};
   material.onBeforeCompile = shader => {
     Object.assign(shader.uniforms, u);
     shader.vertexShader = shader.vertexShader

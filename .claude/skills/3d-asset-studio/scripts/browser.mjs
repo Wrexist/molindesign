@@ -164,6 +164,7 @@ export function parseArgs(argv, flags = []) {
     if (!t.startsWith('--')) { a._.push(t); continue; }
     const k = t.slice(2);
     if (flags.includes(k)) a[k] = true;
+    else if (k === 'set') (a.set ??= []).push(argv[++i]); // repeatable
     else a[k] = argv[++i];
   }
   return a;

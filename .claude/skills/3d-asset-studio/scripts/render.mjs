@@ -22,7 +22,8 @@ const HELP = `usage: node render.mjs <scene.js> --out <dir> [options]
   --frames <n>        sequence length          --turntable <n>  n-frame turntable (implies --mode sequence)
   --video <f,f>       sequence containers: webp (animated, default), webm, mp4 (needs system ffmpeg)
   --export <f,f>      model files: glb, usdz, stl, obj            --glb   same as --export glb
-  --draft             fast look at the beauty only (low resolution, nothing written to --out)
+  --draft             fast look at the beauty only (≤ 640 px, no supersampling, nothing written to --out)
+  --set <path=value>  override a setting for this run, repeatable: --set camera.elevation=24 --set studio=bright
   --png               also write lossless PNGs
   --base <url>        URL prefix used in snippet.html (default: guessed from a public/ or static/ folder)
   --previews <dir>    where previews go (default: <scene dir>/<name>.preview)
@@ -65,7 +66,13 @@ try {
   await serve(context, {'/stage.html': stageHtml});
   const page = await context.newPage();
   page.on('pageerror', e => console.error('page error:', e.message));
-  page.on('console', m => { if (m.type() === 'error') console.error('console:', m.text().replace(new RegExp(ORIGIN + '/fs', 'g'), '')); });
+  const seen = new Set();
+  page.on('console', m => {
+    const text = m.text().replace(new RegExp(ORIGIN + '/fs', 'g'), '');
+    if (m.type() === 'error') console.error('console:', text);
+    // three's exporters and loaders report lossy conversions only as warnings: pass those on (once each)
+    else if (m.type() === 'warning' && /THREE\.\w*(Exporter|Loader)/.test(text) && !seen.has(text)) { seen.add(text); console.log('  three: ' + text); }
+  });
 
   let assetName = sceneName;
   const previewDirFor = name => (args.previews ? path.resolve(args.previews) : path.join(path.dirname(scenePath), `${name}.preview`));
@@ -82,7 +89,7 @@ try {
   await page.addInitScript(a => { window.W3D_ARGS = a; }, {
     scene: toUrl(scenePath) + '?v=' + Date.now(), sceneName, name: args.name, mode: args.mode, look: args.look,
     width: args.width && +args.width, size, ss: args.ss && +args.ss, quality: args.quality && +args.quality,
-    draft: !!args.draft, png: !!args.png, glb: !!args.glb, export: args.export, pathtrace: args.pathtrace, pathtraceMock: !!process.env.W3D_PATHTRACE_MOCK,
+    draft: !!args.draft, png: !!args.png, glb: !!args.glb, export: args.export, pathtrace: args.pathtrace, pathtraceMock: !!process.env.W3D_PATHTRACE_MOCK, set: args.set,
     frames: args.frames && +args.frames, turntable: args.turntable ? +args.turntable : 0, ao: args['no-ao'] ? false : args.ao ? true : null,
   });
 

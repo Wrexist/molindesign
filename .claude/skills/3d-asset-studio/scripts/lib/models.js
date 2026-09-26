@@ -7,6 +7,7 @@
 import * as THREE from 'three';
 import {clone as cloneSkinned} from 'three/addons/utils/SkeletonUtils.js';
 import {creased} from './geometry.js';
+import {withGrain} from './materials.js';
 
 const LIBS = new URL('libs/', import.meta.resolve('three/addons/')).href;
 const UNIT = {mm: 0.01, cm: 0.1, dm: 1, m: 10, in: 0.254, ft: 3.048, unit: 1};
@@ -81,6 +82,8 @@ function toStandard(m) {
 /**
  * loadModel(url, options) → THREE.Group, standing on y = 0 and centred on x/z.
  *   Size (pick one; a length like '78cm' or scene units): height | width | depth | size (largest side).
+ *     by: measure only some parts for that size — a RegExp or string matched against mesh, material and parent
+ *     names, or (mesh) => bool. {height: '27cm', by: /pot|soil|leaf/} makes the plant 27 cm, whatever else is in the file.
  *     Without one the file's units are used (glTF: metres; STL/3MF: mm; FBX: cm) — `units` overrides that;
  *     files with no units (OBJ, PLY, VOX) are fitted to 30 cm and say so in model.userData.w3dModel.note.
  *   up: 'y' | 'z' (STL/3MF default to Z-up)   rotate: [x, y, z] degrees after that (turn it to face the camera)
@@ -122,9 +125,16 @@ export async function loadModel(url, opts = {}) {
       let out = m;
       if (typeof opts.material === 'function') out = opts.material(o, m) ?? m;
       else if (opts.material?.isMaterial) out = opts.material;
-      else { if (!cache.has(m)) cache.set(m, toStandard(m)); out = cache.get(m); }
+      else {
+        if (!cache.has(m)) {
+          const s = toStandard(m);
+          // this skill's own GLB exports carry their grain parameters in glTF extras: rebuild the same surface
+          if (s.userData?.grain && !s.userData.w3dGrainApplied) { withGrain(s, s.userData.grain); s.userData.w3dGrainApplied = true; }
+          cache.set(m, s);
+        }
+        out = cache.get(m);
+      }
       if (opts.flat) { out = out.clone(); out.flatShading = true; }
-      if (out.isMeshStandardMaterial && !out.envMapIntensity) out.envMapIntensity = 1;
       stats.materials.add(out);
       for (const v of Object.values(out)) if (v?.isTexture) { stats.textures.add(v); const img = v.image; if (img?.width) stats.maxTexture = Math.max(stats.maxTexture, img.width, img.height); v.anisotropy = 8; }
       return out;
@@ -136,12 +146,14 @@ export async function loadModel(url, opts = {}) {
   model.updateMatrixWorld(true);
   let box = new THREE.Box3().setFromObject(model, true);
   if (box.isEmpty()) throw new Error(`"${href}" contains no geometry`);
-  const dims = box.getSize(new THREE.Vector3());
+  const sizeBox = opts.by ? boxOf(model, opts.by) : box;
+  if (sizeBox.isEmpty()) throw new Error(`loadModel: nothing in "${href}" matches by: ${opts.by} (parts: ${[...new Set(parts(model).map(p => p.name))].join(', ')})`);
+  const dims = sizeBox.getSize(new THREE.Vector3()), whole = box.getSize(new THREE.Vector3());
   const ask = [['height', dims.y], ['width', dims.x], ['depth', dims.z], ['size', Math.max(dims.x, dims.y, dims.z)]].find(([k]) => opts[k] != null);
   let k = 1, note = null;
   if (ask) k = length(opts[ask[0]]) / ask[1];
   else if (opts.units || FILE_UNITS[ext]) k = UNIT[opts.units ?? FILE_UNITS[ext]];
-  else { k = 3 / Math.max(dims.x, dims.y, dims.z); note = `.${ext} files carry no units: fitted to 30 cm on its longest side; pass height/width/size for the real size`; }
+  else { k = 3 / Math.max(whole.x, whole.y, whole.z); note = `.${ext} files carry no units: fitted to 30 cm on its longest side; pass height/width/size for the real size`; }
   if (!Number.isFinite(k) || k <= 0) throw new Error(`Cannot scale "${href}" (size ${dims.toArray().map(v => v.toFixed(3)).join(' × ')})`);
   model.scale.multiplyScalar(k);
   model.updateMatrixWorld(true);
@@ -157,9 +169,45 @@ export async function loadModel(url, opts = {}) {
     ...stats, triangles: Math.round(stats.triangles), materials: stats.materials.size, textures: stats.textures.size,
     materialTypes: [...new Set([...stats.materials].map(m => m.type))],
     sizeCm: final.toArray().map(v => +(v * 10).toFixed(1)), // x (width) × y (height) × z (depth)
-    fileSize: dims.toArray().map(v => +v.toPrecision(4)), scale: +k.toPrecision(4), geometryOnly, note,
+    fileSize: whole.toArray().map(v => +v.toPrecision(4)), scale: +k.toPrecision(4), geometryOnly, note,
+    parts: parts(model),
   };
   return model;
+}
+
+const matcher = by => (typeof by === 'function' ? by : (re => o => {
+  const names = [o.name, ...[].concat(o.material ?? []).map(m => m?.name)];
+  for (let p = o.parent; p; p = p.parent) names.push(p.name);
+  return names.some(n => n && re.test(n));
+})(by instanceof RegExp ? by : new RegExp(String(by), 'i')));
+
+/** Bounding box (world) of the meshes that match `by`. */
+function boxOf(object, by) {
+  const test = matcher(by), box = new THREE.Box3();
+  object.updateMatrixWorld(true);
+  object.traverse(o => { if (o.isMesh && test(o)) box.expandByObject(o, true); });
+  return box;
+}
+
+/** Real size in cm of the parts matching `by` (or the whole object): {width, height, depth}. */
+export function measure(object, by = null) {
+  const box = by ? boxOf(object, by) : new THREE.Box3().setFromObject(object, true);
+  const s = box.getSize(new THREE.Vector3());
+  return {width: +(s.x * 10).toFixed(1), height: +(s.y * 10).toFixed(1), depth: +(s.z * 10).toFixed(1)};
+}
+
+/** Every named part (meshes grouped by name, or by material name when unnamed): count, triangles, size in cm. */
+export function parts(object) {
+  const groups = new Map();
+  object.updateMatrixWorld(true);
+  object.traverse(o => {
+    if (!o.isMesh) return;
+    const name = (o.name || [].concat(o.material)[0]?.name || '(unnamed)').replace(/_\d+$/, ''); // glTF loaders number repeats: leaf, leaf_1, …
+    const g = groups.get(name) ?? {name, count: 0, triangles: 0, box: new THREE.Box3()};
+    g.count++; g.triangles += Math.round((o.geometry.index ? o.geometry.index.count : o.geometry.attributes.position.count) / 3);
+    g.box.expandByObject(o, true); groups.set(name, g);
+  });
+  return [...groups.values()].map(({box, ...g}) => { const s = box.getSize(new THREE.Vector3()); return {...g, sizeCm: [s.x, s.y, s.z].map(v => +(v * 10).toFixed(1))}; });
 }
 
 /** Scale any object so one dimension matches: fitTo(obj, {height: '30cm'}) — then stand it on the floor. */
