@@ -144,7 +144,7 @@ every mode.
 |---|---|---|
 | `layers` | `<layer>.webp`, `<layer>-shadow.webp`, `meta.json` | beauty, every layer on a checkerboard, a heat map of layers vs render |
 | `still` | `<name>.webp` (+ `png`/`jpg` per `formats`), `meta.json` | the image |
-| `icons` | `icons/<layer>.webp`, `meta.json` | a contact sheet of the set |
+| `icons` | `icons/<layer>.webp` (+ png with `--png`), `meta.json` | a contact sheet of the set; each icon at full size in `preview/icons/` |
 | `sequence` | `frames/000.webp …`, `<name>.webp` (animated), `.webm`/`.mp4` with `--video`, `meta.json` | frame 0 |
 | `none` | only the `--export` files | – |
 

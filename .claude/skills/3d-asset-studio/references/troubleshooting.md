@@ -42,6 +42,8 @@ the exact fix for each.
 | two shadows under a hovering object | `studio: 'top'`, or `contact: false` |
 | dotted lines where two surfaces nearly touch (z-fighting) | surfaces < ~0.5 mm apart seen edge-on: leave a gap, or `polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1` on the inner part's material (a factor of 2 already hides real detail) |
 | dotted or pale patches on thin parts | shadow acne: give the part thickness, or `shadowSide: THREE.BackSide` |
+| dotted lines or pinholes on flat faces, along cuts | hairline cracks from T-junctions: booleans and the AO bake close them now; for an imported model, `mesh.geometry = fixTJunctions(mesh.geometry)` |
+| faint streaks across big flat faces of an extrusion | `flatCaps(geometry)` (built into `extrudeSVG` and `text3d`) |
 | hard seams or faceting on small bevels | use `creased()` (size-aware welding) rather than three's `toCreasedNormals`, which welds on a fixed 1 mm grid |
 | a bevel notches sharp tips of a logo | lower `bevel` in `extrudeSVG`, or simplify very thin parts of the SVG |
 | an imported model is dark, flat or plastic | inspect it; replace materials with presets (importing.md) |

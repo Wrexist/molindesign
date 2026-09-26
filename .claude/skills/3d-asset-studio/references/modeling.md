@@ -47,8 +47,10 @@
 ```js
 import {lathe, roundCorners, spline, tube, ribbon, roundedBox, roundedDisc, extrudeSVG, creased, smooth, facet, evenUV, onFloor} from 'w3d/geometry.js';
 ```
-- `roundCorners(points, radius | radii[], segments = 8)`: fillets the corners of a 2D polyline. Use a radii
-  array for per-corner control, with 0 to keep a corner (the axis points of a lathe profile).
+- `roundCorners(points, radius | radii[], segments = 8, {closed})`: fillets the corners of a 2D polyline. Use a radii
+  array for per-corner control, with 0 to keep a corner (the axis points of a lathe profile). `{closed: true}` rounds
+  every corner of a closed outline, which is what you want for a `THREE.Shape` to extrude.
+  `roundedRectShape(w, h, r)` from objects.js is a ready rounded rectangle `Shape`.
 - `spline(points, samples = 48)`: a smooth curve through 2D points. Use it for organic walls. A handful of
   straight segments shows as flat bands of shading.
 - `lathe(profile, {segments = 160, crease = 35})`: revolves `[radius, height]` points around y. Go bottom to top,
@@ -59,8 +61,15 @@ import {lathe, roundCorners, spline, tube, ribbon, roundedBox, roundedDisc, extr
 - `ribbon(points3d, {width, thickness, closed, twist: t => radians, up})`: a flat band along a curve, standing on
   its edge. `twist` rotates it around the curve (closed loops: whole multiples of π at t = 1).
 - `roundedBox(w, h, d, radius, segments)`: a box with every edge rounded.
-- `extrudeSVG(svgText, {size, depth, bevel, bevelSegments, curveSegments})`: filled SVG paths to a solid,
-  centred, standing on y = 0, facing +z, with `size` as the final width.
+- `extrudeSVG(svgText, {size, depth, bevel, bevelSegments, curveSegments, unit, center})`: filled SVG paths to a solid,
+  centred, standing on y = 0, facing +z, with `size` as the final width. For parts that must fit together (puzzle
+  pieces, a logo split by colour), give them all the same `unit` (scene units per SVG unit) and `center: false`, so
+  they keep the SVG's shared scale and positions.
+- `refine(geometry, maxEdge)`: subdivide until no edge is longer than `maxEdge`, crack-free (shared edges split the
+  same way on both sides). Use it before deformers or `displace` on sparse geometry.
+- `fixTJunctions(geometry)`: closes hairline cracks where a vertex lies on another triangle's edge (booleans do
+  this automatically; imported models sometimes need it).
+- `flatCaps(geometry)`: exact flat normals on the front and back of an extrusion (`extrudeSVG` and `text3d` apply it).
 - `creased(geometry, angle = 40)`: smooth normals that stay crisp where faces fold. Welding follows the object's
   size, so small bevels are safe. `smooth(geometry, {crease})` is the same with a tolerance option.
 - `facet(geometry, {cell, jitter, seed})`: vertex-clustering remesh to low-poly facets (the `lowpoly` look uses
@@ -80,7 +89,8 @@ const holes = [[-0.14, -0.14], [0.14, -0.14], [-0.14, 0.14], [0.14, 0.14]]
 const dish = cutter(new THREE.SphereGeometry(1.6, 96, 48), [0, 1.72, 0]);   // a shallow dish in the top
 const button = subtract(disc, dish, ...holes);                               // a world-space mesh
 ```
-- Inputs are meshes with their transforms. The result is one mesh in world space: add it as is.
+- Inputs are meshes with their transforms. The result is one mesh in world space: add it as is. Cut edges are
+  closed automatically (no hairline cracks), and normals come from the inputs.
 - Cut faces take the base's material unless the cutter has its own (`cutter(geo, pos, rot, M.gold())` inlays
   gold into the cut: engraving, filled lettering).
 - `union` merges overlapping parts into one clean solid: no internal faces, a clean silhouette, and a better STL.
@@ -323,6 +333,8 @@ measurements. The file is `assets/examples/lamp.scene.js`.
   saucer is another.
 - Stacks: place each object on the one below (`y += thickness`), offset a few mm and rotate each a little.
   Hand-stacked, never CNC-aligned.
+- Rounded parts resting on a surface (a bar on a tile, a coin on a card) z-fight where the fillet grazes the
+  surface: sink them deeper than their fillet radius, lift them 0.5–1 mm, or give them a flat bottom.
 - Groups of 2–4 read best as a triangle: a tall object at the back, the hero in front, a low object leading in.
   Let them overlap; objects that do not touch look like clip art.
 - Scale everything from one real reference.

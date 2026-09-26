@@ -19,28 +19,36 @@ export function creased(geometry, angle = 40) {
 /**
  * Round the interior corners of a polyline with circular fillets.
  * points: [[x, y], ...]; radius: number or per-corner array (0 keeps a sharp corner).
+ * {closed: true} treats the points as a closed outline and rounds every corner (shapes to extrude: a soft star,
+ * a shield, a speech bubble): new THREE.Shape(roundCorners(pts, 0.05, 8, {closed: true}).map(([x, y]) => new THREE.Vector2(x, y))).
  */
-export function roundCorners(points, radius, segments = 8) {
-  const out = [points[0]];
-  for (let i = 1; i < points.length - 1; i++) {
-    const r = Array.isArray(radius) ? radius[i] ?? 0 : radius;
-    const [p0, p1, p2] = [points[i - 1], points[i], points[i + 1]];
+export function roundCorners(points, radius, segments = 8, {closed = false} = {}) {
+  const n = points.length, rOf = i => (Array.isArray(radius) ? radius[i] ?? 0 : radius);
+  const fillet = (p0, p1, p2, r) => {
     const a = new THREE.Vector2(p0[0] - p1[0], p0[1] - p1[1]), b = new THREE.Vector2(p2[0] - p1[0], p2[1] - p1[1]);
     const la = a.length(), lb = b.length();
-    if (!r || la < 1e-6 || lb < 1e-6) { out.push(p1); continue; }
+    if (!r || la < 1e-6 || lb < 1e-6) return [p1];
     a.divideScalar(la); b.divideScalar(lb);
     const angle = Math.acos(Math.min(1, Math.max(-1, a.dot(b))));
-    if (angle > Math.PI - 1e-3) { out.push(p1); continue; }
+    if (angle > Math.PI - 1e-3) return [p1];
     const t = Math.min(r / Math.tan(angle / 2), la / 2, lb / 2);
     const rr = t * Math.tan(angle / 2);
     const bis = a.clone().add(b).normalize();
     const c = new THREE.Vector2(p1[0], p1[1]).addScaledVector(bis, rr / Math.sin(angle / 2));
-    const s = new THREE.Vector2(p1[0], p1[1]).addScaledVector(a, t), e = new THREE.Vector2(p1[0], p1[1]).addScaledVector(b, t);
-    let a0 = Math.atan2(s.y - c.y, s.x - c.x), a1 = Math.atan2(e.y - c.y, e.x - c.x);
+    const st = new THREE.Vector2(p1[0], p1[1]).addScaledVector(a, t), e = new THREE.Vector2(p1[0], p1[1]).addScaledVector(b, t);
+    const a0 = Math.atan2(st.y - c.y, st.x - c.x), a1 = Math.atan2(e.y - c.y, e.x - c.x);
     let d = a1 - a0; while (d > Math.PI) d -= 2 * Math.PI; while (d < -Math.PI) d += 2 * Math.PI;
-    for (let k = 0; k <= segments; k++) { const ang = a0 + (d * k) / segments; out.push([c.x + rr * Math.cos(ang), c.y + rr * Math.sin(ang)]); }
+    const arc = [];
+    for (let k = 0; k <= segments; k++) { const ang = a0 + (d * k) / segments; arc.push([c.x + rr * Math.cos(ang), c.y + rr * Math.sin(ang)]); }
+    return arc;
+  };
+  if (closed) { // a ring: every corner is filleted, including the first (a repeated closing point is ignored)
+    const ring = n > 2 && points[0][0] === points[n - 1][0] && points[0][1] === points[n - 1][1] ? points.slice(0, -1) : points;
+    return ring.flatMap((p, i) => fillet(ring[(i - 1 + ring.length) % ring.length], p, ring[(i + 1) % ring.length], rOf(i)));
   }
-  out.push(points[points.length - 1]);
+  const out = [points[0]];
+  for (let i = 1; i < n - 1; i++) out.push(...fillet(points[i - 1], points[i], points[i + 1], rOf(i)));
+  out.push(points[n - 1]);
   return out;
 }
 
@@ -174,7 +182,7 @@ export function roundedBox(w = 1, h = 1, d = 1, radius = 0.08, segments = 6) {
  * Returns geometry centred on x/z and standing on y = 0, facing +z. `size` is the final width.
  * The SVG is flipped in 2D before extruding (SVG y points down), so faces keep their outward winding.
  */
-export function extrudeSVG(svgText, {size = 1.2, depth = 0.12, bevel = 0.012, bevelSegments = 6, curveSegments = 24} = {}) {
+export function extrudeSVG(svgText, {size = 1.2, depth = 0.12, bevel = 0.012, bevelSegments = 6, curveSegments = 24, unit = null, center = true} = {}) {
   const data = new SVGLoader().parse(svgText);
   const src = data.paths.flatMap(p => SVGLoader.createShapes(p));
   if (!src.length) throw new Error('extrudeSVG: no filled shapes in the SVG (outline strokes must be converted to filled paths first)');
@@ -187,13 +195,15 @@ export function extrudeSVG(svgText, {size = 1.2, depth = 0.12, bevel = 0.012, be
   });
   // bevel and depth are in final units; the outline is scaled after extruding, so work in SVG units here
   const box = new THREE.Box2(); for (const sh of shapes) for (const p of sh.getPoints()) box.expandByPoint(p);
-  const k = (box.max.x - box.min.x) / size;
+  // unit: scene units per SVG unit (a shared scale for parts that must fit together); otherwise fit to `size`
+  const k = unit ? 1 / unit : (box.max.x - box.min.x) / size;
   const g = new THREE.ExtrudeGeometry(shapes, {depth: depth * k, bevelEnabled: bevel > 0, bevelThickness: bevel * k, bevelSize: bevel * k * 0.8, bevelSegments, curveSegments: 1});
   g.scale(1 / k, 1 / k, 1 / k);
   g.computeBoundingBox();
   const bb = g.boundingBox;
-  g.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
-  return creased(g, 40); // smooth bevels and curves, crisp where faces fold
+  // center: false keeps the SVG's own coordinates (y up), so separately extruded parts stay aligned
+  if (center) g.translate(-(bb.min.x + bb.max.x) / 2, -bb.min.y, -(bb.min.z + bb.max.z) / 2);
+  return flatCaps(creased(g, 40)); // smooth bevels and curves, crisp where faces fold, dead flat front and back
 }
 
 /** Signed volume of a closed mesh: positive when faces wind outward (a quick inside-out check). */
@@ -250,4 +260,161 @@ export function onFloor(object) {
   const box = new THREE.Box3().setFromObject(object, true); // precise: a rotated object's real lowest vertex
   object.position.y -= box.min.y;
   return object;
+}
+
+// ------------------------------------------------------------------ crack-free subdivision and repair
+
+/** Non-indexed copy as plain arrays: [{name, size, data: Float32Array}], plus a material index per triangle. */
+function unpack(geometry) {
+  const g = geometry.index ? geometry.toNonIndexed() : geometry;
+  const attrs = Object.entries(g.attributes).map(([name, a]) => ({name, size: a.itemSize, data: Float32Array.from(a.array)}));
+  const tris = g.attributes.position.count / 3, mats = new Int32Array(tris);
+  for (const gr of g.groups) for (let t = gr.start / 3; t < Math.min(tris, (gr.start + gr.count) / 3); t++) mats[t] = gr.materialIndex ?? 0;
+  return {attrs, mats, grouped: g.groups.length > 0};
+}
+
+/** Back to a BufferGeometry; groups rebuilt from runs of equal material index. Normals renormalised. */
+function pack({attrs, mats, grouped}) {
+  const g = new THREE.BufferGeometry();
+  for (const a of attrs) g.setAttribute(a.name, new THREE.BufferAttribute(a.data, a.size));
+  const n = g.attributes.normal;
+  if (n) for (let i = 0; i < n.count; i++) { const x = n.getX(i), y = n.getY(i), z = n.getZ(i), l = Math.hypot(x, y, z) || 1; n.setXYZ(i, x / l, y / l, z / l); }
+  if (grouped) { let start = 0; for (let t = 1; t <= mats.length; t++) if (t === mats.length || mats[t] !== mats[start]) { g.addGroup(start * 3, (t - start) * 3, mats[start]); start = t; } }
+  return g;
+}
+
+const edgeKey = (P, i, j) => {
+  const k = v => `${Math.round(P[v * 3] * 1e5)},${Math.round(P[v * 3 + 1] * 1e5)},${Math.round(P[v * 3 + 2] * 1e5)}`;
+  const a = k(i), b = k(j);
+  return a < b ? a + '|' + b : b + '|' + a;
+};
+
+/**
+ * Subdivide until no edge is longer than `maxEdge`, splitting each edge the same way in both triangles that share
+ * it (edges are keyed by their end positions), so no T-junctions or hairline cracks appear. three's
+ * TessellateModifier splits per triangle and leaves such cracks. Keeps every attribute and the material groups.
+ * Use it before deformers or displacement on sparse geometry, and before baking AO on big flat faces.
+ */
+export function refine(geometry, maxEdge, {passes = 12, maxTriangles = 600000} = {}) {
+  const G = unpack(geometry), max2 = maxEdge * maxEdge;
+  for (let pass = 0; pass < passes; pass++) {
+    const P = G.attrs.find(a => a.name === 'position').data, T = P.length / 9;
+    const long = (i, j) => (P[i * 3] - P[j * 3]) ** 2 + (P[i * 3 + 1] - P[j * 3 + 1]) ** 2 + (P[i * 3 + 2] - P[j * 3 + 2]) ** 2 > max2;
+    const split = new Set();
+    for (let t = 0; t < T; t++) for (const [i, j] of [[0, 1], [1, 2], [2, 0]]) if (long(t * 3 + i, t * 3 + j)) split.add(edgeKey(P, t * 3 + i, t * 3 + j));
+    if (!split.size) break;
+    // corners 0..2 and midpoints 3 (0–1), 4 (1–2), 5 (2–0); which edges split decides the pattern
+    const patterns = [];
+    let outT = 0;
+    for (let t = 0; t < T; t++) {
+      const v = t * 3, s = [split.has(edgeKey(P, v, v + 1)), split.has(edgeKey(P, v + 1, v + 2)), split.has(edgeKey(P, v + 2, v))];
+      const f = s[0] && s[1] && s[2] ? [[0, 3, 5], [3, 1, 4], [5, 4, 2], [3, 4, 5]]
+        : s[0] && s[1] ? [[3, 1, 4], [0, 3, 4], [0, 4, 2]] : s[1] && s[2] ? [[4, 2, 5], [0, 1, 4], [0, 4, 5]] : s[2] && s[0] ? [[0, 3, 5], [3, 1, 2], [3, 2, 5]]
+        : s[0] ? [[0, 3, 2], [3, 1, 2]] : s[1] ? [[0, 1, 4], [0, 4, 2]] : s[2] ? [[0, 1, 5], [5, 1, 2]] : [[0, 1, 2]];
+      patterns.push(f); outT += f.length;
+    }
+    if (outT > maxTriangles) break;
+    const out = G.attrs.map(a => new Float32Array(outT * 3 * a.size)), mats = new Int32Array(outT);
+    let o = 0;
+    for (let t = 0; t < T; t++) {
+      const v = t * 3;
+      for (const tri of patterns[t]) {
+        for (let c = 0; c < 3; c++) {
+          const k = tri[c];
+          G.attrs.forEach((a, ai) => {
+            const s = a.size, d = a.data, dst = out[ai], at = (o * 3 + c) * s;
+            if (k < 3) for (let q = 0; q < s; q++) dst[at + q] = d[(v + k) * s + q];
+            else { const i = v + (k - 3), j = v + ((k - 2) % 3); for (let q = 0; q < s; q++) dst[at + q] = (d[i * s + q] + d[j * s + q]) * 0.5; }
+          });
+        }
+        mats[o++] = G.mats[t];
+      }
+    }
+    G.attrs.forEach((a, ai) => { a.data = out[ai]; });
+    G.mats = mats;
+  }
+  return pack(G);
+}
+
+/**
+ * Close T-junctions: where a vertex lies on another triangle's edge (typical along boolean cuts), split that
+ * triangle through it, so the surface has no hairline cracks (dotted lines and pinholes in transparent renders).
+ * Only edges used by a single triangle can hide a T-junction, so only those are searched.
+ */
+export function fixTJunctions(geometry, {tolerance = 1e-5} = {}) {
+  const G = unpack(geometry);
+  geometry.computeBoundingSphere();
+  const eps = Math.max(1e-7, geometry.boundingSphere.radius * tolerance);
+  for (let pass = 0; pass < 4; pass++) {
+    const P = G.attrs.find(a => a.name === 'position').data, T = P.length / 9;
+    const vk = i => `${Math.round(P[i * 3] / eps)},${Math.round(P[i * 3 + 1] / eps)},${Math.round(P[i * 3 + 2] / eps)}`;
+    const ek = (i, j) => { const a = vk(i), b = vk(j); return a < b ? a + '|' + b : b + '|' + a; };
+    const uses = new Map();
+    for (let t = 0; t < T; t++) for (let e = 0; e < 3; e++) { const k = ek(t * 3 + e, t * 3 + (e + 1) % 3); uses.set(k, (uses.get(k) ?? 0) + 1); }
+    const open = [], ends = new Map();
+    for (let t = 0; t < T; t++) for (let e = 0; e < 3; e++) {
+      const i = t * 3 + e, j = t * 3 + (e + 1) % 3;
+      if (uses.get(ek(i, j)) !== 1) continue;
+      open.push([t, e]);
+      for (const v of [i, j]) ends.set(vk(v), [P[v * 3], P[v * 3 + 1], P[v * 3 + 2]]);
+    }
+    if (!open.length) break;
+    const cand = [...ends.values()], splits = new Map(); // triangle → {e, ts}
+    for (const [t, e] of open) {
+      if (splits.has(t)) continue; // one edge per triangle per pass; the rest follow in the next pass
+      const i = t * 3 + e, j = t * 3 + (e + 1) % 3;
+      const a = [P[i * 3], P[i * 3 + 1], P[i * 3 + 2]], d = [P[j * 3] - a[0], P[j * 3 + 1] - a[1], P[j * 3 + 2] - a[2]];
+      const L2 = d[0] ** 2 + d[1] ** 2 + d[2] ** 2, L = Math.sqrt(L2);
+      if (L < eps * 4) continue;
+      const ts = [];
+      for (const p of cand) {
+        const u = ((p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1] + (p[2] - a[2]) * d[2]) / L2;
+        if (u * L < eps * 2 || (1 - u) * L < eps * 2) continue;
+        const q = [a[0] + d[0] * u - p[0], a[1] + d[1] * u - p[1], a[2] + d[2] * u - p[2]];
+        if (q[0] ** 2 + q[1] ** 2 + q[2] ** 2 < eps * eps) ts.push(u);
+      }
+      if (ts.length) splits.set(t, {e, ts: [...new Set(ts)].sort((x, y) => x - y)});
+    }
+    if (!splits.size) break;
+    // fan from the opposite corner through the points on the split edge: (e, p1, opp), (p1, p2, opp), …, (pk, e+1, opp)
+    const plan = [];
+    for (let t = 0; t < T; t++) {
+      const sp = splits.get(t);
+      if (!sp) { plan.push({t, e: -1}); continue; }
+      const stops = [0, ...sp.ts, 1];
+      for (let k = 0; k + 1 < stops.length; k++) plan.push({t, e: sp.e, t0: stops[k], t1: stops[k + 1]});
+    }
+    const out = G.attrs.map(a => new Float32Array(plan.length * 3 * a.size)), mats = new Int32Array(plan.length);
+    plan.forEach((n, o) => {
+      const v = n.t * 3;
+      G.attrs.forEach((a, ai) => {
+        const s = a.size, d = a.data, dst = out[ai], put = (c, get) => { for (let q = 0; q < s; q++) dst[(o * 3 + c) * s + q] = get(q); };
+        if (n.e < 0) { for (let c = 0; c < 3; c++) put(c, q => d[(v + c) * s + q]); return; }
+        const A = v + n.e, B = v + (n.e + 1) % 3, C = v + (n.e + 2) % 3, lerp = (u, q) => d[A * s + q] + (d[B * s + q] - d[A * s + q]) * u;
+        put(0, q => lerp(n.t0, q)); put(1, q => lerp(n.t1, q)); put(2, q => d[C * s + q]);
+      });
+      mats[o] = G.mats[n.t];
+    });
+    G.attrs.forEach((a, ai) => { a.data = out[ai]; });
+    G.mats = mats;
+  }
+  return pack(G);
+}
+
+/** Give the flat front and back of an extrusion (along z) exact flat normals: smoothed rims otherwise streak across big faces. */
+export function flatCaps(geometry, {axis = 'z'} = {}) {
+  const k = {x: 0, y: 1, z: 2}[axis], p = geometry.attributes.position, n = geometry.attributes.normal;
+  if (!n || geometry.index) return geometry; // needs one vertex per triangle corner (creased() output)
+  let lo = Infinity, hi = -Infinity;
+  for (let i = 0; i < p.count; i++) { const v = p.getComponent(i, k); lo = Math.min(lo, v); hi = Math.max(hi, v); }
+  const eps = (hi - lo) * 1e-4;
+  // only triangles lying in a cap plane: the first bevel ring shares the rim positions but keeps its own normals
+  for (let t = 0; t < p.count; t += 3) {
+    const zs = [0, 1, 2].map(c => p.getComponent(t + c, k));
+    const top = zs.every(z => z > hi - eps), bottom = zs.every(z => z < lo + eps);
+    if (!top && !bottom) continue;
+    for (let c = 0; c < 3; c++) { n.setXYZ(t + c, 0, 0, 0); n.setComponent(t + c, k, top ? 1 : -1); }
+  }
+  n.needsUpdate = true;
+  return geometry;
 }

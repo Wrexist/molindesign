@@ -96,7 +96,8 @@ product: model it (proportions from the photo); do not try to reconstruct geomet
 
 Render times: rendering is software WebGL (SwiftShader), identical on every machine and needing no GPU. A
 draft takes 15–40 s. A full three-layer render takes 40–120 s, more on a busy machine. An icon set costs about
-10–30 s per icon, a 48-frame sequence 2–4 min. Run renders one after another: parallel renders share the CPU and
+10–30 s per icon, a 48-frame sequence 2–4 min. Baked AO (on by default in the clay and mono looks) adds 30 s to
+3 min on dense scenes, so iterate with `--no-ao` or `ao: {samples: 12}`. Run renders one after another: parallel renders share the CPU and
 all slow down. `--set camera.elevation=24` tries a variant without editing the scene. `--gpu` uses a graphics card
 when one exists.
 `--pathtrace` (true global illumination) needs a GPU and refuses to run without one.
@@ -235,7 +236,9 @@ Environments (what reflections see): `room`, `softbox` (metals, gloss), `strips`
 - Shadows under objects are part of their sprite, so they must not show while the object is in the air (the kit
   handles this).
 - Surfaces closer than ~0.5 mm, seen edge-on, z-fight. Leave a gap, or give the inner part
-  `polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1`.
+  `polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1`. Rounded parts resting on a surface do the
+  same where the fillet grazes it: sink them deeper than the fillet, or give them a flat bottom.
+- Flat pictograms (extruded SVGs, `puffy`, `text3d`) must face the camera: turn them by about the camera azimuth.
 - Lossy WebP stores colour at half resolution: saturated edges shift a little, and no quality setting fixes it.
   It is invisible at page size; `--png` if colour must be exact.
 - Exports are real size (glTF/USDZ/OBJ in metres, STL in millimetres and Z-up), so a mug comes out 9.5 cm tall in

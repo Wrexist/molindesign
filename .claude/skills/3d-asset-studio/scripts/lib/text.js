@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import {FontLoader} from 'three/addons/loaders/FontLoader.js';
 import {TTFLoader} from 'three/addons/loaders/TTFLoader.js';
 import {TextGeometry} from 'three/addons/geometries/TextGeometry.js';
-import {creased} from './geometry.js';
+import {creased, flatCaps} from './geometry.js';
 
 const cache = new Map();
 const BUNDLED = ['helvetiker_regular', 'helvetiker_bold', 'optimer_regular', 'optimer_bold', 'gentilis_regular', 'gentilis_bold', 'droid/droid_sans_regular', 'droid/droid_sans_bold', 'droid/droid_serif_regular', 'droid/droid_serif_bold'];
@@ -54,7 +54,7 @@ export async function text3d(text, {font = 'helvetiker_bold', size = 0.5, depth 
   const g = mergeAll(parts);
   g.computeBoundingBox();
   g.translate(0, -g.boundingBox.min.y, -(g.boundingBox.min.z + g.boundingBox.max.z) / 2);
-  return creased(g, 35);
+  return flatCaps(creased(g, 35));
 }
 
 function mergeAll(list) {

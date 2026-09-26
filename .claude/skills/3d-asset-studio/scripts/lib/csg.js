@@ -2,6 +2,7 @@
 // merge parts into one watertight solid. Inputs are meshes with their transforms; the result is a mesh.
 import * as THREE from 'three';
 import {Brush, Evaluator, ADDITION, SUBTRACTION, INTERSECTION} from 'three-bvh-csg';
+import {fixTJunctions} from './geometry.js';
 
 const evaluator = new Evaluator();
 evaluator.attributes = ['position', 'uv', 'normal'];
@@ -30,8 +31,11 @@ function run(op, first, rest) {
   // one material for all groups (cutters that inherit): a plain single-material mesh is simpler for everything after
   const mats = [].concat(acc.material), single = mats.every(m => m === mats[0]);
   if (single) acc.geometry.clearGroups();
-  const mesh = new THREE.Mesh(acc.geometry, single ? mats[0] : acc.material);
-  mesh.geometry.computeVertexNormals();
+  // cut edges leave T-junctions (hairline cracks, pinholes in transparent renders): close them; the normals
+  // interpolated from the inputs are kept (recomputing them on this non-indexed result would facet every face)
+  const geometry = fixTJunctions(acc.geometry);
+  if (!geometry.attributes.normal) geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(geometry, single ? mats[0] : acc.material);
   mesh.castShadow = mesh.receiveShadow = true;
   return mesh; // in world space: add it to the scene as is
 }

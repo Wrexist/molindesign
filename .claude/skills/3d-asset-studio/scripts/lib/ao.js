@@ -3,23 +3,9 @@
 // halos, works on transparent layers, survives every render pass identically, and exports to GLB.
 import * as THREE from 'three';
 import {MeshBVH} from 'three-mesh-bvh';
-import {TessellateModifier} from 'three/addons/modifiers/TessellateModifier.js';
+import {refine} from './geometry.js';
 import {mergeGeometries} from 'three/addons/utils/BufferGeometryUtils.js';
 import {rng} from './materials.js';
-
-/** TessellateModifier drops geometry groups (multi-material meshes would then draw nothing): split per group, subdivide, merge back. */
-function tessellate(geo, maxEdge) {
-  if (!geo.groups.length) return new TessellateModifier(maxEdge, 4).modify(geo);
-  const src = geo.index ? geo.toNonIndexed() : geo, parts = [];
-  for (const grp of src.groups) {
-    const part = new THREE.BufferGeometry();
-    for (const [k, a] of Object.entries(src.attributes)) part.setAttribute(k, new THREE.BufferAttribute(a.array.slice(grp.start * a.itemSize, (grp.start + grp.count) * a.itemSize), a.itemSize, a.normalized));
-    parts.push([new TessellateModifier(maxEdge, 4).modify(part), grp.materialIndex]);
-  }
-  const merged = mergeGeometries(parts.map(([g]) => g), true);
-  merged.groups.forEach((g, i) => { g.materialIndex = parts[i][1]; });
-  return merged;
-}
 
 const meshesOf = root => { const out = []; root.traverse(o => { if (o.isMesh && o.visible !== false && !o.userData.w3dSkipAO) out.push(o); }); return out; };
 
@@ -70,7 +56,7 @@ export function bakeAO(groups, {samples = 32, distance = null, strength = 1, sel
       const maxEdge = Math.max(reach * 0.6, radius * 0.02) / Math.max(1e-6, m.getWorldScale(new THREE.Vector3()).x);
       if (longestEdge(geo) > maxEdge && geo.attributes.position.count < 60000) {
         try {
-          const t = tessellate(geo, maxEdge);
+          const t = refine(geo, maxEdge); // crack-free: shared edges split the same way on both sides
           if (t.attributes.position.count < 300000) geo = t;
         } catch { /* keep the original */ }
       }

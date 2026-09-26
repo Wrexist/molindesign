@@ -48,6 +48,9 @@ The friendly "3D icons" style of SaaS sites and onboarding screens: matte, chunk
 - **Palette**: 3–5 pastels from the brand (high lightness, low saturation) plus a warm white. The clay look
   lifts and desaturates colours a bit.
 - **Camera**: elevation 25–35°, three-quarter (azimuth −30 to −40), distance 6–8 (gentle perspective).
+- **Flat pictograms** (`puffy` shapes, extruded SVGs, `text3d`) face +z. Seen more than ~30° off their face they
+  stop reading, so turn them toward the camera: `object.rotation.y = azimuth in radians + 0.2–0.35` (a slight
+  three-quarter view that still shows the depth). Round objects (mugs, coins, gifts) need no turn.
 - **Backdrop**: transparent for web, or a pastel radial gradient (`{radial: ['#f6f1ff', '#e6dcfa']}`) for stills.
 - **Composition**: one main object with 1–3 small satellites (a coin, a sparkle `puffy('star')`, a little
   sphere), floating slightly with soft shadows.

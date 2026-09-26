@@ -24,7 +24,9 @@ const t0 = performance.now();
 const clock = () => ((performance.now() - t0) / 1000).toFixed(1) + 's';
 const save = async (target, blob) => window.w3dSave(target, await px.toBase64(blob));
 const round = (v, d = 3) => +v.toFixed(d);
-const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'layer';
+// file names: letters with accents keep their base letter (säkerhet → sakerhet, not s-kerhet)
+const slug = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ø/gi, 'o').replace(/æ/gi, 'ae').replace(/ß/g, 'ss').replace(/ł/gi, 'l')
+  .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'layer';
 
 const DEFAULTS = {
   mode: 'layers',        // layers | still | icons | sequence | none
@@ -566,7 +568,8 @@ async function main() {
       studio.fitShadow(studio.extentPoints(L.box));
       beautyModes([L]);
       const c = await finish(shoot());
-      await writeImage(c, `icons/${L.name}`);
+      await writeImage(c, `icons/${L.name}`, A.png ? [...new Set([...[].concat(S.formats), 'png'])] : S.formats);
+      await save(`preview/icons/${L.name}.png`, await px.encode(S.backdrop === 'transparent' ? paintBackground(c, S.background) : c, 'image/png')); // full size, to judge details
       sheet.push({name: L.name, canvas: c});
       report.layers.push({name: L.name, src: `icons/${L.name}.${[].concat(S.formats)[0]}`, width: iw, height: ih});
       log(`icon ${i + 1}/${layers.length} ${L.name} · ${clock()}`);
@@ -574,7 +577,7 @@ async function main() {
     studio.fitShadow();
     report.frame = {width: iw, height: ih};
     // contact sheet on the page colour
-    const cols = Math.min(6, sheet.length), cell = 200, pad = 14, rows = Math.ceil(sheet.length / cols);
+    const cols = Math.min(6, sheet.length), cell = Math.max(200, Math.min(iw, 300)), pad = 14, rows = Math.ceil(sheet.length / cols);
     const cs = px.canvas(pad + cols * (cell + pad), pad + rows * (cell + 34)), g = px.ctx2d(cs);
     g.fillStyle = '#fff'; g.fillRect(0, 0, cs.width, cs.height);
     sheet.forEach((s, i) => {
