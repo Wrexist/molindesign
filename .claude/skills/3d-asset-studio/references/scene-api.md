@@ -63,7 +63,7 @@ Scale: 1 unit = 10 cm. Stand objects on y = 0 (use `onFloor`); anything below y 
 | `ao` | `false` | baked ambient occlusion: `true` or `{strength, distance, samples, self}` (clay looks turn it on) |
 | `post` | `{bloom: false, vignette: 0, grain: 0}` | `bloom: true` or `{strength, radius}` (emissive things glow); `vignette` 0–0.4; `grain` 0–0.06 film grain |
 | `icons` | `{size: [512, 512], margin: 0.07, uniform: false}` | `uniform: true` keeps relative sizes across the set |
-| `sequence` | `{frames: 48, fps: 24, turntable: false, loop: true}` | `turns` (turntable rotations); `loop: true` leaves out the frame equal to the first |
+| `sequence` | `{frames: 48, fps: 24, turntable: false, loop: true}` | `turns` (turntable rotations; `0.5` for symmetric products); `center: 'axis'` keeps a turntable's axis mid-frame (`'content'` centres everything, shadow included); `loop: true` leaves out the frame equal to the first |
 | `motion` | `{type: 'drop', stagger: 480}` | layers: entrance defaults for the snippet, optional `idle` |
 | `export` | none | `['glb', 'usdz', 'stl', 'obj']`, like `--export` |
 | `pathtrace` | none | `{samples, bounces}`: path-traced still (GPU only) |

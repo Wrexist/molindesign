@@ -127,6 +127,24 @@ export function stripsEnvironment() {
   return scene;
 }
 
+/**
+ * A lit studio sweep in the backdrop's own colour (behind and under the subject), white strip lights, black flags at
+ * the sides and a dark room behind the camera. Glass and chrome on light or pastel sets: the glass shows the set's
+ * colour where a real one would, flags give it dark defining edges, strips give it highlights. tint: the backdrop colour.
+ */
+export function sweepEnvironment({tint = 0xf2efe9} = {}) {
+  const c = new THREE.Color(tint), v = `vec3(${c.r.toFixed(4)}, ${c.g.toFixed(4)}, ${c.b.toFixed(4)})`;
+  const scene = new THREE.Scene();
+  // the sweep: behind the subject (−z) and under it, lit; toward the camera (+z) the room is dark
+  scene.add(skyDome(`vec3 set = ${v}; float behind = smoothstep(0.3, -0.45, vDir.z); c = mix(vec3(0.05), set * 1.15, behind); c *= mix(0.72, 1.0, smoothstep(-0.55, 0.15, y)); c = mix(c, vec3(1.1), smoothstep(0.55, 0.95, y) * 0.6);`));
+  panel(scene, 6, 44, [-30, 8, 10], 5);    // strips: long highlights
+  panel(scene, 5, 44, [30, 8, 6], 3.8);
+  panel(scene, 28, 12, [0, 36, 4], 2.2);   // top light: caps, shoulders
+  panel(scene, 7, 46, [-22, 6, -20], 0.02, 0x000000); // black flags between strip and sweep: dark glass edges
+  panel(scene, 7, 46, [22, 6, -20], 0.02, 0x000000);
+  return scene;
+}
+
 /** Plain grey: neutral, low-contrast reflections that do not tint anything. Technical renders, colour-critical work. */
 export function neutralEnvironment() {
   const scene = new THREE.Scene();
@@ -134,7 +152,7 @@ export function neutralEnvironment() {
   return scene;
 }
 
-const PROCEDURAL = {room: () => new RoomEnvironment(), softbox: softboxEnvironment, strips: stripsEnvironment, sunset: sunsetEnvironment, overcast: overcastEnvironment, dark: darkEnvironment, neutral: neutralEnvironment};
+const PROCEDURAL = {room: () => new RoomEnvironment(), softbox: softboxEnvironment, strips: stripsEnvironment, sweep: sweepEnvironment, sunset: sunsetEnvironment, overcast: overcastEnvironment, dark: darkEnvironment, neutral: neutralEnvironment};
 export const ENVIRONMENTS = Object.keys(PROCEDURAL);
 
 /** An equirectangular image (.hdr / .exr / .jpg / .png URL) as a texture with equirect mapping. */
@@ -149,20 +167,20 @@ async function loadEquirect(url) {
 }
 
 /** PMREM environment texture from a name above or an .hdr / .exr / .jpg / .png URL (equirectangular). */
-export async function loadEnvironment(renderer, name = 'room') {
+export async function loadEnvironment(renderer, name = 'room', opts = {}) {
   const pmrem = new THREE.PMREMGenerator(renderer);
   let tex;
-  if (PROCEDURAL[name]) tex = pmrem.fromScene(PROCEDURAL[name](), 0.04).texture;
+  if (PROCEDURAL[name]) tex = pmrem.fromScene(PROCEDURAL[name](opts), 0.04).texture;
   else { const src = await loadEquirect(name); tex = pmrem.fromEquirectangular(src).texture; src.dispose(); }
   pmrem.dispose();
   return tex;
 }
 
 /** The same environment as the path tracer samples it: a cube texture (procedural) or the equirect image itself. */
-export async function pathTraceEnvironment(renderer, name = 'room') {
+export async function pathTraceEnvironment(renderer, name = 'room', opts = {}) {
   if (!PROCEDURAL[name]) return loadEquirect(name);
   const rt = new THREE.WebGLCubeRenderTarget(256, {type: THREE.HalfFloatType});
-  new THREE.CubeCamera(0.1, 1000, rt).update(renderer, PROCEDURAL[name]());
+  new THREE.CubeCamera(0.1, 1000, rt).update(renderer, PROCEDURAL[name](opts));
   return rt.texture;
 }
 
@@ -322,14 +340,20 @@ class ContactShadow {
     this.camera = new THREE.OrthographicCamera(-size / 2, size / 2, size / 2, -size / 2, 0, radius * 0.42 * height);
     this.camera.rotation.x = Math.PI / 2;
     this.group.add(this.camera);
-    this.depth = new THREE.MeshDepthMaterial();
-    this.depth.userData.darkness = {value: darkness};
-    this.depth.onBeforeCompile = shader => {
-      shader.uniforms.darkness = this.depth.userData.darkness;
-      shader.fragmentShader = 'uniform float darkness;\n' + shader.fragmentShader.replace('gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );', 'gl_FragColor = vec4( vec3( 0.0 ), ( 1.0 - fragCoordZ ) * darkness );');
+    const depthMaterial = k => {
+      const m = new THREE.MeshDepthMaterial();
+      m.userData.darkness = {value: k};
+      m.onBeforeCompile = shader => {
+        shader.uniforms.darkness = m.userData.darkness;
+        shader.fragmentShader = 'uniform float darkness;\n' + shader.fragmentShader.replace('gl_FragColor = vec4( vec3( 1.0 - fragCoordZ ), opacity );', 'gl_FragColor = vec4( vec3( 0.0 ), ( 1.0 - fragCoordZ ) * darkness );');
+      };
+      m.customProgramCacheKey = () => 'w3d-contact-' + k;
+      // depth-tested, so where objects overlap seen from below the one nearest the floor (the darkest) wins: stacks stay right
+      m.depthTest = true; m.depthWrite = true;
+      return m;
     };
-    // depth-tested, so where objects overlap seen from below the one nearest the floor (the darkest) wins: stacks stay right
-    this.depth.depthTest = true; this.depth.depthWrite = true;
+    this.depth = depthMaterial(darkness);
+    this.depthGlass = depthMaterial(darkness * 0.35); // glass lets most light through: a much lighter contact shadow
     this.hBlur = new THREE.ShaderMaterial(HorizontalBlurShader); this.hBlur.depthTest = false;
     this.vBlur = new THREE.ShaderMaterial(VerticalBlurShader); this.vBlur.depthTest = false;
     // blur in texture space: ~6% of the object radius, a soft but hugging falloff
@@ -343,9 +367,20 @@ class ContactShadow {
     const target = r.getRenderTarget(), alpha = r.getClearAlpha(), color = r.getClearColor(new THREE.Color());
     const bg = s.background; s.background = null;
     this.group.visible = false;
+    // glass is drawn in a second, lighter pass over the opaque one (depth-tested: nearest the floor still wins)
+    const glass = [], others = [];
+    s.traverseVisible(o => { if (o.isMesh) ([].concat(o.material).some(m => m?.transmission > 0) ? glass : others).push(o); });
+    for (const o of glass) o.visible = false;
     s.overrideMaterial = this.depth;
     r.setClearColor(0x000000, 0);
     r.setRenderTarget(this.rt); r.clear(); r.render(s, this.camera);
+    if (glass.length) {
+      const autoClear = r.autoClear;
+      for (const o of others) o.visible = false;
+      for (const o of glass) o.visible = true;
+      s.overrideMaterial = this.depthGlass; r.autoClear = false; r.render(s, this.camera); r.autoClear = autoClear;
+      for (const o of others) o.visible = true;
+    }
     s.overrideMaterial = null;
     this.group.visible = true;
     this.blur(this.amount); this.blur(this.amount * 0.4);

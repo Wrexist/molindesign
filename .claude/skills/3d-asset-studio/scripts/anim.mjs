@@ -58,18 +58,23 @@ export function findFFmpeg() {
 export function encodeVideo(dir, out, {fps = 24, format = 'webm', width, height, background = '#ffffff', pad = 3, ff = findFFmpeg()} = {}) {
   if (!ff) return {ok: false, reason: 'no ffmpeg found (install ffmpeg; Playwright also ships one for WebM)'};
   const png = path.join(dir, `%0${pad}d.png`);
+  // Colour: frames are sRGB. Encode with the BT.601 matrix into limited ("tv") range and say so in the stream, or
+  // browsers guess and the video plays lighter and more saturated than the frames (full-range JPEG read as limited).
+  const tags = ['-colorspace', 'smpte170m', '-color_primaries', 'bt709', '-color_trc', 'iec61966-2-1', '-color_range', 'tv'];
   let args, input = null;
   if (format === 'webm' && ff.full) {
-    args = ['-y', '-loglevel', 'error', '-framerate', String(fps), '-i', png, '-c:v', 'libvpx-vp9', '-pix_fmt', 'yuva420p', '-b:v', '0', '-crf', '30', '-row-mt', '1', '-auto-alt-ref', '0', out];
+    args = ['-y', '-loglevel', 'error', '-framerate', String(fps), '-i', png, '-vf', 'scale=out_color_matrix=bt601:out_range=tv,format=yuva420p', ...tags, '-c:v', 'libvpx-vp9', '-b:v', '0', '-crf', '28', '-row-mt', '1', '-auto-alt-ref', '0', out];
   } else if (format === 'webm') {
     const jpgs = fs.readdirSync(dir).filter(f => f.endsWith('.jpg')).sort();
     if (!jpgs.length) return {ok: false, reason: 'no JPEG frames to encode'};
     input = Buffer.concat(jpgs.map(f => fs.readFileSync(path.join(dir, f))));
-    args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', 'pipe:0', '-c:v', 'libvpx', '-b:v', '0', '-crf', '8', '-qmin', '0', '-qmax', '30', '-auto-alt-ref', '0', out];
+    // JPEG frames are full range (yuvj420p): convert to limited range explicitly (Playwright's ffmpeg has scale)
+    args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', 'pipe:0', '-vf', 'scale=in_range=pc:out_range=tv,format=yuv420p', ...tags,
+      '-c:v', 'libvpx', '-b:v', '1500k', '-crf', '8', '-qmin', '0', '-qmax', '26', '-auto-alt-ref', '0', '-g', String(Math.max(1, jpgs.length)), out];
   } else if (format === 'mp4') {
     if (!ff.full) return {ok: false, reason: 'MP4 needs a full ffmpeg with libx264 (brew install ffmpeg / apt install ffmpeg); the WebM and animated WebP were written'};
     args = ['-y', '-loglevel', 'error', '-framerate', String(fps), '-i', png, '-f', 'lavfi', '-i', `color=c=${background.replace('#', '0x')}:s=${width}x${height}:r=${fps}`,
-      '-filter_complex', '[1:v][0:v]overlay=shortest=1,format=yuv420p', '-c:v', 'libx264', '-crf', '18', '-preset', 'slow', '-movflags', '+faststart', out];
+      '-filter_complex', '[1:v][0:v]overlay=shortest=1,scale=out_color_matrix=bt601:out_range=tv,format=yuv420p', ...tags, '-c:v', 'libx264', '-crf', '18', '-preset', 'slow', '-movflags', '+faststart', out];
   } else return {ok: false, reason: 'unknown video format ' + format};
   const r = spawnSync(ff.bin, args, {encoding: 'utf8', input: input ?? undefined, maxBuffer: 1 << 30});
   if (r.status !== 0) return {ok: false, reason: (r.stderr || '').split('\n').filter(Boolean).slice(-3).join(' ')};

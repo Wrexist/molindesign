@@ -37,7 +37,10 @@ the exact fix for each.
 |---|---|
 | plasticky, CG, too perfect | rounder edges, grain, imperfection (materials-lighting.md has the full table) |
 | colours paler than the brand | `M.swatch(hex)`; slightly less saturation |
-| glass looks like milky plastic | render it on its backdrop with `studio: 'glass'`; lower `frost` |
+| glass looks like milky plastic | render it on its backdrop with `studio: 'glass'` (`envMap: 'sweep'` on light sets); lower `frost` |
+| frosting differs between draft and final | not any more: `frost` is rescaled per render size; a hand-made roughness shader is not, so judge it at final size |
+| a floor decal (fake caustic, glow, puddle) darkens the contact shadow | anything at y ≥ 0 counts as an object for the contact shadow: put decals at y ≈ −0.015 |
+| faint steps in a smooth gradient backdrop | lossy WebP and video quantise gentle gradients (invisible at page size): `--quality 0.95`, or the gradient in CSS behind a transparent render |
 | metal brown, grey or dull | `envMap: 'softbox'`; turn the object so a face catches a softbox |
 | two shadows under a hovering object | `studio: 'top'`, or `contact: false` |
 | dotted lines where two surfaces nearly touch (z-fighting) | surfaces < ~0.5 mm apart seen edge-on: leave a gap, or `polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1` on the inner part's material (a factor of 2 already hides real detail) |

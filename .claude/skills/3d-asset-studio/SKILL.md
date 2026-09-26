@@ -96,11 +96,11 @@ product: model it (proportions from the photo); do not try to reconstruct geomet
 
 Render times: rendering is software WebGL (SwiftShader), identical on every machine and needing no GPU. A
 draft takes 15–40 s. A full three-layer render takes 40–120 s, more on a busy machine. An icon set costs about
-10–30 s per icon, a 48-frame sequence 2–4 min. Baked AO (on by default in the clay and mono looks) adds 30 s to
-3 min on dense scenes, so iterate with `--no-ao` or `ao: {samples: 12}`. Run renders one after another: parallel renders share the CPU and
-all slow down. `--set camera.elevation=24` tries a variant without editing the scene. `--gpu` uses a graphics card
-when one exists.
-`--pathtrace` (true global illumination) needs a GPU and refuses to run without one.
+10–30 s per icon, a 48-frame sequence 3–12 min (soft shadows and glass cost the most; symmetric products loop in
+half a turn). Baked AO (on by default in the clay and mono looks) adds 30 s to 3 min on dense scenes, so iterate
+with `--no-ao` or `ao: {samples: 12}`. Run renders one after another: parallel renders share the CPU and all slow
+down. `--set camera.elevation=24` tries a variant without editing the scene. `--gpu` uses a graphics card when
+one exists. `--pathtrace` (true global illumination) needs a GPU and refuses to run without one.
 
 ## A scene module
 
@@ -193,8 +193,10 @@ what is possible.
 | `night` | near dark, rim strips | neon, emissive things with `post: {bloom: true}` |
 | `glass` | dark-field strips: dark edges, long highlights | glass, liquids, perfume, chrome, jewellery |
 
-Environments (what reflections see): `room`, `softbox` (metals, gloss), `strips` (glass), `overcast`, `sunset`,
-`dark`, `neutral`, or any `.hdr`/`.exr` file. Light, colour, shadows and materials:
+Environments (what reflections see): `room`, `softbox` (metals, gloss), `strips` (glass on dark), `sweep` (glass
+and metal on light or pastel sets, in the backdrop colour), `overcast`, `sunset`, `dark`, `neutral`, or any
+`.hdr`/`.exr` file. One material can have its own: `material.userData.w3dEnvMap = 'softbox'` (a gold cap on a glass
+bottle). Light, colour, shadows and materials:
 **references/materials-lighting.md**. Style direction and composition: **references/styles.md**.
 
 ## The critique checklist (read every draft against it)
@@ -228,8 +230,10 @@ Environments (what reflections see): `room`, `softbox` (metals, gloss), `strips`
 
 ## Rules learned the hard way
 
-- Glass refracts only what is in the render, never the web page behind a transparent sprite. Render glass on
-  its final backdrop with the `glass` studio, or tint and frost it for transparent layers.
+- Glass refracts only what is in the render, never the web page behind a transparent sprite, and never other
+  glass. Render glass on its final backdrop with the `glass` studio (`envMap: 'sweep'` on light sets), or tint and
+  frost it for transparent layers. Liquid inside glass is `M.glass({liquid: {color, top}})`, not a second glass
+  object.
 - Objects that pass both behind and in front of each other need `holdout`, not a different paint order.
 - A side key light gives a floating object two shadows (one offset, one under it). Use `studio: 'top'` or raise
   the key.

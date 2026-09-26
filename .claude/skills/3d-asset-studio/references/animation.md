@@ -29,13 +29,22 @@ export const settings = {mode: 'sequence', width: 720, sequence: {frames: 48, fp
 ```
 - `--turntable 60` (or `sequence: {turntable: true, turns: 1}`): everything turns once around its centre under
   fixed lights, so the shadows move correctly. Use 36 frames for a drag player and 60–120 for smooth video.
+- **Half a turn is enough for symmetric products** (bottles, jars, cans, vases, turned wood): `turns: 0.5`
+  loops seamlessly because the view after 180° is the same. It halves frames, render time and file size at the
+  same spin speed. Two-fold symmetry is enough; a label or logo on one side breaks it.
 - `--frames <n>` overrides the frame count, and `--video webp,webm,mp4` picks the containers (webp is the
   default).
-- Framing is the union of every pose, so nothing leaves the frame and the size is stable.
+- Framing is the union of every pose, so nothing leaves the frame and the size is stable. A turntable keeps its
+  axis in the middle of the frame, so a shadow to one side does not push the product off-centre
+  (`sequence.center: 'content'` centres the content instead). `align` and `margin` work as for stills, also as
+  `--set align=[0.6,0.5]`.
 - The contact shadow and AO are recomputed per frame. The key light's shadow softness stays constant with
   height, so for big jumps lower `floor.shadow` or soften the key.
-- Render cost: roughly 3–5 s per frame at 700 px in software rendering (a 48-frame loop takes 2–4 min). Draft with
-  `--frames 8 --width 360`.
+- Render cost in software rendering: 3–15 s per frame, mostly fixed per frame, so smaller frames help less than
+  expected. Soft keys cost the most (the shadow blur is redone for every pose: `key.softness` 4 is about twice as
+  slow as 1.5), then glass, AO and `ss`. Before frame 1, framing renders up to 8 test poses. A 48-frame loop
+  takes about 3–12 min; draft with `--frames 8 --width 360` and judge the final look on one full-size frame
+  (`--mode still`).
 
 ## animate(t): patterns
 
@@ -110,6 +119,12 @@ Set `sequence.frames = round(duration × fps)` so the clip loops exactly.
 Without a system ffmpeg the kit uses Playwright's bundled one (WebM VP8 only). Install ffmpeg (`brew install
 ffmpeg`, `apt install ffmpeg`) for VP9 with alpha and MP4. A GIF is almost never the right answer (256 colours,
 large). Use an animated WebP instead.
+
+Colours match across containers: the videos are converted to video range and tagged (BT.601 matrix, sRGB
+transfer), so a WebM or MP4 plays in the same colours as the WebP frames. Smooth pastel gradients can show
+faint steps in lossy WebP and video (below 0.5 ΔL*, invisible at page size); `post.grain` does not survive the
+encoders. Where it matters, raise `--quality` or keep the gradient in CSS behind a transparent render (opaque
+objects only: glass needs its backdrop in the render).
 
 ## On the page: autoplay, posters, reduced motion
 

@@ -65,7 +65,14 @@ try {
   const context = await browser.newContext({viewport: {width: 800, height: 600}, deviceScaleFactor: 1});
   await serve(context, {'/stage.html': stageHtml});
   const page = await context.newPage();
-  page.on('pageerror', e => console.error('page error:', e.message));
+  // an error before the stage module ran (a syntax error in the kit, a module that cannot load) would otherwise
+  // wait for the full timeout: stop at once
+  let stageFailed;
+  const stageBroken = new Promise(resolve => { stageFailed = resolve; });
+  page.on('pageerror', async e => {
+    console.error('page error:', e.message);
+    if (!(await page.evaluate(() => !!window.__w3d).catch(() => true))) stageFailed(e);
+  });
   const seen = new Set();
   page.on('console', m => {
     const text = m.text().replace(new RegExp(ORIGIN + '/fs', 'g'), '');
@@ -95,7 +102,8 @@ try {
 
   console.log(`rendering ${path.relative(process.cwd(), scenePath) || scenePath}${args.draft ? ' (draft)' : ''}`);
   await page.goto(ORIGIN + '/stage.html');
-  await page.waitForFunction(() => window.__w3d?.done, null, {timeout: (+args.timeout || 900) * 1000, polling: 250});
+  const broken = await Promise.race([page.waitForFunction(() => window.__w3d?.done, null, {timeout: (+args.timeout || 900) * 1000, polling: 250}).then(() => null), stageBroken]);
+  if (broken) throw new Error('the stage did not start (' + broken.message + ')');
   const {report, error} = await page.evaluate(() => ({report: window.__w3d.report, error: window.__w3d.error}));
   if (error) {
     console.error('\nscene failed:\n' + error.replace(new RegExp(ORIGIN + '/fs', 'g'), ''));

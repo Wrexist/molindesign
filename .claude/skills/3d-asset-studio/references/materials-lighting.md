@@ -146,16 +146,21 @@ studio: {preset: 'soft', key: {dir: [-3, 5.5, 2.6], intensity: 2.4, softness: 3}
 | `room` | three.js RoomEnvironment: a grey room with bright panels | matte things, general use (default) |
 | `softbox` | photo studio: dark floor, bright top, big softbox, strip lights | metals, glossy plastics, ceramics, gold logos |
 | `strips` | dark-field studio: near black, two tall strips, a top light | glass, liquids, chrome, jewellery |
+| `sweep` | a lit seamless sweep in the backdrop colour behind and below, darker toward the camera, two strips, a top light, black flags | glass and metal on light or pastel sets (it takes its colour from `backdrop`) |
 | `overcast` | even bright sky | clay, matte, architecture |
 | `sunset` | warm horizon, blue zenith, low sun | golden hour, lifestyle |
 | `dark` | near black with rim strips | dark pages, neon |
 | `neutral` | plain grey gradient | colour-critical, technical |
 | a URL | any equirectangular `.hdr`, `.exr`, `.jpg` or `.png` | a real place (Poly Haven has hundreds of free CC0 HDRIs) |
 
-`envRotation` (radians) turns the environment to place highlights. Per material, `material.envMapIntensity = 0.3`
-dims its reflections (a dark liquid that should not mirror the studio, a matte label), and `> 1` strengthens
-them. For HDRI files, keep them next to the scene
-and pass `new URL('./studio_small_08_2k.hdr', import.meta.url).href`. 1–2k HDRIs are plenty for reflections.
+`envRotation` (radians) turns the environment to place highlights. Per material:
+- `material.envMapIntensity = 0.3` dims its reflections (a dark liquid that should not mirror the studio, a matte
+  label), and `> 1` strengthens them (glass reflects only ~4%, so its strips may need 2–3).
+- `material.userData.w3dEnvMap = 'softbox'` gives one material its own environment (any name above, or an HDRI
+  URL). Mixed subjects need it: a gold cap wants `softbox` while the frosted glass under it wants `sweep`.
+
+For HDRI files, keep them next to the scene and pass `new URL('./studio_small_08_2k.hdr', import.meta.url).href`.
+1–2k HDRIs are plenty for reflections.
 
 ## Lighting recipes by subject
 
@@ -170,7 +175,8 @@ and pass `new URL('./studio_small_08_2k.hdr', import.meta.url).href`. 1–2k HDR
   (`contact: false`) when the object is high.
 - **Metal (logos, jewellery, cutlery)**: `envMap: 'softbox'` (or `strips` for jewellery), and rotate the object or
   `envRotation` until a softbox runs along the main face. A metal that reflects nothing looks grey or brown.
-- **Glass, drinks, perfume**: studio `glass`, on its final backdrop (below).
+- **Glass, drinks, perfume**: studio `glass` on its final backdrop (below); on light or pastel backdrops with
+  `envMap: 'sweep'`, and metal parts (caps, pumps) on `softbox` through `userData.w3dEnvMap`.
 - **Food**: `soft` or `golden`, key from behind-left (`dir: [-3, 4, -1.5]`: backlight makes food glisten), a
   warm fill, camera 25–45° or top-down (`top`) for flat lays.
 - **Clay illustrations**: look `clay` (brings the `clay` studio and AO), a pastel backdrop, elevation 25–35.
@@ -195,14 +201,33 @@ and it is why entrances fade shadows in on impact.
 Transmission refracts what is in the render: the backdrop, the floor and its shadows, opaque objects. It never
 sees other glass or the web page behind a transparent sprite.
 - **Best**: render glass on its final background: a still or sequence with `backdrop` set to the page colour or
-  gradient, and `studio: 'glass'` (dark edges, strip highlights). Place the image on the same colour.
+  gradient, and `studio: 'glass'`. On dark and neutral backdrops keep its `strips` environment (dark edges, long
+  highlights). On light and pastel sets use `studio: {preset: 'glass', envMap: 'sweep'}`: the glass then reflects
+  a lit sweep in the backdrop colour, as on a real set, instead of a dark room that makes it look muddy. Place the
+  image on the same colour.
 - **Transparent layers**: glass then refracts a white studio, which is fine on light pages. Tint it
   (`glass({color})`), frost it a little (`frost: 0.1–0.2`) and put something inside (liquid, a candle, a stem) so
   it reads.
-- `glass({color, frost}, {thickness, ior, attenuationDistance})`: `color` is the tint after one pass through
-  `thickness`. Hollow ware wants a thin `thickness` (0.05–0.3), solid glass the full depth.
-- Liquids: a slightly smaller solid inside the container with its own `glass` material (water ior 1.33, tinted),
-  or an opaque glossy material for milk, juice or coffee.
+
+`M.glass({color, frost, liquid, edges}, {thickness, ior, attenuationDistance})`:
+- `color` is the tint after one pass through `thickness`. Hollow ware wants a thin `thickness` (0.05–0.3), solid
+  glass the full depth.
+- `frost` is the roughness as it looks at 2048 px wide. three blurs rough transmission by about
+  width^roughness pixels, so the kit rescales it for each render size: a 640 px draft, a 900 px turntable and a
+  3200 px hero show the same frosting. (A plain `MeshPhysicalMaterial` is rescaled from its `roughness` too.)
+- `liquid: {color, top, base, soft}` fills the container up to the height `top`, in the glass mesh's own
+  coordinates (for the kit's bottles and glasses, scene units above the base: `top: 0.95` fills the 13.8 cm
+  cosmetic bottle to 9.5 cm). `base` starts the liquid above a thick glass bottom; `soft` blurs the fill line. A
+  second glass object inside cannot work, because glass never sees glass; `liquid` tints the container's own
+  transmitted light instead: perfume, water, oil, wine, cocktails.
+- `edges: 0–1` darkens the glass where it turns away from the camera. On a real set thick glass picks up the dark
+  studio around it at the silhouette; screen-space transmission only sees the backdrop, so solid glass on a light
+  set needs `edges: 0.4–0.6` to keep its outline.
+- Opaque liquids (milk, coffee, juice, paint): a slightly smaller solid inside, with an opaque glossy material.
+- Glass casts lighter shadows, both the key shadow and the contact shadow (tinted glass darker, by its tint).
+- Caustics (the bright spot inside a glass object's shadow) need `--pathtrace`. To fake one in raster: an additive,
+  soft-edged decal on the floor inside the shadow. Put it at y ≈ −0.015 (1.5 mm below the floor): anything at
+  y ≥ 0 counts as an object for the contact shadow and darkens it.
 - Path tracing (`--pathtrace`, GPU only) gives true refraction between glass objects and caustics.
 
 ## Metals
@@ -234,7 +259,9 @@ studio and a dark backdrop. Candles: `candle()` includes a flame and a warm poin
 | flat, no form | colour too dark or saturated; add fill or rim; lower `exposure`; check the key is not behind the object |
 | colour too light vs the brand | start from `M.swatch(hex)`; lower saturation slightly |
 | metal looks brown or grey | `envMap: 'softbox'`; lower roughness; turn it so a face catches the softbox |
-| glass looks like milky plastic | render it on its backdrop with `studio: 'glass'`; lower `frost`; white base, tint in `color` |
+| glass looks like milky plastic | render it on its backdrop with `studio: 'glass'` (`envMap: 'sweep'` on light sets); lower `frost`; `edges: 0.5` |
+| glass on a pastel backdrop looks muddy, a gold cap olive | the dark `strips` environment: `envMap: 'sweep'` for the glass, `userData.w3dEnvMap = 'softbox'` on the metal |
+| a liquid inside glass reads as a painted block | use `glass({liquid: {color, top}})` instead of a second object |
 | grain sparkles | lower `bump` (metals), raise `scale` slightly, or `ss: 3` |
 | grain invisible | judge at final size; raise `bump`/`tintVar`; lower `scale` |
 | banding on curved walls | build the profile with `spline()` |

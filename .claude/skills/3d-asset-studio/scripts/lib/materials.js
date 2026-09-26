@@ -320,11 +320,40 @@ export const wood = ({color = 0xb88a5a, rings = 38, seed = 5} = {}, extra = {}) 
 
 /**
  * Glass. `color` is the tint light takes on after one pass through `thickness` of glass (the base colour stays
- * white so the tint is not applied twice); `frost` is the surface roughness (0 clear, 0.15 frosted, 0.4 sandblasted).
+ * white so the tint is not applied twice); `frost` is the surface roughness (0 clear, 0.15 frosted, 0.4 sandblasted),
+ * meant at 2048 px of render width: the stage compensates other sizes, so drafts and finals look alike.
  * Transmission refracts only what is in the scene — the backdrop, the floor shadows, opaque objects — never the web page
  * behind a transparent sprite, and never other glass. So glass reads best rendered on its final background (backdrop)
  * with the 'glass' studio (dark edges, strip highlights); on a transparent layer, tint it and frost it a little.
  * Hollow ware (bottles, jars, glasses) wants a thin `thickness` (0.05–0.3); solid glass (gems, paperweights) the full depth.
+ * liquid: {color, top, base = -Infinity, soft}: the container seen filled up to `top` (object-space height), without a
+ *   second transmissive object (glass cannot see glass). edges: 0–1, bright-field darkening where the glass turns away
+ *   from the camera (thick glass, perfume flacons).
  */
-export const glass = ({color = 0xe8f0ec, frost = 0.03} = {}, extra = {}) =>
-  phys({color: 0xffffff, metalness: 0, roughness: frost, transmission: 1, thickness: 0.3, ior: 1.5, specularIntensity: 1, attenuationColor: new THREE.Color(color), attenuationDistance: extra.thickness ?? 0.3}, extra);
+export const glass = ({color = 0xe8f0ec, frost = 0.03, liquid = null, edges = 0} = {}, extra = {}) => {
+  const m = phys({color: 0xffffff, metalness: 0, roughness: frost, transmission: 1, thickness: 0.3, ior: 1.5, specularIntensity: 1, attenuationColor: new THREE.Color(color), attenuationDistance: extra.thickness ?? 0.3}, extra);
+  m.userData.w3dFrost = m.roughness;
+  if (!liquid && !edges) return m;
+  const u = {
+    w3dLiqColor: {value: new THREE.Color(liquid?.color ?? 0xffffff)}, w3dLiqTop: {value: liquid ? liquid.top : -1e9},
+    w3dLiqBase: {value: liquid?.base ?? -1e9}, w3dLiqSoft: {value: liquid?.soft ?? 0.004}, w3dEdges: {value: edges},
+  };
+  m.userData.w3dGlass = {liquid, edges};
+  m.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, u);
+    shader.vertexShader = shader.vertexShader.replace('#include <common>', '#include <common>\nvarying vec3 vW3dObj;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\n\tvW3dObj = position;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vW3dObj;\nuniform vec3 w3dLiqColor;\nuniform float w3dLiqTop, w3dLiqBase, w3dLiqSoft, w3dEdges;')
+      .replace('#include <transmission_fragment>', `{
+		// what the glass lets through: tinted by the liquid below its fill line, darker where the glass turns edge-on
+		float fill = step(w3dLiqBase, vW3dObj.y) * (1.0 - smoothstep(w3dLiqTop - w3dLiqSoft, w3dLiqTop, vW3dObj.y));
+		material.diffuseColor *= mix(vec3(1.0), w3dLiqColor, fill);
+		float facing = abs(dot(normalize(normal), normalize(vViewPosition)));
+		material.diffuseColor *= mix(1.0 - w3dEdges, 1.0, smoothstep(0.05, 0.65, facing));
+	}
+	#include <transmission_fragment>`);
+  };
+  m.customProgramCacheKey = () => 'w3d-glass-fill';
+  return m;
+};

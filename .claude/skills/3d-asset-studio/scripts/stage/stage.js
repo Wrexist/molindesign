@@ -131,7 +131,9 @@ async function main() {
     else if (gap > 0.01 * bounds.radius) log(`note: objects hover ${round(gap)} above the floor, so their shadows detach`);
   }
   const P = resolveStudio(S.studio);
-  const environment = await loadEnvironment(renderer, P.envMap ?? 'room');
+  // the colour the set is painted in (for the 'sweep' environment): the backdrop, or the page colour behind sprites
+  const setTint = backdropTint(S.backdrop && S.backdrop !== 'transparent' ? S.backdrop : S.background);
+  const environment = await loadEnvironment(renderer, P.envMap ?? 'room', {tint: setTint});
   const camCfg = S.camera.iso ? {...S.camera, projection: 'orthographic', elevation: 35.264, azimuth: S.camera.azimuth || 45} : S.camera;
   const azimuth = THREE.MathUtils.degToRad(camCfg.azimuth ?? 0);
   // glass: lighter, stochastic shadows (clear glass passes most light) and a floor the transmission pass can see
@@ -146,14 +148,18 @@ async function main() {
     if (!o.customDepthMaterial) o.customDepthMaterial = new THREE.MeshDepthMaterial({depthPacking: THREE.RGBADepthPacking, alphaHash: true, opacity: 1 - 0.65 * through});
   });
   const studio = new Studio(renderer, scene, P, bounds, {azimuth, environment, transmissive, floor: S.floor === false ? false : {...S.floor, y: floorY}, contact: S.contact, shadowColor: S.shadowColor});
-  // per-material reflection strength: with scene.environment three applies scene.environmentIntensity to every
-  // material, so a material that asks for its own envMapIntensity (≠ 1) gets the environment directly
+  // per-material reflections: with scene.environment three applies scene.environmentIntensity to every material, so
+  // a material that asks for its own envMapIntensity (≠ 1), or for its own environment by name
+  // (userData.w3dEnvMap: a gold cap wants 'softbox' while the glass under it wants 'sweep'), gets it directly
+  const envs = new Map([[P.envMap ?? 'room', environment]]), ownEnv = new Set();
   for (const L of layers) L.object.traverse(o => {
-    for (const m of [].concat(o.material ?? [])) {
-      if (!m?.isMeshStandardMaterial || m.envMap || m.envMapIntensity === 1) continue;
-      m.envMap = environment; m.envMapRotation.copy(scene.environmentRotation); m.envMapIntensity *= P.env; m.needsUpdate = true;
-    }
+    for (const m of [].concat(o.material ?? [])) if (m?.isMeshStandardMaterial && !m.envMap && (m.envMapIntensity !== 1 || m.userData.w3dEnvMap)) ownEnv.add(m);
   });
+  for (const m of ownEnv) {
+    const name = m.userData.w3dEnvMap ?? P.envMap ?? 'room';
+    if (!envs.has(name)) envs.set(name, await loadEnvironment(renderer, name, {tint: setTint}));
+    m.envMap = envs.get(name); m.envMapRotation.copy(scene.environmentRotation); m.envMapIntensity *= P.env; m.needsUpdate = true;
+  }
   const camera = aimCamera(camCfg, bounds);
   const shadowRgb = px.hexToRgb(S.shadowColor);
 
@@ -199,6 +205,12 @@ async function main() {
   // find the real alpha extent, then frame that at the requested size.
   let W = 0, H = 0, ss = S.ss;
   const view = {F: 10000, x: 0, y: 0, w: 10000, h: 10000};
+  // Frosted glass: three blurs rough transmission by about renderWidth^roughness pixels, so the same roughness looks
+  // three times frostier in a 640 px draft than in a 3200 px render. Keep the blur a constant share of the frame,
+  // with the authored value meaning "at 2048 px".
+  const frosted = new Map();
+  for (const L of layers) L.object.traverse(o => { for (const m of [].concat(o.material ?? [])) if (m?.transmission > 0 && !frosted.has(m)) frosted.set(m, m.userData.w3dFrost ?? m.roughness); });
+  const matchFrost = w => { const k = Math.log(2048) / Math.log(Math.max(64, w)); for (const [m, r] of frosted) m.roughness = r > 0 ? Math.min(1, Math.max(0, 1 - (1 - r) * k)) : 0; };
   const setView = (rect, width, height = null) => {
     Object.assign(view, rect);
     W = Math.max(8, Math.round(width)); H = height ? Math.max(8, Math.round(height)) : Math.max(8, Math.round(W * rect.h / rect.w));
@@ -206,6 +218,7 @@ async function main() {
     ss = Math.max(1, Math.min(S.ss, Math.floor(maxSize / Math.max(W, H))));
     camera.setViewOffset(view.F, view.F, view.x, view.y, view.w, view.h); // also sets aspect to the full (square) view
     renderer.setSize(W * ss, H * ss, false);
+    matchFrost(W * ss);
     for (const m of lineMaterials) m.resolution.set(W * ss, H * ss);
   };
   const extentRect = points => {
@@ -458,8 +471,12 @@ async function main() {
       restore.push(() => { scene.remove(area); l.visible = true; });
     }
     const envBefore = scene.environment;
-    scene.environment = await pathTraceEnvironment(renderer, P.envMap ?? 'room');
+    scene.environment = await pathTraceEnvironment(renderer, P.envMap ?? 'room', {tint: setTint});
     restore.push(() => { scene.environment = envBefore; });
+    // the path tracer's frosting is physical: trace the authored roughness, not the raster compensation
+    const rasterFrost = [...frosted.keys()].map(m => [m, m.roughness]);
+    for (const [m, r] of frosted) m.roughness = r;
+    restore.push(() => { for (const [m, r] of rasterFrost) m.roughness = r; });
     for (const L of layers) L.object.traverse(o => {
       if (!o.isInstancedMesh || !o.visible) return;
       const parts = [], m4 = new THREE.Matrix4(), col = new THREE.Color();
@@ -615,7 +632,15 @@ async function main() {
       for (let i = 0; i < N; i += Math.max(1, Math.floor(N / 8))) { animate(i); beautyModes(); const img = shoot(); union = union ? unionAlpha(union, img) : img; }
       return union;
     });
-    if (S.size) setView(fitRect(tight, S.size, S.margin, S.align), S.size[0], S.size[1]); else setView(tight, width);
+    // a turntable keeps its axis in the middle of the frame, so a shadow to one side does not push the product
+    // off-centre (sequence.center: 'content' frames the content instead)
+    let framed = tight;
+    if (turntable && (Q.center ?? 'axis') === 'axis') {
+      camera.clearViewOffset();
+      const ax = (bounds.center.clone().project(camera).x + 1) / 2 * tight.F, half = Math.max(ax - tight.x, tight.x + tight.w - ax);
+      framed = {...tight, x: ax - half, w: half * 2};
+    }
+    if (S.size) setView(fitRect(framed, S.size, S.margin, S.align), S.size[0], S.size[1]); else setView(framed, width);
     setBackdrop();
     log(`sequence ${N} frames ${W}×${H} at ${Q.fps} fps · ${clock()}`);
     const pad = String(N - 1).length;
@@ -652,6 +677,17 @@ function normalize(result) {
     delete L.holdoutNames;
   }
   return layers;
+}
+
+/** One colour for a backdrop spec: a hex, or the average of a gradient's stops. */
+function backdropTint(spec) {
+  if (!spec || spec === 'transparent') return 0xf2efe9;
+  if (typeof spec === 'string' || typeof spec === 'number') return new THREE.Color(spec).getHex();
+  const stops = spec.linear ?? spec.radial ?? [];
+  if (!stops.length) return 0xf2efe9;
+  const c = new THREE.Color(0, 0, 0);
+  for (const s of stops) c.add(new THREE.Color(s));
+  return c.multiplyScalar(1 / stops.length).getHex();
 }
 
 function aimCamera(C, bounds) {
