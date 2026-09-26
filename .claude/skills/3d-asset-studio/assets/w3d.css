@@ -1,0 +1,208 @@
+/* 3d-asset-studio · w3d.css
+   Layered 3D sprites (object + shadow per layer) and their choreography. No dependencies.
+
+   <div class="w3d" data-play="view" style="--w3d-ar:760/350">        ← give it a width; height follows
+     <div class="w3d-item" data-motion="drop" style="--delay:0ms">     ← one per layer, back to front
+       <img class="w3d-shadow" …>  <img class="w3d-obj" …>             ← positioned by --l --t --w (% of frame)
+     </div> …
+   </div>
+
+   Motions:  drop · bounce · pop · rise · snap · roll · fade · none      (data-motion on .w3d-item)
+   Idles:    hop · float · sway · breathe                               (data-idle, loops after the entrance)
+   Tune per item or per stage: --delay --dur --drop --squash --rise --roll --turn --hop --float --sway --idle-dur --idle-wait
+   Without w3d.js, or with reduced motion, everything simply sits at rest. */
+
+.w3d {
+  position: relative;
+  aspect-ratio: var(--w3d-ar, 4 / 3);
+  container-type: inline-size; /* lets distances scale with the stage (cqw) */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  --drop: 40cqw; --rise: 5cqw; --roll: 46cqw; --turn: 1turn; --hop: 6%; --float: 2.4cqw; --sway: 1.4deg;
+  --idle-wait: 450ms;
+}
+.w3d .w3d-item { position: absolute; inset: 0; --dur: 0ms; }
+.w3d .w3d-item > img {
+  position: absolute;
+  display: block;
+  left: var(--l); top: var(--t); width: var(--w);
+  height: auto; max-width: none; max-height: none; min-width: 0;
+  margin: 0; padding: 0; border: 0; border-radius: 0; box-shadow: none; background: none;
+  transform-origin: var(--ox, 50%) var(--oy, 100%); /* the point where the object meets the floor */
+}
+
+/* per-motion defaults (override --dur / --squash inline on an item) */
+.w3d-item[data-motion="drop"]   { --a-obj: w3d-drop;   --a-sh: w3d-drop-shadow;   --dur: 820ms;  --squash: .07; }
+.w3d-item[data-motion="bounce"] { --a-obj: w3d-bounce; --a-sh: w3d-bounce-shadow; --dur: 1250ms; --squash: .075; }
+.w3d-item[data-motion="pop"]    { --a-obj: w3d-pop;    --a-sh: w3d-pop-shadow;    --dur: 640ms; }
+.w3d-item[data-motion="rise"]   { --a-obj: w3d-rise;   --a-sh: w3d-rise-shadow;   --dur: 780ms; }
+.w3d-item[data-motion="snap"]   { --a-obj: w3d-snap;   --a-sh: w3d-snap-shadow;   --dur: 900ms; }
+.w3d-item[data-motion="roll"]   { --a-obj: w3d-roll;   --a-sh: w3d-roll-shadow;   --dur: 1150ms; }
+.w3d-item[data-motion="fade"]   { --a-obj: w3d-fade;   --a-sh: w3d-fade;          --dur: 520ms; }
+.w3d-item[data-motion="none"]   { --dur: 0ms; }
+.w3d-item[data-motion="roll"] > .w3d-obj { transform-origin: 50% 50%; }
+.w3d-item[data-idle="hop"]      { --i-obj: w3d-hop;     --i-sh: w3d-hop-shadow;     --idle-dur: 2600ms; }
+.w3d-item[data-idle="float"]    { --i-obj: w3d-float;   --i-sh: w3d-float-shadow;   --idle-dur: 5200ms; }
+.w3d-item[data-idle="sway"]     { --i-obj: w3d-sway;    --i-sh: none;               --idle-dur: 4200ms; }
+.w3d-item[data-idle="breathe"]  { --i-obj: w3d-breathe; --i-sh: w3d-breathe-shadow; --idle-dur: 2600ms; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Hidden until played. With the optional <html class="w3d-js"> the stage is hidden from the very first
+     paint; the failsafe shows everything anyway if w3d.js never runs. */
+  .w3d-js .w3d[data-play]:not(.is-in) .w3d-item:not([data-motion="none"]) > img { opacity: 0; animation: w3d-failsafe 1ms 3s both; }
+  .w3d.is-armed[data-play]:not(.is-in) .w3d-item:not([data-motion="none"]) > img { opacity: 0; animation: none; }
+
+  .w3d.is-in .w3d-item > .w3d-obj {
+    animation: var(--a-obj, none) var(--dur) var(--delay, 0ms) 1 both linear,
+               var(--i-obj, none) var(--idle-dur, 2600ms) calc(var(--delay, 0ms) + var(--dur) + var(--idle-wait)) infinite linear;
+  }
+  .w3d.is-in .w3d-item > .w3d-shadow {
+    animation: var(--a-sh, none) var(--dur) var(--delay, 0ms) 1 both linear,
+               var(--i-sh, none) var(--idle-dur, 2600ms) calc(var(--delay, 0ms) + var(--dur) + var(--idle-wait)) infinite linear;
+  }
+}
+
+@keyframes w3d-failsafe { to { opacity: 1; } }
+@keyframes w3d-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* drop — something heavy lands: falls, squashes, one small rebound, settles. The shadow appears on impact. */
+@keyframes w3d-drop {
+  0%   { opacity: 0; transform: translateY(calc(var(--drop) * -1)); animation-timing-function: cubic-bezier(.45, 0, .9, .45); }
+  14%  { opacity: 1; }
+  50%  { transform: translateY(0) scale(calc(1 + var(--squash) * .43), calc(1 - var(--squash))); animation-timing-function: cubic-bezier(.2, .8, .4, 1); }
+  63%  { transform: translateY(calc(var(--drop) * -.058)) scale(calc(1 - var(--squash) * .1), calc(1 + var(--squash) * .14)); animation-timing-function: cubic-bezier(.55, 0, .9, .5); }
+  76%  { transform: translateY(0) scale(calc(1 + var(--squash) * .14), calc(1 - var(--squash) * .21)); animation-timing-function: cubic-bezier(.3, .7, .4, 1); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-drop-shadow {
+  0%, 46% { opacity: 0; transform: scale(.9); }
+  51%  { opacity: 1; transform: scale(calc(1 + var(--squash) * .5), 1); }
+  63%  { transform: scale(.985); }
+  76%, 100% { opacity: 1; transform: none; }
+}
+
+/* bounce — a ball: drops, bounces three times lower each time, squash and stretch on every contact */
+@keyframes w3d-bounce {
+  0%   { opacity: 0; transform: translateY(calc(var(--drop) * -1)) scale(.97, 1.03); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  10%  { opacity: 1; }
+  30%  { transform: translateY(calc(var(--drop) * -.0875)) scale(.965, 1.045); animation-timing-function: linear; }
+  34%  { transform: translateY(0) scale(calc(1 + var(--squash)), calc(1 - var(--squash) * 1.13)); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  50%  { transform: translateY(calc(var(--drop) * -.2)) scale(.985, 1.02); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  66%  { transform: translateY(0) scale(calc(1 + var(--squash) * .53), calc(1 - var(--squash) * .6)); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  74%  { transform: translateY(calc(var(--drop) * -.05)) scale(.995, 1.006); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  82%  { transform: translateY(0) scale(calc(1 + var(--squash) * .19), calc(1 - var(--squash) * .2)); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  87%  { transform: translateY(calc(var(--drop) * -.009)); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  91%  { transform: translateY(0) scale(1.004, .996); animation-timing-function: ease-out; }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-bounce-shadow {
+  0%   { opacity: 0; transform: scale(.35); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  34%  { opacity: 1; transform: scale(1.07, 1); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  50%  { opacity: .55; transform: scale(.8); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  66%  { opacity: 1; transform: scale(1.04, 1); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  74%  { opacity: .85; transform: scale(.93); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  82%, 100% { opacity: 1; transform: none; }
+}
+
+/* pop — grows out of its footprint with a soft overshoot (light objects, icons, logos) */
+@keyframes w3d-pop {
+  0%   { opacity: 0; transform: translateY(4%) scale(.6); animation-timing-function: cubic-bezier(.2, .7, .3, 1); }
+  40%  { opacity: 1; }
+  55%  { transform: translateY(0) scale(1.045, .975); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  75%  { transform: scale(.99, 1.01); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-pop-shadow {
+  0%   { opacity: 0; transform: scale(.6); animation-timing-function: cubic-bezier(.2, .7, .3, 1); }
+  55%  { opacity: 1; transform: scale(1.04, 1); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  75%  { transform: scale(.99); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* rise — quiet editorial entrance: drifts up into place */
+@keyframes w3d-rise {
+  0%   { opacity: 0; transform: translateY(var(--rise)); animation-timing-function: cubic-bezier(.2, .8, .2, 1); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-rise-shadow { 0%, 25% { opacity: 0; } 100% { opacity: 1; } }
+
+/* snap — something elastic stretches out and springs back (bands, cables, straps) */
+@keyframes w3d-snap {
+  0%   { opacity: 0; transform: scaleX(.3) scaleY(.94); animation-timing-function: cubic-bezier(.2, .6, .35, 1); }
+  12%  { opacity: 1; }
+  38%  { transform: scaleX(1.085) scaleY(.975); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  56%  { transform: scaleX(.968) scaleY(1.008); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  72%  { transform: scaleX(1.018); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  86%  { transform: scaleX(.995); animation-timing-function: ease-out; }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-snap-shadow {
+  0%   { opacity: 0; transform: scaleX(.3); animation-timing-function: cubic-bezier(.2, .6, .35, 1); }
+  38%  { opacity: 1; transform: scaleX(1.06); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  56%  { transform: scaleX(.97); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* roll — rolls in from the left and rocks to a stop. Set --turn ≈ roll distance / (π × object width).
+   The sprite's lighting turns with it, so keep it for evenly lit, round things. */
+@keyframes w3d-roll {
+  0%   { opacity: 0; transform: translateX(calc(var(--roll) * -1)) rotate(calc(var(--turn) * -1)); animation-timing-function: cubic-bezier(.25, .6, .3, 1); }
+  12%  { opacity: 1; }
+  84%  { transform: translateX(calc(var(--roll) * .012)) rotate(calc(var(--turn) * .012)); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-roll-shadow {
+  0%   { opacity: 0; transform: translateX(calc(var(--roll) * -1)); animation-timing-function: cubic-bezier(.25, .6, .3, 1); }
+  12%  { opacity: 1; }
+  84%  { transform: translateX(calc(var(--roll) * .012)); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  100% { opacity: 1; transform: none; }
+}
+
+/* idles: loop after the entrance */
+@keyframes w3d-hop {
+  0%   { transform: none; animation-timing-function: cubic-bezier(.3, 0, .6, 1); }
+  6%   { transform: scale(1.022, .975); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  16%  { transform: translateY(calc(var(--hop) * -1)) scale(.99, 1.014); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  26%  { transform: translateY(0) scale(1.03, .964); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  31%  { transform: translateY(calc(var(--hop) * -.16)) scale(.997, 1.004); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  36%  { transform: translateY(0) scale(1.006, .994); animation-timing-function: ease-out; }
+  40%, 100% { transform: none; }
+}
+@keyframes w3d-hop-shadow {
+  0%, 6% { opacity: 1; transform: none; animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  16%  { opacity: .62; transform: scale(.84); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  26%  { opacity: 1; transform: scale(1.03, 1); animation-timing-function: cubic-bezier(.5, 1, .89, 1); }
+  31%  { opacity: .92; transform: scale(.97); animation-timing-function: cubic-bezier(.11, 0, .5, 0); }
+  36%, 100% { opacity: 1; transform: none; }
+}
+@keyframes w3d-float {
+  0%, 100% { transform: none; animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  50%  { transform: translateY(calc(var(--float) * -1)); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+}
+@keyframes w3d-float-shadow {
+  0%, 100% { opacity: 1; transform: none; animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+  50%  { opacity: .7; transform: scale(.9); animation-timing-function: cubic-bezier(.45, 0, .55, 1); }
+}
+@keyframes w3d-sway {
+  0%   { transform: none; animation-timing-function: cubic-bezier(.33, 1, .68, 1); }
+  25%  { transform: rotate(var(--sway)); animation-timing-function: cubic-bezier(.65, 0, .35, 1); }
+  75%  { transform: rotate(calc(var(--sway) * -1)); animation-timing-function: cubic-bezier(.32, 0, .67, 0); }
+  100% { transform: none; }
+}
+@keyframes w3d-breathe {
+  0%, 25% { transform: none; }
+  29%  { transform: scaleX(1.012) scaleY(.994); }
+  33%  { transform: scaleX(.996); }
+  38%, 100% { transform: none; }
+}
+@keyframes w3d-breathe-shadow {
+  0%, 25% { transform: none; }
+  29%  { transform: scaleX(1.01); }
+  38%, 100% { transform: none; }
+}
+
+/* turntable (drag to turn, see spin() in w3d.js) */
+.w3d-spin { position: relative; aspect-ratio: var(--w3d-ar, 4 / 3); touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.w3d-spin.is-dragging { cursor: grabbing; }
+.w3d-spin > img { display: block; width: 100%; height: 100%; object-fit: contain; -webkit-user-drag: none; pointer-events: none; }
