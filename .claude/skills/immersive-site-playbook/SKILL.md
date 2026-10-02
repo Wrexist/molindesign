@@ -74,5 +74,17 @@ Model/light/animate in Blender → bake lighting in Cycles → export (glTF) wit
 | Side panel with tabs | `slide-over-drawer` |
 | Sound design | `web-audio-soundscape` |
 | Small polish details & a11y | `premium-micro-details` |
+| Boot, renderer fallback, quality tiers | `gpu-renderer-fallback-warmup`, `gpu-tier-adaptive-quality` |
+| Scroll architecture (pick one) | `inertial-scroll-ranges` (native scroll), `scroll-scrubbed-webgl-sections`, `autoplay-scroll-film`, `gated-stage-scroll` |
+| Scroll signals & scroll-linked audio | `scroll-velocity-section-metrics`, `scroll-velocity-whoosh-audio` |
+| Section / page transitions | `clip-path-camera-wipes`, `gated-page-transitions` |
+| Type effects | `char-split-scroll-reveal`, `kinetic-variable-type` |
+| Tokens, grid, art direction | `viewport-rem-grid-tokens`, `comic-panel-spot-color` |
+| Cursor/pointer play | `cursor-mask-reveal`, `spring-input-physics`, `physics-on-flat-art` |
+| Hold, gamepad, touch input | `hold-to-advance`, `device-agnostic-input-actions` |
+| Several 3D slots in a normal page | `scissor-view-webgl-slots` |
+| Procedural ground / playable worlds | `instanced-grass-and-snow-parallax` |
+
+Lesson across all reference sites: commit to ONE hard idea and budget everything around it. Most of them ship no `prefers-reduced-motion` handling — add it yourself.
 
 Always finish by checking: mobile (`pointer: coarse`, 44 px hit areas), reduced-motion, keyboard (Esc closes, arrows on sliders/tabs), no overlapping overlays at any state.
