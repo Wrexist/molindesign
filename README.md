@@ -18,7 +18,9 @@ To update the preview, edit files under `singha-thai/`, review and push to `main
 
 ## Maya Haglund PT
 
-Website: https://wrexist.github.io/molindesign/maya-haglund/
+Live website: https://mayahaglund.com (Netlify project `maya-haglund-admin`, built from `_maya-source/` on every push to `main`)
+
+GitHub Pages copy: https://wrexist.github.io/molindesign/maya-haglund/ (kept `noindex`; the live build has a canonical link to mayahaglund.com instead)
 
 Admin: https://wrexist.github.io/molindesign/maya-haglund/admin/
 

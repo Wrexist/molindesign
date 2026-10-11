@@ -4,6 +4,10 @@ The GitHub Pages frontend lives at `/molindesign/maya-haglund/` and `/molindesig
 
 Production integration checks passed: authentication, origin restrictions, draft save/readback, conflict protection, publication isolation and recurring private classes. Ten unit tests and TypeScript checks also pass.
 
+## Domain
+
+mayahaglund.com is registered at Strato and points to the Netlify project (apex A record to Netlify's load balancer, `www` CNAME to `maya-haglund-admin.netlify.app`). Netlify builds this directory from GitHub with `NETLIFY=true`, so `vite.config.ts` builds for the site root, drops `noindex` and adds a canonical link. On Netlify the site calls the API on its own origin; only the GitHub Pages copy calls `maya-haglund-admin.netlify.app` cross-origin. Allowed browser origins live in `netlify/auth.ts`; add any new domain there.
+
 ## Loading screen
 
 `index.html` contains the loading screen as static markup with inline CSS and a small inline script, so it paints before the app bundle arrives. `app/boot.ts` reports progress from `main.tsx`, shows load errors with a retry button inside the loader, and hands the equipment over to the hero: once content has rendered, the kit flies onto `.equipment-art` and dissolves into `fitness-sculpture.webp`. When that spot is off screen (phones, links with a `#section`) or reduced motion is preferred, the loader fades out instead. The admin skips the loader. Repeat visits in the same browser session play it faster.
