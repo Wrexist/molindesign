@@ -45,7 +45,7 @@ State lives in `data-*` attributes; CSS variables carry the numbers. For a botto
 - **Enter** uses a transition, not a keyframe. Render with `data-mounted=false`, then set it to `true` after the first paint. Transitions can be retargeted when a second toast arrives mid-flight (see `interruptible-css-transitions`). `@starting-style` is the modern equivalent.
 - **Exit** sets `removed=true` and freezes `--offset` at its last value. `heights` drops the toast immediately, so the others re-layout at once. The node is unmounted after 200 ms. Exit target by situation:
   - front toast: `translateY(100%)`, opacity 0 (slides back down)
-  - behind, expanded: `offset + 100%` further, opacity 0
+  - behind, expanded: from its expanded offset, `100%` back down (`translateY(calc(-offset + 100%))`), opacity 0
   - behind, collapsed: `translateY(40%)`, opacity 0, with `transition: transform 500ms, opacity 200ms`
 - Indices come from the toast array, which still holds the removed toast for those 200 ms. Offsets come from `heights`, which no longer do. That is why the expanded layout closes the gap instantly.
 

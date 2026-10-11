@@ -18,10 +18,10 @@ Source: `vaul@1.1.2` (`dist/index.mjs`, `style.css`, MIT, Emil Kowalski), built 
 | `WINDOW_TOP_OFFSET` | `26` px | background scale = `(innerWidth − 26) / innerWidth` |
 | `NESTED_DISPLACEMENT` | `16` px | parent sheet shrinks/moves up 16 px for a nested sheet |
 | swipe start | `10` px touch, `2` px mouse | before the gesture is claimed; must be mostly vertical |
-| handle | 32×5 px, radius 1rem, opacity .7 → 1 on hover/active; hit area `max(100%, 44px)` | tap cycles snaps after a 120 ms double-tap guard; a press > 250 ms cancels the tap |
+| handle | 32×5 px, radius 1rem, opacity .7 → 1 on hover/active; hit area `max(100%, 44px)` | tap moves to the next snap after a 120 ms double-tap guard, and closes from the last one; a press > 250 ms cancels the tap |
 
 ## Drag (direct manipulation)
-- On `pointerdown` (ignore new presses while a drag is in progress, so multi-touch can't make the sheet jump): store `pageY`, `Date`, and the sheet height; `setPointerCapture`.
+- On `pointerdown`, store `pageY`, `Date` and the sheet height, then `setPointerCapture`. Ignore further presses while a drag is in progress, so a second finger can't make the sheet jump. The article shows this guard; the 1.1.2 dist handles it with pointer capture plus a `pointerStart` ref.
 - On move: `dragged = startY − pageY` (positive = toward open). Set `transition:none` on the sheet and overlay, then write `transform: translate3d(0, Ypx, 0)` **directly on the element**. The article explains why not a CSS variable: inherited custom properties recalc style for every child, and drag got laggy beyond ~20 list items.
 - **Past the open edge** (no snap points): `dampen(v) = 8 * (Math.log(v + 1) − 2)`, `y = Math.min(-dampen(dragged), 0)`. The sheet doesn't move for the first ≈ 6.4 px, then creeps logarithmically: ≈ 21 px at 100 px of finger travel, ≈ 30 px at 300 px. Things in real life slow down before they stop.
 - `::after { top:100%; height:200%; background:inherit }` so overshoot never reveals a gap under the sheet.
