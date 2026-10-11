@@ -67,7 +67,7 @@
         '<i class="od-ping"></i><i class="od-ring"></i><i class="od-dot"></i></button>' +
         '<p class="label od-lab od-ui" aria-hidden="true">Drag to reveal</p>' +
         '<p class="label od-read od-ui">p <b class="r-p">0.00</b> · release <b class="r-v">0.0</b>/s · flick &gt; 1.4/s</p>' +
-        '<p class="label od-snd od-ui" hidden>Turn Sound on (top right) to hear the crank</p>' +
+        '<p class="label od-snd od-ui" hidden>Turn Sound on (top right) for the crank</p>' +
         '<div class="od-final"><p class="label fx">[ Revealed ]</p><h4><span class="mask"><span class="ln">Unveiled,</span></span><span class="mask"><span class="ln"><em>in one pull.</em></span></span></h4>' +
         '<button type="button" class="od-again label fx">Cover it again <span aria-hidden="true">↺</span></button></div>';
 
