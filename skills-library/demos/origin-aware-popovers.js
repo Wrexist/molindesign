@@ -169,13 +169,14 @@
           if (open) return;
           if (group.cur && group.cur !== hide) group.cur(true);
           group.cur = hide; clearTimeout(group.skipT); group.delayed = false;
+          layer.querySelectorAll('.op-tip:not([hidden])').forEach(function (x) { if (x !== tip) present(x, false, true); });
           present(tip, true); showOrigin(place(btn, tip, 'top', 'center', 6));
           tip.dataset.state = instant ? 'instant-open' : 'delayed-open';
           btn.setAttribute('aria-describedby', tip.id);
           hud(tip.dataset.state, 1, 1, 0);
         }
         function hide(switching) {
-          clearTimeout(tipTimer); tipTimer = 0;
+          if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud('idle', 0, 0, 0); }
           if (group.cur !== hide) return;
           group.cur = null; btn.removeAttribute('aria-describedby');
           present(tip, false, switching === true);
@@ -189,12 +190,12 @@
           if (group.delayed) { hud('waiting 700 ms', 0, 1, 700); tipTimer = setTimeout(function () { tipTimer = 0; show(false); }, 700); }
           else show(true);
         });
-        btn.addEventListener('pointerleave', function () { if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud('idle', 0, 0, 0); } hide(); });
+        btn.addEventListener('pointerleave', function () { hide(); });
         btn.addEventListener('pointerdown', function () { hide(); });
         btn.addEventListener('focus', function () { if (!quietFocus && btn.matches(':focus-visible')) show(true); });
         btn.addEventListener('blur', function () { hide(); });
       });
-      function hideTips() { if (group.cur) group.cur(true); clearTimeout(tipTimer); tipTimer = 0; }
+      function hideTips() { if (group.cur) group.cur(true); if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud('idle', 0, 0, 0); } }
 
       /* ---------- dropdown menus ---------- */
       function closeOpen(restore) {
