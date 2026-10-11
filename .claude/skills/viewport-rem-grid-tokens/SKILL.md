@@ -12,7 +12,9 @@ html { font-size: 10px !important; }                       /* mobile: 1rem = 10p
 @media (min-width: 1200px) { html { font-size: 0.5208333333vw !important; } }  /* =10px at 1920 wide */
 html { -webkit-font-smoothing: antialiased; scroll-behavior: unset !important; overscroll-behavior-y: none !important; }
 ```
-- Rule: **everything is rem** (gaps `1.6rem`, section padding `8/12/20rem`, headings `4.8rem/6.24rem` …). Design the 1920 comp at 1px = 0.1rem; the whole page scales linearly between 1200 and any width. Mobile (<768) is a fixed 10px rem.
+- Rule: **everything is rem** (gaps `1.6rem`, section padding `8/12/20rem`, headings `4.8rem/6.24rem` …). Mobile (<768) is a fixed 10px rem.
+- **The source rules are not continuous at 1200px.** `1.1111vw` makes 1rem = 10px at a 900px-wide tablet comp; `0.5208vw` makes 1rem = 10px at a 1920px desktop comp. At 1199px 1rem ≈ 13.3px and at 1200px it drops to 6.25px, so every rem value must be re-specified per breakpoint (the sites do this with breakpoint-specific values such as `4.8rem` → `6.24rem` and the `--gap-x` / `--padding-tb` tokens below). Each range scales linearly *within itself* only.
+- If you design a single desktop comp instead, use one continuous coefficient for everything ≥768px (e.g. `html { font-size: calc(100vw / 192) }` for a 1920 comp, clamped with `max(…, 8px)`), so nothing jumps at a breakpoint.
 - Trade-off: pinch-zoom/browser text-size preferences don't scale text. Mitigate: keep body copy >= `1.4rem` at mobile, don't disable zoom (Uncommon sets `user-scalable=no` — don't copy that).
 - Spacing tokens: `--gap-x: 1.6rem → 3.2rem (md) → 4rem (lg)`; container padding = `--gap-x`; section `--padding-tb: 8rem / 12rem / 20rem`.
 

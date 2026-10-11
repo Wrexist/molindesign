@@ -30,7 +30,7 @@ Note: Oryzo calls `preventDefault` nowhere in this path in the code I read; nati
 `getDomRange(el)` caches `getBoundingClientRect` (invalidated on resize / ResizeObserver) and exposes, per frame, with `o = rectTop - scrollPixel`, `h = height`, `V = viewport`:
 - `ratio` ∈ [-1, 1]: −1 = fully below the viewport, 0 = fully on screen / pinned, +1 = fully scrolled out above. (`min(0, fit(o, V, V-h, -1, 0)) + max(0, fit(o, 0, -h, 0, 1))`)
 - `showScreenOffset = -(o-V)/V` (0 when top touches bottom edge), `hideScreenOffset = -(o+h)/V` (0 when bottom touches top edge, negative while visible).
-- `isActive = ratio in [-1,1]` → set `visibility:hidden` and skip all work when false.
+- `isActive = o < V && o + h > 0` (from the **unclamped** geometry; `ratio` saturates at ±1, so testing `ratio in [-1,1]` would always be true) → set `visibility:hidden` and skip all work when false. Equivalent on the clamped value: `ratio > -1 && ratio < 1`.
 Helpers: `fit(x, a, b, c, d, ease?) = c + ease(clamp01((x-a)/(b-a))) * (d-c)`; `ease` = the standard Penner set (cubicOut, cubicInOut, backOut, expoOut, sineOut…).
 
 ## 3. Writing the exit/enter (Oryzo hero, exact recipe)

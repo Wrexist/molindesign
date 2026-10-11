@@ -26,7 +26,9 @@ function holdButton(btn, { dur = 3, onProgress, onComplete, onCancel, resumeMs =
   const press = e => { if (down) return; e.preventDefault(); down = true; pid = e.pointerId;
     const now = performance.now(), gap = now - lastUp;
     const resume = lastP > 0 && gap < resumeMs ? lastP * (1 - gap / resumeMs) : 0;
-    start = now - resume * dur * 1000; btn.setPointerCapture?.(pid); raf = requestAnimationFrame(tick); };
+    start = now - resume * dur * 1000;
+    if (typeof pid === 'number') btn.setPointerCapture?.(pid); // keyboard presses have no pointer to capture (would throw NotFoundError)
+    raf = requestAnimationFrame(tick); };
   const release = e => { if (!down || (e.pointerId !== undefined && e.pointerId !== pid)) return;
     down = false; cancelAnimationFrame(raf); lastP = Math.min((performance.now() - start) / 1000 / dur, 1);
     lastUp = performance.now(); onCancel?.(); };
