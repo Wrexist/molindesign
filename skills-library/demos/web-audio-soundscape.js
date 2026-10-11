@@ -11,7 +11,7 @@ Lib.register('web-audio-soundscape', {
   simplified: 'The music bed and circuit hum are synthesized with oscillators instead of decoded mp3 loops (so no loopStart/loopEnd), and there are no scene one-shots. Meters read AnalyserNodes when sound is on and show the target mix when it is off.',
   css: `
 .d-web-audio-soundscape { background: radial-gradient(90% 70% at 80% 0%, rgb(249 115 22 / .08), transparent 60%), #030303; }
-.d-web-audio-soundscape .wa { position: absolute; inset: 0; padding: 16px 20px 18px; display: grid; gap: 14px; grid-template-columns: minmax(0, .7fr) minmax(0, 1.5fr); grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1.1fr); grid-template-areas: "top top" "met place" "met pads" "met stir"; }
+.d-web-audio-soundscape .wa { position: absolute; inset: 0; padding: 16px 20px 18px; display: grid; gap: 14px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1.1fr); grid-template-areas: "top top" "met place" "met pads" "met stir"; }
 .d-web-audio-soundscape.narrow .wa { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 64px auto auto minmax(0, 1fr); grid-template-areas: "top" "met" "place" "pads" "stir"; gap: 10px; padding: 14px 16px 16px; }
 .d-web-audio-soundscape .wa-top { grid-area: top; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .d-web-audio-soundscape .wa-top p { margin: 0; color: rgb(255 255 255 / .55); }
@@ -22,7 +22,7 @@ Lib.register('web-audio-soundscape', {
 .d-web-audio-soundscape .wa-bar { display: flex; flex-direction: column-reverse; gap: 3px; min-height: 0; width: 22px; justify-self: center; padding: 3px; border: 1px solid rgb(255 255 255 / .1); border-radius: 3px; }
 .d-web-audio-soundscape .wa-bar i { flex: 1; border-radius: 1px; background: rgb(255 255 255 / .07); transition: background .08s; }
 .d-web-audio-soundscape .wa-bar i.on { background: rgb(255 255 255 / .8); } .d-web-audio-soundscape .wa-bar i.hot { background: #f97316; }
-.d-web-audio-soundscape .wa-ch .label { margin: 0; color: rgb(255 255 255 / .55); text-align: center; font-size: 9.5px; letter-spacing: .14em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d-web-audio-soundscape .wa-ch .label { margin: 0; color: rgb(255 255 255 / .55); text-align: center; font-size: 9px; letter-spacing: .06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .d-web-audio-soundscape .wa-ch .v { color: rgb(255 255 255 / .85); font: 10px "Geist Mono", ui-monospace, monospace; text-align: center; margin: 0; }
 .d-web-audio-soundscape.narrow .wa-ch { grid-template-rows: minmax(0, 1fr) auto; } .d-web-audio-soundscape.narrow .wa-ch .v { display: none; }
 .d-web-audio-soundscape.narrow .wa-bar { flex-direction: row; } .d-web-audio-soundscape.narrow .wa-met { grid-template-columns: 1fr; grid-template-rows: repeat(5, 1fr); gap: 3px; }
@@ -30,20 +30,21 @@ Lib.register('web-audio-soundscape', {
 .d-web-audio-soundscape.narrow .wa-bar { padding: 2px; height: 100%; width: auto; justify-self: stretch; }
 .d-web-audio-soundscape .wa-place { grid-area: place; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 16px; align-items: center; border-top: 1px solid rgb(255 255 255 / .1); padding-top: 10px; }
 .d-web-audio-soundscape .wa-place .label { margin: 0; color: rgb(255 255 255 / .5); }
-.d-web-audio-soundscape .wa-seg { display: inline-flex; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; padding: 3px; }
+.d-web-audio-soundscape .wa-seg { justify-self: start; display: inline-flex; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; padding: 3px; }
 .d-web-audio-soundscape .wa-seg button { padding: 7px 14px; border-radius: 999px; color: rgb(255 255 255 / .65); transition: background .3s, color .3s; }
 .d-web-audio-soundscape .wa-seg button[aria-pressed="true"] { background: #fff; color: #000; }
 .d-web-audio-soundscape canvas.wa-curve { width: 100%; height: 100%; min-height: 40px; grid-row: span 2; }
 .d-web-audio-soundscape .wa-place .ro { grid-column: 1; color: rgb(255 255 255 / .8); }
+.d-web-audio-soundscape.narrow canvas.wa-curve { height: 64px; min-height: 0; }
 .d-web-audio-soundscape .wa-pads { grid-area: pads; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .d-web-audio-soundscape .wa-pads button { position: relative; padding: 12px 6px; border-radius: 6px; border: 1px solid rgb(255 255 255 / .14); color: rgb(255 255 255 / .7); overflow: hidden; transition: border-color .3s, color .3s; }
 .d-web-audio-soundscape .wa-pads button::after { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 120%, rgb(249 115 22 / .55), transparent 70%); opacity: 0; transition: opacity .5s; }
 .d-web-audio-soundscape .wa-pads button.hit { border-color: #f97316; color: #fff; } .d-web-audio-soundscape .wa-pads button.hit::after { opacity: 1; transition: none; }
 .d-web-audio-soundscape .wa-pads button.thr { border-color: rgb(255 255 255 / .4); }
 .d-web-audio-soundscape .wa-stir { grid-area: stir; position: relative; border: 1px dashed rgb(255 255 255 / .2); border-radius: 8px; touch-action: none; overflow: hidden; min-height: 70px; cursor: crosshair; }
-.d-web-audio-soundscape .wa-stir canvas { position: absolute; inset: 0; }
+.d-web-audio-soundscape .wa-stir canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
 .d-web-audio-soundscape .wa-stir .label { position: absolute; left: 12px; top: 10px; margin: 0; color: rgb(255 255 255 / .55); pointer-events: none; }
-.d-web-audio-soundscape .wa-stir .ro { top: auto; bottom: 10px; color: rgb(255 255 255 / .8); }
+.d-web-audio-soundscape .wa-stir .ro { top: 28px; color: rgb(255 255 255 / .8); }
 `,
   mount(stage, ctx) {
     var el = ctx.el, audio = ctx.audio, R = ctx.reduced;
@@ -231,8 +232,8 @@ Lib.register('web-audio-soundscape', {
         sc.beginPath(); sc.moveTo(q.x, q.y); sc.lineTo(p.x, p.y); sc.stroke();
       }
       trail = trail.filter(function (p) { return p.a > 0; });
-      var bars = 48; sc.fillStyle = 'rgba(255,255,255,.35)';
-      for (var bI = 0; bI < bars; bI++) { var hgt = 3 + vSm * sh * .5 * (.4 + .6 * Math.abs(Math.sin(bI * 1.7 + (R ? 0 : performance.now() / 90)))); sc.fillRect(bI * sw / bars + 1, sh - hgt, sw / bars - 2, hgt); }
+      var bars = 48; sc.fillStyle = 'rgba(255,255,255,.22)';
+      for (var bI = 0; bI < bars; bI++) { var hgt = 3 + vSm * sh * .4 * (.4 + .6 * Math.abs(Math.sin(bI * 1.7 + (R ? 0 : performance.now() / 90)))); sc.fillRect(bI * sw / bars + 1, sh - hgt, sw / bars - 2, hgt); }
       stirRo.textContent = 'v ' + vSm.toFixed(2) + ' · bandpass ' + Math.round(700 + 1900 * vSm) + ' Hz · gain ' + (.045 * Math.pow(vSm, .8)).toFixed(3);
       stirEl.setAttribute('aria-valuenow', String(Math.round(vSm * 100)));
     }
