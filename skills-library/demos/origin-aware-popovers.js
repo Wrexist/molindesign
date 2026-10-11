@@ -42,7 +42,7 @@
     '.op-h { margin: 0 0 10px; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 400; letter-spacing: -.02em; font-size: clamp(22px, 4.4cqw, 40px); line-height: 1.05; color: #fff; }',
     '.op-p { margin: 0 0 18px; max-width: 46ch; color: rgb(255 255 255 / .55); font-size: 14px; line-height: 1.55; }',
     '.op-props { display: flex; flex-wrap: wrap; gap: 8px; }',
-    '.op-slow { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 4px; color: rgb(255 255 255 / .6); }',
+    '.op-slow { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 4px; color: rgb(255 255 255 / .6); white-space: nowrap; flex: none; }',
     '.op-sw { width: 26px; height: 15px; border-radius: 9px; background: rgb(255 255 255 / .15); position: relative; transition: background .2s; }',
     '.op-sw::after { content: ""; position: absolute; left: 2px; top: 2px; width: 11px; height: 11px; border-radius: 50%; background: #fff; transition: transform .2s cubic-bezier(.23,1,.32,1); }',
     '[aria-pressed=true] .op-sw { background: #f97316; } [aria-pressed=true] .op-sw::after { transform: translateX(11px); }',
@@ -70,12 +70,12 @@
     '.op-tip kbd { font: inherit; margin-left: 8px; color: rgb(0 0 0 / .45); }',
     '.op-tip[data-state=instant-open] { animation: none; }',
     '.op-origin { position: absolute; width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; border-radius: 50%; background: #f97316; box-shadow: 0 0 0 4px rgb(249 115 22 / .25), 0 0 14px #f97316; opacity: 0; z-index: 30; }',
-    '.op-toast { position: absolute; left: 50%; bottom: 68px; transform: translateX(-50%); padding: 8px 14px; border-radius: 999px; background: rgb(255 255 255 / .1); border: 1px solid rgb(255 255 255 / .12); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #fff; font-size: 12.5px; white-space: nowrap; opacity: 0; transition: opacity .2s, transform .3s cubic-bezier(.23,1,.32,1); pointer-events: none; z-index: 6; }',
+    '.op-toast { position: absolute; left: 50%; bottom: 68px; transform: translateX(-50%); padding: 8px 14px; border-radius: 999px; background: rgb(255 255 255 / .1); border: 1px solid rgb(255 255 255 / .12); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #fff; font-size: 12.5px; white-space: nowrap; opacity: 0; transition: opacity .2s, transform .3s cubic-bezier(.23,1,.32,1); pointer-events: none; z-index: 4; }',
     '.op-toast.on { opacity: 1; transform: translateX(-50%) translateY(-4px); }',
   ].join('\n').replace(/([^{}]+)\{([^{}]*)\}/g, function (m, sel, body) {
     return sel.split(',').map(function (x) { x = x.trim(); return x === '&' ? '.d-' + ID : P + x; }).join(', ') + ' {' + body + '}';
   }) +
-    '\n@container (max-width: 560px) { ' + P + '.op-hud .op-hl, ' + P + '.op-crumb .op-ws, ' + P + '.op-slow .t { display: none; } ' + P + '.op-p { font-size: 13px; } }' +
+    '\n@container (max-width: 560px) { ' + P + '.op-hud .op-hl, ' + P + '.op-crumb .op-ws, ' + P + '.op-bar { display: none; } ' + P + '.op-p { font-size: 13px; } }' +
     '\n@media (prefers-reduced-motion: reduce) { ' + P + '.op-pop { animation-name: dop-fade; animation-duration: calc(100ms * var(--k)); } ' + P + '.op-pop[data-state=closed] { animation-name: dop-fade-out; } }' +
     '\n@keyframes dop-in { from { opacity: 0; transform: translate(var(--sx, 0), var(--sy, 0)) scale(var(--s0)); } }' +
     '\n@keyframes dop-out { to { opacity: 0; transform: scale(var(--s0)); } }' +
@@ -110,6 +110,7 @@
         '<div class="op-layer"><span class="op-origin"></span></div><div class="op-toast" role="status" aria-live="polite"></div>';
       var $ = function (s) { return stage.querySelector(s); };
       var layer = $('.op-layer'), originDot = $('.op-origin'), hudS = $('.op-hs'), hudBar = $('.op-bar i'), toast = $('.op-toast');
+      var IDLE = ctx.fine ? 'idle' : 'hover only'; hudS.textContent = IDLE;
       var open = null;   // the one open menu/popover {trigger, node, close}
 
       /* ---------- placement (flip, then shift; origin toward trigger) ---------- */
@@ -176,12 +177,12 @@
           hud(tip.dataset.state, 1, 1, 0);
         }
         function hide(switching) {
-          if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud('idle', 0, 0, 0); }
+          if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud(IDLE, 0, 0, 0); }
           if (group.cur !== hide) return;
           group.cur = null; btn.removeAttribute('aria-describedby');
           present(tip, false, switching === true);
           clearTimeout(group.skipT);
-          group.skipT = setTimeout(function () { group.delayed = true; hud('idle', 0, 0, 0); }, 300);
+          group.skipT = setTimeout(function () { group.delayed = true; hud(IDLE, 0, 0, 0); }, 300);
           hud('skip window', 1, 0, 300);
         }
         btn._hideTip = hide;
@@ -195,7 +196,7 @@
         btn.addEventListener('focus', function () { if (!quietFocus && btn.matches(':focus-visible')) show(true); });
         btn.addEventListener('blur', function () { hide(); });
       });
-      function hideTips() { if (group.cur) group.cur(true); if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud('idle', 0, 0, 0); } }
+      function hideTips() { if (group.cur) group.cur(true); if (tipTimer) { clearTimeout(tipTimer); tipTimer = 0; hud(IDLE, 0, 0, 0); } }
 
       /* ---------- dropdown menus ---------- */
       function closeOpen(restore) {
@@ -292,7 +293,7 @@
       var ro = new ResizeObserver(function () { if (open) place(open.trigger, open.node, open.side, open.align, open.offset); hideTips(); });
       return {
         start: function () { ro.observe(stage); },
-        stop: function () { ro.disconnect(); closeOpen(false); hideTips(); clearTimeout(group.skipT); clearTimeout(toastT); group.delayed = true; hud('idle', 0, 0, 0); }
+        stop: function () { ro.disconnect(); closeOpen(false); hideTips(); clearTimeout(group.skipT); clearTimeout(toastT); group.delayed = true; hud(IDLE, 0, 0, 0); }
       };
     }
   });

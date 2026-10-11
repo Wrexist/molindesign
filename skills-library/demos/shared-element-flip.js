@@ -44,10 +44,12 @@
       '.d-shared-element-flip .sf-btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .18); color: rgb(255 255 255 / .9); transition: border-color .2s, transform .15s cubic-bezier(.23,1,.32,1); }',
       '.d-shared-element-flip .sf-btn:hover { border-color: rgb(255 255 255 / .5); } .d-shared-element-flip .sf-btn:active { transform: scale(.97); }',
       '.d-shared-element-flip .sf-btn svg { width: 13px; height: 13px; }',
-      '.d-shared-element-flip .sf-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; padding: 0 22px 22px; transition: opacity .35s, filter .35s; }',
-      '.d-shared-element-flip .sf-grid.dim { opacity: .28; filter: blur(2px); }',
+      '.d-shared-element-flip .sf-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; padding: 0 22px 22px; transition: opacity .4s, filter .4s; }',
+      '.d-shared-element-flip .sf-bar { transition: opacity .3s; }',
+      '.d-shared-element-flip .dim .sf-grid { opacity: .16; filter: blur(3px); } .d-shared-element-flip .dim .sf-bar { opacity: 0; }',
       '.d-shared-element-flip .sf-card { position: relative; min-height: 0; border-radius: 14px; text-align: left; isolation: isolate; }',
       '.d-shared-element-flip .sf-art, .d-shared-element-flip .sf-dart { position: absolute; inset: 0; border-radius: 14px; overflow: hidden; background: #111; }',
+      '.d-shared-element-flip .sf-art::after { content: ""; position: absolute; inset: 50% 0 0; background: linear-gradient(transparent, rgb(0 0 0 / .6)); pointer-events: none; }',
       '.d-shared-element-flip .sf-img { position: absolute; inset: 0; transition: transform .8s cubic-bezier(.23,1,.32,1); }',
       '.d-shared-element-flip .sf-card:hover .sf-img { transform: scale(1.05); }',
       '.d-shared-element-flip .sf-chip { position: absolute; left: 12px; top: 12px; padding: 4px 8px; border-radius: 999px; background: rgb(0 0 0 / .45); color: #fff; transform-origin: 0 0; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }',
@@ -56,6 +58,7 @@
       '.d-shared-element-flip .sf-kind { color: rgb(255 255 255 / .62); }',
       '.d-shared-element-flip .i0 { background: radial-gradient(60% 55% at 50% 78%, #f97316 0%, rgb(249 115 22 / .35) 35%, transparent 70%), radial-gradient(30% 20% at 50% 70%, #ffd6b0, transparent 70%), linear-gradient(#141210, #070605); }',
       '.d-shared-element-flip .i1 { background: repeating-linear-gradient(0deg, rgb(255 255 255 / .035) 0 1px, transparent 1px 7px), radial-gradient(45% 40% at 50% 55%, #3a3836, #121110 70%), #0b0b0b; }',
+      '.d-shared-element-flip .i1::after { content: ""; position: absolute; left: 33%; right: 33%; top: 38%; bottom: 15%; border-radius: 12px 12px 5px 5px; background: linear-gradient(90deg, #191817, #4d4946 42%, #23211f); box-shadow: 0 22px 30px rgb(0 0 0 / .7); }',
       '.d-shared-element-flip .i2 { background: radial-gradient(circle at 50% 50%, transparent 0 27%, rgb(255 255 255 / .85) 28% 29%, transparent 30.5%), radial-gradient(70% 70% at 50% 50%, #26231f, #090908 75%); }',
       '.d-shared-element-flip .i3 { background: linear-gradient(160deg, #3b3632 0%, #14110f 45%, #050505 100%), #111; }',
       '.d-shared-element-flip .i3::after { content: ""; position: absolute; left: 38%; right: 38%; top: 24%; bottom: 14%; border-radius: 40% 40% 18% 18%; background: linear-gradient(90deg, #2a2522, #6b625b 45%, #1c1916); }',
@@ -65,11 +68,11 @@
       '.d-shared-element-flip .i5::after { content: ""; position: absolute; left: 30%; right: 30%; top: 22%; height: 22%; border-radius: 999px 999px 0 0; background: linear-gradient(#d8d4cf, #6f6a64); }',
       '.d-shared-element-flip .sf-det { position: absolute; inset: 0; z-index: 5; }',
       '.d-shared-element-flip .sf-det[hidden] { display: none; }',
-      '.d-shared-element-flip .sf-scrim { position: absolute; inset: 0; background: rgb(0 0 0 / .55); opacity: 0; transition: opacity .35s; }',
+      '.d-shared-element-flip .sf-scrim { position: absolute; inset: 0; background: rgb(0 0 0 / .7); opacity: 0; transition: opacity .35s; }',
       '.d-shared-element-flip .open .sf-scrim { opacity: 1; }',
       '.d-shared-element-flip .sf-dart { inset: 58px auto 22px 22px; width: calc(56% - 22px); border-radius: 20px; transform-origin: 0 0; }',
       '.d-shared-element-flip .sf-dart .sf-chip { left: 16px; top: 16px; }',
-      '.d-shared-element-flip .sf-body { position: absolute; left: calc(56% + 22px); right: 26px; top: 58px; bottom: 22px; display: flex; flex-direction: column; overflow: auto; }',
+      '.d-shared-element-flip .sf-body { position: absolute; left: calc(56% + 22px); right: 26px; top: 58px; bottom: 22px; display: flex; flex-direction: column; }',
       '.d-shared-element-flip .sf-body .sf-name { font-size: clamp(30px, 5.6cqw, 58px); line-height: 1; font-weight: 400; margin: 4px 0 0; }',
       '.d-shared-element-flip .sf-k { color: #f97316; margin: 0; }',
       '.d-shared-element-flip .sf-p { font-size: 14px; line-height: 1.6; color: rgb(255 255 255 / .75); margin: 16px 0 14px; max-width: 34ch; }',
@@ -86,9 +89,12 @@
       '@container (max-width: 560px) {',
       '  .d-shared-element-flip .sf-ttl0 { display: none; } .d-shared-element-flip .sf-bar { padding: 16px 16px 12px; justify-content: space-between; }',
       '  .d-shared-element-flip .sf-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); padding: 0 16px 16px; gap: 8px; }',
-      '  .d-shared-element-flip .sf-dart { inset: 56px 16px auto 16px; width: auto; height: 42%; }',
-      '  .d-shared-element-flip .sf-body { left: 18px; right: 18px; top: calc(42% + 72px); bottom: 14px; }',
-      '  .d-shared-element-flip .sf-p { margin: 8px 0 10px; font-size: 13px; } .d-shared-element-flip .sf-row { padding: 7px 0; }',
+      '  .d-shared-element-flip .sf-dart { inset: 56px 16px auto 16px; width: auto; height: 38%; }',
+      '  .d-shared-element-flip .sf-body { left: 18px; right: 18px; top: calc(38% + 72px); bottom: 14px; }',
+      '  .d-shared-element-flip .sf-p { margin: 8px 0 12px; font-size: 13px; line-height: 1.5; }',
+      '  .d-shared-element-flip dl { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 12px; }',
+      '  .d-shared-element-flip .sf-row, .d-shared-element-flip .sf-row:last-child { flex-direction: column; gap: 4px; padding: 9px 0 0; border-bottom: 0; }',
+      '  .d-shared-element-flip .sf-row dd { font-size: 12.5px; }',
       '}',
       '@media (prefers-reduced-motion: reduce) { .d-shared-element-flip .sf-in, .d-shared-element-flip .open .sf-in { transform: none; transition: opacity .2s; } .d-shared-element-flip .sf-det { transition: opacity .2s; } .d-shared-element-flip .sf-card:hover .sf-img { transform: none; } }'
     ].join('\n'),
@@ -117,7 +123,7 @@
         '<div class="sf-body"><p class="sf-k label sf-in"></p><h4 class="sf-name" id="sf-h"></h4><p class="sf-p sf-in"></p><dl class="sf-in"></dl></div>' +
         '</div></div><p class="sf-live" aria-live="polite"></p>';
 
-      var grid = stage.querySelector('.sf-grid'), bar = stage.querySelector('.sf-bar'), det = stage.querySelector('.sf-det');
+      var ui = stage.querySelector('.sf-ui'), grid = stage.querySelector('.sf-grid'), bar = stage.querySelector('.sf-bar'), det = stage.querySelector('.sf-det');
       var dart = det.querySelector('.sf-dart'), dimg = dart.querySelector('.sf-img'), dchip = dart.querySelector('.sf-chip');
       var dname = det.querySelector('.sf-name'), dk = det.querySelector('.sf-k'), dp = det.querySelector('.sf-p'), ddl = det.querySelector('dl');
       var closeBtn = det.querySelector('.sf-close'), live = stage.querySelector('.sf-live');
@@ -181,17 +187,17 @@
         grid.inert = true; bar.inert = true; stage.addEventListener('keydown', onKey);
         if (ctx.reduced) {
           det.hidden = false; card.style.visibility = 'hidden'; det.style.opacity = 0; det.offsetWidth;
-          det.style.transition = 'opacity .2s'; det.style.opacity = 1; det.classList.add('open'); grid.classList.add('dim');
+          det.style.transition = 'opacity .2s'; det.style.opacity = 1; det.classList.add('open'); ui.classList.add('dim');
           busy = false; closeBtn.focus({ preventScroll: true }); return;
         }
         if (engine === 'vt') return vtSwap(art, nm, dart, dname, function () {
-          card.style.visibility = 'hidden'; det.hidden = false; det.offsetWidth; det.classList.add('open'); grid.classList.add('dim');
+          card.style.visibility = 'hidden'; det.hidden = false; det.offsetWidth; det.classList.add('open'); ui.classList.add('dim');
         }, 14, 20, function () { busy = false; closeBtn.focus({ preventScroll: true }); });
         var a = art.getBoundingClientRect(), n = nm.getBoundingClientRect();
         det.hidden = false; det.offsetWidth;
         var b = dart.getBoundingClientRect(), m = dname.getBoundingClientRect();
         card.style.visibility = 'hidden';
-        det.classList.add('open'); grid.classList.add('dim');
+        det.classList.add('open'); ui.classList.add('dim');
         morph(dname, n, m, { uniform: true });
         morph(dart, a, b, { r0: 14, r1: 20, kids: [dchip], done: function () { clearMorph(dart); clearMorph(dname); dchip.style.transform = ''; busy = false; } });
         closeBtn.focus({ preventScroll: true });
@@ -207,7 +213,7 @@
           card.style.visibility = ''; grid.inert = false; bar.inert = false; openCard = null; busy = false;
           card.focus({ preventScroll: true });
         }
-        grid.classList.remove('dim');
+        ui.classList.remove('dim');
         if (ctx.reduced) { det.style.opacity = 0; timers.push(setTimeout(finish, 200)); return; }
         det.classList.add('closing'); det.classList.remove('open');
         if (engine === 'vt') return vtSwap(dart, dname, art, nm, function () {
@@ -291,7 +297,7 @@
         stop: function () {
           settle();
           if (openCard) { busy = false; var c = openCard; det.hidden = true; det.classList.remove('open', 'closing'); det.style.opacity = '';
-            c.style.visibility = ''; grid.classList.remove('dim'); grid.inert = false; bar.inert = false; openCard = null; stage.removeEventListener('keydown', onKey); }
+            c.style.visibility = ''; ui.classList.remove('dim'); grid.inert = false; bar.inert = false; openCard = null; stage.removeEventListener('keydown', onKey); }
           busy = false;
         }
       };

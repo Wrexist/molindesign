@@ -178,14 +178,14 @@
       P + '.anf-top b { color: #fff; font-weight: 500; }',
       P + '.anf-mid { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; min-height: 0; }',
       P + '.anf-price { font-family: Archivo, sans-serif; font-stretch: 100%; font-weight: 500; font-size: clamp(30px, 9.6cqw, 100px); letter-spacing: -.035em; color: #fff; font-variant-numeric: tabular-nums; line-height: 1; }',
-      P + '.anf-box { position: relative; display: inline-flex; align-items: baseline; white-space: nowrap; padding: .25em .1em; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 .25em, #000 calc(100% - .25em), transparent); mask-image: linear-gradient(to bottom, transparent, #000 .25em, #000 calc(100% - .25em), transparent); }',
+      P + '.anf-box { position: relative; display: inline-flex; align-items: baseline; white-space: nowrap; padding: .25em .1em; overflow-x: visible; overflow-y: clip; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 .25em, #000 calc(100% - .25em), transparent); mask-image: linear-gradient(to bottom, transparent, #000 .25em, #000 calc(100% - .25em), transparent); }',
       P + '.anf-d, ' + P + '.anf-s { position: relative; display: inline-block; }',
       P + '.anf-d b { visibility: hidden; font-weight: inherit; }',
       P + '.anf-d i { position: absolute; left: 0; right: 0; top: 0; text-align: center; font-style: normal; }',
       P + '.anf-s i { display: inline-block; font-style: normal; white-space: pre; }',
       P + '.anf-s i.old { position: absolute; top: 0; left: 0; } ' + P + '.anf-s.is-pre i.old { left: auto; right: 0; }',
       P + '.is-leaving { position: absolute !important; top: .25em; pointer-events: none; }',
-      P + '.anf-price .t-currency { font-size: .5em; align-self: flex-start; margin: .32em .08em 0; color: rgb(255 255 255 / .75); letter-spacing: 0; }',
+      P + '.anf-price .t-currency { font-size: .5em; margin-left: .08em; color: rgb(255 255 255 / .75); letter-spacing: 0; } ' + P + '.anf-price .t-currency.is-pre { align-self: flex-start; margin: .32em .08em 0; }',
       P + '.anf-price .t-suffix { font-size: .3em; margin-left: .3em; color: rgb(255 255 255 / .45); letter-spacing: 0; font-weight: 400; }',
       P + '.anf-price .t-literal { font-size: .5em; }',
       P + '.anf-sub { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; color: rgb(255 255 255 / .5); }',
@@ -217,7 +217,7 @@
           '<div class="anf-top label"><span><b>Team plan</b> <span class="opt">· billed per seat</span></span><span class="opt">Intl.NumberFormat</span></div>' +
           '<div class="anf-mid">' +
             '<div class="anf-price"></div>' +
-            '<div class="anf-sub label"><span class="anf-chg"><span class="ar" aria-hidden="true">▲</span><span class="anf-pct"></span></span><span>vs. previous</span></div>' +
+            '<div class="anf-sub label"><span class="anf-chg"><span class="ar" aria-hidden="true">▲</span><span class="anf-pct"></span></span><span>per month vs. previous</span></div>' +
           '</div>' +
           '<div class="anf-ctl label">' +
             '<span class="anf-seg" role="group" aria-label="Billing period"><button type="button" class="label" data-plan="mo" aria-pressed="true">Monthly</button><button type="button" class="label" data-plan="yr" aria-pressed="false">Yearly</button></span>' +
@@ -237,17 +237,17 @@
       var seatFmt = new Intl.NumberFormat('en-US');
 
       function render(animate) {
-        var c = CUR[st.cur], usd = st.seats * BASE[st.plan], val = usd * c[1];
+        var c = CUR[st.cur], usd = st.seats * BASE[st.plan], val = usd * c[1], perMo = usd / (st.plan === 'mo' ? 1 : 12);
         var fmt = new Intl.NumberFormat(c[0], { style: 'currency', currency: st.cur });
         var suffix = st.plan === 'mo' ? '/mo' : '/yr';
         var anim = animate && !ctx.reduced && live_;
         price.set(val, fmt, suffix, anim);
-        if (lastUsd !== null && usd !== lastUsd) {
-          var d = (usd - lastUsd) / lastUsd;
+        if (lastUsd !== null && perMo !== lastUsd) {
+          var d = (perMo - lastUsd) / lastUsd; // compare the monthly equivalent, so Yearly reads as a saving
           pct.set(d, pctFmt, '', anim);
           chg.classList.toggle('up', d > 0); chg.classList.toggle('down', d < 0);
         } else if (lastUsd === null) pct.set(0, pctFmt, '', false);
-        lastUsd = usd;
+        lastUsd = perMo;
         seatsF.set(st.seats, seatFmt, st.seats === 1 ? ' seat' : ' seats', anim);
         var label = price.host.getAttribute('aria-label');
         srOut.textContent = '“' + label + '”';
