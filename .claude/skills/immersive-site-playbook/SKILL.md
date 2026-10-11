@@ -84,6 +84,11 @@ Model/light/animate in Blender → bake lighting in Cycles → export (glTF) wit
 | Hold, gamepad, touch input | `hold-to-advance`, `device-agnostic-input-actions` |
 | Several 3D slots in a normal page | `scissor-view-webgl-slots` |
 | Procedural ground / playable worlds | `instanced-grass-and-snow-parallax` |
+| Product-UI motion rules (read first for app UI) | `ui-motion-principles`, `interruptible-css-transitions` |
+| Notifications, sheets | `stacked-toasts`, `drag-sheet-drawer` |
+| Menus, popovers, tooltips, ⌘K | `origin-aware-popovers`, `submenu-safe-triangle`, `command-palette-motion` |
+| Numbers, buttons, feedback | `animated-number-flow`, `button-state-morphs` |
+| Layout transitions | `shared-element-flip`, `sliding-indicator-tabs`, `morphing-tray` |
 
 Lesson across all reference sites: commit to ONE hard idea and budget everything around it. Most of them ship no `prefers-reduced-motion` handling — add it yourself.
 

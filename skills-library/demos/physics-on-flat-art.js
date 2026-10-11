@@ -13,8 +13,9 @@ Lib.register('physics-on-flat-art', {
 .d-physics-on-flat-art { background: radial-gradient(120% 80% at 50% 110%, #1a1a1a, #000 60%); user-select: none; -webkit-user-select: none; }
 .d-physics-on-flat-art.dragging { touch-action: none; }
 .d-physics-on-flat-art .pf-head { position: absolute; left: 24px; top: 22px; right: 24px; display: flex; justify-content: space-between; gap: 16px; z-index: 1; pointer-events: none; }
-.d-physics-on-flat-art .pf-head .label { color: rgb(255 255 255 / .45); margin: 0 0 8px; white-space: nowrap; }
+.d-physics-on-flat-art .pf-head .label { color: rgb(255 255 255 / .56); margin: 0 0 8px; white-space: nowrap; }
 .d-physics-on-flat-art.narrow .pf-side { display: none; }
+.d-physics-on-flat-art.narrow .pf-title { font-size: 20px; white-space: nowrap; }
 .d-physics-on-flat-art.narrow .pf-ctl { top: 96px; }
 .d-physics-on-flat-art.narrow .pf-read { top: 144px; }
 .d-physics-on-flat-art .pf-title { font-family: Archivo, sans-serif; font-stretch: 125%; font-size: clamp(24px, 4.2vw, 46px); line-height: 1; letter-spacing: -.02em; margin: 0; color: rgb(255 255 255 / .9); perspective: 400px; }
@@ -30,7 +31,7 @@ Lib.register('physics-on-flat-art', {
 .d-physics-on-flat-art .pf-ctl button[aria-pressed="true"] { background: #fff; color: #000; border-color: #fff; }
 .d-physics-on-flat-art .pf-ctl .next { color: #000; background: #f97316; border-color: #f97316; }
 .d-physics-on-flat-art .pf-ctl .next:hover { color: #000; background: #fb923c; }
-.d-physics-on-flat-art .pf-read { position: absolute; left: 24px; top: 152px; z-index: 1; color: rgb(255 255 255 / .45); pointer-events: none; margin: 0; }
+.d-physics-on-flat-art .pf-read { position: absolute; left: 24px; top: 152px; z-index: 1; color: rgb(255 255 255 / .56); pointer-events: none; margin: 0; }
 .d-physics-on-flat-art .pf-read b { color: rgb(255 255 255 / .85); font-weight: 500; }
 .d-physics-on-flat-art .pf-piece { position: absolute; left: 0; top: 0; z-index: 3; touch-action: none; cursor: grab; will-change: transform; box-shadow: 6px 8px 0 rgb(0 0 0 / .55); }
 .d-physics-on-flat-art.dragging .pf-piece { cursor: grabbing; }

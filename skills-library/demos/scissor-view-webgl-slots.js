@@ -22,7 +22,7 @@ Lib.register('scissor-view-webgl-slots', {
 .d-scissor-view-webgl-slots .sv-card { position: relative; border-radius: 10px; border: 1px solid rgb(255 255 255 / .1); background: radial-gradient(90% 70% at 50% 45%, rgb(255 255 255 / .06), transparent 70%), #0b0b0b; will-change: transform; }
 .d-scissor-view-webgl-slots .sv-card .label { position: absolute; left: 14px; top: 12px; margin: 0; color: rgb(255 255 255 / .8); z-index: 4; }
 .d-scissor-view-webgl-slots .sv-card .label i { font-style: normal; color: #f97316; margin-right: 8px; }
-.d-scissor-view-webgl-slots .sv-card .ro { position: absolute; left: 14px; right: 14px; bottom: 10px; margin: 0; font: 10px/1.3 "Geist Mono", ui-monospace, monospace; color: rgb(255 255 255 / .45); z-index: 4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.d-scissor-view-webgl-slots .sv-card .ro { position: absolute; left: 14px; right: 14px; bottom: 10px; margin: 0; font: 10px/1.3 "Geist Mono", ui-monospace, monospace; color: rgb(255 255 255 / .56); z-index: 4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .d-scissor-view-webgl-slots .sv-card::before, .d-scissor-view-webgl-slots .sv-card::after { content: ""; position: absolute; width: 10px; height: 10px; border: 0 solid rgb(249 115 22 / .7); z-index: 4; }
 .d-scissor-view-webgl-slots .sv-card::before { right: 8px; top: 8px; border-top-width: 1px; border-right-width: 1px; }
 .d-scissor-view-webgl-slots .sv-card::after { right: 8px; bottom: 8px; border-bottom-width: 1px; border-right-width: 1px; }
@@ -125,7 +125,7 @@ Lib.register('scissor-view-webgl-slots', {
 
     /* ---------- WebGL2 ---------- */
     var gl = null, prog, U = {}, vaos = [];
-    try { gl = /nogl/.test(location.search) ? null : canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true }); } catch (e) { gl = null; } // TEMPNOGL
+    try { gl = canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true }); } catch (e) { gl = null; }
     if (gl) {
       var vs = '#version 300 es\nin vec3 aP; in vec3 aN; uniform mat4 uProj; uniform mat3 uRot; out vec3 vN; out float vZ; void main(){ vec3 p = uRot * aP; vN = uRot * aN; vec4 v = vec4(p.x, p.y, p.z - 2.0, 1.0); vZ = -v.z; gl_Position = uProj * v; }';
       var fs = '#version 300 es\nprecision highp float; in vec3 vN; in float vZ; uniform vec3 uTint; out vec4 o; void main(){ vec3 n = normalize(vN);' +

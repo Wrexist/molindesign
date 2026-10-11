@@ -14,7 +14,7 @@
 & .card b { font-stretch: 125%; font-weight: 400; font-size: clamp(18px, 3.2cqi, 30px); line-height: 1; letter-spacing: -.02em; color: #fff; }
 & .card .label { color: rgb(255 255 255 / .5); }
 & .card.on { border-color: rgb(249 115 22 / .6); }
-& .vp-cap { position: absolute; left: 28px; top: 26px; margin: 0; color: rgb(255 255 255 / .45); }
+& .vp-cap { position: absolute; left: 28px; top: 26px; margin: 0; color: rgb(255 255 255 / .56); }
 & .pn { position: absolute; right: 28px; top: 26px; bottom: 26px; left: calc(38% + 64px); display: flex; flex-direction: column; gap: 14px; color: rgb(255 255 255 / .5); }
 & .vel { padding: 14px 16px; border-radius: 12px; border: 1px solid rgb(255 255 255 / .1); background: rgb(0 0 0 / .55); backdrop-filter: blur(10px); }
 & .vel-top { display: flex; justify-content: space-between; align-items: baseline; }

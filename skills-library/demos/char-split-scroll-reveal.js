@@ -56,7 +56,7 @@
     simplified: 'Web Animations API instead of GSAP + split-type; power3 approximated with cubic-bezier quart curves. The once-only trigger is the stage entering view, not ScrollTrigger. Word and line staggers (.06 / .1 s) are demo values.',
     css: [
       '.d-' + ID + ' { display: grid; grid-template-rows: auto 1fr auto; padding: 22px 24px 18px; gap: 12px; --fs: 64px; }',
-      '.d-' + ID + ' .top { display: flex; justify-content: space-between; gap: 12px; color: rgb(255 255 255 / .45); }',
+      '.d-' + ID + ' .top { display: flex; justify-content: space-between; gap: 12px; color: rgb(255 255 255 / .56); }',
       '.d-' + ID + ' .top .accent { color: #f97316; }',
       '.d-' + ID + ' .mid { align-self: center; display: grid; gap: calc(var(--fs) * .45); }',
       '.d-' + ID + ' h4 { margin: 0; font-family: Archivo, sans-serif; font-stretch: 125%; font-weight: 400; font-size: var(--fs); line-height: 1.02; letter-spacing: -.035em; color: #fff; max-width: 13ch; }',
@@ -76,7 +76,7 @@
       '.d-' + ID + ' .seg button { padding: 7px 11px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .15); color: rgb(255 255 255 / .6); transition: background .3s, color .3s, border-color .3s; }',
       '.d-' + ID + ' .seg button:hover { color: #fff; border-color: rgb(255 255 255 / .45); }',
       '.d-' + ID + ' .seg button[aria-pressed="true"] { background: #fff; color: #000; border-color: #fff; }',
-      '.d-' + ID + ' .read { color: rgb(255 255 255 / .45); min-height: 1.4em; }',
+      '.d-' + ID + ' .read { color: rgb(255 255 255 / .56); min-height: 1.4em; }',
       '.d-' + ID + ' .read b { color: rgb(255 255 255 / .9); font-weight: 500; }',
       '.d-' + ID + ' .read b.accent { color: #f97316; }',
       '@media (max-width: 640px) { .d-' + ID + ' { padding: 18px 16px 14px; } .d-' + ID + ' .read { width: 100%; } }'

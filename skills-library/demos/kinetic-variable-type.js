@@ -28,7 +28,7 @@
     simplified: 'Archivo stands in for F37 Judge: source wght 100–1000 maps linearly to Archivo 100–900 and wdth 60–150 to 62–125, so the extremes are softer. If Archivo fails to load, weight uses font-weight and width is faked with scaleX. Roll clones show random letters before landing on the real one.',
     css: [
       '.d-' + ID + ' { display: grid; grid-template-rows: auto 1fr auto; padding: 22px 24px 18px; --fs: 120px; }',
-      '.d-' + ID + ' .hud { display: flex; justify-content: space-between; gap: 12px; color: rgb(255 255 255 / .45); }',
+      '.d-' + ID + ' .hud { display: flex; justify-content: space-between; gap: 12px; color: rgb(255 255 255 / .56); }',
       '.d-' + ID + ' .hud .accent { color: #f97316; }',
       '.d-' + ID + ' .hud .vals { text-align: right; }',
       '.d-' + ID + ' .hud b { font-weight: 500; color: rgb(255 255 255 / .9); }',
@@ -41,7 +41,7 @@
       '.d-' + ID + ' .ch .col { position: absolute; left: 0; top: 100%; display: flex; flex-direction: column; }',
       '.d-' + ID + ' .ch .col span { display: block; }',
       '.d-' + ID + ' .fake .ch { transform-origin: 50% 50%; }',
-      '.d-' + ID + ' .ctrl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; border-top: 1px solid rgb(255 255 255 / .1); padding-top: 12px; color: rgb(255 255 255 / .45); }',
+      '.d-' + ID + ' .ctrl { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; border-top: 1px solid rgb(255 255 255 / .1); padding-top: 12px; color: rgb(255 255 255 / .56); }',
       '.d-' + ID + ' .ctrl label { display: flex; align-items: center; gap: 12px; flex: 1 1 260px; }',
       '.d-' + ID + ' input[type=range] { flex: 1; accent-color: #f97316; height: 28px; touch-action: pan-x; }',
       '.d-' + ID + ' .ctrl .src { flex: 1 1 200px; text-align: right; }',

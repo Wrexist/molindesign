@@ -17,7 +17,7 @@
 & .pre .w { transform: translateY(100%); } & .pre .fd { opacity: 0; } & .pre .hl { transform: scaleX(0); } & .pre .im { transform: scale(1.2); }
 & h4 { margin: 0; font-stretch: 125%; font-weight: 400; font-size: clamp(26px, 5.2cqi, 54px); line-height: 1.02; letter-spacing: -.03em; color: #fff; }
 & h4 .ln:nth-child(2) .w { font-style: italic; color: rgb(255 255 255 / .75); }
-& .eb { margin: 0 0 16px; color: rgb(255 255 255 / .45); }
+& .eb { margin: 0 0 16px; color: rgb(255 255 255 / .56); }
 & .hl { height: 1px; background: rgb(255 255 255 / .3); transform-origin: left; margin: 22px 0; }
 & .fig { overflow: hidden; border-radius: 6px; position: relative; }
 & .im { position: absolute; inset: 0; }
@@ -42,7 +42,7 @@
 & .logo span { display: block; overflow: hidden; padding: 0 .06em; } & .logo b { display: block; font-weight: 400; }
 & .logo span:nth-child(3) b { color: #f97316; }
 & .iris { position: absolute; left: 0; right: 0; top: 52px; bottom: 0; z-index: 4; pointer-events: none; display: none; }
-& .hud { position: absolute; left: 24px; bottom: 18px; z-index: 6; display: flex; gap: 6px; align-items: center; color: rgb(255 255 255 / .35); pointer-events: none; }
+& .hud { position: absolute; left: 24px; bottom: 18px; z-index: 6; display: flex; gap: 6px; align-items: center; color: rgb(255 255 255 / .56); pointer-events: none; }
 & .hud i { font-style: normal; padding: 4px 8px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .12); transition: color .2s, border-color .2s; }
 & .hud i.on { color: #000; background: #f97316; border-color: #f97316; }
 & .tour { position: absolute; right: 24px; bottom: 14px; z-index: 6; padding: 8px 0; color: rgb(255 255 255 / .55); }

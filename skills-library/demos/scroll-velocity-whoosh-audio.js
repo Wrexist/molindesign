@@ -29,14 +29,14 @@ Lib.register('scroll-velocity-whoosh-audio', {
 .d-scroll-velocity-whoosh-audio .sw-bed { margin: 10px 0 0 !important; }
 .d-scroll-velocity-whoosh-audio .sw-tl { position: relative; height: 46px; }
 .d-scroll-velocity-whoosh-audio .sw-tl .blk { position: absolute; top: 14px; height: 18px; border-left: 1px solid rgb(255 255 255 / .25); background: rgb(255 255 255 / .04); }
-.d-scroll-velocity-whoosh-audio .sw-tl .blk b { position: absolute; left: 6px; top: 22px; font: 500 9.5px/1 Archivo, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: rgb(255 255 255 / .45); white-space: nowrap; }
+.d-scroll-velocity-whoosh-audio .sw-tl .blk b { position: absolute; left: 6px; top: 22px; font: 500 9.5px/1 Archivo, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: rgb(255 255 255 / .56); white-space: nowrap; }
 .d-scroll-velocity-whoosh-audio .sw-tl .blk.cur { background: rgb(255 255 255 / .1); } .d-scroll-velocity-whoosh-audio .sw-tl .blk.cur b { color: #fff; }
 .d-scroll-velocity-whoosh-audio .sw-tl .win { position: absolute; top: 14px; height: 18px; background: linear-gradient(to right, rgb(249 115 22 / 0), rgb(249 115 22 / .55)); pointer-events: none; }
-.d-scroll-velocity-whoosh-audio .sw-tl .mute { position: absolute; top: 4px; transform: translateX(-50%); font: 500 8.5px Archivo, sans-serif; letter-spacing: .12em; color: rgb(255 255 255 / .35); text-transform: uppercase; }
+.d-scroll-velocity-whoosh-audio .sw-tl .mute { position: absolute; top: 4px; transform: translateX(-50%); font: 500 8.5px Archivo, sans-serif; letter-spacing: .12em; color: rgb(255 255 255 / .56); text-transform: uppercase; }
 .d-scroll-velocity-whoosh-audio .sw-tl .ph { position: absolute; top: 8px; height: 30px; width: 1px; background: #fff; box-shadow: 0 0 8px #fff; }
 .d-scroll-velocity-whoosh-audio .sw-m { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .d-scroll-velocity-whoosh-audio .sw-m div { border-top: 1px solid rgb(255 255 255 / .12); padding-top: 8px; min-width: 0; }
-.d-scroll-velocity-whoosh-audio .sw-m .label { margin: 0 0 6px; color: rgb(255 255 255 / .45); }
+.d-scroll-velocity-whoosh-audio .sw-m .label { margin: 0 0 6px; color: rgb(255 255 255 / .56); }
 .d-scroll-velocity-whoosh-audio .sw-m b { display: block; font: 400 13px/1.2 "Geist Mono", ui-monospace, monospace; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .d-scroll-velocity-whoosh-audio .sw-m i { display: block; height: 2px; margin-top: 8px; background: rgb(255 255 255 / .12); position: relative; overflow: hidden; }
 .d-scroll-velocity-whoosh-audio .sw-m i::after { content: ""; position: absolute; inset: 0; background: #f97316; transform-origin: left; transform: scaleX(var(--k, 0)); }

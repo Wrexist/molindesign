@@ -27,3 +27,15 @@ The Vite React frontend in `maya-haglund/` uses the Netlify API at https://maya-
 The admin supports searchable content, PT and online packages, draft previews and publication. Changes are loaded on the next page visit without rebuilding GitHub Pages. The former ChatGPT Site is a separate copy; its unpublished drafts were not migrated. No credentials are committed.
 
 The demo includes professional icons, reduced-motion-aware animations, an illustrative 3D fitness asset and a white transparent fitness logo, which also marks the contact card. A branded loading screen paints before the app bundle: the kettlebell, ball and band from the 3D asset drop in, a counter runs to 100 % while content loads, and the equipment then flies into its place in the hero. Booking links contact Maya or open the configured booking URL; payments are not processed here.
+
+## Motion Library
+
+Website: https://wrexist.github.io/molindesign/skills-library/
+
+A static showcase of every design skill in `.claude/skills/`: each technique has a live demo, the numbers worth reusing, a link to its `SKILL.md`, the source it was learned from, and a "Copy prompt" button that produces a ready-made instruction for Claude. Plain HTML, CSS and JavaScript in `skills-library/`; no build step or external libraries (Google Fonts only).
+
+- `skills-library/skills-data.js` lists the techniques shown (id, category, title, summary, source). Add an entry there when a new skill gets a demo.
+- `skills-library/demos/<skill-id>.js` holds one demo each, written against the contract in `skills-library/demos/README.md` (mount lazily, start/stop with visibility, reduced-motion fallback, no global side effects).
+- `skills-library/core.js` runs the page: loader, index and filters, lazy demo mounting, progress rail, reticle cursor, sound toggle, About drawer and copy buttons.
+
+The page is `noindex` like the other demos. The demos are dependency-free reimplementations for learning; they are not affiliated with the studios, brands or libraries credited as sources.

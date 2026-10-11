@@ -4,11 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Motion Library | Molin Design</title>
-  <meta name="description" content="A living library of 32 motion and interaction techniques, each with a working demo, distilled from award-winning websites. By Molin Design.">
+  <meta name="description" content="A living library of motion and interaction techniques, each with a working demo, distilled from award-winning websites and the best UI component libraries. By Molin Design.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#000000">
   <meta name="color-scheme" content="dark">
   <meta name="format-detection" content="telephone=no, address=no, email=no">
+  <link rel="canonical" href="https://wrexist.github.io/molindesign/skills-library/">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cpath d='M14 14h8M14 14v8M50 14h-8M50 14v8M14 50h8M14 50v-8M50 50h-8M50 50v-8' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23f97316'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Molin Design">
+  <meta property="og:title" content="Motion Library | Molin Design">
+  <meta property="og:description" content="Motion and interaction techniques from award-winning sites and the best UI libraries, each with a live demo and a reusable skill.">
+  <meta property="og:url" content="https://wrexist.github.io/molindesign/skills-library/">
+  <meta property="og:image" content="https://wrexist.github.io/molindesign/skills-library/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Motion Library by Molin Design: every move we learned, live.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Motion Library | Molin Design">
+  <meta name="twitter:description" content="Motion and interaction techniques, each with a live demo and a reusable skill.">
+  <meta name="twitter:image" content="https://wrexist.github.io/molindesign/skills-library/og.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Geist+Mono:wght@400;500&display=swap">
@@ -50,16 +65,17 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <p class="label eyebrow"><span class="accent">[ Nº 00 / <span id="hero-count">32</span> ]</span> Molin Design · Motion library</p>
+      <p class="label eyebrow"><span class="accent">[ Nº 00 / <span id="hero-count">44</span> ]</span> Molin Design · Motion library</p>
       <h1 id="hero-title" class="display hero-title">
         <span class="lib-mask"><span class="lib-line">Every move</span></span>
         <span class="lib-mask"><span class="lib-line">we learned, <em>live.</em></span></span>
       </h1>
-      <p class="hero-copy">32 techniques taken from the source code of award-winning sites. Each one runs below as a working demo, with the numbers worth stealing and a link to the full skill.</p>
+      <p class="hero-copy"><span id="hero-n">44</span> techniques taken from the source code of award-winning sites and the best UI libraries. Each one runs below as a working demo, with the numbers worth stealing, a link to the full skill and a prompt to reuse it.</p>
       <dl class="hero-meta">
-        <div><dt class="label">Techniques</dt><dd id="meta-count">32</dd></div>
-        <div><dt class="label">Sources</dt><dd>15 sites</dd></div>
+        <div><dt class="label">Techniques</dt><dd id="meta-count">44</dd></div>
+        <div><dt class="label">Sources</dt><dd id="meta-sources">33</dd></div>
         <div><dt class="label">Built with</dt><dd>HTML, CSS, vanilla JS</dd></div>
+        <div><dt class="label">Use it</dt><dd>Copy a prompt per skill</dd></div>
       </dl>
       <p class="label hint-line">Scroll <span class="tick" aria-hidden="true"><i></i></span></p>
     </section>
@@ -87,7 +103,7 @@
   <div class="rail" id="rail" aria-hidden="true">
     <span class="rail-dot"></span>
     <span class="rail-num"><span id="rail-num">00</span></span>
-    <span class="rail-of">/ 32</span>
+    <span class="rail-of">/ 44</span>
     <span class="rail-name" id="rail-name">Index</span>
     <span class="rail-track"><span class="rail-fill" id="rail-fill"></span></span>
     <span class="rail-vel">vel <span id="rail-vel">0.00</span></span>
@@ -105,7 +121,7 @@
         <button type="button" class="label close" data-close>Close ✕</button>
       </div>
       <div role="tabpanel" id="panel-about" aria-labelledby="tab-about">
-        <p class="display drawer-title" id="drawer-title">One library, <em>32 moves.</em></p>
+        <p class="display drawer-title" id="drawer-title">One library, <em>every move.</em></p>
         <p>Every skill in this repo's <code>.claude/skills/</code> folder, demonstrated. The page itself also uses many of them: the loader, the reticle cursor, the masked headlines, the progress rail, the sound toggle and this drawer.</p>
         <dl class="rows">
           <div><dt class="label">Sources</dt><dd>15 award-winning sites</dd></div>
@@ -134,6 +150,7 @@
     <span class="r-label label"></span>
   </div>
 
+  <noscript><p class="label" style="position:fixed;inset:auto 24px 24px;z-index:300;color:#fff">The live demos need JavaScript. The skills themselves are in the repository's .claude/skills folder.</p><style>.loader{display:none}</style></noscript>
   <script src="skills-data.js"></script>
   <script src="core.js"></script>
 </body>

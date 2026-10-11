@@ -51,7 +51,7 @@
       '.d-' + ID + ' .card + .card { border-left: 1px solid rgb(255 255 255 / .1); }',
       '.d-' + ID + ' .hd { display: flex; justify-content: space-between; gap: 8px; color: rgb(255 255 255 / .5); position: relative; z-index: 3; }',
       '.d-' + ID + ' .hd b { color: #f97316; font-weight: 500; }',
-      '.d-' + ID + ' .ft { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: rgb(255 255 255 / .45); position: relative; z-index: 3; flex-wrap: wrap; }',
+      '.d-' + ID + ' .ft { display: flex; justify-content: space-between; align-items: center; gap: 8px; color: rgb(255 255 255 / .56); position: relative; z-index: 3; flex-wrap: wrap; }',
       '.d-' + ID + ' .lnk { padding: 8px 0; color: rgb(255 255 255 / .75); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgb(255 255 255 / .3); }',
       '.d-' + ID + ' .lnk:hover, .d-' + ID + ' .lnk[aria-pressed="true"] { color: #fff; text-decoration-color: #f97316; }',
       '.d-' + ID + ' .mid { position: relative; display: grid; place-items: center; }',
@@ -91,7 +91,7 @@
         '<button type="button" class="ringbtn" aria-label="Hold to continue"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="rgb(0 0 0 / .5)" stroke="rgb(255 255 255 / .18)" stroke-width="2"/>' +
         '<circle class="pr" cx="50" cy="50" r="46" fill="none" stroke="#f97316" stroke-width="3" stroke-linecap="round" stroke-dasharray="' + C.toFixed(2) + '" stroke-dashoffset="' + C.toFixed(2) + '"/></svg><span class="lb label">' + (reduced ? 'Continue' : 'Hold') + '</span></button>' +
         '<span class="th label" aria-hidden="true">' + (reduced ? 'Tap' : 'Tap / Hold') + '</span>' +
-        '<div class="unl" aria-hidden="true"><span class="label">Stage unlocked</span><span class="big">02</span><button type="button" class="lnk label relock">Lock again</button></div></div>' +
+        '<div class="unl" aria-hidden="true" inert><span class="label">Stage unlocked</span><span class="big">02</span><button type="button" class="lnk label relock">Lock again</button></div></div>' +
         '<div class="ft label"><span class="pa">0%</span><button type="button" class="lnk skip">Skip, no hold →</button></div>' +
         '<p class="sr" aria-live="polite"></p>';
       /* ---------- B: sustain-hold ---------- */
@@ -105,7 +105,7 @@
           '<g clip-path="url(#hta-glass)"><rect class="liq" x="70" y="190" width="72" height="0" fill="#f97316"/><rect class="foam" x="70" y="190" width="72" height="2" fill="#ffd2ad"/></g>' +
           '<path d="M80 120 L132 120 L127 188 Q106 195 85 188 Z" fill="rgb(255 255 255 / .04)" stroke="rgb(255 255 255 / .85)" stroke-width="1.2"/>' +
         '</svg>' +
-        '<button type="button" class="disc" aria-label="' + (reduced ? 'Pour, toggle' : 'Hold to pour') + '"><span>' + (reduced ? 'Tap to<br>pour' : 'Hold &amp;<br>Pour') + '</span></button></div>' +
+        '<button type="button" class="disc"><span>' + (reduced ? 'Tap to<br>pour' : 'Hold &amp;<br>Pour') + '</span></button></div>' +
         '<div class="ft label"><span class="snd"></span><button type="button" class="lnk tog" aria-pressed="false">Pour (toggle)</button></div>';
       stage.appendChild(A); stage.appendChild(B);
       var $ = function (r, s) { return r.querySelector(s); };
@@ -119,12 +119,12 @@
       function setDur(d) { dur = d; d15.setAttribute('aria-pressed', d === 1.5 ? 'true' : 'false'); d3.setAttribute('aria-pressed', d === 3 ? 'true' : 'false'); }
       d15.addEventListener('click', function () { setDur(1.5); }); d3.addEventListener('click', function () { setDur(3); });
       function unlock() {
-        aDone = true; aP = 1; drawA(1); unl.classList.add('on'); unl.setAttribute('aria-hidden', 'false');
+        aDone = true; aP = 1; drawA(1); unl.classList.add('on'); unl.removeAttribute('aria-hidden'); unl.inert = false;
         ringBtn.classList.remove('pressed'); ringBtn.disabled = true; live.textContent = 'Continued. Stage 02 unlocked.';
         $(A, '.relock').focus({ preventScroll: true });
       }
       function relock() {
-        aDone = false; aP = 0; aVis = 0; resetT = 1; drawA(0); unl.classList.remove('on'); unl.setAttribute('aria-hidden', 'true');
+        aDone = false; aP = 0; aVis = 0; resetT = 1; drawA(0); unl.classList.remove('on'); unl.setAttribute('aria-hidden', 'true'); unl.inert = true;
         ringBtn.disabled = false; ringBtn.focus({ preventScroll: true }); live.textContent = '';
       }
       $(A, '.relock').addEventListener('click', relock);

@@ -34,7 +34,7 @@
 & .segs i b { position: absolute; inset: 0; background: #FAF5F0; transform-origin: left; transform: scaleX(0); }
 & .spd { color: rgb(255 255 255 / .6); min-width: 64px; text-align: right; }
 & .spd.slow { color: #f97316; }
-& .tip { position: absolute; top: 24px; left: 28px; right: 28px; margin: 0; display: flex; justify-content: space-between; color: rgb(255 255 255 / .45); pointer-events: none; z-index: 2; }
+& .tip { position: absolute; top: 24px; left: 28px; right: 28px; margin: 0; display: flex; justify-content: space-between; color: rgb(255 255 255 / .56); pointer-events: none; z-index: 2; }
 @container (max-width: 560px) { & .tip span:last-child { display: none; } & .story { bottom: 76px; left: 20px; } }
 @media (prefers-reduced-motion: reduce) {
   & .pro b, & .ttl s b { filter: none !important; transform: none !important; }
@@ -77,7 +77,7 @@
         '<div class="hud"><button type="button" class="back" aria-label="Play backwards">◀</button><button type="button" class="pp" aria-label="Pause">❚❚</button>' +
         '<button type="button" class="fwd" aria-label="Play forwards" aria-pressed="true">▶</button>' +
         '<div class="segs" aria-hidden="true">' + SCENES.map(function () { return '<i><b></b></i>'; }).join('') + '</div><span class="spd label">1.0×</span></div>' +
-        '<div class="gate"><p class="pro" aria-label="' + line + '">' + line.split('').map(function (ch, i) {
+        '<div class="gate"><p class="pro"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">' + line + '</span>' + line.split('').map(function (ch, i) {
           return ch === ' ' ? ' ' : '<b aria-hidden="true" style="--d:' + ((i * 7 + 3) % 10) + '">' + ch + '</b>';
         }).join('') + '</p><h4 class="ttl" aria-label="Spin a Tale">' + 'Spin a Tale'.split('').map(function (ch, i) {
           return '<s aria-hidden="true"><b style="--c:' + i + '">' + (ch === ' ' ? '&nbsp;' : ch) + '</b></s>';

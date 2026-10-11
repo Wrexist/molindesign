@@ -135,6 +135,10 @@
   var sourceUrl = function (src) {
     var first = src.split(' · ')[0].trim();
     if (first.indexOf('shopify.com') === 0) return 'https://www.shopify.com/editions/spring2026';
+    // package names are not hostnames: send them to the library's own site, or its npm page
+    var sites = { sonner: 'https://sonner.emilkowal.ski', vaul: 'https://vaul.emilkowal.ski' };
+    if (sites[first]) return sites[first];
+    if (first.indexOf('.') < 0) return 'https://www.npmjs.com/package/' + encodeURIComponent(first);
     return 'https://' + first;
   };
 
@@ -143,6 +147,10 @@
   var filtersEl = document.getElementById('filters');
   document.getElementById('hero-count').textContent = skills.length;
   document.getElementById('meta-count').textContent = skills.length;
+  document.getElementById('hero-n').textContent = skills.length;
+  var sourceSet = {};
+  skills.forEach(function (s) { s.source.split(' · ').forEach(function (x) { sourceSet[x.trim()] = 1; }); });
+  document.getElementById('meta-sources').textContent = Object.keys(sourceSet).length;
   document.querySelector('.rail-of').textContent = '/ ' + skills.length;
 
   skills.forEach(function (s, i) { s.n = i + 1; });
@@ -177,6 +185,10 @@
             '<a class="ulink" href="' + REPO + s.id + '/SKILL.md" target="_blank" rel="noopener noreferrer"><span class="ar">↗</span>SKILL.md</a>' +
             '<a class="ulink" href="' + sourceUrl(s.source) + '" target="_blank" rel="noopener noreferrer"><span class="ar">↗</span>' + s.source + '</a>' +
           '</div>' +
+          '<div class="actions label rise">' +
+            '<button type="button" class="act" data-copy="prompt"><span class="act-t">Copy prompt</span></button>' +
+            '<button type="button" class="act" data-copy="link"><span class="act-t">Copy link</span></button>' +
+          '</div>' +
         '</div>' +
         '<div class="stage-wrap">' +
           '<div class="stage" data-demo="' + s.id + '" role="group" aria-label="Live demo: ' + s.title + '"><p class="stage-msg label">Loading demo…</p></div>' +
@@ -193,13 +205,40 @@
     });
   });
 
+  /* ---------------- copy prompt / link ---------------- */
+  var PAGE_URL = location.origin + location.pathname.replace(/index\.html$/, '');
+  function promptFor(s) {
+    return 'Apply the `' + s.id + '` skill (.claude/skills/' + s.id + '/SKILL.md) to this site: ' +
+      s.short.charAt(0).toLowerCase() + s.short.slice(1) + '. Follow its numbers and accessibility rules, and keep a prefers-reduced-motion fallback.';
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+    return new Promise(function (resolve, reject) {
+      var ta = el('textarea'); ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy') ? resolve() : reject(new Error('copy failed')); } catch (e) { reject(e); }
+      ta.remove();
+    });
+  }
+  skillsRoot.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('.act');
+    if (!b) return;
+    var s = records[b.closest('.skill').id].s;
+    var text = b.dataset.copy === 'prompt' ? promptFor(s) : PAGE_URL + '#' + s.id;
+    var t = b.querySelector('.act-t'), was = b.dataset.copy === 'prompt' ? 'Copy prompt' : 'Copy link';
+    copyText(text).then(function () { t.textContent = 'Copied ✓'; b.classList.add('done'); },
+      function () { t.textContent = 'Press Ctrl+C'; window.prompt('Copy this:', text); })
+      .then(function () { clearTimeout(b._t); b._t = setTimeout(function () { t.textContent = was; b.classList.remove('done'); }, 1600); });
+  });
+
   function fillInfo(r) {
     var d = defs[r.s.id]; if (!d) return;
     var hint = r.art.querySelector('.hint');
     if (d.hint) { hint.textContent = d.hint; hint.hidden = false; }
     var notes = r.art.querySelector('.notes');
     if (d.notes && d.notes.length) {
-      notes.innerHTML = d.notes.map(function (n) { return '<li>' + n + '</li>'; }).join('');
+      notes.innerHTML = d.notes.map(function (n) { return '<li><span>' + n + '</span></li>'; }).join('');
       notes.hidden = false;
     }
     var simp = r.art.querySelector('.simplified');
