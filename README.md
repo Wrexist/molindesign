@@ -28,6 +28,8 @@ The admin supports searchable content, PT and online packages, draft previews an
 
 The demo includes professional icons, reduced-motion-aware animations, an illustrative 3D fitness asset and a white transparent fitness logo, which also marks the contact card. A branded loading screen paints before the app bundle: the kettlebell, ball and band from the 3D asset drop in, a counter runs to 100 % while content loads, and the equipment then flies into its place in the hero. Booking links contact Maya or open the configured booking URL; payments are not processed here.
 
+The page is kept deliberately short (October 2026, at Maya's request): hero with one sentence and one button, training cards without tags or extra links, the schedule only when classes are published, prices one category at a time behind sliding tabs, a two-line about section, three step titles and the contact card. Fields the page no longer shows are hidden in the admin but kept in the stored content. Motion is limited to masked headline reveals, a soft photo settle on the cards, the gliding price-tab pill and button press feedback; all of it is skipped with reduced motion.
+
 ## Motion Library
 
 Website: https://wrexist.github.io/molindesign/skills-library/

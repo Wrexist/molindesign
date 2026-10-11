@@ -2,8 +2,8 @@ import {fieldGroups, type SiteContent} from './content';
 export type ContentField={id:string;tab:'content'|'packages'|'images';section:string;label:string;value:string;hidden?:boolean};
 export function contentFields(c:SiteContent):ContentField[]{
  const fields:ContentField[]=Object.entries(fieldGroups).flatMap(([section,group])=>Object.entries(group).map(([key,label])=>({id:'text-'+key,tab:'content' as const,section,label,value:c.text[key]||''})));
- for(const s of c.services)for(const [key,label] of Object.entries({title:'Rubrik',text:'Beskrivning',tag:'Etikett',cta:'Länktext',alt:'Bildbeskrivning'}))fields.push({id:'service-'+s.id+'-'+key,tab:key==='alt'?'images':'content',section:'Träningsformer · '+s.title,label,value:s[key as keyof typeof s]});
- c.steps.forEach((s,i)=>{for(const key of ['title','text'] as const)fields.push({id:'step-'+i+'-'+key,tab:'content',section:'Så går det till · Steg '+(i+1),label:key==='title'?'Rubrik':'Beskrivning',value:s[key]});});
+ for(const s of c.services)for(const [key,label] of Object.entries({title:'Rubrik',text:'Beskrivning',alt:'Bildbeskrivning'}))fields.push({id:'service-'+s.id+'-'+key,tab:key==='alt'?'images':'content',section:'Träningsformer · '+s.title,label,value:s[key as keyof typeof s]});
+ c.steps.forEach((s,i)=>fields.push({id:'step-'+i+'-title',tab:'content',section:'Så går det till · Steg '+(i+1),label:'Rubrik',value:s.title}));
  for(const p of c.packages)for(const [key,label] of Object.entries({title:'Paketets namn',category:'Träningsform',price:'Pris',unit:'Priset gäller',description:'Vad ingår?'}))fields.push({id:'package-'+p.id+'-'+key,tab:'packages',section:'Paket & priser · '+p.category+' · '+p.title,label,value:String(p[key as keyof typeof p]),hidden:!p.published});
  fields.push({id:'image-hero-alt',tab:'images',section:'Startsida · Stor bild',label:'Bildbeskrivning',value:c.images.heroAlt});
  return fields;
