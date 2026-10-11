@@ -84,6 +84,7 @@
       keys[p.key] = true;
       var c = self.chars[p.key], fresh = !c;
       if (fresh) { c = self.make(p); self.chars[p.key] = c; }
+      c.revive = !fresh && c.el.classList.contains('is-leaving');
       c.el.classList.remove('is-leaving'); c.el.style.left = ''; c.fresh = fresh;
       if (c.digit) {
         if (animate) c.spin.add(-self.delta(c, p.value, c.value, top), now); else c.spin.clear();
@@ -116,6 +117,9 @@
       if (c.fresh) {
         c.fade = c.el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: FADE, easing: 'ease-out' });
         if (c.digit) { c.spin.clear(); c.spin.add(-self.delta(c, c.value, 0, null), now); }
+      } else if (c.revive) {
+        if (c.fade) c.fade.cancel();
+        c.fade = c.el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: FADE, easing: 'ease-out' });
       } else {
         if (c.fade) { c.fade.cancel(); c.fade = null; }
         if (before[c.key] != null) c.x.add(before[c.key] - c.el.getBoundingClientRect().left, now);
