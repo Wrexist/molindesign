@@ -135,6 +135,10 @@
   var sourceUrl = function (src) {
     var first = src.split(' · ')[0].trim();
     if (first.indexOf('shopify.com') === 0) return 'https://www.shopify.com/editions/spring2026';
+    // package names are not hostnames: send them to the library's own site, or its npm page
+    var sites = { sonner: 'https://sonner.emilkowal.ski', vaul: 'https://vaul.emilkowal.ski' };
+    if (sites[first]) return sites[first];
+    if (first.indexOf('.') < 0) return 'https://www.npmjs.com/package/' + encodeURIComponent(first);
     return 'https://' + first;
   };
 
