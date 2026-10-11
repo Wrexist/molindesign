@@ -13,10 +13,12 @@ Lib.register('scroll-velocity-whoosh-audio', {
 .d-scroll-velocity-whoosh-audio { background: #020202; font-variant-numeric: tabular-nums; }
 .d-scroll-velocity-whoosh-audio canvas.sw-air { position: absolute; inset: 0; width: 100%; height: 100%; }
 .d-scroll-velocity-whoosh-audio .sw { position: absolute; inset: 0; padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 12px; }
-.d-scroll-velocity-whoosh-audio .sw-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.d-scroll-velocity-whoosh-audio .sw-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 10px; }
+.d-scroll-velocity-whoosh-audio .sw-top .sw-note { order: 3; flex-basis: 100%; color: #f97316; }
+.d-scroll-velocity-whoosh-audio .sw-top .sw-note:empty { display: none; }
 .d-scroll-velocity-whoosh-audio .sw-top p { margin: 0; color: rgb(255 255 255 / .55); }
 .d-scroll-velocity-whoosh-audio .sw-act { display: flex; gap: 8px; align-items: center; }
-.d-scroll-velocity-whoosh-audio .sw-act button { padding: 7px 12px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .2); color: rgb(255 255 255 / .8); }
+.d-scroll-velocity-whoosh-audio .sw-act button { white-space: nowrap; padding: 7px 12px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .2); color: rgb(255 255 255 / .8); }
 .d-scroll-velocity-whoosh-audio .sw-act button.on { background: #f97316; border-color: #f97316; color: #000; }
 .d-scroll-velocity-whoosh-audio .sw-act button[aria-pressed="true"] { background: #fff; color: #000; border-color: #fff; }
 .d-scroll-velocity-whoosh-audio .sw-scene { flex: 1; display: flex; flex-direction: column; justify-content: center; position: relative; min-height: 0; }
@@ -59,7 +61,7 @@ Lib.register('scroll-velocity-whoosh-audio', {
 
     var air = el('canvas', 'sw-air'); air.setAttribute('aria-hidden', 'true');
     var ui = el('div', 'sw');
-    ui.innerHTML = '<div class="sw-top"><p class="label">Scroll film<span class="long"> · 6 scenes · whoosh at the cuts</span></p><div class="sw-act"><p class="label sw-note"></p><button type="button" class="label sw-snd">Sound on</button><button type="button" class="label sw-play" aria-pressed="false">Play ▸</button></div></div>' +
+    ui.innerHTML = '<div class="sw-top"><p class="label">Scroll film<span class="long"> · 6 scenes · whoosh at the cuts</span></p><p class="label sw-note"></p><div class="sw-act"><button type="button" class="label sw-snd">Sound on</button><button type="button" class="label sw-play" aria-pressed="false">Play ▸</button></div></div>' +
       '<div class="sw-scene"><p class="label sw-num"></p><div class="sw-names" aria-live="polite"></div><p class="label sw-bed"></p></div>' +
       '<div class="sw-tl" aria-hidden="true"></div>' +
       '<div class="sw-m"><div><p class="label">Proximity</p><b class="m-prox"></b><i></i></div><div><p class="label">Lowpass ×2</p><b class="m-cut"></b><i></i></div><div><p class="label">Velocity</p><b class="m-vel"></b><i></i></div><div><p class="label">Whoosh</p><b class="m-st"></b><i></i></div></div>';

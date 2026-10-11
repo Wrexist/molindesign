@@ -17,7 +17,8 @@ Lib.register('skill-id', {
     return {
       start() {},          // stage visible: begin loops/animation
       stop() {},           // stage hidden: cancel rAF, timers, audio sources. Must be cheap and idempotent.
-      scroll(p, v) {},     // optional, every frame while live: p = this section's progress through the viewport 0..1,
+      scroll(p, v) {},     // optional, every frame while live: p = the STAGE's progress through the viewport 0..1
+                           //   (0 = stage top at viewport bottom, 1 = stage bottom at viewport top),
                            //   v = smoothed page scroll velocity −1..1. Use this for scroll-driven demos; never hijack page scroll.
       replay() {},         // optional: shows a "Replay ↺" button under the stage
     };
@@ -34,6 +35,7 @@ Lib.register('skill-id', {
 
 ## Rules
 - Vanilla JS + DOM/CSS/Canvas 2D/WebGL 2 only. No CDN libraries. Keep each file under ~350 lines.
+- Prefix every class you create (e.g. `d-xyz-rail`). The page shell styles these names globally, so don't reuse them unprefixed: `rail`, `hero`, `chip`, `rows`, `links`, `frame`, `tick`, `drawer`, `tabs`, `close`, `steps`, `empty`, `rise`, `revealed`, `label`, `display`, `accent`, `mono`, `ulink` (the last five are meant to be shared tokens).
 - Everything scoped inside `stage`. No global listeners unless added in `start()` and removed in `stop()`.
 - `stop()` must leave nothing running (rAF, setInterval, audio nodes, global listeners).
 - Respect `ctx.reduced` (prefers-reduced-motion): show the end state or a gentle fade, keep information identical.

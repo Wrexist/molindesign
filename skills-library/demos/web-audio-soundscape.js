@@ -14,9 +14,12 @@ Lib.register('web-audio-soundscape', {
 .d-web-audio-soundscape .wa { position: absolute; inset: 0; padding: 16px 20px 18px; display: grid; gap: 14px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.5fr); grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1.1fr); grid-template-areas: "top top" "met place" "met pads" "met stir"; }
 .d-web-audio-soundscape.narrow .wa { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 64px auto auto minmax(0, 1fr); grid-template-areas: "top" "met" "place" "pads" "stir"; gap: 10px; padding: 14px 16px 16px; }
 .d-web-audio-soundscape .wa-top { grid-area: top; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.d-web-audio-soundscape .wa-top { flex-wrap: wrap; } .d-web-audio-soundscape .wa-top .wa-note { margin-left: auto; }
+.d-web-audio-soundscape.narrow .wa-top .wa-note { order: 3; flex-basis: 100%; margin: 0; color: #f97316; }
+.d-web-audio-soundscape.narrow .wa-top .wa-note:empty, .d-web-audio-soundscape.narrow .wa-long { display: none; }
 .d-web-audio-soundscape .wa-top p { margin: 0; color: rgb(255 255 255 / .55); }
 .d-web-audio-soundscape .wa-on { display: flex; align-items: center; gap: 10px; }
-.d-web-audio-soundscape .wa-on button { padding: 7px 12px; border-radius: 999px; background: #f97316; color: #000; }
+.d-web-audio-soundscape .wa-on button { white-space: nowrap; padding: 7px 12px; border-radius: 999px; background: #f97316; color: #000; }
 .d-web-audio-soundscape .wa-met { grid-area: met; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; min-height: 0; }
 .d-web-audio-soundscape .wa-ch { display: grid; grid-template-rows: minmax(0, 1fr) auto auto; gap: 6px; min-height: 0; }
 .d-web-audio-soundscape .wa-bar { display: flex; flex-direction: column-reverse; gap: 3px; min-height: 0; width: 22px; justify-self: center; padding: 3px; border: 1px solid rgb(255 255 255 / .1); border-radius: 3px; }
@@ -50,7 +53,7 @@ Lib.register('web-audio-soundscape', {
     var el = ctx.el, audio = ctx.audio, R = ctx.reduced;
     var root = el('div', 'wa');
     root.innerHTML =
-      '<div class="wa-top"><p class="label">Mixer · <span class="accent">live Web Audio</span></p><div class="wa-on"><p class="label wa-note"></p><button type="button" class="label">Turn sound on</button></div></div>' +
+      '<div class="wa-top"><p class="label">Mixer<span class="wa-long"> · <span class="accent">live Web Audio</span></span></p><p class="label wa-note"></p><div class="wa-on"><button type="button" class="label">Turn sound on</button></div></div>' +
       '<div class="wa-met"></div>' +
       '<div class="wa-place"><p class="label">Place</p><canvas class="wa-curve" aria-hidden="true"></canvas><div class="wa-seg" role="group" aria-label="Place"><button type="button" class="label" data-p="hall">Hall</button><button type="button" class="label" data-p="away">Away</button></div><p class="label ro"></p></div>' +
       '<div class="wa-pads"></div>' +

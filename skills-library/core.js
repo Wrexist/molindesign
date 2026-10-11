@@ -167,7 +167,7 @@
       art.innerHTML =
         '<div class="skill-info">' +
           '<p class="label meta"><span class="accent">Nº ' + pad(s.n) + ' / ' + skills.length + '</span><span>' + s.cat + '</span></p>' +
-          '<h3 class="display" id="h-' + s.id + '"><span class="mask"><span class="line">' + s.title + '</span></span></h3>' +
+          '<h3 class="display" id="h-' + s.id + '"><span class="lib-mask"><span class="lib-line">' + s.title + '</span></span></h3>' +
           '<p class="short rise">' + s.short + '.</p>' +
           '<p class="hint label rise" hidden></p>' +
           '<ol class="notes rise" hidden></ol>' +
@@ -433,7 +433,9 @@
       var rect = r.art.getBoundingClientRect();
       if (rect.top < vh * 0.5) current = r;
       if (r.live && r.inst && typeof r.inst.scroll === 'function') {
-        var p = clamp((vh - rect.top) / (vh + rect.height), 0, 1);
+        // progress of the STAGE through the viewport: 0 = its top meets the bottom edge, 1 = its bottom meets the top edge
+        var sr = r.stage.getBoundingClientRect();
+        var p = clamp((vh - sr.top) / (vh + sr.height), 0, 1);
         try { r.inst.scroll(p, vel); } catch (e) { fail(r, e); }
       }
     }

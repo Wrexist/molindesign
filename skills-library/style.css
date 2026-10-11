@@ -40,16 +40,16 @@ img { max-width: 100%; display: block; }
 .mono { font-family: "Geist Mono", ui-monospace, monospace; }
 
 /* masked-text-reveal */
-.mask { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
-.mask .line { display: block; transform: translateY(110%); transition: transform 1.1s var(--ease-out); }
-.revealed .mask .line { transform: none; }
-.revealed .mask:nth-child(2) .line { transition-delay: .09s; }
-.revealed .mask:nth-child(3) .line { transition-delay: .18s; }
+.lib-mask { display: block; overflow: hidden; padding-bottom: .12em; margin-bottom: -.12em; }
+.lib-mask .lib-line { display: block; transform: translateY(110%); transition: transform 1.1s var(--ease-out); }
+.revealed .lib-mask .lib-line { transform: none; }
+.revealed .lib-mask:nth-child(2) .lib-line { transition-delay: .09s; }
+.revealed .lib-mask:nth-child(3) .lib-line { transition-delay: .18s; }
 .rise { opacity: 0; transform: translateY(12px); filter: blur(6px); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out), filter 1s var(--ease-out); }
 .revealed .rise, .rise.revealed { opacity: 1; transform: none; filter: blur(0); }
 @media (prefers-reduced-motion: reduce) {
-  .mask .line { transform: none; opacity: 0; transition: opacity .8s ease; }
-  .revealed .mask .line { opacity: 1; }
+  .lib-mask .lib-line { transform: none; opacity: 0; transition: opacity .8s ease; }
+  .revealed .lib-mask .lib-line { opacity: 1; }
   .rise { transform: none; filter: none; transition: opacity .8s ease; }
 }
 
