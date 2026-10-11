@@ -8,7 +8,7 @@
 & .pg { position: absolute; inset: 0; overflow: hidden; }
 & .inner { position: absolute; left: 0; right: 0; top: 0; will-change: transform; }
 & .sec { position: relative; display: flex; flex-direction: column; justify-content: center; padding: 0 0 0 36px; max-width: 46%; }
-& .sec .label { color: rgb(255 255 255 / .45); margin: 0 0 14px; }
+& .sec .label { color: rgb(255 255 255 / .56); margin: 0 0 14px; }
 & .sec h4 { margin: 0 0 14px; font-stretch: 125%; font-weight: 400; font-size: clamp(22px, 3.6cqi, 38px); line-height: 1.04; letter-spacing: -.025em; color: #fff; }
 & .sec h4 b { font-weight: 400; opacity: 0; transition: opacity .9s cubic-bezier(.23,1,.32,1) calc(var(--i) * .02s); }
 & .sec.in h4 b { opacity: 1; }
@@ -20,7 +20,7 @@
 & .hud p { margin: 0 0 8px; display: flex; justify-content: space-between; }
 & .row { display: grid; grid-template-columns: 62px 1fr 14px; align-items: center; gap: 8px; padding: 5px 0; }
 & .row .nm { color: rgb(255 255 255 / .8); }
-& .row.lg { padding: 0 0 2px; font-size: 9px; color: rgb(255 255 255 / .35); }
+& .row.lg { padding: 0 0 2px; font-size: 9px; color: rgb(255 255 255 / .56); }
 & .trk { display: flex; gap: 3px; }
 & .trk i { position: relative; height: 3px; background: rgb(255 255 255 / .12); overflow: hidden; }
 & .trk i:first-child { flex: 3; } & .trk i:last-child { flex: 7; }
@@ -28,7 +28,7 @@
 & .trk i:last-child b { background: #f97316; }
 & .vis { width: 6px; height: 6px; border-radius: 50%; border: 1px solid rgb(255 255 255 / .3); }
 & .vis.on { background: #f97316; border-color: #f97316; box-shadow: 0 0 8px rgb(249 115 22 / .8); }
-& .tip { position: absolute; left: 36px; top: 24px; margin: 0; color: rgb(255 255 255 / .45); }
+& .tip { position: absolute; left: 36px; top: 24px; margin: 0; color: rgb(255 255 255 / .56); }
 @container (max-width: 600px) {
   & .sec { max-width: none; padding: 0 22px 34px; justify-content: flex-end; }
   & .hud { left: 12px; right: 12px; width: auto; top: 12px; bottom: auto; padding: 8px 12px; }

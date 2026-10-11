@@ -21,7 +21,7 @@
 & .strip { position: absolute; left: 50%; bottom: 18px; height: 40px; will-change: transform; }
 & .strip i { position: absolute; bottom: 0; width: 1px; height: 8px; background: rgb(255 255 255 / .35); transform-origin: bottom; }
 & .strip i.mj { height: 14px; background: rgb(255 255 255 / .7); }
-& .strip button { position: absolute; bottom: 18px; transform: translateX(-50%); padding: 4px 6px; color: rgb(255 255 255 / .45); white-space: nowrap; }
+& .strip button { position: absolute; bottom: 18px; transform: translateX(-50%); padding: 4px 6px; color: rgb(255 255 255 / .56); white-space: nowrap; }
 & .strip button:not(:disabled):hover { color: #fff; }
 & .strip button:disabled { cursor: default; opacity: .5; }
 & .strip button.cur { color: #f97316; }
@@ -76,7 +76,7 @@
       BZ.forEach(function (z, i) { btns += '<button type="button" data-i="' + i + '" style="left:' + (z * 6) + 'px" aria-label="Go to stage ' + z + ' BZ" class="label">' + (z < 0 ? '−' + (-z) : z) + ' BZ</button>'; });
       stage.setAttribute('tabindex', '0');
       stage.innerHTML = '<canvas class="cv" aria-hidden="true"></canvas>' +
-        '<div class="ttl"><p class="label sl"></p><h4><span></span></h4><p class="cp"></p></div>' +
+        '<div class="ttl"><p class="label sl"></p><h4><span>Stage</span></h4><p class="cp"></p></div>' +
         '<button type="button" class="skip label">Skip ↷</button><p class="tip label" aria-hidden="true"><span class="a">' + (coarse ? 'Tap, then drag the strip ↕' : 'Click to play · wheel, drag, ↓') + '</span><span class="b">Playing · Esc releases scroll</span></p>' +
         '<div class="xp" aria-label="0 XP"><i class="coin"></i><span class="label xn">0</span><span class="label u">XP</span></div>' +
         '<div class="ruler"><div class="strip" aria-hidden="false">' + ticks + btns + '</div><i class="ind"></i><span class="cnt label">−100 BZ</span></div>' +

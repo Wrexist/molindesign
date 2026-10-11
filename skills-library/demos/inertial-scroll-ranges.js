@@ -9,7 +9,7 @@
 & .sc.drag { cursor: grabbing; user-select: none; }
 & .sec { position: relative; }
 & .bd { height: 100%; display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; align-content: center; padding: 0 40px; }
-& .tag { position: sticky; top: 22px; z-index: 1; margin: 0; padding: 22px 40px 0; height: 0; overflow: visible; color: rgb(255 255 255 / .45); }
+& .tag { position: sticky; top: 22px; z-index: 1; margin: 0; padding: 22px 40px 0; height: 0; overflow: visible; color: rgb(255 255 255 / .56); }
 & .tag b { color: #f97316; font-weight: 500; }
 & h4 { margin: 0; font-stretch: 125%; font-weight: 400; font-size: clamp(24px, 5cqi, 52px); line-height: 1.04; letter-spacing: -.03em; color: #fff; }
 & h4 span { display: block; will-change: transform, opacity; white-space: nowrap; }

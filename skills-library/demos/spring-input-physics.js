@@ -49,7 +49,7 @@
       '.d-' + ID + ' .pre button { padding: 5px 9px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .15); color: rgb(255 255 255 / .65); }',
       '.d-' + ID + ' .pre button:hover { color: #fff; border-color: rgb(255 255 255 / .45); }',
       '.d-' + ID + ' .pre button[aria-pressed="true"] { background: #fff; color: #000; border-color: #fff; }',
-      '.d-' + ID + ' .k { color: rgb(255 255 255 / .4); font-size: 9.5px; letter-spacing: .12em; }',
+      '.d-' + ID + ' .k { color: rgb(255 255 255 / .56); font-size: 9.5px; letter-spacing: .12em; }',
       '.d-' + ID + ' .short { display: none; }',
       '@media (max-width: 640px) { .d-' + ID + ' .long { display: none; } .d-' + ID + ' .short { display: inline; } .d-' + ID + ' .ctl { left: 12px; right: 12px; bottom: 12px; width: auto; padding: 10px 12px; gap: 2px; } .d-' + ID + ' .k { display: none; } }'
     ].join('\n'),

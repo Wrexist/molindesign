@@ -26,7 +26,7 @@
     simplified: 'The "viewport" is a scaled box inside the stage, so its rem is a local font-size set by a ResizeObserver, not the real html font-size. Breakpoint values beyond the gap and column count are demo values.',
     css: [
       '.d-' + ID + ' { display: grid; grid-template-rows: auto 1fr auto; gap: 12px; padding: 18px 20px 16px; }',
-      '.d-' + ID + ' .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; color: rgb(255 255 255 / .45); }',
+      '.d-' + ID + ' .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; color: rgb(255 255 255 / .56); }',
       '.d-' + ID + ' .bar label { display: flex; align-items: center; gap: 10px; flex: 1 1 220px; }',
       '.d-' + ID + ' input[type=range] { flex: 1; accent-color: #f97316; height: 26px; touch-action: pan-x; min-width: 90px; }',
       '.d-' + ID + ' .rd { color: rgb(255 255 255 / .9); min-width: 13ch; }',
@@ -43,7 +43,7 @@
       '.d-' + ID + ' .pg { position: relative; display: grid; height: 100%; align-content: space-between; row-gap: 1.6em; padding-block: 2.4em; }',
       '.d-' + ID + ' .mono { font-family: "Geist Mono", ui-monospace, monospace; font-size: 1.2em; letter-spacing: .04em; text-transform: uppercase; color: rgb(255 255 255 / .55); }',
       '.d-' + ID + ' .hd { margin: 0; font-weight: 400; font-stretch: 100%; line-height: 1; letter-spacing: -.03em; color: #fff; }',
-      '.d-' + ID + ' .num { font-size: 16em; line-height: .8; font-weight: 300; letter-spacing: -.06em; color: rgb(255 255 255 / .12); margin: 0; }',
+      '.d-' + ID + ' .num { font-size: 16em; line-height: .8; font-weight: 300; letter-spacing: -.06em; color: rgb(255 255 255 / .5); margin: 0; }',
       '.d-' + ID + ' .cp { margin: 0; font-size: 1.4em; line-height: 1.3; color: rgb(255 255 255 / .7); }',
       '.d-' + ID + ' .dot-a { color: #f97316; }',
       '.d-' + ID + ' .eases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }',

@@ -38,8 +38,8 @@
       '.d-cinematic-loader .cl-count .col { position: relative; display: inline-block; height: 1.3em; width: .72em; overflow: hidden; line-height: 1.3em; }',
       '.d-cinematic-loader .cl-count .strip { position: absolute; left: 0; right: 0; top: 0; display: flex; flex-direction: column; transition: color .4s; }',
       '.d-cinematic-loader .cl-count .strip span { height: 1.3em; text-align: center; }',
-      '.d-cinematic-loader .cl-count .dim .strip { color: rgb(255 255 255 / .25); } .d-cinematic-loader .cl-count .pct { margin-left: .35em; color: rgb(255 255 255 / .35); }',
-      '.d-cinematic-loader .cl-meta { position: absolute; left: 0; right: 0; bottom: 26px; text-align: center; margin: 0; color: rgb(255 255 255 / .45); padding: 0 20px; transition: opacity .4s; }',
+      '.d-cinematic-loader .cl-count .dim .strip { color: rgb(255 255 255 / .5); } .d-cinematic-loader .cl-count .pct { margin-left: .35em; color: rgb(255 255 255 / .56); }',
+      '.d-cinematic-loader .cl-meta { position: absolute; left: 0; right: 0; bottom: 26px; text-align: center; margin: 0; color: rgb(255 255 255 / .56); padding: 0 20px; transition: opacity .4s; }',
       '.d-cinematic-loader .cl-meta b { font-weight: 500; color: rgb(255 255 255 / .85); } .d-cinematic-loader .cl-meta i { font-style: normal; color: #f97316; }'
     ].join('\n'),
 

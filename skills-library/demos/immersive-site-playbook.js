@@ -23,7 +23,7 @@ Lib.register('immersive-site-playbook', {
 .d-immersive-site-playbook .pb-art { position: absolute; inset: 0; }
 .d-immersive-site-playbook .a-canvas { background: radial-gradient(40% 50% at 60% 55%, rgb(255 255 255 / .55), rgb(249 115 22 / .35) 40%, transparent 70%); }
 .d-immersive-site-playbook .a-vig { background: radial-gradient(70% 70% at 50% 50%, transparent 35%, rgb(0 0 0 / .95)); }
-.d-immersive-site-playbook .a-load { display: grid; place-items: center; font: 800 34px/1 Archivo, sans-serif; font-stretch: 125%; color: rgb(255 255 255 / .16); letter-spacing: -.02em; }
+.d-immersive-site-playbook .a-load { display: grid; place-items: center; font: 800 34px/1 Archivo, sans-serif; font-stretch: 125%; color: rgb(255 255 255 / .5); letter-spacing: -.02em; }
 .d-immersive-site-playbook .a-load i { position: absolute; bottom: 10px; font: 500 9px Archivo; letter-spacing: .2em; color: rgb(255 255 255 / .6); font-style: normal; }
 .d-immersive-site-playbook .a-hud::before, .d-immersive-site-playbook .a-hud::after, .d-immersive-site-playbook .a-cur::before, .d-immersive-site-playbook .a-cur::after { content: ""; position: absolute; width: 14px; height: 14px; border: 0 solid rgb(255 255 255 / .7); }
 .d-immersive-site-playbook .a-hud::before { right: 8px; top: 8px; border-top-width: 1px; border-right-width: 1px; }
@@ -51,6 +51,7 @@ Lib.register('immersive-site-playbook', {
 .d-immersive-site-playbook .pb-name { font-family: Archivo, sans-serif; font-stretch: 125%; font-size: clamp(24px, 3vw, 38px); line-height: 1; letter-spacing: -.02em; margin: 8px 0 10px; color: #fff; }
 .d-immersive-site-playbook .pb-desc { margin: 0 0 12px; font-size: 14px; line-height: 1.5; color: rgb(255 255 255 / .72); }
 .d-immersive-site-playbook .pb-go { display: inline-flex; gap: 8px; align-items: center; padding: 9px 14px; border-radius: 999px; background: #f97316; color: #000; }
+.d-immersive-site-playbook .pb-go.label { color: #000; }
 .d-immersive-site-playbook .pb-go:hover { background: #fb923c; }
 .d-immersive-site-playbook .pb-also { margin: 10px 0 0 !important; }
 .d-immersive-site-playbook .pb-idea { margin-top: auto; border-top: 1px solid rgb(255 255 255 / .12); padding-top: 12px; }
@@ -88,8 +89,8 @@ Lib.register('immersive-site-playbook', {
     scene.appendChild(el('p', 'label', 'Layered stage · <span class="accent">9 layers</span>'));
     scene.appendChild(stack);
     var layers = L.map(function (d, i) {
-      var b = el('button', 'pb-layer', '<span class="pb-art ' + d[2] + '">' + d[3] + '</span><span class="pb-tag">' + String(i + 1).padStart(2, '0') + ' ' + d[0] + '</span>');
-      b.type = 'button'; b.setAttribute('aria-label', 'Layer ' + (i + 1) + ': ' + d[0] + ', built with ' + d[1] + '. Activate to jump to its demo.');
+      var b = el('button', 'pb-layer', '<span class="pb-art ' + d[2] + '" aria-hidden="true">' + d[3] + '</span><span class="pb-tag">' + String(i + 1).padStart(2, '0') + ' ' + d[0] + '</span><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">, built with ' + d[1] + '. Activate to jump to its demo.</span>');
+      b.type = 'button';
       b.dataset.cursor = 'Open';
       b.addEventListener('pointerenter', function () { touched = true; select(i); });
       b.addEventListener('focus', function () { touched = true; select(i); });

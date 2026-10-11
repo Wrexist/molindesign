@@ -20,14 +20,14 @@ Lib.register('gpu-tier-adaptive-quality', {
 .d-gpu-tier-adaptive-quality .gt-big i { font-style: normal; color: #f97316; }
 .d-gpu-tier-adaptive-quality .gt-sig { margin: 0; padding: 0; list-style: none; max-width: 330px; }
 .d-gpu-tier-adaptive-quality .gt-sig li { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; border-top: 1px solid rgb(255 255 255 / .08); }
-.d-gpu-tier-adaptive-quality .gt-sig span { color: rgb(255 255 255 / .45); flex: none; }
+.d-gpu-tier-adaptive-quality .gt-sig span { color: rgb(255 255 255 / .56); flex: none; }
 .d-gpu-tier-adaptive-quality .gt-sig b { font: 400 10.5px/1.5 "Geist Mono", ui-monospace, monospace; color: rgb(255 255 255 / .85); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; letter-spacing: 0; text-transform: none; }
 .d-gpu-tier-adaptive-quality .gt-btns { display: flex; gap: 4px; pointer-events: auto; flex: none; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; padding: 3px; background: rgb(0 0 0 / .5); }
 .d-gpu-tier-adaptive-quality .gt-btns button { min-width: 34px; padding: 7px 10px; border-radius: 999px; color: rgb(255 255 255 / .65); }
 .d-gpu-tier-adaptive-quality .gt-btns button[aria-pressed="true"] { background: #fff; color: #000; }
 .d-gpu-tier-adaptive-quality table { width: 100%; border-collapse: collapse; background: linear-gradient(to top, rgb(0 0 0 / .85), rgb(0 0 0 / .55)); }
 .d-gpu-tier-adaptive-quality th, .d-gpu-tier-adaptive-quality td { text-align: left; padding: 6px 8px 6px 0; border-top: 1px solid rgb(255 255 255 / .1); font-weight: 500; white-space: nowrap; }
-.d-gpu-tier-adaptive-quality th { color: rgb(255 255 255 / .4); }
+.d-gpu-tier-adaptive-quality th { color: rgb(255 255 255 / .56); }
 .d-gpu-tier-adaptive-quality td { font: 400 11px/1.4 "Geist Mono", ui-monospace, monospace; color: rgb(255 255 255 / .55); transition: color .3s; }
 .d-gpu-tier-adaptive-quality tr.on td { color: #fff; } .d-gpu-tier-adaptive-quality tr.on td:first-child { color: #f97316; }
 .d-gpu-tier-adaptive-quality tr.on td:first-child::before { content: "▸ "; }
@@ -62,7 +62,7 @@ Lib.register('gpu-tier-adaptive-quality', {
     });
     var btnWrap = ui.querySelector('.gt-btns'), btns = [];
     ['Auto', '0', '1', '2', '3'].forEach(function (lab, i) {
-      var b = el('button', 'label', lab); b.type = 'button'; b.setAttribute('aria-label', i ? 'Force tier ' + lab : 'Use detected tier');
+      var b = el('button', 'label', lab); b.type = 'button'; b.setAttribute('aria-label', i ? 'Force tier ' + lab : 'Auto: use detected tier');
       b.addEventListener('click', function () { override = i ? i - 1 : null; apply(); });
       btnWrap.appendChild(b); btns.push(b);
     });

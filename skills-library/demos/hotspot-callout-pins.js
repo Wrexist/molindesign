@@ -48,7 +48,7 @@
       '.d-hotspot-callout-pins .hp-btn i { width: 10px; height: 10px; border-radius: 50%; background: #f97316; box-shadow: 0 0 14px rgb(249 115 22 / .9); }',
       '.d-hotspot-callout-pins .hp-cta .label { color: rgb(255 255 255 / .9); text-shadow: 0 1px 14px rgb(0 0 0 / .8); white-space: nowrap; }',
       '@keyframes hp-ping { 75%, 100% { transform: scale(1.9); opacity: 0; } }',
-      '.d-hotspot-callout-pins .hp-count { position: absolute; left: 24px; top: 22px; margin: 0; color: rgb(255 255 255 / .45); }',
+      '.d-hotspot-callout-pins .hp-count { position: absolute; left: 24px; top: 22px; margin: 0; color: rgb(255 255 255 / .56); }',
       '.d-hotspot-callout-pins .hp-count b { font-weight: 500; color: #f97316; }',
       '.d-hotspot-callout-pins .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }',
       '@media (prefers-reduced-motion: reduce) { .d-hotspot-callout-pins .hp-btn::before { animation: none; display: none; } .d-hotspot-callout-pins .on .hp-lead { transition: none; } .d-hotspot-callout-pins .hp-txt, .d-hotspot-callout-pins .on .hp-txt { transform: none; filter: none; } }'

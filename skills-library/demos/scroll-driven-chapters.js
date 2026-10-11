@@ -7,7 +7,7 @@
 & .cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 & .vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 45%, transparent 55%, rgb(0 0 0 / .75)); }
 & .top { position: absolute; left: 28px; top: 26px; right: 28px; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; pointer-events: none; }
-& .sc { margin: 0; color: rgb(255 255 255 / .45); }
+& .sc { margin: 0; color: rgb(255 255 255 / .56); }
 & .title { margin: 6px 0 0; font-stretch: 125%; font-weight: 400; font-size: clamp(22px, 4.2cqi, 40px); line-height: 1.05; letter-spacing: -.02em; color: #fff; overflow: hidden; height: 1.12em; }
 & .title { position: relative; width: min(70cqi, 520px); }
 & .title span { position: absolute; left: 0; top: 0; white-space: nowrap; }
@@ -29,14 +29,14 @@
 & .dot { width: 6px; height: 6px; border-radius: 50%; background: #f97316; box-shadow: 0 0 8px rgb(249 115 22 / .8); }
 & .roll { position: relative; display: inline-block; height: 1.4em; width: 1.6em; overflow: hidden; }
 & .roll span { position: absolute; left: 0; top: 0; }
-& .of { color: rgb(255 255 255 / .45); }
+& .of { color: rgb(255 255 255 / .56); }
 & .chev { width: 8px; height: 8px; border: solid rgb(255 255 255 / .7); border-width: 1px 1px 0 0; transform: rotate(-45deg) translate(-1px, 1px); transition: transform .4s cubic-bezier(.23,1,.32,1); margin-left: 4px; }
 & .cbtn[aria-expanded="true"] .chev { transform: rotate(90deg) translate(-2px, 2px); }
 & .list { position: absolute; left: 0; bottom: 100%; margin: 0 0 12px; padding: 6px; list-style: none; min-width: 14rem; border-radius: 16px; border: 1px solid rgb(255 255 255 / .1); background: rgb(0 0 0 / .6); backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); transform-origin: 20% 100%; transition: opacity .25s, transform .35s cubic-bezier(.23,1,.32,1); }
 & .list[hidden] { display: block; visibility: hidden; opacity: 0; transform: translateY(8px) scale(.97); }
 & .list button { display: flex; gap: 14px; width: 100%; padding: 10px 12px; border-radius: 12px; text-align: left; color: rgb(255 255 255 / .85); transition: background .2s; }
 & .list button:hover, & .list button:focus-visible { background: rgb(255 255 255 / .1); outline: none; }
-& .list button span:first-child { color: rgb(255 255 255 / .4); }
+& .list button span:first-child { color: rgb(255 255 255 / .56); }
 & .list button[aria-current="step"] span:first-child { color: #f97316; }
 & .crail { position: relative; flex: 1; height: 1px; background: rgb(255 255 255 / .15); min-width: 40px; }
 & .fill { position: absolute; inset: 0; background: rgb(255 255 255 / .85); transform-origin: left; transform: scaleX(0); }
@@ -172,7 +172,7 @@
         rollTo(roll, pad(k + 1), dir);
         rollTo(titleEl, SCENES[k][2], dir);
         scNum.textContent = pad(k + 1);
-        btn.setAttribute('aria-label', 'Chapter ' + (k + 1) + ' of ' + SCENES.length + ': ' + SCENES[k][2] + '. Choose a chapter');
+        btn.setAttribute('aria-label', pad(k + 1) + ' / ' + pad(SCENES.length) + ': ' + SCENES[k][2] + '. Choose a chapter');
         rows.forEach(function (r, i) { if (i === k) r.setAttribute('aria-current', 'step'); else r.removeAttribute('aria-current'); });
         ticks.forEach(function (tk, i) { tk.classList.toggle('on', i <= k); });
       }

@@ -22,13 +22,14 @@ Lib.register('gpu-renderer-fallback-warmup', {
 .d-gpu-renderer-fallback-warmup .rw-top { display: flex; justify-content: space-between; align-items: flex-start; }
 .d-gpu-renderer-fallback-warmup .rw-top .label { color: rgb(255 255 255 / .5); margin: 0; }
 .d-gpu-renderer-fallback-warmup .rw-pct { font-family: Archivo, sans-serif; font-stretch: 125%; font-size: clamp(28px, 4.6vw, 52px); line-height: .9; color: #fff; }
-.d-gpu-renderer-fallback-warmup .rw-pct small { font-size: .32em; color: rgb(255 255 255 / .4); margin-left: 4px; letter-spacing: .2em; }
+.d-gpu-renderer-fallback-warmup .rw-pct small { font-size: .32em; color: rgb(255 255 255 / .56); margin-left: 4px; letter-spacing: .2em; }
 .d-gpu-renderer-fallback-warmup .rw-mid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 20px; min-height: 0; }
 .d-gpu-renderer-fallback-warmup .rw-pct { flex: none; }
 .d-gpu-renderer-fallback-warmup dl { margin: 0; align-self: start; }
-.d-gpu-renderer-fallback-warmup dl div { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid rgb(255 255 255 / .1); opacity: .12; transition: opacity .4s; }
+.d-gpu-renderer-fallback-warmup dl div { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-top: 1px solid rgb(255 255 255 / .1); transition: color .4s; }
+.d-gpu-renderer-fallback-warmup dl div:not(.on), .d-gpu-renderer-fallback-warmup dl div:not(.on) * { color: rgb(255 255 255 / .5) !important; }
 .d-gpu-renderer-fallback-warmup dl div.on { opacity: 1; }
-.d-gpu-renderer-fallback-warmup dt { color: rgb(255 255 255 / .45); }
+.d-gpu-renderer-fallback-warmup dt { color: rgb(255 255 255 / .56); }
 .d-gpu-renderer-fallback-warmup dd { margin: 0; color: rgb(255 255 255 / .9); text-align: right; font: 11px/1.4 "Geist Mono", ui-monospace, monospace; }
 .d-gpu-renderer-fallback-warmup dd.y { color: #f97316; }
 .d-gpu-renderer-fallback-warmup .rw-flow { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
@@ -50,7 +51,7 @@ Lib.register('gpu-renderer-fallback-warmup', {
 .d-gpu-renderer-fallback-warmup .rw-cells i b { position: absolute; left: 0; right: 0; bottom: 0; background: #f97316; height: 0; transition: height .25s; }
 .d-gpu-renderer-fallback-warmup .rw-cells i.ov { border-style: dashed; }
 .d-gpu-renderer-fallback-warmup .rw-ev { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
-.d-gpu-renderer-fallback-warmup .rw-ev span { padding: 4px 8px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .15); color: rgb(255 255 255 / .35); transition: all .3s; }
+.d-gpu-renderer-fallback-warmup .rw-ev span { padding: 4px 8px; border-radius: 999px; border: 1px solid rgb(255 255 255 / .15); color: rgb(255 255 255 / .56); transition: all .3s; }
 .d-gpu-renderer-fallback-warmup .rw-ev span.on { color: #000; background: #fff; border-color: #fff; }
 .d-gpu-renderer-fallback-warmup.narrow .rw-mid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; gap: 6px; align-content: start; }
 .d-gpu-renderer-fallback-warmup.narrow dl { order: 2; }
@@ -65,7 +66,7 @@ Lib.register('gpu-renderer-fallback-warmup', {
     var el = ctx.el, R = ctx.reduced;
     var canvas = el('canvas', 'rw-gl'); canvas.setAttribute('aria-hidden', 'true');
     var poster = el('div', 'rw-poster'); poster.hidden = true;
-    var hud = el('div', 'rw-hud', '<div><p class="label rw-sec"></p><h4 class="rw-name"></h4></div><p class="label rw-chip"></p>');
+    var hud = el('div', 'rw-hud', '<div><p class="label rw-sec"></p><h4 class="rw-name">Booting</h4></div><p class="label rw-chip"></p>');
     var load = el('div', 'rw-load');
     load.setAttribute('role', 'progressbar'); load.setAttribute('aria-label', 'Boot sequence'); load.setAttribute('aria-valuemin', '0'); load.setAttribute('aria-valuemax', '100');
     load.innerHTML =
