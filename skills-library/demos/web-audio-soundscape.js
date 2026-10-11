@@ -11,7 +11,7 @@ Lib.register('web-audio-soundscape', {
   simplified: 'The music bed and circuit hum are synthesized with oscillators instead of decoded mp3 loops (so no loopStart/loopEnd), and there are no scene one-shots. Meters read AnalyserNodes when sound is on and show the target mix when it is off.',
   css: `
 .d-web-audio-soundscape { background: radial-gradient(90% 70% at 80% 0%, rgb(249 115 22 / .08), transparent 60%), #030303; }
-.d-web-audio-soundscape .wa { position: absolute; inset: 0; padding: 16px 20px 18px; display: grid; gap: 14px; grid-template-columns: minmax(0, .9fr) minmax(0, 1.4fr); grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1.1fr); grid-template-areas: "top top" "met place" "met pads" "met stir"; }
+.d-web-audio-soundscape .wa { position: absolute; inset: 0; padding: 16px 20px 18px; display: grid; gap: 14px; grid-template-columns: minmax(0, .7fr) minmax(0, 1.5fr); grid-template-rows: auto minmax(0, 1fr) auto minmax(0, 1.1fr); grid-template-areas: "top top" "met place" "met pads" "met stir"; }
 .d-web-audio-soundscape.narrow .wa { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 64px auto auto minmax(0, 1fr); grid-template-areas: "top" "met" "place" "pads" "stir"; gap: 10px; padding: 14px 16px 16px; }
 .d-web-audio-soundscape .wa-top { grid-area: top; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .d-web-audio-soundscape .wa-top p { margin: 0; color: rgb(255 255 255 / .55); }
@@ -19,7 +19,7 @@ Lib.register('web-audio-soundscape', {
 .d-web-audio-soundscape .wa-on button { padding: 7px 12px; border-radius: 999px; background: #f97316; color: #000; }
 .d-web-audio-soundscape .wa-met { grid-area: met; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; min-height: 0; }
 .d-web-audio-soundscape .wa-ch { display: grid; grid-template-rows: minmax(0, 1fr) auto auto; gap: 6px; min-height: 0; }
-.d-web-audio-soundscape .wa-bar { display: flex; flex-direction: column-reverse; gap: 2px; min-height: 0; padding: 4px; border: 1px solid rgb(255 255 255 / .1); border-radius: 4px; }
+.d-web-audio-soundscape .wa-bar { display: flex; flex-direction: column-reverse; gap: 3px; min-height: 0; width: 22px; justify-self: center; padding: 3px; border: 1px solid rgb(255 255 255 / .1); border-radius: 3px; }
 .d-web-audio-soundscape .wa-bar i { flex: 1; border-radius: 1px; background: rgb(255 255 255 / .07); transition: background .08s; }
 .d-web-audio-soundscape .wa-bar i.on { background: rgb(255 255 255 / .8); } .d-web-audio-soundscape .wa-bar i.hot { background: #f97316; }
 .d-web-audio-soundscape .wa-ch .label { margin: 0; color: rgb(255 255 255 / .55); text-align: center; font-size: 9.5px; letter-spacing: .14em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -27,7 +27,7 @@ Lib.register('web-audio-soundscape', {
 .d-web-audio-soundscape.narrow .wa-ch { grid-template-rows: minmax(0, 1fr) auto; } .d-web-audio-soundscape.narrow .wa-ch .v { display: none; }
 .d-web-audio-soundscape.narrow .wa-bar { flex-direction: row; } .d-web-audio-soundscape.narrow .wa-met { grid-template-columns: 1fr; grid-template-rows: repeat(5, 1fr); gap: 3px; }
 .d-web-audio-soundscape.narrow .wa-ch { grid-template-columns: 58px 1fr; grid-template-rows: 1fr; align-items: center; } .d-web-audio-soundscape.narrow .wa-ch .label { order: -1; text-align: left; }
-.d-web-audio-soundscape.narrow .wa-bar { padding: 2px; height: 100%; }
+.d-web-audio-soundscape.narrow .wa-bar { padding: 2px; height: 100%; width: auto; justify-self: stretch; }
 .d-web-audio-soundscape .wa-place { grid-area: place; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 6px 16px; align-items: center; border-top: 1px solid rgb(255 255 255 / .1); padding-top: 10px; }
 .d-web-audio-soundscape .wa-place .label { margin: 0; color: rgb(255 255 255 / .5); }
 .d-web-audio-soundscape .wa-seg { display: inline-flex; border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; padding: 3px; }
