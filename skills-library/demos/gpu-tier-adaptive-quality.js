@@ -69,7 +69,7 @@ Lib.register('gpu-tier-adaptive-quality', {
 
     /* ---------- WebGL setup ---------- */
     var gl = null;
-    try { gl = /nogl/.test(location.search) ? null : canvas.getContext('webgl2', { alpha: false, antialias: false, preserveDrawingBuffer: true }); } catch (e) { gl = null; } // TEMPNOGL
+    try { gl = canvas.getContext('webgl2', { alpha: false, antialias: false, preserveDrawingBuffer: true }); } catch (e) { gl = null; }
     var MAX = 16000, prog, quadProg, vao, qvao, U = {}, QU = {}, tex = null;
     function sh(vs, fs) {
       var p = gl.createProgram();
@@ -195,6 +195,7 @@ Lib.register('gpu-tier-adaptive-quality', {
       var txt = 'Rendering ' + cfg.n.toLocaleString('en-US') + ' particles · DPR ' + fit.dpr.toFixed(2) + ' · ' + res + ' px sprite ×' + grow.toFixed(2) + ' · ' + cfg.fx;
       if (live.textContent !== txt) live.textContent = txt;
     }
+    if (!gl) btns.slice(2).forEach(function (b) { b.disabled = true; b.style.opacity = '.3'; b.title = 'Needs WebGL 2'; });
     var lp = ctx.loop(frame);
     apply();
     var idleId = 0, idleT = 0;

@@ -70,7 +70,7 @@ Lib.register('instanced-grass-and-snow-parallax', {
 
     /* ---------- WebGL 2 ---------- */
     var gl = null;
-    try { gl = /nogl/.test(location.search) ? null : canvas.getContext('webgl2', { antialias: true, alpha: false }); } catch (e) { gl = null; } // TEMPNOGL
+    try { gl = canvas.getContext('webgl2', { antialias: true, alpha: false }); } catch (e) { gl = null; }
     var c2 = gl ? null : canvas.getContext('2d');
     var TILES = [.15, .4, .8], RINGS = [[0, 11], [10, 31], [30, 60]], WIDTH = [2, 5, 10], counts = [0, 0, 0];
     var prog = {}, buf = {}, tex = null, total = 0;

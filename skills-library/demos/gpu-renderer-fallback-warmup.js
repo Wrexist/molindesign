@@ -97,7 +97,7 @@ Lib.register('gpu-renderer-fallback-warmup', {
     var cores = navigator.hardwareConcurrency || 0, lowCores = isIOS && (!cores || cores <= 4);
     var hasGPU = navigator.gpu !== undefined, hd = /[?&]hd=true/.test(location.search);
     var gl = null;
-    try { gl = /nogl/.test(location.search) ? null : canvas.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'high-performance' }); } catch (e) { gl = null; } // TEMPNOGL
+    try { gl = canvas.getContext('webgl2', { antialias: false, alpha: false, powerPreference: 'high-performance' }); } catch (e) { gl = null; }
     var probe = { adapter: hasGPU ? 'pending' : 'n/a', done: !hasGPU };
     if (hasGPU) {
       var to = setTimeout(function () { probe.adapter = 'timeout'; probe.done = true; }, 1500);

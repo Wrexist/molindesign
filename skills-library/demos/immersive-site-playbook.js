@@ -14,8 +14,8 @@ Lib.register('immersive-site-playbook', {
 .d-immersive-site-playbook .pb-wrap { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
 .d-immersive-site-playbook .pb-scene { position: relative; perspective: 1400px; overflow: hidden; }
 .d-immersive-site-playbook .pb-scene > .label { position: absolute; left: 20px; top: 18px; margin: 0; color: rgb(255 255 255 / .5); z-index: 2; }
-.d-immersive-site-playbook .pb-stack { position: absolute; left: 50%; top: 56%; width: min(62%, 300px); aspect-ratio: 16 / 10; transform-style: preserve-3d; transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-38deg); }
-.d-immersive-site-playbook .pb-layer { position: absolute; inset: 0; transform-style: preserve-3d; border: 1px solid rgb(255 255 255 / .2); border-radius: 6px; background: rgb(12 12 12 / .72); transition: transform .6s cubic-bezier(.23, 1, .32, 1), border-color .3s, background .3s, box-shadow .3s; overflow: hidden; padding: 0; text-align: left; }
+.d-immersive-site-playbook .pb-stack { position: absolute; left: 50%; top: 64%; width: min(62%, 300px); aspect-ratio: 16 / 10; transform-style: preserve-3d; transform: translate(-50%, -50%) rotateX(58deg) rotateZ(-38deg); }
+.d-immersive-site-playbook .pb-layer { position: absolute; inset: 0; transform-style: preserve-3d; border: 1px solid rgb(255 255 255 / .2); border-radius: 6px; background: rgb(12 12 12 / .55); transition: transform .6s cubic-bezier(.23, 1, .32, 1), border-color .3s, background .3s, box-shadow .3s; overflow: hidden; padding: 0; text-align: left; }
 .d-immersive-site-playbook .pb-layer.pb-on { border-color: #f97316; background: rgb(30 14 4 / .82); box-shadow: 0 0 0 1px rgb(249 115 22 / .4), 0 0 40px rgb(249 115 22 / .25); }
 .d-immersive-site-playbook .pb-layer:focus-visible { outline: 2px solid #f97316; outline-offset: 2px; }
 .d-immersive-site-playbook .pb-tag { position: absolute; left: 8px; top: 6px; font: 500 9px/1 Archivo, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: rgb(255 255 255 / .55); z-index: 2; }
@@ -45,6 +45,8 @@ Lib.register('immersive-site-playbook', {
 .d-immersive-site-playbook .pb-seg button { padding: 6px 12px; border-radius: 999px; color: rgb(255 255 255 / .6); }
 .d-immersive-site-playbook .pb-seg button[aria-selected="true"] { background: #fff; color: #000; }
 .d-immersive-site-playbook .pb-panel[hidden] { display: none; }
+.d-immersive-site-playbook .pb-panel { min-height: 0; overflow: auto; flex: 0 1 auto; }
+.d-immersive-site-playbook .pb-layer:not(.pb-on) .pb-art { opacity: .45; transition: opacity .3s; }
 .d-immersive-site-playbook .pb-panel .label { margin: 0; color: rgb(255 255 255 / .5); }
 .d-immersive-site-playbook .pb-name { font-family: Archivo, sans-serif; font-stretch: 125%; font-size: clamp(24px, 3vw, 38px); line-height: 1; letter-spacing: -.02em; margin: 8px 0 10px; color: #fff; }
 .d-immersive-site-playbook .pb-desc { margin: 0 0 12px; font-size: 14px; line-height: 1.5; color: rgb(255 255 255 / .72); }
@@ -62,7 +64,9 @@ Lib.register('immersive-site-playbook', {
 .d-immersive-site-playbook .pb-check input:focus-visible { outline: 1px solid #f97316; outline-offset: 2px; }
 .d-immersive-site-playbook.pb-narrow .pb-wrap { grid-template-columns: minmax(0, 1fr); grid-template-rows: 46% minmax(0, 1fr); }
 .d-immersive-site-playbook.pb-narrow .pb-side { padding: 4px 16px 16px; gap: 8px; }
-.d-immersive-site-playbook.pb-narrow .pb-stack { width: min(58%, 220px); top: 58%; }
+.d-immersive-site-playbook.pb-narrow .pb-stack { width: min(50%, 200px); top: 74%; }
+.d-immersive-site-playbook.pb-narrow .pb-check label { font-size: 12px; padding: 4px 0; }
+.d-immersive-site-playbook.pb-narrow .pb-name { margin: 4px 0 6px; }
 .d-immersive-site-playbook.pb-narrow .pb-desc { font-size: 13px; margin-bottom: 8px; }
 .d-immersive-site-playbook.pb-narrow .pb-idea { display: none; }
 @media (prefers-reduced-motion: reduce) { .d-immersive-site-playbook .pb-layer { transition: border-color .3s, background .3s; } }
@@ -130,8 +134,8 @@ Lib.register('immersive-site-playbook', {
       if (t) t.scrollIntoView({ behavior: R ? 'auto' : 'smooth', block: 'start' });
     }
     function layout() {
-      var gap = ctx.lerp(5, stage.classList.contains('pb-narrow') ? 20 : 30, explode);
-      layers.forEach(function (b, j) { b.style.transform = 'translateZ(' + (j * gap + (j === active ? 18 * explode + 4 : 0)).toFixed(1) + 'px)'; });
+      var gap = ctx.lerp(5, stage.classList.contains('pb-narrow') ? 15 : 30, explode);
+      layers.forEach(function (b, j) { b.style.transform = 'translateZ(' + (j * gap + (j > active ? 30 * explode : j === active ? 6 : 0)).toFixed(1) + 'px)'; });
     }
     var lp = ctx.loop(function (dt) {
       explode = ctx.damp(explode, target, 4, dt); layout();

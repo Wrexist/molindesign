@@ -125,7 +125,7 @@ Lib.register('scissor-view-webgl-slots', {
 
     /* ---------- WebGL2 ---------- */
     var gl = null, prog, U = {}, vaos = [];
-    try { gl = /nogl/.test(location.search) ? null : canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true }); } catch (e) { gl = null; } // TEMPNOGL
+    try { gl = canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true }); } catch (e) { gl = null; }
     if (gl) {
       var vs = '#version 300 es\nin vec3 aP; in vec3 aN; uniform mat4 uProj; uniform mat3 uRot; out vec3 vN; out float vZ; void main(){ vec3 p = uRot * aP; vN = uRot * aN; vec4 v = vec4(p.x, p.y, p.z - 2.0, 1.0); vZ = -v.z; gl_Position = uProj * v; }';
       var fs = '#version 300 es\nprecision highp float; in vec3 vN; in float vZ; uniform vec3 uTint; out vec4 o; void main(){ vec3 n = normalize(vN);' +
