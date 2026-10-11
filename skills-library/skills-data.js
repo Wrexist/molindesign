@@ -209,6 +209,102 @@ window.SKILLS = [
   "short": "Accessible right-side slide-over drawer with tabs (Specification / About), frosted-glass panel, dimmed backdrop, staggered hairline rows, Esc to close, arrow-key tabs, focus management, and optional hand-off to the 3D engine (lock input). Use for secondary info on immersive/full-screen sites instead of navigating to another page. From amv.tarunvishwakarma.dev."
  },
  {
+  "id": "stacked-toasts",
+  "cat": "Components",
+  "desc": "Sonner-style toast stack — newest toast in front, older ones tucked 14 px behind and scaled down 5 % each, the stack fans out on hover using measured heights, swipe-to-dismiss with a 45 px / 0.11 px·ms velocity rule and damped wrong-way drag, timers that pause on hover, while pressing and while the tab is hidden, promise toasts (loading → success/error), and an aria-live region with an Alt+T hotkey. Use for any app or site notification system that should feel calm and physical. From the sonner 2.0.8 source (npm dist/index.mjs + styles.css) and emilkowal.ski \"Building a toast component\".",
+  "title": "Stacked toasts",
+  "source": "sonner · emilkowal.ski",
+  "short": "Toasts that tuck behind each other, fan out on hover and swipe away with a flick"
+ },
+ {
+  "id": "drag-sheet-drawer",
+  "cat": "Components",
+  "desc": "iOS-style draggable bottom sheet (Vaul pattern) — direct-manipulation drag with no transition while the finger is down, momentum close (0.4 px/ms) or 25 % distance, logarithmic damping past the open edge, snap points (fractions or px) with flick-to-skip at velocity > 2, overlay fade toward the top snap, the page behind scaling into a card ((W−26)/W, 8 px radius, 14 px down), scroll-vs-drag arbitration, handle tap to cycle snaps. 0.5 s cubic-bezier(0.32, 0.72, 0, 1). Use for mobile-first menus, filters, detail sheets and map panels. Not the right-side tabbed panel; that is slide-over-drawer. From the vaul 1.1.2 source (npm dist/index.mjs + style.css) and emilkowal.ski \"Building a drawer component\".",
+  "title": "Drag sheet drawer",
+  "source": "vaul · emilkowal.ski",
+  "short": "An iOS-style bottom sheet with snap points, momentum and a page that becomes a card"
+ },
+ {
+  "id": "interruptible-css-transitions",
+  "cat": "Components",
+  "desc": "Rules for UI motion that can be changed mid-flight — use CSS transitions (retargetable) instead of @keyframes for any state that can change again before the animation ends (stack positions, open/close, hover expand), drive state with data-attributes plus a \"mounted\" flag (or @starting-style) for enter, hand off cleanly between finger-driven drag (transition:none) and released settle, keep keyframes only for one-shot exits/loops, and pick easing/duration by purpose (ease-out < 300 ms, Sonner 400 ms ease, Vaul 0.5 s iOS curve). Use whenever building toasts, drawers, menus, tabs or anything users can trigger repeatedly. From emilkowal.ski (\"Great animations\", \"Building a toast component\", \"Building a drawer component\") and the sonner / vaul sources.",
+  "title": "Interruptible transitions",
+  "source": "emilkowal.ski · sonner · vaul",
+  "short": "Why stacks and toggles use transitions, not keyframes, so motion can change mid-flight"
+ },
+ {
+  "id": "origin-aware-popovers",
+  "cat": "Components",
+  "desc": "Dropdown menus, popovers and tooltips that grow out of their trigger — content placed on a side with flip + shift collision handling, transform-origin computed toward the trigger, data-state/data-side keyframe enter/exit (fade + zoom 95% + 8px slide from the trigger side, ~150 ms), exit animation finished before unmount, tooltip delay groups (700 ms first, instant within 300 ms of the last one closing), menus with roving focus, typeahead, Esc and focus return. Use for any app toolbar, select-like menu, share/filter popover or icon-button tooltips that should feel Linear/Raycast-grade. From Radix UI primitives (react-tooltip 1.3.0, react-popover 1.2.0, react-dropdown-menu/react-menu 2.1.25, react-popper 1.3.8, react-presence 1.1.11, read from the npm dist) and shadcn/ui new-york-v4 classes + tw-animate-css 1.4.0.",
+  "title": "Origin-aware popovers",
+  "source": "radix-ui.com · shadcn/ui",
+  "short": "Menus, popovers and tooltips that scale out of their trigger, flip and shift to fit"
+ },
+ {
+  "id": "command-palette-motion",
+  "cat": "Components",
+  "desc": "A cmdk-style ⌘K command palette — dialog that scales in from .96, combobox input with aria-activedescendant, fuzzy command-score ranking (word-jump and transposition weights), groups re-sorted by best match, first result auto-selected, ↑↓/Home/End/⌘↑↓/Alt-group/Ctrl-N-P keys, pointer-move selection, list height animated through a ResizeObserver-fed --cmdk-list-height variable, nested pages with Backspace/Esc back and a 100 ms \"bounce\" on Enter. Use for app shells, docs sites and dashboards that want Linear/Raycast-grade keyboard navigation. From cmdk 1.1.1 by Paco Coursey (src/index.tsx + command-score.ts read on GitHub/npm) and its website's Linear/Raycast/Vercel recreations; Raycast manual for behaviour.",
+  "title": "Command palette motion",
+  "source": "cmdk.paco.me · raycast.com",
+  "short": "A ⌘K palette with cmdk fuzzy ranking, arrow-key selection and a list that glides to fit"
+ },
+ {
+  "id": "submenu-safe-triangle",
+  "cat": "Components",
+  "desc": "Nested menus that don't snap shut when the pointer cuts diagonally toward a submenu — Radix's pointer grace area (a polygon from the exit point, with a 5 px bleed, to the submenu's near and far edges, valid for 300 ms, only while the pointer is moving toward the submenu side), 100 ms hover-open delay for sub-triggers, sibling items blocked from stealing the highlight while inside the area, keyboard ArrowRight/Enter/Space to open and ArrowLeft to close, and the Amazon \"menu aim\" slope variant (300 ms delay, 75 px tolerance, last 3 mouse positions). Use for context menus, nested dropdowns, mega-menus and nav flyouts. From @radix-ui/react-menu 2.1.25 (npm dist, MenuSubTrigger/MenuContentImpl) and kamens/jQuery-menu-aim (GitHub source).",
+  "title": "Submenu safe triangle",
+  "source": "radix-ui.com · jQuery-menu-aim",
+  "short": "Submenus that stay open while the pointer cuts diagonally toward them"
+ },
+ {
+  "id": "animated-number-flow",
+  "cat": "Components",
+  "desc": "NumberFlow-style animated numbers — Intl.NumberFormat parts split into keyed digit wheels and symbols, each digit spins by the shortest (or trend-forced) path, new digits roll in from 0 and fade, leaving digits roll to 0 and fade, the whole number FLIPs when its width changes, rapid updates add up instead of jumping, and the element carries a role=\"img\" label with the formatted string. Use for prices, counters, stats, timers, plan pickers and dashboards where a changing number should feel alive but stay readable. From number-flow 0.6.2 (dist/lite.mjs, ssr chunk, plugins.mjs read on unpkg) and the docs at number-flow.barvian.me by Maxwell Barvian.",
+  "title": "Animated number flow",
+  "source": "number-flow.barvian.me",
+  "short": "Per-digit rolling numbers with Intl formats, trend and a screen-reader-safe label"
+ },
+ {
+  "id": "button-state-morphs",
+  "cat": "Components",
+  "desc": "Buttons that answer every press — scale(.97) press feedback (no scale when disabled), an async save that morphs idle → \"Saving…\" → saved / error inside a width-stable label stack, copy-to-clipboard that swaps to an inline check for ~2 s, hold-to-confirm for destructive actions with a clip-path fill that snaps back on release, toggle buttons with aria-pressed, and proper disabled/aria-busy/aria-live semantics. Use for forms, settings, dashboards, code blocks, pricing CTAs, any app UI. Sources - emilkowal.ski (7 practical animation tips), linear.app CSS (button tokens, observed), rauno.me + interfaces.rauno.me, vercel.com/design/guidelines (Web Interface Guidelines).",
+  "title": "Button state morphs",
+  "source": "emilkowal.ski · linear.app · vercel.com/design",
+  "short": "Press scale, width-stable async save, copy check and hold-to-delete"
+ },
+ {
+  "id": "ui-motion-principles",
+  "cat": "Components",
+  "desc": "A concise rulebook for product-UI motion (apps, dashboards, menus, buttons, not cinematic hero scenes) — purpose and frequency first (never animate keyboard-initiated or hundred-times-a-day actions), durations (≤ 200–300 ms), ease-out for enter/exit with real custom curves, transform-origin at the trigger, never scale from 0, transitions over keyframes for anything interruptible, transform/opacity only, tooltip delay rules, blur-bridged crossfades, theme-switch and hover hygiene, reduced motion. With observed timing tokens from Linear, Vercel Geist and rauno.me. Use as the checklist before and after adding any UI animation. Sources - emilkowal.ski (7 practical animation tips, Great animations, You don't need animations), rauno.me \"Invisible details of interaction design\", interfaces.rauno.me, vercel.com/design/guidelines, linear.app + vercel.com/geist CSS.",
+  "title": "UI motion principles",
+  "source": "emilkowal.ski · rauno.me · linear.app · vercel.com/geist",
+  "short": "Duration, easing, origin, interruptibility and when not to animate, side by side"
+ },
+ {
+  "id": "shared-element-flip",
+  "cat": "Components",
+  "desc": "Shared-element layout transitions without a framework — a card that grows into its detail view and back (same element, never a duplicate), list reorder/shuffle where every item glides to its new slot, and exit \"pop\" so siblings close the gap while the leaver fades. Vanilla FLIP (measure, invert, play) with Motion-style scale correction for border-radius and children, plus the View Transitions API path (startViewTransition, view-transition-name, crop + radius, cross-document @view-transition) with feature detection and fallback. Use for galleries, product grids, card→detail, sortable lists, filters. Sources - Motion (motion.dev / framer-motion 14.1.0, motion-dom projection source read on unpkg), Paul Lewis \"FLIP your animations\" (aerotwist.com), CSS View Transitions 1/2 drafts + developer.chrome.com docs, MDN browser-compat-data.",
+  "title": "Shared-element FLIP",
+  "source": "motion.dev · aerotwist.com · developer.chrome.com",
+  "short": "Cards grow into their detail view and lists reshuffle, with radius and child correction"
+ },
+ {
+  "id": "sliding-indicator-tabs",
+  "cat": "Components",
+  "desc": "Tabs and segmented controls whose active indicator glides between items instead of jumping — a measured underline (translateX + scaleX), a pill made by clipping a duplicated \"active\" copy of the list so the text colour flips exactly at the pill edge, a hover highlight that follows the pointer, and a tab-panel container that animates its height while content slides in from the side of the tapped tab. Full WAI-ARIA tabs / radiogroup keyboard model, reduced motion, resize + font-load re-measure. Use for product pages, dashboards, pricing toggles, settings, filters. Sources - Motion `layoutId` shared indicator (motion.dev, motion-dom 14.1.0 defaults), Emil Kowalski \"The magic of clip-path\" (emilkowal.ski; technique credited there to Paco Coursey), Benji Taylor \"Family Values\" (directional tab motion), WAI-ARIA APG Tabs, MDN browser-compat-data.",
+  "title": "Sliding indicator tabs",
+  "source": "motion.dev · emilkowal.ski · benji.org",
+  "short": "Tabs and segmented controls whose indicator glides, with height-animated panels"
+ },
+ {
+  "id": "morphing-tray",
+  "cat": "Components",
+  "desc": "Family-style dynamic tray — one container that morphs between content states (button → review sheet → confirm → \"Sending…\" pill → done) by animating its real width/height, crossfading the content inside, morphing button labels letter-by-letter where letters are shared (\"Continue\" → \"Confirm\"), and a back/close icon that morphs (✕ → ←). Covers the auto-height toolbox (measure-and-lock, grid-template-rows 0fr→1fr, interpolate-size / calc-size, ::details-content) and spring easing via CSS linear(). Use for checkout/confirm flows, multi-step actions, onboarding, compact settings — anywhere a full screen would lose context. Sources - Benji Taylor \"Family Values\" (benji.org/family-values, the design rules), Motion layout/AnimatePresence (motion-dom 14.1.0), vaul 1.1.2 (sheet curve), CSS spec drafts + MDN browser-compat-data (support).",
+  "title": "Morphing tray",
+  "source": "benji.org/family-values · motion.dev",
+  "short": "One container morphs button → sheet → status pill, with shared-letter text morph"
+ },
+ {
   "id": "scissor-view-webgl-slots",
   "cat": "WebGL & 3D",
   "desc": "Put several small 3D models/scenes into a normal DOM page with ONE fixed WebGL canvas - each DOM element is a \"slot\", the renderer sets scissor+viewport to that element's rect every frame, ScrollTrigger progress drives model rotation, and a pixel-matched perspective camera keeps CSS and 3D aligned. Includes a no-WebGL alternative (iventions.com) - a GSAP-scrubbed clip-path \"spotlight beam\" with a goo SVG filter. Use for portfolios/agency sites that want 3D objects inside a scrolling GSAP layout. Sources - minhpham.design (Three.js + GLTF, app.bundle.js) and iventions.com (clip-path, verified NOT WebGL).",

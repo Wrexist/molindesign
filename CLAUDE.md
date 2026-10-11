@@ -1,7 +1,9 @@
 # Molin Design — working notes
 
 ## Design skills library (`.claude/skills/`)
-Before building or redesigning any website, check these skills and apply the relevant ones. They were distilled from the real source of award-winning motion sites: amv.tarunvishwakarma.dev, oryzo.ai, hubtown.co.in, brand.ivress.co.jp, by-kin.com, uncommonstudio.com.au (uncommondesign.group), matvoyce.tv, minhpham.design, iventions.com, santionispirits.com, why.zero.university, ponpon-mania.com, paodao.fr, Shopify Editions Spring 2026 and sleep-well-creatives.com. Cartier and Nothin' were unreachable and contributed nothing.
+Before building or redesigning any website, check these skills and apply the relevant ones. They were distilled from the real source of award-winning motion sites: amv.tarunvishwakarma.dev, oryzo.ai, hubtown.co.in, brand.ivress.co.jp, by-kin.com, uncommonstudio.com.au (uncommondesign.group), matvoyce.tv, minhpham.design, iventions.com, santionispirits.com, why.zero.university, ponpon-mania.com, paodao.fr, Shopify Editions Spring 2026 and sleep-well-creatives.com, plus the open-source UI libraries listed under Components. Cartier and Nothin' were unreachable and contributed nothing.
+
+Every skill has a live demo in the Motion Library: https://wrexist.github.io/molindesign/skills-library/ (source in `skills-library/`; add a demo and a `skills-data.js` entry for each new skill, following `skills-library/demos/README.md`).
 
 Skills label what was read from source versus inferred (and add reduced-motion fallbacks where the source had none). Trust the labels.
 
@@ -40,6 +42,20 @@ Skills label what was read from source versus inferred (and add reduced-motion f
 - `physics-on-flat-art` — Matter.js bodies driving 2D panels.
 - `hotspot-callout-pins` — leader-line annotations tied to 3D/image points.
 - `slide-over-drawer` — accessible tabbed side drawer.
+
+**Components (product UI motion)** — from the sources of sonner, vaul, Radix UI, cmdk, number-flow and Motion, plus Emil Kowalski, Rauno Freiberg, Benji Taylor (Family), Linear and Vercel Geist
+- `ui-motion-principles` — the rulebook: durations, easing, origin, frequency, when not to animate. Read before any UI animation.
+- `interruptible-css-transitions` — transitions over keyframes for anything that can change mid-flight.
+- `stacked-toasts` — Sonner-style stacked, swipeable toasts.
+- `drag-sheet-drawer` — Vaul-style bottom sheet with snap points and background scale.
+- `origin-aware-popovers` — menus, popovers, tooltips that grow from their trigger; delay groups.
+- `command-palette-motion` — cmdk-style ⌘K palette with ranking and animated list height.
+- `submenu-safe-triangle` — nested menus that survive diagonal pointer paths.
+- `animated-number-flow` — per-digit rolling numbers, accessible.
+- `button-state-morphs` — press feedback, async save, copy check, hold-to-delete.
+- `shared-element-flip` — card → detail and list reorder with FLIP / View Transitions.
+- `sliding-indicator-tabs` — tabs and segmented controls with a gliding indicator.
+- `morphing-tray` — Family-style container that morphs between states.
 
 **WebGL / 3D**
 - `scissor-view-webgl-slots` — many 3D slots in a DOM page with one canvas.

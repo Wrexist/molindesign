@@ -94,7 +94,7 @@
     css: css,
     mount: function (stage, ctx) {
       var uid = 0, status = 'progress', prio = 'high', k = 1, toastT = 0;
-      function chip(cls, ic, txt, label) { return '<button type="button" class="op-chip ' + cls + '" aria-haspopup="menu" aria-expanded="false" aria-label="' + label + '">' + ic + '<span class="op-cv-t">' + txt + '</span><span class="op-cv">' + IC.chev + '</span></button>'; }
+      function chip(cls, ic, txt, label) { return '<button type="button" class="op-chip ' + cls + '" aria-haspopup="menu" aria-expanded="false">' + ic + '<span style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap">' + label + ': </span><span class="op-cv-t">' + txt + '</span><span class="op-cv">' + IC.chev + '</span></button>'; }
       stage.innerHTML = '<div class="op-app" tabindex="-1">' +
         '<div class="op-top"><span class="op-crumb label">Molin <span class="op-ws">› Motion</span> › <b>MOL-142</b></span>' +
         '<button type="button" class="op-ib" data-tip="Copy link" data-kbd="⌘L" aria-label="Copy link">' + IC.link + '</button>' +

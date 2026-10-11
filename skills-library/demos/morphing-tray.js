@@ -30,7 +30,7 @@
   };
   TextMorph.prototype.capture = function () {
     var self = this;
-    this.anims.forEach(function (a) { a.finish(); }); this.anims = [];
+    this.anims.forEach(function (a) { if (a.playState !== 'idle') a.finish(); }); this.anims = [];
     this.el.querySelectorAll('.mt-ghost').forEach(function (g) { g.remove(); });
     this.old = Array.prototype.map.call(this.el.children, function (s) { return { s: s, x: self.rel(s) }; });
   };
@@ -125,10 +125,10 @@
       '.d-morphing-tray .mt-lbl span { display: inline-block; white-space: pre; } .d-morphing-tray .mt-lbl .mt-ghost { position: absolute; top: 0; }',
       '.d-morphing-tray .mt-ico { display: none; width: 16px; height: 16px; }',
       '.d-morphing-tray .ico-spin .mt-spin, .d-morphing-tray .ico-check .mt-check { display: block; }',
-      '.d-morphing-tray .mt-spin { border-radius: 50%; border: 2px solid rgb(255 255 255 / .2); border-top-color: #f97316; animation: mt-spin .8s linear infinite; }',
-      '@keyframes mt-spin { to { transform: rotate(360deg); } }',
-      '.d-morphing-tray .mt-check path { stroke-dasharray: 20; stroke-dashoffset: 20; } .d-morphing-tray .ico-check .mt-check path { animation: mt-draw .45s .1s ' + EASE_OUT + ' forwards; }',
-      '@keyframes mt-draw { to { stroke-dashoffset: 0; } }',
+      '.d-morphing-tray .mt-spin { border-radius: 50%; border: 2px solid rgb(255 255 255 / .2); border-top-color: #f97316; animation: d-morphing-tray-spin .8s linear infinite; }',
+      '@keyframes d-morphing-tray-spin { to { transform: rotate(360deg); } }',
+      '.d-morphing-tray .mt-check path { stroke-dasharray: 20; stroke-dashoffset: 20; } .d-morphing-tray .ico-check .mt-check path { animation: d-morphing-tray-draw .45s .1s ' + EASE_OUT + ' forwards; }',
+      '@keyframes d-morphing-tray-draw { to { stroke-dashoffset: 0; } }',
       '.d-morphing-tray .mt-live, .d-morphing-tray .mt-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
       '@container (max-width: 520px) { .d-morphing-tray .mt-acts li:nth-child(3) { display: none; } .d-morphing-tray .mt-big { font-size: 34px; } }',
       '@media (prefers-reduced-motion: reduce) { .d-morphing-tray .mt-spin { animation-duration: 2.4s; } .d-morphing-tray .ico-check .mt-check path { animation: none; stroke-dashoffset: 0; } .d-morphing-tray .mt-app { transition: opacity .2s; } .d-morphing-tray .mt-app.dim { filter: none; transform: none; } }'
@@ -191,7 +191,10 @@
         a.onfinish = function () { if (n._lift === a) drop(n); };
         anims.push(a);
       }
-      function drop(n) { var a = n._lift; n._lift = null; n.hidden = true; n.classList.remove('mt-leaving'); n.style.bottom = ''; if (a) a.cancel(); }
+      function drop(n) {
+        var a = n._lift; n._lift = null; n.hidden = true; n.classList.remove('mt-leaving'); n.style.bottom = '';
+        if (a) { a.cancel(); anims = anims.filter(function (x) { return x !== a; }); }
+      }
       function enter(n) {
         n._lift = null; n.hidden = false;
         anims.push(n.animate([{ opacity: 0, transform: ctx.reduced ? 'none' : 'translateY(8px)', filter: ctx.reduced ? 'none' : 'blur(2px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }],
@@ -201,8 +204,8 @@
       function go(next) {
         var from = S[state], to = S[next];
         if (next === state) return;
+        anims.forEach(function (a) { if (a.playState !== 'idle') a.finish(); }); anims = [];   // never finish() a cancelled fill:forwards anim: it re-applies
         lifted.forEach(function (n) { if (n._lift) drop(n); }); lifted = [];
-        anims.forEach(function (a) { a.finish(); }); anims = [];
         label.capture(); if (from.tray && to.tray) title.capture();
         var a = tray.getBoundingClientRect();
         // content: header + views leave or enter (lifted out of flow before measuring the new size)
@@ -258,9 +261,10 @@
         start: function () { if (!onKeyBound) { stage.addEventListener('keydown', onKey); onKeyBound = true; } },
         stop: function () {
           timers.forEach(clearTimeout); timers = []; clearTimeout(releaseT);
-          anims.forEach(function (a) { a.finish(); }); anims = [];
+          anims.forEach(function (a) { if (a.playState !== 'idle') a.finish(); }); anims = [];
+          lifted.forEach(function (n) { if (n._lift) drop(n); }); lifted = [];
           tray.classList.remove('anim'); tray.style.width = tray.style.height = '';
-          if (state === 'sending' || state === 'sent') { var r = ctx.reduced; ctx.reduced = true; go('idle'); ctx.reduced = r; anims.forEach(function (a) { a.finish(); }); }
+          if (state === 'sending' || state === 'sent') { var r = ctx.reduced; ctx.reduced = true; go('idle'); ctx.reduced = r; anims.forEach(function (a) { if (a.playState !== 'idle') a.finish(); }); }
           if (onKeyBound) { stage.removeEventListener('keydown', onKey); onKeyBound = false; }
         }
       };

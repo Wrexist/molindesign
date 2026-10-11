@@ -126,7 +126,7 @@ img { max-width: 100%; display: block; }
 .chip { border: 1px solid rgb(255 255 255 / .18); border-radius: 999px; padding: 8px 14px; color: rgb(255 255 255 / .7); transition: color .2s, border-color .2s, background .2s; }
 .chip:hover { color: #fff; border-color: rgb(255 255 255 / .5); }
 .chip[aria-pressed="true"] { background: #fff; color: #000; border-color: #fff; }
-.chip .n { opacity: .55; margin-left: 6px; }
+.chip .n { opacity: .8; margin-left: 6px; }
 .search { display: flex; flex-direction: column; gap: 6px; color: rgb(255 255 255 / .6); }
 .search input { width: min(280px, 100%); background: transparent; border: 0; border-bottom: 1px solid rgb(255 255 255 / .25); color: #fff; font: inherit; font-size: 16px; padding: 8px 0; outline: none; transition: border-color .2s; }
 .search input:focus { border-color: var(--accent); }

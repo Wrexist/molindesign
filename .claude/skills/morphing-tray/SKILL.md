@@ -15,6 +15,7 @@ Family publishes **design rules, not code or timings**. Rules marked **[src]** a
 - Theme follows context (dark flow → dark tray).
 - **Text morph**: label changes animate through shared letters ("the 'Con' in both Continue and Confirm"), so the user notices the step they're about to take. Constant parts of a sentence stay put; only the changing part animates.
 - **No duplicates**: an element that persists into the next state must travel, never fade out and reappear as a copy.
+- **Show where the result went**: after a send is confirmed, Family moves the spinner into the bottom navigation, where the pending transaction now lives. On the web: morph the balance with the same text engine and slide the new activity row in (height 0 → measured px, 500 ms) [implementation inferred].
 
 ## 2. Container morph (measure → lock → animate → release)
 ```js
@@ -63,8 +64,10 @@ const s = springLinear(); const EASE = CSS.supports('transition-timing-function'
 Key every character by `char + occurrence` (`C0 o0 n0 t0 i0 n1 u0 e0`). Between two labels:
 1. Measure each current glyph span's `offsetLeft`.
 2. Rebuild: reuse spans whose key exists in the new string (in new order), create spans for new keys, keep removed spans as absolutely positioned ghosts at their old `left`.
-3. FLIP the reused spans: `translateX(oldLeft − newLeft) → 0`; fade/blur in new ones (`opacity 0, blur(4px), translateY(.25em)` → rest, 20 ms stagger); fade ghosts out over 180 ms then remove.
-4. Duration ~**400 ms** `cubic-bezier(.23,1,.32,1)` [inferred]. "Continue"→"Confirm": `C o n` travel; `t i n u e` leave; `f i r m` enter.
+3. FLIP the reused spans: `translateX(oldX − newX) → 0` on the container's curve; fade/blur in new ones (`opacity 0, blur(4px), translateY(.3em)` → rest, 380 ms, 60 ms delay + **16 ms** stagger); fade ghosts out over **200 ms** (`blur(4px)`, lift `.25em`) then remove.
+4. Durations ~**400 ms**, `cubic-bezier(.23,1,.32,1)` for fades [inferred]. "Continue"→"Confirm": `C o n` travel; `t i n u e` leave; `f i r m` enter.
+5. Measure x **relative to a frame that doesn't move during the morph** — the button's centre for a centred label (the tray grows symmetrically, so centre-relative positions are the same at the start and end size), the label's left edge for a left-aligned title. Measure old positions *before* clearing the container's locked size.
+6. `finish()` every running glyph animation before capturing again; guard against calling `finish()` on an animation you already `cancel()`led — with `fill:'forwards'` it re-applies its end state (a classic "content went invisible" bug).
 - The label element gets `aria-label` = the full new string (spans are `aria-hidden`), or keep the text in a visually hidden span — screen readers must read "Confirm", not letters.
 - Spaces: render as ` ` spans so widths are measurable.
 - Numbers (amount counters) use the same engine with `font-variant-numeric: tabular-nums` so digits don't jitter.

@@ -111,9 +111,9 @@
         '<button type="button" class="sf-btn label sf-shuf"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 4h3.5c2 0 3 1 4 3.5S10.5 12 12.5 12H15M12.5 10 15 12l-2.5 2M1 12h3.5c1 0 1.7-.3 2.3-.9M9.2 4.9c.6-.6 1.3-.9 2.3-.9H15M12.5 2 15 4l-2.5 2"/></svg>Shuffle</button>' +
         '</div><div class="sf-grid">' +
         ITEMS.map(function (it, i) {
-          return '<button type="button" class="sf-card" data-i="' + i + '" aria-haspopup="dialog" aria-label="' + it.n + ', ' + it.k + '">' +
+          return '<button type="button" class="sf-card" data-i="' + i + '" aria-haspopup="dialog">' +
             '<span class="sf-art"><span class="sf-img i' + i + '"></span><span class="sf-chip label" aria-hidden="true">' + pad(i) + '</span></span>' +
-            '<span class="sf-ct" aria-hidden="true"><span class="sf-name">' + it.n + '</span><span class="sf-kind label">' + it.k + '</span></span></button>';
+            '<span class="sf-ct"><span class="sf-name">' + it.n + '</span><span class="sf-kind label">' + it.k + '</span></span></button>';
         }).join('') +
         '</div></div>' +
         '<div class="sf-det" hidden><div class="sf-scrim"></div>' +
@@ -276,7 +276,7 @@
           var a = first.get(c), b = c.getBoundingClientRect(), dx = a.left - b.left, dy = a.top - b.top;
           if (Math.abs(dx) < .5 && Math.abs(dy) < .5) return;
           anims.push(c.animate([{ transform: 'translate(' + dx + 'px,' + dy + 'px)' }, { transform: 'none' }],
-            { duration: DUR + 80, easing: EASE_CSS, delay: k * 18, fill: 'backwards' }));
+            { duration: DUR, easing: EASE_CSS, delay: k * 18, fill: 'backwards' }));
         });
       }
 

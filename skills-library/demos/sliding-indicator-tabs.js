@@ -126,7 +126,7 @@
         tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
         if (focus) tabs[i].focus();
         cur = i; placeInd();
-        anims.forEach(function (a) { a.finish(); }); anims = [];
+        anims.forEach(function (a) { if (a.playState !== 'idle') a.finish(); }); anims = [];
         panels.forEach(function (p) { if (p !== oldP) { p.hidden = true; p.removeAttribute('style'); } });
         var h0 = box.offsetHeight;
         // old panel leaves out of flow (Motion popLayout idea), new one takes the space
@@ -145,7 +145,7 @@
           { duration: 150, easing: 'ease-in', fill: 'forwards' });
         out.onfinish = function () { if (panels[cur] !== oldP) oldP.hidden = true; oldP.removeAttribute('style'); out.cancel(); };
         anims.push(out, newP.animate([{ opacity: 0, transform: 'translateX(' + dir * 24 + 'px)', filter: 'blur(4px)' }, { opacity: 1, transform: 'none', filter: 'blur(0)' }],
-          { duration: 380, delay: 60, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'backwards' }));
+          { duration: 360, delay: 60, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'backwards' }));
       }
       function pick(i, focus) {
         if (i === seg) { if (focus) segs[i].focus(); return; }
@@ -192,7 +192,7 @@
         },
         stop: function () {
           cancelAnimationFrame(raf); clearTimeout(hT);
-          anims.forEach(function (a) { a.finish(); }); anims = [];
+          anims.forEach(function (a) { if (a.playState !== 'idle') a.finish(); }); anims = [];
           box.style.transition = ''; box.style.height = '';
           if (ro) { ro.disconnect(); ro = null; }
         }
