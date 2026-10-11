@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion Library | Molin Design</title>
+  <meta name="description" content="A living library of 32 motion and interaction techniques, each with a working demo, distilled from award-winning websites. By Molin Design.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="dark">
+  <meta name="format-detection" content="telephone=no, address=no, email=no">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Geist+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- cinematic-loader: paints before any demo script runs -->
+  <div id="loader" class="loader" aria-hidden="false">
+    <svg id="loader-svg" viewBox="0 0 1000 240" preserveAspectRatio="xMidYMid meet" role="progressbar" aria-label="Loading the library" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <defs>
+        <clipPath id="ld-loaded"><rect id="ld-fill" x="0" y="240" width="1000" height="0"/></clipPath>
+        <clipPath id="ld-word"><text x="500" y="200" text-anchor="middle" class="ld-text">MOTION</text></clipPath>
+        <linearGradient id="ld-bloom" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset=".25" stop-color="#fff" stop-opacity=".9"/>
+          <stop offset=".45" stop-color="#fff" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <text x="500" y="200" text-anchor="middle" class="ld-text ld-ghost">MOTION</text>
+      <g clip-path="url(#ld-loaded)"><text x="500" y="200" text-anchor="middle" class="ld-text ld-lit">MOTION</text></g>
+      <g clip-path="url(#ld-word)"><g id="ld-band" opacity="0"><rect x="0" y="-50" width="1000" height="100" fill="url(#ld-bloom)"/><rect x="0" y="-4" width="1000" height="8" fill="#fff"/></g></g>
+    </svg>
+    <p class="label loader-count" id="loader-count" aria-hidden="true"><span class="digits"></span><span class="pct">%</span></p>
+    <p class="label loader-note" id="loader-note"></p>
+  </div>
+
+  <div class="frame" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+  <header class="topbar">
+    <a class="wordmark" href="../">MOLIN DESIGN</a>
+    <nav class="topnav" aria-label="Library">
+      <a class="label ulink" href="#index">Index</a>
+      <button type="button" class="label ulink" data-drawer="about">About</button>
+      <button type="button" class="label sound" id="sound-toggle" aria-pressed="false">
+        <span class="bars" aria-hidden="true"><i style="--d:.95s"></i><i style="--d:.7s"></i><i style="--d:1.15s"></i></span>
+        <span class="sound-label"><span class="on">Sound on</span><span class="off">Sound off</span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="label eyebrow"><span class="accent">[ Nº 00 / <span id="hero-count">32</span> ]</span> Molin Design · Motion library</p>
+      <h1 id="hero-title" class="display hero-title">
+        <span class="lib-mask"><span class="lib-line">Every move</span></span>
+        <span class="lib-mask"><span class="lib-line">we learned, <em>live.</em></span></span>
+      </h1>
+      <p class="hero-copy">32 techniques taken from the source code of award-winning sites. Each one runs below as a working demo, with the numbers worth stealing and a link to the full skill.</p>
+      <dl class="hero-meta">
+        <div><dt class="label">Techniques</dt><dd id="meta-count">32</dd></div>
+        <div><dt class="label">Sources</dt><dd>15 sites</dd></div>
+        <div><dt class="label">Built with</dt><dd>HTML, CSS, vanilla JS</dd></div>
+      </dl>
+      <p class="label hint-line">Scroll <span class="tick" aria-hidden="true"><i></i></span></p>
+    </section>
+
+    <section id="index" class="index" aria-labelledby="index-title">
+      <div class="index-head">
+        <h2 id="index-title" class="display">Index</h2>
+        <div class="filters" role="group" aria-label="Filter by category" id="filters"></div>
+        <label class="search"><span class="label">Search</span><input id="search" type="search" placeholder="cursor, scroll, audio…" autocomplete="off"></label>
+      </div>
+      <ol class="index-list" id="index-list"></ol>
+      <p class="empty label" id="empty" hidden>No technique matches that search.</p>
+    </section>
+
+    <div id="skills"></div>
+
+    <footer class="footer">
+      <p class="display footer-title">One library, <em>every site after it.</em></p>
+      <p class="footnote">Demos are simplified, dependency-free versions of each technique. The SKILL.md files hold the full detail and the exact source values. Studied for learning; not affiliated with any of the referenced studios or brands.</p>
+      <p class="label"><a class="ulink" href="#main">Back to top ↑</a></p>
+    </footer>
+  </main>
+
+  <!-- scroll-driven-chapters: progress rail -->
+  <div class="rail" id="rail" aria-hidden="true">
+    <span class="rail-dot"></span>
+    <span class="rail-num"><span id="rail-num">00</span></span>
+    <span class="rail-of">/ 32</span>
+    <span class="rail-name" id="rail-name">Index</span>
+    <span class="rail-track"><span class="rail-fill" id="rail-fill"></span></span>
+    <span class="rail-vel">vel <span id="rail-vel">0.00</span></span>
+  </div>
+
+  <!-- slide-over-drawer -->
+  <div class="drawer" id="drawer" hidden>
+    <div class="drawer-backdrop" data-close></div>
+    <aside class="drawer-panel" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+      <div class="drawer-head">
+        <div role="tablist" aria-label="Drawer" class="tabs">
+          <button type="button" role="tab" id="tab-about" aria-controls="panel-about" aria-selected="true" class="label">About</button>
+          <button type="button" role="tab" id="tab-use" aria-controls="panel-use" aria-selected="false" tabindex="-1" class="label">How to use</button>
+        </div>
+        <button type="button" class="label close" data-close>Close ✕</button>
+      </div>
+      <div role="tabpanel" id="panel-about" aria-labelledby="tab-about">
+        <p class="display drawer-title" id="drawer-title">One library, <em>32 moves.</em></p>
+        <p>Every skill in this repo's <code>.claude/skills/</code> folder, demonstrated. The page itself also uses many of them: the loader, the reticle cursor, the masked headlines, the progress rail, the sound toggle and this drawer.</p>
+        <dl class="rows">
+          <div><dt class="label">Sources</dt><dd>15 award-winning sites</dd></div>
+          <div><dt class="label">Stack</dt><dd>Vanilla JS, Canvas 2D, WebGL 2, Web Audio</dd></div>
+          <div><dt class="label">Type</dt><dd>Archivo, Geist Mono</dd></div>
+          <div><dt class="label">Shortcuts</dt><dd>Shift+G grid · Esc close</dd></div>
+        </dl>
+      </div>
+      <div role="tabpanel" id="panel-use" aria-labelledby="tab-use" hidden>
+        <p class="display drawer-title">Pick, <em>then commit.</em></p>
+        <ol class="steps">
+          <li>Start every brief with <code>immersive-site-playbook</code>: choose one hard idea.</li>
+          <li>Pick 3–5 techniques here that serve that idea. Not all of them.</li>
+          <li>Ask Claude to apply them by name; it reads the matching SKILL.md.</li>
+          <li>Finish with <code>premium-micro-details</code> and test reduced motion.</li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+
+  <div class="grid-overlay" id="grid-overlay" aria-hidden="true" hidden></div>
+
+  <!-- reticle-cursor -->
+  <div class="reticle-root" id="reticle" aria-hidden="true">
+    <span class="r-dot"></span><span class="r-c"></span><span class="r-c"></span><span class="r-c"></span><span class="r-c"></span>
+    <span class="r-label label"></span>
+  </div>
+
+  <script src="skills-data.js"></script>
+  <script src="core.js"></script>
+</body>
+</html>
