@@ -9,7 +9,7 @@ const {contentFields,searchContent}=await import(moduleUrl(readFileSync(new URL(
 const fields=contentFields(defaultContent);
 test('finds exact text first, insensitive to accents and case',()=>{
  assert.equal(searchContent(fields,'STARKARE')[0].id,'text-heroLine1');
- assert.ok(searchContent(fields,'traning pa dina villkor').some(x=>x.id==='text-principle1'));
+ assert.ok(searchContent(fields,'bra traning borjar med dig').some(x=>x.id==='text-aboutLead'));
 });
 test('recognises small typos, transpositions and mail synonym',()=>{
  assert.equal(searchContent(fields,'strakare')[0].id,'text-heroLine1');

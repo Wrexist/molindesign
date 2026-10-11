@@ -5,7 +5,7 @@ const Dashboard=lazy(()=>import('./app/admin/dashboard'));
 import {defaultContent,stockholmNow,type SiteContent} from './lib/content';
 import {apiFetch,base,setToken,assetUrl} from './lib/client-api';
 import {bootStep,bootFail,bootReveal,hasBootLoader,preloadSculpture} from './app/boot';
-import './app/globals.css';import './app/site.css';import './app/dashboard.css';import './app/boutique.css';
+import './app/globals.css';import './app/site.css';import './app/dashboard.css';import './app/boutique.css';import './app/refine.css';
 function App(){const isAdmin=location.pathname.replace(/\/$/,'').endsWith('/admin');const preview=new URLSearchParams(location.search).has('preview');const [auth,setAuth]=useState(false),[checking,setChecking]=useState(isAdmin),[password,setPassword]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false),[content,setContent]=useState<SiteContent|null>(null);
 useEffect(()=>{if(isAdmin){apiFetch('/api/admin').then(r=>{setAuth(r.ok);setChecking(false);}).catch(()=>{setChecking(false);setError('Kunde inte nå administrationen. Försök igen.');});}else{bootStep(42);apiFetch('/api/content'+(preview?'?draft=1':'')).then(async r=>{if(!r.ok)throw Error(preview?'Logga in i admin för att visa utkastet.':'Kunde inte hämta innehållet.');bootStep(76);return r.json();}).then(d=>{bootStep(90);setContent(d.content);}).catch(e=>{setError(e.message);bootFail(e.message);});}},[]);
 useEffect(()=>{if(content)void bootReveal({heroImage:assetUrl(content.images.hero),base});},[content]);
