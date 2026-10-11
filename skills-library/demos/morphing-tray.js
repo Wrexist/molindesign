@@ -37,7 +37,7 @@
   TextMorph.prototype.set = function (text, animate) {
     var seen = {}, pool = {}, self = this;
     (this.old || []).forEach(function (o) { pool[o.s.dataset.k] = o; });
-    if (this.el.getAttribute('aria-hidden')) this.el.parentNode.setAttribute('aria-label', text);
+    if (this.el.parentNode.tagName === 'BUTTON') this.el.parentNode.setAttribute('aria-label', text);
     this.reused = []; this.fresh = [];
     var spans = text.split('').map(function (ch) {
       var k = ch + (seen[ch] = (seen[ch] || 0) + 1), o = pool[k];
@@ -83,7 +83,9 @@
       '.d-morphing-tray .mt-app.dim { opacity: .3; filter: blur(2px); transform: scale(.985); }',
       '.d-morphing-tray .mt-cap { color: rgb(255 255 255 / .58); margin: 0; }',
       '.d-morphing-tray .mt-bal { font-family: Archivo, sans-serif; font-stretch: 125%; font-size: clamp(34px, 6.4cqw, 54px); line-height: 1.1; margin: 8px 0 22px; color: #fff; font-variant-numeric: tabular-nums; }',
+      '.d-morphing-tray .mt-bt { position: relative; display: inline-flex; } .d-morphing-tray .mt-bt span { display: inline-block; white-space: pre; } .d-morphing-tray .mt-bt .mt-ghost { position: absolute; top: 0; }',
       '.d-morphing-tray .mt-acts { width: min(380px, 100%); list-style: none; margin: 0; padding: 0; }',
+      '.d-morphing-tray .mt-acts li.mt-in { overflow: hidden; }',
       '.d-morphing-tray .mt-acts li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid rgb(255 255 255 / .07); font-size: 14px; color: rgb(255 255 255 / .85); }',
       '.d-morphing-tray .mt-av { width: 32px; height: 32px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 11px; color: #fff; background: #2a2725; }',
       '.d-morphing-tray .mt-acts .amt { margin-left: auto; color: rgb(255 255 255 / .62); font-variant-numeric: tabular-nums; }',
@@ -127,14 +129,14 @@
       '@keyframes mt-spin { to { transform: rotate(360deg); } }',
       '.d-morphing-tray .mt-check path { stroke-dasharray: 20; stroke-dashoffset: 20; } .d-morphing-tray .ico-check .mt-check path { animation: mt-draw .45s .1s ' + EASE_OUT + ' forwards; }',
       '@keyframes mt-draw { to { stroke-dashoffset: 0; } }',
-      '.d-morphing-tray .mt-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+      '.d-morphing-tray .mt-live, .d-morphing-tray .mt-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
       '@container (max-width: 520px) { .d-morphing-tray .mt-acts li:nth-child(3) { display: none; } .d-morphing-tray .mt-big { font-size: 34px; } }',
       '@media (prefers-reduced-motion: reduce) { .d-morphing-tray .mt-spin { animation-duration: 2.4s; } .d-morphing-tray .ico-check .mt-check path { animation: none; stroke-dashoffset: 0; } .d-morphing-tray .mt-app { transition: opacity .2s; } .d-morphing-tray .mt-app.dim { filter: none; transform: none; } }'
     ].join('\n'),
 
     mount: function (stage, ctx) {
       stage.innerHTML =
-        '<div class="mt-app"><p class="label mt-cap">Balance</p><p class="mt-bal">$4,812.40</p><ul class="mt-acts">' +
+        '<div class="mt-app"><p class="label mt-cap">Balance</p><p class="mt-bal"><span class="mt-sr">$4,812.40</span><span class="mt-bt" aria-hidden="true"></span></p><ul class="mt-acts">' +
         '<li><span class="mt-av">ML</span>Maya Lind<span class="amt">−$64.00</span></li><li><span class="mt-av">OS</span>Oskar Sund<span class="amt">+$1,200.00</span></li>' +
         '<li><span class="mt-av">AK</span>Ana Kim<span class="amt">−$18.50</span></li></ul></div>' +
         '<div class="mt-scrim"></div>' +
@@ -156,6 +158,25 @@
       var views = { review: stage.querySelector('[data-v=review]'), confirm: stage.querySelector('[data-v=confirm]') };
       var moreB = stage.querySelector('.mt-more-b'), more = stage.querySelector('.mt-more'), live = stage.querySelector('.mt-live');
       var label = new TextMorph(stage.querySelector('.mt-lbl'), btn, 'center');
+      var balEl = stage.querySelector('.mt-bal'), balance = new TextMorph(stage.querySelector('.mt-bt'), app, 'center'), bal = 4812.4;
+      var acts = stage.querySelector('.mt-acts');
+      var fmt = function (n) { return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+      balance.set(fmt(bal), false);
+      function settle() {                                    // the money lands where you can see it: balance morphs, a row slides in
+        bal -= 240; balance.capture(); balance.set(fmt(bal), !ctx.reduced); balance.play(ctx.reduced);
+        balEl.firstChild.textContent = fmt(bal);
+        var li = document.createElement('li');
+        li.innerHTML = '<span class="mt-av">ML</span>Maya Lind<span class="amt">−$240.00</span>';
+        acts.insertBefore(li, acts.firstChild);
+        var h = li.offsetHeight, last = acts.children[3];
+        if (!ctx.reduced) {
+          li.classList.add('mt-in');
+          var a = li.animate([{ height: '0px', paddingTop: '0px', paddingBottom: '0px', opacity: 0 }, { height: h + 'px', paddingTop: '10px', paddingBottom: '10px', opacity: 1 }], { duration: 500, easing: EASE_OUT });
+          a.onfinish = function () { li.classList.remove('mt-in'); };
+          anims.push(a);
+        }
+        if (last) last.remove();
+      }
       var title = new TextMorph(stage.querySelector('.mt-tt'), stage.querySelector('.mt-tt'), 'left');
       var state = 'idle', timers = [], anims = [], lifted = [], releaseT = 0, onKeyBound = false;
       tray.style.setProperty('--d', DUR + 'ms'); tray.style.setProperty('--e', EASE);
@@ -215,7 +236,7 @@
         }
         label.play(ctx.reduced); if (from.tray && to.tray) title.play(ctx.reduced);
         if (next === 'sending') timers.push(setTimeout(function () { go('sent'); }, 1400));
-        if (next === 'sent') timers.push(setTimeout(function () { go('idle'); }, 2000));
+        if (next === 'sent') { timers.push(setTimeout(settle, 350)); timers.push(setTimeout(function () { go('idle'); }, 2000)); }
       }
 
       function primary() {
