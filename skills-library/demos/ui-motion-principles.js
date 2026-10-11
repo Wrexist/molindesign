@@ -6,7 +6,7 @@
   var MENU = '<span class="ump-trig">Options <i aria-hidden="true">⌄</i></span><span class="ump-menu"><b>Rename…</b><b>Duplicate</b><b>Move to…</b></span>';
   var TABS = [
     { id: 'easing', name: 'Easing', rule: 'Enter and exit with ease-out. Same 300 ms: ease-in starts slow and feels late.',
-      kind: 'menu', bad: { e: 'ease-in', d: 300, v: 'ease-in · 300 ms' }, good: { e: EO, d: 300, v: 'cubic-bezier(.23,1,.32,1) · 300 ms' } },
+      kind: 'menu', bad: { e: 'ease-in', d: 300, v: 'ease-in · 300 ms' }, good: { e: EO, d: 300, v: 'ease-out-quint · 300 ms' } },
     { id: 'duration', name: 'Duration', rule: 'Keep UI motion under 300 ms. 180 ms reads as a response, 400 ms as lag.',
       kind: 'menu', bad: { e: EO, d: 400, v: 'ease-out · 400 ms' }, good: { e: EO, d: 180, v: 'ease-out · 180 ms' } },
     { id: 'origin', name: 'Origin', rule: 'Grow out of the trigger and start at .9+ (here .93), never from scale(0) at the centre.',
