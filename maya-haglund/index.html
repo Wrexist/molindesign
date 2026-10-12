@@ -49,6 +49,8 @@ html.is-booting,html.boot-handoff{overflow:hidden;scrollbar-gutter:stable}
 /* words wait for the web fonts (max 1s) so they never swap in place */
 .boot-word,.boot-meter{opacity:0;transition:opacity .45s ease}
 .boot.has-fonts .boot-word,.boot.has-fonts .boot-meter,.boot.is-error .boot-meter{opacity:1}
+/* Netlify injects a "Powered by Netlify" badge on free projects; keep the page clean. */
+#nl-badge-frame{display:none!important}
 .sr-only{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* choreography */
 .boot .kit,.boot .boot-floor{opacity:0}
