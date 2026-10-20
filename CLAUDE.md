@@ -5,6 +5,8 @@ Before building or redesigning any website, check these skills and apply the rel
 
 Every skill has a live demo in the Motion Library: https://wrexist.github.io/molindesign/skills-library/ (source in `skills-library/`; add a demo and a `skills-data.js` entry for each new skill, following `skills-library/demos/README.md`).
 
+**Showcase:** https://wrexist.github.io/molindesign/showcase/ (source in `showcase/`) puts every skill to work together on one launch page for a made-up camera, Halden LF‑1. Sections plug into the shell through `showcase/sections/README.md`; when a skill is added, use it somewhere there too and list it in that section's `data-skills`.
+
 Skills label what was read from source versus inferred (and add reduced-motion fallbacks where the source had none). Trust the labels.
 
 **Start here:** `immersive-site-playbook` (architecture, tokens, checklists), then `premium-micro-details` as the final polish pass on every site.
