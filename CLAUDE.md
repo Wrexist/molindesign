@@ -11,6 +11,9 @@ Skills label what was read from source versus inferred (and add reduced-motion f
 
 **Start here:** `immersive-site-playbook` (architecture, tokens, checklists), then `premium-micro-details` as the final polish pass on every site.
 
+**Research (before distilling a new site)**
+- `reverse-engineer-reference-site` — REA (Reverse Engineer Anything, MIT) teardown in one command: page capture, script export, motion-stack and shader fingerprint, functions that run on scroll/pointer minus idle, listeners, reduced-motion screenshot pairs; plus a rebuild-vs-reference parity check. Teardown output stays out of the repo.
+
 **Intro / loading**
 - `cinematic-loader` — silhouette-fill logo loader, rolling % counter, fly-through exit.
 - `gpu-renderer-fallback-warmup` — WebGPU→WebGL2 selection, shader warm-up before the loader drops.
