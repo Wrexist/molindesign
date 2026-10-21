@@ -1,0 +1,5 @@
+# Voice-over for code-rendered films (tools/voiceover.py). Python 3.10+, ffmpeg on PATH.
+kokoro-onnx==0.6.1      # Kokoro-82M TTS on CPU (Apache-2.0); weights download to ~/.cache/molin-voice
+faster-whisper==1.2.1   # word timings + listen check (MIT); optional, but captions and checks need it
+soundfile==0.14.0
+numpy>=1.26

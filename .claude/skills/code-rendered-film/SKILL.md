@@ -36,6 +36,7 @@ Average sub-frames across a shutter of ½ frame. In Canvas 2D an exact running m
 ## 5. Sound from the same timeline
 `SCORE(ctx)` builds nodes on an `OfflineAudioContext` (deterministic): EV-driven foley (shutter = band-passed noise slap + high tick 55 ms later + 150→60 Hz thump), seeded-noise convolution reverb, pads, bells (FM), plucks, noise beds. The live player renders the same buffer once on the first Play gesture, normalises to −1 dBFS, and uses the audio clock as the picture clock (`t = ac.currentTime − startedAt`). The renderer writes it to WAV and masters with **two-pass loudnorm, I −14 LUFS, TP −1.5** (verified, lemo `mux.sh`).
 - Keep 20–120 Hz about 3 dB under the rest (verified, lemo §5): a 38 Hz high-pass and a −4 dB low shelf at 140 Hz on the master fixed ours (measured −1.6 → −3.4 dB).
+- **Narration and captions:** use `film-voiceover` (Kokoro TTS on CPU, lines fitted to slots, word-timed captions, Whisper listen checks, score ducked from the word times). Declare the silences and the peak as its `quiet` windows.
 - **Two real silences** before the turn and before the peak; the first sound after each is one of the most important in the film. Use sound as a transition (J/L cuts) at least twice (verified, lemo DIRECTOR §6).
 
 ## 6. Directing (verified, lemo DIRECTOR + ClaudeAnimationBase)
