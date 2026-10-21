@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{NAME}}</title>
+<meta name="description" content="{{ONE_LINE}}">
+<!-- Preview: keep noindex until the client approves the production site and its domain. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0d0d0c">
+<meta property="og:title" content="{{NAME}}">
+<meta property="og:description" content="{{ONE_LINE}}">
+<meta property="og:type" content="website">
+<!-- og:image must be an absolute URL to work in link previews; set it once the address is known:
+<meta property="og:image" content="https://wrexist.github.io/molindesign/{{SLUG}}/og.jpg"> -->
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d0d0c'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23ff4d1f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="site.css">
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav wrap">
+  <a class="brand label" href="./">{{NAME}}</a>
+  <nav aria-label="Main">
+    <a class="label ulink" href="#about">About</a>
+    <a class="label ulink" href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <p class="label rise">{{NAME}}</p>
+    <h1 id="hero-title" class="display">
+      <span class="mask"><span class="line">One hard idea,</span></span>
+      <span class="mask"><span class="line">said <em class="serif">plainly</em>.</span></span>
+    </h1>
+    <p class="lede rise">{{ONE_LINE}}</p>
+    <a class="btn rise" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="sec wrap" id="about" aria-labelledby="about-title">
+    <p class="kicker rise"><span>01</span>About</p>
+    <h2 id="about-title" class="display">
+      <span class="mask"><span class="line">Replace this with the</span></span>
+      <span class="mask"><span class="line">second beat of the story.</span></span>
+    </h2>
+    <p class="rise">Write copy that says one thing per section. Short declarative lines, one emphasised phrase, facts as dry rows.</p>
+  </section>
+
+  <section class="sec wrap" id="contact" aria-labelledby="contact-title">
+    <p class="kicker rise"><span>02</span>Contact</p>
+    <h2 id="contact-title" class="display">
+      <span class="mask"><span class="line">Say hello.</span></span>
+    </h2>
+    <p class="rise"><a class="ulink" href="mailto:hello@example.com">hello@example.com</a></p>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <p class="label">Preview by Molin Design · content awaiting approval</p>
+</footer>
+
+<script src="site.js" defer></script>
+</body>
+</html>
