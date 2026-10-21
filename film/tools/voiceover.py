@@ -43,6 +43,9 @@ DEFAULTS = {
 def load_script(path):
     p = Path(path).resolve()
     s = json.loads(p.read_text())
+    if s.get('engine') == 'chatterbox':          # atempo, not re-speaking: keep the stretch small
+        s.setdefault('fit', {'min': 0.92, 'max': 1.1})
+        s.setdefault('speed', 1.0)
     for k, v in DEFAULTS.items():
         if isinstance(v, dict):
             s[k] = {**v, **s.get(k, {})}
@@ -80,7 +83,7 @@ def words(text):
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
 WEAK = set('a an the of to in on at for with and or but it its is as by from that this'.split())
-SAME = {'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4'}
+SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4'}
 
 
 def norm(w):
@@ -132,8 +135,51 @@ def resample(a, sr_in, sr_out=SR):
     return np.frombuffer(r.stdout, np.float32).copy()
 
 
+_cb = None
+def chatterbox():
+    global _cb
+    if _cb is None:
+        from chatterbox.tts import ChatterboxTTS
+        _cb = ChatterboxTTS.from_pretrained(device='cpu')
+    return _cb
+
+
+def tempo(a, rate):
+    """Pitch-preserving speed change (ffmpeg atempo) for engines that can't re-speak at a rate."""
+    if abs(rate - 1) < 1e-3:
+        return a
+    r = subprocess.run(['ffmpeg', '-v', 'error', '-f', 'f32le', '-ar', str(SR), '-ac', '1', '-i', '-', '-af', f'atempo={rate:.4f}',
+                        '-f', 'f32le', '-'], input=a.astype(np.float32).tobytes(), capture_output=True, check=True)
+    return np.frombuffer(r.stdout, np.float32).copy()
+
+
+def speak_chatterbox(s, l, speed, cache_dir):
+    """Chatterbox (MIT): a far more human read than Kokoro (breaths, pitch movement, emphasis), ~5x slower than real
+    time on CPU. It has no rate control, so the raw take is cached and `speed` is applied as a mild atempo."""
+    v = {**s.get('chatterbox', {}), **l.get('chatterbox', {})}
+    text = spoken(s, l)
+    seed = int(v.get('seed', 7)) + l.get('take', 0)
+    ex, cfg, ref = v.get('exaggeration', 0.55), v.get('cfg', 0.45), v.get('ref')
+    key = hashlib.sha1(json.dumps(['cb1', text, seed, ex, cfg, ref, v.get('temperature', 0.8)]).encode()).hexdigest()[:16]
+    f = cache_dir / f'{l["id"]}-cb-{key}.wav'
+    if f.exists():
+        a, _ = sf.read(f, dtype='float32')
+    else:
+        import torch
+        torch.manual_seed(seed)
+        kw = dict(exaggeration=ex, cfg_weight=cfg, temperature=v.get('temperature', 0.8))
+        if ref:
+            kw['audio_prompt_path'] = str((s['_dir'] / ref).resolve())
+        w = chatterbox().generate(text, **kw)
+        a = resample(trim(w[0].numpy(), chatterbox().sr), chatterbox().sr)
+        sf.write(f, a, SR, subtype='FLOAT')
+    return tempo(a, speed)
+
+
 def speak(s, l, speed, cache_dir):
     """Synthesize one line at a rate; cached by everything that changes the sound."""
+    if s.get('engine') == 'chatterbox':
+        return speak_chatterbox(s, l, speed, cache_dir)
     voice, lang = l.get('voice', s['voice']), l.get('lang', s['lang'])
     text = spoken(s, l)
     pause = l.get('sentence_pause', 0.3)
@@ -403,7 +449,7 @@ def cmd_check(a):
     doc = json.loads((out / 'vo.json').read_text())
     heard = {h['id']: h['heard'] for h in json.loads((out / 'heard.json').read_text())}
     ok = True
-    print('\nLISTEN CHECK  (Whisper hears each line; fix word error > 10 % or pace outside 1.8–3.3 w/s; soft = words heard under 0.45 confidence, listen to those)')
+    print('\nLISTEN CHECK  (Whisper hears each line; fix word error > 10 % or pace outside 1.8 w/s to pace.max + 0.3; soft = words heard under 0.45 confidence, listen to those)')
     for l in doc['lines']:
         h = heard.get(l['id'])
         if h is None:
@@ -417,7 +463,7 @@ def cmd_check(a):
         flags = []
         if w > 0.10: flags.append(f'heard "{" ".join(x["w"] for x in h)}"')
         note = ('  (soft: ' + ', '.join(f'{x["w"]} {x["p"]:.2f}' for x in weak) + ')') if weak else ''
-        if pace > 3.3: flags.append(f'rushed at {pace:.2f} w/s: cut words')
+        if pace > s['pace']['max'] + 0.3: flags.append(f'rushed at {pace:.2f} w/s: cut words or add a comma')
         if pace < 1.8: flags.append(f'dragging at {pace:.2f} w/s')
         ok &= not flags
         print(f'{"ok  " if not flags else "FIX "}  {l["id"]:10} wer {w:4.2f}  {pace:4.2f} w/s  ' + ('; '.join(flags)) + note)
