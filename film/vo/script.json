@@ -1,0 +1,20 @@
+{
+  "about": "Narration for Held. The supers carry the claims; the voice says the why, in the gaps between them. It never speaks over the two silences or the button press.",
+  "dur": 34,
+  "voice": "af_heart",
+  "lang": "en-us",
+  "speed": 0.9,
+  "quiet": [[10.0, 11.6], [22.6, 24.3]],
+  "pronounce": { "LF-1": "L F one" },
+  "names": ["Halden", "LF-1"],
+  "chain": { "room": 0.6 },
+  "duck": { "db": -9 },
+  "lines": [
+    { "id": "freeze", "at": 2.0,   "end": 5.0,  "text": "One eight-thousandth of a second." },
+    { "id": "run",    "at": 7.15,  "end": 9.9,  "text": "Leave it open, and the rain falls." },
+    { "id": "night",  "at": 12.1,  "end": 15.1, "text": "Turn it up. The night comes back." },
+    { "id": "silk",   "at": 19.95, "end": 22.55, "text": "Water turns to silk. Stars stay still." },
+    { "id": "holds",  "at": 24.5,  "end": 27.9, "text": "Most cameras stop time. This one holds it." },
+    { "id": "name",   "at": 28.05, "end": 31.5, "text": "Halden, LF-1. See in the dark." }
+  ]
+}

@@ -60,6 +60,6 @@ A camera that can freeze a raindrop can also hold fifteen seconds of night. Setu
 
 ## Type and titles
 
-Archivo at 125 % width for display, Instrument Serif italic for one line per beat of feeling, Geist Mono for every number. Masked word reveals, readouts as rolling digits. One accent, signal orange `#ff4d1f`, reserved for the dot / shutter button and nothing else. Ink `#0d0d0c`, paper `#ece8df`. No voice‑over in this cut: the text and the readouts carry it, and every line is held at least letters ÷ 15 + 1.5 s (checked by `tools/readcheck.mjs`).
+Archivo at 125 % width for display, Instrument Serif italic for one line per beat of feeling, Geist Mono for every number. Masked word reveals, readouts as rolling digits. One accent, signal orange `#ff4d1f`, reserved for the dot / shutter button and nothing else. Ink `#0d0d0c`, paper `#ece8df`. No voice‑over in the main cut: the text and the readouts carry it (a narrated cut, made with the film-voiceover skill, is `out/halden-lf1-held-vo.mp4`), and every line is held at least letters ÷ 15 + 1.5 s (checked by `tools/readcheck.mjs`).
 
 Banned (high‑end minimal): shockwave rings, particle bursts, RGB split, camera shake, lens flares, neon glow, grid floors, bouncy easing.
