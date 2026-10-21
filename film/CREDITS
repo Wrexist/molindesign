@@ -1,0 +1,11 @@
+Held · Halden LF-1 launch film — credits
+
+Picture, motion, score and sound design: written in code (film.js). No video generation, no stock footage, no samples.
+Halden LF-1 is a made-up product; the camera drawing follows the showcase symbol in ../showcase/index.html.
+
+Fonts (self-hosted, SIL Open Font License 1.1, from Google Fonts):
+- Archivo — Omnibus-Type
+- Instrument Serif — Instrument
+- Geist Mono — Vercel
+
+Tools: Chromium (headless, via playwright-core, Apache-2.0), FFmpeg (LGPL/GPL).

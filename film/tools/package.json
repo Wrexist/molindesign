@@ -1,0 +1,7 @@
+{
+  "name": "halden-film-tools",
+  "private": true,
+  "type": "module",
+  "description": "Offline renderer for film/: headless Chromium captures render(t) frame by frame, ffmpeg joins and masters. Not needed to view the page.",
+  "dependencies": { "playwright-core": "1.56.1" }
+}

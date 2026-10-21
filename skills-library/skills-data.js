@@ -351,5 +351,13 @@ window.SKILLS = [
   "title": "Premium micro-details",
   "source": "amv.tarunvishwakarma.dev",
   "short": "Checklist of small craft details that make a site feel premium and accessible"
+ },
+ {
+  "id": "code-rendered-film",
+  "cat": "Film & video",
+  "desc": "Make a launch film, hero loop or social clip entirely in code: one page whose every frame is a pure function of t, played live and captured by headless Chromium into an MP4 with sub-frame motion blur, a procedural score from the same timeline, −14 LUFS master, text-dwell check, contact sheets and an AI-jury review. From lemo-opuscar, ClaudeAnimationBase, mg-styles-15, pdoom-video; proven in film/ (Halden LF-1 \"Held\").",
+  "title": "Code-rendered film",
+  "source": "lemo-opuscar + film/",
+  "short": "Make a launch film, hero loop or social clip entirely in code"
  }
 ];
