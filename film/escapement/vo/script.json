@@ -2,8 +2,21 @@
  "about": "Narration for One second, the vertical watch explainer. The voice talks like a friend leaning over a loupe: it asks, it points, it says the why; the supers carry the numbered claims. It leaves the release snap and the cut into slow motion alone, and lets the first ticks be heard before it speaks.",
  "dur": 38.5,
  "voice": "af_heart",
+ "engine": "chatterbox",
+ "chatterbox": {
+  "exaggeration": 0.55,
+  "cfg": 0.3,
+  "seed": 11
+ },
  "lang": "en-us",
  "speed": 1.0,
+ "fit": {
+  "min": 0.9,
+  "max": 1.08
+ },
+ "pace": {
+  "max": 3.5
+ },
  "quiet": [
   [
    11.8,
@@ -15,10 +28,10 @@
   "brake"
  ],
  "chain": {
-  "room": 0.35
+  "room": 0.3
  },
  "duck": {
-  "db": -11,
+  "db": -12,
   "score_db": -3,
   "smr_db": 13
  },
@@ -33,7 +46,9 @@
    "id": "apart",
    "at": 4.7,
    "end": 5.95,
-   "text": "Let's open it."
+   "text": "Let's open it up.",
+   "speed": 0.9,
+   "take": 3
   },
   {
    "id": "spring",
@@ -88,7 +103,8 @@
    "id": "second",
    "at": 34.2,
    "end": 35.75,
-   "text": "That's a second."
+   "text": "That's a second.",
+   "speed": 0.9
   },
   {
    "id": "wobble",
