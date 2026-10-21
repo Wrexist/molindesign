@@ -22,3 +22,10 @@ node render.mjs strip --from 23 --to 24.2  # every 0.1 s around a key moment
 node render.mjs readcheck                  # every line held ≥ letters/15 + 1.5 s
 node render.mjs all                        # score → WAV, frames (4-sample motion blur) → MP4, loudnorm −14 LUFS, poster, checks
 ```
+
+## Second film: “One second” (vertical explainer)
+`escapement/` is a 38.5‑second 1080×1920 TikTok/Reels explainer on how a mechanical watch counts a second, built on the same contract and renderer: `escapement/index.html` plays it, `escapement/out/one-second.mp4` is the master, `escapement/TREATMENT.md` has the reads. Render any film with `--film <dir>`; size, length, poster time and file name come from the page's `window.FILM`:
+```sh
+node render.mjs readcheck --film escapement
+node render.mjs video --film escapement --samples 6 && node render.mjs master --film escapement
+```

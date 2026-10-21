@@ -8,6 +8,8 @@
 //   node render.mjs events                                                (exports DUR + EV → out/events.json)
 //   node render.mjs encode                                                (re-encode existing frames + master)
 //   node render.mjs all                                                   (audio, video, master, poster, checks)
+// Any mode takes --film <dir> to render another film in film/<dir>/ (its own index.html and out/); size, length,
+// poster time and file name come from the page's window.FILM { W, H, DUR, POSTER, SLUG }.
 import { chromium } from 'playwright-core';
 import http from 'node:http';
 import fs from 'node:fs';
@@ -17,10 +19,13 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
-const OUT = path.join(ROOT, 'out');
 const args = process.argv.slice(2);
 const mode = args[0] || 'sheet';
 const opt = (k, d) => { const i = args.indexOf('--' + k); return i > -1 ? args[i + 1] : d; };
+const FILMDIR = opt('film', '');
+const OUT = path.join(ROOT, FILMDIR, 'out');
+const PAGE = (FILMDIR ? FILMDIR + '/' : '') + 'index.html';
+let SPEC = { W: 1920, H: 1080, DUR: 34, POSTER: 29.9, SLUG: 'halden-lf1-held' };
 fs.mkdirSync(path.join(OUT, 'check'), { recursive: true });
 
 const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.woff2': 'font/woff2', '.jpg': 'image/jpeg', '.md': 'text/plain' };
@@ -40,11 +45,13 @@ async function launch() {
   catch { return await chromium.launch({ executablePath: '/opt/pw-browsers/chromium', args: flags }); }
 }
 async function openPage(browser, port) {
-  const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
+  const page = await browser.newPage({ viewport: { width: SPEC.W, height: SPEC.H }, deviceScaleFactor: 1 });
   const errors = [];
   page.on('pageerror', e => { errors.push(e.message); console.error('[pageerror]', e.message); });
-  await page.goto(`http://127.0.0.1:${port}/index.html?render`);
+  await page.goto(`http://127.0.0.1:${port}/${PAGE}?render`);
   await page.waitForFunction(() => window.READY === true, null, { timeout: 30000 });
+  const f = await page.evaluate(() => { const F = window.FILM || {}; return { W: F.W, H: F.H, DUR: window.DUR, POSTER: F.POSTER, SLUG: F.SLUG }; });
+  for (const k in f) if (f[k] != null) SPEC[k] = f[k];
   page._errors = errors;
   return page;
 }
@@ -53,10 +60,9 @@ function run(cmd, a) { const r = spawnSync(cmd, a, { encoding: 'utf8', maxBuffer
 
 async function sheet(page, times, cols, w, out, label = true) {
   const data = await page.evaluate(async ({ times, cols, w, label }) => {
-    const h = Math.round(w * 9 / 16), rows = Math.ceil(times.length / cols), pad = label ? 22 : 0;
+    const src = document.getElementById('film'), h = Math.round(w * src.height / src.width), rows = Math.ceil(times.length / cols), pad = label ? 22 : 0;
     const c = document.createElement('canvas'); c.width = cols * w; c.height = rows * (h + pad);
     const g = c.getContext('2d'); g.fillStyle = '#111'; g.fillRect(0, 0, c.width, c.height);
-    const src = document.getElementById('film');
     times.forEach((t, i) => {
       window.render(t);
       const x = (i % cols) * w, y = Math.floor(i / cols) * (h + pad);
@@ -94,7 +100,7 @@ async function audio(page) {
 
 async function video(browser, port) {
   const fps = +opt('fps', 30), samples = +opt('samples', 4), shutter = +opt('shutter', .5), workers = +opt('workers', 3);
-  const dur = 34, n = Math.round(dur * fps);
+  const dur = SPEC.DUR, n = Math.round(dur * fps);
   const dir = path.join(OUT, 'frames'); fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
   const pages = await Promise.all(Array.from({ length: workers }, () => openPage(browser, port)));
   let next = 0, done = 0; const t0 = Date.now();
@@ -117,12 +123,12 @@ function encode(fps = +opt('fps', 30)) {
 }
 
 function master() {
-  const wav = path.join(OUT, 'mix.wav'), vid = path.join(OUT, 'video.mp4'), out = path.join(OUT, 'halden-lf1-held.mp4');
+  const wav = path.join(OUT, 'mix.wav'), vid = path.join(OUT, 'video.mp4'), out = path.join(OUT, SPEC.SLUG + '.mp4');
   const m = run('ffmpeg', ['-hide_banner', '-nostats', '-i', wav, '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-']);
   const j = JSON.parse(m.slice(m.lastIndexOf('{'), m.lastIndexOf('}') + 1));
   const ln = `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`;
   ff(['-i', vid, '-i', wav, '-af', ln + ',aresample=192000,alimiter=limit=0.72:level=false:attack=1:release=60,aresample=48000', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', out]);
-  console.log('wrote out/halden-lf1-held.mp4');
+  console.log('wrote', path.relative(ROOT, out));
   checks(out);
 }
 function checks(file) {
@@ -137,7 +143,7 @@ function checks(file) {
 async function readcheck(page) {
   const res = await page.evaluate(() => {
     const seen = {};
-    for (let f = 0; f < window.DUR * 24; f++) {
+    for (let f = 0; f < Math.round(window.DUR * 24); f++) {
       const t = f / 24;
       window.TEXTS(t).forEach(x => { (seen[x.id] = seen[x.id] || { text: x.text, frames: 0 }).frames++; });
     }
@@ -155,6 +161,7 @@ async function readcheck(page) {
 
 const srv = await serve(); const port = srv.address().port;
 const browser = await launch();
+if (mode === 'master' || mode === 'encode' || mode === 'video') { const p = await openPage(browser, port); await p.close(); }   // read the film's spec
 try {
   if (mode === 'video') await video(browser, port);
   else if (mode === 'master') master();
@@ -162,18 +169,18 @@ try {
   else if (mode === 'all') {
     const page = await openPage(browser, port);
     await audio(page); await readcheck(page);
-    await sheet(page, Array.from({ length: 34 }, (_, i) => i + .5), 6, 320, path.join(OUT, 'check', 'sheet.jpg'));
-    await sheet(page, [29.9], 1, 1920, path.join(OUT, 'poster.jpg'), false);
+    await sheet(page, Array.from({ length: Math.ceil(SPEC.DUR) }, (_, i) => i + .5), SPEC.H > SPEC.W ? 10 : 6, SPEC.H > SPEC.W ? 216 : 320, path.join(OUT, 'check', 'sheet.jpg'));
+    await sheet(page, [SPEC.POSTER], 1, SPEC.W, path.join(OUT, 'poster.jpg'), false);
     await page.close();
     await video(browser, port); master();
   } else {
     const page = await openPage(browser, port);
     if (mode === 'sheet' || mode === 'strip') {
-      const from = +opt('from', 0), to = +opt('to', 34), step = +opt('step', mode === 'strip' ? .1 : 1);
+      const from = +opt('from', 0), to = +opt('to', SPEC.DUR), step = +opt('step', mode === 'strip' ? .1 : 1);
       const times = []; for (let t = from; t <= to + 1e-9; t += step) times.push(+t.toFixed(4));
       await sheet(page, times, +opt('cols', 6), +opt('w', 320), path.resolve(opt('out', path.join(OUT, 'check', mode + '.jpg'))));
     } else if (mode === 'still') {
-      await sheet(page, [+opt('t', 29.9)], 1, +opt('w', 1920), path.resolve(opt('out', path.join(OUT, 'check', 'still.jpg'))), false);
+      await sheet(page, [+opt('t', SPEC.POSTER)], 1, +opt('w', SPEC.W), path.resolve(opt('out', path.join(OUT, 'check', 'still.jpg'))), false);
     } else if (mode === 'audio') await audio(page);
     else if (mode === 'readcheck') await readcheck(page);
     else if (mode === 'events') {
