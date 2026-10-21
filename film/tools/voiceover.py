@@ -33,7 +33,7 @@ DEFAULTS = {
     'quiet': [],                                  # [t0, t1] windows the voice must leave alone (silences, the peak)
     'pronounce': {},                              # written form → spoken form, whole words
     'chain': {'highpass': 80, 'mud_db': -2.0, 'presence_db': 2.5, 'air_db': 1.5, 'deess': 0.4, 'room': 0.0},
-    'duck': {'db': -10.0, 'lead': 0.2, 'release': 0.5, 'bridge': 0.7, 'carve_db': -4.0, 'smr_db': 12.0},
+    'duck': {'db': -10.0, 'lead': 0.2, 'release': 0.5, 'bridge': 0.7, 'carve_db': -4.0, 'smr_db': 12.0, 'score_db': 0.0},   # score_db: the whole score, under and between lines
     'master': {'lufs': -14.0, 'tp': -1.5},
     'captions': {'max_words': 3, 'max_chars': 18, 'min_s': 0.5},
 }
@@ -471,7 +471,7 @@ def cmd_mix(a):
     score_p = Path(a.score or film / 'out' / 'mix.wav')
     video_p = Path(a.video) if a.video else film / 'out' / 'video.mp4'
     doc = json.loads((out / 'vo.json').read_text())
-    score = read_audio(score_p, 2)
+    score = read_audio(score_p, 2) * 10 ** (s['duck'].get('score_db', 0) / 20)   # the whole score down a touch, lines or not
     vo = read_audio(out / 'vo.wav', 1)[:, 0]
     n = len(score)
     vo = np.pad(vo, (0, max(0, n - len(vo))))[:n]
@@ -524,12 +524,20 @@ def master(s, wav, video, dst):
     m = s['master']
     r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(wav), '-af', f'loudnorm=I={m["lufs"]}:TP={m["tp"]}:LRA=11:print_format=json', '-f', 'null', '-'], capture_output=True, text=True)
     j = json.loads(r.stderr[r.stderr.rindex('{'):r.stderr.rindex('}') + 1])
-    ln = (f'loudnorm=I={m["lufs"]}:TP={m["tp"]}:LRA=11:measured_I={j["input_i"]}:measured_TP={j["input_tp"]}:'
-          f'measured_LRA={j["input_lra"]}:measured_thresh={j["input_thresh"]}:offset={j["target_offset"]}:linear=true')
     lim = 10 ** ((m['tp'] - 1.2) / 20)       # limit at 4x oversampling, a hair under the true-peak target
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(video), '-i', str(wav), '-map', '0:v:0', '-map', '1:a:0',
-                    '-af', f'{ln},aresample=192000,alimiter=limit={lim:.3f}:level=false:attack=1:release=60,aresample=48000',
-                    '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', str(dst)], check=True)
+    # loudnorm silently falls back to its dynamic mode when linear gain would break the true-peak target (sharp foley
+    # clicks under a voice do that), and the dynamic mode overshoots. So: plain gain into the oversampled limiter,
+    # measured and corrected once, which always stays linear.
+    gain = m['lufs'] - float(j['input_i'])
+    for _ in range(2):
+        chain = f'volume={gain:.2f}dB,aresample=192000,alimiter=limit={lim:.3f}:level=false:attack=1:release=60,aresample=48000'
+        subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(video), '-i', str(wav), '-map', '0:v:0', '-map', '1:a:0',
+                        '-af', chain, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', str(dst)], check=True)
+        r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(dst), '-af', 'ebur128', '-f', 'null', '-'], capture_output=True, text=True)
+        got = float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r.stderr)[-1])
+        if abs(got - m['lufs']) < 0.3:
+            break
+        gain += m['lufs'] - got
     r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(dst), '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True)
     I = re.findall(r'I:\s+(-?[\d.]+) LUFS', r.stderr)[-1]
     tp = re.findall(r'Peak:\s+(-?[\d.]+) dBFS', r.stderr)[-1]
