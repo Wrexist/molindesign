@@ -3,3 +3,6 @@ kokoro-onnx==0.6.1      # Kokoro-82M TTS on CPU (Apache-2.0); weights download t
 faster-whisper==1.2.1   # word timings + listen check (MIT); optional, but captions and checks need it
 soundfile==0.14.0
 numpy>=1.26
+# Optional, for "engine": "chatterbox" (a far more human read). Use a Python 3.11 venv and CPU torch:
+#   pip install --extra-index-url https://download.pytorch.org/whl/cpu torch==2.6.0+cpu torchaudio==2.6.0+cpu
+#   pip install chatterbox-tts==0.1.7 "setuptools<81"     # perth's watermarker still imports pkg_resources
