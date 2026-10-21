@@ -63,6 +63,9 @@ Skills label what was read from source versus inferred (and add reduced-motion f
 - `scissor-view-webgl-slots` — many 3D slots in a DOM page with one canvas.
 - `instanced-grass-and-snow-parallax` — instanced grass and parallax-occlusion snow.
 
+**Film & video**
+- `code-rendered-film` — a film written in code: render(t) contract, motion blur, procedural score, headless render to MP4, loudnorm, readcheck, AI-jury loop. Working example: `film/` (Halden LF‑1 “Held”, live at https://wrexist.github.io/molindesign/film/).
+
 **Audio**
 - `web-audio-soundscape` — opt-in live-mixed audio, muffle filter, procedural sounds.
 - `scroll-velocity-whoosh-audio` — whoosh and low-pass driven by scroll velocity.

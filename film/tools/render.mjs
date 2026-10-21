@@ -121,7 +121,7 @@ function master() {
   const m = run('ffmpeg', ['-hide_banner', '-nostats', '-i', wav, '-af', 'loudnorm=I=-14:TP=-1.5:LRA=11:print_format=json', '-f', 'null', '-']);
   const j = JSON.parse(m.slice(m.lastIndexOf('{'), m.lastIndexOf('}') + 1));
   const ln = `loudnorm=I=-14:TP=-1.5:LRA=11:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`;
-  ff(['-i', vid, '-i', wav, '-af', ln + ',aresample=48000,alimiter=limit=0.75:level=false:attack=1:release=60', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', out]);
+  ff(['-i', vid, '-i', wav, '-af', ln + ',aresample=192000,alimiter=limit=0.72:level=false:attack=1:release=60,aresample=48000', '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', out]);
   console.log('wrote out/halden-lf1-held.mp4');
   checks(out);
 }

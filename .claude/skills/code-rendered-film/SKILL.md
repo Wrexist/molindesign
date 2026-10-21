@@ -71,3 +71,10 @@ Only CC0 / CC BY / OFL; list each in `CREDITS`; self-host fonts (Google Fonts CS
 - A hard-edged beam polygon reads as a flashlight: draw beams into a quarter-res buffer and upscale for free softness.
 - Text dwell fails silently by eye: run `readcheck` after every retime.
 - `exitCode` from a check stops a `&&` chain; run audio/video steps separately when iterating.
+- Rain read as stock bokeh until each near drop became a teardrop lens (an upside‑down image of the lamp inside, a rim, a specular) drawn `source-over`, with a visible lamp and a soft cone behind it. Additive circles alone read as "bokeh background".
+- A long exposure is a pure function too: average K samples over the window opened so far (K grows with the elapsed exposure). Glints become silk lines, a beam becomes a fan; no frame-to-frame accumulation buffer needed.
+- An outline drawing of the product reads as a wireframe: give it mass (gradient body, texture, rim light, one light sweep) and fade the construction strokes as the shading arrives.
+- A "silence" is not silent while reverb tails run: duck the master, not just the beds. Our first jury measured −24 dB in it; aim ≤ −34 dB.
+- True peak: limit at 4× oversampling (`aresample=192000,alimiter,…,aresample=48000`); a 48 kHz limiter still gave +2 → −0.5 dBTP.
+- A long exposure of a rotating beam seen side-on is just two brighter wedges. Give each averaged instant its own small tilt (seeded) and narrow the beam as the exposure grows: the fan becomes rays, the signature shot of round 3.
+- Run the jury twice. Round 1 (≈6/10) found what self-review missed: the ending iris landing on the wrong object, a dead black stretch, all lower-thirds on one baseline. Round 2 scored 7.0 and asked for the ray fan, earlier and brighter product shading, a legible price and glass air in the frozen section.
