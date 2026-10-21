@@ -76,10 +76,11 @@
   <div>
     <p class="kick">Explainer · 9:16 · 0:38</p>
     <h1 id="gate-title">One <em>second.</em></h1>
-    <p class="lede">How a mechanical watch counts time, as a vertical clip for TikTok, Reels and Shorts. Every frame, the score and every click are functions of time; this page plays it live and the same page renders the MP4.</p>
+    <p class="lede">How a mechanical watch counts time, as a narrated vertical clip for TikTok, Reels and Shorts. Every frame, the score and every click are functions of time; this page plays it live and the same page renders the MP4.</p>
     <div class="row">
       <button class="btn primary" id="play-big" type="button"><span class="dot" aria-hidden="true"></span><span id="play-label">Play with sound</span></button>
-      <a class="btn" href="out/one-second.mp4" download>Download MP4</a>
+      <a class="btn" href="out/one-second-vo.mp4" download>Download MP4</a>
+      <a class="btn" href="out/one-second.mp4" download>Without voice</a>
       <a class="btn" href="TREATMENT.md">Treatment</a>
       <span class="meta">Space plays · ← → seek · , . step a frame</span>
     </div>
@@ -145,8 +146,10 @@
     if (scoreBuf) return scoreBuf;
     var OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
     var off = new OAC(2, Math.ceil(48000 * DUR), 48000);
-    window.SCORE(off);
-    scoreBuf = off.startRendering().then(function (buf) {
+    /* the narrated mix (voice + ducked score, mastered by tools/voiceover.py); without it, the score renders here */
+    var narrated = fetch('vo/one-second-vo.mp3').then(function (r) { if (!r.ok) throw 0; return r.arrayBuffer(); })
+      .then(function (ab) { return off.decodeAudioData(ab); });
+    scoreBuf = narrated.catch(function () { window.SCORE(off); return off.startRendering(); }).then(function (buf) {
       var peak = 0, c, d, i;
       for (c = 0; c < buf.numberOfChannels; c++) { d = buf.getChannelData(c); for (i = 0; i < d.length; i += 3) { var a = Math.abs(d[i]); if (a > peak) peak = a; } }
       var gainK = peak > 0 ? Math.pow(10, -1 / 20) / peak : 1;

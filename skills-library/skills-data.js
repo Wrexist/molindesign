@@ -359,5 +359,13 @@ window.SKILLS = [
   "title": "Code-rendered film",
   "source": "lemo-opuscar + film/",
   "short": "Make a launch film, hero loop or social clip entirely in code"
+ },
+ {
+  "id": "film-voiceover",
+  "cat": "Film & video",
+  "desc": "Add professional narration to a code-rendered film: write lines viewers stay for, pick a voice, fit every line to its slot by re-speaking at a new rate, get word-timed caption cards, prove each line with a Whisper listen check alone and through the finished mix, duck and carve the score from the word times, master to −14 LUFS. Kokoro-82M (Apache-2.0) on CPU; ideas from VoiceStudio's source; proven on Held's narrated cut.",
+  "title": "Film voice-over",
+  "source": "VoiceStudio + Kokoro + film/",
+  "short": "Narrate a code-rendered film: script, voice, timing, captions, ducking"
  }
 ];

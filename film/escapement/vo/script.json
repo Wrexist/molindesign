@@ -1,0 +1,100 @@
+{
+ "about": "Narration for One second, the vertical watch explainer. The voice talks like a friend leaning over a loupe: it asks, it points, it says the why; the supers carry the numbered claims. It leaves the release snap and the cut into slow motion alone, and lets the first ticks be heard before it speaks.",
+ "dur": 38.5,
+ "voice": "af_heart",
+ "lang": "en-us",
+ "speed": 1.0,
+ "quiet": [
+  [
+   11.8,
+   12.3
+  ]
+ ],
+ "pronounce": {},
+ "names": [
+  "brake"
+ ],
+ "chain": {
+  "room": 0.35
+ },
+ "duck": {
+  "db": -11,
+  "score_db": -3,
+  "smr_db": 13
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.3,
+   "end": 4.55,
+   "text": "There's no battery in here. So what's counting the seconds?"
+  },
+  {
+   "id": "apart",
+   "at": 4.7,
+   "end": 5.95,
+   "text": "Let's open it."
+  },
+  {
+   "id": "spring",
+   "at": 6.3,
+   "end": 9.15,
+   "text": "It runs on one spring, wound tight."
+  },
+  {
+   "id": "go",
+   "at": 9.25,
+   "end": 11.75,
+   "text": "Let go, and it's gone."
+  },
+  {
+   "id": "brake",
+   "at": 12.3,
+   "end": 13.95,
+   "text": "So, it needs a brake."
+  },
+  {
+   "id": "fork",
+   "at": 14.3,
+   "end": 18.85,
+   "text": "This fork lets the wheel slip. One tooth, at a time."
+  },
+  {
+   "id": "what",
+   "at": 18.95,
+   "end": 20.4,
+   "text": "What rocks the fork?"
+  },
+  {
+   "id": "balance",
+   "at": 20.55,
+   "end": 23.9,
+   "text": "A balance wheel, on a hair-thin spring."
+  },
+  {
+   "id": "same",
+   "at": 24.9,
+   "end": 27.2,
+   "text": "Same swing. Every single time."
+  },
+  {
+   "id": "beats",
+   "at": 27.6,
+   "end": 32.7,
+   "text": "Put it together, and that's twenty-eight thousand, eight hundred beats an hour.",
+   "say": "Put it together, and that's twenty-eight thousand, eight hundred beats, an hour."
+  },
+  {
+   "id": "second",
+   "at": 34.2,
+   "end": 35.75,
+   "text": "That's a second."
+  },
+  {
+   "id": "wobble",
+   "at": 35.95,
+   "end": 38.2,
+   "text": "Just a spring, and a wobble."
+  }
+ ]
+}
