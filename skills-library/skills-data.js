@@ -367,5 +367,21 @@ window.SKILLS = [
   "title": "Film voice-over",
   "source": "VoiceStudio + Kokoro + film/",
   "short": "Narrate a code-rendered film: script, voice, timing, captions, ducking"
+ },
+ {
+  "id": "site-kickoff",
+  "cat": "Workflow",
+  "desc": "Start every new website here — turn one sentence into a written, approved plan before any code (the one hard idea, motion personality, story-ordered sections, the few skills that earn a place with a reason each, budgets, facts to confirm), then scaffold it with tools/new-site.sh from templates/site/. Use when someone asks for a new site, landing page, demo for a client or a redesign. Adapted from ECC (github.com/affaan-m/ECC, MIT) \"plan before code\" and \"load only what you use this week\", read in source Oct 2026.",
+  "title": "Site kickoff",
+  "source": "ECC (affaan-m/ECC) + templates/site/",
+  "short": "One sentence becomes an approved brief, then a scaffolded site"
+ },
+ {
+  "id": "site-verification-loop",
+  "cat": "Workflow",
+  "desc": "Prove a static site works before it ships — run tools/check-site.mjs (GitHub Pages /molindesign/ prefix, desktop, phone and reduced-motion runs, JS errors, 404s, sideways scroll, tap targets, unnamed controls, reveals that never fire, metadata, secrets), then a fresh-context review by the site-reviewer agent, fix with evidence, and record what generalises. Use after building or changing any site in this repo and before every PR. Adapted from ECC's verification-loop, code-reviewer and continuous-learning (github.com/affaan-m/ECC, MIT), read in source Oct 2026.",
+  "title": "Site verification loop",
+  "source": "ECC (affaan-m/ECC) + tools/check-site.mjs",
+  "short": "Machine checks, a fresh-context review, evidence in the PR"
  }
 ];

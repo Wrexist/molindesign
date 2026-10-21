@@ -43,3 +43,9 @@ A static showcase of every design skill in `.claude/skills/`: each technique has
 - `skills-library/core.js` runs the page: loader, index and filters, lazy demo mounting, progress rail, reticle cursor, sound toggle, About drawer and copy buttons.
 
 The page is `noindex` like the other demos. The demos are dependency-free reimplementations for learning; they are not affiliated with the studios, brands or libraries credited as sources.
+
+## Starting a new site
+
+New sites start from `templates/site/` (plain HTML, CSS and JavaScript, no build): `tools/new-site.sh <slug> "Site name" "one sentence"` creates `<slug>/` with a starter page (tokens, text reveals, reduced motion, `noindex` preview), a `BRIEF.md` to fill in and approve before building, and a per-site `CLAUDE.md`. The template folder itself is published by GitHub Pages too; it is a placeholder page marked `noindex`.
+
+Before pushing a site, run `node tools/check-site.mjs <slug>`. It serves the repository under `/molindesign/` like GitHub Pages and loads the page on desktop, on a phone and with reduced motion, then reports errors, missing files, sideways scrolling, small tap targets, unnamed controls, text that never appears and missing metadata. `--static` skips the browser. Playwright comes from `npm i` in `tools/` or a global install. `node tools/check-skills.mjs` checks that every skill in `.claude/skills/` is listed in `CLAUDE.md` and has a Motion Library entry and demo.
