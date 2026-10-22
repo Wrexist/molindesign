@@ -24,6 +24,7 @@ The narration was recorded before any picture existed (`vo/script.json`, Chatter
 ## Rules it follows
 
 - Captions sit in the upper third on the paper, highlight each word as it is spoken, and stay out of the TikTok UI zones (labels left of x≈930, above y≈1450).
+- Drawn to look like the real thing: a glossy kernel with its germ and tip cap; cut open, its real anatomy (hull, glassy and floury starch, germ); water beads that boil into vapour bubbles while the starch turns glassy; the hull splitting, the starch foaming out into a lobed flake and the kernel jumping off a cast-iron pan.
 - One palette: warm paper, ink, one red for pressure, blue only for water.
 - The music is a light marimba groove kept under the voice (ducked from the word times, and the whole score a further 3 dB down). It stops for the pop and returns for the payoff.
 - Sound effects are cut to the same word times as the picture: drips, sizzle, hiss, the gauge ticking, creaks, pops.

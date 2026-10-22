@@ -60,196 +60,399 @@
     { id: 'bowl', name: 'A bowl', t0: T.bowl, t1: DUR }
   ];
 
+
   /* ---------- canvas ---------- */
   var cv, ctx, tmp, tctx, acc, actx, LIVE = { grain: true };
   function mk(w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
+  var S0 = 300;                                        // sprites are drawn once at this unit size, then scaled
 
-  /* kernel outline in unit space (y down, tip at the bottom) */
-  function kernelPath(g, s) {
-    g.beginPath(); g.moveTo(0, -1 * s);
-    g.bezierCurveTo(.46 * s, -1 * s, .84 * s, -.86 * s, .8 * s, -.2 * s);
-    g.bezierCurveTo(.74 * s, .42 * s, .3 * s, .9 * s, 0, 1.08 * s);
-    g.bezierCurveTo(-.3 * s, .9 * s, -.74 * s, .42 * s, -.8 * s, -.2 * s);
-    g.bezierCurveTo(-.84 * s, -.86 * s, -.46 * s, -1 * s, 0, -1 * s); g.closePath();
+  /* ---------- the real kernel: shapes in unit space (y down, tip at the bottom) ---------- */
+  function kernelPath(g, s, dx, dy) {
+    dx = dx || 0; dy = dy || 0;
+    g.beginPath(); g.moveTo(dx, dy - s);
+    g.bezierCurveTo(dx + .52 * s, dy - 1.0 * s, dx + .84 * s, dy - .76 * s, dx + .8 * s, dy - .3 * s);
+    g.bezierCurveTo(dx + .77 * s, dy + .14 * s, dx + .5 * s, dy + .62 * s, dx + .2 * s, dy + .93 * s);
+    g.bezierCurveTo(dx + .12 * s, dy + 1.01 * s, dx + .06 * s, dy + 1.06 * s, dx, dy + 1.07 * s);
+    g.bezierCurveTo(dx - .06 * s, dy + 1.06 * s, dx - .12 * s, dy + 1.01 * s, dx - .2 * s, dy + .93 * s);
+    g.bezierCurveTo(dx - .5 * s, dy + .62 * s, dx - .77 * s, dy + .14 * s, dx - .8 * s, dy - .3 * s);
+    g.bezierCurveTo(dx - .84 * s, dy - .76 * s, dx - .52 * s, dy - 1.0 * s, dx, dy - s); g.closePath();
   }
-  /* seeded water drops inside the starch (unit space) */
-  var DROPS = (function () {
-    var r = mulberry(21), out = [], g = mk(10, 10).getContext('2d');
-    while (out.length < 26) {
-      var x = (r() * 2 - 1) * .6, y = -.85 + r() * 1.45;
-      kernelPath(g, .8);
-      if (!g.isPointInPath(x, y) || y > .45) continue;
-      if (out.some(function (d) { return Math.hypot(d.x - x, d.y - y) < .17; })) continue;
-      out.push({ x: x, y: y, r: .045 + r() * .03, k: out.length, f: .7 + r() * .8, p: r() * 6.28 });
-    }
-    return out;
-  })();
-  /* the popped flake: overlapping blobs that bloom outward */
-  var BLOBS = (function () {
-    var r = mulberry(5), out = [];
-    for (var i = 0; i < 17; i++) { var a = i / 17 * 6.283 + r() * .5, d = i === 0 ? 0 : .35 + r() * .55; out.push({ x: Math.cos(a) * d * 1.1, y: Math.sin(a) * d * .9 - .1, r: .38 + r() * .3, k: r() }); }
-    return out;
-  })();
+  /* the germ: the pale teardrop on the kernel's face, and the embryo inside it in section */
+  function germPath(g, s, x0, w, y0, y1) {
+    g.beginPath(); g.moveTo(x0, y0 * s);
+    g.bezierCurveTo(x0 + w * s, (y0 + .04) * s, x0 + w * 1.1 * s, (y0 + (y1 - y0) * .55) * s, x0 + .05 * s, y1 * s);
+    g.quadraticCurveTo(x0, (y1 + .03) * s, x0 - .05 * s, y1 * s);
+    g.bezierCurveTo(x0 - w * 1.1 * s, (y0 + (y1 - y0) * .55) * s, x0 - w * s, (y0 + .04) * s, x0, y0 * s); g.closePath();
+  }
+  function tipCap(g, s) {
+    var tg = g.createLinearGradient(0, .9 * s, 0, 1.1 * s); tg.addColorStop(0, '#7a4317'); tg.addColorStop(1, '#3b1c08');
+    g.beginPath(); g.ellipse(0, 1.0 * s, .12 * s, .085 * s, 0, 0, 6.283); g.fillStyle = tg; g.fill();
+    g.beginPath(); g.ellipse(-.03 * s, .975 * s, .05 * s, .025 * s, -.3, 0, 6.283); g.fillStyle = 'rgba(255,200,140,.25)'; g.fill();
+  }
+  function sprite(w, h, ox, oy) { var c = mk(w, h); return { c: c, g: c.getContext('2d'), ox: ox, oy: oy }; }
+  function drawSpr(g, sp, x, y, s) { var k = s / S0; g.drawImage(sp.c, x - sp.ox * k, y - sp.oy * k, sp.c.width * k, sp.c.height * k); }
 
-  function kernel(g, cx, cy, s, o) {
-    o = o || {};
-    var temp = o.temp || 0, shake = o.shake || 0, t = o.t || 0, bulge = 1 + (o.pressure || 0) * .035;
-    g.save();
-    g.translate(cx + Math.sin(t * 71) * shake * 6 + Math.sin(t * 43) * shake * 3, cy + Math.cos(t * 59) * shake * 4);
-    g.rotate((o.rot || 0) + Math.sin(t * 37) * shake * .02); g.scale(bulge, bulge);
-    /* soft contact shadow */
-    g.save(); g.scale(1, .18); g.beginPath(); g.arc(0, (1.15 * s) / .18, .62 * s, 0, 6.283);
-    g.fillStyle = 'rgba(80,50,20,' + (.16 * (o.alpha == null ? 1 : o.alpha)) + ')'; g.fill(); g.restore();
-    g.globalAlpha = o.alpha == null ? 1 : o.alpha;
-    /* hull */
-    var hg = g.createLinearGradient(-s * .7, -s, s * .7, s);
-    hg.addColorStop(0, mix('#f2b54f', '#f07a2a', temp)); hg.addColorStop(.55, mix(HULL, '#d9541c', temp)); hg.addColorStop(1, mix(HULL2, '#8e2c10', temp));
-    kernelPath(g, s); g.fillStyle = hg; g.fill();
-    var sec = o.section || 0;
-    if (sec > 0) {
-      /* the cross-section: starch, germ, drops, steam */
-      g.save(); kernelPath(g, s * .86); g.clip();
-      g.globalAlpha *= eo(sec);
-      var sg = g.createRadialGradient(-s * .2, -s * .3, s * .1, 0, 0, s);
-      sg.addColorStop(0, '#fffaf0'); sg.addColorStop(1, mix(STARCH, '#ffd9a0', temp * .6));
-      g.fillStyle = sg; g.fillRect(-s, -s * 1.2, s * 2, s * 2.4);
-      g.beginPath(); g.ellipse(0, s * .62, s * .26, s * .34, 0, 0, 6.283); g.fillStyle = '#f2cf7c'; g.fill();
-      var drops = o.drops || 0, steam = o.steam || 0;
-      DROPS.forEach(function (d) {
-        var appear = clamp(drops * 26 - d.k * .6, 0, 1); if (appear <= 0) return;
-        var boil = clamp(steam * 1.6 - hash(d.k) * .6, 0, 1);
-        var x = d.x * s, y = d.y * s, rr = d.r * s * spring(appear * .5, 2.4, .6);
-        if (boil < 1) {
-          var dg = g.createRadialGradient(x - rr * .3, y - rr * .3, rr * .1, x, y, rr);
-          dg.addColorStop(0, '#bfe3ff'); dg.addColorStop(1, WATER);
-          g.globalAlpha = (1 - boil); g.beginPath(); g.arc(x, y + Math.sin(t * 9 + d.p) * (o.shake || 0) * 3, rr * (1 + .1 * Math.sin(t * 20 * d.f + d.p) * boil), 0, 6.283); g.fillStyle = dg; g.fill();
-        }
-        if (boil > 0) {
-          /* steam: a puff that wanders and, when trapped, bounces off the hull */
-          var speed = .6 + (o.pressure || 0) * 2.2, ph = t * speed * d.f + d.p;
-          var px = d.x * s * .3 + Math.sin(ph * 1.3) * s * .48, py = d.y * s * .4 - s * .1 + Math.cos(ph * .9 + d.k) * s * .5;
-          g.globalAlpha = boil * .85;
-          for (var k = 0; k < 3; k++) { g.beginPath(); g.arc(px + k * rr * .7 - rr * .7, py - k * rr * .25, rr * (1.1 - k * .15) * (1 + (o.pressure || 0) * .5), 0, 6.283); g.fillStyle = 'rgba(255,255,255,.75)'; g.fill(); }
-        }
-      });
-      g.globalAlpha = 1;
-      /* pressure arrows pushing on the shell */
-      var pr = o.pressure || 0;
-      if (pr > 0) for (var i = 0; i < 10; i++) {
-        var a = i / 10 * 6.283 + .3, r0 = s * .25, r1 = s * (.42 + pr * .28);
-        g.strokeStyle = 'rgba(215,38,46,' + (.75 * Math.min(1, pr * 2)) + ')'; g.lineWidth = 9; g.lineCap = 'round';
-        var ex = Math.cos(a) * r1 * .95, ey = Math.sin(a) * r1 * 1.1;
-        g.beginPath(); g.moveTo(Math.cos(a) * r0, Math.sin(a) * r0 * 1.1); g.lineTo(ex, ey); g.stroke();
-        g.beginPath(); g.moveTo(ex + Math.cos(a + 2.5) * 26, ey + Math.sin(a + 2.5) * 26); g.lineTo(ex, ey); g.lineTo(ex + Math.cos(a - 2.5) * 26, ey + Math.sin(a - 2.5) * 26); g.stroke();
-      }
-      g.restore();
-      /* the shell wall, drawn over the section; thickens when it's the point */
-      g.save(); kernelPath(g, s * .93); g.lineWidth = s * (.1 + (o.tough || 0) * .05); g.strokeStyle = mix(HULL2, '#8e2c10', temp); g.globalAlpha = .55 * eo(sec); g.stroke(); g.restore();
-      if (o.tough) { g.save(); kernelPath(g, s); g.lineWidth = 10; g.strokeStyle = RED; g.globalAlpha = o.tough * .9; g.stroke(); g.restore(); }
-    } else {
-      /* outside: a soft highlight and the tip cap */
-      g.save(); kernelPath(g, s); g.clip();
-      var hl = g.createRadialGradient(-s * .32, -s * .5, s * .02, -s * .32, -s * .5, s * .6);
-      hl.addColorStop(0, 'rgba(255,248,225,.75)'); hl.addColorStop(1, 'rgba(255,248,225,0)'); g.fillStyle = hl; g.fillRect(-s, -s * 1.2, s * 2, s * 2.4);
-      g.beginPath(); g.ellipse(0, s * 1.02, s * .2, s * .16, 0, 0, 6.283); g.fillStyle = 'rgba(90,40,10,.5)'; g.fill();
-      g.restore();
+  var SPR = {};
+  function buildKernel() {
+    var s = S0, sp = sprite(Math.ceil(1.9 * s), Math.ceil(2.3 * s), .95 * s, 1.08 * s), g = sp.g, r = mulberry(31), i;
+    g.translate(sp.ox, sp.oy);
+    g.save(); kernelPath(g, s); g.clip();
+    var lg = g.createLinearGradient(0, -s, 0, 1.1 * s);
+    lg.addColorStop(0, '#fad36a'); lg.addColorStop(.4, '#f3b13c'); lg.addColorStop(.8, '#dd862c'); lg.addColorStop(1, '#a9561a');
+    g.fillStyle = lg; g.fillRect(-s, -1.1 * s, 2 * s, 2.3 * s);
+    /* round body: falloff to both edges, a touch warmer on the shadow side */
+    var sg = g.createLinearGradient(-.85 * s, 0, .85 * s, 0);
+    sg.addColorStop(0, 'rgba(150,62,8,.42)'); sg.addColorStop(.2, 'rgba(150,62,8,0)'); sg.addColorStop(.62, 'rgba(150,62,8,0)'); sg.addColorStop(1, 'rgba(120,40,4,.62)');
+    g.fillStyle = sg; g.fillRect(-s, -1.1 * s, 2 * s, 2.3 * s);
+    var cg = g.createRadialGradient(0, -1.05 * s, .1 * s, 0, -1.05 * s, .55 * s);
+    cg.addColorStop(0, 'rgba(255,236,170,.5)'); cg.addColorStop(1, 'rgba(255,236,170,0)'); g.fillStyle = cg; g.fillRect(-s, -1.1 * s, 2 * s, s);
+    /* the germ on the face */
+    g.save(); g.filter = 'blur(5px)'; germPath(g, s, .02 * s, .25, .02, .9); g.fillStyle = 'rgba(253,233,168,.78)'; g.fill(); g.restore();
+    germPath(g, s, .02 * s, .25, .02, .9); g.strokeStyle = 'rgba(178,98,26,.32)'; g.lineWidth = 3; g.stroke();
+    g.save(); g.filter = 'blur(3px)'; germPath(g, s, .03 * s, .12, .3, .82); g.fillStyle = 'rgba(255,245,205,.45)'; g.fill(); g.restore();
+    /* pericarp grain: fine streaks from crown to tip */
+    for (i = 0; i < 90; i++) {
+      var x = (r() * 2 - 1) * .82 * s;
+      g.beginPath(); g.moveTo(x, -1.02 * s); g.bezierCurveTo(x * 1.06, -.3 * s, x * .7, .45 * s, x * .14, 1.05 * s);
+      g.strokeStyle = r() < .5 ? 'rgba(255,240,200,.07)' : 'rgba(130,55,8,.08)'; g.lineWidth = .6 + r() * 2.4; g.stroke();
     }
-    /* cracks */
-    var cr = o.crack || 0;
-    if (cr > 0) {
-      g.strokeStyle = '#4a1a06'; g.lineWidth = 7; g.lineCap = 'round'; g.lineJoin = 'round';
-      [[0, -1, 1], [-.5, -.7, -1], [.55, -.55, 1]].forEach(function (c, j) {
-        var n = Math.floor(cr * 6 * (j ? .7 : 1)); if (n < 1) return;
-        g.beginPath(); var x = c[0] * s, y = c[1] * s; g.moveTo(x, y);
-        for (var k = 0; k < n; k++) { x += (hash(j * 9 + k) - .5) * s * .14 + c[2] * s * .02; y += s * .09; g.lineTo(x, y); }
-        g.stroke();
-      });
+    for (i = 0; i < 1600; i++) { g.fillStyle = r() < .5 ? 'rgba(110,45,5,.07)' : 'rgba(255,245,215,.08)'; g.fillRect((r() * 2 - 1) * s, (r() * 2.2 - 1.1) * s, 1 + r() * 2, 1 + r() * 2); }
+    /* gloss: a long soft specular, a sharp glint, a warm rim on the shadow side */
+    g.save(); g.filter = 'blur(12px)'; g.translate(-.38 * s, -.42 * s); g.rotate(-.32); g.beginPath(); g.ellipse(0, 0, .12 * s, .4 * s, 0, 0, 6.283); g.fillStyle = 'rgba(255,255,246,.62)'; g.fill(); g.restore();
+    g.save(); g.filter = 'blur(2px)'; g.translate(-.44 * s, -.64 * s); g.rotate(-.55); g.beginPath(); g.ellipse(0, 0, .045 * s, .12 * s, 0, 0, 6.283); g.fillStyle = 'rgba(255,255,255,.92)'; g.fill(); g.restore();
+    g.save(); g.filter = 'blur(9px)'; kernelPath(g, s, .09 * s, -.02 * s); g.lineWidth = .06 * s; g.strokeStyle = 'rgba(255,214,140,.32)'; g.stroke(); g.restore();
+    g.save(); g.filter = 'blur(14px)'; g.beginPath(); g.ellipse(0, 1.1 * s, .5 * s, .25 * s, 0, 0, 6.283); g.fillStyle = 'rgba(90,35,5,.45)'; g.fill(); g.restore();
+    g.restore();
+    tipCap(g, s);
+    kernelPath(g, s); g.strokeStyle = 'rgba(110,48,8,.5)'; g.lineWidth = 2.5; g.stroke();
+    SPR.kernel = sp;
+  }
+  /* the kernel cut along its long axis: pericarp, hard (glassy) starch, soft starch, germ, tip cap */
+  function buildSection() {
+    var s = S0, sp = sprite(Math.ceil(1.9 * s), Math.ceil(2.3 * s), .95 * s, 1.08 * s), g = sp.g, r = mulberry(17), i, x, y;
+    g.translate(sp.ox, sp.oy);
+    g.save(); kernelPath(g, s); g.clip();
+    var pg = g.createLinearGradient(0, -s, 0, s); pg.addColorStop(0, '#e39a3a'); pg.addColorStop(1, '#b8601c');
+    g.fillStyle = pg; g.fillRect(-s, -1.1 * s, 2 * s, 2.3 * s);
+    for (i = 0; i < 6; i++) { kernelPath(g, s * (1 - i * .011)); g.strokeStyle = i % 2 ? 'rgba(255,215,150,.22)' : 'rgba(120,50,8,.25)'; g.lineWidth = 1.5; g.stroke(); }
+    /* hard endosperm: glassy amber, packed polygonal cells */
+    g.save(); kernelPath(g, s * .935); g.clip();
+    var hg = g.createRadialGradient(-.1 * s, -.3 * s, .1 * s, 0, 0, 1.05 * s); hg.addColorStop(0, '#f8d27a'); hg.addColorStop(1, '#e8a447');
+    g.fillStyle = hg; g.fillRect(-s, -1.1 * s, 2 * s, 2.3 * s);
+    for (y = -1.05 * s; y < 1.1 * s; y += 15) for (x = -s; x < s; x += 17) {
+      var jx = x + ((y / 15 | 0) % 2) * 8.5 + (r() - .5) * 6, jy = y + (r() - .5) * 5;
+      g.beginPath(); for (var k = 0; k < 6; k++) { var a = k / 6 * 6.283 + r() * .3, rr = 8 + r() * 2; g[k ? 'lineTo' : 'moveTo'](jx + Math.cos(a) * rr, jy + Math.sin(a) * rr * .9); } g.closePath();
+      g.fillStyle = 'rgba(255,' + (215 + r() * 30 | 0) + ',150,' + (.08 + r() * .1) + ')'; g.fill(); g.strokeStyle = 'rgba(160,88,22,.2)'; g.lineWidth = 1; g.stroke();
     }
     g.restore();
+    /* soft endosperm: the white floury heart, round starch granules */
+    g.save(); g.filter = 'blur(6px)'; kernelPath(g, s * .68, 0, -.12 * s); g.fillStyle = '#fbf2de'; g.fill(); g.restore();
+    g.save(); kernelPath(g, s * .66, 0, -.12 * s); g.clip();
+    g.fillStyle = '#fbf3e2'; g.fillRect(-s, -1.1 * s, 2 * s, 2.3 * s);
+    for (i = 0; i < 1500; i++) {
+      x = (r() * 2 - 1) * .7 * s; y = (r() * 1.6 - .95) * s; var gr = 2.5 + r() * 4.5;
+      g.beginPath(); g.arc(x, y, gr, 0, 6.283); g.fillStyle = 'rgba(255,253,246,.95)'; g.fill(); g.strokeStyle = 'rgba(205,172,118,.42)'; g.lineWidth = 1; g.stroke();
+    }
+    g.restore();
+    /* germ: embryo in its scutellum, near the tip */
+    germPath(g, s, .04 * s, .27, .3, .97); var gg = g.createLinearGradient(0, .3 * s, 0, s); gg.addColorStop(0, '#f6e3a2'); gg.addColorStop(1, '#e7c66c');
+    g.fillStyle = gg; g.fill(); g.strokeStyle = 'rgba(176,128,40,.6)'; g.lineWidth = 3; g.stroke();
+    germPath(g, s, .06 * s, .13, .46, .9); g.fillStyle = '#e9cd78'; g.fill(); g.strokeStyle = 'rgba(176,128,40,.55)'; g.lineWidth = 2; g.stroke();
+    g.beginPath(); g.moveTo(.06 * s, .5 * s); g.bezierCurveTo(.1 * s, .62 * s, .03 * s, .74 * s, .07 * s, .86 * s); g.strokeStyle = 'rgba(160,112,30,.6)'; g.lineWidth = 6; g.lineCap = 'round'; g.stroke();
+    /* section sheen */
+    g.save(); g.filter = 'blur(16px)'; g.beginPath(); g.ellipse(-.3 * s, -.5 * s, .2 * s, .38 * s, -.3, 0, 6.283); g.fillStyle = 'rgba(255,255,250,.28)'; g.fill(); g.restore();
+    g.restore();
+    tipCap(g, s);
+    kernelPath(g, s); g.strokeStyle = 'rgba(110,48,8,.6)'; g.lineWidth = 3; g.stroke();
+    SPR.section = sp;
   }
+
+  /* water held in the starch (unit space): small beads, never in the germ */
+  var DROPS = (function () {
+    var r = mulberry(21), out = [], g = mk(10, 10).getContext('2d'), tries = 0;
+    while (out.length < 64 && tries++ < 5000) {
+      var x = (r() * 2 - 1) * .75, y = -.92 + r() * 1.55;
+      kernelPath(g, .86); if (!g.isPointInPath(x, y)) continue;
+      germPath(g, 1, .04, .3, .27, 1); if (g.isPointInPath(x, y)) continue;
+      if (out.some(function (d) { return Math.hypot(d.x - x, d.y - y) < .1; })) continue;
+      out.push({ x: x, y: y, r: .022 + r() * .018, k: out.length, f: .7 + r() * .8, p: r() * 6.28 });
+    }
+    return out;
+  })();
+
+  /* ---------- the flake: foamed starch lobes bursting from a split hull ---------- */
+  function flakeModel(seed) {
+    var r = mulberry(seed), L = [], i;
+    function lobe(a, d, R, z, delay) { L.push({ a: a, d: d, R: R, z: z, delay: delay, h: [r() * 6.28, r() * 6.28, r() * 6.28], amp: [.07 + r() * .05, .04 + r() * .03, .022 + r() * .015] }); }
+    lobe(-Math.PI / 2, .45, .4, .45, 0);
+    for (i = 0; i < 15; i++) lobe(-Math.PI / 2 + (r() * 2 - 1) * 1.45, .38 + r() * .62, .2 + r() * .17, r(), r() * .4);
+    lobe(-Math.PI / 2 - 1.2 - r() * .2, .8, .3, .2, .15); lobe(-Math.PI / 2 + 1.2 + r() * .2, .8, .3, .25, .2);   // the butterfly's wings
+    L.sort(function (a, b) { return a.z - b.z; });
+    var sh = []; for (i = 0; i < 4; i++) sh.push({ a: Math.PI / 2 + (i - 1.5) * .55 + (r() - .5) * .25, len: .26 + r() * .1, w: .12 + r() * .05 });
+    return { L: L, sh: sh };
+  }
+  var FLAKES = [flakeModel(5), flakeModel(11), flakeModel(23), flakeModel(42), flakeModel(77), flakeModel(91)];
+  function lobePath(g, cx, cy, R, L) {
+    g.beginPath();
+    for (var i = 0; i <= 40; i++) {
+      var a = i / 40 * 6.2832, rr = R * (1 + L.amp[0] * Math.sin(3 * a + L.h[0]) + L.amp[1] * Math.sin(5 * a + L.h[1]) + L.amp[2] * Math.sin(9 * a + L.h[2]));
+      g[i ? 'lineTo' : 'moveTo'](cx + Math.cos(a) * rr, cy + Math.sin(a) * rr * .96);
+    }
+    g.closePath();
+  }
+  function shardPath(g, w, len) {
+    g.beginPath(); g.moveTo(-w * .2, 0); g.quadraticCurveTo(w, len * .35, w * .35, len); g.lineTo(-w * .25, len * .92); g.quadraticCurveTo(-w * .9, len * .45, -w * .2, 0); g.closePath();
+  }
+  function shard(g, w, len, alpha) {
+    shardPath(g, w, len); var sg = g.createLinearGradient(-w, 0, w, len); sg.addColorStop(0, 'rgba(240,170,70,' + alpha + ')'); sg.addColorStop(1, 'rgba(165,82,22,' + alpha + ')');
+    g.fillStyle = sg; g.fill(); g.strokeStyle = 'rgba(255,225,160,' + (.55 * alpha) + ')'; g.lineWidth = Math.max(1, w * .08); g.stroke();
+  }
+  var FOAM = new WeakMap();
+  function foam(g) {
+    if (!FOAM.has(g)) {
+      var c = mk(160, 160), x = c.getContext('2d'), r = mulberry(8);
+      for (var i = 0; i < 260; i++) { x.beginPath(); x.arc(r() * 160, r() * 160, 1.5 + r() * 5, 0, 6.283); x.strokeStyle = 'rgba(176,134,70,' + (.1 + r() * .14) + ')'; x.lineWidth = 1; x.stroke(); }
+      for (i = 0; i < 160; i++) { x.fillStyle = 'rgba(255,255,255,.5)'; x.fillRect(r() * 160, r() * 160, 1.5, 1.5); }
+      FOAM.set(g, g.createPattern(c, 'repeat'));
+    }
+    return FOAM.get(g);
+  }
+  function backOut(k) { var c = 1.4; return k <= 0 ? 0 : k >= 1 ? 1 : 1 + (c + 1) * Math.pow(k - 1, 3) + c * Math.pow(k - 1, 2); }
+  /* (x, y) is the flake's base, where the hull split; s is the unit size; k the growth 0..1 */
+  function drawFlake(g, M, x, y, s, k, rot, opt) {
+    if (k <= 0) return; opt = opt || {};
+    g.save(); g.translate(x, y); g.rotate(rot || 0);
+    var shA = opt.shards == null ? 1 : opt.shards;
+    if (shA > 0) M.sh.forEach(function (h) { g.save(); g.rotate(h.a - Math.PI / 2); g.translate(0, -.16 * s); shard(g, h.w * s, h.len * s * (.6 + .4 * Math.min(1, k * 1.5)), shA); g.restore(); });
+    var pat = opt.texture === false ? null : foam(g);
+    M.L.forEach(function (L) {
+      var kk = backOut(clamp((k - L.delay * .5) / (1 - L.delay * .5), 0, 1)); if (kk <= 0) return;
+      var cx = Math.cos(L.a) * L.d * s * kk, cy = Math.sin(L.a) * L.d * s * kk - .12 * s, R = L.R * s * (.22 + .78 * kk);
+      /* the crease this lobe casts on the lobes behind it */
+      lobePath(g, cx + R * .09, cy + R * .13, R * 1.1, L); g.fillStyle = 'rgba(130,88,36,.18)'; g.fill();
+      lobePath(g, cx + R * .05, cy + R * .07, R * 1.03, L); g.fillStyle = 'rgba(120,80,30,.3)'; g.fill();
+      lobePath(g, cx, cy, R, L);
+      var lg = g.createRadialGradient(cx - R * .36, cy - R * .42, R * .08, cx, cy, R * 1.04);
+      lg.addColorStop(0, '#fffefa'); lg.addColorStop(.5, '#fdf3da'); lg.addColorStop(.82, '#efd7a4'); lg.addColorStop(1, '#cfa865');
+      g.fillStyle = lg; g.fill();
+      if (pat && R > 18) { g.save(); g.clip(); g.globalAlpha *= .9; g.fillStyle = pat; g.fillRect(cx - R, cy - R, R * 2, R * 2); g.restore(); }
+    });
+    if (shA > 0) { g.save(); g.translate(0, -.12 * s); g.scale(1, .8); tipCap(g, s * .35); g.restore(); }
+    g.restore();
+  }
+  function buildFlakeSprites() {
+    SPR.flakes = FLAKES.map(function (M) {
+      var u = 80, sp = sprite(4 * u, 3.4 * u, 2 * u, 2.4 * u);
+      drawFlake(sp.g, M, sp.ox, sp.oy, u, 1, 0);
+      sp.unit = u; return sp;
+    });
+  }
+  function drawFlakeSpr(g, i, x, y, s, rot) {
+    var sp = SPR.flakes[i % SPR.flakes.length], k = s / sp.unit;
+    g.save(); g.translate(x, y); g.rotate(rot || 0); g.drawImage(sp.c, -sp.ox * k, -sp.oy * k, sp.c.width * k, sp.c.height * k); g.restore();
+  }
+
+  /* soft vapour: what steam actually looks like */
+  function vapor(g, x, y, R, k, seed, up, alpha) {
+    if (k <= 0 || k >= 1) return;
+    for (var i = 0; i < 12; i++) {
+      var a = -Math.PI / 2 + (hash(seed + i) - .5) * (up ? 1.6 : 6.28), d = R * (.2 + 1.5 * eo(k) * (.5 + hash(seed + i * 3) * .7));
+      var cx = x + Math.cos(a) * d, cy = y + Math.sin(a) * d - (up ? R * .8 * k : 0), rr = R * (.25 + .55 * k) * (.6 + hash(i + seed * 7) * .6);
+      var vg = g.createRadialGradient(cx, cy, 0, cx, cy, rr); var al = (alpha || .7) * (1 - k) * (1 - k * .3);
+      vg.addColorStop(0, 'rgba(255,255,255,' + al + ')'); vg.addColorStop(.6, 'rgba(255,255,255,' + (al * .45) + ')'); vg.addColorStop(1, 'rgba(255,255,255,0)');
+      g.fillStyle = vg; g.beginPath(); g.arc(cx, cy, rr, 0, 6.283); g.fill();
+    }
+  }
+  function wisp(g, x, y, t, k, n, spread) {
+    if (k <= 0) return;
+    for (var m = 0; m < n; m++) {
+      var q = (t * .9 + m / n) % 1, cx = x + Math.sin(q * 7 + m * 2.1) * (10 + q * spread), cy = y - q * 220, rr = 10 + q * 46;
+      var vg = g.createRadialGradient(cx, cy, 0, cx, cy, rr), al = k * .55 * Math.sin(q * Math.PI);
+      vg.addColorStop(0, 'rgba(255,255,255,' + al + ')'); vg.addColorStop(1, 'rgba(255,255,255,0)');
+      g.fillStyle = vg; g.beginPath(); g.arc(cx, cy, rr, 0, 6.283); g.fill();
+    }
+  }
+
   function mix(a, b, k) {
     var pa = parseInt(a.slice(1), 16), pb = parseInt(b.slice(1), 16);
     var r = Math.round(lerp(pa >> 16, pb >> 16, k)), gg = Math.round(lerp(pa >> 8 & 255, pb >> 8 & 255, k)), bl = Math.round(lerp(pa & 255, pb & 255, k));
     return 'rgb(' + r + ',' + gg + ',' + bl + ')';
   }
-  function flake(g, cx, cy, s, grow, rot) {
-    if (grow <= 0) return;
-    g.save(); g.translate(cx, cy); g.rotate(rot || 0);
-    var gs = s * grow;
-    g.save(); g.scale(1, .16); g.beginPath(); g.arc(0, 1.3 * gs / .16, gs * 1.1, 0, 6.283); g.fillStyle = 'rgba(80,50,20,.14)'; g.fill(); g.restore();
-    /* hull shards still stuck to the base */
-    g.fillStyle = HULL2;
-    for (var i = 0; i < 4; i++) { g.save(); g.rotate(-.9 + i * .6); g.translate(0, gs * .95); g.beginPath(); g.moveTo(-gs * .16, 0); g.lineTo(gs * .14, -gs * .05); g.lineTo(gs * .05, gs * .2); g.closePath(); g.fill(); g.restore(); }
-    BLOBS.forEach(function (b, j) {
-      var k = clamp(spring(grow * 1.6 - b.k * .3, 1.6, .55), 0, 1.15), x = b.x * gs * k, y = b.y * gs * k, r = b.r * gs * (.4 + .6 * k);
-      g.beginPath(); g.arc(x + r * .08, y + r * .14, r, 0, 6.283); g.fillStyle = '#ecd7a8'; g.fill();
-    });
-    BLOBS.forEach(function (b) {
-      var k = clamp(spring(grow * 1.6 - b.k * .3, 1.6, .55), 0, 1.15), x = b.x * gs * k, y = b.y * gs * k, r = b.r * gs * (.4 + .6 * k);
-      var bg = g.createRadialGradient(x - r * .35, y - r * .4, r * .1, x, y, r);
-      bg.addColorStop(0, '#fffdf6'); bg.addColorStop(.75, '#fff3d6'); bg.addColorStop(1, '#f3dfb1');
-      g.beginPath(); g.arc(x, y, r * .96, 0, 6.283); g.fillStyle = bg; g.fill();
-    });
+
+  /* ---------- the kernel, whole or cut open ---------- */
+  function kernel(g, cx, cy, s, o) {
+    o = o || {};
+    var temp = o.temp || 0, shake = o.shake || 0, t = o.t || 0, pr = o.pressure || 0, bulge = 1 + pr * .03;
+    var al = o.alpha == null ? 1 : o.alpha;
+    g.save();
+    g.translate(cx + Math.sin(t * 71) * shake * 6 + Math.sin(t * 43) * shake * 3, cy + Math.cos(t * 59) * shake * 4);
+    if (o.shadow !== false) { g.save(); g.scale(1, .16); var shg = g.createRadialGradient(0, 1.08 * s / .16, 0, 0, 1.08 * s / .16, .7 * s); shg.addColorStop(0, 'rgba(25,12,4,' + (.4 * al) + ')'); shg.addColorStop(1, 'rgba(25,12,4,0)'); g.fillStyle = shg; g.beginPath(); g.arc(0, 1.08 * s / .16, .7 * s, 0, 6.283); g.fill(); g.restore(); }
+    g.rotate((o.rot || 0) + Math.sin(t * 37) * shake * .02); g.scale(bulge, bulge);
+    g.globalAlpha = al;
+    var sec = o.section || 0;
+    if (sec < 1) {
+      if (sec > 0) {
+        /* cut open: the front half splits and slides away */
+        var e = eio(sec);
+        [-1, 1].forEach(function (side) {
+          g.save(); g.beginPath(); g.rect(side < 0 ? -s : 0, -1.2 * s, s, 2.4 * s); g.clip();
+          g.translate(side * e * s * 1.3, -e * s * .1); g.rotate(side * e * .25); g.globalAlpha = al * (1 - e) * (1 - e);
+          drawSpr(g, SPR.kernel, 0, 0, s); g.restore();
+        });
+      } else drawSpr(g, SPR.kernel, 0, 0, s);
+    }
+    if (sec > 0) {
+      g.save(); g.globalAlpha = al * Math.min(1, sec * 2.5);
+      drawSpr(g, SPR.section, 0, 0, s);
+      /* heat: the hull darkens, the soft starch turns glassy (it gelatinises) */
+      var gel = o.gel || 0;
+      if (gel > 0) { g.save(); kernelPath(g, s * .66, 0, -.12 * s); g.clip(); var jg = g.createRadialGradient(-.15 * s, -.4 * s, .05 * s, 0, -.1 * s, .7 * s); jg.addColorStop(0, 'rgba(255,250,232,' + (.55 * gel) + ')'); jg.addColorStop(1, 'rgba(244,214,150,' + (.6 * gel) + ')'); g.fillStyle = jg; g.fillRect(-s, -s, 2 * s, 2 * s); g.restore(); }
+      var drops = o.drops || 0, steam = o.steam || 0;
+      DROPS.forEach(function (d) {
+        var appear = clamp(drops * 3 - d.k / DROPS.length * 2, 0, 1); if (appear <= 0) return;
+        var boil = clamp(steam * 1.7 - hash(d.k) * .7, 0, 1);
+        var x = d.x * s + Math.sin(t * 9 + d.p) * shake * 3, y = d.y * s, rr = d.r * s * clamp(spring(appear * .6, 2.4, .6), 0, 1.2);
+        if (boil < 1) {
+          var dg = g.createRadialGradient(x - rr * .35, y - rr * .35, rr * .05, x, y, rr);
+          dg.addColorStop(0, 'rgba(235,248,255,.98)'); dg.addColorStop(.45, 'rgba(120,190,245,.92)'); dg.addColorStop(1, 'rgba(40,120,205,.95)');
+          g.globalAlpha = al * (1 - boil); g.beginPath(); g.arc(x, y, rr * (1 - boil * .6), 0, 6.283); g.fillStyle = dg; g.fill();
+          g.globalAlpha = al;
+        }
+        if (boil > 0) {
+          /* a vapour bubble grows where the water was, jostling harder as the pressure climbs */
+          var ph = t * (1 + pr * 5) * d.f + d.p, wob = (2 + pr * 7) * (s / 250);
+          var bx = x + Math.sin(ph * 1.7) * wob, by = y + Math.cos(ph * 1.3) * wob, br = rr * (1 + 1.4 * boil + pr * 1.1);
+          var bg = g.createRadialGradient(bx - br * .3, by - br * .3, br * .1, bx, by, br);
+          bg.addColorStop(0, 'rgba(255,255,255,' + (.8 * boil) + ')'); bg.addColorStop(.7, 'rgba(255,255,255,' + (.35 * boil) + ')'); bg.addColorStop(1, 'rgba(255,255,255,' + (.75 * boil) + ')');
+          g.beginPath(); g.arc(bx, by, br, 0, 6.283); g.fillStyle = bg; g.fill(); g.strokeStyle = 'rgba(190,150,90,' + (.35 * boil) + ')'; g.lineWidth = 1.5; g.stroke();
+        }
+      });
+      /* pressure on the shell, from inside */
+      if (pr > 0) for (var i = 0; i < 10; i++) {
+        var a = i / 10 * 6.283 + .3, r0 = s * .3, r1 = s * (.48 + pr * .2);
+        var ex = Math.cos(a) * r1 * .95, ey = Math.sin(a) * r1 * 1.1 - .05 * s;
+        g.globalAlpha = al * Math.min(1, pr * 2) * .9; g.lineCap = 'round'; g.lineJoin = 'round';
+        [['rgba(255,255,255,.85)', 13], [RED, 7]].forEach(function (st) {
+          g.strokeStyle = st[0]; g.lineWidth = st[1];
+          g.beginPath(); g.moveTo(Math.cos(a) * r0, Math.sin(a) * r0 * 1.1 - .05 * s); g.lineTo(ex, ey); g.stroke();
+          g.beginPath(); g.moveTo(ex + Math.cos(a + 2.5) * 22, ey + Math.sin(a + 2.5) * 22); g.lineTo(ex, ey); g.lineTo(ex + Math.cos(a - 2.5) * 22, ey + Math.sin(a - 2.5) * 22); g.stroke();
+        });
+        g.globalAlpha = al;
+      }
+      if (o.tough) { g.save(); kernelPath(g, s * .985); g.lineWidth = s * .05; g.strokeStyle = 'rgba(215,38,46,' + (o.tough * .85) + ')'; g.stroke(); g.restore(); }
+      g.restore();
+    }
+    if (temp > 0) { g.save(); kernelPath(g, s); g.clip(); g.globalCompositeOperation = 'multiply'; g.fillStyle = 'rgba(232,120,70,' + (temp * .32) + ')'; g.fillRect(-s, -1.1 * s, 2 * s, 2.3 * s); g.restore(); }
+    /* cracks: hairlines first, then they open */
+    var cr = o.crack || 0;
+    if (cr > 0) {
+      g.lineCap = 'round'; g.lineJoin = 'round';
+      [[0, -1, .3], [-.42, -.86, -.6], [.48, -.82, .7]].forEach(function (c, j) {
+        var n = Math.floor(cr * 9 * (j ? .7 : 1)); if (n < 1) return;
+        var path = [], x = c[0] * s, y = c[1] * s; path.push([x, y]);
+        for (var k = 0; k < n; k++) { x += (hash(j * 9 + k) - .5) * s * .12 + c[2] * s * .03; y += s * .075; path.push([x, y]); }
+        [['rgba(255,220,160,.7)', 6, 1.5], ['#3d1404', 2 + cr * 4, 0]].forEach(function (st) {
+          g.strokeStyle = st[0]; g.lineWidth = st[1]; g.beginPath(); path.forEach(function (p, i) { g[i ? 'lineTo' : 'moveTo'](p[0] + st[2], p[1] + st[2]); }); g.stroke();
+        });
+      });
+    }
     g.restore();
   }
-  /* steam puffs bursting out of a point */
-  function burst(g, cx, cy, s, k, seed) {
-    if (k <= 0 || k >= 1) return;
-    for (var i = 0; i < 14; i++) {
-      var a = hash(seed + i) * 6.283, d = s * (.3 + 1.6 * eo(k) * (.6 + hash(seed + i * 3) * .6)), r = s * (.12 + .25 * k) * (.6 + hash(i + seed * 7));
-      g.globalAlpha = (1 - k) * .8; g.beginPath(); g.arc(cx + Math.cos(a) * d, cy + Math.sin(a) * d * .85 - s * .3 * k, r, 0, 6.283); g.fillStyle = '#ffffff'; g.fill();
+  /* the pop itself: hull petals peel back while the foam erupts from the crown */
+  function popping(g, cx, cy, s, open, k, M, rot, t) {
+    g.save(); g.translate(cx, cy); g.rotate(rot);
+    if (open < 1) {
+      var e = eo(open);
+      [[-1, -.06], [1, .06]].forEach(function (p) {
+        g.save(); g.translate(0, .95 * s); g.rotate(p[0] * e * .85); g.translate(0, -.95 * s);
+        g.beginPath(); g.rect(p[0] < 0 ? -s : 0, -1.2 * s, s, 2.4 * s); g.clip(); g.globalAlpha = 1 - ss(seg(open, .55, 1));
+        drawSpr(g, SPR.kernel, 0, 0, s); g.restore();
+      });
     }
-    g.globalAlpha = 1;
+    drawFlake(g, M, 0, .85 * s, s * 1.45, k, 0, { shards: ss(seg(open, .5, 1)) });
+    g.restore();
   }
-  function shards(g, cx, cy, s, k) {
+  function flyShards(g, cx, cy, s, k) {
     if (k <= 0 || k >= 1) return;
-    g.fillStyle = HULL2;
     for (var i = 0; i < 7; i++) {
-      var a = -1.9 + i * .55 + hash(i) * .3, d = s * 2.4 * eo(k), x = cx + Math.cos(a) * d, y = cy + Math.sin(a) * d + 900 * k * k;
-      g.save(); g.translate(x, y); g.rotate(k * (6 + i) ); g.globalAlpha = 1 - k * k;
-      g.beginPath(); g.moveTo(-28, -10); g.lineTo(26, -16); g.lineTo(14, 18); g.closePath(); g.fill(); g.restore();
+      var a = -2.4 + i * .8 + hash(i) * .3, d = s * 2.6 * eo(k), x = cx + Math.cos(a) * d, y = cy + Math.sin(a) * d + 1100 * k * k;
+      g.save(); g.translate(x, y); g.rotate(k * (5 + i)); g.scale(.9, .9); shard(g, 24 + hash(i * 5) * 16, 46 + hash(i * 7) * 24, 1 - k * k); g.restore();
     }
-    g.globalAlpha = 1;
   }
-  /* rising heat under the kernel */
-  function heat(g, k, t) {
+
+  /* ---------- the stove: a hot iron pan rises under the kernel ---------- */
+  var PAN_Y = 1440;
+  function pan(g, k, temp) {
     if (k <= 0) return;
-    var y0 = KY + KS * 1.45;
-    var hg = g.createRadialGradient(KX, y0 + 120, 20, KX, y0 + 120, 520);
-    hg.addColorStop(0, 'rgba(236,75,38,' + (.42 * k) + ')'); hg.addColorStop(1, 'rgba(236,75,38,0)');
-    g.fillStyle = hg; g.fillRect(0, y0 - 420, W, 700);
-    g.lineCap = 'round'; g.lineWidth = 9;
-    for (var i = 0; i < 5; i++) {
-      var x0 = KX - 260 + i * 130, ph = t * 2.2 + i * 1.7, lift = ((t * .9 + i * .37) % 1);
-      g.strokeStyle = 'rgba(236,75,38,' + (k * .55 * Math.sin(lift * Math.PI)) + ')';
+    g.save(); g.translate(0, (1 - eo(k)) * 760);
+    /* far wall, seen over the floor */
+    var wall = g.createLinearGradient(0, PAN_Y - 300, 0, PAN_Y - 170); wall.addColorStop(0, '#3c3a38'); wall.addColorStop(1, '#141312');
+    g.beginPath(); g.ellipse(540, PAN_Y + 20, 940, 320, 0, Math.PI, 2 * Math.PI); g.fillStyle = wall; g.fill();
+    /* floor */
+    var fl = g.createRadialGradient(540, PAN_Y - 20, 40, 540, PAN_Y + 60, 950);
+    fl.addColorStop(0, '#3d3c3a'); fl.addColorStop(.55, '#262524'); fl.addColorStop(1, '#121110');
+    g.beginPath(); g.ellipse(540, PAN_Y + 60, 900, 250, 0, 0, 6.283); g.fillStyle = fl; g.fill();
+    g.fillRect(0, PAN_Y + 60, W, H - PAN_Y);
+    /* the rim: a thick rolled steel lip with a highlight */
+    g.lineCap = 'round';
+    g.beginPath(); g.ellipse(540, PAN_Y + 20, 940, 320, 0, Math.PI * 1.04, Math.PI * 1.96); g.strokeStyle = '#6d6a66'; g.lineWidth = 22; g.stroke();
+    g.beginPath(); g.ellipse(540, PAN_Y + 14, 940, 320, 0, Math.PI * 1.12, Math.PI * 1.88); g.strokeStyle = 'rgba(235,232,226,.75)'; g.lineWidth = 4; g.stroke();
+    g.beginPath(); g.ellipse(540, PAN_Y + 34, 935, 316, 0, Math.PI * 1.04, Math.PI * 1.96); g.strokeStyle = 'rgba(0,0,0,.5)'; g.lineWidth = 6; g.stroke();
+    if (temp > 0) {
+      g.globalCompositeOperation = 'lighter';
+      var hg = g.createRadialGradient(540, PAN_Y + 10, 10, 540, PAN_Y + 40, 560); hg.addColorStop(0, 'rgba(255,96,30,' + (.3 * temp) + ')'); hg.addColorStop(.5, 'rgba(200,50,10,' + (.1 * temp) + ')'); hg.addColorStop(1, 'rgba(200,50,10,0)');
+      g.fillStyle = hg; g.fillRect(0, PAN_Y - 200, W, H - PAN_Y + 200);
+      g.globalCompositeOperation = 'source-over';
+    }
+    /* seasoning sheen */
+    g.save(); g.filter = 'blur(16px)'; g.beginPath(); g.ellipse(320, PAN_Y + 150, 280, 34, -.05, 0, 6.283); g.fillStyle = 'rgba(255,250,240,.08)'; g.fill();
+    g.beginPath(); g.ellipse(790, PAN_Y + 260, 220, 26, .05, 0, 6.283); g.fillStyle = 'rgba(255,250,240,.06)'; g.fill(); g.restore();
+    g.restore();
+  }
+  /* heat haze above the pan */
+  function haze(g, k, t) {
+    if (k <= 0) return;
+    g.lineCap = 'round'; g.lineWidth = 5;
+    for (var i = 0; i < 6; i++) {
+      var x0 = KX - 330 + i * 132, ph = t * 2.2 + i * 1.7, lift = ((t * .8 + i * .37) % 1);
+      g.strokeStyle = 'rgba(255,190,140,' + (k * .22 * Math.sin(lift * Math.PI)) + ')';
       g.beginPath();
-      for (var j = 0; j <= 14; j++) { var y = y0 + 140 - j * 14 - lift * 90, x = x0 + Math.sin(ph + j * .5) * 16; if (j) g.lineTo(x, y); else g.moveTo(x, y); }
+      for (var j = 0; j <= 16; j++) { var y = PAN_Y - 60 - j * 16 - lift * 120, x = x0 + Math.sin(ph + j * .45) * 12; g[j ? 'lineTo' : 'moveTo'](x, y); }
       g.stroke();
     }
   }
+
   /* pressure gauge and thermometer, the two instruments */
   function gauge(g, cx, cy, r, val, label, alpha) {
     if (alpha <= 0) return;
     g.save(); g.globalAlpha = Math.min(1, alpha); g.translate(cx, cy); var sc = .85 + .15 * Math.min(1, alpha); g.scale(sc, sc);
-    g.beginPath(); g.arc(0, 0, r, 0, 6.283); g.fillStyle = '#fffaf1'; g.fill(); g.lineWidth = 10; g.strokeStyle = INK; g.stroke();
+    g.save(); g.shadowColor = 'rgba(60,30,10,.25)'; g.shadowBlur = 24; g.shadowOffsetY = 8;
+    var bz = g.createLinearGradient(0, -r, 0, r); bz.addColorStop(0, '#d9d4cc'); bz.addColorStop(1, '#8d867c');
+    g.beginPath(); g.arc(0, 0, r + 10, 0, 6.283); g.fillStyle = bz; g.fill(); g.restore();
+    g.beginPath(); g.arc(0, 0, r, 0, 6.283); g.fillStyle = '#fffaf1'; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke();
     for (var i = 0; i <= 10; i++) {
       var a = Math.PI * .75 + i / 10 * Math.PI * 1.5;
-      g.beginPath(); g.moveTo(Math.cos(a) * r * .78, Math.sin(a) * r * .78); g.lineTo(Math.cos(a) * r * (i % 5 ? .7 : .62), Math.sin(a) * r * (i % 5 ? .7 : .62));
+      g.beginPath(); g.moveTo(Math.cos(a) * r * .84, Math.sin(a) * r * .84); g.lineTo(Math.cos(a) * r * (i % 5 ? .74 : .66), Math.sin(a) * r * (i % 5 ? .74 : .66));
       g.lineWidth = i % 5 ? 4 : 7; g.strokeStyle = i > 7 ? RED : INK; g.stroke();
     }
-    var na = Math.PI * .75 + clamp(val, 0, 1.05) / 10 * 10 * Math.PI * 1.5;
-    g.beginPath(); g.moveTo(-Math.cos(na) * r * .12, -Math.sin(na) * r * .12); g.lineTo(Math.cos(na) * r * .7, Math.sin(na) * r * .7); g.lineWidth = 9; g.lineCap = 'round'; g.strokeStyle = RED; g.stroke();
-    g.beginPath(); g.arc(0, 0, 14, 0, 6.283); g.fillStyle = INK; g.fill();
+    var na = Math.PI * .75 + clamp(val, 0, 1.05) * Math.PI * 1.5;
+    g.beginPath(); g.moveTo(-Math.cos(na) * r * .12, -Math.sin(na) * r * .12); g.lineTo(Math.cos(na) * r * .72, Math.sin(na) * r * .72); g.lineWidth = 8; g.lineCap = 'round'; g.strokeStyle = RED; g.stroke();
+    g.beginPath(); g.arc(0, 0, 13, 0, 6.283); g.fillStyle = INK; g.fill();
+    var gl = g.createLinearGradient(0, -r, 0, 0); gl.addColorStop(0, 'rgba(255,255,255,.55)'); gl.addColorStop(1, 'rgba(255,255,255,0)');
+    g.beginPath(); g.ellipse(0, -r * .45, r * .8, r * .45, 0, 0, 6.283); g.fillStyle = gl; g.fill();
     g.font = '600 26px "Geist Mono"'; g.textAlign = 'center'; g.fillStyle = INK; g.fillText(label, 0, r * .55);
     g.restore();
   }
   function thermo(g, cx, cy, h, val, txt, alpha) {
     if (alpha <= 0) return;
     g.save(); g.globalAlpha = Math.min(1, alpha); g.translate(cx, cy);
-    g.lineWidth = 9; g.strokeStyle = INK; g.fillStyle = '#fffaf1';
-    g.beginPath(); g.moveTo(-26, -h / 2); g.arc(0, -h / 2, 26, Math.PI, 0); g.lineTo(26, h / 2 - 20); g.arc(0, h / 2 + 14, 44, -1.0, Math.PI + 1.0); g.closePath(); g.fill(); g.stroke();
+    g.save(); g.shadowColor = 'rgba(60,30,10,.22)'; g.shadowBlur = 20; g.shadowOffsetY = 6;
+    g.lineWidth = 6; g.strokeStyle = 'rgba(35,28,21,.8)'; g.fillStyle = 'rgba(255,252,246,.95)';
+    g.beginPath(); g.moveTo(-26, -h / 2); g.arc(0, -h / 2, 26, Math.PI, 0); g.lineTo(26, h / 2 - 20); g.arc(0, h / 2 + 14, 44, -1.0, Math.PI + 1.0); g.closePath(); g.fill(); g.restore(); g.stroke();
     var top = h / 2 - (h - 30) * clamp(val, 0, 1);
-    g.fillStyle = HEAT; g.beginPath(); g.arc(0, h / 2 + 14, 32, 0, 6.283); g.fill(); g.fillRect(-13, top, 26, h / 2 + 14 - top);
+    var mg = g.createLinearGradient(-13, 0, 13, 0); mg.addColorStop(0, '#b8261a'); mg.addColorStop(.4, '#ff6b4a'); mg.addColorStop(1, '#c42d1c');
+    g.fillStyle = mg; g.beginPath(); g.arc(0, h / 2 + 14, 32, 0, 6.283); g.fill(); g.fillRect(-12, top, 24, h / 2 + 14 - top);
+    g.fillStyle = 'rgba(255,255,255,.5)'; g.fillRect(-20, -h / 2, 6, h - 10);
     g.font = '700 46px Archivo'; g.textAlign = 'right'; g.fillStyle = INK; try { g.fontStretch = 'expanded'; } catch (e) {}
     g.fillText(txt, -60, top + 16);
     g.restore();
@@ -264,9 +467,9 @@
       g.scale(sc, sc); g.rotate(-.04);
       g.font = '800 ' + s.size + 'px Archivo'; try { g.fontStretch = 'expanded'; } catch (e) {}
       g.textAlign = 'center'; g.textBaseline = 'middle'; g.globalAlpha = Math.min(1, k);
+      g.lineJoin = 'round'; g.lineWidth = s.size * .12; g.strokeStyle = 'rgba(251,246,236,.9)'; g.strokeText(s.text, 0, 0);
       g.fillStyle = s.color; g.fillText(s.text, 0, 0);
       g.restore();
-      s._box = [s.x - s.size * s.text.length * .35, s.y - s.size / 2, s.x + s.size * s.text.length * .35, s.y + s.size / 2];
     });
   }
   function label(g, text, x, y, alpha, color) {
@@ -275,12 +478,22 @@
     try { g.letterSpacing = '3px'; } catch (e) {}
     g.fillText(text, x, y); g.restore();
   }
+  /* a labelled leader line to a part of the kernel */
+  function callout(g, text, px, py, lx, ly, alpha) {
+    if (alpha <= 0) return;
+    var k = Math.min(1, alpha), e = eo(k);
+    g.save(); g.globalAlpha = k; g.strokeStyle = INK; g.lineWidth = 3;
+    g.beginPath(); g.moveTo(px, py); g.lineTo(lerp(px, lx, e), lerp(py, ly + 14, e)); g.stroke();
+    g.beginPath(); g.arc(px, py, 8, 0, 6.283); g.fillStyle = '#fff'; g.fill(); g.stroke();
+    g.restore();
+    label(g, text, lx, ly, k);
+  }
 
   stamp('pct', '14%', T.pct, T.heat + .45, 300, 660, 150, WATER);
   stamp('nine', '9×', T.nine, T.hot - .05, 770, 650, 170, RED);
   stamp('hot', '180°C', T.hot, T.pop - .02, 330, 660, 120, HEAT);
-  stamp('pop', 'POP!', T.pop + .04, T.pop + 2.15, 540, 700, 230, RED);
-  stamp('forty', '40×', T.forty, start('sound') + .2, 540, 640, 170, INK);
+  stamp('pop', 'POP!', T.pop + .04, T.pop + 2.15, 540, 600, 230, RED);
+  stamp('forty', '40×', T.forty, start('sound') + .2, 540, 620, 170, INK);
 
   /* ---------- captions: the narrator's words, highlighted as spoken ---------- */
   function captions(g, t) {
@@ -307,89 +520,149 @@
     g.restore();
   }
 
+  /* ---------- the finale: a pan of kernels popping, faster and faster ---------- */
+  var PAN = (function () {
+    var r = mulberry(9), out = [], i;
+    for (i = 0; i < 44; i++) {
+      var d = r(), y = PAN_Y - 120 + d * 330, x = 110 + r() * 860;
+      if (Math.abs(x - 540) < 90 && y > PAN_Y + 120) { i--; continue; }        // the old maid's spot stays clear
+      out.push({ x: x, y: y, sc: .55 + .45 * d, rot: (r() - .5) * 2.8 + Math.PI / 2 * (r() < .5 ? 1 : -1), k: r(), h: 160 + r() * 300, dx: (r() - .5) * 160, spin: (r() - .5) * 5, v: i, flip: r() < .5 });
+    }
+    return out;
+  })();
+  var POPORDER = PAN.map(function (p, i) { return i; }).sort(function (a, b) { return PAN[a].k - PAN[b].k; });
+  var RAIN = (function () { var r = mulberry(13), out = []; for (var i = 0; i < 46; i++) out.push({ x: 90 + r() * 900, y: PAN_Y - 150 + r() * 330, t0: 0, u: r(), v: i + 3, rot: r() * 6.28, sc: .55 + r() * .4, spin: (r() - .5) * 6 }); return out; })();
+  function popTime(n) { var u = (n + .5) / POPORDER.length; return T.bowl + .25 + (T.home - T.bowl - .95) * Math.pow(u, .6); }
+  POPORDER.forEach(function (pi, n) { PAN[pi].tp = popTime(n); });
+  RAIN.forEach(function (q) { q.t0 = T.tiny - .3 + (T.home - .6 - T.tiny) * Math.pow(q.u, .8); });
+  var MAID = { x: 540, y: PAN_Y + 205, s: 52 };
+  function finale(g, t) {
+    var come = eo(seg(t, T.bowl - .15, T.bowl + .35));
+    var items = [];
+    PAN.forEach(function (p) { items.push({ y: p.y, p: p }); });
+    RAIN.forEach(function (q) { if (t >= q.t0) items.push({ y: q.y, q: q }); });
+    items.sort(function (a, b) { return a.y - b.y; });
+    items.forEach(function (it) {
+      if (it.p) {
+        var p = it.p, s = 62 * p.sc;
+        g.save(); g.globalAlpha = come;
+        if (t < p.tp) {
+          var j = seg(t, p.tp - .5, p.tp) * 3;
+          g.translate(p.x + Math.sin(t * 61 + p.v) * j, p.y + Math.cos(t * 47 + p.v) * j * .6 - s * .45);
+          g.rotate(p.rot); drawSpr(g, SPR.kernel, 0, 0, s * .62);
+        } else {
+          var u = seg(t, p.tp, p.tp + .62), fx = p.x + p.dx * u, fy = p.y - p.h * 4 * u * (1 - u);
+          if (u >= 1) { var b = seg(t, p.tp + .62, p.tp + .82); fy = p.y - 30 * p.sc * Math.sin(b * Math.PI) * (1 - b); }
+          drawFlakeSpr(g, p.v, fx, fy, s * .78 * eo(seg(t, p.tp, p.tp + .12)), p.spin * Math.min(u, 1) + (p.flip ? .4 : -.3));
+          vapor(g, p.x, p.y - s * .5, s * 1.1, seg(t, p.tp, p.tp + .5), p.v * 7, true, .55);
+        }
+        g.restore();
+      } else {
+        var q = it.q, u2 = seg(t, q.t0, q.t0 + .55), qy = lerp(-200, q.y, u2 * u2), s2 = 62 * q.sc;
+        if (u2 >= 1) { var b2 = seg(t, q.t0 + .55, q.t0 + .8); qy = q.y - 26 * q.sc * Math.sin(b2 * Math.PI) * (1 - b2); }
+        drawFlakeSpr(g, q.v, q.x, qy, s2 * .78, q.rot + q.spin * u2);
+      }
+    });
+  }
+
   /* ---------- the picture ---------- */
   var NOISE;
-  function frame(g, t) {
-    g.setTransform(1, 0, 0, 1, 0, 0);
+  function paper(g) {
     var bg = g.createLinearGradient(0, 0, 0, H); bg.addColorStop(0, '#fbf6ec'); bg.addColorStop(1, '#efe4cf');
     g.fillStyle = bg; g.fillRect(0, 0, W, H);
+    var vg = g.createRadialGradient(540, 1150, 300, 540, 1000, 1300); vg.addColorStop(0, 'rgba(255,255,255,0)'); vg.addColorStop(1, 'rgba(150,110,60,.12)');
+    g.fillStyle = vg; g.fillRect(0, 0, W, H);
+  }
+  function frame(g, t) {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    paper(g);
 
     /* camera: a slow push through the build-up, a punch on the pop */
     var push = 1 + .08 * ss(seg(t, start('steam'), T.pop)) - .08 * eo(seg(t, T.pop, T.pop + .4)) + .05 * Math.max(0, 1 - (t - T.pop) * 3) * (t > T.pop ? 1 : 0);
     g.save(); g.translate(KX, KY); g.scale(push, push); g.translate(-KX, -KY);
 
     var temp = ss(seg(t, T.heat, T.pop)), pressure = ss(seg(t, T.boil + .3, T.nine + .3)) * .7 + .3 * ss(seg(t, T.hot, T.pop));
-    var heatK = seg(t, T.heat - .2, T.heat + .5) * (1 - seg(t, T.pop + .2, T.pop + .8));
-    heat(g, heatK, t);
+    var panK = seg(t, T.heat - .25, T.heat + .45), panHeat = temp * (1 - .6 * seg(t, T.pop, T.pop + 3)) + .5 * seg(t, T.bowl - .3, T.bowl + .5);
+    pan(g, panK, panHeat);
+    haze(g, seg(t, T.heat, T.heat + .8) * (1 - seg(t, T.pop + .2, T.pop + 1)), t);
 
+    var M = FLAKES[0];
     /* hook: pop, hold, rewind */
-    var preview = t >= T.hookPop && t < T.rew1;
     var rewind = seg(t, T.rew0, T.rew1);
-    if (t < T.hookPop) kernel(g, KX, KY, KS, { t: t, shake: .1 * seg(t, .6, T.hookPop) });
-    else if (preview) {
-      var gk = clamp(seg(t, T.hookPop, T.hookPop + .5), 0, 1) * (1 - eio(rewind));
-      if (rewind > 0) { g.save(); g.globalAlpha = .35 * Math.sin(rewind * Math.PI); kernel(g, KX, KY + 40 * Math.sin(rewind * 9), KS, { t: t }); g.restore(); }
-      flake(g, KX, KY - 40, KS * 1.05, gk, .1);
-      burst(g, KX, KY, KS, seg(t, T.hookPop, T.hookPop + .7), 3);
-      if (rewind > 0) { g.save(); g.globalAlpha = .12 + .2 * Math.sin(rewind * Math.PI); g.fillStyle = INK; for (var i = 0; i < 9; i++) g.fillRect(0, (i * 237 + t * 4000) % H, W, 6); g.restore(); }
+    if (t < T.hookPop) kernel(g, KX, KY, KS, { t: t, shake: .12 * seg(t, .6, T.hookPop) });
+    else if (t < T.rew1) {
+      var hk = eo(seg(t, T.hookPop, T.hookPop + .45)) * .85 * (1 - eio(rewind)), ho = seg(t, T.hookPop - .02, T.hookPop + .3) * (1 - eio(rewind));
+      g.save(); g.scale(1, 1);
+      g.translate(0, -120 * Math.sin(Math.PI * Math.min(1, seg(t, T.hookPop, T.hookPop + .7))) * (1 - eio(rewind)));
+      kernelShadowOnly(g, KX, KY, KS, 1 - hk * .5);
+      popping(g, KX, KY, KS, ho, hk, M, 0, t);
+      vapor(g, KX, KY - KS * .6, KS, seg(t, T.hookPop, T.hookPop + .7) * (rewind > 0 ? 0 : 1), 3, true);
+      g.restore();
+      if (rewind > 0) { g.save(); g.globalAlpha = .1 + .18 * Math.sin(rewind * Math.PI); g.fillStyle = INK; for (var i = 0; i < 9; i++) g.fillRect(0, (i * 237 + t * 4000) % H, W, 5); g.restore(); }
     } else if (t < T.pop) {
-      var sec = seg(t, T.cut, T.cut + .45);
+      var sec = seg(t, T.cut, T.cut + .5);
       kernel(g, KX, KY, KS, {
-        t: t, section: sec, drops: seg(t, T.drops - .1, T.drops + .9), steam: seg(t, T.boil - .1, T.boil + .9),
-        temp: temp, pressure: t > T.boil ? pressure : 0, tough: win(t, T.tough, T.trapped + .8, .4) * .8,
-        shake: pressure * .6 + .8 * seg(t, T.gives - .4, T.pop), crack: seg(t, T.gives - .1, T.pop - .02)
+        t: t, section: sec, drops: seg(t, T.drops - .15, T.drops + .7), steam: seg(t, T.boil - .1, T.boil + .9),
+        temp: temp * .6, gel: ss(seg(t, T.climb, T.pop)), pressure: t > T.boil ? pressure : 0, tough: win(t, T.tough, T.trapped + .8, .4),
+        shake: pressure * .5 + .9 * seg(t, T.gives - .4, T.pop), crack: seg(t, T.gives - .1, T.pop - .02)
       });
+      /* anatomy, as soon as it's open */
+      var an = win(t, T.cut + .35, T.pct - .1, .25);
+      callout(g, 'HULL', KX + .79 * KS, KY - .35 * KS, 880, 960, an);
+      callout(g, 'STARCH', KX - .25 * KS, KY - .4 * KS, 200, 960, an);
+      callout(g, 'GERM', KX + .08 * KS, KY + .62 * KS, 860, 1296, an);
       /* the steam knocking on the wall while it's trapped */
       var tk = win(t, T.tough, end('trap'), .3);
       if (tk > 0) for (var j = 0; j < 6; j++) {
         var ph = (t * 3.1 + j * .37) % 1, a = j * 1.05 + .4;
         g.save(); g.globalAlpha = tk * (1 - ph) * .9; g.strokeStyle = RED; g.lineWidth = 6;
-        g.beginPath(); g.arc(KX + Math.cos(a) * KS * .74, KY + Math.sin(a) * KS * .86, 16 + ph * 34, a - .8, a + .8); g.stroke(); g.restore();
+        g.beginPath(); g.arc(KX + Math.cos(a) * KS * .76, KY - .1 * KS + Math.sin(a) * KS * .86, 16 + ph * 34, a - .8, a + .8); g.stroke(); g.restore();
       }
     } else {
-      /* the pop, the flake, then the questions */
-      var b = seg(t, T.pop, T.pop + .55), gk2 = eo(seg(t, T.pop, T.forty + .4)) * (.8 + .2 * ss(seg(t, T.forty - .1, T.forty + .5)));
+      /* the pop: hull splits, the foam erupts, the whole thing jumps; then the questions */
+      var open = seg(t, T.pop - .02, T.pop + .32), fk = eo(seg(t, T.pop, T.pop + .75)) * .8 + .2 * ss(seg(t, T.forty - .15, T.forty + .5));
+      var ju = seg(t, T.pop + .06, T.pop + 1.0), jy = -240 * 4 * ju * (1 - ju), jr = .35 * Math.sin(ju * Math.PI);
+      var land = seg(t, T.pop + 1.0, T.pop + 1.3), squash = 1 - .05 * Math.sin(land * Math.PI);
       var away = eio(seg(t, T.dud - .3, T.dud + .4)), soundK = win(t, T.hear, T.dud - .3, .3);
       if (t < T.dud + .4) {
-        g.save(); g.translate(-away * 900, -170 * soundK);
-        if (t < T.pop + .08) kernel(g, KX, KY, KS, { t: t, section: 1, temp: 1, pressure: 1, shake: 1.2, crack: 1, steam: 1, drops: 1 });
-        flake(g, KX, KY - 60 * gk2, KS * (.55 + .7 * gk2) * (1 - .25 * soundK), Math.max(.01, gk2), .12 * Math.sin(t * .8));
-        shards(g, KX, KY, KS, seg(t, T.pop, T.pop + 1.1));
-        burst(g, KX, KY - 30, KS * 1.1, b, 11);
+        g.save(); g.translate(-away * 1000, -150 * soundK);
+        var fs = 1 - .3 * soundK;
+        g.translate(KX, KY + KS * .85); g.scale(fs, fs * squash); g.translate(-KX, -(KY + KS * .85));
+        kernelShadowOnly(g, KX, KY, KS, (1 - ju * .7));
+        if (t < T.pop + .06) kernel(g, KX, KY, KS, { t: t, section: 1, temp: .6, gel: 1, pressure: 1, shake: 1.2, crack: 1, steam: 1, drops: 1, shadow: false });
+        else popping(g, KX, KY + jy, KS * (open < 1 ? 1 : 1), open, fk, M, jr, t);
         /* 40x: the kernel it came from, to scale */
         var ghost = win(t, T.forty - .05, end('puff') + .2, .3);
-        if (ghost > 0) { g.save(); g.globalAlpha = .9 * Math.min(1, ghost); g.setLineDash([14, 12]); kernelPath2(g, KX + 330, KY + 230, KS * .36); g.lineWidth = 6; g.strokeStyle = HULL2; g.stroke(); g.setLineDash([]); g.restore(); label(g, 'BEFORE', KX + 330, KY + 360, ghost, HULL2); }
+        if (ghost > 0) { g.save(); g.globalAlpha = Math.min(1, ghost); drawSpr(g, SPR.kernel, KX + 380, KY + 250, KS * .3); g.restore(); label(g, 'BEFORE', KX + 380, KY + 370, ghost, '#fff'); }
         g.restore();
+        flyShards(g, KX, KY - KS * .4, KS, seg(t, T.pop, T.pop + 1.1));
+        vapor(g, KX, KY - KS * .5, KS * 1.3, seg(t, T.pop, T.pop + 1.1), 11, true, .85);
       }
-      /* "that pop you hear": the shell (crossed out) vs the steam (with sound waves) */
+      /* "that pop you hear": not the hull (crossed out), the steam (rings) */
       if (soundK > 0) {
         var sk = Math.min(1, soundK), xs = win(t, T.notShell, T.dud - .3, .3), st = win(t, T.escaping, T.dud - .3, .3);
         g.save(); g.globalAlpha = sk;
-        g.save(); g.translate(300, 1330); g.fillStyle = HULL2; g.beginPath(); g.moveTo(-70, -26); g.lineTo(64, -40); g.lineTo(36, 46); g.closePath(); g.fill();
-        if (xs > 0) { g.strokeStyle = RED; g.lineWidth = 14; g.lineCap = 'round'; var xk = Math.min(1, xs); g.beginPath(); g.moveTo(-80, -70); g.lineTo(-80 + 160 * xk, -70 + 140 * xk); g.stroke(); if (xk > .5) { var x2 = (xk - .5) * 2; g.beginPath(); g.moveTo(80, -70); g.lineTo(80 - 160 * x2, -70 + 140 * x2); g.stroke(); } }
-        g.restore();
-        label(g, 'SHELL', 300, 1430, sk);
+        g.save(); g.translate(290, 1330); g.rotate(-.9); shard(g, 70, 130, 1); g.restore();
+        if (xs > 0) { g.save(); g.translate(290, 1340); g.strokeStyle = RED; g.lineWidth = 14; g.lineCap = 'round'; var xk = Math.min(1, xs); g.beginPath(); g.moveTo(-85, -75); g.lineTo(-85 + 170 * xk, -75 + 150 * xk); g.stroke(); if (xk > .5) { var x2 = (xk - .5) * 2; g.beginPath(); g.moveTo(85, -75); g.lineTo(85 - 170 * x2, -75 + 150 * x2); g.stroke(); } g.restore(); }
+        label(g, 'HULL', 290, 1450, sk, '#fff');
         if (st > 0) {
-          g.save(); g.translate(760, 1340);
-          for (var w2 = 0; w2 < 4; w2++) { var p2 = (t * 1.8 + w2 * .25) % 1; g.globalAlpha = Math.min(1, st) * (1 - p2); g.strokeStyle = RED; g.lineWidth = 8; g.beginPath(); g.arc(0, 0, 40 + p2 * 120, -.9, .9); g.stroke(); g.beginPath(); g.arc(0, 0, 40 + p2 * 120, Math.PI - .9, Math.PI + .9); g.stroke(); }
-          g.globalAlpha = Math.min(1, st);
-          for (var p3 = 0; p3 < 6; p3++) { var q = (t * 2 + p3 / 6) % 1; g.beginPath(); g.arc((hash(p3) - .5) * 30, -q * 160, 18 + q * 22, 0, 6.283); g.fillStyle = 'rgba(255,255,255,' + (1 - q) + ')'; g.fill(); g.strokeStyle = 'rgba(35,28,21,' + (.25 * (1 - q)) + ')'; g.lineWidth = 3; g.stroke(); }
+          g.save(); g.translate(770, 1350);
+          for (var w2 = 0; w2 < 4; w2++) { var p2 = (t * 1.8 + w2 * .25) % 1; g.globalAlpha = Math.min(1, st) * (1 - p2); g.strokeStyle = RED; g.lineWidth = 8; g.beginPath(); g.arc(0, -40, 50 + p2 * 120, -.9, .9); g.stroke(); g.beginPath(); g.arc(0, -40, 50 + p2 * 120, Math.PI - .9, Math.PI + .9); g.stroke(); }
+          g.globalAlpha = Math.min(1, st); wisp(g, 0, 20, t * 1.6, 1, 7, 40);
           g.restore();
-          label(g, 'STEAM', 760, 1430, Math.min(1, st), RED);
+          label(g, 'STEAM', 770, 1450, Math.min(1, st), '#fff');
         }
         g.restore();
       }
-      /* duds: a kernel that leaked */
-      var dk = seg(t, T.dud - .1, T.dud + .5) * (1 - seg(t, T.bowl - .1, T.bowl + .3));
+      /* duds: a kernel whose hull leaked, so pressure never built */
+      var dk = seg(t, T.dud - .1, T.dud + .5), mv = eio(seg(t, T.bowl - .15, T.bowl + .45));
       if (dk > 0) {
-        kernel(g, KX + (1 - eo(dk)) * 900, KY, KS, { t: t, rot: (1 - eo(dk)) * 1.2, crack: seg(t, T.leaked - .1, T.leaked + .3) * .5 });
-        var lk = seg(t, T.leaked, T.leaked + .3);
-        for (var m = 0; m < 7; m++) { var qq = (t * 1.4 + m / 7) % 1; g.globalAlpha = lk * (1 - qq) * dk; g.beginPath(); g.arc(KX + 60 + qq * 120 + Math.sin(qq * 9 + m) * 14, KY - KS * .85 - qq * 200, 12 + qq * 26, 0, 6.283); g.fillStyle = '#fff'; g.fill(); }
-        g.globalAlpha = 1;
-        label(g, 'OLD MAID · NEVER POPS', KX, KY + KS * 1.3, dk * seg(t, T.leaked, T.leaked + .3));
+        var dx = lerp(KX + (1 - eo(dk)) * 1000, MAID.x, mv), dy = lerp(KY, MAID.y - MAID.s * .9, mv), ds = lerp(KS, MAID.s, mv);
+        if (t >= T.bowl - .2) finale(g, t);
+        kernel(g, dx, dy, ds, { t: t, rot: (1 - eo(dk)) * 1.4, crack: seg(t, T.leaked - .1, T.leaked + .3) * .35 * (1 - mv) });
+        wisp(g, dx + .3 * ds, dy - .85 * ds, t, seg(t, T.leaked, T.leaked + .3) * (1 - mv), 6, 50);
+        label(g, 'OLD MAID · NEVER POPS', KX, KY + KS * 1.3, seg(t, T.leaked, T.leaked + .3) * (1 - seg(t, T.bowl - .2, T.bowl + .1)), '#fff');
       }
-      /* a bowl: a few hundred tiny explosions, then back to one kernel (the loop) */
-      if (t >= T.bowl - .1) bowl(g, t);
     }
     g.restore();
 
@@ -405,34 +678,20 @@
     label(g, 'SEALED SHELL', 540, 830, win(t, T.tough, end('trap') + .2, .3), RED);
     label(g, 'THE AIR AROUND YOU = 1', 540, 830, win(t, T.nine + .3, end('press') + .2, .3));
     drawStamps(g, t);
+
+    /* the loop: the pan fades back to one kernel on paper, which is frame 0 */
+    var back = eio(seg(t, T.home - .05, DUR));
+    if (back > 0) { g.save(); g.globalAlpha = back; paper(g); kernel(g, KX, KY, KS, { t: 0 }); g.restore(); }
     captions(g, t);
 
-    /* the frame: a thin progress line along the top (the loop restarts it) */
+    /* a thin progress line along the top (the loop restarts it) */
     g.fillStyle = 'rgba(35,28,21,.12)'; g.fillRect(60, 140, W - 120, 6);
     g.fillStyle = RED; g.fillRect(60, 140, (W - 120) * t / DUR, 6);
     if (LIVE.grain && NOISE) { g.globalAlpha = .05; g.globalCompositeOperation = 'multiply'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
   }
-  function kernelPath2(g, cx, cy, s) { g.save(); g.translate(cx, cy); kernelPath(g, s); g.restore(); }
-
-  /* the bowl: kernels on a grid pop one after another, faster and faster */
-  var GRID = (function () {
-    var r = mulberry(9), out = [];
-    for (var i = 0; i < 42; i++) out.push({ x: 120 + (i % 6) * 168 + (r() - .5) * 60, y: 760 + Math.floor(i / 6) * 132 + (r() - .5) * 40, k: r(), rot: (r() - .5) * 1.4 });
-    return out;
-  })();
-  function popTime(i) { var u = (i + .5) / GRID.length; return T.bowl + .2 + (T.home - T.bowl - .9) * Math.pow(u, .62); }
-  var ORDER = GRID.map(function (g, i) { return i; }).sort(function (a, b) { return GRID[a].k - GRID[b].k; });
-  function bowl(g, t) {
-    var come = eo(seg(t, T.bowl - .1, T.bowl + .4)), back = eio(seg(t, T.home - .2, DUR));
-    ORDER.forEach(function (gi, n) {
-      var p = GRID[gi], tp = popTime(n), x = lerp(KX, p.x, come * (1 - back)), y = lerp(KY, p.y, come * (1 - back)), s = lerp(KS, 46, come * (1 - back));
-      if (back > .85) return;
-      g.save(); g.globalAlpha = 1 - ss(seg(back, .5, .85));
-      if (t < tp) kernel(g, x, y, s, { t: t + n, rot: p.rot, shake: .25 * seg(t, tp - .4, tp) });
-      else { flake(g, x, y - 10, s * 1.15, eo(seg(t, tp, tp + .3)), p.rot); burst(g, x, y, s * 1.2, seg(t, tp, tp + .45), n); }
-      g.restore();
-    });
-    if (back > 0) kernel(g, KX, KY, KS, { t: t, alpha: ss(seg(back, .3, 1)) });
+  function kernelShadowOnly(g, cx, cy, s, a) {
+    g.save(); g.translate(cx, cy); g.scale(1, .16); var y = 1.08 * s / .16, shg = g.createRadialGradient(0, y, 0, 0, y, .75 * s);
+    shg.addColorStop(0, 'rgba(25,12,4,' + (.4 * a) + ')'); shg.addColorStop(1, 'rgba(25,12,4,0)'); g.fillStyle = shg; g.beginPath(); g.arc(0, y, .75 * s, 0, 6.283); g.fill(); g.restore();
   }
 
   /* ---------- text dwell: stamps and labels only (captions follow the voice, by design) ---------- */
@@ -444,7 +703,7 @@
 
   /* ---------- events: the sound design reads the same word times ---------- */
   var EV = [{ t: T.hookPop, type: 'pop', g: .8 }, { t: T.rew0, type: 'rewind' }, { t: T.gauge, type: 'tick' }];
-  DROPS.forEach(function (d) { if (d.k % 3 === 0) EV.push({ t: T.drops + d.k * .6 / 26 * 0.9, type: 'blip', f: 900 + d.k * 40 }); });
+  DROPS.forEach(function (d) { if (d.k % 6 === 0) EV.push({ t: T.drops - .15 + d.k / DROPS.length * .55, type: 'blip', f: 900 + d.k * 18 }); });
   EV.push({ t: T.pct, type: 'thump' }, { t: T.heat, type: 'sizzle', t1: T.pop }, { t: T.boil, type: 'hiss', t1: T.pop });
   for (var kn = T.tough; kn < end('trap'); kn += .32) EV.push({ t: kn, type: 'knock' });
   for (var tk2 = T.climb; tk2 < T.nine + .2; tk2 += .11) EV.push({ t: tk2, type: 'tick' });
@@ -452,7 +711,8 @@
   for (var cr = T.gives - .1; cr < T.pop - .05; cr += .09) EV.push({ t: cr, type: 'creak' });
   EV.push({ t: T.pop, type: 'pop', g: 1.4, big: true }, { t: T.forty, type: 'thump' }, { t: T.notShell, type: 'tick' }, { t: T.escaping, type: 'hiss', t1: T.escaping + 1.2 });
   EV.push({ t: T.dud, type: 'rewind' }, { t: T.leaked, type: 'hiss', t1: T.leaked + 1.0, small: true });
-  ORDER.forEach(function (gi, n) { EV.push({ t: popTime(n), type: 'pop', g: .32 + .2 * hash(n), f: hash(n * 3) }); });
+  POPORDER.forEach(function (pi, n) { EV.push({ t: popTime(n), type: 'pop', g: .32 + .2 * hash(n), f: hash(n * 3) }); });
+  RAIN.forEach(function (q, n) { EV.push({ t: q.t0 + .55, type: 'tick', g: .08 }); });
   EV.push({ t: T.home, type: 'rewind' }, { t: DUR - .45, type: 'tick' });
 
   function render(t, samples, shutter, fps) {
@@ -500,7 +760,7 @@
     function creak(t) { var o = bus(1, .1), bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 700 + rnd() * 500; bp.Q.value = 12; var n = noise(t, .07); n.connect(bp); bp.connect(o); env(o.gain, [[t, 0], [t + .005, .5], [t + .06, 0]]); }
     EV.forEach(function (e) {
       if (e.type === 'pop') pop(e.t, e.g, e.f, e.big);
-      else if (e.type === 'tick') tick(e.t, .22);
+      else if (e.type === 'tick') tick(e.t, e.g || .22);
       else if (e.type === 'thump') thump(e.t, .3);
       else if (e.type === 'blip') blip(e.t, e.f);
       else if (e.type === 'rewind') rewind(e.t);
@@ -549,6 +809,7 @@
     NOISE = mk(256, 256); var ng = NOISE.getContext('2d'), id = ng.createImageData(256, 256), r = mulberry(3);
     for (var i = 0; i < id.data.length; i += 4) { var v = 120 + r() * 135; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
     ng.putImageData(id, 0, 0);
+    buildKernel(); buildSection(); buildFlakeSprites();
     var fonts = ['800 84px Archivo', '700 46px Archivo', '600 30px "Geist Mono"'];
     return Promise.all(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×'); })).then(function () { return document.fonts.ready; }).then(function () { window.READY = true; });
   }
