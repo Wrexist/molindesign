@@ -46,6 +46,18 @@ Models download once to `~/.cache/molin-voice` (330 MB Kokoro, 140 MB Whisper ba
 8. **Land the stressed word on the beat/cut**, not the line start: put `at` so the key noun hits the downbeat (word timings in `vo.json` tell you where it falls; nudge `at`).
 9. **Short lines sound weak** in Kokoro (verified, VOICES.md: < 10–20 tokens). Pair two short sentences into one line ("Most cameras stop time. This one holds it.") and give a lone name a comma ("Halden, LF-1.").
 
+## 3b. A human voice: Chatterbox (verified in our pipeline, Oct 2026)
+Kokoro is clean but reads flat. For anything a viewer should feel was spoken by a person (TikTok explainers, ads), set `"engine": "chatterbox"`: Resemble AI's Chatterbox (MIT code and weights) breathes, leans on words and moves pitch like a person. Measured on the same line with pyin: Kokoro voices spread 6–7 semitones (p10–p90), Chatterbox 10–16; Whisper hears it at 0.95+ word confidence. Costs: ~5x slower than real time on CPU (4 min for 11 lines, cached per line), no rate control (`speed` becomes a mild atempo, fit caps 0.96–1.08), and every output carries Resemble's inaudible Perth watermark (disclose it, never strip it).
+```json
+"engine": "chatterbox", "chatterbox": { "exaggeration": 0.55, "cfg": 0.3, "seed": 11 }, "pace": { "max": 3.5 }
+```
+- `exaggeration` 0.5–0.6 = lively explainer; 0.7+ starts to act. `cfg` 0.3 slows and loosens the read; 0.5 is brisker.
+- It talks fast (3.5–4 w/s) and ignores ellipses: split a long line into two short sentences instead.
+- Write digits in `text` (captions read better) and the spoken form in `say`.
+- A misread line: re-roll it with `"take": 1` (a new seed), don't fight the wording first.
+- `"ref": "voice.wav"` clones a voice from 10 s of audio. Only a voice you have written consent for; never a real person's voice otherwise.
+- **Sync by construction:** record the voice first, then set every visual beat from the word times in `vo/vo.js` (the page reads `VO.lines[i].words[j].t0`). Nothing can drift because the picture is cut to the voice.
+
 ## 4. Voice choice (verified grades from Kokoro VOICES.md; character notes inferred)
 | Voice | Grade | Use |
 |---|---|---|
