@@ -16,10 +16,10 @@ The narration was recorded before any picture existed (`vo/script.json`, Chatter
 | 15.0 | "The pressure **climbs**. **Nine** times the air around you." | The gauge sweeps on *climbs*; 9× stamps on *nine*; arrows push on the shell. |
 | 18.1 | "At **180** degrees, the shell **gives** up." | 180°C; cracks run down the hull on *gives*. |
 | 20.5 | (silence) | **POP.** The only quiet moment in the film; the music drops out for it. |
-| 21.7 | "The steam rushes out, and the soft starch puffs up **40** times bigger." | The flake blooms; 40× and a dotted outline of the kernel it came from. |
-| 25.9 | "That **pop** you hear? It's not the **shell**. It's the **steam** escaping." | Shell shard crossed out; steam with sound rings. |
-| 29.9 | "And the ones that never pop? Their shell **leaked**." | An old maid rolls in and leaks steam. |
-| 33.0 | "So every bowl is a few hundred **tiny** explosions." | 42 kernels pop in an accelerating cascade, then fold back into one kernel: frame 0, so it loops. |
+| 21.7 | "The steam rushes out, and the soft starch puffs up **40** times bigger." | The flake blooms; 40× next to a kernel at true scale, labelled BEFORE. |
+| 25.9 | "That **pop** you hear? It's not the **shell**. It's the **steam** escaping." | Hull shard crossed out; steam with sound rings. |
+| 29.9 | "And the ones that never pop? Their shell **leaked**." | An old maid rolls in; a crack in its hull leaks steam. |
+| 33.0 | "So every bowl is a few hundred **tiny** explosions." | A pan of 44 kernels pops in an accelerating cascade while more popcorn rains in; the old maid sits unpopped in the middle; it fades back to one kernel on paper (frame 0), so it loops. |
 
 ## Rules it follows
 
