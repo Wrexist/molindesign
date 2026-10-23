@@ -8,7 +8,7 @@
 7,temperature,Why the same question gets different answers,Ask the same question twice. Get two answers. On purpose.,Temperature: it rolls weighted dice over the next-word odds.,ready,
 8,gpus,Why AI made Nvidia rich,One company sells the shovels for the AI gold rush.,"Training is billions of multiply-adds at once; GPUs do thousands in parallel, and they were built for games.",ready,Check current figures on the day and say 'about'.
 9,agent,What an AI agent actually is,"This AI booked a table, filled in a form and sent the email. Nobody clicked.","An agent is the same guesser in a loop: think, use a tool, look, repeat.",ready,
-10,math,Why AI is bad at maths,A computer that can't add? Here's why.,It predicts digits like words; a calculator tool fixes it.,ready,
+10,math,Why AI is bad at math,A computer that can't add? Here's why.,It predicts digits like words; a calculator tool fixes it.,ready,
 11,voiceclone,How AI clones a voice from 3 seconds,Three seconds of your voice is enough.,Voices become numbers too; end with how to protect your family (a safe word).,ready,Practical safety tip; no how-to for misuse.
 12,stepbystep,Why 'think step by step' makes AI smarter,Five words that make AI smarter.,It can only think out loud: each written step becomes context for the next guess.,ready,
 13,vision,How AI sees a photo,AI doesn't see your photo. It sees a grid of little squares.,Image patches become tokens; it is the same machine as text.,ready,

@@ -7,7 +7,7 @@ description: Run one turn of the video factory - pick the next topic from the Dr
 
 One run makes one finished TikTok explainer, end to end. Four agents in `.claude/agents/` do the work; this skill is the orchestrator that runs them in order and owns every outside call (Drive, Higgsfield, TikTok, GitHub). Read `factory/README.md` once for the why.
 
-**Standing rules (Isac):** English narration and captions; no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; disclose the AI voice. Never press Post: TikTok requires Isac to confirm every post himself.
+**Standing rules (Isac):** American English narration and captions, aimed at a **US audience** (Isac posts from Sweden, so the content, keywords, sounds and post time must all say US); no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; disclose the AI voice. Never press Post: TikTok requires Isac to confirm every post himself.
 
 ## 0. Setup (≈ 1 min, ≈ 5 min in a fresh container)
 - `bash factory/setup.sh`.
@@ -42,7 +42,7 @@ Spawn the `video-seo` agent with the slug and the final jury report. It writes `
 ## 7. Record and hand over
 - Re-create the Drive doc's content as a new doc version: Drive can't edit content in place, so `create_file` a new `Factory #<n> · <topic>` doc with the full pack (hook, script, sources from BRIEF.md, jury score and verdict, caption, hashtags, keywords, post time, sound ideas, Higgsfield video URLs, PR link) and `trash_file` the claim doc from step 1.
 - Repo: set the row's Status in `factory/backlog.csv` to `done` (or `wip`), add `film/<slug>/` (mp4s stay git-ignored: they live on Higgsfield, in Drive's doc links and in `/mnt/project-files/factory/<slug>/` when that exists), commit "Factory #<n>: <topic>" and push your branch, open a PR titled `Factory #<n>: <topic>` with the jury score, the caption and the poster path.
-- Report to Isac in ≤ 8 lines: the topic and hook, the jury score, the Drive doc link, the PR link, the best post time, the sound ideas, and that the TikTok form is waiting for his tap (or the connect link).
+- Report to Isac in ≤ 8 lines: the topic and hook, the jury score, the Drive doc link, the PR link, the best post time (ET and Stockholm), the sound ideas, and that the TikTok form is waiting for his tap (or the connect link).
 
 ## Timing and cost
 A run is ≈ 60–90 min of machine time: voice ≈ 7 min, renders ≈ 10 min, two jury rounds, agents' thinking. One run per scheduled firing; never start a second video in the same run.

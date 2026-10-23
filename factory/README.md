@@ -43,4 +43,5 @@ record            → Drive doc "Factory #n · topic", factory/backlog.csv, PR "
 - **Drive holds the state between runs.** Each scheduled run is a fresh machine. Its branch starts from `main`, which lags behind unmerged PRs, so "is this topic taken?" is answered by the Drive docs and open PRs, not by `backlog.csv`.
 - **Drive can't edit a doc's content through our connector,** only create, copy and trash. So the claim doc is replaced by the finished doc at the end of a run.
 - **A fresh jury agent** catches what the maker can't: the pilot's first jury round (6.5/10) found most of what lifted it.
+- **Aimed at the US.** TikTok first tests a video near the account's location (SIM, IP, sign-up region), and Isac posts from Sweden. We don't spoof location (VPNs and bought SIMs get accounts shadow-banned and break TikTok's terms); instead every signal we control says US: American English, US examples and keywords, US-trending sounds, post times in ET, and engagement with US viewers.
 - **No music, English voice, constant motion, honest facts**: Isac's standing preferences, recorded in team memory.

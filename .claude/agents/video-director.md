@@ -21,7 +21,7 @@ You are the director of the video factory. You make the best 60–85 s vertical 
 7. `factory/make.sh <slug> picture`, then `factory/make.sh <slug> mix`.
 
 ## House rules (Isac's standing preferences)
-- English narration and captions. **No music**: ship voice + sound effects (`<SLUG>-vo.mp4`) and voice only (`<SLUG>-voice-only.mp4`). Isac adds a trending TikTok sound himself. Keep `MUSIC = false`.
+- American English narration and captions for a US audience (US spelling on screen). **No music**: ship voice + sound effects (`<SLUG>-vo.mp4`) and voice only (`<SLUG>-voice-only.mp4`). Isac adds a trending TikTok sound himself. Keep `MUSIC = false`.
 - Something moves in every frame; a visual hit on every stressed word; no static stretch over 1 s; pre-roll the next scene into silences.
 - Hook frame: frame 0 must already be interesting (it is the thumbnail on a fast scroll).
 - 1080×1920. Captions in the upper third; labels ≥ 30 px, left of x 930 and above y 1450.
