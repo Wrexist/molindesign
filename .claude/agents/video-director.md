@@ -13,7 +13,7 @@ You are the director of the video factory. You make the best 60–85 s vertical 
 
 ## Make it
 1. `factory/setup.sh` once per container.
-2. **Voice first.** `factory/make.sh <slug> voice`. If the listen check flags a line, fix it in `script.json` (`say`, `take`, split the line, a comma for a pause) and rerun until every line passes. Set `dur` to the last word + about 6 s.
+2. **Voice first.** `factory/make.sh <slug> voice`. If the listen check flags a line, fix it in `script.json` (`say`, `take`, split the line, a comma for a pause) and rerun until every line passes. The solo check is advisory (Whisper can invent words in a dry fade-out); the in-mix check in `mix` is the gate. Set `dur` to the last word + about 2.5–3 s, so the loop comes round quickly.
 3. Copy the pilot as a starting point: `index.html`, `.gitignore` and `film.js` from `film/nextword/` into `film/<slug>/`. In `index.html` change the title, description and mp3 name, and remove the download buttons. Add `out/*.mp4` to the copied `.gitignore`: factory videos are delivered through Higgsfield and Drive, not git. In `film.js` set `SLUG` to the slug, keep the engine and replace the scenes (`SC`), texts and SFX cues with this film's.
 4. Write `film/<slug>/TREATMENT.md` before the scenes: two benchmarks (learn / don't take), three structures and the one you chose, the native move, and a line → picture table.
 5. Key every beat to the voice with `at(id, word)`; never hand-type a time.
@@ -25,7 +25,8 @@ You are the director of the video factory. You make the best 60–85 s vertical 
 - Something moves in every frame; a visual hit on every stressed word; no static stretch over 1 s; pre-roll the next scene into silences.
 - Hook frame: frame 0 must already be interesting (it is the thumbnail on a fast scroll) and carry a **silent hook**: a big readable headline (≥ 64 px, upper third) with the main search phrase from BRIEF.md, because most people scroll muted. Show that phrase on screen in the first 2 s (TikTok reads on-screen text).
 - The last frame must cut cleanly into frame 0 (same layout, same caret or object), so the loop rewatches without a bump.
-- 1080×1920. Captions in the upper third; labels ≥ 30 px, left of x 930 and above y 1450.
+- 1080×1920. Captions in the upper third; labels ≥ 30 px, inside x 90–930 and above y 1450 (stamps included: the pilot's STAMPS sit at y 1480, move them to ≈1280 — TikTok's caption overlay covers 1450–1750).
+- Frame 0 shows the conflict, not the answer. The loop seam has ≤ 1.2 s without voice. Say the payoff once. Give the DM-able fact the whole frame. No placeholder bars or repeated filler rows.
 - Ban list: glowing neural nets, grid floors, particle bursts, lens flares, camera shake, bouncy easing, stock "AI brain" imagery.
 - Honest: every number on screen matches BRIEF.md's sources.
 - Pure function of t: seeded RNG only, no Date.now, no timers.

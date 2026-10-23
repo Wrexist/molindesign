@@ -19,7 +19,9 @@ SLUG="${SLUG:-$SLUG_DIR}"
 
 voice() {
   ( cd "$TOOLS" && "$PY" voiceover.py synth "$FILM/vo/script.json" )
-  ( cd "$TOOLS" && "$PY" voiceover.py check "$FILM/vo/script.json" ) || { echo "listen check flagged lines: fix script.json (say/take/split) and rerun"; exit 2; }
+  # The solo check is advisory: Whisper sometimes invents words in a dry line's fade-out ("Thank you.").
+  # Fix lines it flags for pace or a real misread; the in-context check in `mix` is the gate.
+  ( cd "$TOOLS" && "$PY" voiceover.py check "$FILM/vo/script.json" ) || echo "WARN  solo listen check flagged lines: fix real misreads or pace (say/take/split); tail hallucinations can be ignored"
   ffmpeg -v error -y -i "$FILM/out/vo/vo.wav" -ac 1 -b:a 96k "$FILM/vo/$SLUG-vo.mp3"
 }
 
@@ -29,7 +31,8 @@ picture() {
 
 mix() {
   ( cd "$TOOLS" && "$PY" voiceover.py mix "$FILM/vo/script.json" --score "$FILM/out/mix.wav" \
-      --video "$FILM/out/$SLUG.mp4" --out "$FILM/out/$SLUG-vo.mp4" )
+      --video "$FILM/out/$SLUG.mp4" --out "$FILM/out/$SLUG-vo.mp4" ) | tee "$FILM/out/mix.log"
+  if grep -q "^FIX " "$FILM/out/mix.log"; then echo "in-context listen check failed (see out/mix.log): fix those lines before posting"; exit 2; fi
   # Voice only, for when Isac lays a TikTok sound under it: the narration alone, loudness-normalised.
   ffmpeg -v error -y -i "$FILM/out/vo/vo.wav" -af "loudnorm=I=-14:TP=-1.5:LRA=11" -ar 48000 "$FILM/out/vo/voice-only.wav"
   ffmpeg -v error -y -i "$FILM/out/$SLUG.mp4" -i "$FILM/out/vo/voice-only.wav" -map 0:v -map 1:a -c:v copy \
