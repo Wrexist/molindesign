@@ -787,6 +787,9 @@
       else if (e.type === 'select') band(e.t, e.t + .28, 1200, 3000, .05, .07, 2);
     });
 
+    /* no music by default: Isac adds a trending TikTok sound on the platform, so the film ships voice + sound effects.
+       Set MUSIC = true for the groove below. */
+    var MUSIC = false;
     /* music: 112 BPM in G, plucky FM keys, a round bass, a light hat. Two real silences: before "the weird part"
        and before "still guessing" — the first sound after each is the voice */
     var BEAT = 60 / 112, M0 = .05;
@@ -804,7 +807,7 @@
     var CH = [[67, 71, 74, 78], [64, 67, 71, 74], [60, 64, 67, 71], [62, 66, 69, 72]];   // Gmaj7, Em7, Cmaj7, D7
     var RT = [43, 40, 36, 38];
     var lift = function (t) { return t > start('end') ? 1.15 : t > start('weird') ? 1.08 : 1; };
-    for (var bt = M0, n = 0; bt < HOME + .2; bt += BEAT / 2, n++) {
+    for (var bt = M0, n = 0; MUSIC && bt < HOME + .2; bt += BEAT / 2, n++) {
       if (inGap(bt)) continue;
       var bar = Math.floor(n / 8), chd = CH[bar % 4], L = lift(bt);
       if (n % 2 === 0) keyz(bt, chd[(n / 2 + bar) % 4] + 12, .05 * L, (n % 4 ? .35 : -.35));
@@ -816,7 +819,7 @@
       hat(bt, (n % 2 ? .05 : .03) * (bt > start('tokens') ? 1 : .5));
     }
     /* the button: a chord on the last word, then one key that becomes the loop */
-    [67, 71, 74, 79].forEach(function (m, j) { keyz(end('end') + .05 + j * .03, m + 12, .07, j % 2 ? .3 : -.3); });
+    if (MUSIC) [67, 71, 74, 79].forEach(function (m, j) { keyz(end('end') + .05 + j * .03, m + 12, .07, j % 2 ? .3 : -.3); });
     key(DUR - .35, .5, .8);
     env(master.gain, [[0, .9], [DUR - .3, .9], [DUR, .6]]);
   }

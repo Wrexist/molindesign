@@ -20,8 +20,8 @@
     "room": 0.25
   },
   "duck": {
-    "db": -12,
-    "score_db": -3
+    "db": -6,
+    "score_db": 0
   },
   "lines": [
     {

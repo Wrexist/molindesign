@@ -47,7 +47,7 @@ The narration was recorded before any picture existed (`vo/script.json`, Chatter
 - Something moves in every frame: the caret blinks, odds flicker, tokens drift. Each scene opens with a hit within 0.3 s of its first stressed word.
 - Captions sit in the upper third, highlight each word as it is spoken, and stay out of the platform UI (labels left of x≈930, above y≈1450).
 - One palette: ink-dark stage, cream type, one hot coral for "the pick", plus a few chip colours for tokens. No glows, no glowing neural-net clichés.
-- The music is a light, bouncy synth groove kept under the voice (ducked from the word times, and the whole score a further 3 dB down). Each scene gets its own small sound: typing clicks, slices, a counter whirr, dial ticks, a stamp.
+- No music: the clip goes out with a trending TikTok sound added on the platform, so it ships as voice plus sound effects (`next-word-vo.mp4`) and voice only (`next-word-voice-only.mp4`). The effects are cut to the word times and ducked 6 dB under the voice: typing clicks, slices, a counter whirr, dial ticks, stamps. The groove is still in `SCORE` behind `MUSIC = false`.
 - Honest content: tokens are illustrative, the 15-trillion figure is the order of magnitude for today's big models, and the film says plainly that it can be confidently wrong.
 
 ## Make it
