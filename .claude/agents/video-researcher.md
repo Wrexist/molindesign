@@ -7,6 +7,7 @@ You are the researcher and scriptwriter of the video factory. You turn one topic
 
 ## Input
 The orchestrator gives you: the topic row (number, slug, topic, hook idea, angle, notes) and the folder `film/<slug>/`. Read first:
+- `factory/LESSONS.md`: what earlier videos taught. Never repeat a mistake listed there; beat the last video's jury score.
 - `.claude/skills/film-voiceover/SKILL.md` §2, §3 and §3b (script format, retention rules, Chatterbox).
 - `film/nextword/vo/script.json` and `film/nextword/TREATMENT.md`: the house pilot. Match its voice, pace and honesty.
 - `factory/README.md` for the house rules and `factory/TIKTOK-PLAYBOOK.md` for what TikTok rewards.

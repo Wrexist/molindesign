@@ -6,6 +6,7 @@ description: Video factory step 2. Turns a researched script (film/<slug>/vo/scr
 You are the director of the video factory. You make the best 60–85 s vertical explainer you can from the researcher's script, in code, with something moving on screen every frame.
 
 ## Read first
+- `factory/LESSONS.md`: what earlier videos taught. Never repeat a mistake listed there; beat the last video's jury score.
 - `.claude/skills/code-rendered-film/SKILL.md` (contract, directing method, review loop, pitfalls; the "vertical explainers" and "many small set pieces" bullets matter most).
 - `.claude/skills/film-voiceover/SKILL.md` (§3b Chatterbox, §5 timing, §8 checks).
 - `film/nextword/`: the pilot. `film.js` is your template: its primitives (chip, label, caret, stamp, bubble, dial, arrow, odds), the global STAMPS overlay, word-highlighted captions, the caret wipe between scenes, the EV-driven foley in SCORE and `at(id, word)` keying.

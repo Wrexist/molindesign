@@ -13,6 +13,8 @@ One run makes one finished TikTok explainer, end to end. Four agents in `.claude
 - `bash factory/setup.sh`.
 - If `factory/` or `film/nextword/` is missing on your branch, the factory hasn't been merged yet: `git fetch origin claude/project-thread-0hox72` and `git merge --no-edit origin/claude/project-thread-0hox72` into your working branch, then continue.
 
+- Read `factory/LESSONS.md` and pass it to every agent: each video must be better than the last (Isac, 2026-10-23).
+
 ## 1. Pick the next topic
 - Drive folder **Video factory** (`1mMSFv1m8sFh337SRdWxJUBNK3m6cJx1k`), sheet **Video factory topics** (`1GZmiQSHpOqv9SI7WkqslBeQMxbRFpnFV_VLzaD9PxVg`): read it with `read_file_content`. Isac edits this sheet; it wins over `factory/backlog.csv`.
 - A topic is taken if any of these is true: Status is `done`, `skip` or `wip`; a Drive doc titled `Factory #<n> ·` exists in the folder (`search_files` with `parentId = '1mMSFv1m8sFh337SRdWxJUBNK3m6cJx1k' and title contains 'Factory #'`); `film/<slug>/` exists on `main` or on an open PR branch (`list_pull_requests`, look for "Factory #").
@@ -28,8 +30,8 @@ Spawn the `video-director` agent with the slug. It records the voice, builds `fi
 ## 4. Quality gate → `video-jury`
 Spawn a **fresh** `video-jury` agent with the slug (never the director; it must not have seen the making). Then:
 - **post**: go on.
-- **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 7.0 with Truth ≥ 8.
-- **don't post**, or still under 7.0 after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
+- **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 8.0 with Truth ≥ 8.5. Even on "post", apply the jury's fixes before upload.
+- **don't post**, or still under 8.0 after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
 
 ## 5. Packaging → `video-seo`
 Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and the AI disclosure.
@@ -43,6 +45,11 @@ Spawn the `video-seo` agent with the slug and the final jury report. It writes `
 - Re-create the Drive doc's content as a new doc version: Drive can't edit content in place, so `create_file` a new `Factory #<n> · <topic>` doc with the full pack (hook, script, sources from BRIEF.md, jury score and verdict, caption, hashtags, keywords, post time, sound ideas, Higgsfield video URLs, PR link) and `trash_file` the claim doc from step 1.
 - Repo: set the row's Status in `factory/backlog.csv` to `done` (or `wip`), add `film/<slug>/` (mp4s stay git-ignored: they live on Higgsfield, in Drive's doc links and in `/mnt/project-files/factory/<slug>/` when that exists), commit "Factory #<n>: <topic>" and push your branch, open a PR titled `Factory #<n>: <topic>` with the jury score, the caption and the poster path.
 - Report to Isac in ≤ 8 lines: the topic and hook, the jury score, the Drive doc link, the PR link, the best post time (ET and Stockholm), the sound ideas, and that the TikTok form is waiting for his tap (or the connect link).
+
+## 8. Learn
+- Write down what this run taught: add each jury finding that was a real mistake, and anything you'd do differently, to `factory/LESSONS.md` as one-line rules with the video's slug. Remove lessons a later video proved wrong.
+- If the earlier posts have TikTok numbers (Isac pastes them, or the sheet has them), fill the Performance table and say which hook or structure did best, so the next researcher leans into it.
+- Commit LESSONS.md with the run.
 
 ## Timing and cost
 A run is ≈ 60–90 min of machine time: voice ≈ 7 min, renders ≈ 10 min, two jury rounds, agents' thinking. One run per scheduled firing; never start a second video in the same run.

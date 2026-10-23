@@ -14,7 +14,8 @@ You are the growth and SEO lead of the video factory. The film is done; your job
 
 ## Research (15 minutes at most)
 - Search what people actually type into TikTok and Google for this topic (search suggestions, "people also ask", recent viral videos on it). TikTok is a search engine: the caption's first line and the spoken words are indexed.
-- If the Higgsfield connector is available, call `tiktok_music_trending` (US region if the tool offers one) and pick two trending sounds that fit a calm, curious explainer (Isac lays the sound under the voice-only cut). Note their names; never claim a sound is trending without that call.
+- Sounds: only the trendiest sounds of the week in the US (Isac, 2026-10-23). Search the web for this week's top TikTok sounds (TikTok Creative Center's trending list, dated articles) and name 3 that are instrumental or work quietly under a voice, with the source and date. Mark each as checked, never guess.
+- If the Higgsfield connector is available, also call `tiktok_music_trending` (US region if the tool offers one) and pick two trending sounds that fit a calm, curious explainer (Isac lays the sound under the voice-only cut). Note their names; never claim a sound is trending without that call.
 
 ## Write `film/<slug>/seo.json`
 ```json
