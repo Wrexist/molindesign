@@ -1,0 +1,147 @@
+{
+  "about": "Hallucinate: why AI makes things up, told through Mata v. Avianca (S.D.N.Y. 2023), where ChatGPT invented six court cases. Factory #3. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "chatterbox",
+  "chatterbox": {
+    "exaggeration": 0.55,
+    "cfg": 0.3,
+    "seed": 11
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "ChatGPT",
+    "OpenAI",
+    "Varghese",
+    "AI hallucination",
+    "SAT"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.35,
+      "text": "This court case doesn't exist. ChatGPT made it up."
+    },
+    {
+      "id": "name",
+      "at": 3.72,
+      "text": "It's called an AI hallucination. A lawyer filed it in federal court."
+    },
+    {
+      "id": "why",
+      "at": 8.51,
+      "text": "So why does AI make things up, and sound so sure?"
+    },
+    {
+      "id": "story",
+      "at": 12.34,
+      "text": "New York, 2023. A lawyer asks ChatGPT for cases.",
+      "say": "New York, twenty twenty-three. A lawyer asks ChatGPT for cases."
+    },
+    {
+      "id": "six",
+      "at": 16.61,
+      "text": "It gives him six, with judges and quotes. Not one exists."
+    },
+    {
+      "id": "asked",
+      "at": 20.44,
+      "text": "He even asked it, is Varghese a real case?",
+      "say": "He even asked it, is Var-gheez a real case?"
+    },
+    {
+      "id": "yes",
+      "at": 23.95,
+      "text": "It said yes. Then it said it had double-checked."
+    },
+    {
+      "id": "gibberish",
+      "at": 28.23,
+      "text": "The judge called its legal analysis gibberish."
+    },
+    {
+      "id": "fine",
+      "at": 31.33,
+      "text": "The lawyers were fined $5,000.",
+      "say": "The lawyers were fined five thousand dollars."
+    },
+    {
+      "id": "turn",
+      "at": 34.28,
+      "text": "Here's the thing. It wasn't lying. It was guessing."
+    },
+    {
+      "id": "guess",
+      "at": 37.52,
+      "text": "Remember, a chatbot just guesses the next likely word, again and again."
+    },
+    {
+      "id": "looks",
+      "at": 42.04,
+      "text": "To a guesser, a fake case looks just like a real one.",
+      "say": "To a guesser, a fake case, looks just like a real one.",
+      "take": 2
+    },
+    {
+      "id": "button",
+      "at": 45.94,
+      "text": "The guesser always has a next word. No \"I don't know\" button.",
+      "say": "The guesser always has a next word. No I-don't-know button."
+    },
+    {
+      "id": "catch",
+      "at": 49.96,
+      "text": "Unless it's trained to use one. Here's the catch."
+    },
+    {
+      "id": "test",
+      "at": 53.07,
+      "text": "AI gets graded like a multiple-choice test. Blank? Zero points."
+    },
+    {
+      "id": "learn",
+      "at": 57.59,
+      "text": "A guess might be right. So models learn to guess."
+    },
+    {
+      "id": "sat",
+      "at": 61.43,
+      "text": "The old SAT had a fix. Wrong answers cost a quarter point.",
+      "say": "The old S.A.T. had a fix. Wrong answers cost a quarter point."
+    },
+    {
+      "id": "tested",
+      "at": 65.68,
+      "text": "In OpenAI's tests, a model that rarely skipped got 75% wrong.",
+      "say": "In OpenAI's tests, a model that rarely skipped got seventy-five percent wrong."
+    },
+    {
+      "id": "skip",
+      "at": 70.37,
+      "text": "One that skips when it's unsure? Wrong on just 26%.",
+      "say": "One that skips when it's unsure? Wrong on just twenty-six percent."
+    },
+    {
+      "id": "since",
+      "at": 73.97,
+      "text": "One tracker has now logged over 2,000 court cases like this.",
+      "say": "One tracker has now logged over two thousand court cases like this."
+    },
+    {
+      "id": "end",
+      "at": 78.11,
+      "text": "It always has a next word. Even when the answer doesn't exist."
+    }
+  ],
+  "dur": 82.3
+}

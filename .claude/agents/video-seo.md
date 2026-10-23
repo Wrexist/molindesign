@@ -29,7 +29,7 @@ You are the growth and SEO lead of the video factory. The film is done; your job
   "post_time_et": "US Eastern, e.g. 13:00 ET (12:00–15:00 ET suits a manual post; 19:00–21:00 ET via TikTok Studio scheduling), with one line why",
   "post_time_stockholm": "the same moment in Europe/Stockholm, e.g. 19:00",
   "sounds": [{"name": "", "why": ""}],
-  "series": "AI explained, part N",
+  "series": "How AI works, part N (AI topics) or How tech works, part N (general tech); never brand the account as an AI channel",
   "disclosure": "AI-generated voice (Chatterbox, watermarked); set TikTok's AI-generated content label"
 }
 ```
