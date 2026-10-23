@@ -239,6 +239,24 @@ def hear(a, names=()):
             for sg in segs for w in (sg.words or [])]
 
 
+def drop_tail(h, script, end):
+    """Whisper invents words after a line's last word ("Thank you.", "E E E", "4 5"), in the fade-out or in
+    digital silence. If the script's last word was heard, everything Whisper heard after it is dropped; otherwise
+    extra trailing words that are low-confidence or start after the line has ended (`end`, seconds) go."""
+    if not h:
+        return h
+    a, b = [norm(w) for w in script], [norm(x['w']) for x in h]
+    last = None
+    for blk in difflib.SequenceMatcher(None, a, b, autojunk=False).get_matching_blocks():
+        if blk.size and blk.a + blk.size == len(a):
+            last = blk.b + blk.size
+    if last is not None:
+        return h[:last]
+    while len(h) > len(script) and (h[-1]['p'] < 0.3 or h[-1]['t0'] >= end - 0.05):
+        h = h[:-1]
+    return h
+
+
 def align_words(script_words, heard, dur):
     """Script spelling with Whisper timing. Unmatched words are spread across the gap they fall in."""
     out = [{'w': w, 't0': None, 't1': None} for w in script_words]
@@ -455,8 +473,7 @@ def cmd_check(a):
         if h is None:
             print(f'skip  {l["id"]:10} (faster-whisper not installed)')
             continue
-        while len(h) > len(l['words']) and h[-1]['p'] < 0.3:
-            h = h[:-1]                            # Whisper invents a low-confidence word in the tail room tone; drop it
+        h = drop_tail(h, words(l['say']), l['t1'] - l['t0'])
         w = min(wer(words(l['say']), [x['w'] for x in h]), wer(words(l['text']), [x['w'] for x in h]))
         weak = [x for x in h if x['p'] < 0.45]
         pace = len(l['words']) / max(0.01, l['t1'] - l['t0'])
@@ -558,8 +575,7 @@ def in_context(s, doc, film_file):
         for l in doc['lines']:
             seg = full[int(max(0, l['t0'] - 0.1) * SR):int((l['t1'] + 0.2) * SR)]
             h = hear(seg, s.get('names', []) + list(s['pronounce']))
-            while h and len(h) > len(l['words']) and h[-1]['p'] < 0.3:
-                h = h[:-1]
+            h = drop_tail(h, words(l['say']), l['t1'] - max(0, l['t0'] - 0.1))
             w = min(wer(words(l['say']), [x['w'] for x in h]), wer(words(l['text']), [x['w'] for x in h]))
             print(f'{"ok  " if w <= 0.1 else "FIX "}  {l["id"]:10} wer {w:4.2f}  heard "{" ".join(x["w"] for x in h)}"')
     for q0, q1 in s['quiet']:

@@ -103,3 +103,4 @@ Then add a **voice** row to the code-rendered-film jury: hook in the first spoke
 - Kokoro at 0.82× still read "Turn it up, and the night comes back." at 3.7 w/s. A full stop ("Turn it up. The night comes back.") bought the pause; punctuation is the cheapest pacing control.
 - Writing for the slot first gave three lines 30–50 % too long for Held's gaps. Run `plan` before falling in love with a line.
 - kokoro-onnx's default model reports no phoneme durations, so word timings come from Whisper; PyAV in faster-whisper can be out of step with its `av` wheel, so the tool feeds Whisper numpy audio decoded by ffmpeg.
+- Chatterbox lines end in a fade, and Whisper fills that fade or a mix's digital silence with invented words ("Thank you.", "E E E", "4 5"), at any confidence. Both checks now cut what was heard at the script's last word (`drop_tail`), so only real misreads fail. Before this, 1–3 random lines failed per run of the strawberry film.
