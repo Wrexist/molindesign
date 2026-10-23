@@ -25,6 +25,7 @@ Isac's standing ask (2026-10-23): each video must be better than the last. Look 
 - A claim from a court filing is "says", not fact, until a court found it (hallucinate r1).
 
 ## Voice
+- Isac picked Ming US_James over Chatterbox and NVIDIA Magpie by ear (2026-10-23): "less robot". Keep it for every video so the channel has one recognisable voice.
 - Unhinted Whisper is the real test for names; spell them phonetically in `say` until it hears them (hallucinate: "Var-gheez").
 - A sound effect on a spoken word can make Whisper mishear it; keep hits between words (hallucinate r1).
 

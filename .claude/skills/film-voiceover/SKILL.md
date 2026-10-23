@@ -58,6 +58,17 @@ Kokoro is clean but reads flat. For anything a viewer should feel was spoken by 
 - `"ref": "voice.wav"` clones a voice from 10 s of audio. Only a voice you have written consent for; never a real person's voice otherwise.
 - **Sync by construction:** record the voice first, then set every visual beat from the word times in `vo/vo.js` (the page reads `VO.lines[i].words[j].t0`). Nothing can drift because the picture is cut to the voice.
 
+## 3c. The factory voice: Ming James (picked by Isac, 2026-10-23)
+A 13-voice bake-off (Chatterbox ×3, Ming ×3, NVIDIA Magpie ×3, Maya1 ×2, Kokoro ×2, all on the same lines at −14 LUFS) asked which open voice sounds most like a person. Isac picked **Ming-3.0-tts-0.5B, preset US_James** by ear. inclusionAI, MIT code and weights, no watermark; it also ranks highest of the open models in blind arenas (Elo ~1189 vs Chatterbox ~1023). Set it with:
+```json
+"engine": "ming", "ming": { "voice": "US_James", "seed": 7 }, "pace": { "max": 3.5 }
+```
+- Own venv `~/.venv-ming` (transformers 4.46 clashes with Chatterbox's); `factory/setup.sh` installs it, the patched repo in `~/ming-src` and the 3 GB model in `~/ming-0.5b`. `factory/make.sh` picks the venv from the script's engine.
+- Runs in fp32 on CPU, a few times slower than real time; takes are cached per line. No rate control: `speed` is a mild atempo, fit 0.92–1.1.
+- Other presets: US_Emma (female). `"style": "a warm male narrator in his 30s…"` designs a voice instead of a preset.
+- Re-roll a misread line with `"take": 1`, the same as Chatterbox.
+- Rejected: NVIDIA Magpie (commercial OK, but no better in blind tests, 6.7× slower than real time and drops "GPT"); Voxtral, F5-TTS, Fish Speech/OpenAudio, Breeze 2 (non-commercial weights). A voice that is truly indistinguishable from a person still needs a paid service (ElevenLabs class).
+
 ## 4. Voice choice (verified grades from Kokoro VOICES.md; character notes inferred)
 | Voice | Grade | Use |
 |---|---|---|

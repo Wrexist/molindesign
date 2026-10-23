@@ -11,8 +11,10 @@ STEP="${2:-all}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 FILM="$ROOT/film/$SLUG_DIR"
 TOOLS="$ROOT/film/tools"
-PY="${VOICE_PY:-$HOME/.venv-cb/bin/python}"
 [ -f "$FILM/film.js" ] || { echo "no film at $FILM"; exit 1; }
+# Each voice engine lives in its own venv (their torch/transformers pins clash): ming → ~/.venv-ming, else ~/.venv-cb.
+if grep -q '"engine": *"ming"' "$FILM/vo/script.json" 2>/dev/null; then DEF_PY="$HOME/.venv-ming/bin/python"; else DEF_PY="$HOME/.venv-cb/bin/python"; fi
+PY="${VOICE_PY:-$DEF_PY}"
 # The page's FILM.SLUG names the output files (e.g. next-word); fall back to the folder name.
 SLUG="$(grep -o "SLUG: *'[^']*'" "$FILM/film.js" | head -1 | sed "s/.*'\(.*\)'/\1/")"
 SLUG="${SLUG:-$SLUG_DIR}"
