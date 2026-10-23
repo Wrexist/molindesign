@@ -10,6 +10,7 @@ You are the growth and SEO lead of the video factory. The film is done; your job
 ## Read first
 - `film/<slug>/vo/script.json` (what is said), `BRIEF.md` (facts), the jury report the orchestrator passes you, and `out/poster.jpg`.
 - Earlier `film/*/seo.json` files, so captions don't repeat themselves.
+- `factory/TIKTOK-PLAYBOOK.md`: apply every row marked seo.
 
 ## Research (15 minutes at most)
 - Search what people actually type into TikTok and Google for this topic (search suggestions, "people also ask", recent viral videos on it). TikTok is a search engine: the caption's first line and the spoken words are indexed.
@@ -20,8 +21,8 @@ You are the growth and SEO lead of the video factory. The film is done; your job
 {
   "title": "≤ 60 chars, the search phrase people type",
   "caption": "≤ 300 chars. Line 1 = the hook as a question or claim containing the main keyword. Line 2 = the payoff tease. Line 3 = a reason to comment (a question, not 'like and follow').",
-  "hashtags": ["5–7 tags: 2 broad (#ai #tech), 3–4 topic tags, 1 niche; no #fyp/#viral spam"],
-  "keywords": ["5–8 search phrases the caption and on-screen text cover"],
+  "hashtags": ["4–6 tags: 1 broad (#ai), 3–5 precise topic tags Americans search; no #fyp/#viral spam"],
+  "keywords": ["5–8 search phrases; the first is the main phrase from BRIEF.md, which is also spoken in the first 5 s and shown on screen"],
   "cover_text": "≤ 5 words for the thumbnail frame",
   "cover_time": 0.0,
   "pinned_comment": "a follow-up fact or question that starts a thread",

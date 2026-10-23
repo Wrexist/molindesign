@@ -5,7 +5,7 @@ description: Run one turn of the video factory - pick the next topic from the Dr
 
 # Video factory
 
-One run makes one finished TikTok explainer, end to end. Four agents in `.claude/agents/` do the work; this skill is the orchestrator that runs them in order and owns every outside call (Drive, Higgsfield, TikTok, GitHub). Read `factory/README.md` once for the why.
+One run makes one finished TikTok explainer, end to end. Four agents in `.claude/agents/` do the work; this skill is the orchestrator that runs them in order and owns every outside call (Drive, Higgsfield, TikTok, GitHub). Read `factory/README.md` once for the why and `factory/TIKTOK-PLAYBOOK.md` for the reach techniques every video applies.
 
 **Standing rules (Isac):** American English narration and captions, aimed at a **US audience** (Isac posts from Sweden, so the content, keywords, sounds and post time must all say US); no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; disclose the AI voice. Never press Post: TikTok requires Isac to confirm every post himself.
 
@@ -32,7 +32,7 @@ Spawn a **fresh** `video-jury` agent with the slug (never the director; it must 
 - **don't post**, or still under 7.0 after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
 
 ## 5. Packaging → `video-seo`
-Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 5–7 hashtags, and the AI disclosure.
+Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and the AI disclosure.
 
 ## 6. Upload for Isac's tap
 1. `tiktok_accounts`. If there is no `active` account, skip to step 7 and put a fresh `tiktok_connect` link in the report.

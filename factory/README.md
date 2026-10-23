@@ -30,6 +30,7 @@ record            → Drive doc "Factory #n · topic", factory/backlog.csv, PR "
 | Video files | Higgsfield (uploaded for TikTok), `/mnt/project-files/factory/<slug>/` when run inside the project; not in git |
 | Agents | `.claude/agents/video-researcher.md`, `video-director.md`, `video-jury.md`, `video-seo.md` |
 | Run steps | `.claude/skills/video-factory/SKILL.md` |
+| Reach techniques and Isac's one-time setup | `factory/TIKTOK-PLAYBOOK.md` |
 
 ## Running it
 
