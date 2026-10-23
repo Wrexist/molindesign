@@ -1,0 +1,136 @@
+{
+  "about": "GPS: how your phone knows where you are. Clocks in space, the four-satellite fix, and why Einstein's relativity has to be corrected (NTS-2, 1977). Factory #4. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GPS",
+    "Einstein"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.35,
+      "text": "Your phone finds you using clocks in space."
+    },
+    {
+      "id": "why",
+      "at": 3.14,
+      "text": "So how does GPS work? And why does it need Einstein?",
+      "say": "So how does G.P.S. work? And why does it need Einstein?"
+    },
+    {
+      "id": "sky",
+      "at": 7.06,
+      "text": "About 30 GPS satellites circle Earth, over 12,000 miles up.",
+      "say": "About thirty G.P.S. satellites circle Earth, over twelve thousand miles up."
+    },
+    {
+      "id": "say",
+      "at": 11.85,
+      "text": "Each one broadcasts two things: the time, and where it is."
+    },
+    {
+      "id": "listen",
+      "at": 16.39,
+      "text": "Here's the trick: your phone never talks back. It only listens."
+    },
+    {
+      "id": "trip",
+      "at": 20.32,
+      "text": "The signal reaches you in under a tenth of a second.",
+      "say": "The signal reaches you, in under a tenth of a second."
+    },
+    {
+      "id": "math",
+      "at": 23.77,
+      "text": "Trip time, times the speed of light, equals distance."
+    },
+    {
+      "id": "three",
+      "at": 27.37,
+      "text": "Three satellites, three distances: you're pinned to one spot."
+    },
+    {
+      "id": "catch",
+      "at": 31.54,
+      "text": "But light goes about a foot every billionth of a second."
+    },
+    {
+      "id": "fourth",
+      "at": 35.15,
+      "text": "Your phone's clock isn't that good. A fourth satellite fixes it."
+    },
+    {
+      "id": "weird",
+      "at": 39.28,
+      "text": "Now the weird part: weaker gravity up there makes clocks tick faster."
+    },
+    {
+      "id": "speed",
+      "at": 43.45,
+      "text": "Their speed, about 8,700 miles an hour, slows them a little.",
+      "say": "Their speed, about eighty-seven hundred miles an hour, slows them a little."
+    },
+    {
+      "id": "net",
+      "at": 47.56,
+      "text": "Net result: they run 38 millionths of a second fast, every day.",
+      "say": "Net result: they run thirty-eight millionths of a second fast, every day."
+    },
+    {
+      "id": "miles",
+      "at": 51.91,
+      "text": "At light speed, that's about seven miles of distance error a day."
+    },
+    {
+      "id": "doubt",
+      "at": 56.12,
+      "text": "Back in 1977, not everyone believed that would matter.",
+      "say": "Back in nineteen seventy-seven, not everyone believed that would matter."
+    },
+    {
+      "id": "switch",
+      "at": 59.83,
+      "text": "So a test satellite flew its atomic clock with the fix off."
+    },
+    {
+      "id": "result",
+      "at": 64.1,
+      "text": "For twenty days it ran fast, almost exactly as Einstein predicted."
+    },
+    {
+      "id": "fixed",
+      "at": 68.58,
+      "text": "Since then, every GPS clock gets corrected for it.",
+      "say": "Since then, every G.P.S. clock gets corrected for it."
+    },
+    {
+      "id": "feet",
+      "at": 72.26,
+      "text": "That's how your phone finds you within about 16 feet.",
+      "say": "That's how your phone finds you within about sixteen feet."
+    },
+    {
+      "id": "end",
+      "at": 75.63,
+      "text": "It's Einstein, built into the blue dot on your map."
+    }
+  ],
+  "dur": 79.21
+}
