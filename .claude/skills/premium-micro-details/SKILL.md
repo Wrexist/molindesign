@@ -5,6 +5,8 @@ description: Checklist of small craft details that make a site feel premium and 
 
 # Premium micro-details checklist
 
+Run this together with the `ux-laws` pre-ship audit; that one is required on every site and its report table goes in the handover. Where both give a number (44 px targets, ≤ 300 ms feedback, one accent), they agree.
+
 ## Motion
 - [ ] One default ease for entrances: `cubic-bezier(.23,1,.32,1)`; in/out for drawn paths `cubic-bezier(.77,0,.175,1)`; drawers `cubic-bezier(.32,.72,0,1)`.
 - [ ] Enter 0.6–1.1 s, **exit 0.2–0.35 s** (leave fast). Stagger 40–90 ms.
