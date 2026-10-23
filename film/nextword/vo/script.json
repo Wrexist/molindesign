@@ -1,0 +1,132 @@
+{
+  "about": "Next word: what AI is and how ChatGPT and Claude work. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "chatterbox",
+  "chatterbox": {
+    "exaggeration": 0.55,
+    "cfg": 0.3,
+    "seed": 11
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "ChatGPT",
+    "Claude"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -12,
+    "score_db": -3
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.35,
+      "text": "Every word ChatGPT has ever written to you was a guess."
+    },
+    {
+      "id": "one",
+      "at": 3.93,
+      "text": "One word at a time.",
+      "say": "One word, at a time.",
+      "take": 1
+    },
+    {
+      "id": "smart",
+      "at": 5.65,
+      "text": "So how does guessing sound this smart?"
+    },
+    {
+      "id": "tokens",
+      "at": 8.76,
+      "text": "First, it never sees words. It sees tokens."
+    },
+    {
+      "id": "numbers",
+      "at": 11.85,
+      "text": "Little chunks of text, and each one becomes a number."
+    },
+    {
+      "id": "game",
+      "at": 15.45,
+      "text": "Then it plays one game, over and over. Guess what comes next."
+    },
+    {
+      "id": "cat",
+      "at": 19.36,
+      "text": "The cat sat on the... mat? Probably. The moon? Almost never.",
+      "take": 1
+    },
+    {
+      "id": "again",
+      "at": 23.48,
+      "text": "Pick a word, stick it on the end, and guess again. That's the whole trick."
+    },
+    {
+      "id": "where",
+      "at": 28.32,
+      "text": "But where do those odds come from? Reading. A ridiculous amount of reading."
+    },
+    {
+      "id": "hide",
+      "at": 32.99,
+      "text": "Trillions of words. Hide the next one, make a guess, check the answer."
+    },
+    {
+      "id": "dials",
+      "at": 37.41,
+      "text": "Wrong? Nudge billions of tiny dials, just a little. Then do it again."
+    },
+    {
+      "id": "weird",
+      "at": 42.64,
+      "text": "And here's the weird part. To guess well, it has to learn what words mean."
+    },
+    {
+      "id": "queen",
+      "at": 47.27,
+      "text": "King, minus man, plus woman, lands right next to queen."
+    },
+    {
+      "id": "looks",
+      "at": 51.54,
+      "text": "It also looks back at everything before, to work out what goes with what."
+    },
+    {
+      "id": "trophy",
+      "at": 55.88,
+      "text": "Here, it figures out that it means the trophy."
+    },
+    {
+      "id": "ramble",
+      "at": 59.19,
+      "text": "Out of the box, it just rambles."
+    },
+    {
+      "id": "rate",
+      "at": 61.57,
+      "text": "So people rate its answers, and it learns to be helpful."
+    },
+    {
+      "id": "names",
+      "at": 65.21,
+      "text": "Do that at a huge scale, and you get ChatGPT. Or Claude."
+    },
+    {
+      "id": "still",
+      "at": 69.86,
+      "text": "But it's still guessing. When it doesn't know, it can sound sure and be wrong."
+    },
+    {
+      "id": "end",
+      "at": 74.93,
+      "text": "So it's not magic. It's the best next-word guesser ever built."
+    }
+  ],
+  "dur": 80.85
+}

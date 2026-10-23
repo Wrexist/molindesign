@@ -65,7 +65,7 @@ Skills label what was read from source versus inferred (and add reduced-motion f
 
 **Film & video**
 - `code-rendered-film` — a film written in code: render(t) contract, motion blur, procedural score, headless render to MP4, loudnorm, readcheck, AI-jury loop. Working example: `film/` (Halden LF‑1 “Held”, live at https://wrexist.github.io/molindesign/film/).
-- `film-voiceover` — narration for those films: retention script rules, voice choice, slot fitting, word-timed captions, Whisper listen checks, ducking from word times. Local Kokoro-82M TTS (Apache-2.0) via `film/tools/voiceover.py`; example `film/vo/script.json` → `film/out/halden-lf1-held-vo.mp4`.
+- `film-voiceover` — narration for those films: retention script rules, voice choice, slot fitting, word-timed captions, Whisper listen checks, ducking from word times. Local Kokoro-82M TTS (Apache-2.0) via `film/tools/voiceover.py`; example `film/vo/script.json` → `film/out/halden-lf1-held-vo.mp4`. Narrated explainers built voice-first: `film/popcorn/` (Pop) and `film/nextword/` (Next word, how ChatGPT and Claude work).
 
 **Audio**
 - `web-audio-soundscape` — opt-in live-mixed audio, muffle filter, procedural sounds.
