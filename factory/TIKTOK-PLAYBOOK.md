@@ -41,7 +41,7 @@ What the factory does on every video to reach a **US audience** and get pushed b
 ## One-time setup for Isac
 
 - **Keep a personal or Creator account, not Business.** Business accounts only get the commercial sound library, so trending sounds disappear.
-- **App and phone language: English (US).** The profile name, bio and pinned videos should be in English and US-facing. One example bio: "AI, explained in 60 seconds. New one daily."
+- **App and phone language: English (US).** The profile name, bio and pinned videos should be in English and US-facing. The channel identity (name, username, bio, picture) is in `factory/brand/README.md`: a general tech channel, "Tech, explained", with no "AI" in the name or picture.
 - **Don't spoof location.** VPNs and bought US SIMs are reported to get accounts shadow-banned ([viral.app](https://viral.app/blog/insights/targeting-tiktok-us-audience)), and faking details breaks TikTok's terms. Let the content say US instead.
 - **Collaborate with US creators.** A stitch, duet or collab with a US creator in the AI and tech niche puts the video into that creator's US audience ([Snaplama](https://www.snaplama.com/blog/how-to-target-us-audience-on-tiktok-in-2026-complete-strategic-guide)).
 - **Promote for a guaranteed US test.** When a video does well organically, a small Promote budget targeted at the US gives it a guaranteed US test audience. It's the only lever that sets geography directly.

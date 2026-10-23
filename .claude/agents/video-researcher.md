@@ -20,6 +20,7 @@ The orchestrator gives you: the topic row (number, slug, topic, hook idea, angle
 
 ## Script
 Write `film/<slug>/vo/script.json` in the house format (copy the header from `film/nextword/vo/script.json`: `"engine": "chatterbox"`, `"chatterbox": {"exaggeration": 0.55, "cfg": 0.3, "seed": 11}`, `"lang": "en-us"`, `"pace": {"max": 3.5}`, `"chain": {"room": 0.25}`, `"duck": {"db": -6, "score_db": 0}`, `names` for proper nouns, `dur`).
+- The channel is **Tech, explained**: everyday tech and AI for a general audience. Don't make it sound like an AI channel: no channel name in the script, and name AI only when the topic is about AI.
 - **American English** for a **US audience**: US spelling (math, color), US examples, brands and units (miles, dollars, °F with °C only if it matters). 62–85 s (just over a minute: Creator Rewards only pays on videos over 1 minute), 16–22 lines, 2.6–3.0 words per second overall.
 - Line 1 is the hook, spoken from 0.35 s: a stake, a number or a contradiction. No greeting, no "did you know", no channel name.
 - Say the **main search phrase** (what an American would type, e.g. "strawberry ChatGPT") in the first 5 s, and list it in BRIEF.md so the director shows it and the SEO agent captions it.
