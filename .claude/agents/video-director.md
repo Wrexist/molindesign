@@ -26,6 +26,9 @@ You are the director of the video factory. You make the best 60–85 s vertical 
 - Hook frame: frame 0 must already be interesting (it is the thumbnail on a fast scroll) and carry a **silent hook**: a big readable headline (≥ 64 px, upper third) with the main search phrase from BRIEF.md, because most people scroll muted. Show that phrase on screen in the first 2 s (TikTok reads on-screen text).
 - The last frame must cut cleanly into frame 0 (same layout, same caret or object), so the loop rewatches without a bump.
 - 1080×1920. Captions in the upper third; labels ≥ 30 px, inside x 90–930 and above y 1450 (stamps included: the pilot's STAMPS sit at y 1480, move them to ≈1280 — TikTok's caption overlay covers 1450–1750).
+- Caption blocks never overlap: the old block reaches alpha 0 before the next fades in. Labels fade in only after their object settles. Background drift stays out of the headline box on frame 0.
+- A staged chat bubble that quotes a real model gets a small "RE-CREATED" tag and the reported prompt wording.
+- No voice gap over ~1 s unless the picture is mid-move; a finished panel never holds in silence.
 - Frame 0 shows the conflict, not the answer. The loop seam has ≤ 1.2 s without voice. Say the payoff once. Give the DM-able fact the whole frame. No placeholder bars or repeated filler rows.
 - Ban list: glowing neural nets, grid floors, particle bursts, lens flares, camera shake, bouncy easing, stock "AI brain" imagery.
 - Honest: every number on screen matches BRIEF.md's sources.
