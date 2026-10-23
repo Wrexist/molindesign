@@ -353,6 +353,14 @@ window.SKILLS = [
   "short": "Checklist of small craft details that make a site feel premium and accessible"
  },
  {
+  "id": "ux-laws",
+  "cat": "Foundations",
+  "desc": "REQUIRED on every website, landing page, web app or UI screen — the 20 laws of UX (Hick, Fitts, Jakob, Miller, Aesthetic-Usability, Pareto, Occam, Parkinson, Postel, Peak-End, Von Restorff, Zeigarnik, Tesler, Doherty 400 ms, Goal-Gradient, Proximity, Similarity, Closure, Common Region, Uniform Connectedness) turned into concrete web rules with numbers, a plan-time pass, a pre-ship audit and a report format. Apply while planning, while building and before handing over; the immersive and motion skills decide how a site moves, this one decides whether people can use it. Sources - lawsofux.com (Jon Yablonski), the original papers named per law, Nielsen Norman Group.",
+  "title": "UX laws",
+  "source": "lawsofux.com · original papers",
+  "short": "The 20 laws of UX as a required plan, build and audit checklist for every site"
+ },
+ {
   "id": "code-rendered-film",
   "cat": "Film & video",
   "desc": "Make a launch film, hero loop or social clip entirely in code: one page whose every frame is a pure function of t, played live and captured by headless Chromium into an MP4 with sub-frame motion blur, a procedural score from the same timeline, −14 LUFS master, text-dwell check, contact sheets and an AI-jury review. From lemo-opuscar, ClaudeAnimationBase, mg-styles-15, pdoom-video; proven in film/ (Halden LF-1 \"Held\").",
