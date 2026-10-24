@@ -11,6 +11,14 @@ Example Isac sent: Jeremy Bearimy (@JeremyBearimyTheory), "What If You Could See
 - Structure as escalating consequences (second → minute → day → year); each step is a new picture (bearimy format).
 - Run a "what if" spin on a sourced fact, e.g. "What if GPS forgot Einstein?", "What if your password were 20 letters?": the hook of a hypothetical, with our true answer. That is the edge they don't have.
 
+## The most viral explainer Shorts channels (studied 2026-10-24, YouTube feeds)
+- **Zack D. Films** is the benchmark: ~5 Shorts a day, almost every one 1–14M views within 1–3 days (feed read 2026-10-24). Top this week: "Why ChatGPT Contradicted Itself 🤔" 14.0M, "Why Consistency Beats Hard Work 🤔" 9.4M, "Why Most Sperm Never Reach The Egg 🤔" 7.8M, "How Banana Slugs Glide Across Razor Blades 😮" 7.2M, "How Pencil Sharpeners Work 🤔" 2.7M.
+- **Branch Education** (closest to our hardware niche) gets far less: 0.1–0.8M per Short ("Printing 92 GPU Chips in Just 18 Seconds! 🤯" 0.3M). Pure gadget mechanics cap out; human stakes travel.
+- Copy: titles are 4–8 plain words, "Why …" / "How …" / "The … Who …", Title Case, one emoji at the end (🤔 for why/how, 😮 for wow, 😱 for danger). No colon, no "explained", no channel name.
+- Copy: pick topics where tech meets the body, a person or a surprise ("Why ChatGPT contradicted itself", "the man who…"). Our AI topics fit; frame them around what the viewer saw happen.
+- Copy: a named person or a single object on screen, one fact, one twist; no lists.
+- Don't copy: the volume (5/day) or anything unsourced; our edge is that every claim checks out.
+
 ## Not slop (the backlash against AI channels, 2026-10-24)
 Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI animation and AI voices. Ours must read as made with care, and must be honest:
 - Every video carries something checkable: a named source on screen and in the description, a real date, a real number. Slop has none (house rule since #1; now mandatory on YouTube too).
