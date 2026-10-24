@@ -77,6 +77,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
 - Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
 - TikTok Studio scheduling needs a one-time consent from Isac to store the video; until he gives it, posts go up immediately (gps went up Fri 20:30 ET instead of Sat 13:00 ET).
+- Paste the full YouTube description into the PC instructions; the PC can't read repo files, so it fell back to a short version (noise).
+- Comments can't be posted before a scheduled video is live; the PC posts the pinned comment after the slot (noise).
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (fill in from TikTok analytics)
@@ -86,4 +88,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | Strawberry | 2026-10-23 | 220 (5 h) | 16.0 s | 7.3 % | 0 | puzzle: most views |
 | Why AI makes things up | 2026-10-23 | 186 (5 h) | 14.7 s | 9.1 % | 0 | real story: best completion |
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
-| Noise → pictures | 2026-10-24 (scheduled 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
+| Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
