@@ -43,3 +43,6 @@ cd tools && node render.mjs audio            # score → out/mix.wav (picture: o
 ~/.venv-voice/bin/python voiceover.py all ../vo/script.json --out ../out/halden-lf1-held-vo.mp4
 ```
 `all` runs synth (fitted lines, `out/vo/vo.wav`, captions in `vo.json` / `vo.js` / `vo.srt`), the listen check, then the mix with an in-context check that Whisper still hears every line through the master.
+
+## Fourth film: “Next word” (what AI is, and how ChatGPT and Claude work)
+`nextword/` is an 81‑second 1080×1920 explainer, made voice-first like Pop (Chatterbox, `nextword/vo/script.json`, 20 lines). One idea runs through it: a chatbot is a machine that guesses the next word. Nine scenes grow out of the caret: a chat reply that turns out to be a string of guesses (with a tree of the words it didn't pick), tokens and their numbers, the next-word odds, training on trillions of words with billions of dials, a map of meaning (king − man + woman ≈ queen), attention ("it" = the trophy), human ratings, ChatGPT and Claude, and a confidently made-up answer. Scenes change by the caret sweeping the old one away. `nextword/out/next-word-vo.mp4` is the narrated master; `nextword/TREATMENT.md` maps each word to its picture. Render with `--film nextword`.

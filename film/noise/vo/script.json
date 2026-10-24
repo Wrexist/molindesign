@@ -1,0 +1,100 @@
+{
+  "about": "Noise: how AI turns static into pictures (diffusion). A puzzle film: find the cat in this static. Training adds noise to real pictures and teaches the model to guess it; generation runs that backwards about 50 times while the prompt steers each step. Factory #5. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "AI"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Find the cat in this static.",
+      "say": "Find the cat, in this static."
+    },
+    {
+      "id": "can",
+      "at": 2.74,
+      "text": "You can't. But AI image generators can. How?"
+    },
+    {
+      "id": "trick",
+      "at": 6.0,
+      "text": "Here's the trick: they learned it backwards."
+    },
+    {
+      "id": "photo",
+      "at": 8.9,
+      "text": "Take a real photo. Sprinkle in a little static."
+    },
+    {
+      "id": "more",
+      "at": 12.51,
+      "text": "Then more, and more, until it's pure noise."
+    },
+    {
+      "id": "guess",
+      "at": 15.77,
+      "text": "One job: guess which static you added."
+    },
+    {
+      "id": "good",
+      "at": 19.03,
+      "text": "After hundreds of millions of pictures, it gets really good."
+    },
+    {
+      "id": "flip",
+      "at": 23.0,
+      "text": "Now flip it. Start from pure static."
+    },
+    {
+      "id": "steps",
+      "at": 25.9,
+      "text": "Wipe away a little noise. Then again. Often about 50 times.",
+      "say": "Wipe away a little noise. Then again. Often about fifty times."
+    },
+    {
+      "id": "steer",
+      "at": 29.87,
+      "text": "Your prompt steers every step toward a cat."
+    },
+    {
+      "id": "dog1",
+      "at": 33.13,
+      "text": "Same static."
+    },
+    {
+      "id": "dog2",
+      "at": 34.27,
+      "text": "Now type 'dog' instead? You get a dog.",
+      "say": "Now type dog, instead? You get a dog."
+    },
+    {
+      "id": "never",
+      "at": 37.22,
+      "text": "The cat was never hiding. It was painted in."
+    },
+    {
+      "id": "end",
+      "at": 40.84,
+      "text": "So what's hiding in this static? One word. Go."
+    }
+  ],
+  "dur": 44.78
+}

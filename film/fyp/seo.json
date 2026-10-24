@@ -1,0 +1,56 @@
+{
+  "title": "How does the TikTok algorithm work? Your For You feed",
+  "caption": "TikTok bet you'd watch this. So how does the TikTok algorithm decide what to show you?\nEvery finish, skip, replay and second you linger is a clue. And a stranger who watched the same two videos as you may help pick your next one.\nDid you finish this one? Yes or no?",
+  "hashtags": [
+    "#tech",
+    "#tiktokalgorithm",
+    "#algorithm",
+    "#socialmedia",
+    "#learnontiktok"
+  ],
+  "keywords": [
+    "TikTok algorithm",
+    "how does the TikTok algorithm work",
+    "how does TikTok decide what to show you",
+    "TikTok algorithm explained",
+    "how TikTok For You page works",
+    "why does TikTok know what I'm thinking",
+    "how does TikTok decide what videos to push",
+    "For You page algorithm"
+  ],
+  "cover_text": "Why you're seeing this",
+  "cover_time": 0.0,
+  "pinned_comment": "TikTok says your For You feed generally won't show two videos in a row with the same sound or by the same creator, on purpose (TikTok Newsroom, June 18, 2020). Ever noticed that? Yes or no?",
+  "post_time_et": "19:00 ET, Sat Oct 24, 2026, scheduled in TikTok Studio (playbook's 19:00-21:00 ET scheduled window), 6 h after noise at 13:00 ET. Only if the jury passes it at 8.0+ (LESSONS: 2 a day only at 8.0+). Studio scheduling still needs Isac's one-time consent; without it this would mean posting by hand at 01:00 Stockholm, so the fallback is the next free hand-post slot: 13:00 ET Sun Oct 25.",
+  "post_time_stockholm": "01:00 on Sun Oct 25 (still summer time; Sweden falls back at 03:00 that night). Fallback 13:00 ET Sun Oct 25 = 18:00 Stockholm (Sweden on CET, the US not until Nov 1).",
+  "sounds": [
+    {
+      "name": "Sunset in Girona - Noah Preminger & Max Light (first pick)",
+      "why": "Cozy lounge jazz instrumental; the casino-chip 'bet' framing sits well on it. Checked: #1 on Metricool 'Trending TikTok Songs This Week: Oct 19th, 2026' (metricool.com/tiktok-songs, read 2026-10-24, still the latest list). Length: 1:00 clip (seen in the app on the GPS post), covers 41.0 s and the 45 s floor. It has a horn: keep at 5-8 % and check it doesn't fight the DM line 'helped pick your feed' at 25-29 s. Not used on any post yet."
+    },
+    {
+      "name": "Espresso Soul - edivieira",
+      "why": "Calm, cinematic instrumental (Metricool's words); the safe fallback. Checked: #6 on Metricool (week of Oct 19, 2026, read 2026-10-24). Length: it ran under the full 79 s GPS film, so it covers 41.0 s. Used once before (GPS, 2 days earlier)."
+    },
+    {
+      "name": "Final Game Showdown - ProdByLucK (only if the clip is at least 0:45)",
+      "why": "'Its slow build creates a sense of suspense' (Metricool) fits a film about a bet and a reveal. Checked: #3 on Metricool (week of Oct 19, 2026, read 2026-10-24). Instrumental and length NOT checked: no page outside the app describes it. Use only if the app shows no vocals and at least 0:45."
+    }
+  ],
+  "sound_note": "Self Aware is skipped (on noise today). Higgsfield tiktok_music_trending (US, ALL, 7DAY, limit 30) returned 0 tracks on 2026-10-24, so no sound is claimed from TikTok's own chart; Tokchart's daily chart (updated 2026-10-24) tops out with vocal or meme sounds (Dito Ang Tingin, Zany Emote, Housewife) and locks ranks 6+. Metricool doesn't say its list is US-only. TikTok drafts don't keep music, so Isac adds the sound in the app at about 5-10 % under out/fyp-voice-only.mp4 (the film has no music bed); it can't be changed after posting.",
+  "youtube_title": "The Stranger Who Picks Your TikTok Feed 😮",
+  "youtube_description": "How does the TikTok algorithm decide what to show you? If you're watching this on TikTok's For You feed, TikTok bet you'd watch it before you saw it. (On YouTube, YouTube's own system made that call.)\n\nTikTok says it gives each candidate video a prediction score, an estimate of how likely you are to interact with it, and serves the highest scores to your For You feed. The clues include videos you watched, finished, liked or skipped, your replays, and how long you spend on a video. TikTok calls finishing a longer video from beginning to end a strong indicator of interest.\n\nThe twist is TikTok's own example: if another user engaged with two of the same videos as you, the system may predict you'll engage with a third video that person engaged with. So a stranger you'll never meet can help pick your feed.\n\nIn 2021 the New York Times saw an internal TikTok document called \"TikTok Algo 101\", which TikTok confirmed was authentic. It said TikTok optimizes for two closely related metrics: retention (whether you come back) and time spent.\n\nFine print: \"bet\" is our word for TikTok's prediction score. TikTok doesn't publish how its model is built; the two phones are an illustration of its own example. The \"TikTok Algo 101\" page in the video is re-created: only its title and the two metric names come from the New York Times report. No real TikTok interface or logo is shown; the phone and the videos in it are drawn by hand.\n\nSources:\n- TikTok Transparency Center, \"Introduction to the TikTok recommendation system\" (read Oct 24, 2026): https://www.tiktok.com/transparency/en-us/recommendation-system/\n- TikTok Newsroom, \"How TikTok recommends videos #ForYou\" (June 18, 2020): https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you\n- Ben Smith, \"How TikTok Reads Your Mind\", The New York Times (Dec 5, 2021): https://www.nytimes.com/2021/12/05/business/media/tiktok-algorithm.html (syndicated on Boston.com, Dec 6, 2021: https://www.boston.com/news/commentary/2021/12/06/how-tiktok-reads-your-mind)\n\nHow tech works, part 2. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.\n\n#shorts #tech #tiktok",
+  "youtube_tags": [
+    "tiktok algorithm",
+    "how does the tiktok algorithm work",
+    "how tiktok decides what to show you",
+    "for you page",
+    "tiktok algorithm explained",
+    "how tech works",
+    "tech explained",
+    "shorts"
+  ],
+  "series": "How tech works, part 2",
+  "is_aigc": true,
+  "disclosure": "AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes"
+}
