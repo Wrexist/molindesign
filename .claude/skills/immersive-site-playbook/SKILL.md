@@ -5,6 +5,8 @@ description: Master playbook for building a cinematic, "one-take" interactive we
 
 # Immersive site playbook (source: amv.tarunvishwakarma.dev)
 
+> **Required alongside this playbook: `ux-laws`.** Do its plan-time pass (one job, familiar skeleton, peak and end, where complexity lives, budgets) before choosing structure here, and its pre-ship audit and report before handover. Every convention this playbook breaks (scrubbed scroll, custom cursor, gated stages) needs the escape hatch `ux-laws` describes under law 3 (Jakob) and §5.
+
 The reference site is a single fixed full-screen `<canvas>` (three.js) with **all UI as HTML overlays**. There is no page scroll — wheel/touch input *scrubs a timeline*. The result feels like a film you play, not a page you read. Study it as a system, not a pile of effects.
 
 ## Architecture (copy this shape)
@@ -64,6 +66,7 @@ Model/light/animate in Blender → bake lighting in Cycles → export (glTF) wit
 ## Which sibling skills to load
 | Need | Skill |
 |---|---|
+| **Usability rules, audit and report (always)** | `ux-laws` |
 | Branded loading screen | `cinematic-loader` |
 | Headline/line animation | `masked-text-reveal` |
 | Camera-style HUD, brackets, labels, type | `hud-cinematic-ui` |

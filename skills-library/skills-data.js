@@ -353,6 +353,14 @@ window.SKILLS = [
   "short": "Checklist of small craft details that make a site feel premium and accessible"
  },
  {
+  "id": "ux-laws",
+  "cat": "Foundations",
+  "desc": "REQUIRED on every website, landing page, web app or UI screen — the 20 laws of UX (Hick, Fitts, Jakob, Miller, Aesthetic-Usability, Pareto, Occam, Parkinson, Postel, Peak-End, Von Restorff, Zeigarnik, Tesler, Doherty 400 ms, Goal-Gradient, Proximity, Similarity, Closure, Common Region, Uniform Connectedness) turned into concrete web rules with numbers, a plan-time pass, a pre-ship audit and a report format. Apply while planning, while building and before handing over; the immersive and motion skills decide how a site moves, this one decides whether people can use it. Sources - lawsofux.com (Jon Yablonski), the original papers named per law, Nielsen Norman Group.",
+  "title": "UX laws",
+  "source": "lawsofux.com · original papers",
+  "short": "The 20 laws of UX as a required plan, build and audit checklist for every site"
+ },
+ {
   "id": "code-rendered-film",
   "cat": "Film & video",
   "desc": "Make a launch film, hero loop or social clip entirely in code: one page whose every frame is a pure function of t, played live and captured by headless Chromium into an MP4 with sub-frame motion blur, a procedural score from the same timeline, −14 LUFS master, text-dwell check, contact sheets and an AI-jury review. From lemo-opuscar, ClaudeAnimationBase, mg-styles-15, pdoom-video; proven in film/ (Halden LF-1 \"Held\").",
@@ -367,5 +375,29 @@ window.SKILLS = [
   "title": "Film voice-over",
   "source": "VoiceStudio + Kokoro + film/",
   "short": "Narrate a code-rendered film: script, voice, timing, captions, ducking"
+ },
+ {
+  "id": "reverse-engineer-reference-site",
+  "cat": "Foundations",
+  "desc": "Tear down a reference motion site with REA (Reverse Engineer Anything, MIT) and distill it into a skill: one command captures the page, exports its scripts, fingerprints the motion stack (GSAP, Lenis, three.js, every shader, easings), records which functions run while you scroll or move the pointer minus an idle baseline, lists event handlers, and shoots step screenshots with reduced motion off and on. Measured on oryzo.ai and by-kin.com.",
+  "title": "Reverse-engineer a reference",
+  "source": "REA (morluto/rea) + oryzo.ai",
+  "short": "Find the code a reference site runs when you scroll, and distill it"
+ },
+ {
+  "id": "site-kickoff",
+  "cat": "Workflow",
+  "desc": "Start every new website here — turn one sentence into a written, approved plan before any code (the one hard idea, motion personality, story-ordered sections, the few skills that earn a place with a reason each, budgets, facts to confirm), then scaffold it with tools/new-site.sh from templates/site/. Use when someone asks for a new site, landing page, demo for a client or a redesign. Adapted from ECC (github.com/affaan-m/ECC, MIT) \"plan before code\" and \"load only what you use this week\", read in source Oct 2026.",
+  "title": "Site kickoff",
+  "source": "ECC (affaan-m/ECC) + templates/site/",
+  "short": "One sentence becomes an approved brief, then a scaffolded site"
+ },
+ {
+  "id": "site-verification-loop",
+  "cat": "Workflow",
+  "desc": "Prove a static site works before it ships — run tools/check-site.mjs (GitHub Pages /molindesign/ prefix, desktop, phone and reduced-motion runs, JS errors, 404s, sideways scroll, tap targets, unnamed controls, reveals that never fire, metadata, secrets), then a fresh-context review by the site-reviewer agent, fix with evidence, and record what generalises. Use after building or changing any site in this repo and before every PR. Adapted from ECC's verification-loop, code-reviewer and continuous-learning (github.com/affaan-m/ECC, MIT), read in source Oct 2026.",
+  "title": "Site verification loop",
+  "source": "ECC (affaan-m/ECC) + tools/check-site.mjs",
+  "short": "Machine checks, a fresh-context review, evidence in the PR"
  }
 ];

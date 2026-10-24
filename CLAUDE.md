@@ -3,13 +3,32 @@
 ## Design skills library (`.claude/skills/`)
 Before building or redesigning any website, check these skills and apply the relevant ones. They were distilled from the real source of award-winning motion sites: amv.tarunvishwakarma.dev, oryzo.ai, hubtown.co.in, brand.ivress.co.jp, by-kin.com, uncommonstudio.com.au (uncommondesign.group), matvoyce.tv, minhpham.design, iventions.com, santionispirits.com, why.zero.university, ponpon-mania.com, paodao.fr, Shopify Editions Spring 2026 and sleep-well-creatives.com, plus the open-source UI libraries listed under Components. Cartier and Nothin' were unreachable and contributed nothing.
 
-Every skill has a live demo in the Motion Library: https://wrexist.github.io/molindesign/skills-library/ (source in `skills-library/`; add a demo and a `skills-data.js` entry for each new skill, following `skills-library/demos/README.md`).
+Every skill has a live demo in the Motion Library: https://wrexist.github.io/molindesign/skills-library/ (source in `skills-library/`; add a demo and a `skills-data.js` entry for each new skill, following `skills-library/demos/README.md`). `node tools/check-skills.mjs` lists anything missing.
 
 **Showcase:** https://wrexist.github.io/molindesign/showcase/ (source in `showcase/`) puts every skill to work together on one launch page for a made-up camera, Halden LF‑1. Sections plug into the shell through `showcase/sections/README.md`; when a skill is added, use it somewhere there too and list it in that section's `data-skills`.
 
 Skills label what was read from source versus inferred (and add reduced-motion fallbacks where the source had none). Trust the labels.
 
-**Start here:** `immersive-site-playbook` (architecture, tokens, checklists), then `premium-micro-details` as the final polish pass on every site.
+**Start here:** `site-kickoff` (one sentence → approved brief → `tools/new-site.sh`), `immersive-site-playbook` (architecture, tokens, checklists), then `premium-micro-details` as the final polish pass and `site-verification-loop` before every PR.
+
+## New website workflow (plan → build → verify → review → remember)
+Adapted from ECC (github.com/affaan-m/ECC): the plan comes before the code, checks run the same way every time, and a context that didn't write the change reviews it.
+1. **Plan.** Write `<slug>/BRIEF.md` with `site-kickoff`: the one hard idea, a motion personality, sections in story order, and only the skills that have a job on this page (one line each saying what). Get it approved before building past the starter.
+2. **Scaffold.** `tools/new-site.sh <slug> "Name" "one sentence"` copies `templates/site/` (tokens, reveals, reduced motion, 44 px targets, noindex, per-site `CLAUDE.md`).
+3. **Build** only what the brief lists. Read a skill's SKILL.md when you reach its section, not all up front.
+4. **Verify.** `node tools/check-site.mjs <slug>` (serves under `/molindesign/` like GitHub Pages; desktop, phone and reduced-motion runs). Look at the screenshots it saves.
+5. **Review.** Run the `site-reviewer` agent (`.claude/agents/`) on the diff; give it the site dir, brief and check output, not your conclusions. Fix FAILs; fix WARNs or say why not in the PR, and paste the final check table there.
+6. **Remember.** Site decisions go in the site's BRIEF.md log; lessons that apply to every site go into the skill they belong to; `node tools/check-skills.mjs` keeps CLAUDE.md, the Motion Library and the showcase in step.
+
+A PostToolUse hook (`.claude/settings.json` → `tools/hooks/post-edit-check.mjs`) flags root-absolute paths, credentials and unpinned CDN scripts in any HTML/CSS/JS file as soon as it is written.
+
+**Research (before distilling a new site)**
+- `reverse-engineer-reference-site` — REA (Reverse Engineer Anything, MIT) teardown in one command: page capture, script export, motion-stack and shader fingerprint, functions that run on scroll/pointer minus idle, listeners, reduced-motion screenshot pairs; plus a rebuild-vs-reference parity check. Teardown output stays out of the repo.
+
+**Required on every website or UI, no exceptions:** `ux-laws`, the 20 laws of UX (Hick, Fitts, Jakob, Miller, Aesthetic-Usability, Pareto, Occam, Parkinson, Postel, Peak-End, Von Restorff, Zeigarnik, Tesler, Doherty, Goal-Gradient, Proximity, Similarity, Closure, Common Region, Uniform Connectedness). Do its plan-time pass before writing code, follow its rules while building, run its pre-ship audit before handing over, and end with its UX-laws report table (final message, PR description or the site's README). This applies to small pages, landing pages, app screens and redesigns too, not only immersive sites. Isac asked for this on 2026-10-23.
+
+**Usability (required)**
+- `ux-laws` — the 20 UX laws as concrete web rules: plan-time pass, build rules with numbers, pre-ship audit, ✓/⚠/✗ report.
 
 **Intro / loading**
 - `cinematic-loader` — silhouette-fill logo loader, rolling % counter, fly-through exit.
@@ -66,6 +85,10 @@ Skills label what was read from source versus inferred (and add reduced-motion f
 **Film & video**
 - `code-rendered-film` — a film written in code: render(t) contract, motion blur, procedural score, headless render to MP4, loudnorm, readcheck, AI-jury loop. Working example: `film/` (Halden LF‑1 “Held”, live at https://wrexist.github.io/molindesign/film/).
 - `film-voiceover` — narration for those films: retention script rules, voice choice, slot fitting, word-timed captions, Whisper listen checks, ducking from word times. Local Kokoro-82M TTS (Apache-2.0) via `film/tools/voiceover.py`; example `film/vo/script.json` → `film/out/halden-lf1-held-vo.mp4`.
+
+**Workflow**
+- `site-kickoff` — plan before code: one sentence → BRIEF.md (hard idea, motion personality, skills with a job, budgets) → approval → `tools/new-site.sh`.
+- `site-verification-loop` — `tools/check-site.mjs`, then the `site-reviewer` agent, evidence in the PR, lessons back into skills.
 
 **Audio**
 - `web-audio-soundscape` — opt-in live-mixed audio, muffle filter, procedural sounds.

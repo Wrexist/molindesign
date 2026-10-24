@@ -575,15 +575,18 @@ def master(s, wav, video, dst):
     # clicks under a voice do that), and the dynamic mode overshoots. So: plain gain into the oversampled limiter,
     # measured and corrected once, which always stays linear.
     gain = m['lufs'] - float(j['input_i'])
-    for _ in range(2):
+    for _ in range(4):
         chain = f'volume={gain:.2f}dB,aresample=192000,alimiter=limit={lim:.3f}:level=false:attack=1:release=60,aresample=48000'
         subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(video), '-i', str(wav), '-map', '0:v:0', '-map', '1:a:0',
                         '-af', chain, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', str(dst)], check=True)
-        r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(dst), '-af', 'ebur128', '-f', 'null', '-'], capture_output=True, text=True)
+        r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(dst), '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True)
         got = float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r.stderr)[-1])
-        if abs(got - m['lufs']) < 0.3:
+        tp = float(re.findall(r'Peak:\s+(-?[\d.]+) dBFS', r.stderr)[-1])
+        if abs(got - m['lufs']) < 0.3 and tp <= m['tp']:
             break
         gain += m['lufs'] - got
+        if tp > m['tp']:                     # the AAC encode overshoots the limiter on sharp transients (Chatterbox plosives)
+            lim *= 10 ** ((m['tp'] - tp - 0.2) / 20)
     r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(dst), '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True)
     I = re.findall(r'I:\s+(-?[\d.]+) LUFS', r.stderr)[-1]
     tp = re.findall(r'Peak:\s+(-?[\d.]+) dBFS', r.stderr)[-1]

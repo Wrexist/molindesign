@@ -27,7 +27,7 @@ node render.mjs all                        # score → WAV, frames (4-sample mot
 ```
 
 ## Second film: “One second” (vertical explainer)
-`escapement/` is a 38.5‑second 1080×1920 TikTok/Reels explainer on how a mechanical watch counts a second, built on the same contract and renderer: `escapement/index.html` plays it, `escapement/out/one-second.mp4` is the master, `escapement/TREATMENT.md` has the reads. Render any film with `--film <dir>`; size, length, poster time and file name come from the page's `window.FILM`:
+`escapement/` is a 38.5‑second 1080×1920 TikTok/Reels explainer on how a mechanical watch counts a second, built on the same contract and renderer: `escapement/index.html` plays it, `escapement/out/one-second.mp4` is the master, `escapement/TREATMENT.md` has the reads. `escapement/out/one-second-vo.mp4` is the narrated cut: twelve lines in Chatterbox's human read (`escapement/vo/script.json`), each timed to its shot, the score 3 dB down and ducked 12 dB under the voice. Render any film with `--film <dir>`; size, length, poster time and file name come from the page's `window.FILM`:
 ```sh
 node render.mjs readcheck --film escapement
 node render.mjs video --film escapement --samples 6 && node render.mjs master --film escapement

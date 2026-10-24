@@ -1,0 +1,7 @@
+{
+  "name": "molindesign-tools",
+  "private": true,
+  "type": "module",
+  "description": "Factory tools: check-site.mjs (browser verification), check-skills.mjs (skill library consistency), new-site.sh (scaffold). Playwright is optional; check-site falls back to a global install.",
+  "dependencies": { "playwright-core": "1.56.1" }
+}
