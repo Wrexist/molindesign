@@ -3,6 +3,7 @@
 
     python3 voiceover.py audition --text "A line in the film's register." [--voices af_heart,bf_emma,am_michael]
     python3 voiceover.py plan  ../vo/script.json          # will each line fit its slot? (no synthesis)
+    python3 voiceover.py layout ../vo/script.json         # long-form: speak every line, then set each `at` from the takes and `pause`
     python3 voiceover.py synth ../vo/script.json          # lines → out/vo/vo.wav, vo.json, vo.srt + vo/vo.js (captions for the page)
     python3 voiceover.py check ../vo/script.json          # listen check: Whisper hears every line, word error, pace, quiet zones
     python3 voiceover.py mix   ../vo/script.json [--score ../out/mix.wav --video ../out/video.mp4 --out ../out/film-vo.mp4]
@@ -175,7 +176,7 @@ def speak_chatterbox(s, l, speed, cache_dir):
         w = chatterbox().generate(text, **kw)
         a = resample(trim(w[0].numpy(), chatterbox().sr), chatterbox().sr)
         sf.write(f, a, SR, subtype='FLOAT')
-    return tempo(a, speed)
+    return level(tempo(a, speed), v.get('level_db'))
 
 
 MING_SRC = Path(os.environ.get('MING_SRC', Path.home() / 'ming-src'))
@@ -205,21 +206,42 @@ def speak_ming(s, l, speed, cache_dir):
     text = spoken(s, l)
     seed = int(v.get('seed', 7)) + l.get('take', 0)
     voice, style = v.get('voice', 'US_James'), v.get('style')
-    key = hashlib.sha1(json.dumps(['ming1', text, seed, voice, style]).encode()).hexdigest()[:16]
+    # `ref` {wav, text}: clone one fixed take for every line. Preset voices drift line to line (pitch, timbre, pace);
+    # a single reference holds them still. `whole` speaks the line in one piece instead of ~24-token fragments.
+    ref = v.get('ref')
+    ref_wav = ref and str((s['_dir'] / ref['wav']).resolve())
+    ref_id = ref and hashlib.sha1(Path(ref_wav).read_bytes()).hexdigest()[:12]
+    whole = bool(v.get('whole'))
+    key = hashlib.sha1(json.dumps(['ming1', text, seed, voice, style] + ([ref_id, ref['text'], whole] if ref else [])).encode()).hexdigest()[:16]
     f = cache_dir / f'{l["id"]}-ming-{key}.wav'
     if f.exists():
         a, _ = sf.read(f, dtype='float32')
     else:
         import torch
         torch.manual_seed(seed)
-        if style:
+        if ref:
+            w = ming().synthesize(task='TTS', language_id='English', text=text, prompt_wav_path=ref_wav,
+                                  prompt_text=ref['text'], use_spk_emb=True, raw_text=whole)
+        elif style:
             w = ming().synthesize(task='VOICE_DESIGN', text=text, controls={'style': style}, use_zero_spk_emb=True)
         else:
             w = ming().synthesize(task='IP', text=text, controls={'ip': voice}, use_zero_spk_emb=True)
         sr = ming().sample_rate
         a = resample(trim(w.float().cpu().numpy().ravel(), sr), sr)
         sf.write(f, a, SR, subtype='FLOAT')
-    return tempo(a, speed)
+    return level(tempo(a, speed), v.get('level_db'))
+
+
+def level(a, db):
+    """Same loudness on every line: scale so the louder half of 20 ms frames sits at `db` dBFS (None leaves it)."""
+    if db is None or not len(a):
+        return a
+    n = int(SR * 0.02)
+    fr = a[:len(a) // n * n].reshape(-1, n) if len(a) >= n else a[None]
+    e = np.sqrt((fr ** 2).mean(1))
+    loud = e[e >= np.median(e)]
+    cur = 20 * np.log10(np.sqrt((loud ** 2).mean()) + 1e-9)
+    return (a * 10 ** ((db - cur) / 20)).astype(np.float32)
 
 
 def speak(s, l, speed, cache_dir):
@@ -455,6 +477,29 @@ def cmd_synth(a):
         sys.exit(2)
 
 
+def cmd_layout(a):
+    """Long-form films are cut to the voice, not the voice to a timeline: speak each line once (cached), then place
+    it right after the previous take plus that line's `pause` (default 0.4 s), and write the times back to the script."""
+    p = Path(a.script).resolve()
+    raw = json.loads(p.read_text())
+    s = load_script(a.script)
+    (s['_out'] / 'lines').mkdir(parents=True, exist_ok=True)
+    by_id = {l['id']: l for l in s['lines']}
+    t = raw['lines'][0].get('at', 0.4)
+    for l in raw['lines']:
+        x = speak(s, by_id[l['id']], l.get('speed', s['speed']), s['_out'] / 'lines')
+        d = len(x) / SR
+        n = len(words(l['text']))
+        if n / d > s['pace']['max']:          # synth will slow a rushed take (atempo, down to fit.min): leave it the room
+            d = min(n / s['pace']['max'], d / s['fit']['min'])
+        l['at'] = round(t, 2)
+        print(f'{l["id"]:10} {t:7.2f}  {d:5.2f}s  {len(words(l["text"])) / d:.2f} w/s')
+        t += d + l.get('pause', 0.4)
+    raw['dur'] = round(t + raw.get('tail', 1.2), 2)
+    p.write_text(json.dumps(raw, indent=1, ensure_ascii=False) + '\n')
+    print(f'laid out {len(raw["lines"])} lines, {raw["dur"]:.1f} s')
+
+
 def process_chain(s, src, dst):
     """Broadcast narration chain: rumble out, mud down, presence and air up, de-ess, gentle 3:1 compression."""
     c = s['chain']
@@ -673,7 +718,7 @@ def main():
     au.add_argument('--speed', type=float, default=0.95)
     au.add_argument('--lang')
     au.add_argument('--out', default=str(Path(__file__).resolve().parent.parent / 'out' / 'vo' / 'audition'))
-    for name in ('plan', 'synth', 'check', 'mix', 'all'):
+    for name in ('plan', 'layout', 'synth', 'check', 'mix', 'all'):
         sp = sub.add_parser(name)
         sp.add_argument('script')
         if name in ('mix', 'all'):
@@ -689,7 +734,7 @@ def main():
             print('(listen check flagged lines; mixing anyway so you can hear them in context)')
         cmd_mix(a)
     else:
-        {'audition': cmd_audition, 'plan': cmd_plan, 'synth': cmd_synth, 'check': cmd_check, 'mix': cmd_mix}[a.cmd](a)
+        {'audition': cmd_audition, 'plan': cmd_plan, 'layout': cmd_layout, 'synth': cmd_synth, 'check': cmd_check, 'mix': cmd_mix}[a.cmd](a)
 
 
 if __name__ == '__main__':
