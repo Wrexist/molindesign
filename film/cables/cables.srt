@@ -1,0 +1,548 @@
+1
+00:00:00,400 --> 00:00:01,970
+You text a friend in London.
+
+2
+00:00:02,200 --> 00:00:03,230
+"Landed yet?"
+
+3
+00:00:03,830 --> 00:00:04,930
+In under a second,
+
+4
+00:00:04,930 --> 00:00:05,520
+it's there.
+
+5
+00:00:06,320 --> 00:00:07,350
+But to get there,
+
+6
+00:00:07,380 --> 00:00:08,440
+your message dove to
+
+7
+00:00:08,440 --> 00:00:10,110
+the bottom of the Atlantic Ocean.
+
+8
+00:00:11,080 --> 00:00:12,440
+It rode a beam of light,
+
+9
+00:00:12,440 --> 00:00:14,922
+through a cable on the sea floor.
+
+10
+00:00:15,460 --> 00:00:18,030
+Now imagine every one of those cables snaps.
+
+11
+00:00:18,180 --> 00:00:18,930
+All of them.
+
+12
+00:00:18,960 --> 00:00:19,970
+At the same second.
+
+13
+00:00:20,780 --> 00:00:22,330
+What happens in the first minute?
+
+14
+00:00:22,720 --> 00:00:23,740
+The first day?
+
+15
+00:00:23,740 --> 00:00:24,570
+The first month?
+
+16
+00:00:25,750 --> 00:00:28,440
+What if every undersea internet cable was cut?
+
+17
+00:00:29,690 --> 00:00:30,300
+First,
+
+18
+00:00:30,330 --> 00:00:31,700
+what's actually down there.
+
+19
+00:00:32,430 --> 00:00:33,870
+More than 600 cables,
+
+20
+00:00:33,870 --> 00:00:35,140
+active and planned.
+
+21
+00:00:35,970 --> 00:00:37,460
+Laid end to end,
+
+22
+00:00:37,510 --> 00:00:39,720
+over 900,000 miles of them.
+
+23
+00:00:40,290 --> 00:00:41,510
+That's enough to wrap around
+
+24
+00:00:41,510 --> 00:00:43,360
+the Earth about 37 times.
+
+25
+00:00:44,070 --> 00:00:46,060
+And most of the way across the ocean,
+
+26
+00:00:46,250 --> 00:00:48,600
+a cable is about as thick as a garden hose.
+
+27
+00:00:49,510 --> 00:00:50,410
+Inside it:
+
+28
+00:00:50,410 --> 00:00:51,880
+a few strands of glass,
+
+29
+00:00:52,010 --> 00:00:53,320
+each thinner than a hair,
+
+30
+00:00:53,390 --> 00:00:54,780
+carrying pulses of light.
+
+31
+00:00:55,930 --> 00:00:56,900
+What about satellites?
+
+32
+00:00:57,670 --> 00:00:58,780
+For the United States,
+
+33
+00:00:58,830 --> 00:01:01,330
+satellites are just 0.37 percent
+
+34
+00:01:01,330 --> 00:01:02,920
+of all international capacity.
+
+35
+00:01:03,720 --> 00:01:05,230
+The rest goes through cables.
+
+36
+00:01:06,440 --> 00:01:08,270
+And cables break all the time.
+
+37
+00:01:08,440 --> 00:01:10,110
+About 200 times a year.
+
+38
+00:01:10,600 --> 00:01:12,210
+Two thirds of those are accidents:
+
+39
+00:01:12,420 --> 00:01:13,680
+fishing gear and ship anchors
+
+40
+00:01:13,680 --> 00:01:16,010
+dragging across the sea floor.
+
+41
+00:01:16,310 --> 00:01:16,780
+Sharks?
+
+42
+00:01:17,070 --> 00:01:19,680
+From 2007 to 2014,
+
+43
+00:01:19,730 --> 00:01:21,600
+fish bites caused zero faults.
+
+44
+00:01:22,730 --> 00:01:24,580
+One cut is no big deal.
+
+45
+00:01:24,710 --> 00:01:26,660
+The internet just routes around it.
+
+46
+00:01:27,150 --> 00:01:28,270
+But what if there's nothing
+
+47
+00:01:28,270 --> 00:01:29,580
+left to route around?
+
+48
+00:01:30,910 --> 00:01:31,680
+Second one.
+
+49
+00:01:32,180 --> 00:01:34,230
+Your message to London never arrives.
+
+50
+00:01:34,950 --> 00:01:36,270
+Routers on the coast notice
+
+51
+00:01:36,270 --> 00:01:37,530
+the dead links in a split
+
+52
+00:01:37,530 --> 00:01:39,280
+second and look for another path.
+
+53
+00:01:40,190 --> 00:01:41,180
+There isn't one.
+
+54
+00:01:41,390 --> 00:01:43,400
+Every road off the continent is gone.
+
+55
+00:01:44,550 --> 00:01:45,380
+Minute one.
+
+56
+00:01:45,530 --> 00:01:46,820
+And here's the weird part:
+
+57
+00:01:47,050 --> 00:01:48,560
+most of your phone still works.
+
+58
+00:01:49,290 --> 00:01:51,440
+Texts to people nearby still go through.
+
+59
+00:01:51,750 --> 00:01:53,060
+Your local news still loads.
+
+60
+00:01:53,710 --> 00:01:56,230
+Big streaming services keep copies of popular
+
+61
+00:01:56,230 --> 00:01:58,400
+shows on servers inside your country.
+
+62
+00:01:58,970 --> 00:02:00,500
+So your show keeps playing.
+
+63
+00:02:01,320 --> 00:02:03,610
+But tap a website that only lives overseas,
+
+64
+00:02:03,940 --> 00:02:04,550
+and it spins.
+
+65
+00:02:04,840 --> 00:02:05,270
+Forever.
+
+66
+00:02:05,990 --> 00:02:08,440
+Your video call to family abroad freezes,
+
+67
+00:02:08,610 --> 00:02:09,300
+then drops.
+
+68
+00:02:10,450 --> 00:02:11,300
+Hour one.
+
+69
+00:02:11,690 --> 00:02:13,040
+Now money starts to notice.
+
+70
+00:02:13,670 --> 00:02:15,620
+A tourist's card gets declined,
+
+71
+00:02:15,870 --> 00:02:17,740
+because their bank is on another continent.
+
+72
+00:02:18,650 --> 00:02:19,950
+Traders in New York can't
+
+73
+00:02:19,950 --> 00:02:21,200
+see prices in London.
+
+74
+00:02:22,110 --> 00:02:23,390
+Companies that keep their data
+
+75
+00:02:23,390 --> 00:02:25,380
+in a cloud overseas go dark.
+
+76
+00:02:26,190 --> 00:02:28,080
+Satellites try to carry the load.
+
+77
+00:02:28,290 --> 00:02:29,310
+But that's a river trying
+
+78
+00:02:29,310 --> 00:02:30,740
+to squeeze through a straw.
+
+79
+00:02:32,220 --> 00:02:33,210
+And for some places,
+
+80
+00:02:33,380 --> 00:02:33,950
+it's worse.
+
+81
+00:02:34,810 --> 00:02:36,710
+Islands with one or two cables are
+
+82
+00:02:36,710 --> 00:02:38,420
+simply cut off from the world.
+
+83
+00:02:40,050 --> 00:02:40,700
+Day one.
+
+84
+00:02:41,030 --> 00:02:42,260
+Sounds like science fiction?
+
+85
+00:02:42,650 --> 00:02:43,880
+Parts of it already happened.
+
+86
+00:02:44,430 --> 00:02:45,550
+In 2008,
+
+87
+00:02:45,550 --> 00:02:47,830
+cable cuts near Egypt knocked out about 70
+
+88
+00:02:47,830 --> 00:02:50,180
+percent of Egypt's link to the wider internet.
+
+89
+00:02:50,790 --> 00:02:52,250
+India lost roughly half
+
+90
+00:02:52,250 --> 00:02:53,580
+of its outbound connection.
+
+91
+00:02:54,610 --> 00:02:55,740
+In 2024,
+
+92
+00:02:56,070 --> 00:02:57,290
+a sinking cargo ship
+
+93
+00:02:57,290 --> 00:02:59,850
+in the Red Sea most likely dragged its anchor
+
+94
+00:02:59,850 --> 00:03:01,840
+and cut three cables at once.
+
+95
+00:03:02,450 --> 00:03:03,660
+And in 2022,
+
+96
+00:03:03,810 --> 00:03:05,710
+an undersea volcano in Tonga snapped
+
+97
+00:03:05,710 --> 00:03:07,780
+the country's only international cable.
+
+98
+00:03:08,440 --> 00:03:09,920
+The whole country fell back
+
+99
+00:03:09,920 --> 00:03:11,770
+on a handful of satellite links.
+
+100
+00:03:13,090 --> 00:03:13,900
+Week one.
+
+101
+00:03:14,070 --> 00:03:15,400
+So who fixes all this?
+
+102
+00:03:15,980 --> 00:03:17,540
+Only about 20 to 30 ships
+
+103
+00:03:17,540 --> 00:03:20,110
+on Earth are dedicated cable repair ships.
+
+104
+00:03:20,720 --> 00:03:22,120
+A ship sails to the break
+
+105
+00:03:22,120 --> 00:03:24,855
+and drags a hook along the sea floor.
+
+106
+00:03:25,410 --> 00:03:27,480
+It lifts the cable up to the deck,
+
+107
+00:03:27,590 --> 00:03:28,530
+and the crew splices
+
+108
+00:03:28,530 --> 00:03:30,480
+the glass back together by hand.
+
+109
+00:03:31,350 --> 00:03:32,840
+Even for a single break,
+
+110
+00:03:33,110 --> 00:03:34,510
+the typical repair takes about
+
+111
+00:03:34,510 --> 00:03:36,120
+eight days just to start.
+
+112
+00:03:37,290 --> 00:03:38,240
+Now do the math.
+
+113
+00:03:38,550 --> 00:03:40,380
+About 570 cables,
+
+114
+00:03:40,690 --> 00:03:42,000
+about 25 ships.
+
+115
+00:03:42,610 --> 00:03:44,920
+That's around 23 cables for every ship.
+
+116
+00:03:45,530 --> 00:03:47,240
+At even two weeks each,
+
+117
+00:03:47,490 --> 00:03:48,650
+the last ones come back
+
+118
+00:03:48,650 --> 00:03:50,060
+almost a year later.
+
+119
+00:03:51,150 --> 00:03:52,040
+Month one.
+
+120
+00:03:52,170 --> 00:03:54,000
+Tonga's repair took five weeks.
+
+121
+00:03:54,850 --> 00:03:55,910
+The crew had to replace
+
+122
+00:03:55,910 --> 00:03:57,980
+about 56 miles of cable.
+
+123
+00:03:58,630 --> 00:03:59,450
+Now picture that,
+
+124
+00:03:59,450 --> 00:04:00,470
+at every cable,
+
+125
+00:04:00,470 --> 00:04:01,480
+all at once.
+
+126
+00:04:02,640 --> 00:04:04,420
+So next time a message lands
+
+127
+00:04:04,420 --> 00:04:05,800
+on the other side of the world,
+
+128
+00:04:05,800 --> 00:04:06,750
+in a blink,
+
+129
+00:04:07,700 --> 00:04:09,090
+remember the trip it took:
+
+130
+00:04:09,340 --> 00:04:10,830
+down to the ocean floor,
+
+131
+00:04:10,860 --> 00:04:13,310
+through a glass thread inside a garden hose.
+
+132
+00:04:14,110 --> 00:04:15,350
+And somewhere out there,
+
+133
+00:04:15,350 --> 00:04:17,200
+a ship is fixing one right now.
+
+134
+00:04:17,950 --> 00:04:18,840
+This is Tech,
+
+135
+00:04:19,050 --> 00:04:19,800
+explained.
+
+136
+00:04:19,910 --> 00:04:20,320
+Subscribe,
+
+137
+00:04:20,610 --> 00:04:22,160
+and I'll show you how the rest of it works.
+
