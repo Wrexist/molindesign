@@ -4,6 +4,22 @@ The factory's memory of what made videos better or worse. Every run reads this b
 
 Isac's standing ask (2026-10-23): each video must be better than the last. Look at every video harshly, criticise everything, learn, and never repeat a mistake.
 
+## What the viral "What if" stickman channels teach (studied 2026-10-24)
+Example Isac sent: Jeremy Bearimy (@JeremyBearimyTheory), "What If You Could See 10 Seconds Into the Future?" 252k views. Its channel feed (read 2026-10-24) shows the pattern: 1–2 uploads a day, all titled "What if you/your …?". The hits are about **your own body or senses** ("What If Your Heart Beat 10x Faster?" 491k, "What if You Stopped Feeling Pain?" 352k, "…See 10 Seconds Into the Future?" 252k). The powers and money ones flop (Firebending 4k, Control Water 5k, Infinite Money 11k).
+- Title in second person, about the viewer's own body, phone or day: "What if your phone…", "Why your…", never "How X works" alone (bearimy feed).
+- One dial turned to an extreme number ("10x", "10 seconds", "100x") beats a vague superpower; give the number in the title (bearimy feed).
+- Structure as escalating consequences (second → minute → day → year); each step is a new picture (bearimy format).
+- Run a "what if" spin on a sourced fact, e.g. "What if GPS forgot Einstein?", "What if your password were 20 letters?": the hook of a hypothetical, with our true answer. That is the edge they don't have.
+
+## Not slop (the backlash against AI channels, 2026-10-24)
+Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI animation and AI voices. Ours must read as made with care, and must be honest:
+- Every video carries something checkable: a named source on screen and in the description, a real date, a real number. Slop has none (house rule since #1; now mandatory on YouTube too).
+- The picture is hand-built (paper props, stamps, rulers, our palette), never generated stock or AI imagery; nothing morphs, no uncanny hands or faces (Isac's no-AI-look rule).
+- Disclose the AI voice plainly (TikTok label, YouTube "Altered content", description line). Never hide it; hiding it is what gets channels piled on.
+- Quality over count: 2 a day only while each passes the jury at 8.0+; if a run can't, skip that slot rather than post filler.
+- Reply to real comments in the first hour with a sourced extra fact; a creator who answers isn't a slop farm.
+- Never post the anti-slop copypasta or reply to it with arguments; answer a "this is AI" comment with the source link and what we made by hand.
+
 ## Hook and first frame
 - Frame 0 shows the conflict, never the answer (strawberry r1: the answer on frame 0 killed the reason to watch).
 - A real document or object on frame 0 (a court filing) reads as "not AI" and gets the stamp hit in under 1.5 s (hallucinate, jury 8.2).
