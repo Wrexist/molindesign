@@ -56,6 +56,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 ## Posting and sound
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
+- Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
+- TikTok Studio scheduling needs a one-time consent from Isac to store the video; until he gives it, posts go up immediately (gps went up Fri 20:30 ET instead of Sat 13:00 ET).
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (fill in from TikTok analytics)
@@ -64,4 +66,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | Next word | 2026-10-23 | | | | | |
 | Strawberry | 2026-10-23 | | | | | |
 | Why AI makes things up | 2026-10-23 | | | | | |
-| How GPS works | (Sat 2026-10-24 13:00 ET planned) | | | | | |
+| How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | | | | | |
