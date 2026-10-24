@@ -1,0 +1,56 @@
+{
+  "title": "How do AI image generators work? AI images from static",
+  "caption": "Find the cat in this static. You can't. So how does an AI image generator like Stable Diffusion pull one out?\nIt never finds it. It learned to wipe static away, a little at a time, and your prompt steers every wipe.\nWhat would you pull out of this static? One word.",
+  "hashtags": [
+    "#ai",
+    "#aiimagegenerator",
+    "#stablediffusion",
+    "#diffusionmodel",
+    "#learnontiktok"
+  ],
+  "keywords": [
+    "AI image generator",
+    "how do AI image generators work",
+    "how does AI make images",
+    "how are AI images made",
+    "how does AI generate images",
+    "stable diffusion how it works",
+    "diffusion models explained",
+    "how does AI generate art"
+  ],
+  "cover_text": "Can you find it?",
+  "cover_time": 0.0,
+  "pinned_comment": "Where the idea came from: a 2015 physics-inspired paper (Sohl-Dickstein et al.) modeled it on ink spreading in water, then learned to run that backwards (Quanta, Jan 2023). Be honest: did you spot a cat before the video said there wasn't one? Yes or no.",
+  "post_time_et": "13:00 ET, Sat Oct 24, 2026. The next free daily slot: GPS went up Fri 20:30 ET (16.5 h earlier), and 13:00 ET is East Coast lunchtime inside the playbook's 12:00-15:00 ET hand-posting window, which puts the channel back on one daily US time.",
+  "post_time_stockholm": "19:00 on Sat Oct 24 (Sweden is still on summer time, 6 h ahead of ET). If it slips: 13:00 ET is 18:00 Stockholm from Sun Oct 25 to Sat Oct 31, 19:00 again from Sun Nov 1.",
+  "sounds": [
+    {
+      "name": "Self Aware - Mark Allan Wolfe (first pick)",
+      "why": "Smooth, hypnotic instrumental, curious rather than cute: it suits static resolving into a picture. Checked: #2 on Metricool 'Trending TikTok Songs This Week: Oct 19th, 2026' (metricool.com/tiktok-songs, read 2026-10-24, still the latest list) and #4 on Tokchart's October 2026 monthly chart (about 9.8M videos in October, read 2026-10-24). Length: the TikTok clip is 1:00 (seen in the app on the GPS post, 2026-10-24), longer than this 44.3 s film. Not the vocal 'Self Aware' by Temper City."
+    },
+    {
+      "name": "Sunset in Girona - Noah Preminger & Max Light",
+      "why": "The biggest sound of the month, a cozy jazz instrumental. Checked: #1 on Metricool (week of Oct 19, 2026) and #1 on Tokchart's October 2026 monthly chart (about 31.6M videos, read 2026-10-24). Length: 1:00 clip (GPS post, 2026-10-24), covers 44.3 s. It has a horn: keep it at 5-10 % and check it doesn't fight 'Same static. Type dog instead?' at 33-37 s."
+    },
+    {
+      "name": "Espresso Soul - edivieira",
+      "why": "Smooth, atmospheric instrumental. Checked: #6 on Metricool (week of Oct 19, 2026, read 2026-10-24). Length: it already ran under the full 79 s GPS film, so it covers 44.3 s."
+    }
+  ],
+  "sound_note": "Lengths come from the GPS post in the app (LESSONS.md: Self Aware and Sunset in Girona are 1:00 clips, Espresso Soul ran under 1:19); I couldn't re-read them today because Tokchart's sound pages are subscriber-only and TikTok's music pages don't render outside the app. All three are at least 45 s. Region: neither Metricool nor Tokchart says its ranking is US-only. Higgsfield tiktok_music_trending (US, ALL, 7DAY, limit 30) returned 0 tracks on 2026-10-24, as on 2026-10-23, so no sound is claimed from TikTok's own chart. In the app (English (US)), confirm the clip length shows at least 0:45 and lay it at about 10 % under out/noise-voice-only.mp4; the sound can't be changed after posting.",
+  "youtube_title": "How AI Pulls a Cat Out of Static 🤔",
+  "youtube_description": "How do AI image generators work? Find the cat in this static. You can't, because there's no cat in it.\n\nImage generators like Stable Diffusion are trained by adding static (random noise) to real pictures and learning to guess exactly which noise was added. To make a new picture, they run that backwards: start from pure noise and wipe a little away, often about 50 steps (Stable Diffusion's default), while your text prompt steers every step. Same starting noise, a different word, and you get a different picture. The cat was never hiding. It was painted in.\n\nFine print: Stable Diffusion's starting noise is a small compressed grid that's decoded into pixels at the end, shown here as static. \"460,000,000+ training looks\" is 225,000 training steps x a batch of 2,048 in Stable Diffusion v1-4's last training round alone (our arithmetic from the model card). Not every AI image tool works this way: ChatGPT's image generator is reported to use a different method. The cat and dog are hand-drawn stand-ins, not real model output.\n\nSources:\n- Ho, Jain & Abbeel, \"Denoising Diffusion Probabilistic Models\" (2020): https://arxiv.org/abs/2006.11239\n- Rombach et al., \"High-Resolution Image Synthesis with Latent Diffusion Models\" (Stable Diffusion, 2022): https://arxiv.org/abs/2112.10752\n- Hugging Face diffusers, Stable Diffusion text-to-image (50 steps default; reusing the same noise with a different prompt): https://huggingface.co/docs/diffusers/api/pipelines/stable_diffusion/text2img\n- Stable Diffusion v1-4 model card (training steps and batch size): https://huggingface.co/CompVis/stable-diffusion-v1-4\n- Sohl-Dickstein et al., \"Deep Unsupervised Learning using Nonequilibrium Thermodynamics\" (2015): https://arxiv.org/abs/1503.03585\n- Quanta Magazine, \"The Physics Principle That Inspired Modern AI Art\" (Jan 5, 2023): https://www.quantamagazine.org/the-physics-principle-that-inspired-modern-ai-art-20230105/\n\nHow AI works, part 4. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.\n\n#shorts #tech #ai",
+  "youtube_tags": [
+    "how do ai image generators work",
+    "ai image generator",
+    "stable diffusion",
+    "diffusion model",
+    "how ai works",
+    "tech explained",
+    "how it works",
+    "shorts"
+  ],
+  "series": "How AI works, part 4",
+  "is_aigc": true,
+  "disclosure": "AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes"
+}

@@ -37,6 +37,7 @@ You are the director of the video factory. You make the best 30–45 s (never ov
 - Pure function of t: seeded RNG only, no Date.now, no timers.
 
 ## Done means
+- `node film/tools/boundscheck.mjs --film <slug>` prints "nothing out of bounds" (every glyph inside x 90–930, above y 1450).
 - `readcheck` passes, Whisper hears every line in the final mix (word error ≤ 10 %), master at −14 LUFS ±1, no black stretches.
 - `out/<SLUG>-vo.mp4`, `out/<SLUG>-voice-only.mp4`, `out/poster.jpg` and `out/check/sheet.jpg` exist.
 - Report: file paths, duration, LUFS, and the three moments you're proudest of with timecodes. When you get a jury report, apply the fixes in order of impact, re-render and report what changed.
