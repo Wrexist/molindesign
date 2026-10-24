@@ -5,7 +5,7 @@ description: A concise rulebook for product-UI motion (apps, dashboards, menus, 
 
 # UI motion principles
 
-Labels: **[src]** stated in a named article/guideline; **[obs]** read from the site's shipped CSS (Oct 2026); **[lib]** this library's inference. This is the rulebook; the deep dives live in siblings: `interruptible-css-transitions` (transitions vs keyframes, mounted flag, drag hand-off), `origin-aware-popovers` (computed origins, tooltip groups), `button-state-morphs` (press/async/copy/hold), `animated-number-flow`, `premium-micro-details` (site-wide polish). Cinematic marketing pages follow `immersive-site-playbook` instead; their 0.6–1.1 s entrances are not UI timings.
+Labels: **[src]** stated in a named article/guideline; **[obs]** read from the site's shipped CSS (Oct 2026); **[lib]** this library's inference. This is the rulebook; the deep dives live in siblings: `interruptible-css-transitions` (transitions vs keyframes, mounted flag, drag hand-off), `origin-aware-popovers` (computed origins, tooltip groups), `button-state-morphs` (press/async/copy/hold), `animated-number-flow`, `premium-micro-details` (site-wide polish), `ux-laws` (required usability rules; its Doherty threshold, feedback ≤ 100 ms and a result or progress ≤ 400 ms, is why these durations stay short). Cinematic marketing pages follow `immersive-site-playbook` instead; their 0.6–1.1 s entrances are not UI timings.
 
 ## 0. Decide whether to animate at all
 1. **Purpose.** Animate only when motion explains cause and effect, keeps spatial continuity, gives feedback, or adds deliberate, rare delight [src: Vercel "Necessity check"; Emil "Great animations have a purpose"].

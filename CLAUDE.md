@@ -25,6 +25,11 @@ A PostToolUse hook (`.claude/settings.json` → `tools/hooks/post-edit-check.mjs
 **Research (before distilling a new site)**
 - `reverse-engineer-reference-site` — REA (Reverse Engineer Anything, MIT) teardown in one command: page capture, script export, motion-stack and shader fingerprint, functions that run on scroll/pointer minus idle, listeners, reduced-motion screenshot pairs; plus a rebuild-vs-reference parity check. Teardown output stays out of the repo.
 
+**Required on every website or UI, no exceptions:** `ux-laws`, the 20 laws of UX (Hick, Fitts, Jakob, Miller, Aesthetic-Usability, Pareto, Occam, Parkinson, Postel, Peak-End, Von Restorff, Zeigarnik, Tesler, Doherty, Goal-Gradient, Proximity, Similarity, Closure, Common Region, Uniform Connectedness). Do its plan-time pass before writing code, follow its rules while building, run its pre-ship audit before handing over, and end with its UX-laws report table (final message, PR description or the site's README). This applies to small pages, landing pages, app screens and redesigns too, not only immersive sites. Isac asked for this on 2026-10-23.
+
+**Usability (required)**
+- `ux-laws` — the 20 UX laws as concrete web rules: plan-time pass, build rules with numbers, pre-ship audit, ✓/⚠/✗ report.
+
 **Intro / loading**
 - `cinematic-loader` — silhouette-fill logo loader, rolling % counter, fly-through exit.
 - `gpu-renderer-fallback-warmup` — WebGPU→WebGL2 selection, shader warm-up before the loader drops.
