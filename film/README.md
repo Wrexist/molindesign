@@ -33,6 +33,9 @@ node render.mjs readcheck --film escapement
 node render.mjs video --film escapement --samples 6 && node render.mjs master --film escapement
 ```
 
+## Third film: “Pop” (narrated science clip)
+`popcorn/` is a 36‑second 1080×1920 clip on why popcorn pops, made voice-first: the narration (Chatterbox engine, `popcorn/vo/script.json`) was recorded before the picture, and every beat, caption and sound effect in `popcorn/film.js` reads its time from the word times in `popcorn/vo/vo.js`. `popcorn/out/pop-vo.mp4` is the narrated master, `popcorn/TREATMENT.md` maps each word to its picture.
+
 ## Voice-over
 ```sh
 python3 -m venv ~/.venv-voice && ~/.venv-voice/bin/pip install -r tools/requirements-voice.txt
