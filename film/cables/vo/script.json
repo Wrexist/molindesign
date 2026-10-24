@@ -1,0 +1,410 @@
+{
+ "about": "What if every undersea internet cable was cut? Long-form 16:9 stickman explainer, episode 1 of Tech, explained on YouTube. Narration first; every visual beat keys to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 0.94,
+ "pace": {
+  "max": 3.1
+ },
+ "names": [
+  "Tonga",
+  "Egypt",
+  "Atlantic",
+  "London",
+  "Red Sea"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.2
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0
+ },
+ "captions": {
+  "max_words": 8,
+  "max_chars": 46,
+  "min_s": 0.9
+ },
+ "lines": [
+  {
+   "id": "open1",
+   "at": 0.4,
+   "text": "You text a friend in London. \"Landed yet?\"",
+   "pause": 0.55
+  },
+  {
+   "id": "open2",
+   "at": 3.83,
+   "text": "In under a second, it's there.",
+   "pause": 0.55
+  },
+  {
+   "id": "open3",
+   "at": 6.32,
+   "text": "But to get there, your message dove to the bottom of the Atlantic Ocean.",
+   "pause": 0.55
+  },
+  {
+   "id": "open4",
+   "at": 11.08,
+   "text": "It rode a beam of light, through a cable on the sea floor.",
+   "pause": 0.55
+  },
+  {
+   "id": "open5",
+   "at": 15.46,
+   "text": "Now imagine every one of those cables snaps. All of them. At the same second.",
+   "pause": 0.55,
+   "take": 1
+  },
+  {
+   "id": "open6",
+   "at": 20.78,
+   "text": "What happens in the first minute? The first day? The first month?",
+   "pause": 1.1
+  },
+  {
+   "id": "title",
+   "at": 25.75,
+   "text": "What if every undersea internet cable was cut?",
+   "pause": 1.1
+  },
+  {
+   "id": "size1",
+   "at": 29.69,
+   "text": "First, what's actually down there.",
+   "pause": 0.55
+  },
+  {
+   "id": "size2",
+   "at": 32.43,
+   "text": "More than 600 cables, active and planned.",
+   "say": "More than six hundred cables, active and planned.",
+   "pause": 0.55
+  },
+  {
+   "id": "size3",
+   "at": 35.97,
+   "text": "Laid end to end, over 900,000 miles of them.",
+   "say": "Laid end to end, over nine hundred thousand miles of them.",
+   "pause": 0.55
+  },
+  {
+   "id": "size4",
+   "at": 40.29,
+   "text": "That's enough to wrap around the Earth about 37 times.",
+   "say": "That's enough to wrap around the Earth about thirty-seven times.",
+   "pause": 0.55
+  },
+  {
+   "id": "hose1",
+   "at": 44.07,
+   "text": "And most of the way across the ocean, a cable is about as thick as a garden hose.",
+   "pause": 0.55
+  },
+  {
+   "id": "hose2",
+   "at": 49.51,
+   "text": "Inside it: a few strands of glass, each thinner than a hair, carrying pulses of light.",
+   "pause": 1.1
+  },
+  {
+   "id": "sat1",
+   "at": 55.93,
+   "text": "What about satellites?",
+   "pause": 0.55
+  },
+  {
+   "id": "sat2",
+   "at": 57.67,
+   "text": "For the United States, satellites are just 0.37 percent of all international capacity.",
+   "say": "For the United States, satellites are just zero point three seven percent of all international capacity.",
+   "pause": 0.55
+  },
+  {
+   "id": "sat3",
+   "at": 63.72,
+   "text": "The rest goes through cables.",
+   "pause": 1.1
+  },
+  {
+   "id": "fault1",
+   "at": 66.44,
+   "text": "And cables break all the time. About 200 times a year.",
+   "say": "And cables break all the time. About two hundred times a year.",
+   "pause": 0.55
+  },
+  {
+   "id": "fault2",
+   "at": 70.6,
+   "text": "Two thirds of those are accidents: fishing gear and ship anchors dragging across the sea floor.",
+   "pause": 0.55
+  },
+  {
+   "id": "fault3",
+   "at": 76.31,
+   "text": "Sharks? From 2007 to 2014, fish bites caused zero faults.",
+   "say": "Sharks? From two thousand seven to two thousand fourteen, fish bites caused zero faults.",
+   "pause": 1.1
+  },
+  {
+   "id": "route1",
+   "at": 82.73,
+   "text": "One cut is no big deal. The internet just routes around it.",
+   "pause": 0.55
+  },
+  {
+   "id": "route2",
+   "at": 87.15,
+   "text": "But what if there's nothing left to route around?",
+   "pause": 1.1,
+   "take": 1
+  },
+  {
+   "id": "sec1",
+   "at": 90.91,
+   "text": "Second one.",
+   "pause": 0.55
+  },
+  {
+   "id": "sec2",
+   "at": 92.18,
+   "text": "Your message to London never arrives.",
+   "pause": 0.55
+  },
+  {
+   "id": "sec3",
+   "at": 94.95,
+   "text": "Routers on the coast notice the dead links in a split second and look for another path.",
+   "pause": 0.55
+  },
+  {
+   "id": "sec4",
+   "at": 100.19,
+   "text": "There isn't one. Every road off the continent is gone.",
+   "pause": 1.1
+  },
+  {
+   "id": "min1",
+   "at": 104.55,
+   "text": "Minute one. And here's the weird part: most of your phone still works.",
+   "pause": 0.55
+  },
+  {
+   "id": "min2",
+   "at": 109.29,
+   "text": "Texts to people nearby still go through. Your local news still loads.",
+   "pause": 0.55
+  },
+  {
+   "id": "min3",
+   "at": 113.71,
+   "text": "Big streaming services keep copies of popular shows on servers inside your country.",
+   "pause": 0.55
+  },
+  {
+   "id": "min4",
+   "at": 118.97,
+   "text": "So your show keeps playing.",
+   "pause": 0.55
+  },
+  {
+   "id": "min5",
+   "at": 121.32,
+   "text": "But tap a website that only lives overseas, and it spins. Forever.",
+   "pause": 0.55
+  },
+  {
+   "id": "min6",
+   "at": 125.99,
+   "text": "Your video call to family abroad freezes, then drops.",
+   "pause": 1.1
+  },
+  {
+   "id": "hour1",
+   "at": 130.45,
+   "text": "Hour one. Now money starts to notice.",
+   "pause": 0.55
+  },
+  {
+   "id": "hour2",
+   "at": 133.67,
+   "text": "A tourist's card gets declined, because their bank is on another continent.",
+   "pause": 0.55
+  },
+  {
+   "id": "hour3",
+   "at": 138.65,
+   "text": "Traders in New York can't see prices in London.",
+   "pause": 0.55
+  },
+  {
+   "id": "hour4",
+   "at": 142.11,
+   "text": "Companies that keep their data in a cloud overseas go dark.",
+   "pause": 0.55
+  },
+  {
+   "id": "hour5",
+   "at": 146.19,
+   "text": "Satellites try to carry the load. But that's a river trying to squeeze through a straw.",
+   "pause": 1.1
+  },
+  {
+   "id": "island1",
+   "at": 152.22,
+   "text": "And for some places, it's worse.",
+   "pause": 0.55
+  },
+  {
+   "id": "island2",
+   "at": 154.81,
+   "text": "Islands with one or two cables are simply cut off from the world.",
+   "pause": 1.1
+  },
+  {
+   "id": "day1",
+   "at": 160.05,
+   "text": "Day one. Sounds like science fiction? Parts of it already happened.",
+   "pause": 0.55
+  },
+  {
+   "id": "hist1",
+   "at": 164.43,
+   "text": "In 2008, cable cuts near Egypt knocked out about 70 percent of Egypt's link to the wider internet.",
+   "say": "In two thousand eight, cable cuts near Egypt knocked out about seventy percent of Egypt's link to the wider internet.",
+   "pause": 0.55
+  },
+  {
+   "id": "hist2",
+   "at": 170.79,
+   "text": "India lost roughly half of its outbound connection.",
+   "pause": 0.55
+  },
+  {
+   "id": "hist3",
+   "at": 174.61,
+   "text": "In 2024, a sinking cargo ship in the Red Sea most likely dragged its anchor and cut three cables at once.",
+   "say": "In twenty twenty-four, a sinking cargo ship in the Red Sea most likely dragged its anchor and cut three cables at once.",
+   "pause": 0.55
+  },
+  {
+   "id": "hist4",
+   "at": 182.45,
+   "text": "And in 2022, an undersea volcano in Tonga snapped the country's only international cable.",
+   "say": "And in twenty twenty-two, an undersea volcano in Tonga snapped the country's only international cable.",
+   "pause": 0.55
+  },
+  {
+   "id": "hist5",
+   "at": 188.44,
+   "text": "The whole country fell back on a handful of satellite links.",
+   "pause": 1.1
+  },
+  {
+   "id": "week1",
+   "at": 193.09,
+   "text": "Week one. So who fixes all this?",
+   "pause": 0.55
+  },
+  {
+   "id": "ship1",
+   "at": 195.98,
+   "text": "Only about 20 to 30 ships on Earth are dedicated cable repair ships.",
+   "say": "Only about twenty to thirty ships on Earth are dedicated cable repair ships.",
+   "pause": 0.55
+  },
+  {
+   "id": "ship2",
+   "at": 200.72,
+   "text": "A ship sails to the break and drags a hook along the sea floor.",
+   "pause": 0.55
+  },
+  {
+   "id": "ship3",
+   "at": 205.41,
+   "text": "It lifts the cable up to the deck, and the crew splices the glass back together by hand.",
+   "pause": 0.55
+  },
+  {
+   "id": "ship4",
+   "at": 211.35,
+   "text": "Even for a single break, the typical repair takes about eight days just to start.",
+   "pause": 1.1
+  },
+  {
+   "id": "math1",
+   "at": 217.29,
+   "text": "Now do the math. About 570 cables, about 25 ships.",
+   "say": "Now do the math. About five hundred seventy cables, about twenty-five ships.",
+   "pause": 0.55
+  },
+  {
+   "id": "math2",
+   "at": 222.61,
+   "text": "That's around 23 cables for every ship.",
+   "say": "That's around twenty-three cables for every ship.",
+   "pause": 0.55
+  },
+  {
+   "id": "math3",
+   "at": 225.53,
+   "text": "At even two weeks each, the last ones come back almost a year later.",
+   "pause": 1.1
+  },
+  {
+   "id": "month1",
+   "at": 231.15,
+   "text": "Month one. Tonga's repair took five weeks.",
+   "pause": 0.55
+  },
+  {
+   "id": "month2",
+   "at": 234.85,
+   "text": "The crew had to replace about 56 miles of cable.",
+   "say": "The crew had to replace about fifty-six miles of cable.",
+   "pause": 0.55
+  },
+  {
+   "id": "month3",
+   "at": 238.63,
+   "text": "Now picture that, at every cable, all at once.",
+   "pause": 1.1
+  },
+  {
+   "id": "end1",
+   "at": 242.64,
+   "text": "So next time a message lands on the other side of the world, in a blink,",
+   "pause": 0.55,
+   "take": 2
+  },
+  {
+   "id": "end2",
+   "at": 247.7,
+   "text": "remember the trip it took: down to the ocean floor, through a glass thread inside a garden hose.",
+   "pause": 0.55
+  },
+  {
+   "id": "end3",
+   "at": 254.11,
+   "text": "And somewhere out there, a ship is fixing one right now.",
+   "pause": 0.55
+  },
+  {
+   "id": "end4",
+   "at": 257.95,
+   "text": "This is Tech, explained. Subscribe, and I'll show you how the rest of it works.",
+   "pause": 0.55
+  }
+ ],
+ "dur": 264.44,
+ "fit": {
+  "min": 0.88,
+  "max": 1.06
+ }
+}
