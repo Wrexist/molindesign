@@ -1,0 +1,76 @@
+/* {{NAME}}: tokens first (viewport-rem-grid-tokens, ui-motion-principles), then base, then sections. */
+:root {
+  --ink: #0d0d0c;
+  --paper: #ece8df;
+  --p70: rgb(236 232 223 / .7);
+  --p45: rgb(236 232 223 / .45);
+  --p15: rgb(236 232 223 / .15);
+  --accent: #ff4d1f;                           /* ONE accent; change it in the brief, not per component */
+  --ease-out: cubic-bezier(.23, 1, .32, 1);    /* entrances */
+  --ease-io: cubic-bezier(.76, 0, .24, 1);     /* covers, wipes, big moves */
+  --ease-drawer: cubic-bezier(.32, .72, 0, 1); /* sheets and drawers */
+  --dur-ui: .2s;                               /* feedback stays under 300 ms */
+  --dur-enter: .9s;
+  --gap-x: 1.6rem;
+  --pad-y: 8rem;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+/* Viewport rem: 1rem = 10px on phones, then one continuous scale (10px at 1440) so nothing jumps. */
+html { font-size: 10px; }
+@media (min-width: 768px) { html { font-size: max(8px, calc(100vw / 144)); } :root { --gap-x: 3.2rem; --pad-y: 14rem; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; background: var(--ink); color: var(--paper); }
+body { font: 400 1.6rem/1.55 var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, svg, video, canvas { display: block; max-width: 100%; }
+a { color: inherit; }
+::selection { background: rgb(255 77 31 / .4); color: #fff; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap { padding-inline: var(--gap-x); max-width: 192rem; margin-inline: auto; }
+.label { font: 500 1.1rem/1.2 var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--p70); }
+.display { font-family: var(--font-display); font-weight: 700; font-stretch: 125%; letter-spacing: -.02em; line-height: .95; margin: 0; font-size: clamp(4rem, 9vw, 12rem); }
+.sec .display { font-size: clamp(3.2rem, 6vw, 8rem); }
+.serif { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; letter-spacing: 0; }
+.lede { font-size: 2rem; max-width: 46ch; color: var(--p70); }
+.kicker { display: flex; gap: 1.2rem; align-items: baseline; font: 500 1.1rem var(--font-mono); letter-spacing: .2em; text-transform: uppercase; color: var(--p45); border-top: 1px solid var(--p15); padding-top: 1.2rem; }
+.kicker span { color: var(--accent); }
+
+.skip { position: fixed; left: 1.2rem; top: 1.2rem; z-index: 100; padding: 1.2rem 1.6rem; background: var(--paper); color: var(--ink); transform: translateY(-200%); }
+.skip:focus { transform: none; }
+
+.nav { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; min-height: 6.4rem; background: linear-gradient(var(--ink), rgb(13 13 12 / 0)); }
+.nav nav { display: flex; gap: 2.4rem; }
+.nav a { display: inline-flex; align-items: center; min-height: 4.4rem; text-decoration: none; } /* 44 px targets on touch */
+
+.hero { min-height: calc(100svh - 6.4rem); display: grid; align-content: end; gap: 2.4rem; padding-bottom: var(--pad-y); }
+.sec { padding-block: var(--pad-y); display: grid; gap: 2.4rem; }
+.foot { padding-block: 4rem; border-top: 1px solid var(--p15); }
+
+/* Buttons: press feedback is instant-ish and transform-only (button-state-morphs) */
+.btn { justify-self: start; display: inline-flex; gap: 1rem; align-items: center; min-height: 4.8rem; padding: 0 2.4rem; border-radius: 99px; background: var(--paper); color: var(--ink); text-decoration: none; font-weight: 600; transition: transform var(--dur-ui) var(--ease-out), background-color var(--dur-ui); }
+.btn:hover { background: #fff; }
+.btn:active { transform: scale(.97); }
+.btn span { transition: transform .3s var(--ease-out); }
+.btn:hover span { transform: translateX(.4rem); }
+
+/* Underline-grow link (premium-micro-details) */
+.ulink { text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s var(--ease-out); }
+.ulink:hover, .ulink:focus-visible { background-size: 100% 1px; }
+
+/* Reveals (masked-text-reveal). Hidden only when JS runs, so the page reads fine without it. */
+.mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+.mask .line { display: block; }
+.js .mask .line { transform: translateY(105%); transition: transform var(--dur-enter) var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+.js .is-in .mask .line, .js .mask.is-in .line { transform: none; }
+.js .rise { opacity: 0; transform: translateY(1.6rem); filter: blur(6px); transition: opacity .8s var(--ease-out), transform .8s var(--ease-out), filter .8s var(--ease-out); transition-delay: calc(var(--i, 0) * 70ms); }
+.js .rise.is-in { opacity: 1; transform: none; filter: none; }
+
+/* Reduced motion: same information, no travel. Keep fades short or off. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .js .mask .line, .js .rise { transform: none; filter: none; transition: opacity .3s linear; }
+  .btn, .btn span { transition: none; }
+}
