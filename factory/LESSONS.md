@@ -84,6 +84,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
 - TikTok Studio scheduling needs a one-time consent from Isac to store the video; until he gives it, posts go up immediately (gps went up Fri 20:30 ET instead of Sat 13:00 ET).
 - Paste the full YouTube description into the PC instructions; the PC can't read repo files, so it fell back to a short version (noise).
+- YouTube Studio on the PC may open on Isac's game channel "Delta"; every posting instruction says to switch to and verify "Tech, explained" before uploading (fyp).
 - Comments can't be posted before a scheduled video is live; the PC posts the pinned comment after the slot (noise).
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
