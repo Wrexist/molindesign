@@ -369,6 +369,14 @@ window.SKILLS = [
   "short": "Narrate a code-rendered film: script, voice, timing, captions, ducking"
  },
  {
+  "id": "reverse-engineer-reference-site",
+  "cat": "Foundations",
+  "desc": "Tear down a reference motion site with REA (Reverse Engineer Anything, MIT) and distill it into a skill: one command captures the page, exports its scripts, fingerprints the motion stack (GSAP, Lenis, three.js, every shader, easings), records which functions run while you scroll or move the pointer minus an idle baseline, lists event handlers, and shoots step screenshots with reduced motion off and on. Measured on oryzo.ai and by-kin.com.",
+  "title": "Reverse-engineer a reference",
+  "source": "REA (morluto/rea) + oryzo.ai",
+  "short": "Find the code a reference site runs when you scroll, and distill it"
+ },
+ {
   "id": "site-kickoff",
   "cat": "Workflow",
   "desc": "Start every new website here — turn one sentence into a written, approved plan before any code (the one hard idea, motion personality, story-ordered sections, the few skills that earn a place with a reason each, budgets, facts to confirm), then scaffold it with tools/new-site.sh from templates/site/. Use when someone asks for a new site, landing page, demo for a client or a redesign. Adapted from ECC (github.com/affaan-m/ECC, MIT) \"plan before code\" and \"load only what you use this week\", read in source Oct 2026.",

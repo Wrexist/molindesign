@@ -22,6 +22,9 @@ Adapted from ECC (github.com/affaan-m/ECC): the plan comes before the code, chec
 
 A PostToolUse hook (`.claude/settings.json` → `tools/hooks/post-edit-check.mjs`) flags root-absolute paths, credentials and unpinned CDN scripts in any HTML/CSS/JS file as soon as it is written.
 
+**Research (before distilling a new site)**
+- `reverse-engineer-reference-site` — REA (Reverse Engineer Anything, MIT) teardown in one command: page capture, script export, motion-stack and shader fingerprint, functions that run on scroll/pointer minus idle, listeners, reduced-motion screenshot pairs; plus a rebuild-vs-reference parity check. Teardown output stays out of the repo.
+
 **Intro / loading**
 - `cinematic-loader` — silhouette-fill logo loader, rolling % counter, fly-through exit.
 - `gpu-renderer-fallback-warmup` — WebGPU→WebGL2 selection, shader warm-up before the loader drops.
