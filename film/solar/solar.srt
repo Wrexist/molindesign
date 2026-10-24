@@ -1,0 +1,516 @@
+1
+00:00:00,000 --> 00:00:00,780
+Tomorrow morning,
+
+2
+00:00:00,780 --> 00:00:01,950
+the Sun sneezes.
+
+3
+00:00:02,280 --> 00:00:03,190
+Right at us.
+
+4
+00:00:03,600 --> 00:00:05,770
+The biggest solar storm ever recorded,
+
+5
+00:00:05,880 --> 00:00:07,710
+hitting a planet that runs on electricity.
+
+6
+00:00:08,570 --> 00:00:09,380
+What breaks first?
+
+7
+00:00:09,690 --> 00:00:10,620
+How long does it last?
+
+8
+00:00:10,730 --> 00:00:12,040
+And should you actually be worried?
+
+9
+00:00:12,850 --> 00:00:13,740
+Let's find out,
+
+10
+00:00:13,810 --> 00:00:15,340
+starting with the scary part:
+
+11
+00:00:15,470 --> 00:00:16,720
+how much warning we get.
+
+12
+00:00:17,490 --> 00:00:18,670
+What if the biggest solar storm
+
+13
+00:00:18,670 --> 00:00:20,140
+in history hit Earth tomorrow?
+
+14
+00:00:22,190 --> 00:00:23,270
+When the Sun throws a giant
+
+15
+00:00:23,270 --> 00:00:24,990
+cloud of charged gas at us,
+
+16
+00:00:24,990 --> 00:00:25,950
+it has to cross ninety-three
+
+17
+00:00:25,950 --> 00:00:27,440
+million miles of space.
+
+18
+00:00:28,600 --> 00:00:29,260
+The record holder,
+
+19
+00:00:29,260 --> 00:00:30,720
+back in 1859,
+
+20
+00:00:30,720 --> 00:00:33,070
+made that trip in about seventeen hours.
+
+21
+00:00:33,590 --> 00:00:36,160
+Our last alarm is a satellite a million miles out,
+
+22
+00:00:36,190 --> 00:00:37,620
+parked between us and the Sun,
+
+23
+00:00:37,670 --> 00:00:38,740
+like a doorbell camera.
+
+24
+00:00:39,820 --> 00:00:40,880
+When the cloud hits it,
+
+25
+00:00:40,880 --> 00:00:42,040
+we get somewhere between fifteen
+
+26
+00:00:42,040 --> 00:00:43,230
+minutes and an hour.
+
+27
+00:00:43,970 --> 00:00:45,640
+That's less time than a pizza delivery.
+
+28
+00:00:46,200 --> 00:00:47,140
+And the pizza isn't trying
+
+29
+00:00:47,140 --> 00:00:48,430
+to fry the power grid.
+
+30
+00:00:50,260 --> 00:00:50,750
+And yes,
+
+31
+00:00:50,780 --> 00:00:51,910
+this has happened before.
+
+32
+00:00:52,470 --> 00:00:54,260
+September 1859.
+
+33
+00:00:54,490 --> 00:00:56,670
+An astronomer named Richard Carrington sees
+
+34
+00:00:56,670 --> 00:00:58,240
+a white flash on the Sun.
+
+35
+00:00:58,830 --> 00:00:59,470
+The next night,
+
+36
+00:00:59,470 --> 00:01:00,880
+the sky explodes with color.
+
+37
+00:01:00,950 --> 00:01:02,840
+People in the Caribbean see the northern lights.
+
+38
+00:01:03,800 --> 00:01:05,610
+And the internet of 1859,
+
+39
+00:01:05,680 --> 00:01:06,330
+the telegraph,
+
+40
+00:01:06,360 --> 00:01:07,850
+goes completely haywire.
+
+41
+00:01:08,360 --> 00:01:10,070
+Telegraph machines throw sparks.
+
+42
+00:01:10,620 --> 00:01:12,080
+One operator in Washington gets
+
+43
+00:01:12,080 --> 00:01:13,430
+zapped right on the forehead.
+
+44
+00:01:14,040 --> 00:01:15,800
+Some operators unplug their batteries
+
+45
+00:01:15,800 --> 00:01:17,400
+and keep sending messages anyway,
+
+46
+00:01:17,400 --> 00:01:19,170
+powered by the storm itself.
+
+47
+00:01:19,560 --> 00:01:20,900
+Free electricity from space.
+
+48
+00:01:20,900 --> 00:01:22,210
+Sounds great.
+
+49
+00:01:22,490 --> 00:01:24,490
+Until you remember that in 1859,
+
+50
+00:01:24,490 --> 00:01:26,050
+the most advanced thing plugged
+
+51
+00:01:26,050 --> 00:01:27,400
+in was a telegraph.
+
+52
+00:01:27,780 --> 00:01:28,160
+Today,
+
+53
+00:01:28,160 --> 00:01:28,790
+it's everything.
+
+54
+00:01:30,510 --> 00:01:30,910
+So,
+
+55
+00:01:30,910 --> 00:01:31,380
+tomorrow.
+
+56
+00:01:31,550 --> 00:01:33,220
+The first things to go are up in space.
+
+57
+00:01:34,100 --> 00:01:34,760
+In 2022,
+
+58
+00:01:34,760 --> 00:01:36,600
+a storm that scientists called
+
+59
+00:01:36,600 --> 00:01:38,880
+minor knocked thirty-eight brand-new Starlink
+
+60
+00:01:38,880 --> 00:01:40,290
+satellites out of the sky.
+
+61
+00:01:40,800 --> 00:01:41,610
+A minor one.
+
+62
+00:01:42,210 --> 00:01:43,050
+Then there is GPS.
+
+63
+00:01:43,050 --> 00:01:45,040
+In May 2024,
+
+64
+00:01:45,290 --> 00:01:47,950
+a strong storm threw GPS-guided tractors
+
+65
+00:01:47,950 --> 00:01:50,260
+in North Dakota off by about ten feet.
+
+66
+00:01:50,760 --> 00:01:52,630
+Some farmers just stopped planting.
+
+67
+00:01:53,230 --> 00:01:53,730
+Tomorrow,
+
+68
+00:01:53,730 --> 00:01:54,850
+your maps app tells you,
+
+69
+00:01:54,850 --> 00:01:55,830
+with total confidence,
+
+70
+00:01:55,830 --> 00:01:57,600
+to turn left into a lake.
+
+71
+00:01:58,140 --> 00:01:59,130
+Planes reroute.
+
+72
+00:01:59,280 --> 00:02:00,690
+Radio turns to static.
+
+73
+00:02:01,000 --> 00:02:02,310
+But your phone still works.
+
+74
+00:02:02,600 --> 00:02:03,210
+For now.
+
+75
+00:02:04,820 --> 00:02:06,360
+Because the real danger is down here,
+
+76
+00:02:06,360 --> 00:02:07,550
+in the power lines.
+
+77
+00:02:08,340 --> 00:02:10,250
+The storm shakes Earth's magnetic field,
+
+78
+00:02:10,280 --> 00:02:11,360
+and that shoves extra current
+
+79
+00:02:11,360 --> 00:02:12,480
+into long power lines,
+
+80
+00:02:12,480 --> 00:02:13,520
+like a flood into pipes
+
+81
+00:02:13,520 --> 00:02:14,770
+that are way too small.
+
+82
+00:02:16,010 --> 00:02:17,480
+In March 1989,
+
+83
+00:02:17,690 --> 00:02:19,340
+a much weaker storm hit Quebec.
+
+84
+00:02:19,900 --> 00:02:22,250
+The whole grid collapsed in about ninety seconds.
+
+85
+00:02:22,680 --> 00:02:25,390
+Six million people lost power for nine hours.
+
+86
+00:02:25,880 --> 00:02:27,590
+And tomorrow's storm is the big one.
+
+87
+00:02:29,280 --> 00:02:31,330
+Here is the part that keeps engineers up at night:
+
+88
+00:02:31,400 --> 00:02:32,450
+the giant transformers.
+
+89
+00:02:33,500 --> 00:02:35,120
+Each one is about the size of a house,
+
+90
+00:02:35,120 --> 00:02:35,880
+built to order,
+
+91
+00:02:35,880 --> 00:02:37,590
+and a new one can take years to arrive.
+
+92
+00:02:38,610 --> 00:02:40,070
+The insurer Lloyd's ran the numbers
+
+93
+00:02:40,070 --> 00:02:42,220
+for a storm like 1859.
+
+94
+00:02:42,710 --> 00:02:44,810
+Twenty to forty million Americans without power.
+
+95
+00:02:44,810 --> 00:02:45,890
+In the worst places,
+
+96
+00:02:45,890 --> 00:02:47,260
+for up to a year or two.
+
+97
+00:02:48,230 --> 00:02:48,490
+The bill:
+
+98
+00:02:48,490 --> 00:02:51,073
+up to 2.6 trillion dollars.
+
+99
+00:02:51,280 --> 00:02:52,910
+Your fridge would be the first to know.
+
+100
+00:02:53,370 --> 00:02:54,040
+Then your nose.
+
+101
+00:02:55,800 --> 00:02:55,940
+So,
+
+102
+00:02:55,940 --> 00:02:56,830
+should you be worried?
+
+103
+00:02:57,340 --> 00:02:58,610
+For a storm this big,
+
+104
+00:02:58,640 --> 00:03:00,520
+scientists put the odds anywhere from under
+
+105
+00:03:00,520 --> 00:03:02,440
+one percent to about twelve percent,
+
+106
+00:03:02,440 --> 00:03:03,370
+per decade.
+
+107
+00:03:03,920 --> 00:03:05,250
+And we already had a near miss.
+
+108
+00:03:05,800 --> 00:03:06,950
+In July 2012,
+
+109
+00:03:07,020 --> 00:03:08,990
+the Sun fired a storm just as big.
+
+110
+00:03:09,180 --> 00:03:10,660
+Had it launched about a week earlier,
+
+111
+00:03:10,660 --> 00:03:11,430
+it would have hit us.
+
+112
+00:03:12,490 --> 00:03:13,220
+The good news:
+
+113
+00:03:13,270 --> 00:03:15,240
+even an hour of warning is useful.
+
+114
+00:03:15,590 --> 00:03:17,150
+Grid operators can lower the load,
+
+115
+00:03:17,150 --> 00:03:19,440
+and satellites can hide in safe mode.
+
+116
+00:03:19,970 --> 00:03:20,660
+And for you?
+
+117
+00:03:20,850 --> 00:03:21,520
+A flashlight,
+
+118
+00:03:21,850 --> 00:03:22,520
+some water,
+
+119
+00:03:22,630 --> 00:03:23,480
+and a paper map.
+
+120
+00:03:23,770 --> 00:03:25,320
+Old school beats no school.
+
+121
+00:03:26,990 --> 00:03:28,160
+And here's the weird upside.
+
+122
+00:03:28,730 --> 00:03:29,750
+Everyone on Earth gets to
+
+123
+00:03:29,750 --> 00:03:30,860
+see the northern lights.
+
+124
+00:03:30,930 --> 00:03:31,660
+Even in Miami.
+
+125
+00:03:32,650 --> 00:03:34,440
+You'd finally get the perfect selfie.
+
+126
+00:03:34,940 --> 00:03:36,090
+You just couldn't post it.
+
+127
+00:03:36,880 --> 00:03:37,800
+Want to see what happens when
+
+128
+00:03:37,800 --> 00:03:39,530
+the internet loses its ocean cables?
+
+129
+00:03:39,880 --> 00:03:40,630
+It's right here.
+

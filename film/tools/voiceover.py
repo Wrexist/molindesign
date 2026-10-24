@@ -206,21 +206,42 @@ def speak_ming(s, l, speed, cache_dir):
     text = spoken(s, l)
     seed = int(v.get('seed', 7)) + l.get('take', 0)
     voice, style = v.get('voice', 'US_James'), v.get('style')
-    key = hashlib.sha1(json.dumps(['ming1', text, seed, voice, style]).encode()).hexdigest()[:16]
+    # `ref` {wav, text}: clone one fixed take for every line. Preset voices drift line to line (pitch, timbre, pace);
+    # a single reference holds them still. `whole` speaks the line in one piece instead of ~24-token fragments.
+    ref = v.get('ref')
+    ref_wav = ref and str((s['_dir'] / ref['wav']).resolve())
+    ref_id = ref and hashlib.sha1(Path(ref_wav).read_bytes()).hexdigest()[:12]
+    whole = bool(v.get('whole'))
+    key = hashlib.sha1(json.dumps(['ming1', text, seed, voice, style] + ([ref_id, ref['text'], whole] if ref else [])).encode()).hexdigest()[:16]
     f = cache_dir / f'{l["id"]}-ming-{key}.wav'
     if f.exists():
         a, _ = sf.read(f, dtype='float32')
     else:
         import torch
         torch.manual_seed(seed)
-        if style:
+        if ref:
+            w = ming().synthesize(task='TTS', language_id='English', text=text, prompt_wav_path=ref_wav,
+                                  prompt_text=ref['text'], use_spk_emb=True, raw_text=whole)
+        elif style:
             w = ming().synthesize(task='VOICE_DESIGN', text=text, controls={'style': style}, use_zero_spk_emb=True)
         else:
             w = ming().synthesize(task='IP', text=text, controls={'ip': voice}, use_zero_spk_emb=True)
         sr = ming().sample_rate
         a = resample(trim(w.float().cpu().numpy().ravel(), sr), sr)
         sf.write(f, a, SR, subtype='FLOAT')
-    return tempo(a, speed)
+    return level(tempo(a, speed), v.get('level_db'))
+
+
+def level(a, db):
+    """Same loudness on every line: scale so the louder half of 20 ms frames sits at `db` dBFS (None leaves it)."""
+    if db is None or not len(a):
+        return a
+    n = int(SR * 0.02)
+    fr = a[:len(a) // n * n].reshape(-1, n) if len(a) >= n else a[None]
+    e = np.sqrt((fr ** 2).mean(1))
+    loud = e[e >= np.median(e)]
+    cur = 20 * np.log10(np.sqrt((loud ** 2).mean()) + 1e-9)
+    return (a * 10 ** ((db - cur) / 20)).astype(np.float32)
 
 
 def speak(s, l, speed, cache_dir):
