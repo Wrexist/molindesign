@@ -367,5 +367,13 @@ window.SKILLS = [
   "title": "Film voice-over",
   "source": "VoiceStudio + Kokoro + film/",
   "short": "Narrate a code-rendered film: script, voice, timing, captions, ducking"
+ },
+ {
+  "id": "reverse-engineer-reference-site",
+  "cat": "Foundations",
+  "desc": "Tear down a reference motion site with REA (Reverse Engineer Anything, MIT) and distill it into a skill: one command captures the page, exports its scripts, fingerprints the motion stack (GSAP, Lenis, three.js, every shader, easings), records which functions run while you scroll or move the pointer minus an idle baseline, lists event handlers, and shoots step screenshots with reduced motion off and on. Measured on oryzo.ai and by-kin.com.",
+  "title": "Reverse-engineer a reference",
+  "source": "REA (morluto/rea) + oryzo.ai",
+  "short": "Find the code a reference site runs when you scroll, and distill it"
  }
 ];
