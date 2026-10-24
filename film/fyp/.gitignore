@@ -1,0 +1,12 @@
+out/frames/
+out/video.mp4
+out/mix.wav
+out/check/
+out/events.json
+out/render.log
+out/vo/
+out/*.mp4
+out/mix.log
+out/jury/
+out/voice.log
+out/picture.log

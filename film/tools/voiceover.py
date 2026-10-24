@@ -8,7 +8,8 @@
     python3 voiceover.py mix   ../vo/script.json [--score ../out/mix.wav --video ../out/video.mp4 --out ../out/film-vo.mp4]
     python3 voiceover.py all   ../vo/script.json          # synth, check, mix
 
-Engine: Kokoro-82M (Apache-2.0) through kokoro-onnx, CPU only, about 3x faster than real time.
+Engines: Kokoro-82M (Apache-2.0) through kokoro-onnx, CPU only, about 3x faster than real time (default);
+"engine": "chatterbox" (MIT, venv ~/.venv-cb); "engine": "ming" (Ming-3.0-tts-0.5B, MIT, venv ~/.venv-ming, the factory voice).
 Word timings and the listen check: faster-whisper (MIT). Models download once to ~/.cache/molin-voice.
 Every output is deterministic for a given script, so the narrated film re-renders exactly like the picture.
 """
@@ -43,7 +44,7 @@ DEFAULTS = {
 def load_script(path):
     p = Path(path).resolve()
     s = json.loads(p.read_text())
-    if s.get('engine') == 'chatterbox':          # atempo, not re-speaking: keep the stretch small
+    if s.get('engine') in ('chatterbox', 'ming'):   # atempo, not re-speaking: keep the stretch small
         s.setdefault('fit', {'min': 0.92, 'max': 1.1})
         s.setdefault('speed', 1.0)
     for k, v in DEFAULTS.items():
@@ -77,7 +78,8 @@ def spoken(s, l):
 
 
 def words(text):
-    return re.findall(r"[\w'’‑-]+[^\w\s]*", text)
+    # a leading $ or quote stays on its word, and 5,000 / 2.5 stay one word
+    return re.findall(r"[$€£“\"‘(]*[\w'’‑-]+(?:[.,]\d+)*[^\w\s]*", text)
 
 
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
@@ -176,10 +178,56 @@ def speak_chatterbox(s, l, speed, cache_dir):
     return tempo(a, speed)
 
 
+MING_SRC = Path(os.environ.get('MING_SRC', Path.home() / 'ming-src'))
+MING_MODEL = Path(os.environ.get('MING_MODEL', Path.home() / 'ming-0.5b'))
+_ming = None
+def ming():
+    global _ming
+    if _ming is None:
+        import torch
+        sys.path.insert(0, str(MING_SRC))
+        cwd = os.getcwd()
+        os.chdir(MING_SRC)                      # its loader reads files relative to the repo
+        try:
+            from ming_tts import MingTTS
+            _ming = MingTTS(str(MING_MODEL), device='cpu', text_normalization=False)
+            _ming.model.to(torch.float32)       # bf16 on CPU is slower and rougher
+        finally:
+            os.chdir(cwd)
+    return _ming
+
+
+def speak_ming(s, l, speed, cache_dir):
+    """Ming-3.0-tts-0.5B (inclusionAI, MIT): the most human open voice in our Oct 2026 bake-off (Isac picked US_James).
+    `voice` is a preset (US_James, US_Emma…); `style` instead designs a voice from a description. ~3x slower than real
+    time on CPU. No rate control either, so the raw take is cached and `speed` is a mild atempo."""
+    v = {**s.get('ming', {}), **l.get('ming', {})}
+    text = spoken(s, l)
+    seed = int(v.get('seed', 7)) + l.get('take', 0)
+    voice, style = v.get('voice', 'US_James'), v.get('style')
+    key = hashlib.sha1(json.dumps(['ming1', text, seed, voice, style]).encode()).hexdigest()[:16]
+    f = cache_dir / f'{l["id"]}-ming-{key}.wav'
+    if f.exists():
+        a, _ = sf.read(f, dtype='float32')
+    else:
+        import torch
+        torch.manual_seed(seed)
+        if style:
+            w = ming().synthesize(task='VOICE_DESIGN', text=text, controls={'style': style}, use_zero_spk_emb=True)
+        else:
+            w = ming().synthesize(task='IP', text=text, controls={'ip': voice}, use_zero_spk_emb=True)
+        sr = ming().sample_rate
+        a = resample(trim(w.float().cpu().numpy().ravel(), sr), sr)
+        sf.write(f, a, SR, subtype='FLOAT')
+    return tempo(a, speed)
+
+
 def speak(s, l, speed, cache_dir):
     """Synthesize one line at a rate; cached by everything that changes the sound."""
     if s.get('engine') == 'chatterbox':
         return speak_chatterbox(s, l, speed, cache_dir)
+    if s.get('engine') == 'ming':
+        return speak_ming(s, l, speed, cache_dir)
     voice, lang = l.get('voice', s['voice']), l.get('lang', s['lang'])
     text = spoken(s, l)
     pause = l.get('sentence_pause', 0.3)
@@ -235,8 +283,34 @@ def hear(a, names=()):
     a16 = resample(a, SR, 16000)
     segs, _ = m.transcribe(a16, language='en', word_timestamps=True, beam_size=5, vad_filter=False,
                            condition_on_previous_text=False, initial_prompt=(', '.join(names) + '.') if names else None)
-    return [{'w': w.word.strip(), 't0': float(w.start), 't1': float(w.end), 'p': float(w.probability)}
-            for sg in segs for w in (sg.words or [])]
+    out = []
+    for sg in segs:
+        for w in (sg.words or []):
+            x = {'w': w.word.strip(), 't0': float(w.start), 't1': float(w.end), 'p': float(w.probability)}
+            # Whisper sometimes splits a number at its thousands comma ("$5" ",000."): put it back together
+            if out and re.match(r'^[,.]\d', x['w']) and re.search(r'\d$', out[-1]['w']):
+                out[-1].update(w=out[-1]['w'] + x['w'], t1=x['t1'], p=min(out[-1]['p'], x['p']))
+            else:
+                out.append(x)
+    return out
+
+
+def drop_tail(h, script, end):
+    """Whisper invents words after a line's last word ("Thank you.", "E E E", "4 5"), in the fade-out or in
+    digital silence. If the script's last word was heard, everything Whisper heard after it is dropped; otherwise
+    extra trailing words that are low-confidence or start after the line has ended (`end`, seconds) go."""
+    if not h:
+        return h
+    a, b = [norm(w) for w in script], [norm(x['w']) for x in h]
+    last = None
+    for blk in difflib.SequenceMatcher(None, a, b, autojunk=False).get_matching_blocks():
+        if blk.size and blk.a + blk.size == len(a):
+            last = blk.b + blk.size
+    if last is not None:
+        return h[:last]
+    while len(h) > len(script) and (h[-1]['p'] < 0.3 or h[-1]['t0'] >= end - 0.05):
+        h = h[:-1]
+    return h
 
 
 def align_words(script_words, heard, dur):
@@ -270,7 +344,9 @@ def align_words(script_words, heard, dur):
 
 
 def wer(ref, hyp):
-    split = lambda ws: [norm(p) for w in ws for p in re.split(r'[-‑]', w) if norm(p)]
+    # Whisper sometimes writes "$5 ,000": rejoin a number it split at its thousands comma
+    join = lambda ws: re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws)).split()
+    split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
     r, h = split(ref), split(hyp)
     d = list(range(len(h) + 1))
     for i in range(1, len(r) + 1):
@@ -367,7 +443,7 @@ def cmd_synth(a):
     sf.write(raw, track, SR, subtype='FLOAT')
     process_chain(s, raw, out / 'vo.wav')
     caps = captions(s, meta)
-    doc = {'voice': 'chatterbox' if s.get('engine') == 'chatterbox' else voice_key(s['voice']), 'dur': dur, 'lines': [{k: v for k, v in m.items() if k != 'heard'} for m in meta], 'captions': caps}
+    doc = {'voice': s['engine'] if s.get('engine') in ('chatterbox', 'ming') else voice_key(s['voice']), 'dur': dur, 'lines': [{k: v for k, v in m.items() if k != 'heard'} for m in meta], 'captions': caps}
     (out / 'vo.json').write_text(json.dumps(doc, indent=1, ensure_ascii=False))
     # vo.js sits next to the script (committed): the film page loads it to draw captions in render(t)
     (s['_dir'] / 'vo.js').write_text('/* generated by tools/voiceover.py, do not edit */\nwindow.VO = ' + json.dumps(doc, ensure_ascii=False) + ';\n')
@@ -455,8 +531,7 @@ def cmd_check(a):
         if h is None:
             print(f'skip  {l["id"]:10} (faster-whisper not installed)')
             continue
-        while len(h) > len(l['words']) and h[-1]['p'] < 0.3:
-            h = h[:-1]                            # Whisper invents a low-confidence word in the tail room tone; drop it
+        h = min(drop_tail(h, words(l['say']), l['t1'] - l['t0']), drop_tail(h, words(l['text']), l['t1'] - l['t0']), key=len)   # the shorter: whichever script form Whisper wrote
         w = min(wer(words(l['say']), [x['w'] for x in h]), wer(words(l['text']), [x['w'] for x in h]))
         weak = [x for x in h if x['p'] < 0.45]
         pace = len(l['words']) / max(0.01, l['t1'] - l['t0'])
@@ -558,8 +633,7 @@ def in_context(s, doc, film_file):
         for l in doc['lines']:
             seg = full[int(max(0, l['t0'] - 0.1) * SR):int((l['t1'] + 0.2) * SR)]
             h = hear(seg, s.get('names', []) + list(s['pronounce']))
-            while h and len(h) > len(l['words']) and h[-1]['p'] < 0.3:
-                h = h[:-1]
+            h = min(drop_tail(h, words(l['say']), l['t1'] - max(0, l['t0'] - 0.1)), drop_tail(h, words(l['text']), l['t1'] - max(0, l['t0'] - 0.1)), key=len)
             w = min(wer(words(l['say']), [x['w'] for x in h]), wer(words(l['text']), [x['w'] for x in h]))
             print(f'{"ok  " if w <= 0.1 else "FIX "}  {l["id"]:10} wer {w:4.2f}  heard "{" ".join(x["w"] for x in h)}"')
     for q0, q1 in s['quiet']:

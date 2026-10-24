@@ -1,0 +1,91 @@
+{
+  "about": "FYP: how the TikTok algorithm picks your next video. Meta puzzle film: TikTok bet you'd watch this. Every swipe is a signal (finish, skip, replay, seconds watched; TikTok's own pages), then the twist from TikTok's own example: a stranger who watched the same two videos helps pick your third. Ends asking if you finished this one. Factory #6. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 4.1
+  },
+  "names": [
+    "TikTok",
+    "New York Times"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "TikTok bet you'd watch this."
+    },
+    {
+      "id": "know",
+      "at": 2.05,
+      "text": "So how does the TikTok algorithm know?"
+    },
+    {
+      "id": "clue",
+      "at": 4.65,
+      "text": "Every swipe is a clue: finish, skip, or replay.",
+      "say": "Every swipe is a clue. Finish, skip, or replay."
+    },
+    {
+      "id": "linger",
+      "at": 8.4,
+      "text": "Even the seconds you linger get counted."
+    },
+    {
+      "id": "strong",
+      "at": 11.2,
+      "text": "Finish a long video? TikTok calls that a strong sign."
+    },
+    {
+      "id": "turn",
+      "at": 15.4,
+      "text": "But here's the trick. It's not just you."
+    },
+    {
+      "id": "stranger",
+      "at": 18.05,
+      "text": "Say a stranger saw two of the same videos you did."
+    },
+    {
+      "id": "third",
+      "at": 21.25,
+      "text": "TikTok may guess you'll like her third one too."
+    },
+    {
+      "id": "helped",
+      "at": 24.2,
+      "text": "So a stranger you'll never meet helped pick your feed."
+    },
+    {
+      "id": "doc",
+      "at": 27.75,
+      "text": "In 2021, the New York Times saw TikTok's internal guide.",
+      "say": "In twenty twenty-one, the New York Times saw TikTok's internal guide."
+    },
+    {
+      "id": "two",
+      "at": 31.85,
+      "text": "Two numbers mattered: do you come back? How long do you stay?",
+      "say": "Two numbers mattered. Do you come back? How long do you stay?"
+    },
+    {
+      "id": "end",
+      "at": 36.1,
+      "text": "So, did you finish this one? Yes or no?"
+    }
+  ],
+  "dur": 39.6
+}

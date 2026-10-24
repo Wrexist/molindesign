@@ -84,7 +84,10 @@ A PostToolUse hook (`.claude/settings.json` → `tools/hooks/post-edit-check.mjs
 
 **Film & video**
 - `code-rendered-film` — a film written in code: render(t) contract, motion blur, procedural score, headless render to MP4, loudnorm, readcheck, AI-jury loop. Working example: `film/` (Halden LF‑1 “Held”, live at https://wrexist.github.io/molindesign/film/).
-- `film-voiceover` — narration for those films: retention script rules, voice choice, slot fitting, word-timed captions, Whisper listen checks, ducking from word times. Local Kokoro-82M TTS (Apache-2.0) via `film/tools/voiceover.py`; example `film/vo/script.json` → `film/out/halden-lf1-held-vo.mp4`.
+- `film-voiceover` — narration for those films: retention script rules, voice choice, slot fitting, word-timed captions, Whisper listen checks, ducking from word times. Local Kokoro-82M TTS (Apache-2.0) via `film/tools/voiceover.py`; example `film/vo/script.json` → `film/out/halden-lf1-held-vo.mp4`. Narrated explainers built voice-first: `film/popcorn/` (Pop) and `film/nextword/` (Next word, how ChatGPT and Claude work).
+
+**Video factory**
+- `video-factory` — one run makes the next TikTok explainer: Drive topic sheet → `video-researcher` (facts + script) → `video-director` (film via `factory/make.sh`) → `video-jury` (fresh-eyes gate) → `video-seo` (caption, hashtags, post time) → Higgsfield upload and TikTok draft for Isac's tap → Drive doc + PR. Agents in `.claude/agents/`, how it fits together in `factory/README.md`. Template and quality bar: `film/nextword/`.
 
 **Workflow**
 - `site-kickoff` — plan before code: one sentence → BRIEF.md (hard idea, motion personality, skills with a job, budgets) → approval → `tools/new-site.sh`.

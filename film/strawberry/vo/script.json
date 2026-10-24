@@ -1,0 +1,144 @@
+{
+  "about": "Strawberry: why AI couldn't count the r's in strawberry. Part 2 of the AI-explained series after Next word. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "chatterbox",
+  "chatterbox": {
+    "exaggeration": 0.55,
+    "cfg": 0.3,
+    "seed": 11
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "ChatGPT",
+    "OpenAI",
+    "GPT-5",
+    "strawberry",
+    "blueberry",
+    "three R's",
+    "R's"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -8,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.35,
+      "text": "How many r's in strawberry? ChatGPT used to say two.",
+      "say": "How many R's in strawberry? ChatGPT used to say two.",
+      "take": 2
+    },
+    {
+      "id": "sure",
+      "at": 4.32,
+      "text": "Even when you asked, are you sure? Two.",
+      "say": "Even when you asked, are you sure? Two!"
+    },
+    {
+      "id": "why",
+      "at": 7.58,
+      "text": "So how does a machine this smart miss a letter?",
+      "take": 2,
+      "say": "So how does a machine this smart, miss a letter?"
+    },
+    {
+      "id": "tokens",
+      "at": 11.55,
+      "text": "Because it never sees letters. It sees tokens."
+    },
+    {
+      "id": "single",
+      "at": 14.81,
+      "text": "And in your question, strawberry is a single token."
+    },
+    {
+      "id": "number",
+      "at": 18.42,
+      "text": "To the model, the whole word is just one number.",
+      "say": "To the model, the whole word is just, one number."
+    },
+    {
+      "id": "nothing",
+      "at": 22.39,
+      "text": "No s, no t, no r's. Nothing inside to count.",
+      "say": "No S. No T. No R's. Nothing inside to count.",
+      "take": 3
+    },
+    {
+      "id": "knows",
+      "at": 26.36,
+      "text": "But here's the twist. It knows how strawberry is spelled."
+    },
+    {
+      "id": "head",
+      "at": 30.34,
+      "text": "So it spells and counts in its head, all in one go."
+    },
+    {
+      "id": "slip",
+      "at": 34.4,
+      "text": "And repeated letters are exactly where models slip."
+    },
+    {
+      "id": "berry",
+      "at": 38.28,
+      "text": "It even said straw has one, berry has two. Total? Two."
+    },
+    {
+      "id": "watch",
+      "at": 43.1,
+      "text": "Now watch the fix. Spell it out, with spaces.",
+      "take": 1
+    },
+    {
+      "id": "plain",
+      "at": 46.6,
+      "text": "Every letter becomes its own token. Three r's, in plain sight.",
+      "say": "Every letter becomes its own token. Three R's, in plain sight.",
+      "take": 1
+    },
+    {
+      "id": "think",
+      "at": 50.75,
+      "text": "Newer thinking models spell it first, or run a little code."
+    },
+    {
+      "id": "codename",
+      "at": 54.6,
+      "text": "And yes, OpenAI's first thinking model was codenamed Strawberry.",
+      "take": 1
+    },
+    {
+      "id": "today",
+      "at": 58.5,
+      "text": "By 2025, most chatbots got strawberry right. But it's not gone.",
+      "say": "By twenty twenty-five, most chatbots got strawberry right. But it's not gone."
+    },
+    {
+      "id": "blue",
+      "at": 62.6,
+      "text": "In 2025, a brand-new GPT-5 told someone blueberry has three b's.",
+      "say": "In twenty twenty-five, a brand-new G P T five told someone blueberry has three B's."
+    },
+    {
+      "id": "same",
+      "at": 67.35,
+      "text": "Same blindness. Blueberry is one token too.",
+      "take": 3
+    },
+    {
+      "id": "end",
+      "at": 70.5,
+      "text": "It's not that it can't count. It can't see what it's counting."
+    }
+  ],
+  "dur": 74.8
+}
