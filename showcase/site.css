@@ -66,6 +66,8 @@ p { margin: 0; text-wrap: pretty; }
 .ulink { position: relative; text-decoration: none; color: var(--p90); }
 .ulink::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: currentColor; transform: scaleX(.0001); transform-origin: right; transition: transform .45s var(--ease-out); }
 .ulink:hover::after, .ulink:focus-visible::after { transform: scaleX(1); transform-origin: left; }
+/* standalone small links get a 44 px tall hit area on touch without moving the layout (premium-micro-details) */
+@media (pointer: coarse) { .ulink.label, .foot-base .ulink { display: inline-block; padding-block: 1.4rem; margin-block: -1.4rem; } .ulink.label::after, .foot-base .ulink::after { bottom: calc(1.4rem - 2px); } }
 
 /* masked-text-reveal (shared) */
 .mask { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
