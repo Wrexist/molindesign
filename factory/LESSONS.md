@@ -42,6 +42,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A real document or object on frame 0 (a court filing) reads as "not AI" and gets the stamp hit in under 1.5 s (hallucinate, jury 8.2).
 
 ## Story and retention
+- Making the viewer the subject ("TikTok bet you'd watch this", their own swipes as clues) gave the best-paced first 16 s yet (fyp, jury 8.1).
 - A true story with a named place and year carries the first 30 s better than an abstract explanation (hallucinate).
 - A paper prop the viewer can read (a re-created report, a frequency card with a number struck through) lifts a tail better than another diagram (gps r1, the 10.23 → 10.22999999543 MHz card).
 - The second half sags when two props in a row hold for 10+ s; slap a new object in every 3–4 s (hallucinate r1, 52–64 s).
@@ -55,12 +56,16 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - The frame people will screenshot needs ≥ 40 px body text and ≥ 3 s on screen (hallucinate r1).
 - Labels that carry meaning are ≥ 36 px cream, never dim grey 30 px (gps r1, r2).
 - Frame 0's conflict needs a big readable difference (a coral "+38 µs A DAY" chip), not three blurred digits (gps r1).
-- Staged chats quoting a real model carry a "RE-CREATED" tag (strawberry r2).
+- Staged chats quoting a real model carry a "RE-CREATED" tag (strawberry r2). So does every re-created document or news clipping (fyp r2).
+- Dot-and-line networks read as stock "AI" art; show the idea with the viewer's own objects instead (two phones sharing videos) (fyp r1).
+- Captions break on phrase boundaries, never after "the/a/your/New", and never draw over a swipe's smear (fyp r1, r2).
+- Motion-blur swipes need ≥ 16 sub-frames or they show ghost copies (fyp r1).
 
 ## Truth
 - Check physical details an American would know (the old SAT had 5 bubbles, not 4) (hallucinate r1).
 - A comparison of two different things must say so on screen, or it reads as before/after (hallucinate r1).
 - Rolling counters roll in round units ("9 MILLION"), not exact-looking 9-digit values the source never gave (noise r2).
+- Show only what the source lets you show: a re-created doc page keeps the title and named metrics, not a formula the brief didn't allow; a stamp must sit where it can't be read as confirming the wrong thing (fyp r1).
 - A scary number gets its condition in big type in the same frame ("+7 MI" / "IF UNCORRECTED" 66 px); small print reads as nothing with the sound off (gps r1).
 - Every on-screen citation must say exactly what that source says; split credits when a figure comes from a different paper (gps r2: Ashby 2003 vs 2006).
 - A claim from a court filing is "says", not fact, until a court found it (hallucinate r1).
@@ -71,6 +76,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Ming can blur a verb ending ("gain" → "gained"); reword rather than re-roll more than twice (gps).
 - Unhinted Whisper is the real test for names; spell them phonetically in `say` until it hears them (hallucinate: "Var-gheez").
 - A double space in `say` doesn't make a pause where you want it; split the line into two lines with a ≥ 0.3 s gap (noise r2: "Same static, type dog" ran together).
+- Never put a comma between a verb and its object in `say`: Ming drops to sentence-end pitch and it plays as two sentences; reword instead (fyp r2).
 - A sound effect on a spoken word can make Whisper mishear it; keep hits between words (hallucinate r1).
 
 ## Posting and sound
@@ -88,4 +94,5 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | Strawberry | 2026-10-23 | 220 (5 h) | 16.0 s | 7.3 % | 0 | puzzle: most views |
 | Why AI makes things up | 2026-10-23 | 186 (5 h) | 14.7 s | 9.1 % | 0 | real story: best completion |
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
+| TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |

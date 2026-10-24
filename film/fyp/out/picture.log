@@ -1,0 +1,44 @@
+wrote out/mix.wav
+
+READCHECK  (need ≥ letters/15 + 1.5 s, and ≥ 1.8 s)
+ok    head   2.58s / 2.43s  "TIKTOK BET ON YOU"
+ok    chip   2.63s / 2.50s  "TIKTOK ALGORITHM"
+ok    quote  3.54s / 3.37s  "“a strong indicator of interest”"
+ok    may    2.46s / 2.17s  "MAY PREDICT"
+ok    dm     3.50s / 3.30s  "PICKED WITH HELP FROM A STRANGER"
+ok    title  7.63s / 2.37s  "TikTok Algo 101"
+ok    clip   3.04s / 2.97s  "How TikTok Reads Your Mind"
+ok    stamp  5.13s / 2.50s  "REAL, SAYS TIKTOK"
+ok    ret    3.83s / 2.10s  "RETENTION"
+ok    ts     3.58s / 2.10s  "TIME SPENT"
+ok    yesno  1.83s / 1.83s  "YES NO"
+wrote fyp/out/check/sheet.jpg
+wrote fyp/out/poster.jpg
+frame 60/1188  111 ms/frame
+frame 120/1188  101 ms/frame
+frame 180/1188  96 ms/frame
+frame 240/1188  94 ms/frame
+frame 300/1188  92 ms/frame
+frame 360/1188  90 ms/frame
+frame 420/1188  90 ms/frame
+frame 480/1188  89 ms/frame
+frame 540/1188  92 ms/frame
+frame 600/1188  91 ms/frame
+frame 660/1188  90 ms/frame
+frame 720/1188  90 ms/frame
+frame 780/1188  89 ms/frame
+frame 840/1188  89 ms/frame
+frame 900/1188  88 ms/frame
+frame 960/1188  87 ms/frame
+frame 1020/1188  86 ms/frame
+frame 1080/1188  86 ms/frame
+frame 1140/1188  87 ms/frame
+wrote out/video.mp4
+wrote fyp/out/fyp.mp4
+
+CHECKS
+stream|codec_name=h264|width=1080|height=1920|r_frame_rate=30/1
+stream|codec_name=aac|r_frame_rate=0/0
+format|duration=39.600000
+integrated I:         -16.6 LUFS   true peak Peak:       -2.7 dBFS
+black spans ≥0.4 s: none
