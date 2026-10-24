@@ -1,7 +1,7 @@
 # YouTube upload · What if the biggest solar storm in history hit Earth tomorrow?
 
 **Channel:** Tech, explained (@techexplained.daily1). This is a regular long-form video, not a Short.
-**File:** `solar-vo.mp4` (16:9, 1920×1080, 30 fps, about 3:43).
+**File:** `solar-vo.mp4` (16:9, 1920×1080, 30 fps, about 3:32).
 **Thumbnail:** `thumbnail.jpg` (1280×720).
 **Captions:** upload `solar.srt` as English subtitles (Subtitles → Upload file → With timing).
 **Playlist:** What if… (tech). **Category:** Science & Technology. **Altered content:** Yes (AI voice).
@@ -17,13 +17,13 @@
 Tomorrow morning, the Sun sneezes, right at us. How much warning would we get, what breaks first, how long would the lights stay off, and should you actually be worried? It already happened once, in 1859, when telegraphs threw sparks and people in the Caribbean saw the northern lights.
 
 0:00 The Sun sneezes
-0:20 How much warning?
-0:48 It happened before
-1:28 What breaks first?
-2:03 The lights go out
-2:27 How long does it last?
-2:54 Should you worry?
-3:26 The weird upside
+0:18 How much warning?
+0:44 It happened before
+1:24 What breaks first?
+1:56 The lights go out
+2:19 How long does it last?
+2:45 Should you worry?
+3:15 The weird upside
 
 Sources
 • NOAA Space Weather Prediction Center: L1 warning satellites about 1 million miles out, 15 to 60 minutes of warning; the 1859 Carrington Event's ~17.5-hour transit
@@ -38,7 +38,7 @@ Tomorrow's storm is a scenario; every number comes from a past event or a publis
 
 Next: what if every undersea internet cable was cut? https://youtu.be/6vv67EjasNs
 
-Narration is an AI voice (Ming-3.0 TTS). Script, research and every frame are made by hand in code.
+Narration is an AI voice (Chatterbox TTS). Script, research and every frame are made by hand in code.
 
 #solarstorm #space #techexplained
 ```

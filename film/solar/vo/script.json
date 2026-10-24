@@ -1,18 +1,8 @@
 {
- "about": "What if the biggest solar storm in history hit Earth tomorrow? Long-form 16:9 stickman explainer, episode 2 of Tech, explained. One fixed reference take for the whole voice.",
- "engine": "ming",
- "ming": {
-  "voice": "US_James",
-  "seed": 7,
-  "whole": true,
-  "level_db": -20,
-  "ref": {
-   "wav": "ref.wav",
-   "text": "Here's the thing nobody tells you about the internet. It isn't in the sky. It's at the bottom of the ocean, and honestly, that's way cooler."
-  }
- },
+ "about": "What if the biggest solar storm in history hit Earth tomorrow? Long-form 16:9 stickman explainer, episode 2 of Tech, explained. Chatterbox voice (Isac picked it over Ming on 2026-10-24), levelled per line, one global speed.",
+ "engine": "chatterbox",
  "lang": "en-us",
- "speed": 0.9,
+ "speed": 0.95,
  "pace": {
   "max": 3.4
  },
@@ -34,7 +24,7 @@
   "room": 0.15
  },
  "duck": {
-  "db": -6,
+  "db": -10,
   "score_db": 0
  },
  "captions": {
@@ -53,326 +43,333 @@
    "id": "open2",
    "text": "Right at us.",
    "pause": 0.6,
-   "at": 2.28
+   "at": 2.22
   },
   {
    "id": "open3",
    "text": "The biggest solar storm ever recorded, hitting a planet that runs on electricity.",
    "pause": 0.5,
-   "at": 3.6
+   "at": 3.58
   },
   {
    "id": "open4",
    "text": "What breaks first? How long does it last? And should you actually be worried?",
    "pause": 0.45,
-   "at": 8.57
+   "at": 8.26
   },
   {
    "id": "open5",
    "text": "Let's find out, starting with the scary part: how much warning we get.",
    "pause": 0.8,
-   "at": 12.85
+   "at": 12.12
   },
   {
    "id": "title",
    "text": "What if the biggest solar storm in history hit Earth tomorrow?",
    "pause": 1.6,
-   "at": 17.49
+   "at": 15.99
   },
   {
    "id": "warn1",
    "text": "When the Sun throws a giant cloud of charged gas at us, it has to cross ninety-three million miles of space.",
    "say": "When the Sun throws a giant cloud of charged gas at us, it has to cross ninety-three million miles of space.",
    "pause": 0.5,
-   "at": 22.19
+   "at": 20.5
   },
   {
    "id": "warn2",
    "text": "The record holder, back in 1859, made that trip in about seventeen hours.",
    "say": "The record holder, back in eighteen fifty-nine, made that trip in about seventeen hours.",
    "pause": 0.5,
-   "at": 28.6
+   "at": 26.2
   },
   {
    "id": "warn3",
    "text": "Our last alarm is a satellite a million miles out, parked between us and the Sun, like a doorbell camera.",
    "pause": 0.5,
-   "at": 33.59
+   "at": 31.15
   },
   {
    "id": "warn4",
    "text": "When the cloud hits it, we get somewhere between fifteen minutes and an hour.",
    "pause": 0.4,
-   "at": 39.82
+   "at": 36.81
   },
   {
    "id": "warn5",
    "text": "That's less time than a pizza delivery.",
    "pause": 0.3,
-   "at": 43.97
+   "at": 40.51
   },
   {
    "id": "warn6",
    "text": "And the pizza isn't trying to fry the power grid.",
    "pause": 1.6,
-   "at": 46.2
+   "at": 42.77
   },
   {
    "id": "hist1",
    "text": "And yes, this has happened before.",
    "pause": 0.45,
-   "at": 50.26
+   "at": 46.47
   },
   {
    "id": "hist2",
    "text": "September 1859. An astronomer named Richard Carrington sees a white flash on the Sun.",
    "say": "September, eighteen fifty-nine. An astronomer named Richard Carrington sees a white flash on the Sun.",
    "pause": 0.5,
-   "at": 52.47
+   "at": 49.18
   },
   {
    "id": "hist3",
    "text": "The next night, the sky explodes with color. People in the Caribbean see the northern lights.",
    "pause": 0.5,
-   "at": 58.83
+   "at": 54.84
   },
   {
    "id": "hist4",
    "text": "And the internet of 1859, the telegraph, goes completely haywire.",
    "say": "And the internet of eighteen fifty-nine, the telegraph, goes completely haywire.",
    "pause": 0.5,
-   "at": 63.8
+   "at": 60.63
   },
   {
    "id": "hist5",
    "text": "Telegraph machines throw sparks. One operator in Washington gets zapped right on the forehead.",
    "pause": 0.5,
-   "at": 68.36
+   "at": 64.91
   },
   {
    "id": "hist6",
    "text": "Some operators unplug their batteries and keep sending messages anyway, powered by the storm itself.",
    "pause": 0.4,
-   "at": 74.04
+   "at": 70.21
   },
   {
    "id": "hist7",
    "text": "Free electricity from space. Sounds great.",
    "pause": 0.3,
-   "at": 79.56
+   "at": 75.36
   },
   {
    "id": "hist8",
    "text": "Until you remember that in 1859, the most advanced thing plugged in was a telegraph.",
    "say": "Until you remember that in eighteen fifty-nine, the most advanced thing plugged in was a telegraph.",
    "pause": 0.35,
-   "at": 82.49
+   "at": 78.19
   },
   {
    "id": "hist9",
    "text": "Today, it's everything.",
    "pause": 1.6,
-   "at": 87.78
+   "at": 83.32
   },
   {
    "id": "sat1",
    "text": "So, tomorrow. The first things to go are up in space.",
    "pause": 0.5,
-   "at": 90.51
+   "at": 86.3
   },
   {
    "id": "sat2",
    "text": "In 2022, a storm that scientists called minor knocked thirty-eight brand-new Starlink satellites out of the sky.",
    "say": "In twenty twenty-two, a storm that scientists called minor knocked thirty-eight brand-new Starlink satellites out of the sky.",
    "pause": 0.35,
-   "at": 94.1
+   "at": 89.87
   },
   {
    "id": "sat3",
    "text": "A minor one.",
    "pause": 0.6,
-   "at": 100.8
+   "at": 96.22
   },
   {
    "id": "sat4",
    "text": "Then there is GPS. In May 2024, a strong storm threw GPS-guided tractors in North Dakota off by about ten feet.",
    "say": "Then there is G P S. In May, twenty twenty-four, a strong storm threw G P S guided tractors in North Dakota off by about ten feet.",
    "pause": 0.5,
-   "at": 102.21
+   "at": 97.69
   },
   {
    "id": "sat5",
    "text": "Some farmers just stopped planting.",
    "pause": 0.45,
-   "at": 110.76
+   "at": 104.92,
+   "take": 1
   },
   {
    "id": "sat6",
    "text": "Tomorrow, your maps app tells you, with total confidence, to turn left into a lake.",
    "pause": 0.5,
-   "at": 113.23
+   "at": 106.99
   },
   {
    "id": "sat7",
    "text": "Planes reroute. Radio turns to static. But your phone still works. For now.",
    "pause": 1.6,
-   "at": 118.14
+   "at": 111.45
   },
   {
    "id": "grid1",
    "text": "Because the real danger is down here, in the power lines.",
    "pause": 0.5,
-   "at": 124.82
+   "at": 117.72
   },
   {
    "id": "grid2",
    "text": "The storm shakes Earth's magnetic field, and that shoves extra current into long power lines, like a flood into pipes that are way too small.",
    "say": "The storm shakes Earth's magnetic field, and that shoves extra current into long power lines, like a flood into pipes that are way too small.",
    "pause": 0.5,
-   "at": 128.34
+   "at": 120.99
   },
   {
    "id": "grid3",
    "text": "In March 1989, a much weaker storm hit Quebec.",
    "say": "In March, nineteen eighty-nine, a much weaker storm hit Quebec.",
    "pause": 0.35,
-   "at": 136.01
+   "at": 128.44
   },
   {
    "id": "grid4",
    "text": "The whole grid collapsed in about ninety seconds.",
    "pause": 0.35,
-   "at": 139.9
+   "at": 132.1
   },
   {
    "id": "grid5",
    "text": "Six million people lost power for nine hours.",
    "pause": 0.45,
-   "at": 142.68
+   "at": 134.75
   },
   {
    "id": "grid6",
    "text": "And tomorrow's storm is the big one.",
    "pause": 1.6,
-   "at": 145.88
+   "at": 137.82
   },
   {
    "id": "long1",
    "text": "Here is the part that keeps engineers up at night: the giant transformers.",
    "pause": 0.5,
-   "at": 149.28
+   "at": 141.2
   },
   {
    "id": "long2",
    "text": "Each one is about the size of a house, built to order, and a new one can take years to arrive.",
    "pause": 0.5,
-   "at": 153.5
+   "at": 145.78
   },
   {
    "id": "long3",
    "text": "The insurer Lloyd's ran the numbers for a storm like 1859.",
    "say": "The insurer Lloyd's ran the numbers for a storm like eighteen fifty-nine.",
    "pause": 0.35,
-   "at": 158.61
+   "at": 151.03
   },
   {
    "id": "long4",
    "text": "Twenty to forty million Americans without power. In the worst places, for up to a year or two.",
    "pause": 0.5,
-   "at": 162.71
+   "at": 155.3
   },
   {
    "id": "long5",
    "text": "The bill: up to 2.6 trillion dollars.",
    "say": "The bill: up to two point six trillion dollars.",
    "pause": 0.45,
-   "at": 168.23
+   "at": 160.03
   },
   {
    "id": "long6",
    "text": "Your fridge would be the first to know.",
    "pause": 0.3,
-   "at": 171.28
+   "at": 162.98
   },
   {
    "id": "long7",
    "text": "Then your nose.",
    "pause": 1.6,
-   "at": 173.37
+   "at": 164.84
   },
   {
    "id": "odds1",
    "text": "So, should you be worried?",
    "pause": 0.4,
-   "at": 175.8
+   "at": 167.35
   },
   {
    "id": "odds2",
    "text": "For a storm this big, scientists put the odds anywhere from under one percent to about twelve percent, per decade.",
    "pause": 0.5,
-   "at": 177.34
+   "at": 169.01
   },
   {
    "id": "odds3",
    "text": "And we already had a near miss.",
    "pause": 0.35,
-   "at": 183.92
+   "at": 175.07
   },
   {
    "id": "odds4",
    "text": "In July 2012, the Sun fired a storm just as big. Had it launched about a week earlier, it would have hit us.",
    "say": "In July, twenty twelve, the Sun fired a storm just as big. Had it launched about a week earlier, it would have hit us.",
    "pause": 0.5,
-   "at": 185.8
+   "at": 177.17
   },
   {
    "id": "odds5",
    "text": "The good news: even an hour of warning is useful. Grid operators can lower the load, and satellites can hide in safe mode.",
    "pause": 0.5,
-   "at": 192.49
+   "at": 183.12
   },
   {
    "id": "odds6",
    "text": "And for you? A flashlight, some water, and a paper map.",
    "pause": 0.3,
-   "at": 199.97
+   "at": 190.03
   },
   {
    "id": "odds7",
    "text": "Old school beats no school.",
    "pause": 1.6,
-   "at": 203.77
+   "at": 193.29
   },
   {
    "id": "end1",
    "text": "And here's the weird upside.",
    "pause": 0.35,
-   "at": 206.99
+   "at": 196.14
   },
   {
    "id": "end2",
    "text": "Everyone on Earth gets to see the northern lights. Even in Miami.",
    "pause": 0.45,
-   "at": 208.73
+   "at": 198.29
   },
   {
    "id": "end3",
    "text": "You'd finally get the perfect selfie.",
    "pause": 0.4,
-   "at": 212.65
+   "at": 202.32
   },
   {
    "id": "end4",
    "text": "You just couldn't post it.",
    "pause": 0.8,
-   "at": 214.94
+   "at": 204.44
   },
   {
    "id": "end5",
    "text": "Want to see what happens when the internet loses its ocean cables? It's right here.",
    "pause": 0.6,
-   "at": 216.88
+   "at": 206.4
   }
  ],
- "dur": 222.76
+ "dur": 212.03,
+ "chatterbox": {
+  "seed": 7,
+  "exaggeration": 0.6,
+  "cfg": 0.35,
+  "level_db": -20
+ }
 }

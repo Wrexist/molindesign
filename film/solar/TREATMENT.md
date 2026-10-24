@@ -16,4 +16,4 @@
 **Ending:** the weird upside, auroras in Miami, the perfect selfie you can't post. Then the next video is named out loud: the cables episode.
 
 **Look:** one key light per scene, rim-lit characters on contact shadows, a handheld camera that never stops drifting, glows for anything hot, a Sun with a face. Chapter cards slam in on a hard hit in the 1.6 s pause before each part, then park top-left as a label.
-**Voice:** one fixed reference take cloned for every line (same speaker embedding), whole-line synthesis, every line levelled to the same loudness, no per-line tempo changes.
+**Voice:** Chatterbox (MIT, free), picked by Isac over Ming and ElevenLabs as the least robotic. One fixed seed and settings for every line, whole-line synthesis, every line levelled to the same loudness, no per-line tempo changes.

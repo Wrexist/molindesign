@@ -176,7 +176,7 @@ def speak_chatterbox(s, l, speed, cache_dir):
         w = chatterbox().generate(text, **kw)
         a = resample(trim(w[0].numpy(), chatterbox().sr), chatterbox().sr)
         sf.write(f, a, SR, subtype='FLOAT')
-    return tempo(a, speed)
+    return level(tempo(a, speed), v.get('level_db'))
 
 
 MING_SRC = Path(os.environ.get('MING_SRC', Path.home() / 'ming-src'))
