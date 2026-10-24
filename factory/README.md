@@ -6,7 +6,7 @@ A daily line that turns a topic into a finished TikTok explainer. It runs on the
 Drive sheet "Video factory topics"   (Isac adds and orders topics)
         │  orchestrator: .claude/skills/video-factory   (picks the next free row, claims it with a Drive doc)
         ▼
-video-researcher  → film/<slug>/BRIEF.md (facts + sources), vo/script.json (English, 60–85 s)
+video-researcher  → film/<slug>/BRIEF.md (facts + sources), vo/script.json (English, 30–45 s)
         ▼
 video-director    → film/<slug>/ film.js, TREATMENT.md; voice, picture, mix via factory/make.sh
         ▼

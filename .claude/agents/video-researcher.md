@@ -22,8 +22,9 @@ The orchestrator gives you: the topic row (number, slug, topic, hook idea, angle
 ## Script
 Write `film/<slug>/vo/script.json` in the house format (copy the header from `film/nextword/vo/script.json`: `"engine": "ming"`, `"ming": {"voice": "US_James", "seed": 7}`, `"lang": "en-us"`, `"pace": {"max": 3.5}`, `"chain": {"room": 0.25}`, `"duck": {"db": -6, "score_db": 0}`, `names` for proper nouns, `dur`).
 - The channel is **Tech, explained**: everyday tech and AI for a general audience. Don't make it sound like an AI channel: no channel name in the script, and name AI only when the topic is about AI.
-- **American English** for a **US audience**: US spelling (math, color), US examples, brands and units (miles, dollars, °F with °C only if it matters). 62–85 s (just over a minute: Creator Rewards only pays on videos over 1 minute), 16–22 lines, 2.6–3.0 words per second overall.
-- Line 1 is the hook, spoken from 0.35 s: a stake, a number or a contradiction. No greeting, no "did you know", no channel name.
+- **American English** for a **US audience**: US spelling (math, color), US examples, brands and units (miles, dollars, °F with °C only if it matters). **30–45 s, never over 59 s** (first real numbers, 2026-10-24: viewers watched 10–16 s of our 80 s videos; under 60 s also unlocks duet and stitch), 8–13 lines, 2.8–3.2 words per second overall. One idea, one story; cut everything else.
+- Line 1 is the hook, spoken from 0.2 s, **6 words or fewer**: a stake, a number or a contradiction. No greeting, no "did you know", no channel name. Lead with a story (a person, a court case) or a puzzle the viewer can try; abstract "how X works" openings did worst (stats 2026-10-24).
+- End on a one-word-answer question or a line that loops straight back into line 1.
 - Say the **main search phrase** (what an American would type, e.g. "strawberry ChatGPT") in the first 5 s, and list it in BRIEF.md so the director shows it and the SEO agent captions it.
 - Plant **one DM-able moment**: a fact or image someone would send a friend.
 - Line 2 or 3 states the question the film answers ("So why…?"), and the last line answers it and leads back into line 1 so the loop replays.

@@ -29,7 +29,7 @@ What the factory does on every video to reach a **US audience** and get pushed b
 | 4 | **Change every ≤ 1.5 s, re-hook every 6–8 s** | director, jury | Already house rules; the jury scores it. |
 | 5 | **Loop ending** | researcher, director | The last line leads into the first, and the last frame cuts cleanly to frame 0, so rewatches count. |
 | 6 | **One DM-able moment** | researcher, jury | One fact or image a viewer would send to a friend ("you won't believe this"). The jury scores shareability. |
-| 7 | **Just over a minute** | researcher | Aim for 62–85 s. Creator Rewards pays only on videos over 1 minute (where it's available) ([PostLink](https://postlinkapp.com/blog/tiktok-creator-rewards-program)), and longer only pays if retention holds. |
+| 7 | **30–45 s until retention is proven** | researcher | Our first numbers (2026-10-24): 10–16 s average watch on 80 s videos. Short first; Creator Rewards (over 1 minute) only once a video holds viewers past 30 s. Under 60 s also enables duet and stitch. |
 | 8 | **American everything** | all | American English, US spelling, examples, units and dollars. The caption keywords are the phrases Americans type ([TimedPost](https://timedpost.com/blog/how-to-get-us-audience-on-tiktok-2026), [MyDrop](https://mydropai.com/post/reach-usa-audience-tiktok-instagram-localization-guide/)). |
 | 9 | **US post windows** | seo | 12:00–15:00 ET (18:00–21:00 Stockholm) to post by hand, or 19:00–21:00 ET scheduled in TikTok Studio. |
 | 10 | **US-trending sound under the voice-only cut** | seo, Isac | The SEO agent picks two US-trending sounds; Isac adds one in the app at about 5–10 % volume under the voice. |

@@ -4,6 +4,13 @@ The factory's memory of what made videos better or worse. Every run reads this b
 
 Isac's standing ask (2026-10-23): each video must be better than the last. Look at every video harshly, criticise everything, learn, and never repeat a mistake.
 
+## Real numbers, first stats review (2026-10-24, under 5 h after posting; early signal)
+- Every video lost almost everyone at 0:01. The dark, text-heavy title card on frame 0 is the problem. Open on one huge moving object, ≤ 5 words, hook spoken ≤ 6 words.
+- 80 s is far too long: average watch 10–16 s. Make 30–45 s, never over 59 s.
+- Story and puzzle beat abstract: Hallucinate (real lawyers) best completion 9.1 %, Strawberry (a puzzle) most views 220; Next word (abstract) worst at 3 %.
+- Never repost a video: the duplicates got 0–70 views (TikTok suppresses them).
+- Zero shares, follows and comments so far: end with a one-word-answer question to pull comments.
+
 ## What the viral "What if" stickman channels teach (studied 2026-10-24)
 Example Isac sent: Jeremy Bearimy (@JeremyBearimyTheory), "What If You Could See 10 Seconds Into the Future?" 252k views. Its channel feed (read 2026-10-24) shows the pattern: 1–2 uploads a day, all titled "What if you/your …?". The hits are about **your own body or senses** ("What If Your Heart Beat 10x Faster?" 491k, "What if You Stopped Feeling Pain?" 352k, "…See 10 Seconds Into the Future?" 252k). The powers and money ones flop (Firebending 4k, Control Water 5k, Infinite Money 11k).
 - Title in second person, about the viewer's own body, phone or day: "What if your phone…", "Why your…", never "How X works" alone (bearimy feed).
@@ -71,7 +78,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 ## Performance (fill in from TikTok analytics)
 | Video | Posted | Views 24 h | Avg watch | % to end | Shares | What it taught |
 |---|---|---|---|---|---|---|
-| Next word | 2026-10-23 | | | | | |
-| Strawberry | 2026-10-23 | | | | | |
-| Why AI makes things up | 2026-10-23 | | | | | |
-| How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | | | | | |
+| Next word | 2026-10-23 | 201 (5 h) | 9.6 s | 3.0 % | 0 | abstract opening, worst completion |
+| Strawberry | 2026-10-23 | 220 (5 h) | 16.0 s | 7.3 % | 0 | puzzle: most views |
+| Why AI makes things up | 2026-10-23 | 186 (5 h) | 14.7 s | 9.1 % | 0 | real story: best completion |
+| How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |

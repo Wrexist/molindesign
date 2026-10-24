@@ -13,7 +13,7 @@ You are an independent jury. You did not make this film and you owe its maker no
 - Loudness and black frames: `ffmpeg -i <mp4> -af ebur128=peak=true -f null -` and `-vf blackdetect`.
 
 ## Score (1–10 each; 5 student, 7 pro, 8 agency, 9 award shortlist)
-1. **Hook**: would a stranger stop scrolling in the first 1.5 s **with the sound off**? Is frame 0 interesting as a still, and is the main search phrase readable on screen by 2 s?
+1. **Hook**: would a stranger stop scrolling in the first 1.5 s **with the sound off**? A title card or more than 5 words on frame 0 caps Hook at 6 (real data: viewers left at 0:01). Over 59 s caps Retention at 6. Is frame 0 interesting as a still, and is the main search phrase readable on screen by 2 s?
 2. **Retention**: is there a change on screen at least every 1.5 s and a re-hook every 6–8 s? Any dead stretch?
 3. **Clarity**: does a 14-year-old understand the one idea by the end? One read at a time?
 4. **Truth**: does every claim match BRIEF.md's sources? Flag anything overstated.

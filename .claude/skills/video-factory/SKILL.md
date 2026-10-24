@@ -57,5 +57,5 @@ A run is ≈ 60–90 min of machine time: voice ≈ 7 min, renders ≈ 10 min, t
 ## Pitfalls
 - The voice (Ming US_James since 2026-10-23; Chatterbox before) rushes lines over ~12 words and mishears in Whisper when rushed: split lines, put numbers in `say`, re-roll with `take`.
 - `readcheck` fails on stamps that die with their scene: draw them in the global overlay (see the pilot's `STAMPS`).
-- TikTok rejects files outside 23–60 fps or < 3 s; ours are 30 fps, 60–85 s.
+- TikTok rejects files outside 23–60 fps or < 3 s; ours are 30 fps, 30–45 s (never over 59 s).
 - Drive's `update_file` changes only metadata, never content; that's why step 7 re-creates the doc.
