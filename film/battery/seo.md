@@ -77,7 +77,7 @@ Film: 38.9 s. Floor: **at least 45 s**. The film has no music bed, so lay the so
 
 **Description** (paste it in full; the PC can't read repo files):
 
-> Your phone battery is already shrinking. Lithium-ion batteries lose capacity as they chemically age, and your phone shows how much is left: on iPhone, Settings > Battery > Battery Health (Maximum Capacity); on Pixel 8a and later, Settings > Battery > Battery health.
+> Your phone battery is already shrinking. Lithium-ion batteries lose capacity as they chemically age, and your phone shows how much is left: on iPhone, Settings › Battery › Battery Health (Maximum Capacity); on Pixel 8a and later, Settings › Battery › Battery health.
 >
 > The twist: sitting at 100% ages a battery faster. Samsung says keeping your battery at a full 100% charge for a long time "can reduce its lifespan", and Apple's Optimized Battery Charging works by "reducing the time your iPhone spends fully charged". Battery University estimates that a lithium-ion battery stored for a year at room temperature (77°F) keeps about 80% of its capacity when kept full, and about 96% when kept at 40%. A peer-reviewed study (Keil et al., 2016) found the same direction: cells stored at high charge and at higher temperature generally aged faster (not in a straight line: fade plateaued across some charge levels).
 >

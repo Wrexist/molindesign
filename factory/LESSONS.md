@@ -91,6 +91,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Paste the full YouTube description into the PC instructions; the PC can't read repo files, so it fell back to a short version (noise).
 - YouTube Studio on the PC may open on Isac's game channel "Delta"; every posting instruction says to switch to and verify "Tech, explained" before uploading (fyp).
 - Comments can't be posted before a scheduled video is live; the PC posts the pinned comment after the slot (noise).
+- YouTube rejects "<" and ">" in descriptions (the field turns red and blocks Next); write "Settings › Battery" with › (battery).
+- On a clock-change day YouTube Studio's typed time can shift an hour; pick the slot from the dropdown and check the saved time (battery, 2026-10-25).
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (fill in from TikTok analytics)
