@@ -1,0 +1,58 @@
+{
+  "title": "Why does ChatGPT forget? The context window",
+  "caption": "Why does ChatGPT forget your name, even in the same chat? It's the context window.\nBetween replies it remembers nothing. Every send, it rereads the whole chat, and free ChatGPT holds under 20,000 words, replies included.\nHas it ever forgotten yours? Yes or no.",
+  "hashtags": [
+    "#ai",
+    "#chatgpt",
+    "#contextwindow",
+    "#chatgpttips",
+    "#learnontiktok"
+  ],
+  "keywords": [
+    "why does ChatGPT forget",
+    "why does ChatGPT forget things in the same chat",
+    "ChatGPT forgets conversation",
+    "ChatGPT context window",
+    "ChatGPT context window size",
+    "why does ChatGPT forget information in long conversations",
+    "ChatGPT forgets previous messages",
+    "ChatGPT memory"
+  ],
+  "cover_text": "ChatGPT forgot your name",
+  "cover_time": 0.0,
+  "pinned_comment": "Even inside the window, the middle gets fuzzy: Stanford researchers found AI models use info at the start and end of a long prompt best, and the middle worst (Liu et al., \"Lost in the Middle\", 2024). Tip: in a very long chat, start a new one with a short summary. Do you start fresh chats? Yes or no.",
+  "post_time_et": "19:00 ET, Sun Oct 25, 2026, scheduled in TikTok Studio (playbook's 19:00-21:00 ET scheduled window, US Sunday evening; the earliest free slot after battery at 13:00 ET today). Post only on the round-2 'post' verdict (8.0, Truth 9.0) with the director's polish fixes rendered; if a fix fails, skip the slot rather than post.",
+  "post_time_stockholm": "00:00 Mon Oct 26 (Sweden on CET since 03:00 Oct 25; the US stays on EDT until Nov 1, so the gap is 5 h this week). = 23:00 UTC Sun Oct 25. The slot crosses midnight in Stockholm: pick the date in Studio by hand and check the saved time (clock-change lesson).",
+  "sounds": [
+    {
+      "name": "Mint Breeze - RITA (first pick, only if the app shows the clip at least 0:45)",
+      "why": "Cool, smooth, relaxed, and Metricool says 'this song has no lyrics', so it sits under a voice. Fresh: on none of our posts. Checked: #9 on Metricool 'Trending TikTok Songs This Week: Oct 19th, 2026' (metricool.com/tiktok-songs, read 2026-10-25, still the latest list). Length NOT checked: no page outside the app lists it; confirm at least 0:45 in the app (film 39.4 s)."
+    },
+    {
+      "name": "Zamba Tuya - Daniel Frascoli (only if no vocals and at least 0:45 in the app)",
+      "why": "'Soothing keys with beautiful strings', peaceful; a warm bed for the 'has it ever forgotten yours' ending. Fresh: on none of our posts. Checked: #8 on Metricool (week of Oct 19, 2026, read 2026-10-25; also spelled 'Zumba Tuya' there). Vocals and length NOT checked: Metricool doesn't call it instrumental and a web search found no listing; preview it in the app."
+    },
+    {
+      "name": "Final Game Showdown - ProdByLucK (only if no vocals and at least 0:45 in the app)",
+      "why": "A slow suspense build (Metricool) that suits the scroll growing toward the limit and the name strip falling off; keep it near 5 %. Fresh: on none of our posts. Checked: #3 on Metricool (week of Oct 19, 2026, read 2026-10-25). Vocals and length NOT checked: no page outside the app describes it."
+    }
+  ],
+  "sound_note": "Skipped by rule: Espresso Soul (battery), Sunset in Girona (fyp), Self Aware (noise), the last three posts. Checked how: Metricool's weekly list re-read 2026-10-25 (Oct 19, 2026 is still the newest); Higgsfield tiktok_music_trending (US, ALL, 7DAY and 30DAY, limit 30) returned 0 tracks on 2026-10-25, so nothing is claimed from TikTok's own chart; tokchart.com/trending/US (dated Oct 25, 2026) shows its list to subscribers only; New Engen's October 2026 roundup (updated Oct 14) names only dialogue or vocal audios (Two Fishes, Ramalama). Web searches for each pick's duration found nothing, so none of the three has a verified length: Isac checks 0:45+ in the app and goes down the list. Time Back (#4, techno) and DUNG DING BREGA / Cavendish Banana / Mari-Mari were passed over as too driving or festive. Metricool doesn't say its list is US-only. TikTok drafts don't keep music, so add it in the app at about 5-10 % under out/memory-voice-only.mp4 (about 39.4 s; the film has no music bed); it can't be changed after posting.",
+  "youtube_title": "Why ChatGPT Forgets Your Name 🤔",
+  "youtube_description": "Why does ChatGPT forget your name, even in the same chat? Because between replies, the model remembers nothing. OpenAI's API docs say \"each text generation request is independent and stateless\": to continue a conversation, the earlier messages are sent back in with your new one. So every time you hit send, it rereads the whole chat from the top. By reply 100, it has read your first message 100 times.\n\nThat reading space is the context window, and it only holds so much. On the ChatGPT pricing page, the Free plan's GPT Instant model has a 27K-token total context window. OpenAI says a token is about three-quarters of a word, so that's roughly 20,000 words in total, and OpenAI notes the part left for your chat is smaller, because ChatGPT's own replies, system instructions and memories share it. Hence \"under 20,000 words, replies included\". Paid plans and reasoning models get more (Plus 54K, Pro 128K, reasoning models up to 400K tokens).\n\nGo past the limit and the oldest messages can fall off. Anthropic's docs say chat apps can manage the window on a rolling \"first in, first out\" basis, and the first message, the one with your name, is the oldest. Apps patch this with summaries and saved memories: on paid Claude plans with code execution on, Claude summarizes earlier content near the limit, and with Memory on, ChatGPT \"can remember a name that you provide\". But OpenAI also says \"Memory does not retain every detail from every conversation.\"\n\nSo, has it ever forgotten yours? Yes or no, in the comments.\n\nFine print: context limits vary by app, plan and model and change often; the figures were read Oct 25, 2026 and are OpenAI's published totals, not a measured count. 27K tokens is about 20,250 words by OpenAI's own rule of thumb (an estimate). OpenAI doesn't publish exactly what ChatGPT does when a chat outgrows the window, so the video says the oldest messages \"can\" fall off; some apps summarize or save memories instead of dropping old messages. \"Reads\" is the plain word for the whole chat being the model's input on every turn; providers can cache a repeated start, but it still counts toward the window. The chat in the video is re-created and \"Sam\" is an example name; no real app interface or logo is shown, and the props are drawn by hand.\n\nSources:\n- OpenAI API docs, \"Conversation state\" (read Oct 25, 2026): https://developers.openai.com/api/docs/guides/conversation-state\n- OpenAI, \"ChatGPT Plans and Pricing\", plan table and context-window footnote (read Oct 25, 2026): https://openai.com/chatgpt/pricing/\n- OpenAI Help Center, \"What are tokens and how to count them?\" (read Oct 25, 2026): https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them\n- OpenAI Help Center, \"Memory in ChatGPT\" (read Oct 25, 2026): https://help.openai.com/en/articles/8590148-memory-in-chatgpt\n- Anthropic, Claude Platform docs, \"Context windows\" (read Oct 25, 2026): https://platform.claude.com/docs/en/build-with-claude/context-windows\n- Anthropic Help Center, \"How large is the context window on paid Claude plans?\" (read Oct 25, 2026): https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans\n- Google AI for Developers, \"Long context\" (updated Oct 15, 2026): https://ai.google.dev/gemini-api/docs/long-context\n- Liu et al., \"Lost in the Middle: How Language Models Use Long Contexts\", TACL 12 (2024): https://arxiv.org/abs/2307.03172\n\nHow AI works, part 5. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.\n\n#shorts #ai #chatgpt",
+  "youtube_tags": [
+    "why does chatgpt forget",
+    "chatgpt forgets conversation",
+    "chatgpt context window",
+    "context window",
+    "chatgpt memory",
+    "why does chatgpt forget things in the same chat",
+    "how ai works",
+    "tech explained",
+    "shorts"
+  ],
+  "youtube_playlist": "How AI works",
+  "series": "How AI works, part 5",
+  "is_aigc": true,
+  "disclosure": "AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes"
+}

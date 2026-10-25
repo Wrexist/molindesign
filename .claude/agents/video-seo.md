@@ -31,6 +31,7 @@ You are the growth and SEO lead of the video factory. The film is done; your job
   "post_time_stockholm": "the same moment in Europe/Stockholm, e.g. 19:00",
   "sounds": [{"name": "", "why": ""}],
   "youtube_title": "4–8 plain words, Title Case, Why/How/What if, one emoji at the end (🤔 why/how, 😮 wow, 😱 danger), e.g. \"Why Your Phone Needs Einstein 🤔\"; see LESSONS.md viral study",
+  "youtube_description": "full description with sources and fine print; never use < or > (YouTube rejects them), write menu paths with ›",
   "series": "How AI works, part N (AI topics) or How tech works, part N (general tech); never brand the account as an AI channel",
   "disclosure": "AI-generated voice (Ming TTS); set TikTok's AI-generated content label"
 }

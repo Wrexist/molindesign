@@ -28,7 +28,7 @@ voice() {
 }
 
 picture() {
-  ( cd "$TOOLS" && node render.mjs all --film "$SLUG_DIR" --workers "${WORKERS:-4}" )
+  ( cd "$TOOLS" && node render.mjs all --film "$SLUG_DIR" --workers "${WORKERS:-4}" --samples "${SAMPLES:-16}" )
 }
 
 mix() {
