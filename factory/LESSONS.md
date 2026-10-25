@@ -110,6 +110,6 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | Why AI makes things up | 2026-10-23 | 186 (5 h) | 14.7 s | 9.1 % | 0 | real story: best completion |
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
 | TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
-| Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
-| Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
+| Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | TikTok 0 (6 h, "data processing", likely held in review); YouTube 216 | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
+| Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | TikTok 122 (20 min), YouTube 9 | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
