@@ -60,6 +60,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Dot-and-line networks read as stock "AI" art; show the idea with the viewer's own objects instead (two phones sharing videos) (fyp r1).
 - Captions break on phrase boundaries, never after "the/a/your/New", and never draw over a swipe's smear (fyp r1, r2).
 - Motion-blur swipes need ≥ 16 sub-frames or they show ghost copies (fyp r1); `make.sh` now renders 16 by default (`SAMPLES=` overrides) after battery r1 ghosted at render.mjs's 4.
+- No still, silent frame near the 5 s drop-off: 1.3 s of static chat at 4.8 s cost a point (memory r2).
+- A prop that falls through a scene passes behind the panel being read and stays out of the caption block (memory r1–r2).
 - No dead air after a payoff: give the beat a stamp or move the next line up (battery r1: 3.1 s still after the 96% reveal, fixed with "5× THE LOSS").
 - Draw generic phones (round punch-hole, no notch or logo) and re-created settings screens, never a real UI (battery).
 - Keep sources lines out of the top 300 px: the TikTok top bar covers them (battery r1).
@@ -68,6 +70,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Check physical details an American would know (the old SAT had 5 bubbles, not 4) (hallucinate r1).
 - A comparison of two different things must say so on screen, or it reads as before/after (hallucinate r1).
 - Rolling counters roll in round units ("9 MILLION"), not exact-looking 9-digit values the source never gave (noise r2).
+- A plan's context window is a total shared with replies, system text and memories: say "under N words", not "about N" (memory r1).
+- A quote card that cuts a source's sentence ends with "…" (memory r1).
 - Say what a percentage is: "KEEPS 80%" of capacity, never a bare 80% that reads as charge level (battery r1).
 - Show only what the source lets you show: a re-created doc page keeps the title and named metrics, not a formula the brief didn't allow; a stamp must sit where it can't be read as confirming the wrong thing (fyp r1).
 - A scary number gets its condition in big type in the same frame ("+7 MI" / "IF UNCORRECTED" 66 px); small print reads as nothing with the sound off (gps r1).
@@ -82,6 +86,9 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A double space in `say` doesn't make a pause where you want it; split the line into two lines with a ≥ 0.3 s gap (noise r2: "Same static, type dog" ran together).
 - Never put a comma between a verb and its object in `say`: Ming drops to sentence-end pitch and it plays as two sentences; reword instead (fyp r2).
 - A sound effect on a spoken word can make Whisper mishear it; keep hits between words (hallucinate r1, again battery r1: "ages it faster").
+- A hit pushed off one word can land inside the previous one: `gapT` must loop until the hit's whole body (0.14–0.2 s) sits in a real gap, else move it after the word (memory r2).
+- After any sound-effect change, check every hit's full length against `vo.js` word times; in-mix Whisper can score 0 while a thump sits 2–4 dB under a word (memory r2).
+- Next to speech use a short thump (silent by +0.14 s); the frame-0 hit fires before the first word and is never louder than it (memory r2: ? thump 4.8 dB over "Why").
 - A line that starts too hot can take `"fade_in": <seconds>` in vo/script.json (linear ramp, voiceover.py) instead of a re-roll (battery).
 
 ## Posting and sound
@@ -104,4 +111,5 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
 | TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
 | Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
+| Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |

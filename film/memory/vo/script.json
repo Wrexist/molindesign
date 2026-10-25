@@ -1,0 +1,92 @@
+{
+  "about": "Memory: why AI forgets what you said. How AI works, part 5. Viewer-as-subject puzzle film: why does ChatGPT forget your name when you told it in your very first message? The secret: between replies the model remembers nothing; every time you hit send it reads the whole chat again (OpenAI: requests are stateless; Anthropic: each turn's input is all previous history). By reply 100 it has read your first message 100 times. That reading space is the context window: on free ChatGPT about 27K tokens, about 20,000 words (OpenAI pricing page and token rule, read 2026-10-25). Past it, the oldest messages can fall off (Anthropic: chat apps can manage it first in, first out), including the one with your name. Apps patch it with summaries and saved memories, but OpenAI says memory doesn't keep every detail. Ends asking yes or no: has it ever forgotten yours? Factory #8. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "ChatGPT",
+    "OpenAI"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Why does ChatGPT forget your name?"
+    },
+    {
+      "id": "told",
+      "at": 2.75,
+      "text": "You told it in your very first message."
+    },
+    {
+      "id": "secret",
+      "at": 5.2,
+      "text": "Here's the secret: between replies, it remembers nothing.",
+      "say": "Here's the secret: between replies, it remembers nothing."
+    },
+    {
+      "id": "reread",
+      "at": 8.65,
+      "text": "Every time you hit send, it rereads the whole chat."
+    },
+    {
+      "id": "hundred",
+      "at": 11.6,
+      "text": "By reply 100, it's read your first message 100 times.",
+      "say": "By reply one hundred, it's read your first message a hundred times."
+    },
+    {
+      "id": "limit",
+      "at": 15.3,
+      "text": "But it can only hold so much. That's the context window."
+    },
+    {
+      "id": "size",
+      "at": 18.8,
+      "text": "On free ChatGPT, it's under 20,000 words, replies included.",
+      "say": "On free ChatGPT it's under twenty thousand words, replies included."
+    },
+    {
+      "id": "fall",
+      "at": 23.5,
+      "text": "Go past that, and the oldest messages can fall off."
+    },
+    {
+      "id": "name",
+      "at": 26.7,
+      "text": "Like the one with your name.",
+      "say": "Like the one, with your name."
+    },
+    {
+      "id": "patch",
+      "at": 28.6,
+      "text": "Apps patch it with summaries and saved memories."
+    },
+    {
+      "id": "detail",
+      "at": 31.8,
+      "text": "But OpenAI says memory doesn't keep every detail."
+    },
+    {
+      "id": "end",
+      "at": 35.25,
+      "text": "So, has it ever forgotten yours? Yes or no."
+    }
+  ],
+  "dur": 39.4
+}
