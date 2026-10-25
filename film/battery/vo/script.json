@@ -1,0 +1,99 @@
+{
+  "about": "Battery: why your phone battery wears out. Viewer-as-subject puzzle film: your phone battery is already shrinking, check your own Battery health in Settings. The twist: sitting at 100% ages it faster (Samsung, Apple, Google docs; Battery University estimate: a year full at 77°F keeps about 80%, at 40% about 96%). Heat and deep drains add wear, which is why iPhone, Pixel and Samsung now let you stop at 80%. Ends asking for the viewer's battery health number. Factory #7. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "iPhone",
+    "Pixel",
+    "Samsung"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Your phone battery is already shrinking."
+    },
+    {
+      "id": "check",
+      "at": 2.95,
+      "text": "Check your battery health in the Settings app."
+    },
+    {
+      "id": "why",
+      "at": 5.41,
+      "text": "Below 100%? So why does it drop?",
+      "say": "Below a hundred percent? So why does it drop?",
+      "take": 1,
+      "fade_in": 0.04
+    },
+    {
+      "id": "twist",
+      "at": 8.64,
+      "text": "Here's the twist: sitting at 100% ages it faster.",
+      "say": "Here's the twist. Sitting at a hundred percent ages it faster."
+    },
+    {
+      "id": "year",
+      "at": 12.35,
+      "text": "Leave a battery full for a year at room temp.",
+      "say": "Leave a battery full, for a year, at room temp."
+    },
+    {
+      "id": "eighty",
+      "at": 15.4,
+      "text": "It keeps about 80% of its capacity.",
+      "say": "It keeps about eighty percent of its capacity."
+    },
+    {
+      "id": "forty",
+      "at": 17.9,
+      "text": "Leave it at 40% instead? About 96%.",
+      "say": "Leave it at forty percent instead? About ninety-six."
+    },
+    {
+      "id": "heat",
+      "at": 23.2,
+      "text": "And heat over 95°F can do permanent damage.",
+      "say": "And heat over 95 degrees can do permanent damage."
+    },
+    {
+      "id": "drain",
+      "at": 26.45,
+      "text": "Draining it to zero wears it too."
+    },
+    {
+      "id": "limit",
+      "at": 28.95,
+      "text": "That's why iPhone, Pixel and Samsung let you stop at 80%.",
+      "say": "That's why iPhone, Pixel and Samsung let you stop at eighty percent."
+    },
+    {
+      "id": "night",
+      "at": 33.1,
+      "text": "Charging overnight? Your phone can wait at 80 until you wake.",
+      "say": "Charging overnight? Your phone can wait at eighty until you wake."
+    },
+    {
+      "id": "end",
+      "at": 36.8,
+      "text": "So what's your battery health? Drop your number."
+    }
+  ],
+  "dur": 40.0
+}

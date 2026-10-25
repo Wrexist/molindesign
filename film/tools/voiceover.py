@@ -451,6 +451,8 @@ def cmd_synth(a):
         if d > slot + 0.02:
             n = len(words(spoken(s, l)))
             problems.append(f'"{l["id"]}" runs {d - slot:.2f}s past its slot even at {speed}x: cut about {math.ceil(n * (1 - slot / d))} words or move it')
+        if l.get('fade_in'):   # a short ramp so a plosive onset doesn't start from digital zero
+            x = x.copy(); nf = min(len(x), int(l['fade_in'] * SR)); x[:nf] *= np.linspace(0, 1, nf, dtype=x.dtype)
         i0 = int(round(l['at'] * SR))
         track[i0:i0 + len(x)] += x[:len(track) - i0]
         heard = hear(x, s.get('names', []) + list(s['pronounce']))
