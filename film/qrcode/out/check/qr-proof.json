@@ -1,0 +1,234 @@
+{
+  "text": "TECH, EXPLAINED",
+  "version": 3,
+  "error": "H",
+  "mask": 4,
+  "modules": 29,
+  "decoders": {
+    "zxing-cpp": "zxing-cpp (pip)",
+    "zbar": "pyzbar 0.1.9"
+  },
+  "clean": {
+    "zxing": "TECH, EXPLAINED",
+    "zbar": "TECH, EXPLAINED"
+  },
+  "hook_tear": {
+    "rows_cols": [
+      10.0,
+      14.0
+    ],
+    "symbol_area_lost_pct": 10.1,
+    "scans_everywhere": true,
+    "results": [
+      {
+        "variant": "as drawn",
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "scale": 0.5
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "scale": 0.35
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "blur": 1.2
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "rot": 4
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "rot": -7,
+          "scale": 0.6
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "rot": 180
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      }
+    ]
+  },
+  "corner_tear_alone": {
+    "symbol_area_lost_pct": 2.0,
+    "scans_anywhere": false,
+    "results": [
+      {
+        "variant": "as drawn",
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "scale": 0.5
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "scale": 0.35
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "blur": 1.2
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "rot": 4
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "rot": -7,
+          "scale": 0.6
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "rot": 180
+        },
+        "zxing": null,
+        "zbar": null
+      }
+    ]
+  },
+  "greased_tag": {
+    "smudge_scale": 0.7,
+    "scans_everywhere": true,
+    "results": [
+      {
+        "variant": "as drawn",
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "scale": 0.5
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "scale": 0.35
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "blur": 1.2
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "rot": 4
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "rot": -7,
+          "scale": 0.6
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      },
+      {
+        "variant": {
+          "rot": 180
+        },
+        "zxing": "TECH, EXPLAINED",
+        "zbar": "TECH, EXPLAINED"
+      }
+    ]
+  },
+  "hook_plus_corner_tear": {
+    "scans_anywhere": false,
+    "results": [
+      {
+        "variant": "as drawn",
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "scale": 0.5
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "scale": 0.35
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "blur": 1.2
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "rot": 4
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "rot": -7,
+          "scale": 0.6
+        },
+        "zxing": null,
+        "zbar": null
+      },
+      {
+        "variant": {
+          "rot": 180
+        },
+        "zxing": null,
+        "zbar": null
+      }
+    ]
+  }
+}

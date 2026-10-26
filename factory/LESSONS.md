@@ -62,6 +62,12 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Motion-blur swipes need ≥ 16 sub-frames or they show ghost copies (fyp r1); `make.sh` now renders 16 by default (`SAMPLES=` overrides) after battery r1 ghosted at render.mjs's 4.
 - No still, silent frame near the 5 s drop-off: 1.3 s of static chat at 4.8 s cost a point (memory r2).
 - A prop that falls through a scene passes behind the panel being read and stays out of the caption block (memory r1–r2).
+- A viewfinder that says SCANNED must show all three corner squares inside its brackets (qrcode r2).
+- A condition label must not glide onto the thing it describes; it sits beside it (qrcode r2: STILL SCANS covered two corner squares).
+- Frame 0 carries at most 4 words; the condition pops in with the payoff at about 1.5 s (qrcode r1: 9 words capped Hook at 6).
+- Turn a percentage claim into this video's own count ("THIS TEAR: 11 OF 70 BYTES · HALF THE SPARE USED") so sound-off viewers can't read the demo as the maximum (qrcode r1).
+- An end question must not be answered by the picture (dashed circle on the empty corner) (qrcode r1).
+- Never run two renders of the same film at once: the second corrupts the first's frames (qrcode r2).
 - No dead air after a payoff: give the beat a stamp or move the next line up (battery r1: 3.1 s still after the 96% reveal, fixed with "5× THE LOSS").
 - Draw generic phones (round punch-hole, no notch or logo) and re-created settings screens, never a real UI (battery).
 - Keep sources lines out of the top 300 px: the TikTok top bar covers them (battery r1).
@@ -77,6 +83,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A scary number gets its condition in big type in the same frame ("+7 MI" / "IF UNCORRECTED" 66 px); small print reads as nothing with the sound off (gps r1).
 - Every on-screen citation must say exactly what that source says; split credits when a figure comes from a different paper (gps r2: Ashby 2003 vs 2006).
 - A claim from a court filing is "says", not fact, until a court found it (hallucinate r1).
+- Prove an on-screen "it works" with the real thing: generate it, draw exactly what the film shows, decode that, and decode the rendered film frame too (qrcode: torn level-H code read by ZXing and zbar at 10 % of modules torn, not 30 %; a torn-off area reads as dark modules, and a small nick in a corner square still scanned, so the "no scan" tear had to cut through half the square).
 
 ## Voice
 - Isac picked Ming US_James over Chatterbox and NVIDIA Magpie by ear (2026-10-23): "less robot". Keep it for every video so the channel has one recognisable voice.
@@ -89,6 +96,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A hit pushed off one word can land inside the previous one: `gapT` must loop until the hit's whole body (0.14–0.2 s) sits in a real gap, else move it after the word (memory r2).
 - After any sound-effect change, check every hit's full length against `vo.js` word times; in-mix Whisper can score 0 while a thump sits 2–4 dB under a word (memory r2).
 - Next to speech use a short thump (silent by +0.14 s); the frame-0 hit fires before the first word and is never louder than it (memory r2: ? thump 4.8 dB over "Why").
+- Ming reads "level H" as "level age" (heard twice, solo and in the mix); "its top level" plus a LEVEL H chip fixed it (qrcode).
 - A line that starts too hot can take `"fade_in": <seconds>` in vo/script.json (linear ramp, voiceover.py) instead of a re-roll (battery).
 
 ## Posting and sound
@@ -111,5 +119,6 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
 | TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
 | Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | TikTok 0 (6 h, "data processing", likely held in review); YouTube 216 | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
+| Torn QR code (qrcode) | 2026-10-26 17:00 UTC (Mon 13:00 ET) | | | | | real decoded tear; jury 7.2 → 8.0, Truth 9.0 |
 | Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | TikTok 122 (20 min), YouTube 9 | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |

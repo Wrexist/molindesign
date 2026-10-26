@@ -1,0 +1,20 @@
+duck -6 dB over 8 phrases; voice set -0.2 dB for a 12.0 dB speech-to-music ratio
+wrote /home/user/molindesign/film/qrcode/out/qrcode-vo.mp4
+integrated -14.0 LUFS   true peak -2.3 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "This torn QR code still scans."
+ok    ask        wer 0.00  heard "So, how does it read what's gone?"
+ok    trick      wer 0.00  heard "Here's the trick. Part of every code is backup."
+ok    cd         wer 0.00  heard "That's Reed -Solomon Math, the fix that music CDs use."
+ok    thirty     wer 0.00  heard "At its top level, up to 30 % of its bytes can be rebuilt."
+ok    corners    wer 0.00  heard "But only if the three -corner squares survive."
+ok    where      wer 0.00  heard "Those squares tell your camera where the code is."
+ok    up         wer 0.00  heard "With three, it knows which way is up."
+ok    rare       wer 0.00  heard "Its inventors searched magazines and boxes for the rarest pattern."
+ok    factory    wer 0.00  heard "Built in 1994 for dirty car parts factories."
+ok    most       wer 0.00  heard "But its maker says most codes carry less, about 15%."
+ok    end        wer 0.00  heard "Find a QR code, which corner is empty."
+qrcode-vo:  I: -14.0 LUFS  Peak: -2.3 dBFS 
+qrcode-voice-only:  I: -14.3 LUFS  Peak: -1.3 dBFS 
+no black stretches
