@@ -12,3 +12,4 @@ out/voice.log
 out/picture.log
 out/voice*.log
 out/mixrun.log
+out/mixrun*.log
