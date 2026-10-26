@@ -1,0 +1,96 @@
+{
+  "about": "Temperature: why the same question gets different answers. How AI works, part 6 (after Next word, Strawberry, Hallucinate, Noise, Memory). Puzzle film the viewer can try: ask a chatbot the same thing twice and get two answers. Why: for every next word the model has odds, and it rolls weighted dice over them; the dial on the dice is temperature (OpenAI API: 0 to 2, default 1, higher is more random, lower more focused; Hinton et al. 2015: higher T gives a softer distribution). It's on purpose: researchers found that chasing the likeliest text makes it bland and stuck in repetitive loops (Holtzman et al., ICLR 2020, GPT-2 'Universidad Nacional Autónoma de México' loop). Twist: even at temperature 0, Thinking Machines Lab (Sep 2025) sampled one prompt ('Tell me about Richard Feynman') 1,000 times on the open model Qwen3-235B and got 80 different completions, because server load changes batch size and the math rounds differently. Ends asking: same answer twice? Yes or no. Factory #10. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "ChatGPT"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Same question. Two different answers."
+    },
+    {
+      "id": "ask",
+      "at": 2.39,
+      "text": "So why does ChatGPT give different answers?"
+    },
+    {
+      "id": "dice",
+      "at": 5.59,
+      "text": "Here's the trick: it rolls dice. On purpose."
+    },
+    {
+      "id": "odds",
+      "at": 8.84,
+      "text": "Every next word has odds. Best pizza topping? Pepperoni gets 60%.",
+      "say": "Every next word has odds. Best pizza topping? Pepperoni gets sixty percent."
+    },
+    {
+      "id": "weighted",
+      "at": 13.72,
+      "text": "Weighted dice, so mushrooms still win sometimes.",
+      "take": 1
+    },
+    {
+      "id": "dial",
+      "at": 16.62,
+      "text": "They come with a dial. It's called temperature."
+    },
+    {
+      "id": "down",
+      "at": 19.35,
+      "text": "Turn it down, and the favorite almost always wins."
+    },
+    {
+      "id": "up",
+      "at": 22.83,
+      "text": "Turn it up, and long shots get a chance."
+    },
+    {
+      "id": "why",
+      "at": 25.82,
+      "text": "Why not always pick the favorite?"
+    },
+    {
+      "id": "stuck",
+      "at": 28.05,
+      "text": "Researchers tried. It got stuck repeating itself."
+    },
+    {
+      "id": "zero",
+      "at": 31.95,
+      "text": "But at zero, a lab asked the same thing 1,000 times.",
+      "say": "But at zero, a lab asked the same thing a thousand times."
+    },
+    {
+      "id": "eighty",
+      "at": 35.62,
+      "text": "80 different answers. Busy servers round the math differently.",
+      "say": "Eighty different answers. Busy servers round the math differently."
+    },
+    {
+      "id": "end",
+      "at": 39.6,
+      "text": "So ask yours twice. Same answer? Yes or no."
+    }
+  ],
+  "dur": 43.73
+}

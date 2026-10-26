@@ -71,6 +71,13 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - No dead air after a payoff: give the beat a stamp or move the next line up (battery r1: 3.1 s still after the 96% reveal, fixed with "5× THE LOSS").
 - Draw generic phones (round punch-hole, no notch or logo) and re-created settings screens, never a real UI (battery).
 - Keep sources lines out of the top 300 px: the TikTok top bar covers them (battery r1).
+- Count frame-0 words on the rendered frame: a question shown in both phones counts twice (temperature r2: 7 words capped Hook at 6; one shared bubble above both phones fixed it).
+- A dial that changes the odds must change the hero object too, not only a side chart (temperature r1: the die's faces now repaint by the real share).
+- Fill y 300–1430: a small hero under a centred headline with an empty bottom 40 % reads as a template (temperature r2).
+- Quantize every displayed number to the frame the renderer samples, `(Math.floor(t*30)+.5)/30`; with motion blur `Math.round` blends two values into "1999%%". Check a frame from `out/frames/`, not a still (temperature r2).
+- A wipe that sweeps the whole frame radially smears into a laser-pointer streak under motion blur; use the torn edge moving along one axis (temperature r1).
+- A source credit appears only after the tear has covered the previous scene, or it labels the outgoing prop (temperature r2: HOLTZMAN sat on the made-up pizza odds).
+- Labels follow the dial: HIGH = MORE RANDOM must be gone before the needle drops (temperature r2).
 
 ## Truth
 - Check physical details an American would know (the old SAT had 5 bubbles, not 4) (hallucinate r1).
@@ -98,6 +105,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Next to speech use a short thump (silent by +0.14 s); the frame-0 hit fires before the first word and is never louder than it (memory r2: ? thump 4.8 dB over "Why").
 - Ming reads "level H" as "level age" (heard twice, solo and in the mix); "its top level" plus a LEVEL H chip fixed it (qrcode).
 - A line that starts too hot can take `"fade_in": <seconds>` in vo/script.json (linear ramp, voiceover.py) instead of a re-roll (battery).
+- Check SFX against unhinted Whisper on the finished mix, not `vo.js`: vo.js under-reads a line's last word and Whisper drifts ±0.12 s, so a "0 overlaps" from vo.js still put a rattle on "sixty percent" (temperature r2). Margins: 0.15 s for rattles/swishes/stamps, 0.14 s for knocks/pops; drop a hit with no gap.
+- The director's own frame-0 word count and SFX check are not proof: the jury verifies both on the render (temperature r1 claimed 4 words and 0 overlaps; r2 found 7 and one).
 
 ## Posting and sound
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
@@ -122,3 +131,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | Torn QR code (qrcode) | 2026-10-26 17:00 UTC (Mon 13:00 ET) | | | | | real decoded tear; jury 7.2 → 8.0, Truth 9.0 |
 | Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | TikTok 122 (20 min), YouTube 9 | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
+| Same question, two answers (temperature) | held (not posted) | | | | | weighted-dice + dial; jury 7.5 → 7.2 after 2 rounds, under the gate; r2 fixes applied |
