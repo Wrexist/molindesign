@@ -17,7 +17,8 @@
   },
   "duck": {
     "db": -6,
-    "score_db": 0
+    "score_db": 0,
+    "smr_db": 26.0
   },
   "lines": [
     {
@@ -76,19 +77,19 @@
     },
     {
       "id": "nist",
-      "at": 32.2,
+      "at": 31.0,
       "text": "That's why federal guidelines pick length over symbols."
     },
     {
       "id": "mfa",
-      "at": 36.75,
+      "at": 35.5,
       "text": "And turn on two-step login, so a stolen password isn't enough."
     },
     {
       "id": "end",
-      "at": 40.55,
+      "at": 39.3,
       "text": "Is it on for your email? Yes or no."
     }
   ],
-  "dur": 43.7
+  "dur": 42.3
 }

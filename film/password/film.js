@@ -57,10 +57,10 @@
   var SWIPE = .44, PRE = .3;
   var SC = [
     { id: 'hook', fn: 'hook', name: 'P@ssw0rd!', t0: 0 },
-    { id: 'breach', fn: 'pile', name: '100,000+ times', t0: start('breach') - .05, swipe: true },
+    { id: 'breach', fn: 'pile', name: '100,000+ times', t0: start('breach') - .05, swipe: true, live: true },
     { id: 'random', fn: 'ladder', name: 'Length', t0: start('random') - .05, swipe: true },
-    { id: 'nist', fn: 'nist', name: 'NIST', t0: start('nist') + .45, swipe: true },
-    { id: 'mfa', fn: 'phone', name: 'Two-step', t0: start('mfa') - .05, swipe: true }
+    { id: 'nist', fn: 'nist', name: 'NIST', t0: start('nist') + 1.1, swipe: true },
+    { id: 'mfa', fn: 'phone', name: 'Two-step', t0: start('mfa') + .05, swipe: true }
   ];
   SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
   function S(id) { for (var i = 0; i < SC.length; i++) if (SC[i].id === id) return SC[i]; }
@@ -218,7 +218,7 @@
 
   /* =====================================================================================================
      SCENE 1 · hook + ask + rules: one big paper password field reading P@ssw0rd!, a strength meter that says STRONG,
-     three green ticks and a closed paper padlock. Frame 0: PASSWORD · P@ssw0rd! · STRONG (3 words). On "instantly" the
+     three green ticks and a closed paper padlock. Frame 0: P@ssw0rd! · STRONG (2 words), the meter full and green. On "instantly" the
      INSTANTLY stamp slams, STRONG is struck, the padlock springs open, and Hive's condition comes in with it.
      ===================================================================================================== */
   var PW = 'P@ssw0rd!', FLD = { x: 110, y: 470, w: 800, h: 220 };
@@ -239,11 +239,8 @@
     g.fillStyle = INK; g.fillText(PW, x0, FLD.y + 102);
     if (Math.floor((t + 10) * 2.2) % 2 === 0) { g.fillStyle = HOT; g.fillRect(x0 + tw + 10, FLD.y + 52, 7, 100); }
     g.restore();
-    /* the strength meter says STRONG but flickers coral from frame 0 (the conflict before a word is said): held per frame,
-       coral-low / green-full / coral-full; after the crack it drains and STRONG is struck */
-    var fl = Math.floor((qt(t) + 10) * 6) % 3, fill = fl === 0 ? .42 : 1, fcol = fl === 1 ? GREEN : HOT;
-    var drain = cracked ? eio(seg(t, ck + .05, ck + .45)) : 0;
-    if (cracked) { fill = 1; fcol = mixC('#58b56f', '#ff5b3d', drain); }
+    /* the strength meter: held full and green under STRONG from frame 0; it crashes to coral only with the INSTANTLY stamp */
+    var fill = 1, drain = cracked ? eio(seg(t, ck + .02, ck + .3)) : 0, fcol = drain > 0 ? mixC('#58b56f', '#ff5b3d', Math.min(1, drain * 3)) : GREEN;
     var mx = FLD.x, my = 740, mw = 470;
     rr(g, mx, my, mw, 26, 13); g.fillStyle = 'rgba(244,237,224,.16)'; g.fill();
     rr(g, mx, my, Math.max(26, mw * fill * (1 - drain * .9)), 26, 13); g.fillStyle = fcol; g.fill();
@@ -269,7 +266,7 @@
     if (!idle) HSLIP.forEach(function (p) { var k = eio(seg(t, p[3], p[3] + .3)); if (k > 0) pwSlip(g, p[0] - (1 - k) * 120, p[1], 560, PILE.h, p[2], k, 1); });
     padlock(g, CX, lerp(1150, 1222, shk) + Math.sin(t * 1.6) * 3, lerp(1.2, .82, shk), op, 1);
     if (!idle) stopwatch(g, 790, 1262, t);
-    if (cracked) stamp(g, 'INSTANTLY', CX + 60, FLD.y + 205, t, ck, rl, 72, HOT, -.06);
+    if (cracked) { var ki = kn(t, GT.lock), iy = FLD.y + 205; g.save(); g.translate(CX + 60, iy); g.scale(ki, ki); g.translate(-CX - 60, -iy); stamp(g, 'INSTANTLY', CX + 60, iy, t, ck, rl, 72, HOT, -.06); g.restore(); }
     if (cracked) {
       /* Hive's condition for "Instantly", beside the claim, in big type */
       var ca = fin(t, ck + .3) * (1 - seg(t, rl, rl + .2));
@@ -327,8 +324,8 @@
   var NSLIP = 11, PILE = { y: 1318, dy: 44, w: 700, h: 58 };
   var SJ = (function () { var r = mulberry(19), o = []; for (var i = 0; i < NSLIP; i++) o.push([(r() - .5) * 46, (r() - .5) * .05, r()]); return o; })();
   function slipLand(i) {
-    var a = S('breach').t0 + .2, b = at('breach', 'times') - .1;
-    return a + (b - a) * Math.pow(i / (NSLIP - 1), .8);
+    var a = S('breach').t0 - .2, b = at('breach', 'times') - .1;
+    return a + (b - a) * Math.pow(i / (NSLIP - 1), 1.4);
   }
   function pwSlip(g, x, y, w, h, rot, a, s) {
     if (a <= 0) return;
@@ -358,9 +355,9 @@
     }
     /* the counter: rolls in round 10,000s while the voice says "data breaches", lands on 100,000+ */
     var r0 = at('breach', 'shown'), r1 = at('breach', 'over') + .1, q = qt(t);
-    var n = Math.floor(seg(q, r0, r1) * 10 + 1e-6), done = q >= r1;
+    var n = Math.max(1, Math.floor(seg(q, r0, r1) * 10 + 1e-6)), done = q >= r1;
     var shr = eio(seg(t, at('breach', 'times') - .05, at('breach', 'times') + .35));
-    var ca = fin(t, s0 + .02);
+    var ca = fin(t, slipLand(0) - .02);
     if (ca > 0) {
       var txt = (n * 10000).toLocaleString('en-US') + (done ? '+' : '');
       g.save(); g.globalAlpha *= ca;
@@ -427,24 +424,24 @@
   function ladderCard(g, t, w0) {
     var a = fin(t, w0), k = clamp(sp(t, w0, 2.8, .8), 0, 1.04);
     if (a <= 0) return;
-    var x0 = FLD.x, y0 = 856, w = 800, h = 392, rows = [['8 LETTERS', '2 WEEKS'], ['12 LETTERS', '21K YEARS'], ['6 RANDOM WORDS', '']];
+    var x0 = FLD.x, y0 = 856, w = 800, h = 350, rows = [['8 LETTERS', '2 WEEKS'], ['12 LETTERS', '21K YEARS'], ['6 RANDOM WORDS', '']];
     g.save(); g.globalAlpha *= a; g.translate(0, (1 - Math.min(1, k)) * 50);
     g.fillStyle = 'rgba(0,0,0,.34)'; g.fillRect(x0 + 12, y0 + 18, w, h);
     g.fillStyle = PAPER; g.fillRect(x0, y0, w, h);
     g.fillStyle = HOT; g.fillRect(x0, y0, w, 10);
     g.textBaseline = 'middle'; g.textAlign = 'left'; ls(g, 0);
-    font(g, 30, 600, MONO); g.fillStyle = '#5a5363'; g.fillText('TIME TO CRACK · RANDOM, LOWERCASE', x0 + 40, y0 + 54);
+    font(g, 36, 600, MONO); ls(g, 0); while (g.measureText('TIME TO CRACK · RANDOM, LOWERCASE').width > w - 70) { ls(g, -1); break; } g.fillStyle = '#1a1820'; g.fillText('TIME TO CRACK · RANDOM, LOWERCASE', x0 + 36, y0 + 52); ls(g, 0);
     g.fillStyle = 'rgba(33,29,38,.15)'; g.fillRect(x0 + 40, y0 + 90, w - 80, 3);
     rows.forEach(function (r, i) {
-      var y = y0 + 148 + i * 96;
-      if (i) { g.fillStyle = 'rgba(33,29,38,.12)'; g.fillRect(x0 + 40, y - 48, w - 80, 2); }
+      var y = y0 + 140 + i * 84;
+      if (i) { g.fillStyle = 'rgba(33,29,38,.12)'; g.fillRect(x0 + 40, y - 42, w - 80, 2); }
       g.save(); if (i === 2) g.globalAlpha *= fin(t, w0 + .12);
       font(g, 42, 900); g.fillStyle = INK; g.textAlign = 'left'; g.fillText(r[0], x0 + 40, y);
       if (r[1]) { g.textAlign = 'right'; g.fillStyle = HOT; g.fillText(r[1], x0 + w - 40, y); }
       g.restore();
     });
     g.restore();
-    stamp(g, 'BILLIONS', 742, y0 + 148 + 192, t, GT.bil - .07, S('nist').t0, 40, HOT, -.04, true);
+    stamp(g, 'BILLIONS', 742, y0 + 140 + 168, t, GT.bil - .07, S('nist').t0, 40, HOT, -.04, true);
     tag(g, 'OUR MATH', 768, y0 + h + 4, fin(t, GT.bil + .1), -.02, 32);
   }
   function ladderScene(g, t) {
@@ -466,7 +463,7 @@
       g.fillStyle = INK; WORDS6.forEach(function (l, i) { g.fillText(l, CX, fy + 80 + i * 76); });
     }
     g.restore();
-    tag(g, isW ? "RANDOM EXAMPLE · DON'T USE IT" : 'RANDOM EXAMPLE', isW ? 610 : 755, fy - 4, fin(t, s0 + .4), .03);
+    tag(g, isW ? "RANDOM EXAMPLE · DON'T USE IT" : 'RANDOM EXAMPLE', isW ? 610 : 755, fy - 4, fin(t, s0 + .4) * (1 - seg(t, start('nist') - .15, start('nist') - .03)), .03);   /* gives way to the three-line NIST caption */
     /* the count follows the field */
     var cy = fy + fh + 48;
     if (!isW && n >= 8) chip(g, n + ' LOWERCASE LETTERS', CX, cy, { px: 44, wt: 900, bg: CREAM, fg: BG, a: fin(t, GT.eight), s: kn(t, letterTimes()[n - 1]), maxw: 800 });
@@ -476,7 +473,7 @@
     }
     /* the crack-time stamp: Hive's cell for the letters typed, slammed on each change; held until the six words */
     var lt2 = letterTimes(), sy = 846;
-    var cells = [[GT.weeks, CELLS[0]], [GT.year, CELLS[1]], [lt2[9], CELLS[2]], [lt2[10], CELLS[3]], [lt2[11], CELLS[4]]];
+    var cells = [[GT.weeks - .07, CELLS[0]], [GT.year, CELLS[1]], [lt2[9], CELLS[2]], [lt2[10], CELLS[3]], [lt2[11], CELLS[4]]];
     if (!isW) for (var i = cells.length - 1; i >= 0; i--) {
       if (t >= cells[i][0]) { var nx = cells[i + 1] ? cells[i + 1][0] : w0; g.save(); if (i === 4) { var kb = kn(t, GT.k21) * kn(t, at('twelve', '21000') - .03); g.translate(CX, sy); g.scale(kb, kb); g.translate(-CX, -sy); } stamp(g, cells[i][1], CX, sy, t, cells[i][0], nx - .001, 88, HOT, -.05, false); g.restore(); break; }
     }
@@ -485,15 +482,17 @@
     chip(g, '×26 PER LETTER', CX, 972, { px: 52, wt: 900, bg: HOT, fg: BG, a: fin(t, mu - .06) * out, s: lerp(1.25, 1, clamp(pop(t, mu - .06, 3.2), 0, 1)), rot: .03 });
     /* the rig (labelled at 15.8 s, heating at 21K YEARS) and its rate; both leave for the ladder card */
     var heat = eio(seg(t, GT.hot, GT.hot + .4)), ra = fin(t, s0 + .02) * out;
-    rig(g, FLD.x, 1064, FLD.w, 166, t, ra, heat);
-    chip(g, '16 GAMING GPUS', CX, 1064, { px: 38, wt: 900, bg: mixC('#f4ede0', '#ff5b3d', heat), fg: BG, a: fin(t, GT.gpu) * out, s: kn(t, GT.gpu + .05) * kn(t, GT.hot), maxw: 600 });
+    rig(g, FLD.x, 1048, FLD.w, 128, t, ra, heat);
+    chip(g, '16 GAMING GPUS', CX, 1048, { px: 38, wt: 900, bg: mixC('#f4ede0', '#ff5b3d', heat), fg: BG, a: fin(t, GT.gpu) * out, s: kn(t, GT.gpu + .05) * kn(t, GT.hot), maxw: 600 });
     var gs = GT.rate;
-    chip(g, '138,675 GUESSES A SECOND', CX, 1268, { px: 46, wt: 900, bg: CREAM, fg: BG, a: fin(t, gs) * out, s: kn(t, gs + .1), maxw: 800 });
+    chip(g, '138,675 GUESSES A SECOND', CX, 1212, { px: 44, wt: 900, bg: CREAM, fg: BG, a: fin(t, gs) * out, s: kn(t, gs + .1), maxw: 800 });
     ladderCard(g, t, w0);
+    /* the condition that matters most, in big type: the site stored the password safely */
+    chip(g, 'IF THE SITE STORED IT SAFELY (BCRYPT)', CX, 1270, { px: 44, wt: 900, bg: CREAM, fg: BG, a: cred(fin(t, s0 + .1)) * (1 - seg(t, S('nist').t0 - SWIPE - .1, S('nist').t0 - SWIPE)), maxw: 820 });
     /* the conditions under every crack time, in big type; for the six words, ours */
-    var c1 = cred(fin(t, s0 + .1)) * (1 - seg(t, wd - .25, wd - .07)), c2 = cred(seg(t, wd - .02, wd + .18));
-    block(g, ['STOLEN HASH, CRACKED OFFLINE', '16× RTX 5090 · BCRYPT · RANDOM'], CX, 1352, 36, c1, false, CREAM, 600);
-    block(g, ['EFF 6-WORD PASSPHRASE', "OUR MATH AT HIVE'S SPEED"], CX, 1352, 36, c2, false, CREAM, 600);
+    var ce = wend('twelve', 'years') - .05, c1 = cred(fin(t, s0 + .1)) * (1 - seg(t, ce - .2, ce - .02)), c2 = cred(seg(t, ce, ce + .18));
+    block(g, ['STOLEN HASH, CRACKED OFFLINE', '16× RTX 5090 · BCRYPT · RANDOM'], CX, 1356, 36, c1, false, CREAM, 600);
+    block(g, ['EFF 6-WORD PASSPHRASE', "OUR MATH AT HIVE'S SPEED"], CX, 1356, 36, c2, false, CREAM, 600);
     label(g, 'HIVE SYSTEMS 2026', CX, 1420, cred(fin(t, s0 + .1)), DIM, 32);
   }
 
@@ -512,20 +511,20 @@
     g.fillStyle = HOT; g.fillRect(x0, y0, w, 10);
     g.textBaseline = 'middle'; g.textAlign = 'left';
     font(g, 54, 900); g.fillStyle = INK; g.fillText('NIST SP 800-63B-4', x0 + 44, y0 + 80);
-    font(g, 32, 600, MONO); g.fillStyle = '#5a5363'; g.fillText('JULY 2025', x0 + 44, y0 + 140);
+    font(g, 36, 600, MONO); g.fillStyle = '#1a1820'; g.fillText('JULY 2025', x0 + 44, y0 + 140);
     g.fillStyle = 'rgba(33,29,38,.15)'; g.fillRect(x0 + 44, y0 + 180, w - 88, 3);
-    var r1 = fin(t, s0 + .25), r2 = fin(t, s0 + .45);
+    var r1 = fin(t, s0 + .15), r2 = fin(t, s0 + .25);
     g.save(); g.globalAlpha *= r1;
     tick(g, x0 + 84, y0 + 260, 34, clamp(pop(t, lg - .1, 3.4, .7), 0, 1.06));
     fitF(g, 'AT LEAST 15 CHARACTERS', 50, w - 180); g.fillStyle = INK; g.fillText('AT LEAST 15 CHARACTERS', x0 + 140, y0 + 256);
-    font(g, 32, 600, MONO); g.fillStyle = '#5a5363'; g.fillText('FOR A PASSWORD USED ALONE', x0 + 140, y0 + 312);
+    font(g, 36, 600, MONO); g.fillStyle = '#1a1820'; g.fillText('FOR A PASSWORD USED ALONE', x0 + 140, y0 + 312);
     g.restore();
     g.save(); g.globalAlpha *= r2;
     cross(g, x0 + 84, y0 + 430, 34, clamp(pop(t, sy - .1, 3.4, .7), 0, 1.06));
     fitF(g, 'FORCED SYMBOL MIXES', 50, w - 180); g.fillStyle = INK; g.fillText('FORCED SYMBOL MIXES', x0 + 140, y0 + 426);
     var fw = g.measureText('FORCED SYMBOL MIXES').width;
     g.strokeStyle = HOT; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); g.moveTo(x0 + 132, y0 + 430); g.lineTo(x0 + 132 + (fw + 16) * eio(seg(t, sy - .05, sy + .25)), y0 + 424); g.stroke();
-    font(g, 32, 600, MONO); g.fillStyle = '#5a5363'; g.fillText('SITES SHALL NOT REQUIRE THEM', x0 + 140, y0 + 482);
+    font(g, 36, 600, MONO); g.fillStyle = '#1a1820'; g.fillText("NIST: DON'T REQUIRE THEM", x0 + 140, y0 + 482);
     g.restore();
     g.restore();
     tag(g, 'RE-CREATED', 760, y0 + h - 44, cred(fin(t, s0 + .2)), .04);
@@ -571,8 +570,8 @@
   }
   var PHX = 330, PHY = 520, PHW = 430, PHH = 800;
   function phoneScene(g, t) {
-    var s0 = S('mfa').t0, tn = at('mfa', 'turn'), st = at('mfa', 'stolen'), en = at('mfa', 'enough'), e0 = start('end') - .12, em = at('end', 'email'), ys = at('end', 'yes'), no = at('end', 'no');
-    var onK = clamp(sp(t, at('mfa', 'on'), 3, .8), 0, 1), scr = eio(seg(t, e0, e0 + .35)), oa = 1 - eio(seg(t, HOME - .1, HOME + .2));
+    var s0 = S('mfa').t0, tn = at('mfa', 'turn'), st = at('mfa', 'stolen'), en = at('mfa', 'enough'), e0 = start('end') + .3, em = at('end', 'email'), ys = at('end', 'yes'), no = at('end', 'no');
+    var onK = clamp(sp(t, at('mfa', 'on'), 3, .8), 0, 1), scr = eio(seg(t, e0, e0 + .35)), oa = 1;
     var code = eio(seg(t, GT.code - .02, GT.code + .28));
     phone(g, PHX, PHY + Math.sin(t * 1.4) * 4, PHW, PHH, 1, function (g, x0, y0, w, h) {
       g.save(); g.globalAlpha *= 1 - scr; g.translate(0, -scr * 30);
@@ -610,7 +609,7 @@
       pwSlip(g, sx, syy, 330, 64, -.06 + bounce * .6, la * (1 - seg(t, st + .5, st + .7)), .8);
       g.restore();
     }
-    stamp(g, 'BLOCKED', 760, 1135, t, en - .12, e0 - .1, 46, HOT, -.06);
+    stamp(g, 'BLOCKED', 760, 1135, t, GT.blk - .07, e0 - .05, 46, HOT, -.06);
         /* end: YES / NO, sources */
     var ghost = fin(t, e0 + .25) * oa;
     chip(g, 'YES', 760, 860, { px: 70, wt: 900, line: CREAM, lw: 4, fg: CREAM, a: ghost * (1 - fin(t, GT.yes)) * .6, w: 220, r: 50 });
@@ -708,17 +707,22 @@
     stage(g);
     var si = sceneAt(t), Sc = SC[si], Nx = SC[si + 1];
     var sk = Nx && Nx.swipe ? eio(seg(t, Nx.t0 - SWIPE, Nx.t0)) : 0;
-    var pre = Sc.swipe && t < Sc.t0 + PRE;
+    var pre = Sc.swipe && !Sc.live && t < Sc.t0 + PRE;
     drawScene(g, Sc, pre ? Sc.t0 + PRE : t);
     if (sk > 0) {
       var ly = H * (1 - sk) - 20, x;
       g.save(); g.beginPath(); g.moveTo(0, H); for (x = 0; x <= W; x += 30) g.lineTo(x, edgeY(x, ly, t)); g.lineTo(W, H); g.closePath(); g.clip();
-      stage(g); INCOMING = true; drawScene(g, Nx, Nx.t0 + PRE); INCOMING = false; g.restore();
+      stage(g); INCOMING = true; drawScene(g, Nx, Nx.live ? t : Nx.t0 + PRE); INCOMING = false; g.restore();
       g.save(); g.strokeStyle = HOT; g.lineWidth = 8; g.lineJoin = 'round'; g.beginPath(); for (x = 0; x <= W; x += 30) { var yy = edgeY(x, ly, t); if (x === 0) g.moveTo(x, yy); else g.lineTo(x, yy); } g.stroke(); g.restore();
     }
-    /* the loop: the end dissolves back into frame 0 */
-    var back = eio(seg(t, HOME, HOME + .35));
-    if (back > 0) { g.save(); g.globalAlpha = back; stage(g); hookIdle(g, t - DUR); g.restore(); }
+    /* the loop: the house torn edge rises on the swish and cuts back to the frame-0 picture (no dissolve) */
+    var back = eio(seg(t, GT.home, GT.home + .26));
+    if (back > 0) {
+      var by = H * (1 - back) - 20, bx;
+      g.save(); g.beginPath(); g.moveTo(0, H); for (bx = 0; bx <= W; bx += 30) g.lineTo(bx, edgeY(bx, by, t)); g.lineTo(W, H); g.closePath(); g.clip();
+      stage(g); INCOMING = true; hookIdle(g, 0); INCOMING = false; g.restore();
+      if (back < 1) { g.save(); g.strokeStyle = HOT; g.lineWidth = 8; g.lineJoin = 'round'; g.beginPath(); for (bx = 0; bx <= W; bx += 30) { var yb = edgeY(bx, by, t); if (bx === 0) g.moveTo(bx, yb); else g.lineTo(bx, yb); } g.stroke(); g.restore(); }
+    }
     if (POSTERMODE) posterTitle(g);
     else if (LIVE.text) {
       if (t < start('rules')) headline(g, t);
@@ -768,28 +772,29 @@
     var wd = GT.words, w0 = wd + .17;
     T('gpu', '16 GAMING GPUS', GT.gpu + .1, wd - .1);
     T('rate', '138,675 GUESSES A SECOND', GT.rate + .1, wd - .1);
-    T('cond', 'STOLEN HASH, CRACKED OFFLINE 16× RTX 5090 · BCRYPT · RANDOM', S('random').t0 + .25, wd - .15);
-    T('cond2', "EFF 6-WORD PASSPHRASE OUR MATH AT HIVE'S SPEED", wd + .1, cutY('nist', 1375));
+    T('cond', 'STOLEN HASH, CRACKED OFFLINE 16× RTX 5090 · BCRYPT · RANDOM', S('random').t0 + .25, wend('twelve', 'years') - .25);
+    T('cond2', "EFF 6-WORD PASSPHRASE OUR MATH AT HIVE'S SPEED", wend('twelve', 'years') + .05, cutY('nist', 1375));
+    T('safe', 'IF THE SITE STORED IT SAFELY (BCRYPT)', S('random').t0 + .25, cutY('nist', 1270));
     T('hive3', 'HIVE SYSTEMS 2026', S('random').t0 + .25, cutY('nist', 1420));
     T('w2', '2 WEEKS', GT.weeks + .1, GT.year);
     T('mul', '×26 PER LETTER', at('times', 'multiplies') + .1, wd - .1);
     T('w21', '21K YEARS', letterTimes()[11] + .1, w0);
     T('six', '6 RANDOM WORDS', w0 + .08, cutY('nist', 750));
     T('dice', 'PICKED BY DICE OR A PASSWORD MANAGER', wd + .3, cutY('nist', 806));
-    T('row1', '8 LETTERS 2 WEEKS', w0 + .1, cutY('nist', 1004));
-    T('row2', '12 LETTERS 21K YEARS', w0 + .1, cutY('nist', 1100));
-    T('row3', '6 RANDOM WORDS', w0 + .2, cutY('nist', 1196));
-    T('bil', 'BILLIONS', GT.bil + .03, cutY('nist', 1196));
-    T('math', 'OUR MATH', GT.bil + .2, cutY('nist', 1260));
+    T('row1', '8 LETTERS 2 WEEKS', w0 + .1, cutY('nist', 996));
+    T('row2', '12 LETTERS 21K YEARS', w0 + .1, cutY('nist', 1080));
+    T('row3', '6 RANDOM WORDS', w0 + .2, cutY('nist', 1164));
+    T('bil', 'BILLIONS', GT.bil + .03, cutY('nist', 1164));
+    T('math', 'OUR MATH', GT.bil + .2, cutY('nist', 1214));
     T('nist', 'NIST SP 800-63B-4 JULY 2025', S('nist').t0 + .1, cutY('mfa', 620));
-    T('len', 'AT LEAST 15 CHARACTERS', S('nist').t0 + .3, cutY('mfa', 736));
-    T('alone', 'FOR A PASSWORD USED ALONE', S('nist').t0 + .3, cutY('mfa', 792));
-    T('sym', 'FORCED SYMBOL MIXES', S('nist').t0 + .5, cutY('mfa', 906));
-    T('shall', 'SITES SHALL NOT REQUIRE THEM', S('nist').t0 + .5, cutY('mfa', 962));
+    T('len', 'AT LEAST 15 CHARACTERS', S('nist').t0 + .2, cutY('mfa', 736));
+    T('alone', 'FOR A PASSWORD USED ALONE', S('nist').t0 + .2, cutY('mfa', 792));
+    T('sym', 'FORCED SYMBOL MIXES', S('nist').t0 + .3, cutY('mfa', 906));
+    T('shall', "NIST: DON'T REQUIRE THEM", S('nist').t0 + .3, cutY('mfa', 962));
     T('lgt', 'LENGTH > SYMBOLS', at('nist', 'length') + .05, cutY('mfa', 1340));
     T('tsl', 'TWO-STEP LOGIN', S('mfa').t0 + .2, start('end') - .12);
-    T('email', 'EMAIL', start('end') + .2, HOME);
-    T('src', 'Hive Systems 2026 · Have I Been Pwned NIST SP 800-63B-4 · EFF · CISA', S('mfa').t0 + .3, HOME + .1);
+    T('email', 'EMAIL', start('end') + .2, GT.home);
+    T('src', 'Hive Systems 2026 · Have I Been Pwned NIST SP 800-63B-4 · EFF · CISA', S('mfa').t0 + .3, GT.home + .1);
     return out;
   }
 
@@ -828,7 +833,7 @@
   /* a sweep under the torn edge: the longest free part of the wipe */
   function gapSpan(a, b) {
     var best = null;
-    free(.19).forEach(function (f) { var lo = Math.max(a, f[0]), hi = Math.min(b, f[1]) - .03; if (hi - lo >= .1 && (!best || hi - lo > best[1] - best[0])) best = [lo, hi]; });
+    free(.19).forEach(function (f) { var lo = Math.max(a, f[0]), hi = Math.min(b, f[1]) - .03; if (hi - lo >= .06 && (!best || hi - lo > best[1] - best[0])) best = [lo, hi]; });
     return best;
   }
   /* Every hit sits wholly in a free stretch. Beats that carry a sound are moved into the pauses (GT below), so picture
@@ -840,25 +845,29 @@
     if (n !== null && Math.abs(n - t) <= (tol || .45)) { GT[id] = n; GS.push({ t: n, type: type, g: gain }); } else GT[id] = t;
   }
   function initGaps() {
-    G('lock', wend('hook', 'instantly') + .3, 'knock', .5, .8);          /* the shackle pops open */
-    G('sw', start('rules') - .3, 'thump', .3, .5);                        /* the stopwatch stops dead at 0:00 */
+    G('lock', wend('hook', 'instantly') + .3, 'knock', .5, .17);         /* the shackle pops open; INSTANTLY re-slams */
+    GS.push({ t: GT.lock, type: 'stampS', g: .11 });
+    G('sw', start('rules') - .3, 'thump', .3, .25);                       /* the stopwatch stops dead at 0:00 */
     GT.labels = GT.sw;
     G('cond', at('breach', 'times') + .3, 'pop', .45, .6);                /* Hive's condition chip */
     GT.slip = at('first', 'so') - .2;                                     /* mid-phrase: silent */
     GT.gpu = at('random', 'get') - .02;
     GT.rate = at('random', 'about') - .17;
     G('eight', at('eight', 'eight') - .2, 'tick', .3, .35);
-    GT.weeks = at('eight', 'two') - .2;
-    G('ninth', at('times', 'each') - .25, 'key', .45);
+    G('weeks', wend('eight', 'weeks') + .25, 'stampS', .45, .15);          /* 2 WEEKS lands in the pause after "two weeks" */
+    G('ninth', at('times', 'each') - .1, 'key', .45);
     GT.year = wend('times', '26') + .12;
     G('k21', wend('twelve', 'letters') + .1, 'tick', .45, .3);
     GT.hot = at('twelve', 'letters') + .28;   /* = the 21K YEARS cell */
     GT.words = at('words', 'six') - .25;
-    G('bil', at('words', 'billions') - .2, 'stampS', .3, .275);          /* half the old gain: the voice stays on top */
+    G('bil', at('words', 'billions') - .3, 'click', .3, .8);   /* a short hit: the pause before "Billions" is too tight for a stamp's thump */
     GT.card = S('nist').t0;
-    G('lgt', wend('nist', 'symbols') + .3, 'knock', .45, .6);
+    G('lgt', wend('nist', 'symbols') + .3, 'knock', .45, .35);
     GT.code = at('mfa', 'so') - .1;
-    G('yes', at('end', 'yes') - .2, 'pop', .45, .7);
+    G('blk', wend('mfa', 'enough') + .25, 'stampS', .45, .3);             /* BLOCKED, in the pause after "enough" */
+    GT.yes = at('end', 'yes') - .2;   /* silent: Whisper's "Yes" drifts too close to any hit in this pause */
+    GT.home = nearGap(end('end') + .12, 'swish');                         /* the loop cut rides the swish */
+    if (GT.home === null || GT.home + .28 > DUR) GT.home = DUR - .3; else GS.push({ t: GT.home, type: 'swish' });
   }
   function initTimes() {
     var i;
@@ -866,7 +875,6 @@
     GS.forEach(function (e) { A(e.t, e.type, e.g); });
     /* no sweep into the phone: in the silence before "And turn on" base.en heard the sweep as an extra "And" */
     SC.forEach(function (sc) { if (sc.swipe && sc.id !== 'mfa') { var s = gapSpan(sc.t0 - SWIPE, sc.t0); if (s) EV.push({ t: s[0], type: 'sweep', t1: s[1] }); } });
-    A(nearGap(HOME - .05, 'swish'), 'swish');
     EV.sort(function (a, b) { return a.t - b.t; });
     for (i = EV.length - 1; i > 0; i--) if (EV[i].type === EV[i - 1].type && EV[i].t - EV[i - 1].t < .06) EV.splice(i, 1);
   }
@@ -932,9 +940,9 @@
     var MUSIC = false;
     if (MUSIC) { /* intentionally empty */ }
     env(master.gain, [[0, .9], [DUR - .3, .9], [DUR, .6]]);
-    /* room tone, about −50 dB, so the loop seam is never digital zero */
+    /* room tone, about −62 dB, so the loop seam is never digital zero */
     (function () { var o = bus(1, 0), lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = .5;
-      var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .021; })();
+      var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .005; })();
   }
 
   /* ---------- boot ---------- */
@@ -954,7 +962,7 @@
   }
   initGaps();
   initTimes();
-  window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: crackT() + .7, SLUG: 'password', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE };
+  window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: GT.lock + .45, SLUG: 'password', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE };
   /* full pass of the safe-area check: every glyph box (and stamp) outside x 90–930 or below y 1450 */
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var out = {};
