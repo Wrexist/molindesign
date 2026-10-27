@@ -40,6 +40,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A tease hidden in frame 0 must be visible on a 540-wide phone frame: a 45 % brightness bias was invisible; it took ~90 % cream inside the lens, held 0.35 s (noise r2).
 - A mid-film re-hook chip must not sit on the frame-0 puzzle image; with sound off it rewrites the puzzle's answer (noise r2: LOOK FAMILIAR? over the static implied the cat was hidden in it).
 - A real document or object on frame 0 (a court filing) reads as "not AI" and gets the stamp hit in under 1.5 s (hallucinate, jury 8.2).
+- Frame 0 shows the stake fully printed: a counter caught mid-roll ("$9" on the way to $96 BILLION) reads as a different, smaller number (gpus r2). Animate around the number, not the number itself.
 
 ## Story and retention
 - Making the viewer the subject ("TikTok bet you'd watch this", their own swipes as clues) gave the best-paced first 16 s yet (fyp, jury 8.1).
@@ -49,6 +50,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Say the payoff once; repeated beats cost retention (strawberry r1).
 - A film that drops across jury rounds (temperature 7.5 → 7.2 → 6.9) is being patched, not fixed: each fix round must re-run every LESSONS check (frame-0 words, fill, SFX on the mix) before the next jury, and after a drop, park the film rather than add more props.
 - Two films in a row (temperature, password) stalled at 7.2–7.5 and fell with each round, while qrcode and memory passed at 8.0. Fresh juries keep finding new issues, so fix rounds can't climb: the first cut has to land near 8. Spend the effort before the first render on one hero stamp, a hand-made hero prop instead of icon-kit art, no stretch over 1.5 s without voice, and a screenshot frame planned in the brief (password r1–r3).
+- Show the bridge between mechanism and money on screen, not just in the voice: "90 % from data centers" and "now it trains AI" never met on screen, so a 14-year-old couldn't connect them (gpus r2). Re-use an earlier prop to close the loop rather than a new one.
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -97,6 +99,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Never extend a quotation: print a source's text exactly as it appears; extra "it keeps going" lines go outside the quote marks under a LOOP CONTINUES · OUR ILLUSTRATION chip (temperature r3: 12 repeats in quotes where Holtzman Fig. 1 prints 3 cost Truth 1 point and blocked posting).
 - Put a technical condition in plain words a viewer can act on, big: "IF THE SITE STORED IT SAFELY (BCRYPT)", not "BCRYPT" in 36 px mono; a rule from NIST binds NIST verifiers, not "sites" (password r2).
 - When a fix re-times the voice, re-check every state label against what is on screen at that moment: the field must never disagree with its stamp (password r3: 9 letters under a 2 WEEKS stamp for 2.5 s cost Truth a point and blocked posting).
+- A quote goes on the thing it describes: Nvidia's "have to be done at once" is about graphics, so it can't sit on the AI-training sheet; and "began in video games" needs an origin source, not a fiscal-2016 pie (gpus r2).
 
 ## Voice
 - Isac picked Ming US_James over Chatterbox and NVIDIA Magpie by ear (2026-10-23): "less robot". Keep it for every video so the channel has one recognisable voice.
@@ -142,3 +145,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | Same question, two answers (temperature) | held (not posted) | | | | | weighted-dice + dial; jury 7.5 → 7.2 → 6.9 (r3 "don't post"), parked |
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
+| Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
