@@ -1,0 +1,29 @@
+hook         0.20–  2.50  (slot to 2.52)  speed 1.00  2.17 w/s
+ask          2.67–  4.65  (slot to 4.66)  speed 1.00  3.03 w/s
+dc           4.81–  7.00  (slot to 7.16)  speed 1.00  2.74 w/s
+games        7.31–  9.30  (slot to 9.58)  speed 1.00  3.52 w/s
+toronto      9.73– 13.09  (slot to 13.19)  speed 1.03  2.68 w/s
+won         13.34– 16.27  (slot to 16.34)  speed 1.00  3.41 w/s
+why         16.49– 19.26  (slot to 19.34)  speed 1.00  2.89 w/s
+move        19.49– 22.27  (slot to 22.42)  speed 1.00  2.16 w/s
+cpu         22.57– 25.30  (slot to 25.37)  speed 1.00  2.56 w/s
+gpu         25.52– 28.19  (slot to 28.31)  speed 1.00  3.00 w/s
+once        28.46– 30.40  (slot to 31.40)  speed 1.00  3.09 w/s
+pixels      31.55– 33.96  (slot to 34.06)  speed 1.00  3.32 w/s
+end         34.21– 36.81  (slot to 37.06)  speed 1.00  3.46 w/s
+wrote out/vo/vo.wav, vo.json, vo.srt and vo/vo.js
+
+LISTEN CHECK  (Whisper hears each line; fix word error > 10 % or pace outside 1.8 w/s to pace.max + 0.3; soft = words heard under 0.45 confidence, listen to those)
+ok    hook       wer 0.00  2.17 w/s    (soft: 96 0.37, 3 0.45)
+ok    ask        wer 0.00  3.03 w/s  
+ok    dc         wer 0.00  2.74 w/s  
+ok    games      wer 0.00  3.52 w/s  
+ok    toronto    wer 0.00  2.68 w/s  
+ok    won        wer 0.00  3.41 w/s  
+ok    why        wer 0.00  2.89 w/s  
+ok    move       wer 0.00  2.16 w/s  
+ok    cpu        wer 0.00  2.56 w/s  
+ok    gpu        wer 0.00  3.00 w/s  
+ok    once       wer 0.00  3.09 w/s    (soft: All 0.14)
+ok    pixels     wer 0.00  3.32 w/s  
+ok    end        wer 0.00  3.46 w/s  

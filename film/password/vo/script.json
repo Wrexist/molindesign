@@ -1,0 +1,95 @@
+{
+  "about": "Password: how long your password takes to crack. Factory #11, backlog row 12. Contradiction film built on one object the viewer recognises: P@ssw0rd! ticks every old rule (capital, number, symbol) yet cracks instantly, because it has shown up in data breaches over 100,000 times (Have I Been Pwned Pwned Passwords count, 119,515 on 2026-10-27) and Hive Systems' 2026 table gives a previously stolen or dictionary-word password 'Instantly' at any length. A random password has to be guessed: Hive's 2026 rig (16 rented RTX 5090s, bcrypt cost 10, offline, random passwords) makes about 139,000 guesses a second (measured 138,675 H/s): 8 random lowercase letters take about 2 weeks, each extra letter multiplies that by 26, 12 letters take about 21,000 years. Six random words from EFF's 7,776-word list (EFF's own recommendation) would take billions of years at that speed (our math: 7,776^6 / 138,675 per second, about 50 billion years for the full search). NIST SP 800-63B-4 (July 2025): at least 15 characters for a password used alone, and no forced mixes of character types; its own example of a predictable password is 'Password1!'. CISA: turn on multifactor authentication, so a stolen password isn't enough. Ends asking: is it on for your email? Yes or no. Defensive only: no tools, commands, wordlists or techniques. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 26.0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "This password cracks instantly."
+    },
+    {
+      "id": "ask",
+      "at": 2.4,
+      "text": "So how long to crack a password?"
+    },
+    {
+      "id": "rules",
+      "at": 4.6,
+      "text": "It's got a capital, a number, a symbol."
+    },
+    {
+      "id": "breach",
+      "at": 7.3,
+      "text": "But it's shown up in data breaches over 100,000 times.",
+      "say": "But it's shown up in data breaches over a hundred thousand times."
+    },
+    {
+      "id": "first",
+      "at": 11.45,
+      "text": "Leaked passwords get tried first. So, instantly."
+    },
+    {
+      "id": "random",
+      "at": 14.9,
+      "text": "Now random ones get guessed, about 139,000 a second.",
+      "say": "Now random ones get guessed. About a hundred thirty-nine thousand a second."
+    },
+    {
+      "id": "eight",
+      "at": 19.0,
+      "text": "Eight random letters? About two weeks."
+    },
+    {
+      "id": "times",
+      "at": 21.9,
+      "text": "Each extra letter multiplies that by 26.",
+      "say": "Each extra letter multiplies that by twenty-six."
+    },
+    {
+      "id": "twelve",
+      "at": 25.2,
+      "text": "But twelve letters? 21,000 years.",
+      "say": "But twelve letters? Twenty-one thousand years."
+    },
+    {
+      "id": "words",
+      "at": 28.25,
+      "text": "Six random words? Billions of years."
+    },
+    {
+      "id": "nist",
+      "at": 31.0,
+      "text": "That's why federal guidelines pick length over symbols."
+    },
+    {
+      "id": "mfa",
+      "at": 35.5,
+      "text": "And turn on two-step login, so a stolen password isn't enough."
+    },
+    {
+      "id": "end",
+      "at": 39.3,
+      "text": "Is it on for your email? Yes or no."
+    }
+  ],
+  "dur": 42.3
+}

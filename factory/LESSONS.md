@@ -40,6 +40,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A tease hidden in frame 0 must be visible on a 540-wide phone frame: a 45 % brightness bias was invisible; it took ~90 % cream inside the lens, held 0.35 s (noise r2).
 - A mid-film re-hook chip must not sit on the frame-0 puzzle image; with sound off it rewrites the puzzle's answer (noise r2: LOOK FAMILIAR? over the static implied the cat was hidden in it).
 - A real document or object on frame 0 (a court filing) reads as "not AI" and gets the stamp hit in under 1.5 s (hallucinate, jury 8.2).
+- Frame 0 shows the stake fully printed: a counter caught mid-roll ("$9" on the way to $96 BILLION) reads as a different, smaller number (gpus r2). Animate around the number, not the number itself.
 
 ## Story and retention
 - Making the viewer the subject ("TikTok bet you'd watch this", their own swipes as clues) gave the best-paced first 16 s yet (fyp, jury 8.1).
@@ -47,6 +48,9 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A paper prop the viewer can read (a re-created report, a frequency card with a number struck through) lifts a tail better than another diagram (gps r1, the 10.23 → 10.22999999543 MHz card).
 - The second half sags when two props in a row hold for 10+ s; slap a new object in every 3–4 s (hallucinate r1, 52–64 s).
 - Say the payoff once; repeated beats cost retention (strawberry r1).
+- A film that drops across jury rounds (temperature 7.5 → 7.2 → 6.9) is being patched, not fixed: each fix round must re-run every LESSONS check (frame-0 words, fill, SFX on the mix) before the next jury, and after a drop, park the film rather than add more props.
+- Two films in a row (temperature, password) stalled at 7.2–7.5 and fell with each round, while qrcode and memory passed at 8.0. Fresh juries keep finding new issues, so fix rounds can't climb: the first cut has to land near 8. Spend the effort before the first render on one hero stamp, a hand-made hero prop instead of icon-kit art, no stretch over 1.5 s without voice, and a screenshot frame planned in the brief (password r1–r3).
+- Show the bridge between mechanism and money on screen, not just in the voice: "90 % from data centers" and "now it trains AI" never met on screen, so a 14-year-old couldn't connect them (gpus r2). Re-use an earlier prop to close the loop rather than a new one.
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -62,9 +66,23 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Motion-blur swipes need ≥ 16 sub-frames or they show ghost copies (fyp r1); `make.sh` now renders 16 by default (`SAMPLES=` overrides) after battery r1 ghosted at render.mjs's 4.
 - No still, silent frame near the 5 s drop-off: 1.3 s of static chat at 4.8 s cost a point (memory r2).
 - A prop that falls through a scene passes behind the panel being read and stays out of the caption block (memory r1–r2).
+- A viewfinder that says SCANNED must show all three corner squares inside its brackets (qrcode r2).
+- A condition label must not glide onto the thing it describes; it sits beside it (qrcode r2: STILL SCANS covered two corner squares).
+- Frame 0 carries at most 4 words; the condition pops in with the payoff at about 1.5 s (qrcode r1: 9 words capped Hook at 6).
+- Turn a percentage claim into this video's own count ("THIS TEAR: 11 OF 70 BYTES · HALF THE SPARE USED") so sound-off viewers can't read the demo as the maximum (qrcode r1).
+- An end question must not be answered by the picture (dashed circle on the empty corner) (qrcode r1).
+- Never run two renders of the same film at once: the second corrupts the first's frames (qrcode r2).
 - No dead air after a payoff: give the beat a stamp or move the next line up (battery r1: 3.1 s still after the 96% reveal, fixed with "5× THE LOSS").
 - Draw generic phones (round punch-hole, no notch or logo) and re-created settings screens, never a real UI (battery).
 - Keep sources lines out of the top 300 px: the TikTok top bar covers them (battery r1).
+- Count frame-0 words on the rendered frame: a question shown in both phones counts twice (temperature r2: 7 words capped Hook at 6; one shared bubble above both phones fixed it).
+- A dial that changes the odds must change the hero object too, not only a side chart (temperature r1: the die's faces now repaint by the real share).
+- Fill y 300–1430: a small hero under a centred headline with an empty bottom 40 % reads as a template (temperature r2).
+- Quantize every displayed number to the frame the renderer samples, `(Math.floor(t*30)+.5)/30`; with motion blur `Math.round` blends two values into "1999%%". Check a frame from `out/frames/`, not a still (temperature r2).
+- A wipe that sweeps the whole frame radially smears into a laser-pointer streak under motion blur; use the torn edge moving along one axis (temperature r1).
+- A source credit appears only after the tear has covered the previous scene, or it labels the outgoing prop (temperature r2: HOLTZMAN sat on the made-up pizza odds).
+- Labels follow the dial: HIGH = MORE RANDOM must be gone before the needle drops (temperature r2).
+- Stamp-on-everything is becoming the channel's formula (password r2: six coral stamps); make one stamp the hero payoff and let the rest be quieter changes (password r2).
 
 ## Truth
 - Check physical details an American would know (the old SAT had 5 bubbles, not 4) (hallucinate r1).
@@ -77,6 +95,11 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A scary number gets its condition in big type in the same frame ("+7 MI" / "IF UNCORRECTED" 66 px); small print reads as nothing with the sound off (gps r1).
 - Every on-screen citation must say exactly what that source says; split credits when a figure comes from a different paper (gps r2: Ashby 2003 vs 2006).
 - A claim from a court filing is "says", not fact, until a court found it (hallucinate r1).
+- Prove an on-screen "it works" with the real thing: generate it, draw exactly what the film shows, decode that, and decode the rendered film frame too (qrcode: torn level-H code read by ZXing and zbar at 10 % of modules torn, not 30 %; a torn-off area reads as dark modules, and a small nick in a corner square still scanned, so the "no scan" tear had to cut through half the square).
+- Never extend a quotation: print a source's text exactly as it appears; extra "it keeps going" lines go outside the quote marks under a LOOP CONTINUES · OUR ILLUSTRATION chip (temperature r3: 12 repeats in quotes where Holtzman Fig. 1 prints 3 cost Truth 1 point and blocked posting).
+- Put a technical condition in plain words a viewer can act on, big: "IF THE SITE STORED IT SAFELY (BCRYPT)", not "BCRYPT" in 36 px mono; a rule from NIST binds NIST verifiers, not "sites" (password r2).
+- When a fix re-times the voice, re-check every state label against what is on screen at that moment: the field must never disagree with its stamp (password r3: 9 letters under a 2 WEEKS stamp for 2.5 s cost Truth a point and blocked posting).
+- A quote goes on the thing it describes: Nvidia's "have to be done at once" is about graphics, so it can't sit on the AI-training sheet; and "began in video games" needs an origin source, not a fiscal-2016 pie (gpus r2).
 
 ## Voice
 - Isac picked Ming US_James over Chatterbox and NVIDIA Magpie by ear (2026-10-23): "less robot". Keep it for every video so the channel has one recognisable voice.
@@ -89,7 +112,12 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A hit pushed off one word can land inside the previous one: `gapT` must loop until the hit's whole body (0.14–0.2 s) sits in a real gap, else move it after the word (memory r2).
 - After any sound-effect change, check every hit's full length against `vo.js` word times; in-mix Whisper can score 0 while a thump sits 2–4 dB under a word (memory r2).
 - Next to speech use a short thump (silent by +0.14 s); the frame-0 hit fires before the first word and is never louder than it (memory r2: ? thump 4.8 dB over "Why").
+- Ming reads "level H" as "level age" (heard twice, solo and in the mix); "its top level" plus a LEVEL H chip fixed it (qrcode).
 - A line that starts too hot can take `"fade_in": <seconds>` in vo/script.json (linear ramp, voiceover.py) instead of a re-roll (battery).
+- Check SFX against unhinted Whisper on the finished mix, not `vo.js`: vo.js under-reads a line's last word and Whisper drifts ±0.12 s, so a "0 overlaps" from vo.js still put a rattle on "sixty percent" (temperature r2). Margins: 0.15 s for rattles/swishes/stamps, 0.14 s for knocks/pops; drop a hit with no gap.
+- Place SFX from what Whisper heard, not from vo.js: save each mix pass's heard words to `vo/heard.js`, merge the passes, place hits 0.18–0.2 s clear of them (Whisper moves a word up to 0.06 s between passes), and move the beats that carry sound into the pauses; mid-phrase stamps stay silent. Only pauses ≥ 0.45 s hold a knock or pop (password: 16 hits, 0 overlaps on the third pass after two passes with 1–2).
+- The director's own frame-0 word count and SFX check are not proof: the jury verifies both on the render (temperature r1 claimed 4 words and 0 overlaps; r2 found 7 and one).
+- The biggest visual beats need a sound: if the SFX gate leaves a stamp silent, move the stamp into the next pause rather than keep it mid-phrase; keep every hit ≥ 3 dB under the neighbouring voice and check the room tone level on the render (password r2: −37 dB measured where −50 was intended).
 
 ## Posting and sound
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
@@ -111,5 +139,10 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
 | TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
 | Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | TikTok 0 (6 h, "data processing", likely held in review); YouTube 216 | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
+| Torn QR code (qrcode) | 2026-10-27 17:00 UTC (Tue 13:00 ET; missed Mon, PC offline) | TikTok 0, YouTube 8 (25 min) | | | | real decoded tear; jury 7.2 → 8.0, Truth 9.0 |
 | Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | TikTok 122 (20 min), YouTube 9 | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
+| Same question, two answers (temperature) | held (not posted) | | | | | weighted-dice + dial; jury 7.5 → 7.2 → 6.9 (r3 "don't post"), parked |
+
+| How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
+| Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |

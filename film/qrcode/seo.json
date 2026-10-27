@@ -1,0 +1,59 @@
+{
+  "title": "How a torn QR code still scans",
+  "caption": "This torn QR code still scans. So how does it read what's gone?\nPart of every QR code is backup: at its top level (H), up to 30% of its bytes can be rebuilt, but only if the 3 corner squares survive.\nFind a QR code near you. Which corner is empty?",
+  "hashtags": [
+    "#tech",
+    "#qrcode",
+    "#howthingswork",
+    "#engineering",
+    "#learnontiktok"
+  ],
+  "keywords": [
+    "QR code",
+    "how do QR codes work",
+    "torn QR code still scans",
+    "damaged QR code",
+    "why do QR codes have 3 squares",
+    "QR code error correction",
+    "QR code error correction level H",
+    "who invented the QR code"
+  ],
+  "cover_text": "How does it still scan?",
+  "cover_time": 0.0,
+  "pinned_comment": "Why do some QR codes have a logo in the middle? It covers part of the code, so the backup has to fill it in. Denso Wave, which invented the QR code, warns that then even a tiny smudge can stop the scan (qrcode.com FAQ). Seen one with a logo? Yes or no.",
+  "post_time_et": "13:00 ET, Mon Oct 26, 2026, scheduled in TikTok Studio (the playbook's 12:00-15:00 ET window: US lunch break on a weekday, the slot battery used yesterday). Post only on the round-2 'post' verdict (8.0, Truth 9.0). If the director re-renders with the round-2 polish fixes, check the caption still matches; nothing spoken changes.",
+  "post_time_stockholm": "18:00 Mon Oct 26 = 17:00 UTC. Sweden has been on CET since Oct 25 and the US stays on EDT until Nov 1, so the gap is 5 h this week. Pick the slot from YouTube's dropdown and check the saved time (clock-change lesson).",
+  "sounds": [
+    {
+      "name": "Self Aware - Mark Allan Wolfe (first pick)",
+      "why": "Smooth, hypnotic instrumental (Metricool's words), curious rather than cute: suits a puzzle about a torn code. Checked: #2 on Metricool 'Trending TikTok Songs This Week: Oct 19th, 2026' (metricool.com/tiktok-songs, re-read 2026-10-26, still the newest list). Length checked: the TikTok clip is 1:00 (seen in the app on the GPS post), so it covers 39.8 s and the 45 s floor. Not on the last 3 posts: last used on noise (Oct 24, 13:00 ET), 4 posts back."
+    },
+    {
+      "name": "Zamba Tuya - Daniel Frascoli (only if no vocals and at least 0:45 in the app)",
+      "why": "'Soothing keys with beautiful strings', 'peaceful, laid-back' (Metricool): a warm bed for the 1994 story and the 'which corner is empty?' ending. Never on our posts. Checked: #8 on Metricool (week of Oct 19, 2026, re-read 2026-10-26; the article also spells it 'Zumba Tuya'). Vocals and length NOT checked: Metricool doesn't call it instrumental, and a web search on 2026-10-26 found no listing for it."
+    },
+    {
+      "name": "Final Game Showdown - ProdByLucK (only if no vocals and at least 0:45 in the app)",
+      "why": "'Its slow build creates a sense of suspense' (Metricool): fits the turn at 15.8 s, the second tear and NO SCAN. Keep it near 5 %. Never on our posts. Checked: #3 on Metricool (week of Oct 19, 2026, re-read 2026-10-26). Vocals and length NOT checked: no page outside the app describes it."
+    }
+  ],
+  "sound_note": "Skipped by rule: Mint Breeze (memory), Espresso Soul (battery), Sunset in Girona (fyp), the last three posts. Checked how, 2026-10-26: Metricool's weekly page (newest list still Oct 19, 2026; the page counts down from #10, ranks match earlier reads; it doesn't say the list is US-only). Higgsfield tiktok_music_trending, US, returned 0 tracks for ALL 7DAY (limit 50), CHILL_BEATS 7DAY and ALL 30DAY, as on Oct 23-25, so nothing is claimed from TikTok's own chart. TikTok Creative Center's music page rendered only its menu from here. A web search for 'trending TikTok sounds this week October 26 2026' found nothing dated after July 2026. Web searches for Zamba Tuya's and Time Back's lengths found nothing. Passed over: Time Back (#4, techno), DUNG DING BREGA (#5, phonk), Cavendish Banana (#7, EDM) and Mari-Mari (#10, has lyrics), as too driving or vocal under narration. TikTok drafts don't keep music, so Isac adds the sound in the app at about 5-10 % under out/qrcode-voice-only.mp4 (39.8 s; the film has no music bed). It can't be changed after posting.",
+  "youtube_title": "Why a Torn QR Code Still Scans 🤔",
+  "youtube_description": "This torn QR code still scans. So how does it read what's gone? Part of every QR code is backup. Denso Wave, the company that invented the QR code, says its error correction works by adding a Reed-Solomon code to the data, the same kind of math used for music CDs, so the code can \"restore data if the code is dirty or damaged\".\n\nHow much? There are four levels. At the top level, H, about 30% of the codewords can be restored (L about 7%, M about 15%, Q about 25%). A codeword is 8 bits, so \"bytes\" is the plain word. That's 30% of the data, not 30% of the printed square, so don't rip a third off and expect a scan.\n\nBut only if the three corner squares survive. Denso calls them position detection patterns: they tell the camera that a code is there and where it is, and with three of them it can tell which way is up from any angle. Masahiro Hara's team picked their 1:1:3:1:1 stripe pattern after searching fliers, magazines and cardboard boxes \"all day long for days on end\" for the ratio that almost never shows up in print. Denso Wave announced the QR code in 1994, for factory sites where codes get oily and dirty. And its maker says most codes carry less backup: \"Typically, Level M (15%) is most frequently selected.\"\n\nSo, find a QR code near you. Which corner is empty? One word in the comments.\n\nFine print: the 30% and 15% are Denso Wave's approximate figures for codewords, from its outline of the ISO/IEC 18004 standard; how much paper you can lose depends on where the damage falls, because a tear's area doesn't map one-to-one to codewords. The code in the video is a real version 3, level H QR code that reads \"TECH, EXPLAINED\". We tested every on-screen scan with two open-source decoders, ZXing-cpp and zbar, on the rendered frames: the hook's tear covers about 10% of the code's modules and flips 11 of its 70 bytes, about half of what level H can fix, and stays clear of the corner squares, the format strips beside them and the timing lines. The corner tear really fails both decoders, and a smaller nick in a corner square still scanned, so \"survive\" means readable enough. It has not been tested with a phone camera. \"Built in 1994\" means Denso Wave announced it that year; development ran about a year and a half before. \"Most frequently selected\" is Denso Wave's statement about what users pick, not a count of codes in the wild. This is about the standard square QR code (Model 2); Micro QR codes have one corner square. The car-part tag, menu, parking sign and ticket are props drawn for the video, and no real scanner app is shown.\n\nSources:\n- Denso Wave, qrcode.com, \"Error correction feature\" (read Oct 26, 2026): https://www.qrcode.com/en/about/error_correction.html\n- Denso Wave, qrcode.com, \"QR Code Standardization\" (read Oct 26, 2026): https://www.qrcode.com/en/about/standards.html\n- Denso Wave, qrcode.com, \"History of QR Code\" (read Oct 26, 2026): https://www.qrcode.com/en/history/\n- Denso Wave, \"QR Code development story\" (read Oct 26, 2026): https://www.denso-wave.com/en/technology/vol1.html\n- Denso Wave, qrcode.com, FAQ (read Oct 26, 2026): https://www.qrcode.com/en/faq.html\n- ISO/IEC 18004, the QR code standard (as outlined by Denso Wave)\n\nHow tech works, part 4. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.\n\n#shorts #tech #qrcode",
+  "youtube_tags": [
+    "qr code",
+    "how do qr codes work",
+    "torn qr code",
+    "damaged qr code",
+    "why do qr codes have 3 squares",
+    "qr code error correction",
+    "who invented the qr code",
+    "how tech works",
+    "tech explained",
+    "shorts"
+  ],
+  "youtube_playlist": "How tech works",
+  "series": "How tech works, part 4",
+  "is_aigc": true,
+  "disclosure": "AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes"
+}

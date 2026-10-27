@@ -1,0 +1,21 @@
+duck -6 dB over 5 phrases; voice set +22.4 dB for a 41.0 dB speech-to-music ratio
+wrote /home/user/molindesign/film/gpus/out/gpus-vo.mp4
+integrated -14.1 LUFS   true peak -2.5 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "Ninety -six billion dollars, three months."
+ok    ask        wer 0.00  heard "So why is Nvidia so rich?"
+ok    dc         wer 0.00  heard "Over 90 % came from datacenters."
+ok    games      wer 0.00  heard "But its chips began in video games."
+ok    toronto    wer 0.00  heard "In 2012, a Toronto team used two gaming cards."
+ok    won        wer 0.00  heard "Their AI won a big image contest by a mile."
+ok    why        wer 0.00  heard "Here's why. Training AI is mostly one move."
+ok    move       wer 0.00  heard "Multiply, then add, billions of times."
+ok    cpu        wer 0.00  heard "A laptop processor has about 10 cores."
+ok    gpu        wer 0.00  heard "A gaming card has over 21,000 tiny ones."
+ok    once       wer 0.00  heard "All doing that move at once."
+ok    pixels     wer 0.00  heard "Made for game pixels, now it trains AI."
+ok    end        wer 0.00  heard "Got an Nvidia chip at home? Yes or no?"
+gpus-vo:  I: -14.1 LUFS  Peak: -2.5 dBFS 
+gpus-voice-only:  I: -13.9 LUFS  Peak: -1.3 dBFS 
+no black stretches

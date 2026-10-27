@@ -1,0 +1,78 @@
+wrote out/mix.wav
+
+READCHECK  (need ≥ letters/15 + 1.5 s, and ≥ 1.8 s)
+ok    5090   4.54s / 2.43s  "RTX 5090 · NVIDIA"
+ok    mon    7.50s / 1.97s  "3 MONTHS"
+ok    n96    7.38s / 1.80s  "$96"
+ok    bil    7.21s / 1.97s  "BILLION"
+ok    cond   3.08s / 2.83s  "NVIDIA SALES (REVENUE)"
+ok    qtr    3.08s / 3.03s  "QUARTER ENDED JULY 26, 2026"
+ok    head   2.83s / 2.70s  "WHY IS NVIDIA SO RICH?"
+ok    else   2.79s / 2.37s  "THE REST: $7.2B"
+ok    src1   2.79s / 2.63s  "NVIDIA, AUG 26, 2026"
+ok    dc     2.71s / 2.63s  "DATA CENTERS $89.0B"
+ok    fy     3.00s / 2.97s  "10 YEARS AGO (FISCAL 2016)"
+ok    gm     2.79s / 2.10s  "GAMING 56%"
+ok    dc7    2.79s / 2.30s  "DATA CENTER 7%"
+ok    10k    2.58s / 2.17s  "NVIDIA 10-K"
+ok    om1    2.58s / 1.97s  "OUR MATH"
+ok    quote  2.88s / 2.70s  "“two GTX 580 3GB GPUs”"
+ok    auth   2.88s / 2.83s  "KRIZHEVSKY ET AL., 2012"
+ok    tor    3.00s / 2.30s  "TORONTO · 2012"
+ok    gtx    2.25s / 1.90s  "GTX 580"
+ok    gtx2   2.25s / 2.17s  "$499 IN 2010"
+ok    ilsvrc 3.25s / 2.97s  "ILSVRC 2012 IMAGE CONTEST"
+ok    wrong  3.25s / 2.77s  "WRONG GUESSES (TOP-5)"
+ok    lower  3.25s / 2.37s  "LOWER IS BETTER"
+ok    b2l    3.25s / 2.03s  "2ND PLACE"
+ok    b1l    3.21s / 2.97s  "THEIRS (TWO GAMING CARDS)"
+ok    rec    3.21s / 2.97s  "NEURIPS 2012 · RE-CREATED"
+ok    two    3.13s / 2.77s  "THEIR TWO GAMING CARDS"
+ok    b2     2.75s / 1.83s  "26.2%"
+ok    b1     2.00s / 1.83s  "15.3%"
+ok    cell   1.96s / 1.80s  "× +"
+ok    cells  6.38s / 2.57s  "64 × 34 = 2,176 CELLS"
+ok    ex1    2.83s / 1.90s  "3 × 4 = 12"
+ok    mat    4.46s / 3.97s  "ONE BIG MATRIX MULTIPLY ≈ 69 BILLION OF THESE"
+ok    docs   4.46s / 2.70s  "NVIDIA DOCS · OUR MATH"
+ok    ex2    2.04s / 1.97s  "12 + 5 = 17"
+ok    lap    9.42s / 2.10s  "LAPTOP CPU"
+ok    ten    7.92s / 2.17s  "10 BIG CORES"
+ok    mba    7.79s / 2.70s  "MACBOOK AIR M5, APPLE"
+ok    scale  5.29s / 2.37s  "1 CELL = 10 CORES"
+ok    gc     6.46s / 2.17s  "GAMING CARD"
+ok    n21    5.58s / 1.90s  "21,760"
+ok    tiny   4.67s / 2.10s  "TINY CORES"
+ok    nq     5.17s / 3.37s  "“…have to be done at once” · NVIDIA"
+ok    once   3.21s / 2.10s  "ALL AT ONCE"
+ok    yes    2.17s / 1.80s  "YES"
+ok    no     2.25s / 1.80s  "NO"
+wrote gpus/out/check/sheet.jpg
+wrote gpus/out/poster.jpg
+frame 60/1113  97 ms/frame
+frame 120/1113  89 ms/frame
+frame 180/1113  88 ms/frame
+frame 240/1113  88 ms/frame
+frame 300/1113  87 ms/frame
+frame 360/1113  86 ms/frame
+frame 420/1113  86 ms/frame
+frame 480/1113  86 ms/frame
+frame 540/1113  88 ms/frame
+frame 600/1113  87 ms/frame
+frame 660/1113  87 ms/frame
+frame 720/1113  86 ms/frame
+frame 780/1113  86 ms/frame
+frame 840/1113  85 ms/frame
+frame 900/1113  85 ms/frame
+frame 960/1113  85 ms/frame
+frame 1020/1113  85 ms/frame
+frame 1080/1113  85 ms/frame
+wrote out/video.mp4
+wrote gpus/out/gpus.mp4
+
+CHECKS
+stream|codec_name=h264|width=1080|height=1920|r_frame_rate=30/1
+stream|codec_name=aac|r_frame_rate=0/0
+format|duration=37.100000
+integrated I:         -16.4 LUFS   true peak Peak:       -2.6 dBFS
+black spans ≥0.4 s: none

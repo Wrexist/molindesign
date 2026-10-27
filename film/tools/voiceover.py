@@ -370,6 +370,12 @@ def wer(ref, hyp):
     join = lambda ws: re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws)).split()
     split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
     r, h = split(ref), split(hyp)
+    # "$96 billion" and "96 billion dollars" are the same words spoken: when either side writes a $ amount, ignore "dollars"
+    if any('$' in w for w in list(ref) + list(hyp)):
+        r, h = [w for w in r if w not in ('dollars', 'dollar')], [w for w in h if w not in ('dollars', 'dollar')]
+    # Whisper spells some compounds shut ("datacenters" for "data centers"): split a heard word that is two script words joined
+    pairs = {r[i] + r[i + 1]: [r[i], r[i + 1]] for i in range(len(r) - 1)}
+    h = [p for w in h for p in pairs.get(w, [w])]
     d = list(range(len(h) + 1))
     for i in range(1, len(r) + 1):
         prev, d[0] = d[0], i

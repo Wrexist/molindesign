@@ -1,0 +1,99 @@
+{
+  "about": "GPUs: why AI made Nvidia rich. Factory #12, backlog row 13. Number hook, then a true story, then one mechanism. Nvidia's quarter ended July 26, 2026: revenue $96.2 billion, Data Center $89.0 billion (about 92.5%) (Nvidia earnings release, Aug 26, 2026). Its chips started out in games: in fiscal 2016 Gaming was $2,818M of $5,010M and Datacenter $339M (Nvidia FY2017 10-K). In 2012 Krizhevsky, Sutskever and Hinton (University of Toronto) trained AlexNet on two GTX 580 3GB GPUs in five to six days and won ILSVRC-2012 with 15.3% top-5 error vs 26.2% for the second-best entry (NeurIPS 2012 paper); the GTX 580 was a $499, 512-core GeForce card launched in 2010 for DX11 games (Nvidia launch release and datasheet). Neural-network layers are matrix multiplications, each made of fused multiply-adds (Nvidia Deep Learning Performance docs, GEMM guide): one 4,096 x 4,096 x 4,096 product is about 69 billion multiply-adds (our arithmetic). A MacBook Air (M5) has a 10-core CPU (Apple specs); a GeForce RTX 5090 has 21,760 CUDA cores (Nvidia specs), small simple cores, not the same kind. Nvidia's own explainer: GPUs are ideal for graphics, where the work 'has to be done at once'. Hero moment: line 'once', one print-block slam fills the whole multiply-add sheet. No stock price, no investment advice. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "Nvidia",
+    "Toronto"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 34.0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "96 billion dollars. Three months.",
+      "say": "Ninety-six billion dollars. Three months."
+    },
+    {
+      "id": "ask",
+      "at": 2.67,
+      "text": "So why is Nvidia so rich?"
+    },
+    {
+      "id": "dc",
+      "at": 4.81,
+      "text": "Over 90% came from data centers.",
+      "say": "Over ninety percent came from data centers."
+    },
+    {
+      "id": "games",
+      "at": 7.31,
+      "text": "But its chips began in video games."
+    },
+    {
+      "id": "toronto",
+      "at": 9.73,
+      "text": "In 2012, a Toronto team used two gaming cards.",
+      "say": "In twenty twelve, a Toronto team used two gaming cards."
+    },
+    {
+      "id": "won",
+      "at": 13.34,
+      "text": "Their AI won a big image contest by a mile."
+    },
+    {
+      "id": "why",
+      "at": 16.49,
+      "text": "Here's why. Training AI is mostly one move."
+    },
+    {
+      "id": "move",
+      "at": 19.49,
+      "text": "Multiply, then add. Billions of times."
+    },
+    {
+      "id": "cpu",
+      "at": 22.57,
+      "text": "A laptop processor has about ten cores."
+    },
+    {
+      "id": "gpu",
+      "at": 25.52,
+      "text": "A gaming card has over 21,000 tiny ones.",
+      "say": "A gaming card has over twenty-one thousand tiny ones."
+    },
+    {
+      "id": "once",
+      "at": 28.46,
+      "text": "All doing that move at once.",
+      "say": "All doing that move, at once."
+    },
+    {
+      "id": "pixels",
+      "at": 31.45,
+      "text": "Made for game pixels. Now it trains AI."
+    },
+    {
+      "id": "end",
+      "at": 34.11,
+      "text": "Got an Nvidia chip at home? Yes or no."
+    }
+  ],
+  "dur": 37.1
+}
