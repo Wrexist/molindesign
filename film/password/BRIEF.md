@@ -1,0 +1,96 @@
+# Password: how long your password takes to crack
+
+Factory #11 · slug `password` · backlog row 12 · researched 2026-10-27 · follows `film/temperature/` (held at 7.2) and `film/qrcode/` (8.0). Channel: Tech, explained (not named in the script). American English, US audience, AI voice Ming US_James (seed 7), disclosed in the post. Built to the stats rules: 30–45 s (about 42–43 s), 13 lines, about 103 spoken words, a 4-word hook from 0.2 s, the search phrase spoken from about 2.1 s, and a yes-or-no ending the picture doesn't answer.
+
+**Defensive only.** No tools, commands, wordlists, hash-cracking steps or anything a viewer could follow to crack a password. The film says *how long* and *what to do instead*, never *how*. No real person's password, no real account, no real breach dump on screen: P@ssw0rd! is a generic example (NIST uses the same pattern, "Password1!", as its own example), and the breach number is an aggregate count.
+
+## 1. Topic and one hard idea
+
+**A password that ticks every old rule can crack instantly, while a long random one takes longer than the age of the universe: length and randomness count, symbols don't.**
+
+**The film is a contradiction on one object the viewer recognises** (a puzzle hook won the most views; viewer-as-subject paced best). Frame 0 is a password field reading **P@ssw0rd!** with three green ticks (capital, number, symbol): it looks like a good password. The voice says it cracks instantly. Line 2 asks the search question. Then the reason (it's in leaked lists 100,000+ times, and leaked ones are tried first), then the dial the backlog asked for (**length**): one password field grows letter by letter while a crack-time counter jumps two weeks → 21,000 years → billions of years. Payoff: the U.S. guidelines now ask for length, not symbols; turn on two-step login. The end asks "Is it on for your email? Yes or no." and loops into "This password cracks instantly."
+
+**Native move for this film: the growing password field and its time stamp.** One big cream paper password field (≤ 800 px wide). Each new character drops in like a typed key with a short knock, and a coral time stamp on the field re-slaps to the new crack time. The hero object changes with the dial (temperature r1 lesson), not a side chart.
+
+**Main search phrase: `how long to crack a password`.** Spoken verbatim in line `ask` (starts about 2.0 s, the phrase lands about 2.2–4.4 s). Show it on screen in the first 2 s and in the caption's first line. Secondary phrases for the SEO agent: `how long does it take to crack a password`, `password crack time`, `Hive Systems password table 2026`, `is my password strong`, `passphrase vs password`, `NIST password guidelines 2025`, `turn on 2FA`. I didn't check search volumes.
+
+**DM-able moment:** line `breach`: **"P@ssw0rd!" has shown up in data breaches over 100,000 times** (119,515 on 2026-10-27, Have I Been Pwned). Everyone knows someone who uses a password like it. Second candidate: the length ladder card (two weeks → 21,000 years for four more letters).
+
+**Proposed YouTube title (4–8 words, Title Case, one emoji):** **"Why P@ssw0rd! Cracks Instantly 😱"**. Alternatives: "How Long Your Password Takes to Crack 😱", "This Password Cracks Instantly 😱".
+
+**Overlap note:** backlog row 27 (`whatif-password`, "What if your password were 20 letters long?") covers the same table. This film uses the 8 → 12 letters ladder and six random words, and doesn't say 20 letters, so row 27 can still go up later as a what-if. The orchestrator may want to space them out or drop one.
+
+## 2. Hook options
+
+1. **"This password cracks instantly."** (chosen, 4 words) A contradiction against the picture: frame 0 shows P@ssw0rd! with three green ticks, so the eye says "strong" and the voice says "instantly". "Instantly" is Hive Systems' own word for a previously stolen or dictionary-word password at every length (fact 3). Frame 0 needs only one word (the password) plus three tick icons.
+2. "This password takes less than a second to crack." (the backlog hook, rejected) 9 words, over the 6-word cap, and **"less than a second" isn't what the source says**: Hive's table says "Instantly", and its own timed run of the dictionary-and-reuse case took "about three seconds" on one GPU (fact 3). Never state a number the source didn't give.
+3. "Two weeks, or 21,000 years?" (5 words, backup) The length ladder as a puzzle. Strong, but it needs the condition (random lowercase, Hive's rig) before it means anything, and it's closer to the row 27 what-if.
+
+## 3. Facts used
+
+All read 2026-10-27. Primary sources: Hive Systems' own 2026 table page and image, NIST's final SP 800-63B-4, CISA's own pages, EFF's own dice page, and the Have I Been Pwned Pwned Passwords API.
+
+| # | Fact | Line | Source |
+|---|---|---|---|
+| 1 | **The newest table is Hive Systems' 2026 edition, dated July 14, 2026.** Title: "Time it takes a hacker to brute force your password in 2026". Header: **"Hardware: 16 x RTX 5090 \| Password hash: bcrypt (10)"**. Page: "two 8x RTX 5090 setups running at a measured **138,675 hashes per second** combined", rented cloud GPUs. | random, eight, twelve | Hive Systems, "Are Your Passwords in the Green?" (2026 table): https://www.hivesystems.com/blog/are-your-passwords-in-the-green (redirect from https://www.hivesystems.com/password) ; table image: https://images.squarespace-cdn.com/content/v1/5ffe234606e5ec7bfc57a7a3/669a0b8a-48d6-49f0-85ab-ddf6cd8d7cef/Hive+Systems+Password+Table+-+2026+Square.png |
+| 2 | **The conditions the main table assumes** (put them on screen): offline attack on a stolen hash ("no lockout, no rate limit"), MFA "isn't used or has been bypassed", **passwords are randomly generated**, not in a past breach, symbols limited to ^*%$!&@#. "Non-random passwords fall much faster." | random, eight, twelve | same page |
+| 3 | **"Instantly" for leaked or dictionary-word passwords.** Hive's second table, "Password table if your password has been previously stolen, uses dictionary words, or if you reuse it between websites": every cell, 4 to 18 characters, reads **"Instantly"**. FAQ: "a common, reused, or dictionary-based password can fall instantly." Their timed run of this case: "about three seconds" on a single rented RTX 5090. "Real attackers don't start from scratch. They start with … dictionary attacks, and hashes from previous breaches." | hook, first | same page; image: https://images.squarespace-cdn.com/content/v1/5ffe234606e5ec7bfc57a7a3/d47047e4-f5aa-4cfc-8ec0-9e2e223bbd42/Hive+Systems+Password+Table+-+2026+Stolen.png |
+| 4 | **P@ssw0rd! is in breach data 119,515 times** (Pwned Passwords count, checked 2026-10-27 by k-anonymity range query: only the first 5 hex of the SHA-1 left the machine). Narration rounds down to "over 100,000" so it stays true as the count grows. For scale (not in narration): "P@ssw0rd" 6,421,042; "password" 52,372,427. | breach | Have I Been Pwned, Pwned Passwords: https://haveibeenpwned.com/Passwords ; API docs: https://haveibeenpwned.com/API/v3#PwnedPasswords |
+| 5 | **Length ladder, 2026 table, random lowercase letters:** 8 → **2 weeks**, 9 → 1 year, 10 → 32 years, 11 → 839 years, **12 → 21k years**, 15 → 383m years, 16 → 9bn years. Each extra lowercase letter multiplies the possibilities by **26** (our check: 26^8 / 138,675 per s = 17.4 days; 26^12 / 138,675 = 21,804 years; both match the table). Full mix of 8 characters: 132 years. | eight, times, twelve | fact 1 sources; our arithmetic |
+| 6 | **Six random words.** EFF: "We recommend selecting a minimum of six words from our long wordlist" (7,776 words, five dice per word; six-word space 7,776^6 = 221,073,919,720,733,357,899,776). "Passphrases made of randomly-chosen words can be both easy to remember and hard for someone else to guess." **Our math** at Hive's 2026 speed, even if the attacker knows the list: 7,776^6 / 138,675 per s ≈ **50 billion years** for the full search (Hive's tables are full-search times too). | words | EFF Dice-Generated Passphrases: https://www.eff.org/dice ; our arithmetic |
+| 7 | **NIST SP 800-63B-4 (final, July 2025):** "Verifiers and CSPs SHALL require passwords that are used as a single-factor authentication mechanism to be a minimum of **15 characters** in length" (8 minimum if only part of MFA). "Verifiers and CSPs **SHALL NOT impose other composition rules** (e.g., requiring mixtures of different character types)." "SHOULD permit a maximum password length of at least 64 characters." Appendix A: "a user who might have chosen 'password' … would be relatively likely to choose 'Password1' if required to include an uppercase letter and a number or **'Password1!'** if a symbol is also required." "The use of passphrases (i.e., passwords with multiple words) is often an effective way to create a longer password." | rules, nist | NIST SP 800-63B-4: https://pages.nist.gov/800-63-4/sp800-63b.html ; status and date: https://csrc.nist.gov/pubs/sp/800/63/b/4/final |
+| 8 | **Turn on MFA.** CISA: "Even if an unauthorized user steals your password, they won't be able to meet the second step requirement"; second steps include "a code texted to a phone or one generated by an authenticator app". (That Secure Our World page is marked archived.) CISA's live MFA topic page: "even if you have a complex password, bad cyber actors unfortunately still have ways of getting past it"; CISA's older MFA page: "any MFA is better than no MFA", phishing-resistant FIDO/WebAuthn is the strongest. | mfa, end | CISA Secure Our World, Turn On MFA: https://www.cisa.gov/secure-our-world/turn-mfa ; CISA MFA topic: https://www.cisa.gov/topics/cybersecurity-best-practices/multifactor-authentication ; CISA MFA: https://www.cisa.gov/MFA |
+
+**Wording choices tied to sources**
+- `hook` / `first` say "instantly" because that is Hive's word for this case (fact 3), with the condition on screen. Not "less than a second" (fact 3 measured about 3 s).
+- `rules` describes P@ssw0rd! itself (capital P, number 0, symbols @ and !). On screen, credit NIST's own predictable example "Password1!" (fact 7) so it's clear this is a known pattern, not our opinion.
+- `breach` "shown up in data breaches over 100,000 times": HIBP counts how often a password appears in its breach corpus (fact 4). Round down; don't show 119,515 as a live number that will drift. If shown, date it: **119,515 · HAVE I BEEN PWNED · OCT 27, 2026**.
+- `first` "Leaked passwords get tried first" paraphrases Hive (fact 3: attackers start with dictionaries and earlier breaches). No list names, no tool names, no rules (Hive's page names a wordlist and a tool; **keep both off screen and out of captions**).
+- `random` "about 139,000 a second" is Hive's measured 138,675 H/s against **bcrypt cost 10** on **16 rented RTX 5090s**. A different hash can be much faster (Hive's own FAQ says "billions of times per second" in general terms; its table speed is 138,675). The condition must be on screen in big type (Truth lesson).
+- `eight` says "random letters", screen adds **LOWERCASE**. "About two weeks" is the table cell.
+- `times` "multiplies that by 26": true for each added random lowercase letter; matches the table (2 weeks → 1 year → 32 years).
+- `words` "Billions of years" is **our math**, labeled as such, from EFF's six-word advice and Hive's speed (fact 6). It assumes words picked at random by dice or a password manager, not chosen by you. Screen: **6 RANDOM WORDS · OUR MATH AT HIVE'S 2026 SPEED**.
+- `nist` "federal guidelines pick length over symbols": NIST requires 15 characters for a password used alone and forbids forced character mixes (fact 7). Screen names it: **NIST SP 800-63B-4 · JULY 2025: 15+ CHARACTERS · NO FORCED SYMBOLS**. Not "the law"; it binds federal systems and is widely followed.
+- `mfa` "so a stolen password isn't enough": CISA's wording (fact 8). Not "unhackable": CISA itself ranks phishing-resistant MFA above texted codes.
+- `end` asks about **email**, the account that resets the others (inferred, not sourced; it's a question, not a claim).
+
+**Kept out on purpose**
+- Any cracking method, tool, wordlist name, hash-cracking command or rule (defensive-only note).
+- Hive's 8-digit "Instantly" cell: by Hive's own speed it works out to about 12 minutes (10^8 / 138,675), so the label looks like a table quirk. Not used.
+- The "MFA makes you 99% less likely to be hacked" line. CISA's topic page says it, but it traces back to a Microsoft figure about compromised accounts, and CISA's newer pages don't repeat it. Not used.
+- "Change your password every 90 days": NIST says SHALL NOT require periodic changes. Pinned-comment candidate, not narration.
+- Quantum computing, AI cracking (Hive: AI accelerators did no better), password managers' internals.
+
+## 4. Shot ideas per line
+
+House look: ink-dark stage, cream type, one hot coral accent, chips, labels, stamps. Generic, re-created UI only: no real site, no logo, round-punch-hole phones (battery lesson). Every number on screen is quantized to the sampled frame (temperature r2).
+
+| id | at | Line | Shot |
+|---|---|---|---|
+| hook | 0.2 | "This password cracks instantly." | **Frame 0:** one huge cream paper password field filling y 500–900, the text **P@ssw0rd!** shown in clear (≥ 120 px), with three green tick chips under it drawn as icons (**A**, **0**, **@**), no words. Frame-0 word count: 1. On "instantly" (about 1.5 s) a coral **INSTANTLY** stamp slaps across the field and a hairline crack runs through it. Tag **EXAMPLE** small at the corner. |
+| ask | 2.03 | "So how long to crack a password?" | Search phrase big on screen: **HOW LONG TO CRACK A PASSWORD?** The cracked field slides down to the lower third; a blank stopwatch-style coral time stamp waits beside it. |
+| rules | 4.93 | "It's got a capital, a number, a symbol." | The three ticks pop one by one under the field as the words land: **CAPITAL ✓ NUMBER ✓ SYMBOL ✓**. Small credit card beside: **NIST'S OWN PREDICTABLE EXAMPLE: "Password1!"**. |
+| breach | 8.19 | "But it's shown up in data breaches over 100,000 times." | Hard cut: a tall stack of paper slips (each a blank grey bar, **no real data**) thuds down; one slip in the stack reads P@ssw0rd! again and again. Counter rolls in round units to **100,000+ TIMES** (≥ 40 px, hold ≥ 3 s: screenshot frame). Source chip after the cut: **HAVE I BEEN PWNED · 119,515 · OCT 27, 2026**. |
+| first | 12.88 | "Leaked passwords get tried first. So, instantly." | The P@ssw0rd! slip is pulled from the top of the stack and slapped on the field: **INSTANTLY** re-stamps. Condition in big type, same frame: **HIVE SYSTEMS 2026: "INSTANTLY" IF IT'S BEEN LEAKED OR USES DICTIONARY WORDS**. |
+| random | 15.78 | "Now random ones get guessed, about 139,000 a second." | Torn-edge wipe along one axis. The field clears to a random string **qxvmtrbe** (lowercase, 8 letters, labelled **RANDOM EXAMPLE**). A paper GPU rack prop (16 card slots, no brand) with a rolling guess counter **139,000 / SECOND**. Condition chip ≥ 36 px: **16 RENTED RTX 5090s · BCRYPT · STOLEN HASH, OFFLINE · HIVE SYSTEMS, JULY 2026**. |
+| eight | 20.47 | "Eight random letters? About two weeks." | Time stamp on the field slaps **2 WEEKS**. Chip **8 LOWERCASE LETTERS**. |
+| times | 23.01 | "Each extra letter multiplies that by 26." | Native move: one letter types in (9 letters), stamp re-slaps **1 YEAR**; a big coral **×26** flies between the two stamps. |
+| twelve | 26.27 | "But twelve letters? 21,000 years." | Three more letters type in fast (10, 11, 12) with knocks; stamp climbs **32 YEARS → 839 YEARS → 21,000 YEARS**. Hold 21,000 YEARS. |
+| words | 28.82 | "Six random words? Billions of years." | Field widens and fills with six random lowercase words, e.g. **cobalt pigeon rumble tiara skillet morse** (labelled **RANDOM EXAMPLE · DON'T USE THIS ONE**). Stamp: **BILLIONS OF YEARS**. Chip: **EFF: 6 RANDOM WORDS · OUR MATH AT HIVE'S 2026 SPEED**. |
+| nist | 31.36 | "That's why federal guidelines pick length over symbols." | A re-created guideline card (paper, **RE-CREATED**): **NIST SP 800-63B-4 · JULY 2025** with two big lines **15+ CHARACTERS** and ~~MUST USE SYMBOLS~~ struck in coral. |
+| mfa | 34.62 | "And turn on two-step login, so a stolen password isn't enough." | Generic drawn phone: a re-created settings row **TWO-STEP LOGIN** with a toggle that flips on. Behind it the P@ssw0rd! slip tries a lock and bounces off a second padlock labelled **CODE**. Credit: **CISA**. |
+| end | 38.95 | "Is it on for your email? Yes or no." | A generic email app icon (envelope, no brand) beside a toggle drawn **half-hidden / blurred**, so the picture doesn't answer. Two big chips **YES / NO**. On "no", cut to frame 0 so the loop replays. |
+
+Pacing: a new object or stamp every 2–4 s. The longest hold is the `breach` counter (screenshot frame, ≥ 3 s).
+
+## 5. Open questions for the director
+
+1. **Length.** 13 lines, about 103 spoken words. Chained `at` puts `end` at 38.95 s and `dur` at 43 s. Ming has run a little faster than the chain before, so expect about 40–42 s. If long, cut `rules` (the ticks on frame 0 already say it) before anything else.
+2. **Turn words.** "So" 2.0 s, "But" 8.2 s, "Now" 15.8 s, "But" 26.3 s, "That's why" 31.4 s, "And" 34.6 s. The 18–26 s stretch rides on the typing knocks and stamps.
+3. **Ming risks.** "a hundred thirty-nine thousand a second" (check it doesn't blur into "a hundred and thirty"); "twenty-one thousand years"; "two-step login" (could come out "two step log in", fine either way); "So, instantly." is a short tail after a full stop: if it drops pitch oddly, reword to "That's why it falls instantly." Unhinted Whisper check on "breaches" and "multiplies".
+4. **Truth on screen.** Every crack time carries its condition in the same frame, ≥ 36 px: **RANDOM · BCRYPT · 16 RTX 5090s · HIVE SYSTEMS, JULY 2026**. The source credit appears only after the wipe covers the previous prop (temperature r2). "Billions of years" is labelled **OUR MATH**.
+5. **No real data.** The breach stack is blank grey bars plus the generic P@ssw0rd!; no emails, usernames or other passwords, no real breach names. The six example words and the random 8-letter string are made up and labelled as examples; don't use a string that is a real word list sample from Hive's page.
+6. **No how-to.** Don't show a terminal, a tool name, a wordlist name, a hash string or rules, even as set dressing.
+7. **Pinned comment ideas for the SEO agent:** (a) "NIST (the U.S. standards agency) also says sites shouldn't force you to change your password on a schedule, only when there's a sign it leaked (SP 800-63B-4, 2025)." (b) "These times assume a random password. Anything with your name, a word, or a password you've used before falls far faster (Hive Systems 2026)."
+8. **End-card sources:** "Hive Systems Password Table, July 2026 · Have I Been Pwned · NIST SP 800-63B-4 (2025) · EFF · CISA".
+9. **Description fine print (for the SEO agent):** "Crack times: Hive Systems 2026 table, random passwords, bcrypt (cost 10) hash stolen and cracked offline on 16 rented RTX 5090 GPUs. 'Six random words' time is our arithmetic at Hive's measured speed with EFF's 7,776-word list. P@ssw0rd! is an example; its breach count is from Have I Been Pwned on Oct 27, 2026."
