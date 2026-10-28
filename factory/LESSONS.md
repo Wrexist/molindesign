@@ -51,6 +51,9 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A film that drops across jury rounds (temperature 7.5 → 7.2 → 6.9) is being patched, not fixed: each fix round must re-run every LESSONS check (frame-0 words, fill, SFX on the mix) before the next jury, and after a drop, park the film rather than add more props.
 - Two films in a row (temperature, password) stalled at 7.2–7.5 and fell with each round, while qrcode and memory passed at 8.0. Fresh juries keep finding new issues, so fix rounds can't climb: the first cut has to land near 8. Spend the effort before the first render on one hero stamp, a hand-made hero prop instead of icon-kit art, no stretch over 1.5 s without voice, and a screenshot frame planned in the brief (password r1–r3).
 - Show the bridge between mechanism and money on screen, not just in the voice: "90 % from data centers" and "now it trains AI" never met on screen, so a 14-year-old couldn't connect them (gpus r2). Re-use an earlier prop to close the loop rather than a new one.
+- The hero needs a still screenshot hold of at least 1 s: phonephoto's clean averaged face plus stamp was fully on screen for only 0.35 s before a zoom-out, so the best image of the film couldn't be screenshotted (phonephoto r2). Plan the hold in BRIEF §0 and never exit the hero with a zoom.
+- A loupe on the payoff must magnify what the line claims: one over the averaged, "clean" face showed blocky pixels and read as still grainy (phonephoto r2).
+- A 0.1 drop between rounds (7.5 → 7.4) is within jury noise; the park rule is for real drops of 0.3+ or a fix round that adds props (phonephoto).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -146,3 +149,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
+| Why phone photos look better (phonephoto) | held for the gate decision | | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |

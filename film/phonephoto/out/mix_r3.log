@@ -1,0 +1,18 @@
+duck -6 dB over 3 phrases; voice set +21.5 dB for a 52.0 dB speech-to-music ratio
+wrote /home/user/molindesign/film/phonephoto/out/phonephoto-vo.mp4
+integrated -14.0 LUFS   true peak -2.7 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "One Tap, 9 Photos."
+ok    ask        wer 0.00  heard "So why do phone photos look better than real life?"
+ok    before     wer 0.00  heard "It starts shooting before you even tap."
+ok    dark       wer 0.00  heard "Here's the trick. They're shot too dark on purpose."
+ok    sky        wer 0.00  heard "That keeps the bright sky from turning white."
+ok    grain      wer 0.00  heard "But dark frames come out grainy."
+ok    stack      wer 0.00  heard "So it stacks them. The grain mostly cancels out."
+ok    why        wer 0.00  heard "Grain changes every frame. The scene doesn't."
+ok    night      wer 0.00  heard "At night, a Pixel stacks up to 15."
+ok    reality    wer 0.00  heard "In Google's own words, brighter than reality."
+FIX   blend      wer 0.12  heard "But your photo isn't one moment, it's a blend."
+ok    end        wer 0.00  heard "Was your last photo real? Yes or no?"
+in-context listen check failed (see out/mix.log): fix those lines before posting
