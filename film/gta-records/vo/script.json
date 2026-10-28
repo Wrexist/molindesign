@@ -1,0 +1,91 @@
+{
+  "about": "GTA 6 record trailers: counters. Trailer 1 got 90,421,491 YouTube views in 24 h (Guinness); trailer 2 got 475M+ across all platforms per Rockstar, about 84M on YouTube. Factory Delta #2.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Guinness",
+    "MrBeast"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6. 90 million views. One day.",
+      "say": "G T A 6. Ninety million views. One day."
+    },
+    {
+      "id": "first",
+      "at": 3.74,
+      "text": "That was the first trailer, and it came out early."
+    },
+    {
+      "id": "leak",
+      "at": 6.86,
+      "text": "A leak forced Rockstar to post it ahead of schedule."
+    },
+    {
+      "id": "num",
+      "at": 10.15,
+      "text": "Just over 90 million views on YouTube, in 24 hours."
+    },
+    {
+      "id": "guin",
+      "at": 13.55,
+      "text": "Guinness made it official: the most viewed game reveal on YouTube in a day."
+    },
+    {
+      "id": "mrb",
+      "at": 17.94,
+      "text": "It even beat MrBeast's 59 million."
+    },
+    {
+      "id": "two",
+      "at": 20.96,
+      "text": "Then came trailer two, in May 2025."
+    },
+    {
+      "id": "claim",
+      "at": 24.22,
+      "text": "Rockstar says 475 million views in 24 hours. Across all platforms."
+    },
+    {
+      "id": "big",
+      "at": 29.31,
+      "text": "The biggest video launch of all time, it claims."
+    },
+    {
+      "id": "but",
+      "at": 32.37,
+      "text": "But count YouTube alone, and trailer two got about 84 million."
+    },
+    {
+      "id": "less",
+      "at": 36.11,
+      "text": "Fewer than trailer one."
+    },
+    {
+      "id": "end",
+      "at": 37.68,
+      "text": "So which record is bigger? Trailer one, or two?"
+    }
+  ],
+  "dur": 42.82
+}
