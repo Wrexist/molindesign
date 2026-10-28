@@ -1,5 +1,5 @@
 {
-  "about": "Leonida region by region: the six areas Rockstar names on rockstargames.com/VI/only-in-leonida, each with a phrase from Rockstar's own one-line description. Own-drawn abstract silhouette, positions approximate except where Rockstar's text gives them (Mount Kalaga on the northern border, Ambrosia in the heart of the state, the Keys an archipelago). Delta channel, GTA 6 launches November 19, 2026. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "about": "Leonida region by region: six areas Rockstar names (its page names only these six; no claim they are the whole state) on rockstargames.com/VI/only-in-leonida, each with a phrase from Rockstar's own one-line description. Own-drawn abstract silhouette, positions approximate except where Rockstar's text gives them (Mount Kalaga on the northern border, Ambrosia in the heart of the state, the Keys an archipelago). Delta channel, GTA 6 launches November 19, 2026. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
   "engine": "ming",
   "ming": {
     "voice": "US_James",
@@ -29,54 +29,54 @@
     {
       "id": "hook",
       "at": 0.2,
-      "text": "Here's the whole GTA 6 state."
+      "text": "Six GTA 6 places Rockstar names."
     },
     {
       "id": "six",
-      "at": 2.35,
-      "text": "Leonida. Six regions Rockstar names on its own site."
+      "at": 2.9,
+      "text": "Leonida. Six places, in Rockstar's own words."
     },
     {
       "id": "vice",
-      "at": 6.0,
+      "at": 6.55,
       "text": "Vice City. Rockstar calls it the sun and fun capital of America."
     },
     {
       "id": "keys",
-      "at": 10.3,
+      "at": 10.85,
       "text": "The Keys. A tropical archipelago. Easy, not flashy."
     },
     {
       "id": "grass",
-      "at": 14.15,
+      "at": 14.7,
       "text": "Grassrivers. Gators and mangroves, and weirder things underneath."
     },
     {
       "id": "port",
-      "at": 17.85,
+      "at": 18.4,
       "text": "Port Gellhorn. Cheap motels and shut-down attractions."
     },
     {
       "id": "amb",
-      "at": 21.85,
+      "at": 22.4,
       "text": "Ambrosia. Sugar refinery country, right in the heart of the state."
     },
     {
       "id": "kal",
-      "at": 26.05,
+      "at": 26.6,
       "text": "Mount Kalaga. A national landmark on the northern border."
     },
     {
       "id": "launch",
-      "at": 30.15,
-      "text": "Launch is November 19th. Six names, one state.",
-      "say": "Launch is November nineteenth. Six names, one state."
+      "at": 30.7,
+      "text": "Launch is November 19th. Six names. So far.",
+      "say": "Launch is November nineteenth. Six names. So far."
     },
     {
       "id": "ask",
-      "at": 33.8,
+      "at": 34.35,
       "text": "Which region do you drop into first?"
     }
   ],
-  "dur": 36.9
+  "dur": 37.9
 }

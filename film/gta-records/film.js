@@ -161,7 +161,7 @@
   SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
   function S(id) { for (var i = 0; i < SC.length; i++) if (SC[i].id === id) return SC[i]; }
   var SHOTS = SC.map(function (s) { return { id: s.id, name: s.name, t0: s.t0, t1: s.t1 }; });
-  var HOME = end('end') + .25;
+  var HOME = DUR - .5;
 
   /* ---------- odometer: the film's one object ---------- */
   function odo(g, cx, cy, v, o) {
@@ -192,12 +192,12 @@
     if (o.suffix) { font(g, px * .8, 900); wide(g); g.fillStyle = o.sfg || TEAL; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(o.suffix, x + 8, cy + 4); }
   }
   /* views, one number across scenes: 90,000,000 by "million", a creep, then the exact record on "90,421,491" */
-  var HOLD = 90150000;
+  /* stepped, so every wheel is readable between steps: 7,500 views per tick, a quick roll at the start of each tick */
+  function baseV(t) { var k = Math.floor(t / .6), f = seg((t / .6) % 1, 0, .4); return 90000000 + 7500 * (k + eio(f)); }
   function Vviews(t) {
-    var tm = wend('hook', 'million'), a0 = at('num', 'over'), a1 = wend('num', 'million') + .15;
-    if (t >= a0) return lerp(HOLD, 90421491, eio(seg(t, a0, a1)));
-    var v = lerp(3100000, 90000000, eio(seg(t, 0, tm)));
-    return v + lerp(0, HOLD - 90000000, seg(t, tm, a0));
+    var a0 = at('num', 'over'), a1 = wend('num', 'million') + .15;
+    if (t >= a0) return lerp(baseV(a0), 90421491, eio(seg(t, a0, a1)));
+    return baseV(t);
   }
 
   /* the sun: a flat gradient disc cut by scrolling stripes */
@@ -272,36 +272,58 @@
     var s0 = S('leakday').t0, tr = at('first', 'trailer'), ea = at('first', 'early'), lk = at('leak', 'leak'), ah = at('leak', 'ahead');
     chip(g, 'TRAILER 1', CX, 500, { px: 70, wt: 900, bg: CREAM, fg: BG, a: fin(t, tr - .1), s: lerp(1.15, 1, clamp(pop(t, tr - .1, 3.2), 0, 1)), rot: -.02 });
     tile(g, 310, 830, 380, 330, 'MON · DEC', '4', TEAL, fin(t, s0 + .05));
-    tile(g, 770, 830, 380, 330, 'TUE · DEC', '5', HOT, fin(t, s0 + .1));
+    var sch = at('leak', 'schedule'), po = at('leak', 'post');
+    tile(g, 770, 830, 380, 330, 'TUE · DEC', '5', HOT, fin(t, s0 + .1) * (1 - .55 * seg(t, sch, sch + .3)));
+    var sl = eio(seg(t, ea + .35, ea + .75));
+    if (sl > 0) { g.save(); g.strokeStyle = HOT; g.lineWidth = 18; g.lineCap = 'round'; g.beginPath(); g.moveTo(620, 700); g.lineTo(lerp(620, 920, sl), lerp(700, 960, sl)); g.stroke(); g.restore(); }
+    var rk = seg(t, ah - .05, ah + .6);
+    if (rk > 0 && rk < 1) { g.save(); g.globalAlpha *= 1 - rk; g.strokeStyle = TEAL; g.lineWidth = 12; rr(g, 120 - rk * 60, 665 - rk * 60, 380 + rk * 120, 330 + rk * 120, 28 + rk * 30); g.stroke(); g.restore(); }
     var hop = eio(seg(t, ea + .25, ea + .8)), px = lerp(745, 310, hop), py = 625 - Math.sin(Math.PI * hop) * 62;
     var pa = fin(t, s0 + .1);
     pinChip(g, 'PLANNED 9 AM ET', px, py, HOT, pa * (hop < .5 ? 1 : 0));
     pinChip(g, 'OUT DEC 4', px, py, TEAL, pa * (hop < .5 ? 0 : 1));
-    leakCard(g, CX, 1180, t, fin(t, lk - .1), lerp(.8, 1, clamp(pop(t, lk - .1, 3), 0, 1)));
+    leakCard(g, CX, 1180, t, fin(t, lk - .1), lerp(.8, 1, clamp(pop(t, lk - .1, 3), 0, 1)) * kn(t, po));
     stamp(g, 'LEAKED', 560, 1180, t, lk + .05, S('num').t0 - SWIPE - .1, 100, HOT, -.1);
-    label(g, 'SOURCES: GUINNESS WORLD RECORDS, CNN', CX, 1400, fin(t, tr + .3), CREAM, 30, 'center', true);
+    label(g, 'SOURCE: GUINNESS, CNN', CX, 1400, fin(t, tr + .3), CREAM, 36, 'center', true);
   }
 
   /* =====================================================================================================
      SCENE 3 · num + guin: the odometer lands on 90,421,491; a Guinness stamp
      ===================================================================================================== */
+  function rays(g, cx, cy, t, a) {
+    g.save(); g.globalAlpha *= a; g.translate(cx, cy); g.rotate(t * .07);
+    for (var i = 0; i < 24; i += 2) { var a0 = i * Math.PI / 12, a1 = a0 + Math.PI / 12; g.fillStyle = i % 4 ? 'rgba(25,211,197,.09)' : 'rgba(255,79,163,.11)'; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.cos(a0) * 1300, Math.sin(a0) * 1300); g.lineTo(Math.cos(a1) * 1300, Math.sin(a1) * 1300); g.closePath(); g.fill(); }
+    g.restore();
+  }
+  function rosette(g, x, y, t, a, s) {
+    if (a <= 0) return;
+    g.save(); g.globalAlpha *= clamp(a, 0, 1); g.translate(x, y); g.scale(s, s);
+    g.fillStyle = TEAL; tri(g, -60, 40, -20, 40, -90, 190); tri(g, 60, 40, 20, 40, 90, 190);
+    g.fillStyle = 'rgba(0,0,0,.35)'; el(g, 8, 14, 142, 142);
+    g.save(); g.rotate(t * .6); g.fillStyle = HOT; for (var i = 0; i < 18; i++) { var an = i * 6.283 / 18; el(g, Math.cos(an) * 118, Math.sin(an) * 118, 34, 34); } g.restore();
+    g.fillStyle = HOT; el(g, 0, 0, 120, 120); g.fillStyle = BG; el(g, 0, 0, 92, 92); g.fillStyle = ORG; el(g, 0, 0, 80, 80);
+    g.fillStyle = CREAM; g.beginPath(); for (var k = 0; k < 10; k++) { var r2 = k % 2 ? 26 : 62, aa = -Math.PI / 2 + k * Math.PI / 5; g.lineTo(Math.cos(aa) * r2, Math.sin(aa) * r2); } g.closePath(); g.fill();
+    g.restore();
+  }
   function numScene(g, t) {
     var s0 = S('num').t0, nm = at('num', 'over'), yt = at('num', 'youtube'), hr = at('num', 'hours'), gn = at('guin', 'guinness'), vw = at('guin', 'viewed');
     var land = wend('num', 'million') + .15, kk = Math.max(0, knock(t, land, 16, 6));
+    rays(g, CX, 780, t, 1);
+    rosette(g, CX, 1090, t, fin(t, at('num', 'views') - .1), lerp(.8, 1, clamp(pop(t, at('num', 'views') - .1, 3), 0, 1)));
     var sq = 1 + .035 * kk; g.save(); g.translate(CX, 780); g.scale(sq, sq); g.translate(-CX, -780);
     odo(g, CX, 780, Vviews(t), { cw: 80, ch: 156, px: 136, gap: 8, cg: 30, commas: true }); g.restore();
     chip(g, 'VIEWS', CX, 640, { px: 52, wt: 900, bg: TEAL, fg: BG, a: fin(t, s0 + .1), rot: .015 });
     chip(g, 'YOUTUBE', 330, 950, { px: 56, wt: 900, bg: HOT, fg: BG, a: fin(t, yt - .1), s: lerp(1.15, 1, clamp(pop(t, yt - .1, 3.2), 0, 1)), rot: -.02 });
     chip(g, '24 HOURS', 690, 950, { px: 56, wt: 900, bg: ORG, fg: BG, a: fin(t, hr - .1), s: lerp(1.15, 1, clamp(pop(t, hr - .1, 3.2), 0, 1)), rot: .02 });
-    stamp(g, 'WORLD RECORD', CX, 1120, t, gn + .1, S('bars').t0 - SWIPE - .1, 70, TEAL, -.05);
+    stamp(g, 'WORLD RECORD', CX, 1120, t, wend('guin', 'guinness') + .02, S('bars').t0 - SWIPE - .1, 70, TEAL, -.05);
     block(g, ['MOST VIEWED GAME REVEAL', 'ON YOUTUBE IN 24 HOURS'], CX, 1300, 38, fin(t, at('guin', 'official') + .1), 'line');
-    label(g, 'GUINNESS WORLD RECORDS, DEC 2023', CX, 1412, fin(t, gn + .3), CREAM, 30, 'center', true);
+    label(g, 'GUINNESS, DEC 2023', CX, 1412, fin(t, gn + .3), CREAM, 36, 'center', true);
   }
 
   /* =====================================================================================================
      SCENE 4 · mrb: bars, 90.4M against MrBeast's 59.4M
      ===================================================================================================== */
-  var BASE = 1330, PXM = 6.1;
+  var BASE = 1330, PXM = 8.2;
   function bar(g, cx, w, h, col, a) {
     if (h <= 1) return;
     g.save(); g.globalAlpha *= a;
@@ -312,88 +334,82 @@
     g.restore();
   }
   function barsScene(g, t) {
-    var s0 = S('bars').t0 + PRE, mb = at('mrb', 'even'), n59 = at('mrb', '59'), bt = at('mrb', 'beat');
+    var s0 = S('bars').t0 - .25, mb = at('mrb', 'even'), n59 = at('mrb', '59'), bt = at('mrb', 'beat');
     var h1 = 90.4 * PXM * eo(seg(t, s0, s0 + .55)), h2 = 59.4 * PXM * eo(seg(t, mb - .05, mb + .5));
-    g.fillStyle = 'rgba(251,240,234,.5)'; g.fillRect(150, BASE - 2, 720, 4);
-    bar(g, 300, 220, h1, HOT, 1);
-    bar(g, 720, 220, h2, TEAL, 1);
+    rays(g, CX, 900, t, .8);
+    g.fillStyle = 'rgba(251,240,234,.5)'; g.fillRect(120, BASE - 2, 780, 4);
+    bar(g, 300, 260, h1, HOT, 1);
+    bar(g, 720, 260, h2, TEAL, 1);
     /* the record line from the top of the pink bar */
     var ly = BASE - 90.4 * PXM, la = fin(t, mb);
-    if (la > 0) { g.save(); g.globalAlpha *= la; g.strokeStyle = CREAM; g.lineWidth = 4; g.setLineDash([16, 12]); g.lineDashOffset = -t * 30; g.beginPath(); g.moveTo(410, ly); g.lineTo(840, ly); g.stroke(); g.restore(); }
+    if (la > 0) { g.save(); g.globalAlpha *= la; g.strokeStyle = CREAM; g.lineWidth = 4; g.setLineDash([16, 12]); g.lineDashOffset = -t * 30; g.beginPath(); g.moveTo(430, ly); g.lineTo(860, ly); g.stroke(); g.restore(); }
     chip(g, '90.4M', 300, BASE - h1 - 52, { px: 70, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .35), s: kn(t, s0 + .5) });
     chip(g, '59.4M', 720, Math.max(BASE - h2 + 62, BASE - 70), { px: 70, wt: 900, bg: CREAM, fg: BG, a: fin(t, mb + .3) * (h2 > 120 ? 1 : 0), s: lerp(1.15, 1, clamp(pop(t, mb + .3, 3.2), 0, 1)) });
     chip(g, '+31M', 720, (ly + BASE - h2) / 2, { px: 64, wt: 900, bg: ORG, fg: BG, a: fin(t, bt + .25), s: lerp(1.15, 1, clamp(pop(t, bt + .25, 3.2), 0, 1)), rot: -.03 });
     label(g, 'TRAILER 1', 300, 1380, fin(t, s0 + .3), CREAM, 36, 'center');
     label(g, 'MRBEAST', 720, 1380, fin(t, s0 + .15), CREAM, 36, 'center');
-    label(g, 'MRBEAST: PREVIOUS 24 H NON-MUSIC RECORD', CX, 1425, fin(t, s0 + .3), CREAM, 30, 'center');
+    label(g, 'MRBEAST: PREVIOUS RECORD', CX, 1425, fin(t, s0 + .3), CREAM, 36, 'center');
   }
 
   /* =====================================================================================================
      SCENE 5 · two + claim + big: Trailer 2, May 6 2025; 475M across all platforms, Rockstar's claim
      ===================================================================================================== */
   function twoScene(g, t) {
-    var s0 = S('two').t0, tr = at('two', 'trailer'), my = at('two', 'may'), cl = at('claim', 'rockstar'), sy = at('claim', 'says'), n475 = at('claim', '475'),
+    var s0 = S('two').t0, tr = at('two', 'trailer'), my = at('two', 'may'), cl = at('claim', 'reports'), sy = at('claim', 'claimed'), n475 = at('claim', '475'),
       qS = at('claim', 'platforms') + .1, hr = at('claim', 'hours'), al = at('claim', 'all'), bg = at('big', 'biggest');
     var goK = eio(seg(t, cl - .15, cl + .2));
     /* the big 2 */
     if (goK < 1) {
-      var ps = pop(t, tr - .15, 2.8), sc = lerp(1, .5, goK);
-      g.save(); g.globalAlpha *= 1 - goK; g.translate(CX, lerp(830, 760, goK)); g.scale(sc * lerp(.85, 1, clamp(ps, 0, 1)), sc * lerp(.85, 1, clamp(ps, 0, 1)));
-      rr(g, -210 + 10, -210 + 16, 420, 420, 46); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
-      rr(g, -210, -210, 420, 420, 46); g.fillStyle = TEAL; g.fill();
-      font(g, 380, 900); g.fillStyle = BG; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('2', 0, 22);
+      var ps = pop(t, s0 - .0, 2.8), sc = lerp(1, .5, goK);
+      g.save(); g.globalAlpha *= 1 - goK; g.translate(CX, lerp(850, 760, goK)); g.scale(sc * lerp(.85, 1, clamp(ps, 0, 1)), sc * lerp(.85, 1, clamp(ps, 0, 1)));
+      rr(g, -270 + 10, -270 + 16, 540, 540, 56); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
+      rr(g, -270, -270, 540, 540, 56); g.fillStyle = TEAL; g.fill();
+      font(g, 480, 900); g.fillStyle = BG; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('2', 0, 30);
       g.restore();
-      chip(g, 'TRAILER 2', CX, 1130, { px: 76, wt: 900, bg: CREAM, fg: BG, a: fin(t, tr - .1) * (1 - goK), s: kn(t, tr), rot: -.02 });
-      chip(g, 'MAY 6, 2025', CX, 1250, { px: 60, wt: 900, bg: ORG, fg: BG, a: fin(t, tr + .15) * (1 - goK), s: lerp(1.15, 1, clamp(pop(t, my - .1, 3.2), 0, 1)), rot: .02 });
+      chip(g, 'TRAILER 2', CX, 1230, { px: 84, wt: 900, bg: CREAM, fg: BG, a: fin(t, tr - .1) * (1 - goK), s: kn(t, tr), rot: -.02 });
+      chip(g, 'MAY 6, 2025', CX, 1345, { px: 66, wt: 900, bg: ORG, fg: BG, a: fin(t, tr + .15) * (1 - goK), s: lerp(1.15, 1, clamp(pop(t, my - .1, 3.2), 0, 1)), rot: .02 });
     }
     /* the 475 odometer */
-    var v = 475 * eio(seg(t, n475 - .25, n475 + .5)), oa = fin(t, cl - .1);
+    var v = lerp(60, 475, eio(seg(t, n475 - .25, n475 + .5))), oa = fin(t, cl - .1);
+    rays(g, CX, 800, t, oa);
     if (oa > 0) {
-      g.save(); g.globalAlpha *= oa; var sq = 1 + .03 * Math.max(0, knock(t, n475 + .5, 16, 6)); g.translate(CX, 770); g.scale(sq, sq); g.translate(-CX, -770);
-      odo(g, CX, 770, v, { cw: 124, ch: 210, px: 180, gap: 10, suffix: 'M+' }); g.restore();
+      g.save(); g.globalAlpha *= oa; var sq = 1 + .03 * Math.max(0, knock(t, n475 + .5, 16, 6)); g.translate(CX, 800); g.scale(sq, sq); g.translate(-CX, -800);
+      odo(g, CX, 800, v, { cw: 168, ch: 290, px: 250, gap: 10, suffix: 'M+' }); g.restore();
     }
-    tag(g, 'ROCKSTAR SAYS', CX, 600, fin(t, sy - .1), -.02);
-    chip(g, 'IN 24 HOURS', CX, 930, { px: 54, wt: 900, bg: ORG, fg: BG, a: fin(t, hr - .1), s: lerp(1.15, 1, clamp(pop(t, hr - .1, 3.2), 0, 1)), rot: -.015 });
-    chip(g, 'ALL PLATFORMS', CX, 1050, { px: 76, wt: 900, bg: HOT, fg: BG, a: fin(t, al - .1), s: lerp(1.08, 1, clamp(pop(t, al - .1, 3.2), 0, 1)), rot: .02, maxw: 740 });
+    tag(g, 'REPORTED CLAIM', CX, 600, fin(t, sy - .1), -.02);
+    chip(g, 'IN 24 HOURS', CX, 1010, { px: 58, wt: 900, bg: ORG, fg: BG, a: fin(t, hr - .1), s: lerp(1.15, 1, clamp(pop(t, hr - .1, 3.2), 0, 1)), rot: -.015 });
+    chip(g, 'ALL PLATFORMS', CX, 1130, { px: 84, wt: 900, bg: HOT, fg: BG, a: fin(t, al - .1), s: lerp(1.08, 1, clamp(pop(t, al - .1, 3.2), 0, 1)), rot: .02, maxw: 740 });
     /* the claim */
     var qa = fin(t, qS), qs = lerp(1.08, 1, clamp(pop(t, qS, 3), 0, 1));
-    g.save(); g.translate(CX, 1250); g.scale(qs, qs); g.translate(-CX, -1250);
-    block(g, ['“THE BIGGEST VIDEO LAUNCH', 'OF ALL TIME”'], CX, 1250, 44, qa, 'line', CREAM, 700);
+    g.save(); g.translate(CX, 1290); g.scale(qs, qs); g.translate(-CX, -1290);
+    block(g, ['“THE BIGGEST VIDEO LAUNCH', 'OF ALL TIME”'], CX, 1290, 44, qa, 'line', CREAM, 700);
     g.restore();
-    tag(g, 'ROCKSTAR’S CLAIM', 330, 1170, fin(t, qS + .05), -.04);
-    label(g, 'VIA THE HOLLYWOOD REPORTER', CX, 1380, fin(t, qS + .2), CREAM, 30, 'center', true);
-    label(g, 'RELEASED MAY 6, 2025 (GTABOSS)', CX, 1380, fin(t, my) * (1 - goK), CREAM, 30, 'center', true);
+    tag(g, 'ROCKSTAR’S CLAIM', 330, 1210, fin(t, qS + .05), -.04);
+    label(g, 'REPORTED BY THE HOLLYWOOD REPORTER', CX, 1405, fin(t, qS + .2), CREAM, 36, 'center', true);
+    label(g, 'RELEASED MAY 6, 2025 (GTABOSS)', CX, 1420, fin(t, my) * (1 - goK), CREAM, 36, 'center', true);
   }
 
   /* =====================================================================================================
      SCENE 6 · but + less: all-platform bar split; YouTube alone ~84M against trailer 1's 90.4M
      ===================================================================================================== */
   function splitScene(g, t) {
-    var s0 = S('split').t0 + PRE, yt = at('but', 'youtube'), n84 = at('but', '84'), fw = at('less', 'fewer'), tr = at('less', 'trailer');
-    var bx = 120, bw = 780, by = 740, bh = 120, grow = eo(seg(t, s0, s0 + .45));
-    var seg1 = bw * 84 / 475, seg2 = bw * 106 / 475, seg3 = bw - seg1 - seg2;
-    var dim = eio(seg(t, yt - .05, yt + .3));
-    chip(g, '475M · ALL PLATFORMS', CX, 620, { px: 42, wt: 700, fam: MONO, line: CREAM, lw: 3, fg: CREAM, bg: 'rgba(11,8,32,.9)', a: fin(t, s0), shadow: false });
-    g.save(); g.beginPath(); g.rect(bx, by - bh / 2, bw * grow, bh); g.clip();
-    g.fillStyle = TEAL; g.fillRect(bx, by - bh / 2, seg1, bh);
-    g.globalAlpha = 1 - .72 * dim; g.fillStyle = ORG; g.fillRect(bx + seg1, by - bh / 2, seg2, bh);
-    g.fillStyle = HOT; g.fillRect(bx + seg1 + seg2, by - bh / 2, seg3, bh);
-    g.restore();
-    var la = fin(t, s0 + .3);
-    label(g, 'YOUTUBE', bx + seg1 / 2 + 6, by + 92, la, TEAL, 30, 'center');
-    label(g, 'X', bx + seg1 + seg2 / 2, by + 92, la * (1 - .7 * dim), ORG, 32, 'center');
-    label(g, 'THE REST', bx + seg1 + seg2 + seg3 / 2, by + 92, la * (1 - .7 * dim), HOT, 32, 'center');
-    /* the 84M YouTube bar, then trailer 1 above it */
-    var PX = 5.4, x0 = 130, ya = 1215, yb = 1030;
-    var al = at('but', 'alone'), k84 = eo(seg(t, n84 - .1, n84 + .5)), k90 = eo(seg(t, al, al + .5));
-    label(g, 'TRAILER 2 · YOUTUBE ONLY', x0, ya - 58, fin(t, yt + .2), CREAM, 32, 'left');
-    g.fillStyle = TEAL; g.fillRect(x0, ya - 32, 84 * PX * k84, 64);
-    chip(g, '~84M', x0 + 110, ya, { px: 64, wt: 900, bg: CREAM, fg: BG, a: fin(t, n84), s: kn(t, n84 + .4) });
-    label(g, 'TRAILER 1 · YOUTUBE', x0, yb - 58, fin(t, al), CREAM, 32, 'left');
-    g.fillStyle = HOT; g.fillRect(x0, yb - 32, 90.4 * PX * k90, 64);
-    chip(g, '90.4M', x0 + 110, yb, { px: 64, wt: 900, bg: CREAM, fg: BG, a: fin(t, al + .3), s: kn(t, al + .6) });
-    stamp(g, 'FEWER', 760, 1095, t, at('but', 'million') - .2, S('end').t0 - SWIPE - .1, 60, ORG, -.08);
-    block(g, ['YOUTUBE-ONLY FIGURES VARY:', 'REPORTS SAY 74M TO 86M (GTABOSS)'], CX, 1352, 30, fin(t, at('but', 'trailer')), true);
+    var s0 = S('split').t0 - .25, yt = at('but', 'youtube'), n84 = at('but', '84'), al = at('but', 'alone'), tr2 = at('but', 'trailer');
+    var PX = 8.6, x0 = 100, y1 = 720, y2 = 1010, bh = 160;
+    var k90 = eo(seg(t, s0, s0 + .6)), k84 = eo(seg(t, n84 - .1, n84 + .55));
+    rays(g, CX, 860, t, .7);
+    label(g, 'TRAILER 1 · YOUTUBE', x0, y1 - 110, fin(t, s0), CREAM, 44, 'left');
+    g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(x0 + 10, y1 - bh / 2 + 14, 90.4 * PX * k90, bh);
+    g.fillStyle = HOT; g.fillRect(x0, y1 - bh / 2, 90.4 * PX * k90, bh);
+    chip(g, '90.4M', x0 + 170, y1, { px: 84, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .35), s: kn(t, s0 + .6) });
+    label(g, 'TRAILER 2 · YOUTUBE ONLY', x0, y2 - 110, fin(t, tr2 - .1), CREAM, 44, 'left');
+    g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(x0 + 10, y2 - bh / 2 + 14, 84 * PX * k84, bh);
+    g.fillStyle = TEAL; g.fillRect(x0, y2 - bh / 2, 84 * PX * k84, bh);
+    chip(g, 'ABOUT 84M', x0 + 250, y2, { px: 76, wt: 900, bg: CREAM, fg: BG, a: fin(t, n84), s: kn(t, n84 + .4) });
+    /* the gap: a dashed line down from the end of the pink bar */
+    var ga = fin(t, n84 + .3);
+    if (ga > 0) { g.save(); g.globalAlpha *= ga; g.strokeStyle = CREAM; g.lineWidth = 5; g.setLineDash([16, 12]); g.lineDashOffset = -t * 30; g.beginPath(); g.moveTo(x0 + 90.4 * PX, y1 + bh / 2 + 10); g.lineTo(x0 + 90.4 * PX, y2 + bh / 2 + 10); g.stroke(); g.restore(); }
+    stamp(g, 'FEWER', 510, 1190, t, at('but', 'million') - .2, S('end').t0 - SWIPE - .1, 76, ORG, -.06);
+    block(g, ['ABOUT 84M · SOURCE: GTABOSS', 'COUNTS VARY: 74M TO 86M'], CX, 1350, 40, fin(t, tr2), true);
   }
 
   /* =====================================================================================================
@@ -402,34 +418,40 @@
   function card(g, x, y, col, title, big, sub, a) {
     if (a <= 0) return;
     g.save(); g.globalAlpha *= clamp(a, 0, 1); g.translate(x, y);
-    rr(g, -165 + 8, -115 + 14, 330, 230, 24); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
-    rr(g, -165, -115, 330, 230, 24); g.fillStyle = PURP; g.fill(); g.strokeStyle = col; g.lineWidth = 6; g.stroke();
-    g.fillStyle = col; g.textAlign = 'center'; g.textBaseline = 'middle'; font(g, 34, 700, MONO); ls(g, 2); g.fillText(title, 0, -72); ls(g, 0);
-    font(g, 82, 900); g.fillStyle = CREAM; g.fillText(big, 0, -6);
-    font(g, 30, 600, MONO); g.fillStyle = col; g.fillText(sub, 0, 66);
+    rr(g, -165 + 8, -150 + 14, 330, 300, 24); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
+    rr(g, -165, -150, 330, 300, 24); g.fillStyle = PURP; g.fill(); g.strokeStyle = col; g.lineWidth = 7; g.stroke();
+    g.fillStyle = col; g.textAlign = 'center'; g.textBaseline = 'middle'; font(g, 40, 700, MONO); ls(g, 2); g.fillText(title, 0, -96); ls(g, 0);
+    font(g, 86, 900); g.fillStyle = CREAM; g.fillText(big, 0, -6);
+    font(g, 38, 600, MONO); g.fillStyle = col; g.fillText(sub, 0, 90);
     g.restore();
   }
   function endScene(g, t) {
-    var s0 = S('end').t0 + PRE, o1 = at('end', 'one'), o2 = at('end', 'two'), bg = at('end', 'bigger');
-    var th = -.15 * eo(seg(t, o1 - .1, o1 + .35)) + .3 * eo(seg(t, o2 - .1, o2 + .35));
-    if (t > o2 + .5) th = .15 * Math.cos((t - o2 - .5) * 2.4) * Math.exp(-(t - o2 - .5) * .35);
+    var s0 = S('end').t0 - .25, o1 = at('end', 'one'), o2 = at('end', 'two'), cq = end('end') + .5;
+    var th = -.17 * eo(seg(t, o1 - .1, o1 + .35)) + .34 * eo(seg(t, o2 - .1, o2 + .35));
+    if (t > o2 + .5) th = .17 * Math.cos((t - o2 - .5) * 2.0) * Math.exp(-(t - o2 - .5) * .06);
     th += .05 * Math.sin(t * 7) * (1 - seg(t, s0, s0 + .6)) * seg(t, s0 - .2, s0);
-    var px = CX, py = 720, L = 255, ex = Math.cos(th) * L, ey = Math.sin(th) * L, ia = fin(t, s0), cy0 = 1000;
+    var px = CX, py = 690, L = 255, ex = Math.cos(th) * L, ey = Math.sin(th) * L, ia = fin(t, s0), cy0 = 1050;
     g.save(); g.globalAlpha *= ia;
-    g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(px - 14 + 8, py + 14, 28, 520);
-    g.fillStyle = TEAL; g.fillRect(px - 14, py, 28, 520);
-    g.beginPath(); g.moveTo(px - 110, 1250); g.lineTo(px + 110, 1250); g.lineTo(px + 60, 1200); g.lineTo(px - 60, 1200); g.closePath(); g.fill();
-    g.save(); g.translate(px, py); g.rotate(th); g.fillStyle = CREAM; g.fillRect(-L - 20, -12, 2 * L + 40, 24); g.restore();
-    g.fillStyle = HOT; el(g, px, py, 30, 30);
+    g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(px - 18 + 8, py + 14, 36, 590);
+    g.fillStyle = TEAL; g.fillRect(px - 18, py, 36, 590);
+    g.beginPath(); g.moveTo(px - 150, 1290); g.lineTo(px + 150, 1290); g.lineTo(px + 80, 1230); g.lineTo(px - 80, 1230); g.closePath(); g.fill();
+    g.save(); g.translate(px, py); g.rotate(th); g.fillStyle = CREAM; g.fillRect(-L - 24, -14, 2 * L + 48, 28); g.restore();
+    g.fillStyle = HOT; el(g, px, py, 36, 36);
     var lx = px - ex, ly = py - ey, rx = px + ex, ry = py + ey;
-    g.strokeStyle = 'rgba(251,240,234,.7)'; g.lineWidth = 4;
-    [[lx, ly, 255], [rx, ry, 765]].forEach(function (p) { var top = cy0 + (p[1] - py) - 115; g.beginPath(); g.moveTo(p[0], p[1]); g.lineTo(p[2] - 120, top); g.moveTo(p[0], p[1]); g.lineTo(p[2] + 120, top); g.stroke(); });
+    g.strokeStyle = 'rgba(251,240,234,.7)'; g.lineWidth = 5;
+    [[lx, ly, 255], [rx, ry, 765]].forEach(function (p) { var top = cy0 + (p[1] - py) - 150; g.beginPath(); g.moveTo(p[0], p[1]); g.lineTo(p[2] - 130, top); g.moveTo(p[0], p[1]); g.lineTo(p[2] + 130, top); g.stroke(); });
     g.restore();
     card(g, 255, cy0 + (ly - py), HOT, 'TRAILER 1', '90.4M', 'YOUTUBE', ia);
     card(g, 765, cy0 + (ry - py), TEAL, 'TRAILER 2', '475M', 'ALL PLATFORMS', ia);
-    label(g, 'GUINNESS RECORD', 255, 1305, fin(t, o1), HOT, 30, 'center');
-    label(g, 'ROCKSTAR’S COUNT', 765, 1305, fin(t, o2), TEAL, 30, 'center');
-    chip(g, 'WHICH IS BIGGER?', CX, 560, { px: 56, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .1), s: kn(t, bg + .2), maxw: 800, rot: -.015 });
+    block(g, ['90.4M YOUTUBE', 'VS 475M ALL PLATFORMS'], CX, 1385, 44, fin(t, end('end') + .05), 'line', CREAM, 700);
+    /* the question, held as a caption over the balance */
+    var qa = fin(t, cq) * (1 - seg(t, HOME - .05, HOME + .2));
+    if (qa > 0) {
+      g.save(); g.globalAlpha *= qa; font(g, 74, 800); wide(g); g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = CREAM;
+      g.fillText('WHICH RECORD', CX, 360);
+      var w2 = g.measureText('IS BIGGER?').width; rr(g, CX - w2 / 2 - 14, 372, w2 + 28, 96, 16); g.fillStyle = HOT; g.fill(); g.fillStyle = BG; g.fillText('IS BIGGER?', CX, 448);
+      g.restore();
+    }
   }
 
   /* ---------- captions (the voice, word by word; the hook line is carried by the picture) ---------- */
@@ -500,12 +522,12 @@
 
   /* ---------- the picture ---------- */
   var NOISE;
-  var SKY = (function () { var r = mulberry(11), out = [], x = -10; while (x < W) { var w = 46 + r() * 54, h = 70 + r() * 190; out.push([x, w, h]); x += w + 4 + r() * 10; } return out; })();
+  var SKY = (function () { var r = mulberry(11), out = [], x = -10; while (x < W) { var w = 56 + r() * 60, h = 150 + r() * 190, win = []; for (var wy = 20; wy < h - 20; wy += 38) for (var wx = 12; wx < w - 22; wx += 26) if (r() > .55) win.push([wx, wy, r() > .8 ? 1 : 0]); out.push([x, w, h, win]); x += w + 4 + r() * 10; } return out; })();
   var SCENES = { count: countScene, leakday: leakdayScene, num: numScene, bars: barsScene, two: twoScene, split: splitScene, end: endScene };
   function stage(g) {
     g.fillStyle = BG; g.fillRect(0, 0, W, H);
-    g.fillStyle = '#140a33'; SKY.forEach(function (b) { g.fillRect(b[0], 1780 - b[2], b[1], b[2] + 140); });
-    g.fillStyle = 'rgba(25,211,197,.35)'; g.fillRect(0, 1780, W, 4);
+    SKY.forEach(function (b) { g.fillStyle = '#140a33'; g.fillRect(b[0], 1830 - b[2], b[1], b[2] + 100); b[3].forEach(function (w) { g.fillStyle = w[2] ? 'rgba(255,138,61,.55)' : 'rgba(25,211,197,.28)'; g.fillRect(b[0] + w[0], 1830 - b[2] + w[1], 12, 18); }); });
+    g.fillStyle = 'rgba(25,211,197,.35)'; g.fillRect(0, 1830, W, 4);
   }
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   function drawScene(g, Sc, t) {
@@ -533,7 +555,7 @@
       g.restore();
     }
     var back = eio(seg(t, HOME, HOME + .35));
-    if (back > 0) { g.save(); g.globalAlpha = back; stage(g); countScene(g, 0); g.restore(); }
+    if (back > 0) { g.save(); g.globalAlpha = back; stage(g); g.translate(CX, 1000); g.scale(lerp(.9, 1, back), lerp(.9, 1, back)); g.translate(-CX, -1000); countScene(g, 0); g.restore(); }
     if (POSTERMODE) posterTitle(g);
     else if (LIVE.text) { if (back > 0) captions(g, t, 1 - back); else captions(g, t); }
     if (!POSTERMODE) {
@@ -560,32 +582,34 @@
     T('plan', 'PLANNED 9 AM ET', S('leakday').t0 + .3, at('first', 'early') + .5);
     T('out', 'OUT DEC 4', at('first', 'early') + .6, cut('num'));
     T('leaked', 'LEAKED', at('leak', 'leak') + .15, cut('num'));
-    T('src1', 'SOURCES: GUINNESS WORLD RECORDS, CNN', at('first', 'trailer') + .4, cut('num'));
+    T('src1', 'SOURCE: GUINNESS, CNN', at('first', 'trailer') + .4, cut('num'));
     T('views2', 'VIEWS', S('num').t0 + .15, cut('bars'));
     T('yt', 'YOUTUBE', at('num', 'youtube') + .1, cut('bars'));
     T('hrs', '24 HOURS', at('num', 'hours') + .1, cut('bars'));
     T('wr', 'WORLD RECORD', at('guin', 'guinness') + .2, cut('bars'));
     T('mv', 'MOST VIEWED GAME REVEAL', at('guin', 'official') + .25, cut('bars'));
-    T('gw', 'GUINNESS WORLD RECORDS, DEC 2023', at('guin', 'guinness') + .35, cut('bars'));
+    T('gw', 'GUINNESS, DEC 2023', at('guin', 'guinness') + .35, cut('bars'));
     T('b1', '90.4M', S('bars').t0 + PRE + .4, cut('two'));
     T('b2', '59.4M', at('mrb', 'even') + .45, cut('two'));
     T('b3', '+31M', at('mrb', 'beat') + .3, cut('two'));
     T('l1', 'TRAILER 1', S('bars').t0 + PRE + .25, cut('two'));
     T('l2', 'MRBEAST', S('bars').t0 + PRE + .25, cut('two'));
-    T('t2', 'TRAILER 2', at('two', 'trailer') + .2, at('claim', 'rockstar') - .1);
-    T('may', 'MAY 6, 2025', at('two', 'trailer') + .3, at('claim', 'rockstar') - .05);
-    T('says', 'ROCKSTAR SAYS', at('claim', 'says') + .1, cut('split'));
+    T('t2', 'TRAILER 2', at('two', 'trailer') + .2, at('claim', 'reports') - .1);
+    T('may', 'MAY 6, 2025', at('two', 'trailer') + .3, at('claim', 'reports') - .05);
+    T('says', 'REPORTED CLAIM', at('claim', 'claimed') + .1, cut('split'));
     T('h24b', 'IN 24 HOURS', at('claim', 'hours') + .1, cut('split'));
     T('allp', 'ALL PLATFORMS', at('claim', 'all') + .1, cut('split'));
     T('quote', '“THE BIGGEST VIDEO LAUNCH', at('claim', 'platforms') + .2, cut('split'));
     T('cl', 'ROCKSTAR’S CLAIM', at('claim', 'platforms') + .25, cut('split'));
-    T('hr', 'VIA THE HOLLYWOOD REPORTER', at('claim', 'platforms') + .3, cut('split'));
-    T('allm', '475M · ALL PLATFORMS', S('split').t0 + PRE + .05, cut('end'));
-    T('ytb', 'TRAILER 2 · YOUTUBE ONLY', at('but', 'youtube') + .25, cut('end'));
-    T('t1y', 'TRAILER 1 · YOUTUBE', at('but', 'alone') + .1, cut('end'));
+    T('hr', 'REPORTED BY THE HOLLYWOOD REPORTER', at('claim', 'platforms') + .3, cut('split'));
+    T('ytb', 'TRAILER 2 · YOUTUBE ONLY', at('but', 'trailer') - .05, cut('end'));
+    T('t1y', 'TRAILER 1 · YOUTUBE', S('split').t0 + PRE - .2, cut('end'));
     T('few', 'FEWER', at('but', 'million') - .05, cut('end'));
-    T('vary', 'YOUTUBE-ONLY FIGURES VARY:', at('but', 'trailer') + .1, cut('end'));
-    T('which', 'WHICH IS BIGGER?', S('end').t0 + PRE + .15, HOME - .2);
+    T('vary', 'ABOUT 84M · SOURCE: GTABOSS', at('but', 'trailer') + .1, cut('end'));
+    T('vary2', 'COUNTS VARY: 74M TO 86M', at('but', 'trailer') + .1, cut('end'));
+    T('which', 'WHICH RECORD IS BIGGER?', end('end') + .5, HOME - .2);
+    T('held1', '90.4M YOUTUBE', end('end') + .1, HOME - .2);
+    T('held2', 'VS 475M ALL PLATFORMS', end('end') + .1, HOME - .2);
     T('c1', 'TRAILER 1', S('end').t0 + PRE + .1, HOME - .2);
     T('c2', 'TRAILER 2', S('end').t0 + PRE + .1, HOME - .2);
     return out;
@@ -597,7 +621,7 @@
   /* a hit that would land inside a spoken word moves to just before that word starts */
   /* a hit's whole body (t … t + body) must sit in a real gap between words: loop until it does. Before the word if the
      gap there holds it, else just after the word ends. */
-  var BODY = { stamp: .2, stampS: .14, slap: .16, clack: .16, thump: .2, rip: .2, scratch: .2, paper: .14, peel: .2, swish: .14 };
+  var BODY = { ding: .05, stamp: .2, stampS: .14, slap: .16, clack: .16, thump: .2, rip: .2, scratch: .2, paper: .14, peel: .2, swish: .14 };
   function gapT(t, body) {
     for (var guard = 0; guard < 40; guard++) {
       var hit = -1;
@@ -619,12 +643,13 @@
     SC.forEach(function (sc) { if (sc.swipe) E({ t: sc.t0 - SWIPE, type: 'tear', t1: sc.t0 }); });
     /* first + leak */
     E({ t: at('first', 'trailer') - .1, type: 'slap' }); E({ t: at('first', 'early') - .1, type: 'swish' }); E({ t: at('first', 'early') + .4, type: 'pop', g: .6 });
+    E({ t: S('leakday').t0 + .1, type: 'slap' }); E({ t: at('first', 'early') + .35, type: 'rip' }); E({ t: at('leak', 'post') - .05, type: 'pop', g: .7 }); E({ t: at('leak', 'ahead') - .05, type: 'slap' }); E({ t: at('leak', 'schedule') - .02, type: 'tick', g: .4 });
     E({ t: at('leak', 'leak') - .1, type: 'pop', g: .7 }); E({ t: at('leak', 'leak') + .05, type: 'stamp' }); 
     /* num + guin */
     var a0 = at('num', 'over'), a1 = wend('num', 'million') + .15;
     for (i = 0; i < 14; i++) E({ t: a0 + i * (a1 - a0) / 14, type: 'tick', g: .1 + .08 * (i / 14) });
     E({ t: a1, type: 'thump', g: .35 }); E({ t: at('num', 'youtube') - .12, type: 'pop', g: .7 }); E({ t: at('num', 'hours') - .12, type: 'pop', g: .8 });
-    E({ t: at('guin', 'guinness') + .08, type: 'stamp' }); E({ t: at('guin', 'viewed') - .1, type: 'paper' });
+    E({ t: wend('guin', 'guinness') + .02, type: 'ding' }); E({ t: wend('guin', 'guinness') + .02, type: 'stamp' }); E({ t: at('guin', 'viewed') - .1, type: 'paper' });
     /* bars */
     E({ t: S('bars').t0 + PRE, type: 'rise', t1: S('bars').t0 + PRE + .5 }); E({ t: at('mrb', 'even') - .06, type: 'rise', t1: at('mrb', 'even') + .45 });
     E({ t: at('mrb', '59') - .08, type: 'pop', g: .7 }); E({ t: at('mrb', 'beat') + .28, type: 'slap' });
@@ -632,7 +657,7 @@
     E({ t: at('two', 'trailer') - .15, type: 'slap' }); E({ t: at('two', 'may') - .1, type: 'pop', g: .7 });
     var n0 = at('claim', '475') - .25;
     for (i = 0; i < 12; i++) E({ t: n0 + i * .06, type: 'tick', g: .1 + .08 * (i / 12) });
-    E({ t: at('claim', 'says') - .1, type: 'paper' }); E({ t: at('claim', 'hours') - .1, type: 'pop', g: .6 }); E({ t: at('claim', 'all') - .1, type: 'slap' });
+    E({ t: at('claim', 'claimed') - .1, type: 'paper' }); E({ t: at('claim', 'hours') - .1, type: 'pop', g: .6 }); E({ t: at('claim', 'all') - .1, type: 'slap' });
     E({ t: at('big', 'biggest') - .15, type: 'stamp' });
     /* split */
     E({ t: S('split').t0 + PRE, type: 'rise', t1: S('split').t0 + PRE + .45 }); E({ t: at('but', 'youtube') - .08, type: 'clack' });
@@ -689,6 +714,7 @@
     function rip(t) { band(t - .02, t + .2, 2500, 900, .14, .04, 1.4); tickS(t, .2); tickS(t + .06, .14); }
     /* the reader bar: a soft scanning tone, a slow sweep down */
     function scan(t, t1) { osc('sine', 880, t, t1 + .05, 1, [[t, 0], [t + .04, .025], [t1 - .03, .02], [t1 + .05, 0]], .2).frequency.exponentialRampToValueAtTime(440, t1); }
+    function ding(t) { [[1319, .16], [1976, .1], [2637, .05]].forEach(function (p) { osc('sine', p[0], t, t + .9, 1, [[t, 0], [t + .004, p[1]], [t + .9, 0]], .3); }); thump(t, .5); }
     function scratch(t) { band(t, t + .22, 2600, 1800, .08, .03, 2.5, -.2); }
     EV.forEach(function (e) {
       if (e.type === 'tick') tickS(e.t, e.g);
@@ -707,6 +733,7 @@
       else if (e.type === 'rip') rip(e.t);
       else if (e.type === 'scan') scan(e.t, e.t1);
       else if (e.type === 'scratch') scratch(e.t);
+      else if (e.type === 'ding') ding(e.t);
     });
     /* no music: Isac adds a trending TikTok sound on the platform; the film ships voice + sound effects */
     var MUSIC = false;

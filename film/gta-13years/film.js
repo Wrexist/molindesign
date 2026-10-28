@@ -9,6 +9,7 @@
   var W = 1080, H = 1920, VO = window.VO, DUR = VO.dur;
   var BG = '#0b0820', PANEL = '#1a1238', PANEL2 = '#2a1b57', CREAM = '#fff1e3', DIM = 'rgba(255,241,227,.55)', FAINT = 'rgba(255,241,227,.16)';
   var PINK = '#ff4fa3', TEAL = '#19d3c5', ORG = '#ff8a3d', YEL = '#ffc65a', HOT = PINK;
+  var CREAM2 = 'rgba(255,241,227,.85)';
   var DISP = 'Archivo', MONO = '"Geist Mono"';
 
   /* ---------- math ---------- */
@@ -40,17 +41,18 @@
 
   var SC = [
     { id: 'hook', name: 'Thirteen years', t0: 0 },
-    { id: 'ruler', name: 'The ruler', t0: start('five') - .3 },
-    { id: 'ps', name: 'Two consoles', t0: start('ps') - .3 },
-    { id: 'bars', name: 'The longest gap', t0: start('prev') - .3 },
-    { id: 'dates', name: 'Two delays', t0: start('fall') - .3 },
-    { id: 'end', name: 'Day one', t0: start('now') - .5 }
+    { id: 'ruler', name: 'The ruler', t0: start('five') - .55 },
+    { id: 'ps', name: 'Two consoles', t0: start('ps') - .55 },
+    { id: 'bars', name: 'The longest gap', t0: start('prev') - .55 },
+    { id: 'dates', name: 'Two delays', t0: start('fall') - .55 },
+    { id: 'end', name: 'Day one', t0: start('now') - .55 }
   ];
   SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
   var SHOTS = SC.map(function (s) { return { id: s.id, name: s.name, t0: s.t0, t1: s.t1 }; });
   var HOME = end('q') + .3;
   /* one hero stamp, in the low band (y 1280, clear of TikTok's caption overlay) */
-  var STAMPS = [['OVER 2×', at('dbl', 'double'), at('dbl', 'double') + 2.3, 130, PINK, -.06]];
+  var STAMPS = [['OVER 2\u00d7', at('dbl', 'double'), at('dbl', 'double') + 2.15, 130, PINK, -.06],
+    ['HELD', at('held', 'held'), at('held', 'held') + 2.1, 80, TEAL, -.1, 770, 1130]];
 
   /* ---------- canvas ---------- */
   var cv, ctx, tmp, tctx, acc, actx, LIVE = { grain: true, text: true };
@@ -91,10 +93,10 @@
     return w;
   }
   function label(g, text, x, y, a, col, px, align) {
-    px = Math.max(30, px || 32);
+    px = Math.max(36, px || 36);
     if (a <= 0) return;
     g.save(); g.globalAlpha *= clamp(a, 0, 1); font(g, px, 500, MONO); g.textAlign = align || 'center'; g.textBaseline = 'middle';
-    g.fillStyle = col || DIM; try { g.letterSpacing = '3px'; } catch (e) {}
+    g.fillStyle = col || CREAM2; try { g.letterSpacing = '3px'; } catch (e) {}
     g.fillText(text, x, y + (1 - Math.min(1, a)) * 14); g.restore();
   }
   function stamp(g, text, x, y, t, t0, t1, px, col, rot) {
@@ -154,8 +156,8 @@
     var kick = Math.exp(-Math.max(0, t - at('hook', 'thirteen')) * 7) * (t >= at('hook', 'thirteen') ? 1 : 0);
     var settle = Math.exp(-t * 9);
     var s = 1 + .08 * settle + .07 * kick;
-    sun(g, 540, 880, 410, t);
-    g.save(); g.translate(540, 900); g.scale(s, s);
+    sun(g, 540, 940, 400, t);
+    g.save(); g.translate(540, 960); g.scale(s, s);
     font(g, 700, 900); try { g.fontStretch = 'expanded'; } catch (e) {}
     var px = fit(g, '13', 640, 700, 900);
     font(g, px, 900); try { g.fontStretch = 'expanded'; } catch (e) {}
@@ -164,19 +166,22 @@
     g.strokeText('13', 14, 14); g.fillText('13', 14, 14);
     g.strokeText('13', 0, 0); g.fillStyle = CREAM; g.fillText('13', 0, 0);
     g.restore();
+    chip(g, 'GTA 6', 540, 540, { px: 84, bg: BG, line: TEAL, fg: CREAM, wt: 900, lw: 6 });
     var ya = sp(t, .22, 3, .6);
-    chip(g, 'YEARS', 540, 1330, { px: 120, bg: PINK, fg: BG, wt: 900, s: Math.min(1.1, ya), a: ya * 3 });
+    chip(g, 'YEARS', 540, 1340, { px: 120, bg: PINK, fg: BG, wt: 900, s: Math.min(1.1, ya), a: ya * 3 });
   }
 
   /* =====================================================================================================
-     SCENE 2 · the ruler: the sun rolls from Sept 2013 to Nov 2026
+     SCENE 2 · the ruler: the sun rolls from Sept 2013 to Nov 2026, with a flag at the old record
      ===================================================================================================== */
-  var RX = 300, RY0 = 520, RDY = 60, Y5 = RY0 + .712 * RDY, Y6 = RY0 + 13.882 * RDY;
+  var RX = 300, RY0 = 520, RDY = 64, Y5 = RY0 + .712 * RDY, Y6 = RY0 + 13.882 * RDY;
   var TA = at('six', 'lands') - .05, TB = at('six', '2026') + .1;
   function sunY(t) {
     var d = Math.min(1.04, sp(t, start('five') + .02, 2.2, .62));
     return lerp(Y5 - 230, Y5, d) + (Y6 - Y5) * eio(seg(t, TA, TB));
   }
+  var YREC = Y5 + 5.4 * RDY, TREC;                 // when the sun passes 5.4 years: the old record
+  (function () { var lo = TA, hi = TB; for (var j = 0; j < 30; j++) { var m = (lo + hi) / 2; if (sunY(m) < YREC) lo = m; else hi = m; } TREC = hi; })();
   function rulerScene(g, t) {
     var S = SC[1], grow = eo(seg(t, S.t0 + .05, S.t0 + .6)), ys = sunY(t), roll = t > TA;
     g.save(); g.lineCap = 'round';
@@ -184,35 +189,41 @@
     if (roll) { g.strokeStyle = PINK; g.lineWidth = 14; g.beginPath(); g.moveTo(RX, Y5); g.lineTo(RX, ys); g.stroke(); }
     for (var k = 0; k <= 13; k++) {
       var y = RY0 + k * RDY, a = clamp(grow * 15 - k, 0, 1), done = roll && ys >= y - 1;
-      g.globalAlpha = a; g.strokeStyle = done ? PINK : DIM; g.lineWidth = 5;
+      g.globalAlpha = a; g.strokeStyle = done ? PINK : CREAM2; g.lineWidth = 5;
       g.beginPath(); g.moveTo(RX - 18, y); g.lineTo(RX + 18, y); g.stroke();
-      font(g, 30, k === 0 || k === 13 ? 700 : 500, MONO); g.textAlign = 'right'; g.textBaseline = 'middle';
-      g.fillStyle = done ? PINK : (k === 0 || k === 13) ? CREAM : DIM; g.fillText(String(2013 + k), 232, y);
+      font(g, 36, k === 0 || k === 13 ? 700 : 500, MONO); g.textAlign = 'right'; g.textBaseline = 'middle';
+      g.fillStyle = done ? PINK : CREAM; g.fillText(String(2013 + k), 236, y);
     }
     g.restore();
     var sa = clamp(sp(t, start('five') + .02, 2.2, .62) * 3, 0, 1);
-    g.save(); g.globalAlpha = sa; sun(g, RX, ys, 64, t); g.restore();
+    g.save(); g.globalAlpha = sa; sun(g, RX, ys, 78, t); g.restore();
     /* the two dates */
     var a5 = clamp(sp(t, at('five', 'GTA'), 3, .7), 0, 1.1), a6 = clamp(sp(t, TB - .5, 3, .7), 0, 1.1);
     function card(big, sub, y, a, col) {
       if (a <= 0) return;
       g.save(); g.globalAlpha = clamp(a, 0, 1); g.translate((1 - Math.min(1, a)) * 40, 0);
-      font(g, 100, 900); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(big, 470, y);
-      g.restore(); label(g, sub, 470, y + 78, a, col, 38, 'left');
+      font(g, 110, 900); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(big, 480, y);
+      g.restore(); label(g, sub, 480, y + 84, a, col, 40, 'left');
     }
-    card('GTA 5', 'SEP 17, 2013', 560, a5, PINK);
-    card('GTA 6', 'NOV 19, 2026', 1270, a6, TEAL);
+    card('GTA 5', 'SEP 17, 2013', 590, a5, PINK);
+    card('GTA 6', 'NOV 19, 2026', 1320, a6, TEAL);
+    /* the old record: a flag where the sun passes 5.4 years */
+    var fa = clamp(sp(t, TREC, 3, .7), 0, 1.1) * (1 - seg(t, at('gap', 'two') - .1, at('gap', 'two') + .2));
+    if (fa > 0) {
+      g.save(); g.globalAlpha = clamp(fa, 0, 1); g.strokeStyle = TEAL; g.lineWidth = 6; g.beginPath(); g.moveTo(RX + 40, YREC); g.lineTo(480, YREC); g.stroke(); g.restore();
+      chip(g, 'OLD RECORD: 5.4', 700, YREC - 6, { px: 44, line: TEAL, fg: TEAL, wt: 800, a: fa, s: Math.min(1.08, fa), pad: 22 });
+    }
     /* years elapsed, rolling with the sun */
     if (roll && sunY(qt(t)) - Y5 >= RDY) {
       var yrs = (sunY(qt(t)) - Y5) / RDY, n = Math.min(13, Math.floor(yrs + 1e-3)), tg = at('gap', 'thirteen');
       var kick = t >= tg ? Math.exp(-(t - tg) * 7) : 0, ca = clamp(sp(t, TA + .1, 3, .7), 0, 1);
-      g.save(); g.translate(720, 930); g.scale(1 + .1 * kick, 1 + .1 * kick); g.globalAlpha = ca;
-      font(g, 240, 900); try { g.fontStretch = 'expanded'; } catch (e) {}
-      g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = TEAL; g.fillText(String(n), 9, 9); g.fillStyle = CREAM; g.fillText(String(n), 0, 0);
+      g.save(); g.translate(690, 1010); g.scale(1 + .1 * kick, 1 + .1 * kick); g.globalAlpha = ca;
+      font(g, 270, 900); try { g.fontStretch = 'expanded'; } catch (e) {}
+      g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = TEAL; g.fillText(String(n), 10, 10); g.fillStyle = CREAM; g.fillText(String(n), 0, 0);
       g.restore();
-      chip(g, 'YEARS', 720, 1090, { px: 56, bg: PINK, fg: BG, wt: 900, a: ca });
+      chip(g, 'YEARS', 690, 1165, { px: 60, bg: PINK, fg: BG, wt: 900, a: ca });
       var ma = clamp(sp(t, at('gap', 'two') - .05, 3, .7), 0, 1);
-      chip(g, '+ 2 MONTHS', 720, 1180, { px: 50, line: CREAM, fg: CREAM, wt: 800, a: ma, s: Math.min(1.08, ma) });
+      chip(g, '+ 2 MONTHS', 690, 1240, { px: 50, line: CREAM, fg: CREAM, wt: 800, a: ma, s: Math.min(1.08, ma) });
     }
   }
 
@@ -220,91 +231,94 @@
      SCENE 3 · two consoles: PlayStation 3 then, PlayStation 5 now (flat shapes, no logos)
      ===================================================================================================== */
   function psScene(g, t) {
-    var a3 = clamp(sp(t, at('ps', 'launched') - .1, 3, .7), 0, 1.1), a5 = clamp(sp(t, at('ps', 'GTA', 1) - .1, 3, .7), 0, 1.1);
+    var S = SC[2], a3 = clamp(sp(t, S.t0 + .15, 3, .7), 0, 1.1), a5 = clamp(sp(t, at('ps', 'GTA', 1) - .1, 3, .7), 0, 1.1);
     function name(txt, x, y, a) {
       if (a <= 0) return;
-      g.save(); g.globalAlpha = clamp(a, 0, 1); var px = fit(g, txt, 340, 46, 800); font(g, px, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(txt, x, y + (1 - Math.min(1, a)) * 24); g.restore();
+      g.save(); g.globalAlpha = clamp(a, 0, 1); var px = fit(g, txt, 340, 48, 800); font(g, px, 800); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(txt, x, y + (1 - Math.min(1, a)) * 24); g.restore();
     }
-    name('PLAYSTATION 3', 290, 730, a3); name('PLAYSTATION 5', 740, 730, a5);
-    /* PS3: a wide slab, pink trim, a disc slot and one teal light */
+    name('PLAYSTATION 3', 290, 640, a3); name('PLAYSTATION 5', 740, 640, a5);
     var bob3 = Math.sin(t * 1.6) * 6, bob5 = Math.sin(t * 1.6 + 1.5) * 6;
     g.save(); g.translate(0, bob3);
-    slab(g, 290, 960, 330, 110, PANEL2, PINK, clamp(a3, 0, 1));
-    g.globalAlpha = clamp(a3, 0, 1); g.fillStyle = BG; rr(g, 150, 944, 210, 12, 6); g.fill();
-    g.fillStyle = TEAL; g.beginPath(); g.arc(422 - 60, 984, 8, 0, 6.2832); g.fill(); g.globalAlpha = 1; g.restore();
-    /* PS5: a tall tower, cream shells around a dark centre */
+    slab(g, 290, 1000, 400, 130, PANEL2, PINK, clamp(a3, 0, 1));
+    g.globalAlpha = clamp(a3, 0, 1); g.fillStyle = BG; rr(g, 120, 980, 250, 14, 7); g.fill();
+    g.fillStyle = TEAL; g.beginPath(); g.arc(440 - 40, 1050, 9, 0, 6.2832); g.fill(); g.globalAlpha = 1; g.restore();
     g.save(); g.translate(0, bob5);
-    slab(g, 740, 960, 150, 390, CREAM, TEAL, clamp(a5, 0, 1));
-    g.globalAlpha = clamp(a5, 0, 1); g.fillStyle = PANEL; rr(g, 740 - 24, 960 - 170, 48, 340, 20); g.fill();
-    g.fillStyle = TEAL; rr(g, 740 - 4, 960 - 150, 8, 300, 4); g.fill(); g.globalAlpha = 1; g.restore();
-    var y3 = fit(g, '2013', 300, 130, 900);
-    chip(g, '2013', 290, 1250, { px: y3, fg: PINK, wt: 900, pad: 0, a: a3 });
-    chip(g, '2026', 740, 1250, { px: y3, fg: TEAL, wt: 900, pad: 0, a: a5 });
-    arrow(g, 460, 960, 580, 960, eo(seg(t, at('ps', 'GTA', 1) - .25, at('ps', 'GTA', 1) + .2)), PINK, 10);
+    slab(g, 740, 1000, 190, 480, CREAM, TEAL, clamp(a5, 0, 1));
+    g.globalAlpha = clamp(a5, 0, 1); g.fillStyle = PANEL; rr(g, 740 - 30, 1000 - 215, 60, 430, 24); g.fill();
+    g.fillStyle = TEAL; rr(g, 740 - 5, 1000 - 190, 10, 380, 5); g.fill(); g.globalAlpha = 1; g.restore();
+    var y3 = fit(g, '2013', 300, 160, 900);
+    chip(g, '2013', 290, 1340, { px: y3, fg: PINK, wt: 900, pad: 0, a: a3 });
+    chip(g, '2026', 740, 1340, { px: y3, fg: TEAL, wt: 900, pad: 0, a: a5 });
+    arrow(g, 510, 1000, 640, 1000, eo(seg(t, at('ps', 'GTA', 1) - .25, at('ps', 'GTA', 1) + .2)), PINK, 10);
   }
 
   /* =====================================================================================================
-     SCENE 4 · the longest gap before, against this one
+     SCENE 4 · the longest gap before, against this one: the long bar slides past the 2x line
      ===================================================================================================== */
-  var BX = 150, BWID = 780;
+  var BX = 150, BWID = 780, W1 = BWID * 5.4 / 13.2, X2 = BX + 2 * W1;
+  var G2A = at('dbl', 'more') - .15, G2B = at('dbl', 'double') + .25;
+  function ease2(k) { return eio(k); }
+  var TPASS = (function () { var lo = G2A, hi = G2B; for (var j = 0; j < 30; j++) { var m = (lo + hi) / 2; if (BWID * ease2(seg(m, G2A, G2B)) < X2 - BX) lo = m; else hi = m; } return hi; })();
   function barsScene(g, t) {
-    var a1 = clamp(sp(t, SC[3].t0 + .15, 3, .7), 0, 1), g1 = eo(seg(t, at('prev', 'longest'), at('prev', 'longest') + .9));
-    var g2 = eo(seg(t, at('dbl', 'more') - .1, at('dbl', 'double') + .35)), a2 = clamp(sp(t, at('prev', 'about') - .2, 3, .7), 0, 1);
-    label(g, 'GTA IV TO GTA 5', BX, 640, a1, CREAM, 34, 'left'); label(g, 'APR 2008 TO SEP 2013', BX, 690, a1, DIM, 30, 'left');
-    g.save(); g.globalAlpha = a1; rr(g, BX, 730, BWID, 100, 18); g.fillStyle = 'rgba(255,241,227,.07)'; g.fill(); g.restore();
-    var w1 = BWID * 5.4 / 13.2 * g1;
-    if (w1 > 4) { rr(g, BX, 730, w1, 100, 18); g.fillStyle = TEAL; g.fill(); }
-    chip(g, '5.4 YEARS', BX + w1 + 24 + 140, 780, { px: 56, fg: CREAM, wt: 900, pad: 0, a: g1 > .6 ? (g1 - .6) / .4 : 0 });
-    label(g, 'GTA 5 TO GTA 6', BX, 910, a2, CREAM, 34, 'left'); label(g, 'SEP 2013 TO NOV 2026', BX, 960, a2, DIM, 30, 'left');
-    g.save(); g.globalAlpha = a2; rr(g, BX, 1000, BWID, 100, 18); g.fillStyle = 'rgba(255,241,227,.07)'; g.fill(); g.restore();
-    var w2 = BWID * g2;
+    var S = SC[3], a1 = clamp(sp(t, S.t0 + .15, 3, .7), 0, 1), g1 = eo(seg(t, at('prev', 'longest'), at('prev', 'longest') + .9));
+    var g2 = ease2(seg(t, G2A, G2B)), a2 = clamp(sp(t, S.t0 + .3, 3, .7), 0, 1);
+    label(g, 'GTA IV TO GTA 5', BX, 610, a1, CREAM, 40, 'left'); label(g, 'APR 2008 TO SEP 2013', BX, 662, a1, CREAM2, 36, 'left');
+    g.save(); g.globalAlpha = a1; rr(g, BX, 710, BWID, 130, 22); g.fillStyle = 'rgba(255,241,227,.08)'; g.fill(); g.restore();
+    var w1 = W1 * g1;
+    if (w1 > 4) { rr(g, BX, 710, w1, 130, 22); g.fillStyle = TEAL; g.fill(); }
+    chip(g, '5.4 YEARS', BX + w1 + 24 + 160, 775, { px: 64, fg: CREAM, wt: 900, pad: 0, a: g1 > .6 ? (g1 - .6) / .4 : 0 });
+    label(g, 'GTA 5 TO GTA 6', BX, 940, a2, CREAM, 40, 'left'); label(g, 'SEP 2013 TO NOV 2026', BX, 992, a2, CREAM2, 36, 'left');
+    g.save(); g.globalAlpha = a2; rr(g, BX, 1040, BWID, 130, 22); g.fillStyle = 'rgba(255,241,227,.08)'; g.fill(); g.restore();
+    var w2 = BWID * g2, flash = t >= TPASS ? Math.exp(-(t - TPASS) * 9) : 0;
     if (w2 > 4) {
-      rr(g, BX, 1000, w2, 100, 18); g.fillStyle = PINK; g.fill();
-      if (g2 > .5) { font(g, 56, 900); g.textAlign = 'right'; g.textBaseline = 'middle'; g.fillStyle = BG; g.globalAlpha = (g2 - .5) * 2; g.fillText('13.2 YEARS', BX + w2 - 26, 1052); g.globalAlpha = 1; }
+      rr(g, BX, 1040, w2, 130, 22); g.fillStyle = flash > .35 ? CREAM : PINK; g.fill();
+      if (g2 > .5) { font(g, 64, 900); g.textAlign = 'right'; g.textBaseline = 'middle'; g.fillStyle = BG; g.globalAlpha = (g2 - .5) * 2; g.fillText('13.2 YEARS', BX + w2 - 28, 1107); g.globalAlpha = 1; }
     }
-    label(g, 'RELEASE DATE TO RELEASE DATE', 540, 1400, a2, DIM, 30);
+    /* the 2x line: twice the old record, drawn through both bars */
+    g.save(); g.globalAlpha = a2; g.strokeStyle = CREAM; g.lineWidth = 5; g.setLineDash([14, 12]); g.beginPath(); g.moveTo(X2, 700); g.lineTo(X2, 1190); g.stroke(); g.restore();
+    chip(g, '2×', X2, 668, { px: 54, bg: CREAM, fg: BG, wt: 900, a: a2, s: 1 + .25 * flash });
+    label(g, 'RELEASE DATE TO RELEASE DATE', 540, 1410, a2, CREAM2, 36);
   }
 
   /* =====================================================================================================
      SCENE 5 · the dates: first target, then two delays crossed out
      ===================================================================================================== */
   var CARDS = [
-    { y: 650, tag: 'FIRST TARGET', date: 'FALL 2025', col: TEAL, show: at('fall', 'fall') - .1, dateAt: at('fall', 'fall'), strike: at('d1', 'said') },
-    { y: 900, tag: 'DELAY 1 · ANNOUNCED MAY 2, 2025', date: 'MAY 26, 2026', col: ORG, show: at('d1', 'may', 0) - .1, dateAt: at('d1', '26'), strike: at('d2', 'moved') },
-    { y: 1150, tag: 'DELAY 2 · ANNOUNCED NOV 6, 2025', date: 'NOV 19, 2026', col: PINK, show: at('d2', 'november') - .1, dateAt: at('d2', 'november'), strike: 1e9 }
+    { y: 640, tag: 'FIRST TARGET', tag2: 'TAKE-TWO, FEB 2025', date: 'FALL 2025', col: TEAL, show: SC[4].t0 + .15, dateAt: at('fall', 'supposed'), strike: at('d1', 'said') },
+    { y: 940, tag: 'DELAY 1', tag2: 'ANNOUNCED MAY 2, 2025', date: 'MAY 26, 2026', col: ORG, show: start('d1') + .05, dateAt: at('d1', '26th'), strike: at('d2', 'moved') },
+    { y: 1240, tag: 'DELAY 2', tag2: 'ANNOUNCED NOV 6, 2025', date: 'NOV 19, 2026', col: PINK, show: start('d2') + .05, dateAt: at('d2', 'november'), strike: 1e9 }
   ];
   function datesScene(g, t) {
     var held = at('held', 'held'), pulse = t >= held ? Math.exp(-(t - held) * 3) * Math.cos((t - held) * 16) : 0;
     CARDS.forEach(function (c, i) {
       var a = clamp(sp(t, c.show, 3, .7), 0, 1.1); if (a <= 0) return;
-      var sk = eo(seg(t, c.strike, c.strike + .35)), dim = 1 - .55 * sk, x = 130, w = 800, h = 190, last = i === 2;
+      var sk = eo(seg(t, c.strike, c.strike + .35)), dim = 1 - .55 * sk, x = 130, w = 800, h = 260, last = i === 2;
       var sc = last ? 1 + .035 * Math.max(0, pulse) : 1;
       g.save(); g.globalAlpha = clamp(a, 0, 1) * dim; g.translate(540, c.y); g.scale(sc, sc); g.translate(-540, -c.y + (1 - Math.min(1, a)) * 40);
-      rr(g, x, c.y - h / 2, w, h, 28); g.fillStyle = last && t >= held ? PANEL2 : PANEL; g.fill();
-      g.strokeStyle = c.col; g.lineWidth = last && t >= held ? 8 : 5; rr(g, x, c.y - h / 2, w, h, 28); g.stroke();
-      label(g, c.tag, x + 34, c.y - 52, 1, c.col, 30, 'left');
-      var da = clamp(sp(t, c.dateAt, 3, .7), 0, 1), px = fit(g, c.date, 720, 100, 900);
-      g.globalAlpha *= da; font(g, px, 900); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(c.date, x + 34, c.y + 24);
-      if (sk > 0) { var tw = g.measureText(c.date).width; g.globalAlpha = 1; g.strokeStyle = PINK; g.lineWidth = 14; g.lineCap = 'round'; g.beginPath(); g.moveTo(x + 20, c.y + 24); g.lineTo(x + 20 + (tw + 30) * sk, c.y + 24); g.stroke(); }
+      rr(g, x, c.y - h / 2, w, h, 30); g.fillStyle = last && t >= held ? PANEL2 : PANEL; g.fill();
+      g.strokeStyle = c.col; g.lineWidth = last && t >= held ? 9 : 6; rr(g, x, c.y - h / 2, w, h, 30); g.stroke();
+      label(g, c.tag, x + 34, c.y - 88, 1, c.col, 40, 'left');
+      label(g, c.tag2, x + 34, c.y - 42, 1, CREAM, 36, 'left');
+      var da = clamp(sp(t, c.dateAt, 3, .7), 0, 1), px = fit(g, c.date, 700, 112, 900);
+      g.globalAlpha *= da; font(g, px, 900); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(c.date, x + 34, c.y + 54);
+      if (sk > 0) { var tw = g.measureText(c.date).width; g.globalAlpha = 1; g.strokeStyle = PINK; g.lineWidth = 16; g.lineCap = 'round'; g.beginPath(); g.moveTo(x + 20, c.y + 54); g.lineTo(x + 20 + (tw + 30) * sk, c.y + 54); g.stroke(); }
       g.restore();
     });
-    var ha = clamp(sp(t, held + .5, 3, .7), 0, 1);
-    chip(g, "STILL THE DATE ON ROCKSTAR'S SITE", 540, 1330, { px: 32, fg: TEAL, line: TEAL, wt: 600, fam: MONO, a: ha, pad: 18 });
-    label(g, 'SOURCES: ROCKSTAR, VGC, VARIETY', 540, 1400, clamp(sp(t, CARDS[1].show, 3, .7), 0, 1), DIM, 30);
+    label(g, 'SOURCES: ROCKSTAR, VGC, VARIETY', 540, 1415, clamp(sp(t, CARDS[1].show, 3, .7), 0, 1), CREAM2, 36);
   }
 
   /* =====================================================================================================
-     SCENE 6 · the sun sets on "almost over", then rises into frame 0
+     SCENE 6 · the sun sets on "almost here", then rises into frame 0
      ===================================================================================================== */
-  var HORIZON = 1190;
+  var HORIZON = 1230;
   function endScene(g, t) {
     var u1 = eio(seg(t, SC[5].t0 + .1, end('now') - .05)), u2 = eio(seg(t, end('q') - .35, HOME));
-    var cy = lerp(lerp(780, 1290, u1), 880, u2), r = lerp(340, 410, u2);
+    var cy = lerp(lerp(800, 1330, u1), 940, u2), r = lerp(380, 400, u2);
     g.save(); g.beginPath(); g.rect(0, 0, W, lerp(HORIZON, H, u2)); g.clip(); sun(g, 540, cy, r, t); g.restore();
     g.fillStyle = TEAL; g.globalAlpha = 1 - u2; rr(g, 150, HORIZON, 780, 10, 5); g.fill(); g.globalAlpha = 1;
     var qa = clamp(sp(t, at('q', 'day') - .1, 3, .65), 0, 1.1);
-    var px = fit(g, 'DAY ONE?', 700, 190, 900);
-    chip(g, 'DAY ONE?', 540, 1330, { px: px, fg: CREAM, wt: 900, pad: 0, a: qa * (1 - u2), s: Math.min(1.05, .7 + .3 * qa) });
+    var px = fit(g, 'DAY ONE?', 700, 200, 900);
+    chip(g, 'DAY ONE?', 540, 1360, { px: px, fg: CREAM, wt: 900, pad: 0, a: qa * (1 - u2), s: Math.min(1.05, .7 + .3 * qa) });
   }
 
   /* ---------- captions: the narrator's words, highlighted as spoken ---------- */
@@ -346,23 +360,23 @@
     stage(g);
     dashes(g, t);
     var si = sceneAt(t), S = SC[si];
-    /* scene change: a pink edge sweeps left to right and clears the old scene (one axis only, no radial smear) */
-    var sel = si + 1 < SC.length ? seg(t, S.t1 - .3, S.t1 - .02) : 0;
-    var inK = si > 0 ? eo(seg(t, S.t0, S.t0 + .35)) : 1;
-    g.save();
-    var push = 1 + .025 * seg(t, S.t0, S.t1), cy = 1000;
-    g.translate(540, cy); g.scale(push * lerp(.95, 1, inK), push * lerp(.95, 1, inK)); g.translate(-540, -cy);
-    SCENES[si](g, t);
-    g.restore();
-    if (sel > 0) {
-      var x1 = lerp(0, 1080, eio(sel));
-      g.save(); g.beginPath(); g.rect(0, 470, x1, 1060); g.clip(); stage(g); dashes(g, t); g.restore();
-      g.fillStyle = PINK; g.fillRect(x1 - 6, 470, 12, 1060);
+    function scene(i) {
+      var Si = SC[i], inK = i > 0 ? eo(seg(t, Si.t0, Si.t0 + .35)) : 1, push = 1 + .025 * seg(t, Si.t0, Si.t1);
+      g.translate(540, 1000); g.scale(push * lerp(.95, 1, inK), push * lerp(.95, 1, inK)); g.translate(-540, -1000);
+      SCENES[i](g, t);
     }
+    /* scene change: a pink edge sweeps left to right and the next scene is already drawn underneath it */
+    var wk = si > 0 ? seg(t, S.t0, S.t0 + .4) : 1;
+    if (wk < 1) {
+      var x1 = lerp(0, 1080, eio(wk));
+      g.save(); g.beginPath(); g.rect(x1, 0, W - x1, H); g.clip(); scene(si - 1); g.restore();
+      g.save(); g.beginPath(); g.rect(0, 0, x1, H); g.clip(); scene(si); g.restore();
+      g.fillStyle = PINK; g.fillRect(x1 - 6, 380, 12, 1100);
+    } else { g.save(); scene(si); g.restore(); }
     /* the loop: the end dissolves back into frame 0 */
     var back = eio(seg(t, HOME, HOME + .4));
     if (back > 0) { g.save(); g.globalAlpha = back; stage(g); dashes(g, 0); hookScene(g, 0); g.restore(); }
-    STAMPS.forEach(function (s) { if (s[3]) stamp(g, s[0], 540, 1280, t, s[1], s[2], s[3], s[4], s[5]); });
+    STAMPS.forEach(function (s) { if (s[3]) stamp(g, s[0], s[6] || 540, s[7] || 1280, t, s[1], s[2], s[3], s[4], s[5]); });
     if (LIVE.text) captions(g, t);
 
     /* a thin progress line along the top (the loop restarts it) */
@@ -390,13 +404,13 @@
       EV.push({ t: hi, type: 'tick', g: .2 + k * .012 });
     }
     EV.push({ t: TB, type: 'thump' }, { t: TB + .05, type: 'ding' }, { t: at('gap', 'thirteen'), type: 'stamp' }, { t: at('gap', 'two') - .05, type: 'blip', f: 900 });
-    EV.push({ t: at('ps', 'launched') - .1, type: 'blips', n: 3 }, { t: at('ps', 'GTA', 1) - .1, type: 'blips', n: 4, f: 1000 }, { t: at('ps', 'GTA', 1) - .2, type: 'swish' });
+    EV.push({ t: SC[2].t0 + .15, type: 'blips', n: 3 }, { t: at('ps', 'GTA', 1) - .1, type: 'blips', n: 4, f: 1000 }, { t: at('ps', 'GTA', 1) - .2, type: 'swish' });
     EV.push({ t: at('prev', 'longest'), type: 'swish' }, { t: at('prev', 'about') - .2, type: 'blip', f: 800 }, { t: at('dbl', 'more') - .1, type: 'swish' });
-    EV.push({ t: at('dbl', 'double'), type: 'stamp', big: true });
+    EV.push({ t: TPASS, type: 'stamp' }, { t: at('dbl', 'double'), type: 'stamp', big: true }, { t: TREC, type: 'ding' }, { t: at('held', 'held'), type: 'stamp', big: true });
     CARDS.forEach(function (c, i) { EV.push({ t: c.show + .1, type: 'blips', n: 3, f: 700 + i * 120 }); if (c.strike < 1e8) EV.push({ t: c.strike, type: 'strike' }); });
-    EV.push({ t: at('held', 'held'), type: 'ding' });
+    
     EV.push({ t: SC[5].t0 + .1, type: 'suck', t1: end('now') - .05 }, { t: at('q', 'day'), type: 'ding' });
-    SC.forEach(function (s, i) { if (i) EV.push({ t: s.t0 - .3, type: 'select' }); });
+    SC.forEach(function (s, i) { if (i) EV.push({ t: s.t0, type: 'select' }); });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
 

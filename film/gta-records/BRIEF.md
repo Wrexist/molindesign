@@ -48,3 +48,4 @@ Main search phrase: `GTA 6 trailer views` / `GTA 6 trailer record` (the spoken h
 
 ## 6. Log
 - 2026-10-28: researched, scripted, built. Backlog angle "counters" kept; the YouTube-only vs all-platform contrast became the twist because it is the honest answer to "which record is bigger".
+- 2026-10-28 jury r1 fixes: Hollywood Reporter article (tollbit redirect) could not be opened; spoken line now "Reports say Rockstar claimed 475 million..."; on screen REPORTED CLAIM. THR headline/summary via search: Rockstar said 475M+ views across platforms, biggest video launch of all time. 84M labeled ABOUT 84M / COUNTS VARY.

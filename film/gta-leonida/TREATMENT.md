@@ -1,6 +1,6 @@
 # Leonida region by region (GTA 6, Delta)
 
-Vertical 1080x1920 Short, about 36 s. One hard idea: **the whole GTA 6 state is six names Rockstar gives on its own site; walk them on a map we drew ourselves.** Own graphics, own voice, no Rockstar footage, logo, key art or map art, no music. Positions on our silhouette are approximate (labeled on screen) except Mount Kalaga (northern border) and Ambrosia (heart of Leonida), which Rockstar's text places.
+Vertical 1080x1920 Short, about 36 s. One hard idea: **Rockstar names six places in Leonida on its own site; walk them on a map we drew ourselves.** Own graphics, own voice, no Rockstar footage, logo, key art or map art, no music. Positions on our silhouette are approximate (labeled on screen) except Mount Kalaga (northern border) and Ambrosia (heart of Leonida), which Rockstar's text places.
 
 ## Benchmarks
 - **Kurzgesagt-style flat explainers**: learn flat hand-built shapes, one color per idea, icons that pop on a spring. Don't take the slow cosmic pacing.
@@ -17,7 +17,7 @@ Vertical 1080x1920 Short, about 36 s. One hard idea: **the whole GTA 6 state is 
 ## Line to picture
 | Line | Picture |
 |---|---|
-| hook "Here's the whole GTA 6 state." | Huge pink silhouette over a striped sun, teal offset shadow, coast light running, LEONIDA chip. Frame 0 already in motion. |
+| hook "Six GTA 6 places Rockstar names." | Huge pink silhouette over a striped sun, teal offset shadow, coast light running, LEONIDA chip. Frame 0 already in motion. |
 | six "Leonida. Six regions Rockstar names on its own site." | Map goes dark; six numbered pins drop; 6 REGIONS chip; source label. |
 | vice | Pink disc on the east coast; skyline, palm, half sun; card quote "the sun and fun capital of America". |
 | keys | Teal islets light up with a ripple; sailboat bobs; card "tropical archipelago". |

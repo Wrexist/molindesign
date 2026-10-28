@@ -13,7 +13,12 @@
   "names": [
     "GTA",
     "Rockstar",
-    "PlayStation"
+    "PlayStation",
+    "November 19th, 2026",
+    "May 2nd",
+    "May 26th, 2026",
+    "November 6th",
+    "September 17th, 2013"
   ],
   "pronounce": {},
   "chain": {
@@ -33,7 +38,7 @@
     {
       "id": "five",
       "at": 2.84,
-      "text": "GTA 5 came out September 17, 2013.",
+      "text": "GTA 5 came out September 17th, 2013.",
       "say": "G T A five came out September seventeenth, twenty thirteen."
     },
     {
@@ -74,13 +79,13 @@
     {
       "id": "d1",
       "at": 27.62,
-      "text": "Then, on May 2, Rockstar said May 26, 2026.",
+      "text": "Then, on May 2nd, Rockstar said May 26th, 2026.",
       "say": "Then, on May second, Rockstar said May twenty sixth, twenty twenty six."
     },
     {
       "id": "d2",
       "at": 32.87,
-      "text": "Then on November 6, it moved again.",
+      "text": "Then on November 6th, it moved again.",
       "say": "Then on November sixth, it moved again."
     },
     {
