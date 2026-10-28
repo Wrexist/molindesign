@@ -1,6 +1,8 @@
 // Offline renderer for film/. Headless Chromium draws render(t) frame by frame; ffmpeg joins, adds grain and masters.
 //   node render.mjs sheet  [--from 0 --to 34 --step 1 --cols 6 --w 320 --out ../out/check/sheet.jpg]
 //   node render.mjs strip  --from 23 --to 24.2 [--step 0.1 ...]           (same as sheet with a fine step)
+//   node render.mjs sheet  --times 3.2,9.5,12 (exact times; e.g. one per shot)
+//   node render.mjs thumb  [--out ../out/thumbnail.jpg]   (FILM.thumb() at 1280×720)
 //   node render.mjs still  --t 29.9 [--out ../out/poster.jpg]
 //   node render.mjs video  [--fps 30 --samples 4 --shutter 0.5 --workers 3]
 //   node render.mjs audio                                                 (renders SCORE offline → out/mix.wav)
@@ -177,10 +179,13 @@ try {
     const page = await openPage(browser, port);
     if (mode === 'sheet' || mode === 'strip') {
       const from = +opt('from', 0), to = +opt('to', SPEC.DUR), step = +opt('step', mode === 'strip' ? .1 : 1);
-      const times = []; for (let t = from; t <= to + 1e-9; t += step) times.push(+t.toFixed(4));
+      const times = []; if (opt('times')) opt('times').split(',').forEach((v) => times.push(+v)); else for (let t = from; t <= to + 1e-9; t += step) times.push(+t.toFixed(4));
       await sheet(page, times, +opt('cols', 6), +opt('w', 320), path.resolve(opt('out', path.join(OUT, 'check', mode + '.jpg'))));
     } else if (mode === 'still') {
       await sheet(page, [+opt('t', SPEC.POSTER)], 1, +opt('w', SPEC.W), path.resolve(opt('out', path.join(OUT, 'check', 'still.jpg'))), false);
+    } else if (mode === 'thumb') {
+      const data = await page.evaluate(() => { window.FILM.thumb(); const src = document.getElementById('film'), c = document.createElement('canvas'); c.width = 1280; c.height = 720; c.getContext('2d').drawImage(src, 0, 0, 1280, 720); return c.toDataURL('image/jpeg', .92); });
+      const out = path.resolve(opt('out', path.join(OUT, 'thumbnail.jpg'))); fs.writeFileSync(out, Buffer.from(data.split(',')[1], 'base64')); console.log('wrote', path.relative(ROOT, out));
     } else if (mode === 'audio') await audio(page);
     else if (mode === 'readcheck') await readcheck(page);
     else if (mode === 'events') {
