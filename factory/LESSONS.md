@@ -126,6 +126,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - The biggest visual beats need a sound: if the SFX gate leaves a stamp silent, move the stamp into the next pause rather than keep it mid-phrase; keep every hit ≥ 3 dB under the neighbouring voice and check the room tone level on the render (password r2: −37 dB measured where −50 was intended).
 
 ## Posting and sound
+- Every TikTok scheduled in the 13:00 ET slot (noise, battery, qrcode, phonephoto) sat at exactly 0 views while the same videos got 178–1,319 on YouTube; every TikTok posted in the US evening (memory 19:00 ET, fyp 19:00 ET, gps 20:30 ET) was served (2026-10-28, PC page-data check). Until disproven: TikTok posts only at 19:00 and 23:00 ET; YouTube keeps 13:00 and 19:00 ET. Retire the sounds Self Aware and Espresso Soul (both on 0-view posts).
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
 - Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
 - TikTok Studio scheduling works: the one-time consent was accepted on 2026-10-24 under Isac's "schedule all posts", so every post is scheduled in its slot (noise, fyp). Before that, gps went up at once.
