@@ -149,4 +149,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
-| Why phone photos look better (phonephoto) | held for the gate decision | | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
+| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
