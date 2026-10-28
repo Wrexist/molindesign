@@ -1,7 +1,7 @@
 # YouTube upload · The whole history of Nvidia
 
 **Channel:** Tech, explained (@techexplained.daily1). Never the Delta channel (@deltaisac): switch to and check "Tech, explained" before uploading. This is a regular long-form video, not a Short.
-**File:** `nvidia-vo.mp4` (16:9, 1920×1080, 30 fps, about @@LEN@@).
+**File:** `nvidia-vo.mp4` (16:9, 1920×1080, 30 fps, about 10:48).
 **Thumbnail:** `thumbnail.jpg` (1280×720).
 **Captions:** upload `nvidia.srt` as English subtitles (Subtitles → Upload file → With timing).
 **Playlist:** new playlist "The whole history of…" (the weekly series). **Category:** Science & Technology. **Altered content:** Yes (AI voice).
@@ -16,7 +16,15 @@
 ```
 Tonight, the answer to your ChatGPT question most likely runs on a chip from a company that started in a Denny's booth and nearly died twice. This is the whole history of Nvidia: a gaming company whose math turned out to be the math of AI.
 
-@@CHAPTERS@@
+0:00 A gaming company runs AI
+1:30 Part 1 · The booth
+2:59 Part 2 · Thirty days from dead
+3:57 Part 3 · The GPU
+5:10 Part 4 · The bet nobody wanted
+6:10 Part 5 · Two cards
+7:30 Part 6 · The gold rush
+8:33 Part 7 · Right now
+9:43 Why it matters
 
 Sources
 • Nvidia: founded April 5, 1993 with about $40,000; the Denny's booth in San Jose and its 2023 plaque (Business Insider, NBC Bay Area)
