@@ -11,7 +11,7 @@
     { id: 'ask', name: 'Three questions', t0: start('o16') - .3, draw: sAsk, wipe: 'slide' },
     { id: 'tease', name: 'The pinboard', t0: start('o19') - .3, draw: sTease, wipe: 'slide' },
     { id: 'title', name: 'Title', t0: start('title') - .45, draw: sTitle, wipe: 'iris' },
-    { id: 'plane', name: 'Taiwan to America, 1973', t0: start('b1') - .3, draw: sPlane, wipe: 'slide', part: 'THE BOOTH' },
+    { id: 'plane', name: 'Taiwan to America, 1973', t0: start('b1') - .3, draw: sPlane, wipe: 'slide', part: 'THE BOOTH', q: 'Who starts a chip company in a diner?' },
     { id: 'school', name: 'The wrong school', t0: start('b2') - .3, draw: sSchool, wipe: 'slide' },
     { id: 'roommate', name: 'The roommate', t0: start('b4') - .3, draw: sRoommate, wipe: 'slide' },
     { id: 'dennysjob', name: "A job at Denny's", t0: start('b6') - .3, draw: sDennysJob, wipe: 'iris' },
@@ -21,36 +21,36 @@
     { id: 'name', name: 'Next version, envy', t0: start('b12') - .3, draw: sName, wipe: 'slide' },
     { id: 'pitch', name: 'The worst pitch', t0: start('b15') - .3, draw: sPitch, wipe: 'slide' },
     { id: 'valentine', name: 'If you lose my money', t0: start('b16') - .3, draw: sValentine, wipe: 'iris' },
-    { id: 'curves', name: 'Curves versus triangles', t0: start('d1') - .3, draw: sCurves, wipe: 'slide', part: 'THIRTY DAYS FROM DEAD' },
+    { id: 'curves', name: 'Curves versus triangles', t0: start('d1') - .3, draw: sCurves, wipe: 'slide', part: 'THIRTY DAYS FROM DEAD', q: 'How close did it come to dying?' },
     { id: 'sega', name: 'Pay us anyway', t0: start('d3') - .3, draw: sSega, wipe: 'slide' },
     { id: 'allin', name: 'All in on RIVA 128', t0: start('d6') - .3, draw: sAllIn, wipe: 'slide' },
     { id: 'payroll', name: 'One month of payroll', t0: start('d7') - .3, draw: sPayroll, wipe: 'slide' },
     { id: 'motto', name: 'The motto', t0: start('d9') - .3, draw: sMotto, wipe: 'iris' },
-    { id: 'ipo', name: 'Twelve dollars a share', t0: start('g1') - .3, draw: sIPO, wipe: 'slide', part: 'THE GPU' },
+    { id: 'ipo', name: 'Twelve dollars a share', t0: start('g1') - .3, draw: sIPO, wipe: 'slide', part: 'THE GPU', q: 'What is a GPU, actually?' },
     { id: 'geforce', name: "The world's first GPU", t0: start('g2') - .3, draw: sGeForce, wipe: 'slide' },
     { id: 'pixels', name: 'Two million pixels', t0: start('g3') - .3, draw: sPixels, wipe: 'iris' },
     { id: 'profs', name: 'A few brilliant professors', t0: start('g5') - .3, draw: sProfs, wipe: 'slide' },
     { id: 'stadium', name: 'A stadium full of kids', t0: start('g6') - .3, draw: sStadium, wipe: 'slide' },
     { id: 'xbox', name: '3dfx and the Xbox', t0: start('g8') - .3, draw: sXbox, wipe: 'slide' },
     { id: 'tattoo', name: 'The tattoo', t0: start('g10') - .3, draw: sTattoo, wipe: 'iris' },
-    { id: 'buck', name: 'Ian Buck', t0: start('c1') - .3, draw: sBuck, wipe: 'slide', part: 'THE BET NOBODY WANTED' },
+    { id: 'buck', name: 'Ian Buck', t0: start('c1') - .3, draw: sBuck, wipe: 'slide', part: 'THE BET NOBODY WANTED', q: 'Why did Wall Street hate it?' },
     { id: 'cuda', name: 'CUDA', t0: start('c3') - .3, draw: sCuda, wipe: 'iris' },
     { id: 'wallst', name: 'Wall Street sees the bill', t0: start('c5') - .3, draw: sWallSt, wipe: 'slide' },
     { id: 'keep', name: 'Keep paying anyway', t0: start('c8') - .3, draw: sKeep, wipe: 'slide' },
-    { id: 'house', name: "A student's parents' house", t0: start('a1') - .3, draw: sHouse, wipe: 'slide', part: 'TWO CARDS' },
+    { id: 'house', name: "A student's parents' house", t0: start('a1') - .3, draw: sHouse, wipe: 'slide', part: 'TWO CARDS', q: 'Where did modern AI come from?' },
     { id: 'train', name: 'Two GTX 580s', t0: start('a3') - .3, draw: sTrain, wipe: 'slide' },
     { id: 'same', name: 'The same simple sums', t0: start('a5') - .3, draw: sSame, wipe: 'iris' },
     { id: 'luck', name: 'Just lucky?', t0: start('a6b') - .3, draw: sLuck, wipe: 'slide' },
     { id: 'dgx', name: 'The first DGX-1', t0: start('a7') - .3, draw: sDGX, wipe: 'slide' },
     { id: 'crypto', name: 'The crypto crash', t0: start('a10') - .3, draw: sCrypto, wipe: 'slide' },
-    { id: 'chatgpt', name: 'ChatGPT', t0: start('r1') - .3, draw: sChatGPT, wipe: 'iris', part: 'THE GOLD RUSH' },
+    { id: 'chatgpt', name: 'ChatGPT', t0: start('r1') - .3, draw: sChatGPT, wipe: 'iris', part: 'THE GOLD RUSH', q: 'What happened after ChatGPT?' },
     { id: 'rush', name: 'Sell shovels', t0: start('r3') - .3, draw: sRush, wipe: 'slide' },
     { id: 'h100', name: 'The H100', t0: start('r5') - .3, draw: sH100, wipe: 'slide' },
     { id: 'plaque', name: 'The plaque', t0: start('r6') - .3, draw: sPlaque, wipe: 'iris' },
     { id: 'podium', name: 'Number one', t0: start('r7') - .3, draw: sPodium, wipe: 'slide' },
     { id: 'deepseek', name: 'DeepSeek day', t0: start('r8') - .3, draw: sDeepSeek, wipe: 'slide' },
     { id: 'climb', name: 'Four, then five trillion', t0: start('r10') - .3, draw: sClimb, wipe: 'slide' },
-    { id: 'now', name: 'October 2026', t0: start('n1') - .3, draw: sNow, wipe: 'iris', part: 'RIGHT NOW' },
+    { id: 'now', name: 'October 2026', t0: start('n1') - .3, draw: sNow, wipe: 'iris', part: 'RIGHT NOW', q: 'Where is it this month?' },
     { id: 'rubin', name: 'Vera Rubin', t0: start('n4') - .3, draw: sRubin, wipe: 'slide' },
     { id: 'wobble', name: 'Not a straight line', t0: start('n5') - .3, draw: sWobble, wipe: 'slide' },
     { id: 'share', name: 'That twelve-dollar share', t0: start('n7') - .3, draw: sShare, wipe: 'slide' },
@@ -65,7 +65,7 @@
   var SHOTS = SC.map(function (s) { return { id: s.id, name: s.name, t0: s.t0, t1: s.t1 }; });
   /* the part cards land in the pause before each part's first line */
   var PARTS = [];
-  SC.forEach(function (s, i) { if (s.part) { var prev = VO.lines[VO.lines.indexOf(LINE[firstLine(s)]) - 1]; PARTS.push({ t: prev.t1 + .12, n: PARTS.length + 1, text: s.part, scene: s }); } });
+  SC.forEach(function (s, i) { if (s.part) { var prev = VO.lines[VO.lines.indexOf(LINE[firstLine(s)]) - 1]; PARTS.push({ t: prev.t1 + 1.3, n: PARTS.length + 1, text: s.part, q: s.q, scene: s }); } });
   function firstLine(s) { for (var i = 0; i < VO.lines.length; i++) if (VO.lines[i].t0 >= s.t0) return VO.lines[i].id; }
   /* YouTube chapters (each ≥ 10 s, first at 0:00) */
   var CHAPTERS = [['A gaming company runs AI', 0]].concat(PARTS.map(function (p) { return [(p.text.charAt(0) + p.text.slice(1).toLowerCase()).replace(/\bgpu\b/, 'GPU'), Math.max(0, p.t - .1)]; })).concat([['Why it matters', S('split').t0]]);
@@ -75,18 +75,20 @@
     for (var i = 0; i < PARTS.length; i++) {
       var c = PARTS[i], nx = i + 1 < PARTS.length ? PARTS[i + 1].t : S('split').t0;
       if (t < c.t || t > nx) continue;
-      var u = t - c.t, k = eio(seg(u, 1.25, 1.7));
-      font(g, 120, 900, DISP, true); var tw = g.measureText(c.text).width, cw = Math.max(tw + 140, 900), ch = 330;
-      var s = lerp(1, .22, k), px = lerp(W / 2, 24 + cw * s / 2, k), py = lerp(H / 2, 22 + ch * s / 2, k);
-      if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.6 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
+      /* the finished quote holds 1.3 s clear, then the card slams in, holds 2.4 s, and parks */
+      var u = t - c.t, k = eio(seg(u, 2.4, 2.85));
+      font(g, 120, 900, DISP, true); var tw0 = g.measureText(c.text).width, tpx = Math.min(120, 120 * 1300 / tw0), tw = tw0 * tpx / 120, cw = Math.max(tw + 160, 1000), ch = 380;
+      var s = lerp(1, .26, k), px = lerp(W / 2, 24 + cw * s / 2, k), py = lerp(H / 2, 22 + ch * s / 2, k);
+      if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.9 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
       var sl = pop(t, c.t, 2.8, .5), sc = s * lerp(1.6, 1, clamp(sl, 0, 1));
       g.save(); g.translate(px, py); g.scale(sc, sc); g.rotate(lerp(-.04, -.015, k) + knock(t, c.t + .1, 30, 9) * .05);
       g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 : 1);
       rr(g, -cw / 2 + 16, -ch / 2 + 20, cw, ch, 26); g.fillStyle = 'rgba(8,6,18,.5)'; g.fill();
       rr(g, -cw / 2, -ch / 2, cw, ch, 26); fillStroke(g, YEL, 10);
       g.fillStyle = INK; g.fillRect(-cw / 2, -ch / 2 + 20, 16, ch - 40);
-      txt(g, 'PART ' + c.n + ' OF 7', 0, -78, 52, INK, { fam: MONO, wt: 700, ls: 6 });
-      txt(g, c.text, 0, 46, 120, INK, { wt: 900, wide: true });
+      txt(g, 'PART ' + c.n + ' OF 7', 0, -110, 52, INK, { fam: MONO, wt: 700, ls: 6 });
+      txt(g, c.text, 0, 14, tpx, INK, { wt: 900, wide: true });
+      if (c.q) txt(g, c.q, 0, 122, 46, INK, { wt: 800, a: (1 - k) * seg(u, .5, .8) });
       g.restore();
     }
   }
@@ -178,7 +180,7 @@
     E(start('o19') - .2, 'paper', { g: 1.3 }); E(start('o20') - .1, 'pop', { g: .7 }); E(start('o20') + .6, 'pop', { g: .7 }); E(start('o20') + 1.2, 'pop', { g: .7 });
     /* title */
     ['the', 'whole', 'history', 'of'].forEach(function (w) { E(at('title', w) - .06, 'tick', { g: .25 }); }); E(at('title', 'nvidia.') - .06, 'stamp', { big: true });
-    PARTS.forEach(function (c) { E(c.t - .02, 'slam'); E(c.t + 1.25, 'swish'); });
+    PARTS.forEach(function (c) { E(c.t - .02, 'slam'); E(c.t + 2.4, 'swish'); });
     /* part 1 */
     E(start('b1'), 'engine', { t1: end('b1') }); E(start('b2') + .2, 'paper'); E(start('b3'), 'rushw', { t1: end('b3') - .3 });
     E(start('b4') + .2, 'pop', { g: .6 }); E(start('b5') + .3, 'thump', { g: .4 }); E(start('b6') + .2, 'clunk'); E(start('b7') - .1, 'paper');
@@ -226,7 +228,7 @@
     E(at('n8', 'jacket.') - .1, 'zip', { t1: at('n8', 'jacket.') + .5 }); E(at('n8b', 'toilets') - .1, 'flies', { t1: at('n8b', '200') }); E(at('n8b', '200') - .1, 'register'); words('n9', ['million', 'harder'], 'paper', { g: 1.3 }, -.08);
     /* ending */
     E(start('e1') - .1, 'gulp'); E(at('e2', 'cousins') - .2, 'shimmer', { t1: end('e2') }); E(at('e3', 'paid') - .2, 'receipt', { t1: end('e3') }); words('e3b', ['stadium', 'kept', 'standing'], 'paper', { g: 1.2 }, -.2);
-    words('e4', ['google,', 'amazon', 'amd'], 'pop', { g: .7 }, -.2); E(at('e4', 'knock') - .05, 'thump', { g: .5 });
+    words('e4', ['google,', 'amazon', 'amd'], 'pop', { g: .7 }, -.2); E(at('e4', 'knock') - .05, 'thump', { g: .5 }); E(at('e4b', 'not') - .05, 'stamp', { g: .6 }); E(at('e4b', 'for') - .1, 'pop', { g: .5 });
     E(start('e5') - .2, 'projector', { t1: start('e6') - .3 }); E(at('e6', 'type') + .1, 'receipt', { t1: at('e6', 'type') + .9 }); E(at('e6', 'type') + .4, 'zip', { t1: at('e6', 'chips.') - .2 }); E(at('e6', 'chips.') - .1, 'ding');
     E(at('e7', 'cable') - .1, 'whoosh'); E(at('e7', 'cut') - .05, 'zap', { t1: at('e7', 'cut') + .4 }); E(at('e7', 'here.') - .1, 'ding'); E(at('e8', 'subscribe') - .1, 'click'); E(at('e8', 'which') - .1, 'pop', { g: .7 });
     SC.forEach(function (s, j) { if (j && s.wipe !== 'none') E(s.t0 - .05, 'swish'); });

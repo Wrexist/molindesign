@@ -2,12 +2,12 @@
  "about": "The whole history of Nvidia. Long-form 16:9 stickman history, episode 3 of Tech, explained (first of the weekly 'whole history' series). Chatterbox voice, the long-form voice Isac picked on 2026-10-24, levelled per line, one global speed.",
  "engine": "chatterbox",
  "lang": "en-us",
- "speed": 0.92,
+ "speed": 0.88,
  "pace": {
   "max": 3.4
  },
  "fit": {
-  "min": 1.0,
+  "min": 0.8,
   "max": 1.0
  },
  "names": [
@@ -69,580 +69,581 @@
    "id": "o2",
    "text": "Before the first word comes back, your question lands in a building full of chips, all doing math at the same time.",
    "pause": 0.45,
-   "at": 2.93
+   "at": 3.03
   },
   {
    "id": "o3",
    "text": "Most of the world's AI chips come from one company.",
    "pause": 0.45,
-   "at": 8.9
+   "at": 9.95
   },
   {
    "id": "o4",
    "text": "A company that started in a Denny's, making chips for video games.",
    "pause": 0.45,
-   "at": 11.86
+   "at": 13.34
   },
   {
    "id": "o5",
    "text": "Nvidia isn't an AI company that used to make gaming chips.",
    "pause": 0.45,
-   "at": 15.96
+   "at": 17.61
   },
   {
    "id": "o6",
    "text": "It's a gaming company whose math turned out to be the math of AI.",
    "pause": 0.45,
-   "at": 19.2
+   "at": 21.29
   },
   {
    "id": "o7",
    "text": "And the size of it breaks your brain.",
    "pause": 0.6,
-   "at": 23.15
+   "at": 25.86
   },
   {
    "id": "o8",
    "text": "When Nvidia went public in 1999, it raised about 42 million dollars.",
    "say": "When Nvidia went public in nineteen ninety-nine, it raised about forty-two million dollars.",
    "pause": 0.45,
-   "at": 25.54
+   "at": 28.8
   },
   {
    "id": "o9",
    "text": "Today, it takes in that much money in less than an hour.",
    "pause": 0.45,
-   "at": 30.95
+   "at": 34.43
   },
   {
    "id": "o10",
    "text": "It's worth about 5 trillion dollars, the most valuable company on Earth.",
    "say": "It's worth about five trillion dollars, the most valuable company on Earth.",
    "pause": 0.45,
-   "at": 34.08
+   "at": 38.39
   },
   {
    "id": "o11",
    "text": "And the man who runs it once cleaned toilets at a school for troubled kids.",
    "pause": 0.45,
-   "at": 38.16
+   "at": 42.64
   },
   {
    "id": "o12",
    "text": "Here's what should be impossible.",
    "pause": 0.6,
-   "at": 41.96
+   "at": 47.47
   },
   {
    "id": "o13",
    "text": "In the nineties, dozens of companies were making graphics chips.",
    "pause": 0.45,
-   "at": 44.21
+   "at": 49.78
   },
   {
    "id": "o14",
    "text": "Nvidia's first chip flopped. It came within weeks of running out of money.",
    "pause": 0.45,
-   "at": 47.85
+   "at": 53.56
   },
   {
    "id": "o15",
    "text": "The king of the industry was a company called 3dfx. Nvidia ended up buying what was left of it.",
    "say": "The king of the industry was a company called three D F X. Nvidia ended up buying what was left of it.",
    "pause": 0.7,
-   "at": 51.56
+   "at": 57.84
   },
   {
    "id": "o16",
    "text": "So how did a chip for video games end up running AI?",
    "pause": 0.45,
-   "at": 58.27
+   "at": 64.81
   },
   {
    "id": "o17",
    "text": "Why did Wall Street hate the bet that made it rich?",
    "pause": 0.45,
-   "at": 61.75
+   "at": 68.79
   },
   {
    "id": "o18",
    "text": "And can anything knock it off the top?",
    "pause": 0.5,
-   "at": 64.31
+   "at": 71.99
   },
   {
    "id": "o19",
    "text": "This is the story of a booth at Denny's, a name a toilet paper company got to first, a rescue from Sega,",
    "pause": 0.45,
-   "at": 66.7
+   "at": 74.84
   },
   {
    "id": "o20",
    "text": "and two gaming cards at a student's house that changed computers forever.",
    "pause": 1.0,
-   "at": 73.45,
+   "at": 81.89,
    "take": 2
   },
   {
    "id": "title",
    "text": "The whole history of Nvidia.",
-   "pause": 1.6,
-   "at": 78.36
+   "pause": 4.2,
+   "at": 86.98
   },
   {
    "id": "b1",
-   "text": "It starts in 1973, when a nine-year-old named Jensen Huang is sent from Taiwan to America.",
-   "say": "It starts in nineteen seventy-three, when a nine-year-old named Jensen Huang is sent from Taiwan to America.",
+   "text": "It starts in 1973, when a nine-year-old named Jensen Huang is sent to America.",
+   "say": "It starts in nineteen seventy-three, when a nine-year-old named Jensen Huang is sent to America.",
    "pause": 0.45,
-   "at": 81.42
+   "at": 92.7
   },
   {
    "id": "b2",
    "text": "His relatives enroll him at what they think is a fancy boarding school in Kentucky.",
    "pause": 0.45,
-   "at": 87.53
+   "at": 98.37
   },
   {
    "id": "b3",
    "text": "It's actually a school for troubled kids. His job is cleaning the toilets. Every day.",
    "pause": 0.45,
-   "at": 92.03
+   "at": 103.23
   },
   {
    "id": "b4",
    "text": "His roommate is seventeen, covered in tattoos, and can't read.",
    "pause": 0.45,
-   "at": 97.0
+   "at": 108.4
   },
   {
    "id": "b5",
    "text": "So Jensen teaches him to read, and the roommate teaches Jensen to bench press.",
    "pause": 0.45,
-   "at": 101.04
+   "at": 112.61
   },
   {
    "id": "b6",
    "text": "At fifteen, he gets a job at a Denny's in Oregon. Washing dishes, then bussing tables, then waiting them.",
    "pause": 0.45,
-   "at": 105.06
+   "at": 117.17
   },
   {
    "id": "b7",
    "text": "Remember Denny's. It comes back.",
    "pause": 0.7,
-   "at": 111.08
+   "at": 123.45
   },
   {
    "id": "b8",
    "text": "He studies electrical engineering, and by his late twenties he's designing chips in Silicon Valley.",
    "pause": 0.45,
-   "at": 113.78
+   "at": 126.24
   },
   {
    "id": "b9",
    "text": "In late 1992, he sits down with two engineers, Chris Malachowsky and Curtis Priem, at a Denny's in San Jose.",
    "say": "In late nineteen ninety-two, he sits down with two engineers, Chris Malachowsky and Curtis Priem, at a Denny's in San Jose.",
    "pause": 0.45,
-   "at": 119.2
+   "at": 131.88
   },
   {
    "id": "b10",
    "text": "Coffee, eggs, hours of talking. The plan: a chip that makes video games look real.",
    "pause": 0.45,
-   "at": 125.56
+   "at": 138.51
   },
   {
    "id": "b11",
    "text": "In April 1993, they start the company with about 40 thousand dollars.",
    "say": "In April nineteen ninety-three, they start the company with about forty thousand dollars.",
    "pause": 0.45,
-   "at": 131.15
+   "at": 144.34
   },
   {
    "id": "b12",
    "text": "They don't have a name yet, so they label their files NV, for next version.",
    "say": "They don't have a name yet, so they label their files N V, for next version.",
    "pause": 0.45,
-   "at": 135.5
+   "at": 148.86
   },
   {
    "id": "b13",
    "text": "They want to call it NVision. But a toilet paper company already has it.",
    "say": "They want to call it En-vision. But a toilet paper company already has it.",
    "pause": 0.45,
-   "at": 139.52
+   "at": 153.72
   },
   {
    "id": "b14",
    "text": "So Jensen picks a word with an N and a V: invidia, Latin for envy.",
    "pause": 0.45,
-   "at": 144.31
+   "at": 158.7,
+   "take": 3
   },
   {
    "id": "b15",
    "text": "Then he pitches his old boss, who calls it one of the worst pitches he's ever heard, and phones a famous investor anyway.",
    "pause": 0.45,
-   "at": 149.28
+   "at": 163.56
   },
   {
    "id": "b16",
    "text": "That investor, Don Valentine of Sequoia, puts money in, with a warning.",
    "pause": 0.4,
-   "at": 155.36
+   "at": 170.77
   },
   {
    "id": "b17",
    "text": "If you lose my money, I will kill you.",
-   "pause": 1.6,
-   "at": 160.09
+   "pause": 4.2,
+   "at": 175.7
   },
   {
    "id": "d1",
    "text": "In 1995, Nvidia's first chip comes out. It's called NV1, and it builds 3D worlds out of curves.",
    "say": "In nineteen ninety-five, Nvidia's first chip comes out. It's called N V one, and it builds 3D worlds out of curves.",
    "pause": 0.45,
-   "at": 163.5
+   "at": 182.27
   },
   {
    "id": "d2",
    "text": "Everyone else picks triangles. And when Microsoft builds its game graphics around triangles too, the curve bet is dead.",
    "pause": 0.45,
-   "at": 170.57
+   "at": 189.63
   },
   {
    "id": "d3",
    "text": "Nvidia is also building a chip for Sega's next console, the same wrong way.",
    "pause": 0.45,
-   "at": 176.88
+   "at": 196.22
   },
   {
    "id": "d4",
    "text": "So Jensen does something wild. He tells Sega to find another partner, and asks them to pay Nvidia anyway.",
    "pause": 0.45,
-   "at": 181.29
+   "at": 200.81
   },
   {
    "id": "d5",
    "text": "Sega's American boss, Shoichiro Irimajiri, says yes. 5 million dollars. Enough to stay alive for about six months.",
    "say": "Sega's American boss, Shoichiro Irimajiri, says yes. Five million dollars. Enough to stay alive for about six months.",
    "pause": 0.45,
-   "at": 186.9
+   "at": 206.85
   },
   {
    "id": "d6",
    "text": "Nvidia lays off about half its people and bets everything on one chip that draws triangles, the RIVA 128.",
    "say": "Nvidia lays off about half its people and bets everything on one chip that draws triangles, the Riva one twenty-eight.",
    "pause": 0.45,
-   "at": 194.56
+   "at": 214.83
   },
   {
    "id": "d7",
    "text": "It ships in August 1997, with about one month of payroll left in the bank.",
    "say": "It ships in August nineteen ninety-seven, with about one month of payroll left in the bank.",
    "pause": 0.45,
-   "at": 200.77
+   "at": 221.31
   },
   {
    "id": "d8",
    "text": "It sells about a million units in four months.",
    "pause": 0.45,
-   "at": 205.6
+   "at": 226.33
   },
   {
    "id": "d9",
    "text": "And one sentence becomes the company's unofficial motto.",
    "pause": 0.45,
-   "at": 208.47
+   "at": 229.43
   },
   {
    "id": "d10",
    "text": "Our company is thirty days from going out of business.",
-   "pause": 1.6,
-   "at": 211.96
+   "pause": 4.2,
+   "at": 233.05
   },
   {
    "id": "g1",
    "text": "On January 22nd, 1999, Nvidia goes public at 12 dollars a share. Remember that 12 dollars.",
    "say": "On January twenty-second, nineteen ninety-nine, Nvidia goes public at twelve dollars a share. Remember that twelve dollars.",
    "pause": 0.45,
-   "at": 216.13
+   "at": 240.19
   },
   {
    "id": "g2",
    "text": "That same year it launches the GeForce 256, and sells it with a brand new word: the world's first GPU.",
    "say": "That same year it launches the GeForce two fifty-six, and sells it with a brand new word: the world's first G P U.",
    "pause": 0.45,
-   "at": 222.62
+   "at": 246.96
   },
   {
    "id": "g3",
    "text": "So what is a GPU, actually?",
    "say": "So what is a G P U, actually?",
    "pause": 0.5,
-   "at": 228.93
+   "at": 253.55
   },
   {
    "id": "g4",
    "text": "To draw one frame of a game on an HD screen, you color about two million pixels. Then you do it again, sixty times a second.",
    "pause": 0.45,
-   "at": 231.57
+   "at": 256.28
   },
   {
    "id": "g5",
    "text": "A normal processor, a CPU, is like a few brilliant professors. They can solve anything, but one problem at a time.",
    "say": "A normal processor, a C P U, is like a few brilliant professors. They can solve anything, but one problem at a time.",
    "pause": 0.45,
-   "at": 238.93
+   "at": 264.38
   },
   {
    "id": "g6",
    "text": "A GPU is a stadium full of kids who can only do simple sums. But they all do them at the same moment.",
    "say": "A G P U is a stadium full of kids who can only do simple sums. But they all do them at the same moment.",
    "pause": 0.45,
-   "at": 246.25
+   "at": 272.01
   },
   {
    "id": "g6b",
    "text": "One kid adds a little red to this pixel. Another darkens that one. Two million kids, one sum each, done.",
    "pause": 0.45,
-   "at": 252.17
+   "at": 279.22
   },
   {
    "id": "g7",
    "text": "For coloring pixels, the stadium wins. Every time.",
    "pause": 0.7,
-   "at": 258.49
+   "at": 285.81
   },
   {
    "id": "g8",
    "text": "In 2000, Nvidia agrees to buy the remains of 3dfx, the company that used to rule gaming graphics.",
    "say": "In two thousand, Nvidia agrees to buy the remains of three D F X, the company that used to rule gaming graphics.",
    "pause": 0.45,
-   "at": 262.33
+   "at": 289.79
   },
   {
    "id": "g9",
-   "text": "Then Microsoft picks Nvidia for the graphics in its first Xbox, and pays 200 million dollars up front.",
-   "say": "Then Microsoft picks Nvidia for the graphics in its first Xbox, and pays two hundred million dollars up front.",
+   "text": "Earlier that year, Microsoft picked Nvidia for the graphics in its first Xbox, and paid 200 million dollars up front.",
+   "say": "Earlier that year, Microsoft picked Nvidia for the graphics in its first Xbox, and paid two hundred million dollars up front.",
    "pause": 0.45,
-   "at": 268.52
+   "at": 296.25
   },
   {
    "id": "g10",
    "text": "And when the stock hits 100 dollars, Jensen gets the company logo tattooed on his body.",
    "say": "And when the stock hits a hundred dollars, Jensen gets the company logo tattooed on his body.",
-   "pause": 1.6,
-   "at": 274.68
+   "pause": 4.2,
+   "at": 303.66
   },
   {
    "id": "c1",
    "text": "Meanwhile, at Stanford, a grad student named Ian Buck is wiring GeForce cards together.",
    "pause": 0.45,
-   "at": 280.86
+   "at": 312.64
   },
   {
    "id": "c2",
    "text": "He builds a language that lets them do math that has nothing to do with games. Nvidia hires him in 2004.",
    "say": "He builds a language that lets them do math that has nothing to do with games. Nvidia hires him in two thousand four.",
    "pause": 0.45,
-   "at": 285.65
+   "at": 317.62
   },
   {
    "id": "c3",
    "text": "In 2006, Nvidia announces CUDA. It turns that stadium of kids loose on any problem: weather, medicine, physics.",
    "say": "In two thousand six, Nvidia announces Cuda. It turns that stadium of kids loose on any problem: weather, medicine, physics.",
    "pause": 0.45,
-   "at": 291.58
+   "at": 324.25
   },
   {
    "id": "c4",
    "text": "And it builds CUDA into its ordinary gaming chips. Millions of gamers carry a supercomputer feature they will never use.",
    "say": "And it builds Cuda into its ordinary gaming chips. Millions of gamers carry a supercomputer feature they will never use.",
    "pause": 0.45,
-   "at": 298.88
+   "at": 331.86
   },
   {
    "id": "c4b",
    "text": "The idea: put the tool in millions of computers first, and the people who need it will find it.",
    "pause": 0.45,
-   "at": 305.9
+   "at": 339.17
   },
   {
    "id": "c5",
    "text": "Wall Street sees the bill, not the point.",
    "pause": 0.6,
-   "at": 312.08
+   "at": 345.61
   },
   {
    "id": "c6",
    "text": "In 2008, Nvidia takes a charge of about 200 million dollars for faulty laptop chips, and the stock falls 31 percent in one day.",
    "say": "In two thousand eight, Nvidia takes a charge of about two hundred million dollars for faulty laptop chips, and the stock falls thirty-one percent in one day.",
    "pause": 0.45,
-   "at": 314.81
+   "at": 348.57
   },
   {
    "id": "c7",
    "text": "By the end of that year, it has lost about three quarters of its value.",
    "pause": 0.45,
-   "at": 322.58
+   "at": 356.67
   },
   {
    "id": "c8",
    "text": "Remember thirty days from dead? This time, Nvidia keeps paying for CUDA anyway.",
    "say": "Remember thirty days from dead? This time, Nvidia keeps paying for Cuda anyway.",
    "pause": 0.45,
-   "at": 326.44
+   "at": 361.53
   },
   {
    "id": "c9",
    "text": "A tool for a market that doesn't exist yet.",
-   "pause": 1.6,
-   "at": 330.96
+   "pause": 4.2,
+   "at": 366.22
   },
   {
    "id": "a1",
    "text": "Then, in 2012, the market finally shows up, at a student's parents' house.",
    "say": "Then, in twenty twelve, the market finally shows up, at a student's parents' house.",
    "pause": 0.45,
-   "at": 334.82
+   "at": 373.07
   },
   {
    "id": "a2",
    "text": "Alex Krizhevsky, his friend Ilya Sutskever and their professor Geoffrey Hinton want to teach a computer to recognize pictures.",
    "pause": 0.45,
-   "at": 339.7
+   "at": 378.16
   },
   {
    "id": "a3",
    "text": "They train a neural network on two Nvidia gaming cards, GTX 580s, for about a week.",
    "say": "They train a neural network on two Nvidia gaming cards, G T X five-eighties, for about a week.",
    "pause": 0.45,
-   "at": 347.27
+   "at": 386.04
   },
   {
    "id": "a4",
    "text": "It enters the biggest image contest in the world and wins by a mile: about 15 percent wrong, when the next best was 26.",
    "say": "It enters the biggest image contest in the world and wins by a mile: about fifteen percent wrong, when the next best was twenty-six.",
    "pause": 0.45,
-   "at": 352.53
+   "at": 391.53
   },
   {
    "id": "a5",
    "text": "The math inside a neural network is the same kind of simple sums as coloring pixels. Millions of them, all at once.",
    "pause": 0.45,
-   "at": 360.09
+   "at": 399.4
   },
   {
    "id": "a6",
    "text": "The stadium of kids was built for games. It was perfect for AI.",
    "pause": 0.5,
-   "at": 366.38
+   "at": 406.32
   },
   {
    "id": "a6b",
    "text": "You may have heard Nvidia just got lucky with AI. Partly true. But luck only pays if you're already standing there.",
    "pause": 0.7,
-   "at": 370.33
+   "at": 410.65
   },
   {
    "id": "a7",
    "text": "Jensen goes all in. In 2016, he hand-delivers the first DGX-1, an AI computer, to a small lab in San Francisco called OpenAI.",
    "say": "Jensen goes all in. In twenty sixteen, he hand-delivers the first D G X one, an AI computer, to a small lab in San Francisco called OpenAI.",
    "pause": 0.45,
-   "at": 376.38
+   "at": 417.52
   },
   {
    "id": "a8",
    "text": "He signs it: to the future of computing and humanity.",
    "pause": 0.45,
-   "at": 385.79
+   "at": 427.34
   },
   {
    "id": "a9",
    "text": "One of OpenAI's founders is Ilya Sutskever. From the student's house.",
    "pause": 0.45,
-   "at": 389.64
+   "at": 431.34
   },
   {
    "id": "a10",
    "text": "Then crypto miners buy up gaming cards, crypto crashes in 2018, and Nvidia's stock loses more than half its value in months.",
    "say": "Then crypto miners buy up gaming cards, crypto crashes in twenty eighteen, and Nvidia's stock loses more than half its value in months.",
    "pause": 0.45,
-   "at": 393.8
+   "at": 435.67
   },
   {
    "id": "a11",
    "text": "Regulators later fine it 5.5 million dollars for not telling investors how much crypto was behind its sales.",
    "say": "Regulators later fine it five and a half million dollars for not telling investors how much crypto was behind its sales.",
-   "pause": 1.6,
-   "at": 401.0
+   "pause": 4.2,
+   "at": 443.17
   },
   {
    "id": "r1",
    "text": "On November 30th, 2022, OpenAI releases ChatGPT.",
    "say": "On November thirtieth, twenty twenty-two, OpenAI releases ChatGPT.",
    "pause": 0.45,
-   "at": 407.71,
+   "at": 452.71,
    "take": 2
   },
   {
    "id": "r2",
    "text": "It was trained on a Microsoft supercomputer built from tens of thousands of Nvidia chips.",
    "pause": 0.45,
-   "at": 412.56
+   "at": 457.76
   },
   {
    "id": "r3",
-   "text": "Suddenly every tech giant on Earth wants the same thing, and only one company really sells it.",
+   "text": "Suddenly every tech giant on Earth wants the same thing, and one company sells most of them.",
    "pause": 0.45,
-   "at": 416.99
+   "at": 462.63
   },
   {
    "id": "r4",
    "text": "In a gold rush, sell shovels.",
    "pause": 0.7,
-   "at": 422.07
+   "at": 468.08
   },
   {
    "id": "r5",
    "text": "Nvidia's top AI chip, the H100, sells for tens of thousands of dollars each, and buyers wait months to get one.",
    "say": "Nvidia's top AI chip, the H one hundred, sells for tens of thousands of dollars each, and buyers wait months to get one.",
    "pause": 0.45,
-   "at": 424.63
+   "at": 470.73
   },
   {
    "id": "r6",
    "text": "In May 2023, Nvidia is worth a trillion dollars. Denny's puts a plaque on the booth: the booth that launched a 1 trillion dollar company.",
    "say": "In May twenty twenty-three, Nvidia is worth a trillion dollars. Denny's puts a plaque on the booth: the booth that launched a one trillion dollar company.",
    "pause": 0.45,
-   "at": 431.82
+   "at": 478.23
   },
   {
    "id": "r7",
    "text": "In June 2024, it passes Microsoft and Apple to become the most valuable company in the world.",
    "say": "In June twenty twenty-four, it passes Microsoft and Apple to become the most valuable company in the world.",
    "pause": 0.45,
-   "at": 439.45
+   "at": 486.18
   },
   {
    "id": "r8",
    "text": "Then, in January 2025, a Chinese lab called DeepSeek shows off a cheap AI model, and Nvidia loses about 589 billion dollars of value in one day.",
    "say": "Then, in January twenty twenty-five, a Chinese lab called DeepSeek shows off a cheap AI model, and Nvidia loses about five hundred eighty-nine billion dollars of value in one day.",
    "pause": 0.45,
-   "at": 444.87
+   "at": 491.84
   },
   {
    "id": "r9",
    "text": "The biggest one-day loss in stock market history.",
    "pause": 0.6,
-   "at": 454.31
+   "at": 501.69
   },
   {
    "id": "r10",
    "text": "And then it just keeps climbing. 4 trillion in July 2025. 5 trillion that October. The first company ever to reach either one.",
    "say": "And then it just keeps climbing. Four trillion in July twenty twenty-five. Five trillion that October. The first company ever to reach either one.",
-   "pause": 1.6,
-   "at": 457.37,
+   "pause": 4.2,
+   "at": 504.86,
    "take": 2
   },
   {
@@ -650,55 +651,54 @@
    "text": "Which brings us to right now. October 2026.",
    "say": "Which brings us to right now. October twenty twenty-six.",
    "pause": 0.45,
-   "at": 465.92
+   "at": 516.32
   },
   {
    "id": "n2",
    "text": "In its last quarter, Nvidia brought in 96.2 billion dollars. Data centers alone were 89 billion.",
    "say": "In its last quarter, Nvidia brought in ninety-six point two billion dollars. Data centers alone were eighty-nine billion.",
    "pause": 0.45,
-   "at": 469.62
+   "at": 520.16
   },
   {
    "id": "n3",
    "text": "That's more than nine of every ten dollars. The gaming company now mostly sells to AI.",
    "pause": 0.45,
-   "at": 477.47
+   "at": 528.35
   },
   {
    "id": "n4",
    "text": "Its newest chips, Vera Rubin, are in full production, and it expects 108 billion this quarter, without counting any AI chip sales to China.",
    "say": "Its newest chips, Vera Rubin, are in full production, and it expects a hundred and eight billion this quarter, without counting any AI chip sales to China.",
    "pause": 0.45,
-   "at": 482.38
+   "at": 533.5
   },
   {
    "id": "n5",
    "text": "But it's not a straight line. On October 6th the stock hit a record, then chip stocks fell eight days in a row, their longest streak since 2008.",
    "say": "But it's not a straight line. On October sixth the stock hit a record, then chip stocks fell eight days in a row, their longest streak since two thousand eight.",
    "pause": 0.45,
-   "at": 490.8
+   "at": 542.29
   },
   {
    "id": "n6",
-   "text": "Today, Nvidia is worth about 5.2 trillion dollars.",
-   "say": "Today, Nvidia is worth about five point two trillion dollars.",
+   "text": "Today, Nvidia is worth about 5.2 trillion.",
+   "say": "Today, Nvidia is worth about five point two trillion.",
    "pause": 0.45,
-   "at": 499.52,
-   "take": 3
+   "at": 551.39
   },
   {
    "id": "n7",
    "text": "And remember that 12 dollar share from 1999? After six stock splits, it's 480 shares, worth about 104 thousand dollars.",
    "say": "And remember that twelve dollar share from nineteen ninety-nine? After six stock splits, it's four hundred eighty shares, worth about a hundred and four thousand dollars.",
    "pause": 0.45,
-   "at": 503.91
+   "at": 555.36
   },
   {
    "id": "n8",
    "text": "Jensen Huang is still the CEO, thirty-three years later. Still in the leather jacket.",
    "pause": 0.45,
-   "at": 511.8,
+   "at": 563.59,
    "take": 2
   },
   {
@@ -706,71 +706,76 @@
    "text": "The kid who cleaned toilets in Kentucky is now worth more than 200 billion dollars.",
    "pause": 0.45,
    "say": "The kid, who cleaned toilets in Kentucky, is now worth more than two hundred billion dollars.",
-   "at": 516.79,
+   "at": 568.78,
    "take": 2
   },
   {
    "id": "n9",
    "text": "He once said that if he could go back, he wouldn't start Nvidia again. It was a million times harder than he expected.",
-   "pause": 1.6,
-   "at": 522.28
+   "pause": 2.4,
+   "at": 574.52
   },
   {
    "id": "e1",
    "text": "So why does any of this matter?",
    "pause": 0.6,
-   "at": 529.72
+   "at": 583.68
   },
   {
    "id": "e2",
    "text": "Because the chips answering your questions are cousins of the chips drawing your video games.",
    "pause": 0.45,
-   "at": 531.9
+   "at": 586.34
   },
   {
    "id": "e3",
    "text": "For twenty years, gamers paid for the machine that AI would need.",
    "pause": 0.45,
-   "at": 536.87
+   "at": 591.51
   },
   {
    "id": "e3b",
    "text": "Nvidia didn't predict AI. It built a stadium for games, kept paying for it when nobody cared, and was standing there when AI walked in.",
    "pause": 0.6,
-   "at": 540.33
+   "at": 595.49
   },
   {
    "id": "e4",
    "text": "And now Google, Amazon and AMD are all building chips to knock Nvidia off the top.",
+   "pause": 0.45,
+   "at": 603.97
+  },
+  {
+   "id": "e4b",
+   "text": "Can they? Not yet. For now, most of the world's AI chips still come from Nvidia.",
    "pause": 0.8,
-   "at": 548.47
+   "at": 609.13
   },
   {
    "id": "e5",
-   "text": "In 1993, three engineers drank a lot of coffee at a Denny's.",
-   "say": "In nineteen ninety-three, three engineers drank a lot of coffee at a Denny's.",
+   "text": "In 1992, three engineers drank a lot of coffee at a Denny's.",
+   "say": "In nineteen ninety-two, three engineers drank a lot of coffee at a Denny's.",
    "pause": 0.45,
-   "at": 553.63,
-   "take": 2
+   "at": 615.3
   },
   {
    "id": "e6",
    "text": "Tonight, someone in that same diner can type a question into ChatGPT, and the answer will most likely run on their chips.",
    "pause": 0.8,
-   "at": 557.67
+   "at": 620.09
   },
   {
    "id": "e7",
    "text": "What happens if every undersea internet cable is cut? That video is right here.",
    "pause": 0.45,
-   "at": 564.42
+   "at": 627.36
   },
   {
    "id": "e8",
    "text": "Subscribe for the next whole history, and tell us which company we should do next.",
-   "pause": 6,
-   "at": 569.77
+   "pause": 9,
+   "at": 632.93
   }
  ],
- "dur": 580.43
+ "dur": 647.54
 }

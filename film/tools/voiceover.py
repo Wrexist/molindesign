@@ -516,6 +516,12 @@ def process_chain(s, src, dst):
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-af', ','.join(af), '-ar', str(SR), '-ac', '1', '-c:a', 'pcm_f32le', str(dst)], check=True)
 
 
+UNITS = {'million', 'billion', 'trillion', 'thousand', 'hundred', 'dollars', 'percent', 'days', 'years', 'months', 'weeks', 'hours', 'gpus', 'cards', 'chips', 'shares', 'units'}
+NUMWORDS = {'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'hundred', 'thousand', 'a'}
+def isnum(w):
+    return bool(re.search(r'\d', w)) or norm(w) in NUMWORDS
+
+
 def captions(s, meta):
     """Short caption cards for muted viewing. Split at punctuation first, then cut long phrases into even chunks
     (5 words → 3 + 2, never 4 + 1, so no word is orphaned), then fold any card shown under min_s into its phrase-mate."""
@@ -540,6 +546,8 @@ def captions(s, meta):
             for i in range(len(chunks) - 1):        # never end a card on "of", "the", "and"…: hand it to the next card
                 while len(chunks[i]) > 1 and norm(chunks[i][-1]['w']) in WEAK:
                     chunks[i + 1].insert(0, chunks[i].pop())
+                while len(chunks[i]) > 1 and chunks[i + 1] and isnum(chunks[i][-1]['w']) and norm(chunks[i + 1][0]['w']) in UNITS:
+                    chunks[i + 1].insert(0, chunks[i].pop())    # keep a number with its unit: "200 | million" never splits
             i = 0
             while len(chunks) > 1 and i < len(chunks):
                 show = (chunks[i + 1][0]['t0'] if i + 1 < len(chunks) else chunks[i][-1]['t1'] + 0.25) - chunks[i][0]['t0']

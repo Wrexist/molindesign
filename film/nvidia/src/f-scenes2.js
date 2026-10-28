@@ -5,7 +5,7 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 80, 'rgba(120,200,255,.06)');
     dateTag(g, '1995', t, at('d1', '1995,') - .1);
-    chipD(g, 300, 330, .8 * clamp(pop(t, tNV - .2), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : 'dot' });
+    chipD(g, 300, 330, .8 * clamp(pop(t, Math.min(tNV - .2, s.t0 + .2)), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : 'dot' });
     /* left: a ship made of curves; right: the same ship made of triangles */
     var ck = pop(t, tCu - .3, 2.6, .6);
     if (ck > 0) { g.save(); g.translate(760, 560); g.scale(clamp(ck, 0, 1.05), clamp(ck, 0, 1.05)); g.rotate(Math.sin(t) * .06);
@@ -340,7 +340,7 @@
     var head = chart(g, 820, 220, 920, 520, pts, ck, { col: t > t31 - .1 ? RED : NVL });
     if (t > t31 - .1) { stamp(g, '−31% IN ONE DAY', 1280, 400, t, t31, { px: 54 }); }
     if (t > tTh - .1) { bigNum(g, '−75%', 1500, 680, 120, RED, pop(t, tTh - .1)); chip(g, 'THAT YEAR', 1500, 790, { px: 40, bg: CREAM, s: pop(t, tTh), rot: .02 }); }
-    if (t > tFa - .3) { g.save(); g.translate(1060, 880); g.scale(clamp(pop(t, tFa - .3), 0, 1.05), clamp(pop(t, tFa - .3), 0, 1.05)); rr(g, -150, -20, 300, 30, 6); fillStroke(g, '#9a96a6', 5); g.beginPath(); g.moveTo(-130, -20); g.lineTo(-110, -180); g.lineTo(110, -180); g.lineTo(130, -20); g.closePath(); fillStroke(g, '#3a3647', 5); for (var i = 0; i < 4; i++) { var ph = (t * 1.5 + i * .25) % 1; puff(g, -60 + i * 40, -200 - ph * 90, .25, 'rgba(120,120,130,' + (1 - ph) + ')'); } txt(g, 'FAULTY LAPTOP CHIPS', 0, 60, 30, CREAM, { fam: MONO, wt: 700, outline: 6 }); g.restore(); }
+    if (t > tFa - .3) { g.save(); g.translate(1060, 880); g.scale(clamp(pop(t, tFa - .3), 0, 1.05), clamp(pop(t, tFa - .3), 0, 1.05)); rr(g, -150, -20, 300, 30, 6); fillStroke(g, '#9a96a6', 5); g.beginPath(); g.moveTo(-130, -20); g.lineTo(-110, -180); g.lineTo(110, -180); g.lineTo(130, -20); g.closePath(); fillStroke(g, '#3a3647', 5); for (var i = 0; i < 4; i++) { var ph = (t * 1.5 + i * .25) % 1; puff(g, -60 + i * 40, -200 - ph * 90, .25, 'rgba(120,120,130,' + (1 - ph) + ')'); } txt(g, 'FAULTY LAPTOP CHIPS', 0, -220, 30, CREAM, { fam: MONO, wt: 700, outline: 6 }); g.restore(); }
     dateTag(g, '2008', t, at('c6', '2008,') - .1);
     g.restore();
     vignette(g, .45);

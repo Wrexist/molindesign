@@ -17,7 +17,7 @@
 **Callbacks planted and paid:** Denny's (o4 → b6 → b9 → r6 → e5), the toilets (o11 → b3 → n8b), thirty days (d10 → c8), the $12 share (g1 → n7), the stadium of kids (g6 → c3 → a5 → e3b), the student's house (a1 → a9).
 **Myth-bust:** "You may have heard Nvidia just got lucky with AI. Partly true."
 **Split-screen contrast:** a gamer and someone asking an AI, one chip on the seam: "cousins".
-**Ending:** the same diner in 1993 (sepia) and tonight, then the next video named out loud (the cables episode, live) and an end card that holds.
+**Ending:** the same diner in 1992 (sepia) and tonight, then the next video named out loud (the cables episode, live) and an end card that holds.
 
 **Look:** the stickman rig from episodes 1–2, Jensen's one costume cue (leather jacket, spiky hair), chips with faces instead of any logo, Nvidia green as the accent. Part cards slam in during the pause before each part and park top-left.
 **Voice:** Chatterbox (seed 7, exaggeration 0.6, cfg 0.35), Isac's long-form pick. Voice and foley only, no music.

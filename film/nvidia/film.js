@@ -695,6 +695,8 @@
     if (o.label) txt(g, o.label, w / 2, h + 34, 30, CREAM, { fam: MONO, wt: 700, outline: 7 });
     g.restore();
   }
+  /* a small honesty tag on staged screens */
+  function recreated(g, x, y) { chip(g, 'RE-CREATED', x, y, { px: 22, bg: '#2c2936', fg: CREAM, fam: MONO, wt: 700 }); }
   /* the stadium of kids: a grid of tiny workers, each with one sum. fn(i, col, row) → 0..1 lights that kid's pixel */
   function stadium(g, x, y, cols, rows, cell, t, fn, o) {
     o = o || {};
@@ -704,7 +706,7 @@
       g.beginPath(); g.ellipse(cx, cy + cell * .3 - hop, cell * .36, cell * .26, 0, Math.PI, 0); g.fillStyle = hc; g.fill();
       circ(g, cx, cy - hop, cell * .24); g.fillStyle = HEAD; g.fill(); g.lineWidth = Math.max(1.5, cell * .06); g.strokeStyle = INK; g.stroke();
       if (cell > 26) { g.fillStyle = INK; circ(g, cx - cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); circ(g, cx + cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); }
-      if (k > 0 && o.pix) { var pc = o.pix(i, c, r); g.fillStyle = pc; g.globalAlpha = clamp(k * 2, 0, 1); g.fillRect(cx - cell * .18, cy - hop - cell * .62, cell * .36, cell * .28); g.globalAlpha = 1; }
+      if (k > 0 && o.pix) { var pc = o.pix(i, c, r); g.fillStyle = pc; g.globalAlpha = clamp(k * 2, 0, 1); var pw = cell * (o.pw || .36), ph = cell * (o.ph || .28); g.fillRect(cx - pw / 2, cy - hop - cell * .48 - ph / 2, pw, ph); g.globalAlpha = 1; }
     }
   }
   /* a line chart drawn up to k (0..1) of its points; pts are [x 0..1, y 0..1]; returns the head position */
@@ -759,7 +761,7 @@
     if (night) { for (var i = 0; i < 40; i++) { circ(g, 320 + hash(i) * 1280, 140 + hash(i + 4) * 200, 2); g.fillStyle = 'rgba(255,250,230,.6)'; g.fill(); } g.fillStyle = '#2a2f4a'; g.fillRect(300, 400, 1320, 150); for (i = 0; i < 6; i++) { var lx = ((i * 300 + t * 90) % 1700) + 200; glow(g, lx, 470, 60, 'rgba(255,220,140,.8)', 1); } }
     else { puff(g, 600 + (t * 10) % 300, 220, .8, 'rgba(255,255,255,.85)'); puff(g, 1300 - (t * 6) % 200, 260, .6, 'rgba(255,255,255,.75)'); g.fillStyle = '#c9b48a'; g.fillRect(300, 430, 1320, 120); }
     /* the diner's own sign, seen backwards through the glass */
-    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); g.scale(-1, 1); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true }); g.restore();
+    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true }); g.restore();
     g.restore();
     g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(960, 120); g.lineTo(960, 550); g.stroke();
     /* booth backs */
@@ -820,7 +822,8 @@
   function dateTag(g, s, t, t0, t1) {
     var k = pop(t, t0, 3, .7), out = t1 ? seg(t, t1 - .3, t1) : 0;
     if (k <= 0 || out >= 1) return;
-    chip(g, s, 1740 + out * 400, 96, { px: 54, bg: CREAM, s: k, rot: .03, wide: true, fam: MONO, wt: 700 });
+    font(g, 54, 700, MONO, true); var w = g.measureText(s).width + 54 * .84;
+    chip(g, s, 1830 - w / 2 + out * 400, 96, { px: 54, bg: CREAM, s: k, rot: .03, wide: true, fam: MONO, wt: 700 });
   }
   /* a keynote stage with a big screen */
   function stageSet(g, t, fn) {
@@ -871,6 +874,7 @@
       g.textAlign = 'left'; font(g, 30, 600); g.fillStyle = INK; g.fillText(q + ((t * 2 % 1) < .5 && t < t2 ? '|' : ''), -w / 2 + 84, h / 2 - 74);
       if (t > tE + .3) { var k = seg(t, tE + .3, t2 + .5); rr(g, w / 2 - 480, -h / 2 + 90 - k * 40, 420, 64, 22); fillStroke(g, '#dfe9ff', 3); g.fillStyle = INK; g.fillText('How do computers think so fast?', w / 2 - 460, -h / 2 + 124 - k * 40); }
     });
+    recreated(g, 1250, 700);
     var P = poseAt(t, [[s.t0, { lh: [-40, -170], rh: [70, -170], look: [.3, -.5], mouth: 'smile', lean: .05, front: 1 }], [tT, { lh: [-20, -180], rh: [60, -186] }], [tE, { rh: [80, -200], mouth: 'grin', eyes: 'happy' }], [t2, { look: [.2, -.8], eyes: 'wide', mouth: 'o' }]]);
     guy(g, 600, 1040, 1.15, P, YOU, t);
     g.restore();
@@ -890,9 +894,12 @@
     g.fillStyle = '#14182a'; g.beginPath(); g.moveTo(-200, H + 200); g.lineTo(vx - 40, vy + 40); g.lineTo(vx + 40, vy + 40); g.lineTo(W + 200, H + 200); g.closePath(); g.fill();
     for (var side = -1; side <= 1; side += 2) for (var d = 9; d >= 0; d--) {
       var z = 1 / (1 + d * .55), x = vx + side * (180 + 820 * z) - (side > 0 ? 0 : 160 * z), y = vy - 360 * z, w = 160 * z, h = 760 * z;
-      var on = pop(t, tB - .3 + (9 - d) * .07, 3, .7); if (on <= 0) continue;
-      g.save(); g.globalAlpha = clamp(on, 0, 1); rack(g, x, y + (1 - clamp(on, 0, 1)) * 40, w, h, t + d, { seed: d * 3 + side }); g.restore();
+      var on = pop(t, tB - .3 + (9 - d) * .07, 3, .7);
+      g.save(); g.globalAlpha = Math.max(.22, clamp(on, 0, 1)); rack(g, x, y + (1 - clamp(on, 0, 1)) * 40, w, h, t + d, { seed: d * 3 + side }); g.restore();
     }
+    /* the question arrives first: a glowing packet racing down the aisle before the hall lights up */
+    var qk = seg(t, s.t0, tB + .3);
+    if (qk > 0 && qk < 1) { var qe = eio(qk), qx = lerp(960, vx, qe), qy = lerp(980, vy + 20, qe), qr = lerp(70, 10, qe); for (var tr = 0; tr < 6; tr++) { var te = eio(clamp(qk - tr * .03, 0, 1)); circ(g, lerp(960, vx, te), lerp(980, vy + 20, te), lerp(70, 10, te) * (1 - tr * .14)); g.fillStyle = 'rgba(182,240,90,' + (.5 - tr * .08) + ')'; g.fill(); } circ(g, qx, qy, qr); fillStroke(g, NVL, 5); txt(g, '?', qx, qy + qr * .1, qr * 1.3, INK, { wt: 900 }); }
     /* the math: little sums lifting off every rack */
     if (t > tM - .2) {
       var r = mulberry(5);
@@ -900,7 +907,7 @@
     }
     g.restore();
     chip(g, 'A BUILDING FULL OF CHIPS', 960, 150, { px: 56, bg: CREAM, s: pop(t, tC - .2), rot: -.02, wide: true });
-    chip(g, 'ALL AT THE SAME TIME', 960, 900, { px: 48, bg: NVL, s: pop(t, tS - .15), rot: .02, wide: true });
+    chip(g, 'ALL AT THE SAME TIME', 960, 800, { px: 48, bg: NVL, s: pop(t, tS - .15), rot: .02, wide: true });
     flash(g, t, s.t0, .35);
     vignette(g, .5);
   }
@@ -917,7 +924,7 @@
     }
     /* the origin, pinned up: a diner and a video game */
     var pk = pop(t, tD - .25, 2.8, .6);
-    card(g, 1080, 520, 420, 480, -.04, clamp(pk, 0, 1), function (g, w, h) { g.fillStyle = '#f0d9b0'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140); rr(g, -150, -140, 300, 80, 14); fillStroke(g, '#ffd23d', 5); txt(g, "DENNY'S", 0, -98, 50, RED, { wt: 900, wide: true }); mug(g, -80, 60, 1.2, t, true); plate(g, 70, 70, 1); txt(g, '1993', 0, h / 2 - 60, 50, INK, { wt: 900, wide: true }); });
+    card(g, 1080, 520, 420, 480, -.04, clamp(pk, 0, 1), function (g, w, h) { g.fillStyle = '#f0d9b0'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140); rr(g, -150, -140, 300, 80, 14); fillStroke(g, '#ffd23d', 5); txt(g, "DENNY'S", 0, -98, 50, RED, { wt: 900, wide: true }); mug(g, -80, 60, 1.2, t, true); plate(g, 70, 70, 1); txt(g, '1992', 0, h / 2 - 60, 50, INK, { wt: 900, wide: true }); });
     var vk = pop(t, tV - .25, 2.8, .6);
     card(g, 1560, 560, 420, 480, .05, clamp(vk, 0, 1), function (g, w, h) {
       g.fillStyle = '#10142a'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140);
@@ -1093,10 +1100,10 @@
     var k = eio(seg(t, s.t0 + .3, end('b1') + .2));
     g.save(); cam(g, t, s, .05);
     space(g, t, t * 10, 0, { a: '#0d1530', b: '#1b2550' });
-    var lon = lerp(125, -95, k);
+    var lon = lerp(105, -95, k);
     var P = earth(g, 960, 1260, 820, t, { lon: lon, lat: 30, light: 1, lights: false });
-    /* the flight path: Taipei to Seattle, drawn on the globe */
-    var pts = []; for (var i = 0; i <= 30; i++) { var u = i / 30; pts.push(P(lerp(121.5, -122.3, u), lerp(25, 47.6, u) + Math.sin(u * Math.PI) * 14)); }
+    /* the flight path: Bangkok to Seattle, drawn on the globe */
+    var pts = []; for (var i = 0; i <= 30; i++) { var u = i / 30; pts.push(P(lerp(100.5, -122.3, u), lerp(13.7, 47.6, u) + Math.sin(u * Math.PI) * 14)); }
     g.save(); g.setLineDash([16, 14]); g.strokeStyle = CREAM; g.lineWidth = 6; g.beginPath(); var first = true; pts.forEach(function (p, j) { if (p[2] <= 0 || j / 30 > k + .02) return; if (first) { g.moveTo(p[0], p[1]); first = false; } else g.lineTo(p[0], p[1]); }); g.stroke(); g.restore();
     var head = pts[Math.min(30, Math.round(k * 30))];
     /* the plane, with a small face at the window */
@@ -1105,7 +1112,7 @@
     for (i = 0; i < 5; i++) { circ(g, -40 + i * 30, -4, 9); fillStroke(g, i === 2 ? '#fbf7ef' : '#9ed4f5', 3); }
     g.fillStyle = INK; circ(g, 17, -6, 2.4); g.fill(); circ(g, 23, -6, 2.4); g.fill();
     g.restore();
-    chip(g, 'TAIWAN', P(121, 24)[0], P(121, 24)[1] + 70, { px: 40, bg: CREAM, s: pop(t, s.t0 + .3) * (P(121, 24)[2] > 0 ? 1 : 0) });
+    chip(g, 'THAILAND', P(100.5, 13.7)[0], P(100.5, 13.7)[1] + 70, { px: 40, bg: CREAM, s: pop(t, s.t0 + .3) * (P(100.5, 13.7)[2] > 0 ? 1 : 0) });
     var us = P(-100, 40); if (us[2] > 0) chip(g, 'AMERICA', us[0], us[1] + 80, { px: 40, bg: CREAM, s: pop(t, at('b1', 'america') - .2) });
     g.restore();
     chip(g, 'JENSEN HUANG, AGE 9', 960, 160, { px: 54, bg: YEL, s: pop(t, at('b1', 'jensen') - .15), rot: -.03, wide: true });
@@ -1131,7 +1138,7 @@
     } else {
       /* the real thing: a plain dorm, a row of toilets, a tally of days */
       rr(g, 960, 420, 860, 420, 6); fillStroke(g, '#b9ada0', 6); for (i = 0; i < 8; i++) { rr(g, 1000 + (i % 4) * 200, 460 + Math.floor(i / 4) * 170, 120, 110, 4); fillStroke(g, '#7a8a96', 4); g.strokeStyle = INK; g.lineWidth = 3; for (var b = 1; b < 4; b++) { g.beginPath(); g.moveTo(1000 + (i % 4) * 200 + b * 30, 460 + Math.floor(i / 4) * 170); g.lineTo(1000 + (i % 4) * 200 + b * 30, 570 + Math.floor(i / 4) * 170); g.stroke(); } }
-      chip(g, 'KENTUCKY', 1390, 380, { px: 44, bg: CREAM, s: pop(t, tA), rot: .02, wide: true });
+      chip(g, 'KENTUCKY', 1390, 380, { px: 44, bg: CREAM, s: pop(t, tA) * (1 - seg(t, tE - .3, tE - .1)), rot: .02, wide: true });
       if (t > tT - .4) { toilet(g, 760, 900, 1.1); }
       var nTally = Math.floor(clamp(seg(t, tE - .1, tE + 1.6), 0, 1) * 20);
       for (i = 0; i < nTally; i++) { var gx = 1060 + Math.floor(i / 5) * 110, gi = i % 5; g.strokeStyle = INK; g.lineWidth = 10; g.lineCap = 'round'; g.beginPath(); if (gi < 4) { g.moveTo(gx + gi * 18, 140); g.lineTo(gx + gi * 18, 240); } else { g.moveTo(gx - 10, 230); g.lineTo(gx + 70, 150); } g.stroke(); }
@@ -1154,7 +1161,7 @@
     rr(g, 1370, 400, 320, 50, 10); fillStroke(g, '#c9c3cf', 6); rr(g, 1370, 700, 320, 50, 10); fillStroke(g, '#c9c3cf', 6);
     var tk = seg(t, tB - .3, tB + .4), lifting = t > tB - .3;
     var big = poseAt(t, [[s.t0, { lh: [-70, -140], rh: [70, -140], look: [-.6, 0], mouth: 'flat', brow: -1 }], [tTe, { lh: [-60, -200], rh: [50, -150], look: [-.4, .2], mouth: 'smile', brow: 0, eyes: 'squint' }], [tB - .3, { lh: [-90, -150], rh: [-20, -260], mouth: 'grin' }]]);
-    guy(g, 1180, 900, 1.35, big, { col: '#4a4a52', shade: '#38383f', hair: 'cap', hairCol: '#1e1c22', seed: 21, hold: [t > tTe && !lifting ? book : null, null] }, t);
+    guy(g, 1180, 900, 1.35, big, { col: '#e6dfcf', shade: '#c4bca9', hair: 'cap', hairCol: '#1e1c22', seed: 21, hold: [t > tTe && !lifting ? book : null, null] }, t);
     /* tattoos on the big guy's arms, as little marks */
     if (t > tTa - .1) { var tk2 = seg(t, tTa - .1, tTa + .6); g.save(); g.globalAlpha = tk2; [[1110, 610], [1240, 600], [1200, 650]].forEach(function (p, i) { g.save(); g.translate(p[0], p[1]); g.rotate(i); g.strokeStyle = '#2a5a9a'; g.lineWidth = 4; g.beginPath(); g.moveTo(-12, 0); g.lineTo(0, -12); g.lineTo(12, 0); g.lineTo(0, 12); g.closePath(); g.stroke(); g.restore(); }); g.restore(); }
     var kid = poseAt(t, [[s.t0, { lh: [-60, -130], rh: [60, -130], look: [.6, -.5], mouth: 'o', eyes: 'wide' }], [tTe - .3, { rh: [110, -220], look: [.6, -.3], mouth: 'talk', eyes: 'dot' }], [tB - .3, { lh: [-110, -280], rh: [110, -280], mouth: 'wavy', brow: -1, sweat: 1, look: [0, -.4] }]]);
@@ -1162,8 +1169,8 @@
     guy(g, 640, 900, .9, kid, Object.assign({}, KID, { hold: [null, t > tTe - .3 && !lifting ? book : null] }), t);
     if (lifting) { var by = 900 - (280 + 150) * .9 + bar * .9 - 20; g.strokeStyle = INK; g.lineWidth = 14; g.beginPath(); g.moveTo(480, by); g.lineTo(800, by); g.stroke(); g.strokeStyle = '#c9c6d6'; g.lineWidth = 6; g.stroke(); [480, 800].forEach(function (x) { rr(g, x - 26, by - 60, 52, 120, 10); fillStroke(g, '#3a3647', 5); }); }
     g.restore();
-    chip(g, '17', 1180, 200, { px: 70, bg: CREAM, s: pop(t, t17 - .1), rot: -.04, wide: true });
-    chip(g, 'TATTOOS', 1480, 250, { px: 46, bg: CREAM, s: pop(t, tTa - .1), rot: .04, wide: true });
+    chip(g, '17', 1180, 200, { px: 70, bg: CREAM, s: pop(t, t17 - .1) * (1 - seg(t, tB - .4, tB - .15)), rot: -.04, wide: true });
+    chip(g, 'TATTOOS', 1480, 250, { px: 46, bg: CREAM, s: pop(t, tTa - .1) * (1 - seg(t, tB - .4, tB - .15)), rot: .04, wide: true });
     chip(g, "CAN'T READ", 900, 260, { px: 46, bg: YEL, s: pop(t, tR - .2) * (1 - seg(t, tTe - .2, tTe)), rot: -.03, wide: true });
     chip(g, 'READING ⇄ BENCH PRESS', 960, 150, { px: 52, bg: NVL, s: pop(t, tB - .1), rot: .02, wide: true });
     vignette(g, .4);
@@ -1175,8 +1182,8 @@
     wall(g, '#f0d9b0', '#e0bf8c');
     g.fillStyle = '#e8e2d2'; for (var x = -200; x < W + 200; x += 80) for (var y = 600; y < 880; y += 80) if (((x + y) / 80) % 2 === 0) g.fillRect(x, y, 80, 80);
     floorAt(g, 880, '#c0392b');
-    g.save(); g.translate(1500, 230); g.rotate(.02); rr(g, -190, -60, 380, 120, 22); fillStroke(g, '#ffd23d', 7); txt(g, "DENNY'S", 0, 6, 66, RED, { wt: 900, wide: true }); g.restore();
-    chip(g, 'OREGON · AGE 15', 1500, 360, { px: 40, bg: CREAM, s: pop(t, at('b6', 'oregon.') - .1), rot: -.02 });
+    g.save(); g.translate(1500, 330); g.rotate(.02); rr(g, -190, -60, 380, 120, 22); fillStroke(g, '#ffd23d', 7); txt(g, "DENNY'S", 0, 6, 66, RED, { wt: 900, wide: true }); g.restore();
+    chip(g, 'OREGON · AGE 15', 1500, 460, { px: 40, bg: CREAM, s: pop(t, at('b6', 'oregon.') - .1), rot: -.02 });
     /* the sink and a stack of plates */
     rr(g, 180, 600, 520, 60, 8); fillStroke(g, '#c9c6d6', 6); rr(g, 220, 660, 440, 220, 8); fillStroke(g, '#9a96a6', 6);
     var nPlates = 4 + Math.floor(clamp(seg(t, tW, tB), 0, 1) * 6);
@@ -1187,7 +1194,7 @@
     if (job === 0) { P.lh = [P.lh[0] + Math.sin(t * 12) * 10, P.lh[1]]; P.rh = [P.rh[0] - Math.sin(t * 12) * 10, P.rh[1]]; }
     var walk = t > tB - .2 && t < tB + .4 || t > tWa - .2 && t < tWa + .4; if (walk) { P.lf = [-26 + Math.sin(t * 16) * 20, 0]; P.rf = [26 - Math.sin(t * 16) * 20, 0]; }
     var gxS = job === 0 ? 420 : job === 1 ? lerp(420, 900, eio(seg(t, tB - .2, tB + .4))) : lerp(900, 1240, eio(seg(t, tWa - .2, tWa + .4)));
-    guy(g, gxS, 920, 1.0, P, Object.assign({}, KID, { col: '#d6412a', shade: '#b23420', hat: 'beanie', capCol: CREAM, hold: [null, job === 1 ? tray : job === 2 ? pad : null] }), t);
+    guy(g, gxS, 920, 1.0, P, Object.assign({}, KID, { col: '#e0a93a', shade: '#b8862a', hair: 'spiky', hairCol: INK, hold: [null, job === 1 ? tray : job === 2 ? pad : null] }), t);
     if (job === 2) { /* a customer at the counter */ guy(g, 1580, 920, 1.0, poseAt(t, [[s.t0, { look: [-.6, 0], mouth: 'smile', lh: [-60, -150], rh: [50, -200] }]]), { col: BLUE, shade: '#2f5fc4', seed: 31, hair: 'cap', hairCol: '#6a4a3a', hold: [null, function (g) { mug(g, 0, 0, .6, t, true); }] }, t); }
     g.restore();
     ['WASHING DISHES', 'BUSSING TABLES', 'WAITING TABLES'].forEach(function (l, i) { var tt = [tW, tB, tWa][i]; chip(g, l, 360 + i * 600, 140, { px: 42, bg: i === job ? YEL : CREAM, s: pop(t, tt - .15), rot: (i - 1) * .03, wide: true, a: i <= job ? 1 : 0 }); });
@@ -1243,7 +1250,7 @@
     if (spin > 0 && spin < 1) { g.save(); g.translate(1680, 160); circ(g, 0, 0, 70); fillStroke(g, CREAM, 6); g.rotate(spin * 6.283 * 4); g.strokeStyle = INK; g.lineWidth = 8; g.lineCap = 'round'; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, -52); g.stroke(); g.restore(); txt(g, 'HOURS', 1680, 270, 40, CREAM, { wt: 900, wide: true, outline: 8 }); }
     g.restore();
     chip(g, 'CHRIS MALACHOWSKY', 520, 600, { px: 34, bg: CREAM, s: pop(t, tC - .1), rot: -.02 });
-    chip(g, 'JENSEN HUANG', 960, 980, { px: 34, bg: YEL, s: pop(t, s.t0 + .3), rot: .01 });
+    chip(g, 'JENSEN HUANG', 960, 330, { px: 34, bg: YEL, s: pop(t, s.t0 + .3), rot: .01 });
     chip(g, 'CURTIS PRIEM', 1400, 600, { px: 34, bg: CREAM, s: pop(t, tP - .1), rot: .02 });
     dateTag(g, 'LATE 1992', t, at('b9', '1992,') - .1);
     vignette(g, .45);
@@ -1269,7 +1276,8 @@
     wall(g, '#2d4a3a', '#1c3026'); grid(g, 90);
     if (t < t13 + .2) {
       var a = 1 - seg(t, t13, t13 + .2);
-      for (var i = 0; i < 4; i++) { var k = pop(t, tNV - .3 + i * .1, 3, .6); if (k <= 0) continue; g.save(); g.globalAlpha = a; g.translate(420 + i * 110, 560 + i * 26); g.rotate(-.1 + i * .05); g.scale(clamp(k, 0, 1.05), clamp(k, 0, 1.05)); g.beginPath(); g.moveTo(-160, -110); g.lineTo(-60, -110); g.lineTo(-40, -130); g.lineTo(40, -130); g.lineTo(60, -110); g.lineTo(160, -110); g.lineTo(160, 120); g.lineTo(-160, 120); g.closePath(); fillStroke(g, '#e8c66a', 5); txt(g, 'NV' + (i ? ' v' + (i + 1) : ''), 0, 10, 60, INK, { wt: 900, wide: true }); g.restore(); }
+      for (var i = 0; i < 4; i++) { var k = pop(t, Math.min(tNV - .3, s.t0 + .2) + i * .15, 3, .6); if (k <= 0) continue; g.save(); g.globalAlpha = a; g.translate(420 + i * 110, 560 + i * 26); g.rotate(-.1 + i * .05); g.scale(clamp(k, 0, 1.05), clamp(k, 0, 1.05)); g.beginPath(); g.moveTo(-160, -110); g.lineTo(-60, -110); g.lineTo(-40, -130); g.lineTo(40, -130); g.lineTo(60, -110); g.lineTo(160, -110); g.lineTo(160, 120); g.lineTo(-160, 120); g.closePath(); fillStroke(g, '#e8c66a', 5); txt(g, 'NV' + (i ? ' v' + (i + 1) : ''), 0, 10, 60, INK, { wt: 900, wide: true }); g.restore(); }
+      chip(g, 'WHAT DO WE CALL IT?', 960, 160, { px: 50, bg: CREAM, s: pop(t, s.t0 + .1) * a, rot: -.02, wide: true });
       g.save(); g.globalAlpha = a; chip(g, 'NV = NEXT VERSION', 1340, 520, { px: 60, bg: YEL, s: pop(t, tNx - .1), rot: .03, wide: true }); g.restore();
     }
     if (t > t13 - .1 && t < t14 + .2) {
@@ -1336,7 +1344,7 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 80, 'rgba(120,200,255,.06)');
     dateTag(g, '1995', t, at('d1', '1995,') - .1);
-    chipD(g, 300, 330, .8 * clamp(pop(t, tNV - .2), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : 'dot' });
+    chipD(g, 300, 330, .8 * clamp(pop(t, Math.min(tNV - .2, s.t0 + .2)), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : 'dot' });
     /* left: a ship made of curves; right: the same ship made of triangles */
     var ck = pop(t, tCu - .3, 2.6, .6);
     if (ck > 0) { g.save(); g.translate(760, 560); g.scale(clamp(ck, 0, 1.05), clamp(ck, 0, 1.05)); g.rotate(Math.sin(t) * .06);
@@ -1671,7 +1679,7 @@
     var head = chart(g, 820, 220, 920, 520, pts, ck, { col: t > t31 - .1 ? RED : NVL });
     if (t > t31 - .1) { stamp(g, '−31% IN ONE DAY', 1280, 400, t, t31, { px: 54 }); }
     if (t > tTh - .1) { bigNum(g, '−75%', 1500, 680, 120, RED, pop(t, tTh - .1)); chip(g, 'THAT YEAR', 1500, 790, { px: 40, bg: CREAM, s: pop(t, tTh), rot: .02 }); }
-    if (t > tFa - .3) { g.save(); g.translate(1060, 880); g.scale(clamp(pop(t, tFa - .3), 0, 1.05), clamp(pop(t, tFa - .3), 0, 1.05)); rr(g, -150, -20, 300, 30, 6); fillStroke(g, '#9a96a6', 5); g.beginPath(); g.moveTo(-130, -20); g.lineTo(-110, -180); g.lineTo(110, -180); g.lineTo(130, -20); g.closePath(); fillStroke(g, '#3a3647', 5); for (var i = 0; i < 4; i++) { var ph = (t * 1.5 + i * .25) % 1; puff(g, -60 + i * 40, -200 - ph * 90, .25, 'rgba(120,120,130,' + (1 - ph) + ')'); } txt(g, 'FAULTY LAPTOP CHIPS', 0, 60, 30, CREAM, { fam: MONO, wt: 700, outline: 6 }); g.restore(); }
+    if (t > tFa - .3) { g.save(); g.translate(1060, 880); g.scale(clamp(pop(t, tFa - .3), 0, 1.05), clamp(pop(t, tFa - .3), 0, 1.05)); rr(g, -150, -20, 300, 30, 6); fillStroke(g, '#9a96a6', 5); g.beginPath(); g.moveTo(-130, -20); g.lineTo(-110, -180); g.lineTo(110, -180); g.lineTo(130, -20); g.closePath(); fillStroke(g, '#3a3647', 5); for (var i = 0; i < 4; i++) { var ph = (t * 1.5 + i * .25) % 1; puff(g, -60 + i * 40, -200 - ph * 90, .25, 'rgba(120,120,130,' + (1 - ph) + ')'); } txt(g, 'FAULTY LAPTOP CHIPS', 0, -220, 30, CREAM, { fam: MONO, wt: 700, outline: 6 }); g.restore(); }
     dateTag(g, '2008', t, at('c6', '2008,') - .1);
     g.restore();
     vignette(g, .45);
@@ -1718,7 +1726,7 @@
         var k = pop(t, c[2] - .2, 3, .6); if (k <= 0) return;
         var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [80, -200], look: [i === 0 ? .6 : i === 1 ? -.6 : 0, -.3], mouth: 'smile', eyes: 'dot' }], [tPi, { rh: [130, -280], mouth: 'grin', eyes: 'happy' }]]);
         g.save(); g.globalAlpha *= clamp(k, 0, 1); guy(g, c[0], i === 2 ? 1000 : 960, i === 2 ? .95 : 1.05, P, c[1], t); g.restore();
-        chip(g, c[3], c[0], i === 2 ? 560 : 520, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
+        chip(g, c[3], c[0], i === 2 ? 340 : 520, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
       });
       /* picture cards flying at the screen */
       ['🐱', '🚗', '🐶'].forEach(function (e, i) { var k = seg(t, tPi - .4 + i * .15, tPi + .8 + i * .15); if (k <= 0 || k >= 1) return; var x = lerp(200 + i * 60, 900, eio(k)), y = lerp(260 + i * 120, 500, eio(k)); card(g, x, y, 160 * (1 - k * .5), 120 * (1 - k * .5), (i - 1) * .2, 1 - seg(k, .8, 1), function (g, w) { txt(g, ['CAT', 'CAR', 'DOG'][i], 0, 4, w * .26, INK, { wt: 900 }); }); });
@@ -1737,7 +1745,7 @@
       var a = 1 - seg(t, t4, t4 + .3); g.save(); g.globalAlpha = a;
       [0, 1].forEach(function (i) { var k = pop(t, tTw - .3 + i * .15, 2.8, .6); if (k > 0) gpuCard(g, 620 + i * 680, 470, .95 * clamp(k, 0, 1.05), t, { label: 'GTX 580', glow: .4 + .2 * Math.sin(t * 6 + i), heat: seg(t, tTw, tWe + .5), fans: 2, spin: 1 }); });
       for (var i = 0; i < 8; i++) { var ph = (t * .7 + i * .125) % 1; puff(g, 620 + (i % 2) * 680 + Math.sin(i * 3 + t) * 60, 300 - ph * 220, .35 + ph * .3, 'rgba(255,255,255,' + (.25 * (1 - ph)) + ')'); }
-      calendar(g, 960, 820, .7 * clamp(pop(t, tWe - .3), 0, 1.05), 'TRAINING', String(1 + Math.floor(clamp(seg(t, tWe - .3, t4), 0, 1) * 5)), { px: 110, sub: 'DAYS · ABOUT A WEEK', rot: -.03 });
+      calendar(g, 960, 820, .7 * clamp(pop(t, tWe - .3), 0, 1.05), 'TRAINING', String(1 + Math.floor(clamp(seg(t, tWe - .3, t4), 0, 1) * 5)), { px: 110, sub: 'DAYS', rot: -.03 });
       chip(g, 'TWO GAMING CARDS', 960, 140, { px: 50, bg: NVL, s: pop(t, tTw - .1), rot: -.02, wide: true });
       g.restore();
     }
@@ -1763,17 +1771,20 @@
     g.save(); cam(g, t, s, .05);
     wall(g, '#13240c', '#081405'); grid(g, 100, 'rgba(182,240,90,.05)');
     var mk = eio(seg(t, tMi - .3, tMi + 1.0));
-    /* a neural network: 4 layers of nodes, lines lighting up */
-    var L = [4, 6, 6, 3], nodes = [];
-    L.forEach(function (n, li) { for (var j = 0; j < n; j++) nodes.push([li, 460 + li * 330, 540 + (j - (n - 1) / 2) * 120]); });
+    /* a stadium of kids, each holding one coloured card: together the cards make a cat, the question a neural network answers */
+    function catPix(c, r) {
+      var x = c * 56 + (r % 2) * 28, y = r * 46, d = function (ax, ay) { return Math.hypot(x - ax, y - ay); };
+      if (d(510, 270) < 34 || d(666, 270) < 34) return INK;
+      if (d(588, 340) < 24) return '#ff8fa3';
+      var ear = function (ax) { return y > 40 && y < 190 && Math.abs(x - ax) < (y - 40) * .55; };
+      if (d(588, 300) < 200 || ear(450) || ear(726)) return '#f0a04b';
+      return '#3a5a8a';
+    }
     if (mk < 1) {
       g.save(); g.globalAlpha = 1 - mk;
-      nodes.forEach(function (a) { nodes.forEach(function (b) { if (b[0] !== a[0] + 1) return; var on = hash(a[1] + b[2] + Math.floor(t * 6)) > .55; g.strokeStyle = on ? 'rgba(182,240,90,.8)' : 'rgba(255,255,255,.12)'; g.lineWidth = on ? 4 : 2; g.beginPath(); g.moveTo(a[1], a[2]); g.lineTo(b[1], b[2]); g.stroke(); }); });
-      nodes.forEach(function (a, i) { circ(g, a[1], a[2], 30); fillStroke(g, hash(i + Math.floor(t * 6)) > .5 ? NVL : CREAM, 5); });
-      /* the sums written on the wires */
-      if (t > tSu - .2) ['2×0.4', '+0.7', '×1.3', '0.2+0.9', '3×0.1'].forEach(function (q, i) { txt(g, q, 600 + i * 220, 300 + (i % 2) * 480, 34, YEL, { fam: MONO, wt: 700, outline: 6, a: pop(t, tSu + i * .08) }); });
-      chip(g, 'NEURAL NETWORK', 960, 140, { px: 46, bg: CREAM, s: pop(t, s.t0 + .1), rot: -.02, wide: true });
-      chip(g, '= THE SAME SIMPLE SUMS AS PIXELS', 960, 960, { px: 44, bg: YEL, s: pop(t, tPx - .2), rot: .02, wide: true });
+      stadium(g, 372, 250, 21, 12, 56, t, function (i, c, r) { return seg(t, s.t0 + .3 + (c + r) * .04, s.t0 + .8 + (c + r) * .04); }, { pix: function (i, c, r) { return catPix(c, r); }, pw: .96, ph: .8 });
+      chip(g, 'IS THIS A CAT?', 960, 140, { px: 50, bg: CREAM, s: pop(t, s.t0 + .1), rot: -.02, wide: true });
+      chip(g, '= THE SAME SIMPLE SUMS AS PIXELS', 960, 870, { px: 44, bg: YEL, s: pop(t, tPx - .2), rot: .02, wide: true });
       g.restore();
     }
     if (mk > 0) {
@@ -1810,19 +1821,19 @@
     wall(g, '#2f3a4a', '#1e2733'); floorAt(g, 880, '#3a3044');
     /* the lab door */
     rr(g, 1440, 360, 300, 520, 10); fillStroke(g, '#5a6d80', 7); chip(g, 'OPENAI', 1590, 330, { px: 36, bg: CREAM, fam: MONO, wt: 700, s: pop(t, tO - .3) }); circ(g, 1470, 640, 10); g.fillStyle = YEL; g.fill();
-    var wk = seg(t, tA, tO), x = lerp(300, 1100, eio(wk));
+    var wk = seg(t, tA, tO), x = lerp(640, 1100, eio(wk));
     var P = poseAt(t, [[s.t0, { lh: [-110, -240], rh: [110, -240], look: [.6, 0], mouth: 'grin' }], [t8, { lh: [-60, -150], rh: [150, -230], look: [.4, .3], mouth: 'smile', eyes: 'squint' }]]);
     if (wk > 0 && wk < 1) { P.lf = [-26 + Math.sin(t * 12) * 20, 0]; P.rf = [26 - Math.sin(t * 12) * 20, 0]; }
     if (t > t8) P = Object.assign({}, P);
     guy(g, x, 920, 1.1, P, t > t8 ? Object.assign({}, JEN, { hold: [null, marker] }) : JEN, t);
-    var bx = t < t8 ? x : 1160, by = t < t8 ? 600 : 760;
+    var bx = t < t8 ? x : 1160, by = t < t8 ? 690 : 760;
     g.save(); g.translate(bx, by); rr(g, -170, -120, 340, 240, 12); fillStroke(g, '#2c2936', 7); for (var i = 0; i < 4; i++) { rr(g, -150, -100 + i * 52, 300, 40, 6); fillStroke(g, '#3a3647', 3); g.fillStyle = NVL; for (var j = 0; j < 5; j++) { circ(g, -130 + j * 18, -80 + i * 52, 4); g.fill(); } } txt(g, 'DGX-1', 70, -80, 30, NVL, { fam: MONO, wt: 700 });
     if (t > tFu - .3) { g.save(); g.rotate(-.06); var sig = 'to the future of computing and humanity', n = Math.floor(clamp(seg(t, tFu - .3, end('a8') + .2), 0, 1) * sig.length); font(g, 26, 400, SERIF); g.textAlign = 'center'; g.fillStyle = '#fff'; g.fillText(sig.slice(0, n), 0, 60); g.restore(); }
     g.restore();
     if (t > t9 - .1) {
       var Q = poseAt(t, [[t9, { lh: [-60, -150], rh: [-130, -240], look: [-.6, 0], mouth: 'smile', eyes: 'happy' }]]);
       var ik = eio(seg(t, t9 - .1, tIl + .2)); guy(g, lerp(1590, 1560, ik), 900, 1.0 * ik, Q, ILYA, t);
-      chip(g, 'CO-FOUNDER: ILYA SUTSKEVER', 1560, 220, { px: 36, bg: YEL, s: pop(t, tIl - .1), rot: .02 });
+      chip(g, 'CO-FOUNDER: ILYA SUTSKEVER', 1380, 220, { px: 36, bg: YEL, s: pop(t, tIl - .1), rot: .02 });
       sticky(g, ["FROM THE", "STUDENT'S", "HOUSE"], 420, 340, pop(t, tSt - .2), -.06, { px: 46, lh: 56 });
     }
     g.restore();
@@ -1849,7 +1860,7 @@
       /* a falling coin, then the chart halving */
       var fk = seg(t, tCr - .1, tCr + .7); coin(g, 1520, lerp(200, 820, fk * fk), 90, YEL, Math.cos(t * 9)); if (fk >= 1) spark(g, 1520, 840, t, tCr + .7, 1.2);
       var head = chart(g, 220, 260, 1000, 480, [[0, .55], [.2, .7], [.4, .9], [.55, .82], [.7, .5], [.85, .38], [1, .36]], seg(t, tCr, tHa + .6), { col: RED });
-      if (t > tHa - .1) bigNum(g, '−50%+', head[0] - 300, head[1] + 90, 96, RED, pop(t, tHa - .1));
+      if (t > tHa - .1) bigNum(g, '−50%+', head[0] - 300, head[1] + 90, 96, RED, pop(t, tHa - .1) * (1 - seg(t, t11 - .4, t11 - .1)));
       chip(g, '2018 · CRYPTO CRASHES', 720, 140, { px: 44, bg: CREAM, s: pop(t, tCr - .1), rot: -.02, fam: MONO, wt: 700 });
       if (t > t11 - .2) { card(g, 1380, 480, 520, 360, .04, pop(t, t11 - .2), function (g) { txt(g, 'SEC', 0, -110, 60, INK, { wt: 900, wide: true }); txt(g, 'DIDN’T TELL INVESTORS', 0, -30, 30, INK, { fam: MONO, wt: 700 }); txt(g, 'HOW MUCH WAS CRYPTO', 0, 14, 30, INK, { fam: MONO, wt: 700 }); }); stamp(g, '$5.5M FINE', 1380, 620, t, tFi, { px: 64, rot: -.1 }); }
       g.restore();
@@ -1867,6 +1878,7 @@
     wall(g, '#0c1a10', '#050c07');
     if (zk > 0) for (var r = -3; r < 4; r++) for (var c = -5; c < 6; c++) { if (r === 0 && c === 0) continue; rack(g, 960 + c * 300 - 110, 540 + r * 330 - 150, 220, 300, t + c + r, { seed: c * 7 + r }); }
     monitor(g, 960, 520, 520, 320, function (g, w, h) { g.fillStyle = '#f4f1ea'; g.fillRect(-w / 2, -h / 2, w, h); txt(g, 'ChatGPT', 0, -30, 70, INK, { wt: 800 }); var q = typed('Hello! How can I help?', t, tC, tC + 1.2); g.textAlign = 'left'; font(g, 26, 600); g.fillStyle = INK; g.fillText(q, -w / 2 + 40, 60); });
+    recreated(g, 1130, 700);
     g.restore();
     dateTag(g, 'NOV 30, 2022', t, at('r1', 'november') - .1);
     chip(g, 'A MICROSOFT SUPERCOMPUTER', 960, 140, { px: 48, bg: CREAM, s: pop(t, tSu - .1), rot: -.02, wide: true });
@@ -1894,7 +1906,7 @@
       chip(g, names[i], x, 560, { px: 26, bg: CREAM, s: clamp(k * 3, 0, 1), fam: MONO, wt: 700 });
     }
     g.restore();
-    chip(g, 'ONLY ONE COMPANY REALLY SELLS IT', 960, 140, { px: 44, bg: CREAM, s: pop(t, tOn - .1) * (1 - seg(t, t4 - .3, t4)), rot: -.02, wide: true });
+    chip(g, 'ONE COMPANY SELLS MOST OF THEM', 960, 140, { px: 44, bg: CREAM, s: pop(t, tOn - .1) * (1 - seg(t, t4 - .3, t4)), rot: -.02, wide: true });
     if (t > t4 - .2) quote(g, t, 'r4', 200, { px: 96, maxw: 1500, hot: /shovels/i });
     vignette(g, .35);
   }
@@ -1964,8 +1976,11 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#132108', '#070c03'); grid(g, 100, 'rgba(182,240,90,.06)');
     var pts = [[0, .1], [.12, .2], [.2, .16], [.32, .34], [.45, .42], [.55, .55], [.66, .6], [.78, .75], [.9, .88], [1, .96]];
-    var head = chart(g, 200, 180, 1500, 700, pts, seg(t, s.t0, t5 + .5), { col: NVL, lw: 14 });
-    [[t4, '$4T', 'JUL 2025', .78], [t5, '$5T', 'OCT 2025', .96]].forEach(function (f) { if (t < f[0] - .2) return; var x = 200 + f[3] * 1500 * (f[3] === .78 ? .78 / .78 : 1), y = 180 + 700 - (f[3] === .78 ? .75 : .96) * 700; var px2 = f[3] === .78 ? 200 + .78 * 1500 : 200 + 1500; g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(px2, y); g.lineTo(px2, y - 170); g.stroke(); g.beginPath(); g.moveTo(px2, y - 170); g.lineTo(px2 + 110, y - 140); g.lineTo(px2, y - 110); g.closePath(); fillStroke(g, NV, 5); tag(g, f[1], px2 - 140, y - 160, pop(t, f[0] - .1), { px: 54 }); txt(g, f[2], px2 - 140, y - 80, 28, CREAM, { fam: MONO, wt: 700, outline: 6 }); });
+    var head = chart(g, 200, 180, 1400, 700, pts, seg(t, s.t0, t5 + .5), { col: NVL, lw: 14 });
+    /* Jensen rides the head of the line up */
+    var cP = poseAt(t, [[s.t0, { lh: [-90, -230], rh: [90, -230], mouth: 'grin', eyes: 'happy', look: [.5, -.4] }]]); cP.lf = [-30 + Math.sin(t * 9) * 16, 0]; cP.rf = [30 - Math.sin(t * 9) * 16, 0];
+    guy(g, head[0], head[1] - 4, .42, cP, JEN, t);
+    [[t4, '$4T', 'JUL 2025', .78], [t5, '$5T', 'OCT 2025', .96]].forEach(function (f) { if (t < f[0] - .2) return; var x = 200 + f[3] * 1400 * (f[3] === .78 ? .78 / .78 : 1), y = 180 + 700 - (f[3] === .78 ? .75 : .96) * 700; var px2 = f[3] === .78 ? 200 + .78 * 1400 : 200 + 1400; g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(px2, y); g.lineTo(px2, y - 170); g.stroke(); g.beginPath(); g.moveTo(px2, y - 170); g.lineTo(px2 + 110, y - 140); g.lineTo(px2, y - 110); g.closePath(); fillStroke(g, NV, 5); tag(g, f[1], px2 - 140, y - 160, pop(t, f[0] - .1), { px: 54 }); txt(g, f[2], px2 - 140, y - 80, 28, CREAM, { fam: MONO, wt: 700, outline: 6 }); });
     g.restore();
     chip(g, 'KEEPS CLIMBING', 760, 120, { px: 48, bg: CREAM, s: pop(t, s.t0 + .2), rot: -.03, wide: true });
     stamp(g, 'FIRST COMPANY EVER', 1100, 560, t, tFi, { px: 64, col: NVL, rot: -.08 });
@@ -1978,7 +1993,12 @@
     var t2 = start('n2'), t96 = at('n2', '96.2'), t89 = at('n2', '89'), t3 = start('n3'), tNi = at('n3', 'nine'), tGa = at('n3', 'gaming');
     g.save(); cam(g, t, s, .05);
     wall(g, '#1c2a12', '#0e1708'); grid(g, 100, 'rgba(182,240,90,.05)');
-    if (t < t2 + .2) calendar(g, 960, 540, 1.1 * clamp(pop(t, s.t0 + .1), 0, 1.05) * (1 - seg(t, t2, t2 + .2)), 'RIGHT NOW', 'OCT', { px: 140, sub: '2026' });
+    if (t < t2 + .2) {
+      var ca = 1 - seg(t, t2, t2 + .2);
+      calendar(g, 760, 520, 1.1 * clamp(pop(t, s.t0 + .1), 0, 1.05) * ca, 'RIGHT NOW', 'OCT', { px: 110, sub: '2026' });
+      g.save(); g.globalAlpha = ca; guy(g, 1380, 980, 1.1, poseAt(t, [[s.t0, { lh: [-60, -150], rh: [-150, -300], look: [-.6, -.2], mouth: 'smile' }], [s.t0 + .8, { rh: [-170, -320], mouth: 'talk' }]]), JEN, t); g.restore();
+      chip(g, 'WHERE IS IT THIS MONTH?', 1380, 200, { px: 44, bg: YEL, s: pop(t, s.t0 + .3) * ca, rot: .02, wide: true });
+    }
     if (t > t2 - .1) {
       var a = clamp(seg(t, t2 - .1, t2 + .2), 0, 1); g.save(); g.globalAlpha = a;
       chip(g, 'LAST QUARTER', 960, 120, { px: 40, bg: CREAM, fam: MONO, wt: 700, s: a });
@@ -2012,6 +2032,7 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 90);
     rr(g, 180, 200, 1560, 600, 18); fillStroke(g, '#191527', 5);
+    txt(g, 'CHIP STOCKS · DAILY', 360, 245, 30, CREAM, { fam: MONO, wt: 700 });
     /* candles: a climb to the record, then eight red days, then a few mixed */
     var c = [.3, .36, .34, .42, .48, .55, .62, .58, .5, .45, .4, .37, .34, .31, .3, .34, .38], n = Math.floor(clamp(seg(t, s.t0, tEi + 1.4), 0, 1) * c.length);
     for (var i = 0; i < n; i++) {
@@ -2053,7 +2074,7 @@
     g.restore();
     chip(g, 'STILL THE CEO · 33 YEARS', 960, 70, { px: 40, bg: CREAM, s: pop(t, tTh - .1) * (1 - seg(t, t8b - .2, t8b)), rot: -.02, wide: true });
     chip(g, 'STILL THE JACKET', 480, 760, { px: 40, bg: YEL, s: pop(t, tJa - .1) * (1 - seg(t, t8b - .2, t8b)), rot: .04, wide: true });
-    if (t > t200 - .3 && t < t9 + .2) bigNum(g, '$200 BILLION+', 960, 760, 110, NVL, pop(t, t200 - .2) * (1 - seg(t, t9, t9 + .2)));
+    if (t > t200 - .3 && t < t9 + .2) bigNum(g, '$200 BILLION+', 960, 250, 110, NVL, pop(t, t200 - .2) * (1 - seg(t, t9, t9 + .2)));
     if (t > tTo - .2 && t < t200) sticky(g, ['REMEMBER', 'THE TOILETS?'], 1580, 300, pop(t, tTo - .2), .05, { px: 46 });
     if (t > t9 - .1) { g.fillStyle = 'rgba(8,6,18,' + (.7 * seg(t, t9 - .1, t9 + .3)) + ')'; g.fillRect(0, 0, W, H); quote(g, t, 'n9', 420, { px: 62, maxw: 1600, hot: /million|harder/i }); txt(g, 'JENSEN HUANG ON THE ACQUIRED PODCAST, 2023', 960, 820, 28, CREAM, { fam: MONO, wt: 700, a: seg(t, t9, t9 + .4) }); }
     vignette(g, .4);
@@ -2073,19 +2094,20 @@
       g.restore();
       g.save(); g.beginPath(); g.rect(W / 2, 0, W / 2, H); g.clip(); wall(g, '#1a2f3a', '#0f1e26'); floorAt(g, 880, '#1a2a30');
       monitor(g, 1440, 430, 520, 320, function (g, w, h) { g.fillStyle = '#f4f1ea'; g.fillRect(-w / 2, -h / 2, w, h); txt(g, 'ChatGPT', 0, -100, 40, INK, { wt: 800 }); g.textAlign = 'left'; font(g, 24, 600); g.fillStyle = INK; g.fillText(typed('Why is the sky blue?', t, s.t0 + .3, s.t0 + 1.6), -w / 2 + 30, -20); g.fillStyle = '#3a6b2a'; g.fillText(typed('Sunlight scatters off air…', t, s.t0 + 1.8, s.t0 + 3.2), -w / 2 + 30, 30); });
+      recreated(g, 1610, 610);
       var Q = poseAt(t, [[s.t0, { lh: [-40, -170], rh: [60, -180], look: [-.2, -.5], mouth: 'smile', front: 1 }]]);
       guy(g, 1540, 1060, 1.0, Q, YOU, t); txt(g, 'AI', 1440, 150, 60, CREAM, { wt: 900, wide: true, outline: 10 });
       g.restore();
       g.strokeStyle = INK; g.lineWidth = 12; g.beginPath(); g.moveTo(W / 2, 0); g.lineTo(W / 2, H); g.stroke();
       var ck = pop(t, tCo - .3, 2.8, .6); chipD(g, W / 2, 640, .85 * Math.max(.4, clamp(ck, 0, 1.05)), t, { face: 'grin', glow: .8, label: 'GPU' });
       chip(g, 'COUSINS', W / 2, 820, { px: 48, bg: NVL, s: pop(t, tCo - .1), rot: -.03, wide: true });
-      if (t > t3 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.5 * seg(t, t3 - .2, t3 + .2)) + ')'; g.fillRect(0, 0, W, H); chip(g, '20 YEARS OF GAMERS PAID FOR IT', W / 2, 220, { px: 50, bg: YEL, s: pop(t, tTw - .1), rot: -.02, wide: true }); for (var i = 0; i < 10; i++) { var ph = (t * 1.4 + i * .1) % 1; if (t < tPa - .2) break; coin(g, lerp(380, W / 2, ph), lerp(700, 640, ph) - Math.sin(ph * Math.PI) * 160, 22, YEL, Math.cos(ph * 9)); } }
+      if (t > t3 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.5 * seg(t, t3 - .2, t3 + .2)) + ')'; g.fillRect(0, 0, W, H); chip(g, '20 YEARS OF GAMERS PAID FOR IT', W / 2, 560, { px: 50, bg: YEL, s: pop(t, tTw - .1), rot: -.02, wide: true }); for (var i = 0; i < 10; i++) { var ph = (t * 1.4 + i * .1) % 1; if (t < tPa - .2) break; coin(g, lerp(380, W / 2, ph), lerp(700, 640, ph) - Math.sin(ph * Math.PI) * 160, 22, YEL, Math.cos(ph * 9)); } }
     } else {
       /* the recap, three panels */
       wall(g, '#13240c', '#081405'); grid(g, 100, 'rgba(182,240,90,.05)');
       chip(g, "NVIDIA DIDN'T PREDICT AI", 960, 130, { px: 50, bg: CREAM, s: pop(t, t3b), rot: -.02, wide: true });
       [[tSt, 'BUILT A STADIUM', 'FOR GAMES', 400], [tKe, 'KEPT PAYING', 'WHEN NOBODY CARED', 960], [tSd, 'WAS STANDING THERE', 'WHEN AI WALKED IN', 1520]].forEach(function (p, i) {
-        card(g, p[3], 560, 480, 520, (i - 1) * .035, pop(t, p[0] - .2), function (g) {
+        card(g, p[3], 560, 480, 520, (i - 1) * .035, pop(t, (i === 0 ? Math.min(p[0], t3b + .4) : p[0]) - .2), function (g) {
           if (i === 0) stadium(g, -190, -150, 9, 4, 44, t, function () { return 1; }, { pix: function (j) { return j % 2 ? NVL : YEL; } });
           else if (i === 1) { coin(g, -60, -110, 40, YEL, 1); coin(g, 30, -140, 40, YEL, 1); coin(g, 80, -90, 40, YEL, 1); }
           else { g.save(); g.translate(0, -20); g.scale(.55, .55); guy(g, 0, 0, 1, { lh: [-60, -150], rh: [60, -150], lf: [-26, 0], rf: [26, 0], hip: 0, lean: 0, tilt: 0, look: [-.6, 0], eyes: 'dot', brow: 0, mouth: 'smirk', jump: 0, front: 0 }, JEN, t); g.restore(); }
@@ -2098,17 +2120,19 @@
   }
   /* 56 · Google, Amazon and AMD building chips to knock Nvidia off the top */
   function sRivals(g, t, s) {
-    var tGo = at('e4', 'google,'), tAm = at('e4', 'amazon'), tAd = at('e4', 'amd'), tKn = at('e4', 'knock');
+    var tGo = at('e4', 'google,'), tAm = at('e4', 'amazon'), tAd = at('e4', 'amd'), tKn = at('e4', 'knock'), tNo = at('e4b', 'not'), tFo = at('e4b', 'for'), back = eio(seg(t, tNo - .2, tNo + .5));
     g.save(); cam(g, t, s, .06);
     wall(g, '#22283e', '#151a2a');
     g.beginPath(); g.moveTo(-200, 1100); g.lineTo(960, 360); g.lineTo(2120, 1100); g.closePath(); fillStroke(g, '#4a4458', 8);
-    chipD(g, 960, 260, .9, t, { face: t > tKn ? 'o' : 'grin', glow: .7, label: 'NVIDIA', rot: knock(t, tKn, 20, 4) * .15 });
+    chipD(g, 960, 260, .9, t, { face: t > tKn && t < tNo ? 'o' : 'grin', glow: .7 + back * .3, label: 'NVIDIA', rot: knock(t, tKn, 20, 4) * .15 });
     [[tGo, 'GOOGLE TPU', 520, '#4a7bd8', '#9fc4ff'], [tAm, 'AMAZON TRAINIUM', 960, '#ff9a3d', '#ffd29a'], [tAd, 'AMD INSTINCT', 1400, '#d84a4a', '#ff9f9f']].forEach(function (r, i) {
-      var k = pop(t, r[0] - .3, 2.8, .6); if (k <= 0) return; var cl = seg(t, r[0], s.t1), y = lerp(960, 640, cl) + Math.sin(t * 6 + i) * 6, x = lerp(r[2], r[2] + (960 - r[2]) * .4, cl);
+      var k = pop(t, r[0] - .3, 2.8, .6); if (k <= 0) return; var cl = seg(t, r[0], tNo) * (1 - back * .7), y = lerp(960, 640, cl) + Math.sin(t * 6 + i) * 6, x = lerp(r[2], r[2] + (960 - r[2]) * .4, cl);
       chipD(g, x, y, .6 * clamp(k, 0, 1.05), t, { face: 'grin', die: r[3], die2: r[4], label: r[1], seed: i + 7 });
     });
     g.restore();
-    chip(g, 'EVERYONE WANTS THE TOP', 960, 130, { px: 48, bg: YEL, s: pop(t, tKn - .1), rot: -.02, wide: true });
+    stamp(g, 'NOT YET', 960, 560, t, tNo, { px: 90, col: NVL, rot: -.08 });
+    chip(g, 'EVERYONE WANTS THE TOP', 960, 130, { px: 48, bg: YEL, s: pop(t, tKn - .1) * (1 - seg(t, tFo - .3, tFo - .05)), rot: -.02, wide: true });
+    chip(g, 'MOST AI CHIPS: STILL NVIDIA', 960, 130, { px: 48, bg: NVL, s: pop(t, tFo - .05), rot: .02, wide: true });
     vignette(g, .4);
   }
   /* 57 · 1993, three engineers and a lot of coffee; tonight, the same diner, a question, their chips */
@@ -2122,7 +2146,7 @@
       [[640, CHRIS, .5], [960, JEN, 0], [1280, CURT, -.5]].forEach(function (c, i) { var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [90, -200], look: [c[2], -.1], mouth: i === 1 ? 'talk' : 'smile' }]]); guy(g, c[0], 900, .95, P, c[1], t); });
       for (var i = 0; i < 5; i++) mug(g, 600 + i * 180, 690, .6, t, true);
       g.restore(); sepia(g, .5 * (1 - nk));
-      dateTag(g, '1993', t, s.t0 + .1, t6);
+      dateTag(g, '1992', t, s.t0 + .1, t6);
     }
     if (nk > 0) {
       g.save(); g.globalAlpha = nk;
@@ -2184,7 +2208,7 @@
     { id: 'ask', name: 'Three questions', t0: start('o16') - .3, draw: sAsk, wipe: 'slide' },
     { id: 'tease', name: 'The pinboard', t0: start('o19') - .3, draw: sTease, wipe: 'slide' },
     { id: 'title', name: 'Title', t0: start('title') - .45, draw: sTitle, wipe: 'iris' },
-    { id: 'plane', name: 'Taiwan to America, 1973', t0: start('b1') - .3, draw: sPlane, wipe: 'slide', part: 'THE BOOTH' },
+    { id: 'plane', name: 'Taiwan to America, 1973', t0: start('b1') - .3, draw: sPlane, wipe: 'slide', part: 'THE BOOTH', q: 'Who starts a chip company in a diner?' },
     { id: 'school', name: 'The wrong school', t0: start('b2') - .3, draw: sSchool, wipe: 'slide' },
     { id: 'roommate', name: 'The roommate', t0: start('b4') - .3, draw: sRoommate, wipe: 'slide' },
     { id: 'dennysjob', name: "A job at Denny's", t0: start('b6') - .3, draw: sDennysJob, wipe: 'iris' },
@@ -2194,36 +2218,36 @@
     { id: 'name', name: 'Next version, envy', t0: start('b12') - .3, draw: sName, wipe: 'slide' },
     { id: 'pitch', name: 'The worst pitch', t0: start('b15') - .3, draw: sPitch, wipe: 'slide' },
     { id: 'valentine', name: 'If you lose my money', t0: start('b16') - .3, draw: sValentine, wipe: 'iris' },
-    { id: 'curves', name: 'Curves versus triangles', t0: start('d1') - .3, draw: sCurves, wipe: 'slide', part: 'THIRTY DAYS FROM DEAD' },
+    { id: 'curves', name: 'Curves versus triangles', t0: start('d1') - .3, draw: sCurves, wipe: 'slide', part: 'THIRTY DAYS FROM DEAD', q: 'How close did it come to dying?' },
     { id: 'sega', name: 'Pay us anyway', t0: start('d3') - .3, draw: sSega, wipe: 'slide' },
     { id: 'allin', name: 'All in on RIVA 128', t0: start('d6') - .3, draw: sAllIn, wipe: 'slide' },
     { id: 'payroll', name: 'One month of payroll', t0: start('d7') - .3, draw: sPayroll, wipe: 'slide' },
     { id: 'motto', name: 'The motto', t0: start('d9') - .3, draw: sMotto, wipe: 'iris' },
-    { id: 'ipo', name: 'Twelve dollars a share', t0: start('g1') - .3, draw: sIPO, wipe: 'slide', part: 'THE GPU' },
+    { id: 'ipo', name: 'Twelve dollars a share', t0: start('g1') - .3, draw: sIPO, wipe: 'slide', part: 'THE GPU', q: 'What is a GPU, actually?' },
     { id: 'geforce', name: "The world's first GPU", t0: start('g2') - .3, draw: sGeForce, wipe: 'slide' },
     { id: 'pixels', name: 'Two million pixels', t0: start('g3') - .3, draw: sPixels, wipe: 'iris' },
     { id: 'profs', name: 'A few brilliant professors', t0: start('g5') - .3, draw: sProfs, wipe: 'slide' },
     { id: 'stadium', name: 'A stadium full of kids', t0: start('g6') - .3, draw: sStadium, wipe: 'slide' },
     { id: 'xbox', name: '3dfx and the Xbox', t0: start('g8') - .3, draw: sXbox, wipe: 'slide' },
     { id: 'tattoo', name: 'The tattoo', t0: start('g10') - .3, draw: sTattoo, wipe: 'iris' },
-    { id: 'buck', name: 'Ian Buck', t0: start('c1') - .3, draw: sBuck, wipe: 'slide', part: 'THE BET NOBODY WANTED' },
+    { id: 'buck', name: 'Ian Buck', t0: start('c1') - .3, draw: sBuck, wipe: 'slide', part: 'THE BET NOBODY WANTED', q: 'Why did Wall Street hate it?' },
     { id: 'cuda', name: 'CUDA', t0: start('c3') - .3, draw: sCuda, wipe: 'iris' },
     { id: 'wallst', name: 'Wall Street sees the bill', t0: start('c5') - .3, draw: sWallSt, wipe: 'slide' },
     { id: 'keep', name: 'Keep paying anyway', t0: start('c8') - .3, draw: sKeep, wipe: 'slide' },
-    { id: 'house', name: "A student's parents' house", t0: start('a1') - .3, draw: sHouse, wipe: 'slide', part: 'TWO CARDS' },
+    { id: 'house', name: "A student's parents' house", t0: start('a1') - .3, draw: sHouse, wipe: 'slide', part: 'TWO CARDS', q: 'Where did modern AI come from?' },
     { id: 'train', name: 'Two GTX 580s', t0: start('a3') - .3, draw: sTrain, wipe: 'slide' },
     { id: 'same', name: 'The same simple sums', t0: start('a5') - .3, draw: sSame, wipe: 'iris' },
     { id: 'luck', name: 'Just lucky?', t0: start('a6b') - .3, draw: sLuck, wipe: 'slide' },
     { id: 'dgx', name: 'The first DGX-1', t0: start('a7') - .3, draw: sDGX, wipe: 'slide' },
     { id: 'crypto', name: 'The crypto crash', t0: start('a10') - .3, draw: sCrypto, wipe: 'slide' },
-    { id: 'chatgpt', name: 'ChatGPT', t0: start('r1') - .3, draw: sChatGPT, wipe: 'iris', part: 'THE GOLD RUSH' },
+    { id: 'chatgpt', name: 'ChatGPT', t0: start('r1') - .3, draw: sChatGPT, wipe: 'iris', part: 'THE GOLD RUSH', q: 'What happened after ChatGPT?' },
     { id: 'rush', name: 'Sell shovels', t0: start('r3') - .3, draw: sRush, wipe: 'slide' },
     { id: 'h100', name: 'The H100', t0: start('r5') - .3, draw: sH100, wipe: 'slide' },
     { id: 'plaque', name: 'The plaque', t0: start('r6') - .3, draw: sPlaque, wipe: 'iris' },
     { id: 'podium', name: 'Number one', t0: start('r7') - .3, draw: sPodium, wipe: 'slide' },
     { id: 'deepseek', name: 'DeepSeek day', t0: start('r8') - .3, draw: sDeepSeek, wipe: 'slide' },
     { id: 'climb', name: 'Four, then five trillion', t0: start('r10') - .3, draw: sClimb, wipe: 'slide' },
-    { id: 'now', name: 'October 2026', t0: start('n1') - .3, draw: sNow, wipe: 'iris', part: 'RIGHT NOW' },
+    { id: 'now', name: 'October 2026', t0: start('n1') - .3, draw: sNow, wipe: 'iris', part: 'RIGHT NOW', q: 'Where is it this month?' },
     { id: 'rubin', name: 'Vera Rubin', t0: start('n4') - .3, draw: sRubin, wipe: 'slide' },
     { id: 'wobble', name: 'Not a straight line', t0: start('n5') - .3, draw: sWobble, wipe: 'slide' },
     { id: 'share', name: 'That twelve-dollar share', t0: start('n7') - .3, draw: sShare, wipe: 'slide' },
@@ -2238,7 +2262,7 @@
   var SHOTS = SC.map(function (s) { return { id: s.id, name: s.name, t0: s.t0, t1: s.t1 }; });
   /* the part cards land in the pause before each part's first line */
   var PARTS = [];
-  SC.forEach(function (s, i) { if (s.part) { var prev = VO.lines[VO.lines.indexOf(LINE[firstLine(s)]) - 1]; PARTS.push({ t: prev.t1 + .12, n: PARTS.length + 1, text: s.part, scene: s }); } });
+  SC.forEach(function (s, i) { if (s.part) { var prev = VO.lines[VO.lines.indexOf(LINE[firstLine(s)]) - 1]; PARTS.push({ t: prev.t1 + 1.3, n: PARTS.length + 1, text: s.part, q: s.q, scene: s }); } });
   function firstLine(s) { for (var i = 0; i < VO.lines.length; i++) if (VO.lines[i].t0 >= s.t0) return VO.lines[i].id; }
   /* YouTube chapters (each ≥ 10 s, first at 0:00) */
   var CHAPTERS = [['A gaming company runs AI', 0]].concat(PARTS.map(function (p) { return [(p.text.charAt(0) + p.text.slice(1).toLowerCase()).replace(/\bgpu\b/, 'GPU'), Math.max(0, p.t - .1)]; })).concat([['Why it matters', S('split').t0]]);
@@ -2248,18 +2272,20 @@
     for (var i = 0; i < PARTS.length; i++) {
       var c = PARTS[i], nx = i + 1 < PARTS.length ? PARTS[i + 1].t : S('split').t0;
       if (t < c.t || t > nx) continue;
-      var u = t - c.t, k = eio(seg(u, 1.25, 1.7));
-      font(g, 120, 900, DISP, true); var tw = g.measureText(c.text).width, cw = Math.max(tw + 140, 900), ch = 330;
-      var s = lerp(1, .22, k), px = lerp(W / 2, 24 + cw * s / 2, k), py = lerp(H / 2, 22 + ch * s / 2, k);
-      if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.6 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
+      /* the finished quote holds 1.3 s clear, then the card slams in, holds 2.4 s, and parks */
+      var u = t - c.t, k = eio(seg(u, 2.4, 2.85));
+      font(g, 120, 900, DISP, true); var tw0 = g.measureText(c.text).width, tpx = Math.min(120, 120 * 1300 / tw0), tw = tw0 * tpx / 120, cw = Math.max(tw + 160, 1000), ch = 380;
+      var s = lerp(1, .26, k), px = lerp(W / 2, 24 + cw * s / 2, k), py = lerp(H / 2, 22 + ch * s / 2, k);
+      if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.9 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
       var sl = pop(t, c.t, 2.8, .5), sc = s * lerp(1.6, 1, clamp(sl, 0, 1));
       g.save(); g.translate(px, py); g.scale(sc, sc); g.rotate(lerp(-.04, -.015, k) + knock(t, c.t + .1, 30, 9) * .05);
       g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 : 1);
       rr(g, -cw / 2 + 16, -ch / 2 + 20, cw, ch, 26); g.fillStyle = 'rgba(8,6,18,.5)'; g.fill();
       rr(g, -cw / 2, -ch / 2, cw, ch, 26); fillStroke(g, YEL, 10);
       g.fillStyle = INK; g.fillRect(-cw / 2, -ch / 2 + 20, 16, ch - 40);
-      txt(g, 'PART ' + c.n + ' OF 7', 0, -78, 52, INK, { fam: MONO, wt: 700, ls: 6 });
-      txt(g, c.text, 0, 46, 120, INK, { wt: 900, wide: true });
+      txt(g, 'PART ' + c.n + ' OF 7', 0, -110, 52, INK, { fam: MONO, wt: 700, ls: 6 });
+      txt(g, c.text, 0, 14, tpx, INK, { wt: 900, wide: true });
+      if (c.q) txt(g, c.q, 0, 122, 46, INK, { wt: 800, a: (1 - k) * seg(u, .5, .8) });
       g.restore();
     }
   }
@@ -2351,7 +2377,7 @@
     E(start('o19') - .2, 'paper', { g: 1.3 }); E(start('o20') - .1, 'pop', { g: .7 }); E(start('o20') + .6, 'pop', { g: .7 }); E(start('o20') + 1.2, 'pop', { g: .7 });
     /* title */
     ['the', 'whole', 'history', 'of'].forEach(function (w) { E(at('title', w) - .06, 'tick', { g: .25 }); }); E(at('title', 'nvidia.') - .06, 'stamp', { big: true });
-    PARTS.forEach(function (c) { E(c.t - .02, 'slam'); E(c.t + 1.25, 'swish'); });
+    PARTS.forEach(function (c) { E(c.t - .02, 'slam'); E(c.t + 2.4, 'swish'); });
     /* part 1 */
     E(start('b1'), 'engine', { t1: end('b1') }); E(start('b2') + .2, 'paper'); E(start('b3'), 'rushw', { t1: end('b3') - .3 });
     E(start('b4') + .2, 'pop', { g: .6 }); E(start('b5') + .3, 'thump', { g: .4 }); E(start('b6') + .2, 'clunk'); E(start('b7') - .1, 'paper');
@@ -2399,7 +2425,7 @@
     E(at('n8', 'jacket.') - .1, 'zip', { t1: at('n8', 'jacket.') + .5 }); E(at('n8b', 'toilets') - .1, 'flies', { t1: at('n8b', '200') }); E(at('n8b', '200') - .1, 'register'); words('n9', ['million', 'harder'], 'paper', { g: 1.3 }, -.08);
     /* ending */
     E(start('e1') - .1, 'gulp'); E(at('e2', 'cousins') - .2, 'shimmer', { t1: end('e2') }); E(at('e3', 'paid') - .2, 'receipt', { t1: end('e3') }); words('e3b', ['stadium', 'kept', 'standing'], 'paper', { g: 1.2 }, -.2);
-    words('e4', ['google,', 'amazon', 'amd'], 'pop', { g: .7 }, -.2); E(at('e4', 'knock') - .05, 'thump', { g: .5 });
+    words('e4', ['google,', 'amazon', 'amd'], 'pop', { g: .7 }, -.2); E(at('e4', 'knock') - .05, 'thump', { g: .5 }); E(at('e4b', 'not') - .05, 'stamp', { g: .6 }); E(at('e4b', 'for') - .1, 'pop', { g: .5 });
     E(start('e5') - .2, 'projector', { t1: start('e6') - .3 }); E(at('e6', 'type') + .1, 'receipt', { t1: at('e6', 'type') + .9 }); E(at('e6', 'type') + .4, 'zip', { t1: at('e6', 'chips.') - .2 }); E(at('e6', 'chips.') - .1, 'ding');
     E(at('e7', 'cable') - .1, 'whoosh'); E(at('e7', 'cut') - .05, 'zap', { t1: at('e7', 'cut') + .4 }); E(at('e7', 'here.') - .1, 'ding'); E(at('e8', 'subscribe') - .1, 'click'); E(at('e8', 'which') - .1, 'pop', { g: .7 });
     SC.forEach(function (s, j) { if (j && s.wipe !== 'none') E(s.t0 - .05, 'swish'); });

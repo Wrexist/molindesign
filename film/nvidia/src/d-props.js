@@ -110,6 +110,8 @@
     if (o.label) txt(g, o.label, w / 2, h + 34, 30, CREAM, { fam: MONO, wt: 700, outline: 7 });
     g.restore();
   }
+  /* a small honesty tag on staged screens */
+  function recreated(g, x, y) { chip(g, 'RE-CREATED', x, y, { px: 22, bg: '#2c2936', fg: CREAM, fam: MONO, wt: 700 }); }
   /* the stadium of kids: a grid of tiny workers, each with one sum. fn(i, col, row) → 0..1 lights that kid's pixel */
   function stadium(g, x, y, cols, rows, cell, t, fn, o) {
     o = o || {};
@@ -119,7 +121,7 @@
       g.beginPath(); g.ellipse(cx, cy + cell * .3 - hop, cell * .36, cell * .26, 0, Math.PI, 0); g.fillStyle = hc; g.fill();
       circ(g, cx, cy - hop, cell * .24); g.fillStyle = HEAD; g.fill(); g.lineWidth = Math.max(1.5, cell * .06); g.strokeStyle = INK; g.stroke();
       if (cell > 26) { g.fillStyle = INK; circ(g, cx - cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); circ(g, cx + cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); }
-      if (k > 0 && o.pix) { var pc = o.pix(i, c, r); g.fillStyle = pc; g.globalAlpha = clamp(k * 2, 0, 1); g.fillRect(cx - cell * .18, cy - hop - cell * .62, cell * .36, cell * .28); g.globalAlpha = 1; }
+      if (k > 0 && o.pix) { var pc = o.pix(i, c, r); g.fillStyle = pc; g.globalAlpha = clamp(k * 2, 0, 1); var pw = cell * (o.pw || .36), ph = cell * (o.ph || .28); g.fillRect(cx - pw / 2, cy - hop - cell * .48 - ph / 2, pw, ph); g.globalAlpha = 1; }
     }
   }
   /* a line chart drawn up to k (0..1) of its points; pts are [x 0..1, y 0..1]; returns the head position */
@@ -174,7 +176,7 @@
     if (night) { for (var i = 0; i < 40; i++) { circ(g, 320 + hash(i) * 1280, 140 + hash(i + 4) * 200, 2); g.fillStyle = 'rgba(255,250,230,.6)'; g.fill(); } g.fillStyle = '#2a2f4a'; g.fillRect(300, 400, 1320, 150); for (i = 0; i < 6; i++) { var lx = ((i * 300 + t * 90) % 1700) + 200; glow(g, lx, 470, 60, 'rgba(255,220,140,.8)', 1); } }
     else { puff(g, 600 + (t * 10) % 300, 220, .8, 'rgba(255,255,255,.85)'); puff(g, 1300 - (t * 6) % 200, 260, .6, 'rgba(255,255,255,.75)'); g.fillStyle = '#c9b48a'; g.fillRect(300, 430, 1320, 120); }
     /* the diner's own sign, seen backwards through the glass */
-    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); g.scale(-1, 1); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true }); g.restore();
+    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true }); g.restore();
     g.restore();
     g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(960, 120); g.lineTo(960, 550); g.stroke();
     /* booth backs */
@@ -235,7 +237,8 @@
   function dateTag(g, s, t, t0, t1) {
     var k = pop(t, t0, 3, .7), out = t1 ? seg(t, t1 - .3, t1) : 0;
     if (k <= 0 || out >= 1) return;
-    chip(g, s, 1740 + out * 400, 96, { px: 54, bg: CREAM, s: k, rot: .03, wide: true, fam: MONO, wt: 700 });
+    font(g, 54, 700, MONO, true); var w = g.measureText(s).width + 54 * .84;
+    chip(g, s, 1830 - w / 2 + out * 400, 96, { px: 54, bg: CREAM, s: k, rot: .03, wide: true, fam: MONO, wt: 700 });
   }
   /* a keynote stage with a big screen */
   function stageSet(g, t, fn) {
