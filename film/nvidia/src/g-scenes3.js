@@ -22,7 +22,7 @@
         var k = pop(t, c[2] - .2, 3, .6); if (k <= 0) return;
         var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [80, -200], look: [i === 0 ? .6 : i === 1 ? -.6 : 0, -.3], mouth: 'smile', eyes: 'dot' }], [tPi, { rh: [130, -280], mouth: 'grin', eyes: 'happy' }]]);
         g.save(); g.globalAlpha *= clamp(k, 0, 1); guy(g, c[0], i === 2 ? 1000 : 960, i === 2 ? .95 : 1.05, P, c[1], t); g.restore();
-        chip(g, c[3], c[0], i === 2 ? 1030 : 1010, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
+        chip(g, c[3], c[0], i === 2 ? 560 : 520, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
       });
       /* picture cards flying at the screen */
       ['🐱', '🚗', '🐶'].forEach(function (e, i) { var k = seg(t, tPi - .4 + i * .15, tPi + .8 + i * .15); if (k <= 0 || k >= 1) return; var x = lerp(200 + i * 60, 900, eio(k)), y = lerp(260 + i * 120, 500, eio(k)); card(g, x, y, 160 * (1 - k * .5), 120 * (1 - k * .5), (i - 1) * .2, 1 - seg(k, .8, 1), function (g, w) { txt(g, ['CAT', 'CAR', 'DOG'][i], 0, 4, w * .26, INK, { wt: 900 }); }); });
@@ -51,9 +51,9 @@
       var bars = [['ALEXNET', 15.3, NVL, t15], ['NEXT BEST', 26.2, RED, t26]];
       bars.forEach(function (r, i) {
         var k = eio(seg(t, r[3] - .4, r[3] + .3)), x = 640 + i * 640, h = 22 * r[1] * k;
-        rr(g, x - 130, 860 - h, 260, h, 10); fillStroke(g, r[2], 6);
-        txt(g, r[0], x, 920, 46, CREAM, { wt: 900, wide: true, outline: 8 });
-        if (k > 0) txt(g, (r[1] * k).toFixed(1) + '%', x, 820 - h, 70, CREAM, { wt: 900, wide: true, outline: 10 });
+        rr(g, x - 130, 820 - h, 260, h, 10); fillStroke(g, r[2], 6);
+        txt(g, r[0], x, 870, 46, CREAM, { wt: 900, wide: true, outline: 8 });
+        if (k > 0) txt(g, (r[1] * k).toFixed(1) + '%', x, 780 - h, 70, CREAM, { wt: 900, wide: true, outline: 10 });
       });
       stamp(g, 'WON BY A MILE', 960, 330, t, tMi, { px: 64, col: NVL, rot: -.06 });
       g.restore();
@@ -153,7 +153,7 @@
       /* a falling coin, then the chart halving */
       var fk = seg(t, tCr - .1, tCr + .7); coin(g, 1520, lerp(200, 820, fk * fk), 90, YEL, Math.cos(t * 9)); if (fk >= 1) spark(g, 1520, 840, t, tCr + .7, 1.2);
       var head = chart(g, 220, 260, 1000, 480, [[0, .55], [.2, .7], [.4, .9], [.55, .82], [.7, .5], [.85, .38], [1, .36]], seg(t, tCr, tHa + .6), { col: RED });
-      if (t > tHa - .1) bigNum(g, '−50%+', head[0] - 60, head[1] - 120, 96, RED, pop(t, tHa - .1));
+      if (t > tHa - .1) bigNum(g, '−50%+', head[0] - 300, head[1] + 90, 96, RED, pop(t, tHa - .1));
       chip(g, '2018 · CRYPTO CRASHES', 720, 140, { px: 44, bg: CREAM, s: pop(t, tCr - .1), rot: -.02, fam: MONO, wt: 700 });
       if (t > t11 - .2) { card(g, 1380, 480, 520, 360, .04, pop(t, t11 - .2), function (g) { txt(g, 'SEC', 0, -110, 60, INK, { wt: 900, wide: true }); txt(g, 'DIDN’T TELL INVESTORS', 0, -30, 30, INK, { fam: MONO, wt: 700 }); txt(g, 'HOW MUCH WAS CRYPTO', 0, 14, 30, INK, { fam: MONO, wt: 700 }); }); stamp(g, '$5.5M FINE', 1380, 620, t, tFi, { px: 64, rot: -.1 }); }
       g.restore();
@@ -336,7 +336,7 @@
     var tRe = at('n7', 'remember'), tSp = at('n7', 'splits,'), t480 = at('n7', '480'), t104 = at('n7', '104');
     g.save(); cam(g, t, s, .05);
     wall(g, '#2a1f3a', '#1a1428'); grid(g, 90);
-    sticky(g, ['REMEMBER', '$12?'], 320, 380, pop(t, tRe - .1), -.06);
+    sticky(g, ['REMEMBER', '$12?'], 1720, 420, pop(t, tRe - .1), -.06);
     var SPL = [1, 2, 4, 8, 12, 48, 480], k = clamp(seg(t, tSp - .6, t480 + .1), 0, 1), step = Math.min(6, Math.floor(k * 7)), nShares = SPL[step];
     /* the share certificates multiplying in a grid */
     var shown = Math.min(nShares, 480), cols = nShares > 48 ? 30 : nShares > 8 ? 12 : 4, cell = nShares > 48 ? 40 : nShares > 8 ? 90 : 190;

@@ -426,7 +426,10 @@
       if (t > tTP - .3) { var tk = pop(t, tTP - .3, 3, .55); g.save(); g.globalAlpha = a2; tpRoll(g, 1400, 640 + (1 - clamp(tk, 0, 1)) * 400, 1.5, t, 'smug'); g.restore(); g.save(); g.globalAlpha = a2; bubble(g, 'TAKEN.', 1480, 330, tk, { px: 70, tail: -.3 }); g.restore(); stamp(g, 'TAKEN', 700, 480, t, tTP + .3, { px: 90, a: a2 }); }
     }
     if (t > t14 - .1) {
-      var dk = pop(t, tIn - .3, 2.6, .6);
+      var dk = pop(t, tIn - .3, 2.6, .6), tN = at('b14', 'n'), tV = at('b14', 'v:');
+      /* the hunt for a word with an N and a V: two big letters, then the dictionary card lands on them */
+      if (dk < 1) [[tN, 'N', 700], [tV, 'V', 1220]].forEach(function (L, i) { var k = pop(t, L[0] - .2, 3, .55); if (k <= 0) return; g.save(); g.globalAlpha = 1 - clamp(dk, 0, 1); g.translate(L[2], 470); g.rotate((i ? .06 : -.06) + knock(t, L[0], 20, 6) * .1); g.scale(clamp(k, 0, 1.06), clamp(k, 0, 1.06)); rr(g, -150, -170, 300, 340, 24); fillStroke(g, i ? NVL : YEL, 8); txt(g, L[1], 0, 10, 260, INK, { wt: 900, wide: true }); g.restore(); });
+      chip(g, 'A WORD WITH N + V', 960, 160, { px: 50, bg: CREAM, s: pop(t, start('b14') + .3) * (1 - clamp(dk, 0, 1)), rot: -.02, wide: true });
       card(g, 960, 470, 980, 420, -.02, clamp(dk, 0, 1), function (g) { txt(g, 'IN·VID·I·A', 0, -110, 96, INK, { fam: SERIF, wt: 400 }); txt(g, '(LATIN, NOUN)', 0, -30, 34, INK, { fam: MONO, wt: 700 }); txt(g, '= ENVY', 0, 80, 110, NVD, { wt: 900, wide: true }); });
       /* rivals, green with envy */
       if (t > tEn - .2) [[260, -.1], [1660, .1]].forEach(function (r, i) { var P = poseAt(t, [[s.t0, { mouth: 'frown', brow: -1, eyes: 'squint', look: [i ? -.6 : .6, 0], lh: [-70, -130], rh: [70, -130] }]]); guy(g, r[0], 1000 + (1 - clamp(pop(t, tEn - .2 + i * .1), 0, 1)) * 300, 1, P, { col: '#5a5470', shade: '#47425a', skin: '#a8e06a', skin2: '#86c04a', seed: 40 + i }, t); });

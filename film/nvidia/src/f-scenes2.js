@@ -17,7 +17,7 @@
       var pts = [[-200, 40], [-100, -80], [0, -110], [100, -80], [200, 40], [100, 90], [0, 100], [-100, 90]];
       for (i = 0; i < pts.length; i++) { var a = pts[i], b = pts[(i + 1) % pts.length]; g.beginPath(); g.moveTo(0, 0); g.lineTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.closePath(); fillStroke(g, ['#76b900', '#8ccf1a', '#5a9a00', '#a2e03a'][i % 4], 5); }
       g.restore(); txt(g, 'TRIANGLES', 1360, 780, 60, NVL, { wt: 900, wide: true, outline: 10 }); }
-    stamp(g, 'MICROSOFT: TRIANGLES', 1360, 300, t, tMs + .2, { px: 46, col: NVL, rot: .06 });
+    stamp(g, 'MICROSOFT: TRIANGLES', 1360, 330, t, tMs + .2, { px: 30, col: NVL, rot: .06 });
     if (t > tD - .1) { g.save(); g.lineCap = 'round'; var xk = seg(t, tD - .1, tD + .2); g.strokeStyle = INK; g.lineWidth = 34; g.beginPath(); g.moveTo(560, 380); g.lineTo(lerp(560, 960, xk), lerp(380, 760, xk)); g.stroke(); g.strokeStyle = RED; g.lineWidth = 20; g.stroke(); g.restore(); }
     g.restore();
     vignette(g, .45);
@@ -47,7 +47,7 @@
     g.restore();
     chip(g, 'THE SAME WRONG WAY', 960, 140, { px: 50, bg: RED, fg: '#fff', s: pop(t, at('d3', 'wrong') - .15) * (1 - seg(t, t4 - .3, t4)), rot: -.03, wide: true });
     chip(g, 'SOMETHING WILD', 960, 140, { px: 54, bg: YEL, s: pop(t, tWi - .15) * (1 - seg(t, tFi - .2, tFi)), rot: .02, wide: true });
-    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1300, 960, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
+    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1400, 470, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
     vignette(g, .4);
   }
   /* 23 · half the people out; every chip on the RIVA 128 */
@@ -135,7 +135,7 @@
     if (nk > 0) { g.save(); g.translate(1420, 380); g.rotate(.12); g.scale(clamp(nk, 0, 1.06) * 1.0, clamp(nk, 0, 1.06)); g.beginPath(); for (var i = 0; i < 24; i++) { var a = i / 24 * 6.283, r = i % 2 ? 180 : 210; g.lineTo(Math.cos(a) * r, Math.sin(a) * r); } g.closePath(); fillStroke(g, YEL, 7); txt(g, "WORLD'S", 0, -60, 46, INK, { wt: 900, wide: true }); txt(g, 'FIRST', 0, -4, 46, INK, { wt: 900, wide: true }); txt(g, 'GPU', 0, 70, 96, RED, { wt: 900, wide: true }); g.restore(); }
     if (t > tF) for (i = 0; i < 3; i++) spark(g, 1420 + (i - 1) * 200, 260 + (i % 2) * 220, t, tF + i * .1, .8);
     g.restore();
-    chip(g, 'A BRAND NEW WORD', 1420, 780, { px: 44, bg: CREAM, s: pop(t, tN - .2), rot: -.03, wide: true });
+    chip(g, 'A BRAND NEW WORD', 1440, 640, { px: 44, bg: CREAM, s: pop(t, tN - .2), rot: -.03, wide: true });
     vignette(g, .4);
   }
   /* 28 · what is a GPU: two million pixels, sixty times a second */
@@ -260,7 +260,7 @@
     if (t > tT - .2) { var ax = 1420 - 150 * 1.3 * .7, ay = 940 - 230 * 1.3; g.save(); g.translate(ax - 60, ay - 70 + Math.sin(t * 40) * 4); g.rotate(.6); rr(g, -14, -80, 28, 90, 8); fillStroke(g, '#c9c6d6', 4); g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 10); g.lineTo(0, 36); g.stroke(); g.restore(); for (var i = 0; i < 6; i++) { var ph = (t * 3 + i * .17) % 1; circ(g, ax - 40 + Math.cos(i) * 30 * ph, ay - 30 - ph * 40, 4); g.fillStyle = 'rgba(255,255,255,' + (1 - ph) + ')'; g.fill(); } }
     g.restore();
     chip(g, 'STOCK HITS $100 →', 540, 160, { px: 46, bg: CREAM, s: pop(t, t100 - .2), rot: -.03, wide: true });
-    chip(g, 'THE LOGO, AS A TATTOO', 1400, 200, { px: 48, bg: NVL, s: pop(t, tT - .1), rot: .03, wide: true });
+    chip(g, 'THE LOGO, AS A TATTOO', 1420, 340, { px: 48, bg: NVL, s: pop(t, tT - .1), rot: .03, wide: true });
     vignette(g, .4);
   }
 

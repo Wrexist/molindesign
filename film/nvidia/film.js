@@ -1278,7 +1278,10 @@
       if (t > tTP - .3) { var tk = pop(t, tTP - .3, 3, .55); g.save(); g.globalAlpha = a2; tpRoll(g, 1400, 640 + (1 - clamp(tk, 0, 1)) * 400, 1.5, t, 'smug'); g.restore(); g.save(); g.globalAlpha = a2; bubble(g, 'TAKEN.', 1480, 330, tk, { px: 70, tail: -.3 }); g.restore(); stamp(g, 'TAKEN', 700, 480, t, tTP + .3, { px: 90, a: a2 }); }
     }
     if (t > t14 - .1) {
-      var dk = pop(t, tIn - .3, 2.6, .6);
+      var dk = pop(t, tIn - .3, 2.6, .6), tN = at('b14', 'n'), tV = at('b14', 'v:');
+      /* the hunt for a word with an N and a V: two big letters, then the dictionary card lands on them */
+      if (dk < 1) [[tN, 'N', 700], [tV, 'V', 1220]].forEach(function (L, i) { var k = pop(t, L[0] - .2, 3, .55); if (k <= 0) return; g.save(); g.globalAlpha = 1 - clamp(dk, 0, 1); g.translate(L[2], 470); g.rotate((i ? .06 : -.06) + knock(t, L[0], 20, 6) * .1); g.scale(clamp(k, 0, 1.06), clamp(k, 0, 1.06)); rr(g, -150, -170, 300, 340, 24); fillStroke(g, i ? NVL : YEL, 8); txt(g, L[1], 0, 10, 260, INK, { wt: 900, wide: true }); g.restore(); });
+      chip(g, 'A WORD WITH N + V', 960, 160, { px: 50, bg: CREAM, s: pop(t, start('b14') + .3) * (1 - clamp(dk, 0, 1)), rot: -.02, wide: true });
       card(g, 960, 470, 980, 420, -.02, clamp(dk, 0, 1), function (g) { txt(g, 'IN·VID·I·A', 0, -110, 96, INK, { fam: SERIF, wt: 400 }); txt(g, '(LATIN, NOUN)', 0, -30, 34, INK, { fam: MONO, wt: 700 }); txt(g, '= ENVY', 0, 80, 110, NVD, { wt: 900, wide: true }); });
       /* rivals, green with envy */
       if (t > tEn - .2) [[260, -.1], [1660, .1]].forEach(function (r, i) { var P = poseAt(t, [[s.t0, { mouth: 'frown', brow: -1, eyes: 'squint', look: [i ? -.6 : .6, 0], lh: [-70, -130], rh: [70, -130] }]]); guy(g, r[0], 1000 + (1 - clamp(pop(t, tEn - .2 + i * .1), 0, 1)) * 300, 1, P, { col: '#5a5470', shade: '#47425a', skin: '#a8e06a', skin2: '#86c04a', seed: 40 + i }, t); });
@@ -1345,7 +1348,7 @@
       var pts = [[-200, 40], [-100, -80], [0, -110], [100, -80], [200, 40], [100, 90], [0, 100], [-100, 90]];
       for (i = 0; i < pts.length; i++) { var a = pts[i], b = pts[(i + 1) % pts.length]; g.beginPath(); g.moveTo(0, 0); g.lineTo(a[0], a[1]); g.lineTo(b[0], b[1]); g.closePath(); fillStroke(g, ['#76b900', '#8ccf1a', '#5a9a00', '#a2e03a'][i % 4], 5); }
       g.restore(); txt(g, 'TRIANGLES', 1360, 780, 60, NVL, { wt: 900, wide: true, outline: 10 }); }
-    stamp(g, 'MICROSOFT: TRIANGLES', 1360, 300, t, tMs + .2, { px: 46, col: NVL, rot: .06 });
+    stamp(g, 'MICROSOFT: TRIANGLES', 1360, 330, t, tMs + .2, { px: 30, col: NVL, rot: .06 });
     if (t > tD - .1) { g.save(); g.lineCap = 'round'; var xk = seg(t, tD - .1, tD + .2); g.strokeStyle = INK; g.lineWidth = 34; g.beginPath(); g.moveTo(560, 380); g.lineTo(lerp(560, 960, xk), lerp(380, 760, xk)); g.stroke(); g.strokeStyle = RED; g.lineWidth = 20; g.stroke(); g.restore(); }
     g.restore();
     vignette(g, .45);
@@ -1375,7 +1378,7 @@
     g.restore();
     chip(g, 'THE SAME WRONG WAY', 960, 140, { px: 50, bg: RED, fg: '#fff', s: pop(t, at('d3', 'wrong') - .15) * (1 - seg(t, t4 - .3, t4)), rot: -.03, wide: true });
     chip(g, 'SOMETHING WILD', 960, 140, { px: 54, bg: YEL, s: pop(t, tWi - .15) * (1 - seg(t, tFi - .2, tFi)), rot: .02, wide: true });
-    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1300, 960, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
+    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1400, 470, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
     vignette(g, .4);
   }
   /* 23 · half the people out; every chip on the RIVA 128 */
@@ -1463,7 +1466,7 @@
     if (nk > 0) { g.save(); g.translate(1420, 380); g.rotate(.12); g.scale(clamp(nk, 0, 1.06) * 1.0, clamp(nk, 0, 1.06)); g.beginPath(); for (var i = 0; i < 24; i++) { var a = i / 24 * 6.283, r = i % 2 ? 180 : 210; g.lineTo(Math.cos(a) * r, Math.sin(a) * r); } g.closePath(); fillStroke(g, YEL, 7); txt(g, "WORLD'S", 0, -60, 46, INK, { wt: 900, wide: true }); txt(g, 'FIRST', 0, -4, 46, INK, { wt: 900, wide: true }); txt(g, 'GPU', 0, 70, 96, RED, { wt: 900, wide: true }); g.restore(); }
     if (t > tF) for (i = 0; i < 3; i++) spark(g, 1420 + (i - 1) * 200, 260 + (i % 2) * 220, t, tF + i * .1, .8);
     g.restore();
-    chip(g, 'A BRAND NEW WORD', 1420, 780, { px: 44, bg: CREAM, s: pop(t, tN - .2), rot: -.03, wide: true });
+    chip(g, 'A BRAND NEW WORD', 1440, 640, { px: 44, bg: CREAM, s: pop(t, tN - .2), rot: -.03, wide: true });
     vignette(g, .4);
   }
   /* 28 · what is a GPU: two million pixels, sixty times a second */
@@ -1588,7 +1591,7 @@
     if (t > tT - .2) { var ax = 1420 - 150 * 1.3 * .7, ay = 940 - 230 * 1.3; g.save(); g.translate(ax - 60, ay - 70 + Math.sin(t * 40) * 4); g.rotate(.6); rr(g, -14, -80, 28, 90, 8); fillStroke(g, '#c9c6d6', 4); g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 10); g.lineTo(0, 36); g.stroke(); g.restore(); for (var i = 0; i < 6; i++) { var ph = (t * 3 + i * .17) % 1; circ(g, ax - 40 + Math.cos(i) * 30 * ph, ay - 30 - ph * 40, 4); g.fillStyle = 'rgba(255,255,255,' + (1 - ph) + ')'; g.fill(); } }
     g.restore();
     chip(g, 'STOCK HITS $100 →', 540, 160, { px: 46, bg: CREAM, s: pop(t, t100 - .2), rot: -.03, wide: true });
-    chip(g, 'THE LOGO, AS A TATTOO', 1400, 200, { px: 48, bg: NVL, s: pop(t, tT - .1), rot: .03, wide: true });
+    chip(g, 'THE LOGO, AS A TATTOO', 1420, 340, { px: 48, bg: NVL, s: pop(t, tT - .1), rot: .03, wide: true });
     vignette(g, .4);
   }
 
@@ -1715,7 +1718,7 @@
         var k = pop(t, c[2] - .2, 3, .6); if (k <= 0) return;
         var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [80, -200], look: [i === 0 ? .6 : i === 1 ? -.6 : 0, -.3], mouth: 'smile', eyes: 'dot' }], [tPi, { rh: [130, -280], mouth: 'grin', eyes: 'happy' }]]);
         g.save(); g.globalAlpha *= clamp(k, 0, 1); guy(g, c[0], i === 2 ? 1000 : 960, i === 2 ? .95 : 1.05, P, c[1], t); g.restore();
-        chip(g, c[3], c[0], i === 2 ? 1030 : 1010, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
+        chip(g, c[3], c[0], i === 2 ? 560 : 520, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
       });
       /* picture cards flying at the screen */
       ['🐱', '🚗', '🐶'].forEach(function (e, i) { var k = seg(t, tPi - .4 + i * .15, tPi + .8 + i * .15); if (k <= 0 || k >= 1) return; var x = lerp(200 + i * 60, 900, eio(k)), y = lerp(260 + i * 120, 500, eio(k)); card(g, x, y, 160 * (1 - k * .5), 120 * (1 - k * .5), (i - 1) * .2, 1 - seg(k, .8, 1), function (g, w) { txt(g, ['CAT', 'CAR', 'DOG'][i], 0, 4, w * .26, INK, { wt: 900 }); }); });
@@ -1744,9 +1747,9 @@
       var bars = [['ALEXNET', 15.3, NVL, t15], ['NEXT BEST', 26.2, RED, t26]];
       bars.forEach(function (r, i) {
         var k = eio(seg(t, r[3] - .4, r[3] + .3)), x = 640 + i * 640, h = 22 * r[1] * k;
-        rr(g, x - 130, 860 - h, 260, h, 10); fillStroke(g, r[2], 6);
-        txt(g, r[0], x, 920, 46, CREAM, { wt: 900, wide: true, outline: 8 });
-        if (k > 0) txt(g, (r[1] * k).toFixed(1) + '%', x, 820 - h, 70, CREAM, { wt: 900, wide: true, outline: 10 });
+        rr(g, x - 130, 820 - h, 260, h, 10); fillStroke(g, r[2], 6);
+        txt(g, r[0], x, 870, 46, CREAM, { wt: 900, wide: true, outline: 8 });
+        if (k > 0) txt(g, (r[1] * k).toFixed(1) + '%', x, 780 - h, 70, CREAM, { wt: 900, wide: true, outline: 10 });
       });
       stamp(g, 'WON BY A MILE', 960, 330, t, tMi, { px: 64, col: NVL, rot: -.06 });
       g.restore();
@@ -1846,7 +1849,7 @@
       /* a falling coin, then the chart halving */
       var fk = seg(t, tCr - .1, tCr + .7); coin(g, 1520, lerp(200, 820, fk * fk), 90, YEL, Math.cos(t * 9)); if (fk >= 1) spark(g, 1520, 840, t, tCr + .7, 1.2);
       var head = chart(g, 220, 260, 1000, 480, [[0, .55], [.2, .7], [.4, .9], [.55, .82], [.7, .5], [.85, .38], [1, .36]], seg(t, tCr, tHa + .6), { col: RED });
-      if (t > tHa - .1) bigNum(g, '−50%+', head[0] - 60, head[1] - 120, 96, RED, pop(t, tHa - .1));
+      if (t > tHa - .1) bigNum(g, '−50%+', head[0] - 300, head[1] + 90, 96, RED, pop(t, tHa - .1));
       chip(g, '2018 · CRYPTO CRASHES', 720, 140, { px: 44, bg: CREAM, s: pop(t, tCr - .1), rot: -.02, fam: MONO, wt: 700 });
       if (t > t11 - .2) { card(g, 1380, 480, 520, 360, .04, pop(t, t11 - .2), function (g) { txt(g, 'SEC', 0, -110, 60, INK, { wt: 900, wide: true }); txt(g, 'DIDN’T TELL INVESTORS', 0, -30, 30, INK, { fam: MONO, wt: 700 }); txt(g, 'HOW MUCH WAS CRYPTO', 0, 14, 30, INK, { fam: MONO, wt: 700 }); }); stamp(g, '$5.5M FINE', 1380, 620, t, tFi, { px: 64, rot: -.1 }); }
       g.restore();
@@ -2029,7 +2032,7 @@
     var tRe = at('n7', 'remember'), tSp = at('n7', 'splits,'), t480 = at('n7', '480'), t104 = at('n7', '104');
     g.save(); cam(g, t, s, .05);
     wall(g, '#2a1f3a', '#1a1428'); grid(g, 90);
-    sticky(g, ['REMEMBER', '$12?'], 320, 380, pop(t, tRe - .1), -.06);
+    sticky(g, ['REMEMBER', '$12?'], 1720, 420, pop(t, tRe - .1), -.06);
     var SPL = [1, 2, 4, 8, 12, 48, 480], k = clamp(seg(t, tSp - .6, t480 + .1), 0, 1), step = Math.min(6, Math.floor(k * 7)), nShares = SPL[step];
     /* the share certificates multiplying in a grid */
     var shown = Math.min(nShares, 480), cols = nShares > 48 ? 30 : nShares > 8 ? 12 : 4, cell = nShares > 48 ? 40 : nShares > 8 ? 90 : 190;
@@ -2135,18 +2138,26 @@
     if (t > tCh - .4) chipD(g, 1700, 260, .6 * clamp(pop(t, tCh - .4), 0, 1.05), t, { face: 'grin', glow: .9, label: 'NVIDIA' });
     vignette(g, .4);
   }
-  /* 58 · watch next (the solar storm episode) and subscribe */
+  /* 58 · watch next (the undersea cables episode, live on the channel) and subscribe */
   function sCard(g, t, s) {
-    var tSt = at('e7', 'storm'), tHe = at('e7', 'here.'), t8 = start('e8'), tSu = at('e8', 'subscribe'), tWh = at('e8', 'which');
+    var tCa = at('e7', 'cable'), tCu = at('e7', 'cut'), tHe = at('e7', 'here.'), t8 = start('e8'), tSu = at('e8', 'subscribe'), tWh = at('e8', 'which');
     g.save(); cam(g, t, s, .04);
     wall(g, '#2f2752', '#1f1a38'); grid(g, 80);
     var vk = pop(t, s.t0 + .1, 2.6, .6);
     if (vk > 0) {
       g.save(); g.translate(1240, 470); g.scale(clamp(vk, 0, 1.04), clamp(vk, 0, 1.04)); g.rotate(.02);
-      rr(g, -400, -225, 800, 450, 18); fillStroke(g, '#120d2c', 8);
-      g.save(); g.beginPath(); g.rect(-392, -217, 784, 434); g.clip(); space(g, t, 0, 0, { a: '#120d2c', b: '#2a1640' }); g.restore();
-      sun(g, 160, -40, 170, t, 'sneeze', { spots: true }); chipD(g, -220, 90, .7, t, { face: t > tSt ? 'o' : 'dot', seed: 3 });
-      txt(g, 'WHAT IF A SOLAR STORM HIT?', 0, 180, 40, CREAM, { wt: 900, wide: true, outline: 8 });
+      rr(g, -400, -225, 800, 450, 18); fillStroke(g, '#0c2a4a', 8);
+      g.save(); g.beginPath(); g.rect(-392, -217, 784, 434); g.clip();
+      var gr = g.createLinearGradient(0, -217, 0, 217); gr.addColorStop(0, '#1d5a8a'); gr.addColorStop(1, '#06182c'); g.fillStyle = gr; g.fillRect(-392, -217, 784, 434);
+      g.fillStyle = '#c9a26a'; g.beginPath(); g.moveTo(-392, 217); for (var x = -392; x <= 392; x += 40) g.lineTo(x, 150 + Math.sin(x * .02) * 14); g.lineTo(392, 217); g.closePath(); g.fill();
+      /* the cable along the sea floor, snapping when "cut" is said */
+      var cutK = seg(t, tCu - .1, tCu + .4), gap = 40 * eo(cutK);
+      g.strokeStyle = INK; g.lineWidth = 16; g.lineCap = 'round';
+      g.beginPath(); g.moveTo(-392, 120); g.quadraticCurveTo(-200, 100, -gap, 120); g.stroke(); g.beginPath(); g.moveTo(gap, 120); g.quadraticCurveTo(200, 140, 392, 110); g.stroke();
+      g.strokeStyle = YEL; g.lineWidth = 6; g.beginPath(); g.moveTo(-392, 120); g.quadraticCurveTo(-200, 100, -gap, 120); g.stroke(); g.beginPath(); g.moveTo(gap, 120); g.quadraticCurveTo(200, 140, 392, 110); g.stroke();
+      if (t > tCu) spark(g, 0, 120, t, tCu, .9);
+      g.restore();
+      txt(g, 'WHAT IF EVERY UNDERSEA', 0, -120, 46, CREAM, { wt: 900, wide: true, outline: 9 }); txt(g, 'CABLE WAS CUT?', 0, -50, 46, CREAM, { wt: 900, wide: true, outline: 9 });
       g.restore();
       chip(g, 'WATCH NEXT ▶', 1240, 170, { px: 48, bg: YEL, s: pop(t, tHe - .2), rot: -.03, wide: true });
       if (t > tHe - .2) arrow(g, 900, 860, 1050, 700, seg(t, tHe - .2, tHe + .3), YEL, 9);
@@ -2390,7 +2401,7 @@
     E(start('e1') - .1, 'gulp'); E(at('e2', 'cousins') - .2, 'shimmer', { t1: end('e2') }); E(at('e3', 'paid') - .2, 'receipt', { t1: end('e3') }); words('e3b', ['stadium', 'kept', 'standing'], 'paper', { g: 1.2 }, -.2);
     words('e4', ['google,', 'amazon', 'amd'], 'pop', { g: .7 }, -.2); E(at('e4', 'knock') - .05, 'thump', { g: .5 });
     E(start('e5') - .2, 'projector', { t1: start('e6') - .3 }); E(at('e6', 'type') + .1, 'receipt', { t1: at('e6', 'type') + .9 }); E(at('e6', 'type') + .4, 'zip', { t1: at('e6', 'chips.') - .2 }); E(at('e6', 'chips.') - .1, 'ding');
-    E(at('e7', 'storm') - .1, 'whoosh'); E(at('e7', 'here.') - .1, 'ding'); E(at('e8', 'subscribe') - .1, 'click'); E(at('e8', 'which') - .1, 'pop', { g: .7 });
+    E(at('e7', 'cable') - .1, 'whoosh'); E(at('e7', 'cut') - .05, 'zap', { t1: at('e7', 'cut') + .4 }); E(at('e7', 'here.') - .1, 'ding'); E(at('e8', 'subscribe') - .1, 'click'); E(at('e8', 'which') - .1, 'pop', { g: .7 });
     SC.forEach(function (s, j) { if (j && s.wipe !== 'none') E(s.t0 - .05, 'swish'); });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
