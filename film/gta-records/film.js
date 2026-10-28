@@ -374,7 +374,7 @@
     rays(g, CX, 800, t, oa);
     if (oa > 0) {
       g.save(); g.globalAlpha *= oa; var sq = 1 + .03 * Math.max(0, knock(t, n475 + .5, 16, 6)); g.translate(CX, 800); g.scale(sq, sq); g.translate(-CX, -800);
-      odo(g, CX, 800, v, { cw: 168, ch: 290, px: 250, gap: 10, suffix: 'M+' }); g.restore();
+      odo(g, CX, 800, v, { cw: 140, ch: 250, px: 210, gap: 10, suffix: 'M+' }); g.restore();
     }
     tag(g, 'REPORTED CLAIM', CX, 600, fin(t, sy - .1), -.02);
     chip(g, 'IN 24 HOURS', CX, 1010, { px: 58, wt: 900, bg: ORG, fg: BG, a: fin(t, hr - .1), s: lerp(1.15, 1, clamp(pop(t, hr - .1, 3.2), 0, 1)), rot: -.015 });
@@ -404,7 +404,7 @@
     label(g, 'TRAILER 2 · YOUTUBE ONLY', x0, y2 - 110, fin(t, tr2 - .1), CREAM, 44, 'left');
     g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(x0 + 10, y2 - bh / 2 + 14, 84 * PX * k84, bh);
     g.fillStyle = TEAL; g.fillRect(x0, y2 - bh / 2, 84 * PX * k84, bh);
-    chip(g, 'ABOUT 84M', x0 + 250, y2, { px: 76, wt: 900, bg: CREAM, fg: BG, a: fin(t, n84), s: kn(t, n84 + .4) });
+    chip(g, 'ABOUT 84M', x0 + 250, y2, { px: 64, wt: 900, bg: CREAM, fg: BG, a: fin(t, n84), s: kn(t, n84 + .4) });
     /* the gap: a dashed line down from the end of the pink bar */
     var ga = fin(t, n84 + .3);
     if (ga > 0) { g.save(); g.globalAlpha *= ga; g.strokeStyle = CREAM; g.lineWidth = 5; g.setLineDash([16, 12]); g.lineDashOffset = -t * 30; g.beginPath(); g.moveTo(x0 + 90.4 * PX, y1 + bh / 2 + 10); g.lineTo(x0 + 90.4 * PX, y2 + bh / 2 + 10); g.stroke(); g.restore(); }
