@@ -31,7 +31,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Every video carries something checkable: a named source on screen and in the description, a real date, a real number. Slop has none (house rule since #1; now mandatory on YouTube too).
 - The picture is hand-built (paper props, stamps, rulers, our palette), never generated stock or AI imagery; nothing morphs, no uncanny hands or faces (Isac's no-AI-look rule).
 - Disclose the AI voice plainly (TikTok label, YouTube "Altered content", description line). Never hide it; hiding it is what gets channels piled on.
-- Quality over count: 2 a day only while each passes the jury at 8.0+; if a run can't, skip that slot rather than post filler.
+- Quality over count: 2 a day only while each passes the gate (since 2026-10-28: 7.4+ with Truth 8.5+, re-anchored by Isac to the last posted film's level); if a run can't, skip that slot rather than post filler.
 - Reply to real comments in the first hour with a sourced extra fact; a creator who answers isn't a slop farm.
 - Never post the anti-slop copypasta or reply to it with arguments; answer a "this is AI" comment with the source link and what we made by hand.
 
@@ -54,6 +54,9 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - The hero needs a still screenshot hold of at least 1 s: phonephoto's clean averaged face plus stamp was fully on screen for only 0.35 s before a zoom-out, so the best image of the film couldn't be screenshotted (phonephoto r2). Plan the hold in BRIEF §0 and never exit the hero with a zoom.
 - A loupe on the payoff must magnify what the line claims: one over the averaged, "clean" face showed blocky pixels and read as still grainy (phonephoto r2).
 - A 0.1 drop between rounds (7.5 → 7.4) is within jury noise; the park rule is for real drops of 0.3+ or a fix round that adds props (phonephoto).
+- Frame 0 must move from the first frame: a planned ±4 px wiggle measured 0.075 mean frame difference and read as a still card (agent r1). Give it a visible glide (≥ 300 px over the first second) while frame 0 itself stays fully printed.
+- Plan every big-beat sound in the BRIEF with its silence: the SFX gate needs ~1.1 s of clear voice gap, so closing a dead tail later can silently cost the hit (agent r2 lost the gate thump that way). Reserve the gap before the first render.
+- Check every label's box against its prop's box on the final frames, not the plan: ACT sat on the clicker box and a print crossed x 930 after a re-size (agent r2, repeats qrcode r2).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -150,3 +153,4 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
 | Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
+| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |
