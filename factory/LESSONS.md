@@ -153,5 +153,5 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
-| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | TikTok 0, YouTube 0 (20 min) | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
-| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |
+| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | TikTok 0, YouTube 0 (20 min); TikTok 0, YouTube 12 (6 h 20 min) | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
+| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | TikTok 0, YouTube 4 (25 min) | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |
