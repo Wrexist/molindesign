@@ -9,3 +9,4 @@ out/*.mp4
 out/mix.log
 out/jury/
 out/*.srt
+out/*.log
