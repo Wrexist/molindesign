@@ -133,6 +133,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 ## Posting and sound
 - Every TikTok scheduled in the 13:00 ET slot (noise, battery, qrcode, phonephoto) sat at exactly 0 views while the same videos got 178–1,319 on YouTube; every TikTok posted in the US evening (memory 19:00 ET, fyp 19:00 ET, gps 20:30 ET) was served (2026-10-28, PC page-data check). Until disproven: TikTok posts only at 19:00 and 23:00 ET; YouTube keeps 13:00 and 19:00 ET. Retire the sounds Self Aware and Espresso Soul (both on 0-view posts).
+- The slot theory was wrong (2026-10-29 check): agent went out at 19:00 ET and still has exactly 0 TikTok views after 13 h, like phonephoto (13:00 ET, 19 h). Every TikTok since Oct 27 (qrcode, phonephoto, agent) is at 0, the last one served was memory (Oct 26, 394), and TikTok Studio shows no notice. Treat it as an account-level hold: TikTok uploads are paused (YouTube only) until Isac checks Settings › Account status in the app and a new post gets served. Keep the evening-slot rule for when it resumes. YouTube also fell from 178–1,319 to 12–17 views per Short in the same days.
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
 - Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
 - TikTok Studio scheduling works: the one-time consent was accepted on 2026-10-24 under Isac's "schedule all posts", so every post is scheduled in its slot (noise, fyp). Before that, gps went up at once.
@@ -159,5 +160,5 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
-| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | TikTok 0, YouTube 0 (20 min); TikTok 0, YouTube 12 (6 h 20 min) | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
-| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | TikTok 0, YouTube 4 (25 min) | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |
+| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | TikTok 0, YouTube 12 (6 h); TikTok 0, YouTube 17 (19 h) | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
+| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | TikTok 0, YouTube 4 (25 min); TikTok 0, YouTube 12 (13 h) | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |
