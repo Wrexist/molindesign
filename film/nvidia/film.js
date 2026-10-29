@@ -634,7 +634,7 @@
     g.save(); g.translate(x, y + (1 - clamp(k, 0, 1)) * -60); g.rotate(rot || -.04); g.scale(clamp(k, 0, 1.06), clamp(k, 0, 1.06));
     g.fillStyle = 'rgba(8,6,18,.4)'; g.fillRect(-w / 2 + 12, -h / 2 + 16, w, h);
     g.beginPath(); g.moveTo(-w / 2, -h / 2); g.lineTo(w / 2, -h / 2); g.lineTo(w / 2, h / 2 - 40); g.lineTo(w / 2 - 40, h / 2); g.lineTo(-w / 2, h / 2); g.closePath(); fillStroke(g, o.col || '#ffe27a', 5);
-    lines.forEach(function (l, i) { txt(g, l, 0, (i - (lines.length - 1) / 2) * (o.lh || 70), o.px || 54, INK, { wt: 900, wide: i > 0 }); });
+    lines.forEach(function (l, i) { txt(g, l, 0, (i - (lines.length - 1) / 2) * (o.lh || 70), o.px || 54, INK, { wt: 900, wide: i > 0, maxw: w * .85 }); });
     tape(g, 0, -h / 2, .05); g.restore();
   }
   /* a speech bubble */
@@ -709,7 +709,7 @@
     o = o || {};
     for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
       var i = r * cols + c, cx = x + c * cell + (r % 2) * cell * .5, cy = y + r * cell * .82, k = fn ? fn(i, c, r) : 0, hop = k > 0 && k < 1 ? Math.sin(k * Math.PI) * cell * .25 : 0;
-      var hc = ['#ff5b3d', '#3d7bff', '#ffc83d', '#5fb86b', '#b06bff', '#2a9d8f'][Math.floor(hash(i * 1.7) * 6)];
+      var hc = o.shirt || ['#ff5b3d', '#3d7bff', '#ffc83d', '#5fb86b', '#b06bff', '#2a9d8f'][Math.floor(hash(i * 1.7) * 6)];
       g.beginPath(); g.ellipse(cx, cy + cell * .3 - hop, cell * .36, cell * .26, 0, Math.PI, 0); g.fillStyle = hc; g.fill();
       circ(g, cx, cy - hop, cell * .24); g.fillStyle = HEAD; g.fill(); g.lineWidth = Math.max(1.5, cell * .06); g.strokeStyle = INK; g.stroke();
       if (cell > 26) { g.fillStyle = INK; circ(g, cx - cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); circ(g, cx + cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); }
@@ -744,8 +744,8 @@
     o = o || {}; g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s);
     g.fillStyle = 'rgba(8,6,18,.4)'; g.fillRect(-150 + 12, -170 + 16, 300, 340);
     rr(g, -150, -170, 300, 340, 14); fillStroke(g, CREAM, 6); g.save(); g.beginPath(); g.roundRect(-150, -170, 300, 92, [14, 14, 0, 0]); fillStroke(g, o.col || RED, 6); g.restore();
-    txt(g, top, 0, -124, 46, '#fff', { wt: 900, wide: true });
-    txt(g, big, 0, 20, o.px || 130, INK, { wt: 900, wide: true });
+    txt(g, top, 0, -124, 46, '#fff', { wt: 900, wide: true, maxw: 260 });
+    txt(g, big, 0, 20, o.px || 130, INK, { wt: 900, wide: true, maxw: 260 });
     if (o.sub) txt(g, o.sub, 0, 120, 36, INK, { fam: MONO, wt: 700 });
     [-90, 90].forEach(function (rx) { circ(g, rx, -170, 14); fillStroke(g, '#bdb6a8', 4); });
     g.restore();
@@ -884,6 +884,9 @@
     recreated(g, 1250, 700);
     var P = poseAt(t, [[s.t0, { lh: [-40, -170], rh: [70, -170], look: [.3, -.5], mouth: 'smile', lean: .05, front: 1 }], [tT, { lh: [-20, -180], rh: [60, -186] }], [tE, { rh: [80, -200], mouth: 'grin', eyes: 'happy' }], [t2, { look: [.2, -.8], eyes: 'wide', mouth: 'o' }]]);
     guy(g, 600, 1040, 1.15, P, YOU, t);
+    /* frame 0 already names the company: the chip that will answer, glowing on the desk */
+    var zk = 1 - seg(t, t2 - .4, t2);
+    if (zk > 0) { g.save(); g.globalAlpha *= zk; glow(g, 1560, 640, 260, 'rgba(182,240,90,.5)', 1); chipD(g, 1560, 640, .95, t, { face: 'grin', glow: 1, label: 'NVIDIA' }); g.restore(); tag(g, '$5 TRILLION', 1560, 440, zk, { px: 50, rot: -.06 }); }
     g.restore();
     /* the question flies into the screen as a glowing packet */
     var pk = seg(t, t2 - .1, t2 + .9);
@@ -1012,7 +1015,7 @@
     /* dozens of graphics-chip startups */
     var r = mulberry(9);
     for (var i = 0; i < 18; i++) {
-      var x = 120 + (i % 9) * 210 + (r() - .5) * 40, y = 760 + Math.floor(i / 9) * 110 + r() * 20, k = pop(t, t13 + i * .09, 3, .6), sc = .7 + r() * .25;
+      var x = 120 + (i % 9) * 210 + (r() - .5) * 40, y = 760 + Math.floor(i / 9) * 110 + r() * 20, k = pop(t, Math.min(t13, s.t0 + .3) + i * .09, 3, .6), sc = .7 + r() * .25;
       if (k <= 0) continue;
       g.save(); g.translate(x, y); g.scale(sc * clamp(k, 0, 1.05), sc * clamp(k, 0, 1.05)); g.rotate((r() - .5) * .12);
       g.beginPath(); g.moveTo(-60, 0); g.lineTo(-60, -120); g.arc(0, -120, 60, Math.PI, 0); g.lineTo(60, 0); g.closePath(); fillStroke(g, '#9a95a8', 5);
@@ -1526,8 +1529,8 @@
     /* the queue of problems waiting */
     for (i = 0; i < 6; i++) { var qx = 1820 - i * 18, qy = 700 - i * 60; card(g, qx, qy, 120, 70, .1 - i * .04, pop(t, tO - .2 + i * .06), function (g) { txt(g, '?', 0, 4, 46, INK, { wt: 900 }); }); }
     g.restore();
-    chip(g, 'A FEW BRILLIANT PROFESSORS', 960, 640, { px: 48, bg: CREAM, s: pop(t, tP - .2), rot: -.02, wide: true });
-    chip(g, 'ONE PROBLEM AT A TIME', 960, 740, { px: 46, bg: YEL, s: pop(t, tO - .1), rot: .02, wide: true });
+    chip(g, 'A FEW BRILLIANT PROFESSORS', 960, 230, { px: 48, bg: CREAM, s: pop(t, tP - .2), rot: -.02, wide: true });
+    chip(g, 'ONE PROBLEM AT A TIME', 960, 320, { px: 46, bg: YEL, s: pop(t, tO - .1), rot: .02, wide: true });
     vignette(g, .4);
   }
   /* 30 · a GPU: a stadium full of kids doing simple sums, all at once; two million kids, one sum each */
@@ -1545,7 +1548,7 @@
       if (t < tDo) return clamp(seg(t, tSa - .1, tSa + .3), 0, 1);
       return 1;
     };
-    stadium(g, 0, 320, cols, rows, cell, t, fill, { pix: function (i, c, rr0) { var u = c / cols, v = rr0 / rows; return 'rgb(' + Math.round(255 * (.6 + .4 * Math.sin(u * 3 + t))) + ',' + Math.round(140 + 100 * v) + ',' + Math.round(90 + 120 * u) + ')'; } });
+    stadium(g, 0, 320, cols, rows, cell, t, fill, { shirt: '#3a6a46', pix: function (i, c, rr0) { var u = c / cols, v = rr0 / rows; return 'rgb(' + Math.round(255 * (.6 + .4 * Math.sin(u * 3 + t))) + ',' + Math.round(140 + 100 * v) + ',' + Math.round(90 + 120 * u) + ')'; } });
     /* the giant screen the stadium paints */
     rr(g, 560, 60, 800, 230, 12); fillStroke(g, '#05070c', 8);
     var sk = t < tSa ? 0 : clamp(seg(t, tSa - .1, tSa + .3), 0, 1);
@@ -1731,6 +1734,7 @@
       rr(g, 1500, 150, 300, 220, 10); fillStroke(g, '#101a3a', 6); circ(g, 1720, 210, 26); g.fillStyle = '#f6efd8'; g.fill();
       rr(g, 380, 720, 1160, 36, 8); fillStroke(g, '#8a5a3c', 6);
       monitor(g, 960, 520, 440, 260, function (g, w, h) { var k = Math.floor(t * 1.6) % 3; txt(g, ['CAT?', 'CAR?', 'DOG?'][k], 0, 0, 70, NVL, { fam: MONO, wt: 700 }); });
+      ['🐱', '🚗', '🐶'].forEach(function (e, i) { var k = seg(t, tPi - .4 + i * .15, tPi + .8 + i * .15); if (k <= 0 || k >= 1) return; var x = lerp(200 + i * 60, 900, eio(k)), y = lerp(260 + i * 120, 500, eio(k)); card(g, x, y, 160 * (1 - k * .5), 120 * (1 - k * .5), (i - 1) * .2, 1 - seg(k, .8, 1), function (g, w) { txt(g, ['CAT', 'CAR', 'DOG'][i], 0, 4, w * .26, INK, { wt: 900 }); }); });
       var cast = [[480, ALEX, tAl, 'ALEX KRIZHEVSKY'], [1440, ILYA, tIl, 'ILYA SUTSKEVER'], [960, HINT, tGe, 'GEOFFREY HINTON']];
       cast.forEach(function (c, i) {
         var k = pop(t, c[2] - .2, 3, .6); if (k <= 0) return;
@@ -1739,7 +1743,6 @@
         chip(g, c[3], c[0], i === 2 ? 340 : 520, { px: 34, bg: CREAM, s: k, fam: MONO, wt: 700 });
       });
       /* picture cards flying at the screen */
-      ['🐱', '🚗', '🐶'].forEach(function (e, i) { var k = seg(t, tPi - .4 + i * .15, tPi + .8 + i * .15); if (k <= 0 || k >= 1) return; var x = lerp(200 + i * 60, 900, eio(k)), y = lerp(260 + i * 120, 500, eio(k)); card(g, x, y, 160 * (1 - k * .5), 120 * (1 - k * .5), (i - 1) * .2, 1 - seg(k, .8, 1), function (g, w) { txt(g, ['CAT', 'CAR', 'DOG'][i], 0, 4, w * .26, INK, { wt: 900 }); }); });
       g.restore();
     }
     g.restore();
@@ -1755,21 +1758,21 @@
       var a = 1 - seg(t, t4, t4 + .3); g.save(); g.globalAlpha = a;
       [0, 1].forEach(function (i) { var k = pop(t, tTw - .3 + i * .15, 2.8, .6); if (k > 0) gpuCard(g, 620 + i * 680, 470, .95 * clamp(k, 0, 1.05), t, { label: 'GTX 580', glow: .4 + .2 * Math.sin(t * 6 + i), heat: seg(t, tTw, tWe + .5), fans: 2, spin: 1 }); });
       for (var i = 0; i < 8; i++) { var ph = (t * .7 + i * .125) % 1; puff(g, 620 + (i % 2) * 680 + Math.sin(i * 3 + t) * 60, 300 - ph * 220, .35 + ph * .3, 'rgba(255,255,255,' + (.25 * (1 - ph)) + ')'); }
-      calendar(g, 960, 820, .7 * clamp(pop(t, tWe - .3), 0, 1.05), 'TRAINING', String(1 + Math.floor(clamp(seg(t, tWe - .3, t4), 0, 1) * 5)), { px: 110, sub: 'DAYS', rot: -.03 });
+      calendar(g, 960, 820, .7 * clamp(pop(t, tWe - .3), 0, 1.05), 'TRAINING', String(1 + Math.floor(clamp(seg(t, tWe - .3, Math.max(tWe + .6, t4 - 1.3)), 0, 1) * 5)), { px: 110, sub: 'DAYS', rot: -.03 });
       chip(g, 'TWO GAMING CARDS', 960, 140, { px: 50, bg: NVL, s: pop(t, tTw - .1), rot: -.02, wide: true });
       g.restore();
     }
     if (t > t4 - .1) {
       var b = clamp(seg(t, t4 - .1, t4 + .3), 0, 1); g.save(); g.globalAlpha = b;
-      chip(g, 'IMAGENET 2012 · % WRONG', 960, 150, { px: 44, bg: CREAM, s: b, fam: MONO, wt: 700 });
+      chip(g, 'IMAGENET 2012 · TOP-5 ERROR', 960, 150, { px: 44, bg: CREAM, s: b, fam: MONO, wt: 700 });
       var bars = [['ALEXNET', 15.3, NVL, t15], ['NEXT BEST', 26.2, RED, t26]];
       bars.forEach(function (r, i) {
-        var k = eio(seg(t, r[3] - .4, r[3] + .3)), x = 640 + i * 640, h = 22 * r[1] * k;
+        var k = eio(seg(t, r[3] - .4, r[3] + .3)), x = 640 + i * 640, h = 16 * r[1] * k;
         rr(g, x - 130, 820 - h, 260, h, 10); fillStroke(g, r[2], 6);
         txt(g, r[0], x, 870, 46, CREAM, { wt: 900, wide: true, outline: 8 });
         if (k > 0) txt(g, (r[1] * k).toFixed(1) + '%', x, 780 - h, 70, CREAM, { wt: 900, wide: true, outline: 10 });
       });
-      stamp(g, 'WON BY A MILE', 960, 330, t, tMi, { px: 64, col: NVL, rot: -.06 });
+      stamp(g, 'WON BY A MILE', 960, 245, t, tMi, { px: 64, col: NVL, rot: -.06 });
       g.restore();
     }
     g.restore();
@@ -1821,7 +1824,7 @@
     g.restore();
     chip(g, 'LUCK PAYS IF YOU’RE ALREADY THERE', 960, 140, { px: 44, bg: CREAM, s: pop(t, tSt - .2), rot: -.02, wide: true });
     if (t > tLu && t < tPa) spark(g, 860, 360, t, tLu, .8);
-    stamp(g, 'PARTLY TRUE', 640, 600, t, tPa, { px: 54, col: YEL, rot: .08 });
+    stamp(g, 'PARTLY TRUE', 800, 290, t, tPa, { px: 54, col: YEL, rot: .08 });
     vignette(g, .4);
   }
   /* 41 · 2016: the first DGX-1, hand-delivered to a small lab called OpenAI, and signed */
@@ -1893,7 +1896,7 @@
     recreated(g, 1130, 700);
     g.restore();
     dateTag(g, 'NOV 30, 2022', t, at('r1', 'november') - .1);
-    chip(g, 'A MICROSOFT SUPERCOMPUTER', 960, 140, { px: 48, bg: CREAM, s: pop(t, tSu - .1), rot: -.02, wide: true });
+    chip(g, 'A MICROSOFT SUPERCOMPUTER', 900, 230, { px: 48, bg: CREAM, s: pop(t, tSu - .1), rot: -.02, wide: true });
     chip(g, 'TENS OF THOUSANDS OF NVIDIA CHIPS', 960, 900, { px: 46, bg: NVL, s: pop(t, tTe - .1), rot: .02, wide: true });
     vignette(g, .4);
   }
@@ -1905,7 +1908,7 @@
     for (var i = 0; i < 6; i++) { g.fillStyle = '#b88a4a'; g.beginPath(); g.moveTo(-200 + i * 420, 820); g.lineTo(i * 420, 620 - hash(i) * 80); g.lineTo(200 + i * 420, 820); g.closePath(); g.fill(); }
     /* the stall */
     rr(g, 1180, 560, 560, 280, 8); fillStroke(g, '#8a5a3c', 7); g.fillStyle = NV; for (i = 0; i < 7; i++) { g.fillStyle = i % 2 ? CREAM : NV; g.fillRect(1160 + i * 86, 470, 86, 70); } g.strokeStyle = INK; g.lineWidth = 6; g.strokeRect(1160, 470, 602, 70);
-    txt(g, 'SHOVELS · GPUs', 1460, 430, 40, CREAM, { wt: 900, wide: true, outline: 8 });
+    txt(g, 'SHOVELS · GPUs', 1460, 400, 40, CREAM, { wt: 900, wide: true, outline: 8 });
     for (i = 0; i < 4; i++) { g.save(); g.translate(1250 + i * 130, 820); shovel(g); g.restore(); }
     var J = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [120, -240], look: [-.7, 0], mouth: 'smile' }], [tSh, { rh: [140, -300], mouth: 'grin', eyes: 'happy' }]]);
     guy(g, 1460, 880, 1.05, J, Object.assign({}, JEN, { hold: [null, shovel] }), t);
@@ -1929,7 +1932,7 @@
     wall(g, '#1b1430', '#0f0b1c'); floorAt(g, 880, '#221a38');
     rr(g, 760, 640, 400, 240, 10); fillStroke(g, '#3a3450', 7);
     var k = pop(t, tH - .3, 2.6, .6); if (k > 0) { glow(g, 960, 470, 360, 'rgba(118,185,0,.55)', clamp(k, 0, 1)); gpuCard(g, 960, 480, .85 * clamp(k, 0, 1.05), t, { label: 'H100', glow: .8, fans: 0 }); }
-    tag(g, 'TENS OF THOUSANDS OF $', 1420, 300, pop(t, tTe - .1), { px: 44, rot: .1 });
+    tag(g, 'TENS OF THOUSANDS OF $', 1280, 300, pop(t, tTe - .1), { px: 44, rot: .1 });
     /* the queue, with calendar pages flipping */
     for (var i = 0; i < 7; i++) { var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [60, -150], look: [.8, 0], mouth: i % 2 ? 'flat' : 'frown', eyes: i % 3 ? 'dot' : 'tiny' }]]); guy(g, 1260 + i * 120, 920, .62, P, Object.assign({}, SUIT, { seed: 110 + i, tie: [RED, BLUE, YEL, MINT][i % 4] }), t); }
     if (t > tWa - .2) { var m = Math.floor(clamp(seg(t, tWa, s.t1), 0, 1) * 6); calendar(g, 360, 520, .8 * clamp(pop(t, tWa - .2), 0, 1.05), 'WAITING', ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL'][m], { px: 110, sub: 'MONTHS', rot: -.05 }); }
@@ -2017,7 +2020,7 @@
       bigNum(g, '$' + (function (v) { return v >= 96.2 ? '96.2' : String(Math.floor(v / 10) * 10); })(96.2 * eo(seg(t, t96 - .3, t96 + .7))) + ' BILLION', 960, 260, 110, CREAM, pop(t, t96 - .3));
       /* ten coins: nine data center, one everything else */
       for (var i = 0; i < 10; i++) { var k = pop(t, t89 - .3 + i * .05, 3, .6); if (k <= 0) continue; var dc = i < 9 && t > t89, x = 330 + i * 140; g.save(); g.translate(x, 560); g.scale(clamp(k, 0, 1.05), clamp(k, 0, 1.05)); coin(g, 0, 0, 56, dc ? NVL : '#c9c6d6', 1); g.restore(); }
-      if (t > t89 - .1) { g.strokeStyle = NVL; g.lineWidth = 8; g.beginPath(); g.moveTo(300, 650); g.lineTo(300, 680); g.lineTo(1450, 680); g.lineTo(1450, 650); g.stroke(); chip(g, 'DATA CENTERS · $89B', 875, 730, { px: 40, bg: NVL, s: pop(t, t89), wide: true }); chip(g, 'EVERYTHING ELSE', 1590, 730, { px: 28, bg: '#c9c6d6', s: pop(t, t89 + .2), fam: MONO, wt: 700 }); }
+      if (t > t89 - .1) { g.strokeStyle = NVL; g.lineWidth = 8; g.beginPath(); g.moveTo(300, 650); g.lineTo(300, 680); g.lineTo(1450, 680); g.lineTo(1450, 650); g.stroke(); chip(g, 'DATA CENTERS · $89B', 875, 730, { px: 40, bg: NVL, s: pop(t, t89), wide: true }); chip(g, 'EVERYTHING ELSE', 1620, 730, { px: 36, bg: '#c9c6d6', s: pop(t, t89 + .2), fam: MONO, wt: 700 }); }
       chip(g, '9 OF EVERY 10 DOLLARS', 960, 860, { px: 54, bg: YEL, s: pop(t, tNi - .1) * (1 - seg(t, tGa - .3, tGa - .1)), rot: -.02, wide: true });
       if (t > tGa - .2) { gpuCard(g, 330, 860, .3, t, {}); cross(g, 330, 860, 1.4, pop(t, tGa)); chip(g, 'NOW MOSTLY SELLS TO AI', 960, 860, { px: 40, bg: CREAM, s: pop(t, tGa + .1), rot: .02, wide: true }); }
       g.restore();
@@ -2044,8 +2047,9 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 90);
     rr(g, 180, 200, 1560, 600, 18); fillStroke(g, '#191527', 5);
-    /* candles: a climb to the record, then eight red days, then a few mixed */
+    /* candles: Nvidia's climb to the record (left of the divider), then the chip index's eight red days (right) */
     var c = [.3, .36, .34, .42, .48, .55, .62, .58, .5, .45, .4, .37, .34, .31, .3, .34, .38], n = Math.floor(clamp(seg(t, s.t0, tEi + 1.4), 0, 1) * c.length);
+    if (n > 7) { g.save(); g.setLineDash([12, 12]); g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 4; g.beginPath(); g.moveTo(860, 220); g.lineTo(860, 780); g.stroke(); g.restore(); txt(g, 'NVIDIA', 520, 240, 32, CREAM, { fam: MONO, wt: 700 }); txt(g, 'CHIP STOCKS', 1180, 240, 32, RED, { fam: MONO, wt: 700 }); }
     for (var i = 0; i < n; i++) {
       var y0 = i ? c[i - 1] : .25, y1 = c[i], up = y1 >= y0, red8 = i >= 7 && i <= 14, x = 240 + i * 88, ya = 760 - Math.max(y0, y1) * 560, yb = 760 - Math.min(y0, y1) * 560;
       g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.moveTo(x + 24, ya - 20); g.lineTo(x + 24, yb + 20); g.stroke();
@@ -2111,8 +2115,8 @@
       g.restore();
       g.strokeStyle = INK; g.lineWidth = 12; g.beginPath(); g.moveTo(W / 2, 0); g.lineTo(W / 2, H); g.stroke();
       var ck = pop(t, tCo - .3, 2.8, .6); glow(g, W / 2, 640, 300, 'rgba(182,240,90,.45)', clamp(ck, 0, 1)); chipD(g, W / 2, 640, .85 * Math.max(.4, clamp(ck, 0, 1.05)), t, { face: 'grin', glow: 1, label: 'GPU' });
-      chip(g, 'GAMES · SINCE 1993', 480, 240, { px: 36, bg: CREAM, s: pop(t, tGa - .1), rot: -.02, fam: MONO, wt: 700 });
-      chip(g, 'AI · SINCE 2012', 1440, 240, { px: 36, bg: NVL, s: pop(t, tGa + .2), rot: .02, fam: MONO, wt: 700 });
+      chip(g, 'GAMES · SINCE 1993', 480, 240, { px: 36, bg: CREAM, s: pop(t, tGa - .1) * (1 - seg(t, t3 - .3, t3)), rot: -.02, fam: MONO, wt: 700 });
+      chip(g, 'AI · SINCE 2012', 1440, 240, { px: 36, bg: NVL, s: pop(t, tGa + .2) * (1 - seg(t, t3 - .3, t3)), rot: .02, fam: MONO, wt: 700 });
       chip(g, 'COUSINS', W / 2, 820, { px: 48, bg: NVL, s: pop(t, tCo - .1), rot: -.03, wide: true });
       if (t > t3 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.5 * seg(t, t3 - .2, t3 + .2)) + ')'; g.fillRect(0, 0, W, H); chip(g, '20 YEARS OF GAMERS PAID FOR IT', W / 2, 300, { px: 50, bg: YEL, s: pop(t, tTw - .1), rot: -.02, wide: true }); for (var i = 0; i < 10; i++) { var ph = (t * 1.4 + i * .1) % 1; if (t < tPa - .2) break; coin(g, lerp(380, W / 2, ph), lerp(700, 640, ph) - Math.sin(ph * Math.PI) * 160, 22, YEL, Math.cos(ph * 9)); } }
     } else {
@@ -2292,7 +2296,7 @@
       if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.9 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
       var sl = pop(t, c.t, 2.8, .5), sc = s * lerp(1.6, 1, clamp(sl, 0, 1));
       g.save(); g.translate(px, py); g.scale(sc, sc); g.rotate(lerp(-.04, -.015, k) + knock(t, c.t + .1, 30, 9) * .05);
-      g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 * (QUOTE_ON ? 0 : 1) : 1);
+      g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 * (QUOTE_ON || !LIVE.text ? 0 : 1) : 1);
       rr(g, -cw / 2 + 16, -ch / 2 + 20, cw, ch, 26); g.fillStyle = 'rgba(8,6,18,.5)'; g.fill();
       rr(g, -cw / 2, -ch / 2, cw, ch, 26); fillStroke(g, YEL, 10);
       g.fillStyle = INK; g.fillRect(-cw / 2, -ch / 2 + 20, 16, ch - 40);

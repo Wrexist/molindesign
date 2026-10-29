@@ -43,7 +43,7 @@
     g.save(); g.translate(x, y + (1 - clamp(k, 0, 1)) * -60); g.rotate(rot || -.04); g.scale(clamp(k, 0, 1.06), clamp(k, 0, 1.06));
     g.fillStyle = 'rgba(8,6,18,.4)'; g.fillRect(-w / 2 + 12, -h / 2 + 16, w, h);
     g.beginPath(); g.moveTo(-w / 2, -h / 2); g.lineTo(w / 2, -h / 2); g.lineTo(w / 2, h / 2 - 40); g.lineTo(w / 2 - 40, h / 2); g.lineTo(-w / 2, h / 2); g.closePath(); fillStroke(g, o.col || '#ffe27a', 5);
-    lines.forEach(function (l, i) { txt(g, l, 0, (i - (lines.length - 1) / 2) * (o.lh || 70), o.px || 54, INK, { wt: 900, wide: i > 0 }); });
+    lines.forEach(function (l, i) { txt(g, l, 0, (i - (lines.length - 1) / 2) * (o.lh || 70), o.px || 54, INK, { wt: 900, wide: i > 0, maxw: w * .85 }); });
     tape(g, 0, -h / 2, .05); g.restore();
   }
   /* a speech bubble */
@@ -118,7 +118,7 @@
     o = o || {};
     for (var r = 0; r < rows; r++) for (var c = 0; c < cols; c++) {
       var i = r * cols + c, cx = x + c * cell + (r % 2) * cell * .5, cy = y + r * cell * .82, k = fn ? fn(i, c, r) : 0, hop = k > 0 && k < 1 ? Math.sin(k * Math.PI) * cell * .25 : 0;
-      var hc = ['#ff5b3d', '#3d7bff', '#ffc83d', '#5fb86b', '#b06bff', '#2a9d8f'][Math.floor(hash(i * 1.7) * 6)];
+      var hc = o.shirt || ['#ff5b3d', '#3d7bff', '#ffc83d', '#5fb86b', '#b06bff', '#2a9d8f'][Math.floor(hash(i * 1.7) * 6)];
       g.beginPath(); g.ellipse(cx, cy + cell * .3 - hop, cell * .36, cell * .26, 0, Math.PI, 0); g.fillStyle = hc; g.fill();
       circ(g, cx, cy - hop, cell * .24); g.fillStyle = HEAD; g.fill(); g.lineWidth = Math.max(1.5, cell * .06); g.strokeStyle = INK; g.stroke();
       if (cell > 26) { g.fillStyle = INK; circ(g, cx - cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); circ(g, cx + cell * .08, cy - hop - cell * .02, cell * .035); g.fill(); }
@@ -153,8 +153,8 @@
     o = o || {}; g.save(); g.translate(x, y); g.rotate(o.rot || 0); g.scale(s, s);
     g.fillStyle = 'rgba(8,6,18,.4)'; g.fillRect(-150 + 12, -170 + 16, 300, 340);
     rr(g, -150, -170, 300, 340, 14); fillStroke(g, CREAM, 6); g.save(); g.beginPath(); g.roundRect(-150, -170, 300, 92, [14, 14, 0, 0]); fillStroke(g, o.col || RED, 6); g.restore();
-    txt(g, top, 0, -124, 46, '#fff', { wt: 900, wide: true });
-    txt(g, big, 0, 20, o.px || 130, INK, { wt: 900, wide: true });
+    txt(g, top, 0, -124, 46, '#fff', { wt: 900, wide: true, maxw: 260 });
+    txt(g, big, 0, 20, o.px || 130, INK, { wt: 900, wide: true, maxw: 260 });
     if (o.sub) txt(g, o.sub, 0, 120, 36, INK, { fam: MONO, wt: 700 });
     [-90, 90].forEach(function (rx) { circ(g, rx, -170, 14); fillStroke(g, '#bdb6a8', 4); });
     g.restore();

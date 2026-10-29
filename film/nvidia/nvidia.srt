@@ -335,926 +335,930 @@ who calls it one of the worst pitches he's ever heard,
 and phones a famous investor anyway.
 
 85
-00:02:50,770 --> 00:02:51,700
+00:02:50,770 --> 00:02:51,670
 That investor,
 
 86
-00:02:51,830 --> 00:02:53,550
+00:02:51,690 --> 00:02:53,610
 Don Valentine of Sequoia,
 
 87
-00:02:53,550 --> 00:02:55,220
+00:02:53,610 --> 00:02:55,380
 puts money in, with a warning.
 
 88
-00:02:55,700 --> 00:02:56,860
+00:02:55,790 --> 00:02:56,950
 If you lose my money,
 
 89
-00:02:56,860 --> 00:02:57,830
+00:02:56,950 --> 00:02:57,920
 I will kill you.
 
 90
-00:03:02,270 --> 00:03:03,490
+00:03:02,360 --> 00:03:03,580
 In 1995,
 
 91
-00:03:03,490 --> 00:03:05,240
+00:03:03,580 --> 00:03:05,330
 Nvidia's first chip comes out.
 
 92
-00:03:05,550 --> 00:03:06,880
+00:03:05,640 --> 00:03:06,970
 It's called NV1,
 
 93
-00:03:06,910 --> 00:03:08,960
+00:03:07,000 --> 00:03:09,050
 and it builds 3D worlds out of curves.
 
 94
-00:03:09,630 --> 00:03:10,860
+00:03:09,730 --> 00:03:10,960
 Everyone else picks triangles.
 
 95
-00:03:11,310 --> 00:03:12,230
+00:03:11,410 --> 00:03:12,330
 And when Microsoft builds
 
 96
-00:03:12,230 --> 00:03:14,360
+00:03:12,330 --> 00:03:14,460
 its game graphics around triangles too,
 
 97
-00:03:14,510 --> 00:03:15,740
+00:03:14,610 --> 00:03:15,840
 the curve bet is dead.
 
 98
-00:03:16,220 --> 00:03:17,400
+00:03:16,320 --> 00:03:17,500
 Nvidia is also building
 
 99
-00:03:17,400 --> 00:03:19,230
+00:03:17,500 --> 00:03:19,330
 a chip for Sega's next console,
 
 100
-00:03:19,300 --> 00:03:20,310
+00:03:19,400 --> 00:03:20,410
 the same wrong way.
 
 101
-00:03:20,810 --> 00:03:22,540
+00:03:20,910 --> 00:03:22,640
 So Jensen does something wild.
 
 102
-00:03:22,650 --> 00:03:24,110
+00:03:22,750 --> 00:03:24,210
 He tells Sega to find another partner,
 
 103
-00:03:24,110 --> 00:03:26,380
+00:03:24,210 --> 00:03:26,480
 and asks them to pay Nvidia anyway.
 
 104
-00:03:26,850 --> 00:03:27,950
+00:03:26,940 --> 00:03:28,040
 Sega's American boss,
 
 105
-00:03:27,950 --> 00:03:29,760
+00:03:28,040 --> 00:03:29,850
 Shoichiro Irimajiri,
 
 106
-00:03:29,830 --> 00:03:32,070
+00:03:29,920 --> 00:03:32,160
 says yes. 5 million dollars.
 
 107
-00:03:32,070 --> 00:03:34,320
+00:03:32,160 --> 00:03:34,410
 Enough to stay alive for about six months.
 
 108
-00:03:34,830 --> 00:03:36,650
+00:03:34,920 --> 00:03:36,740
 Nvidia lays off about half its people
 
 109
-00:03:36,650 --> 00:03:39,480
+00:03:36,740 --> 00:03:39,570
 and bets everything on one chip that draws triangles,
 
 110
-00:03:39,730 --> 00:03:40,630
+00:03:39,820 --> 00:03:40,720
 the RIVA 128.
 
 111
-00:03:41,310 --> 00:03:43,420
+00:03:41,400 --> 00:03:43,510
 It ships in August 1997,
 
 112
-00:03:43,630 --> 00:03:45,880
+00:03:43,720 --> 00:03:45,970
 with about one month of payroll left in the bank.
 
 113
-00:03:46,330 --> 00:03:47,350
+00:03:46,420 --> 00:03:47,440
 It sells about a million
 
 114
-00:03:47,350 --> 00:03:48,880
+00:03:47,440 --> 00:03:48,970
 units in four months.
 
 115
-00:03:49,430 --> 00:03:50,690
+00:03:49,520 --> 00:03:50,780
 And one sentence becomes
 
 116
-00:03:50,690 --> 00:03:52,440
+00:03:50,780 --> 00:03:52,530
 the company's unofficial motto.
 
 117
-00:03:53,050 --> 00:03:54,490
+00:03:53,140 --> 00:03:54,580
 Our company is thirty days
 
 118
-00:03:54,490 --> 00:03:55,780
+00:03:54,580 --> 00:03:55,870
 from going out of business.
 
 119
-00:04:00,190 --> 00:04:01,390
+00:04:00,280 --> 00:04:01,480
 On January 22nd,
 
 120
-00:04:01,390 --> 00:04:02,520
+00:04:01,480 --> 00:04:02,610
 1999,
 
 121
-00:04:02,610 --> 00:04:04,860
+00:04:02,700 --> 00:04:04,950
 Nvidia goes public at 12 dollars a share.
 
 122
-00:04:05,330 --> 00:04:06,360
+00:04:05,420 --> 00:04:06,450
 Remember that 12 dollars.
 
 123
-00:04:06,960 --> 00:04:09,300
+00:04:07,050 --> 00:04:09,390
 That same year it launches the GeForce 256,
 
 124
-00:04:09,300 --> 00:04:11,410
+00:04:09,390 --> 00:04:11,500
 and sells it with a brand new word:
 
 125
-00:04:11,480 --> 00:04:12,730
+00:04:11,570 --> 00:04:12,820
 the world's first GPU.
 
 126
-00:04:13,550 --> 00:04:15,030
+00:04:13,640 --> 00:04:15,120
 So what is a GPU,
 
 127
-00:04:15,030 --> 00:04:15,930
+00:04:15,120 --> 00:04:16,020
 actually?
 
 128
-00:04:16,280 --> 00:04:18,970
+00:04:16,370 --> 00:04:19,060
 To draw one frame of a game on an HD screen,
 
 129
-00:04:19,160 --> 00:04:20,830
+00:04:19,250 --> 00:04:20,920
 you color about two million pixels.
 
 130
-00:04:21,420 --> 00:04:22,510
+00:04:21,510 --> 00:04:22,600
 Then you do it again,
 
 131
-00:04:22,680 --> 00:04:23,850
+00:04:22,770 --> 00:04:23,940
 sixty times a second.
 
 132
-00:04:24,380 --> 00:04:25,410
+00:04:24,470 --> 00:04:25,500
 A normal processor,
 
 133
-00:04:25,620 --> 00:04:26,520
+00:04:25,710 --> 00:04:26,610
 a CPU,
 
 134
-00:04:26,640 --> 00:04:28,290
+00:04:26,730 --> 00:04:28,380
 is like a few brilliant professors.
 
 135
-00:04:28,680 --> 00:04:31,530
+00:04:28,770 --> 00:04:31,620
 They can solve anything, but one problem at a time.
 
 136
-00:04:32,010 --> 00:04:33,850
+00:04:32,100 --> 00:04:33,940
 A GPU is a stadium full
 
 137
-00:04:33,850 --> 00:04:36,180
+00:04:33,940 --> 00:04:36,270
 of kids who can only do simple sums.
 
 138
-00:04:36,430 --> 00:04:38,320
+00:04:36,520 --> 00:04:38,410
 But they all do them at the same moment.
 
 139
-00:04:39,220 --> 00:04:41,150
+00:04:39,320 --> 00:04:41,250
 One kid adds a little red to this pixel.
 
 140
-00:04:41,380 --> 00:04:42,710
+00:04:41,480 --> 00:04:42,810
 Another darkens that one.
 
 141
-00:04:42,740 --> 00:04:43,750
+00:04:42,840 --> 00:04:43,850
 Two million kids,
 
 142
-00:04:43,900 --> 00:04:44,800
-one sum each,
+00:04:44,000 --> 00:04:45,410
+one sum each, done.
 
 143
-00:04:44,900 --> 00:04:45,800
-done.
-
-144
-00:04:45,810 --> 00:04:46,840
+00:04:45,900 --> 00:04:46,930
 For coloring pixels,
 
-145
-00:04:47,070 --> 00:04:47,980
+144
+00:04:47,160 --> 00:04:48,070
 the stadium wins.
 
-146
-00:04:48,250 --> 00:04:49,150
+145
+00:04:48,340 --> 00:04:49,240
 Every time.
 
-147
-00:04:49,790 --> 00:04:53,300
+146
+00:04:49,880 --> 00:04:53,390
 In 2000, Nvidia agrees to buy the remains of 3dfx,
 
-148
-00:04:53,510 --> 00:04:55,600
+147
+00:04:53,600 --> 00:04:55,690
 the company that used to rule gaming graphics.
 
-149
-00:04:56,250 --> 00:04:57,300
+148
+00:04:56,340 --> 00:04:57,390
 Earlier that year,
 
-150
-00:04:57,370 --> 00:04:58,790
+149
+00:04:57,460 --> 00:04:58,880
 Microsoft picked Nvidia for
 
-151
-00:04:58,790 --> 00:05:00,380
+150
+00:04:58,880 --> 00:05:00,470
 the graphics in its first Xbox,
 
-152
-00:05:00,670 --> 00:05:02,900
+151
+00:05:00,760 --> 00:05:02,990
 and paid 200 million dollars up front.
 
-153
-00:05:03,660 --> 00:05:05,520
+152
+00:05:03,760 --> 00:05:05,620
 And when the stock hits 100 dollars,
 
-154
-00:05:05,520 --> 00:05:06,800
+153
+00:05:05,620 --> 00:05:06,900
 Jensen gets the company logo
 
-155
-00:05:06,800 --> 00:05:08,390
+154
+00:05:06,900 --> 00:05:08,490
 tattooed on his body.
 
-156
-00:05:12,640 --> 00:05:13,870
+155
+00:05:12,740 --> 00:05:13,970
 Meanwhile, at Stanford,
 
-157
-00:05:14,020 --> 00:05:15,280
+156
+00:05:14,120 --> 00:05:15,380
 a grad student named Ian Buck
 
-158
-00:05:15,280 --> 00:05:17,050
+157
+00:05:15,380 --> 00:05:17,150
 is wiring GeForce cards together.
 
-159
-00:05:17,620 --> 00:05:19,180
+158
+00:05:17,720 --> 00:05:19,280
 He builds a language that lets them do
 
-160
-00:05:19,180 --> 00:05:21,090
+159
+00:05:19,280 --> 00:05:21,190
 math that has nothing to do with games.
 
-161
-00:05:21,860 --> 00:05:23,710
+160
+00:05:21,960 --> 00:05:23,810
 Nvidia hires him in 2004.
 
-162
-00:05:24,250 --> 00:05:26,920
+161
+00:05:24,340 --> 00:05:27,010
 In 2006, Nvidia announces CUDA.
 
-163
-00:05:27,270 --> 00:05:29,550
+162
+00:05:27,360 --> 00:05:29,640
 It turns that stadium of kids loose on any problem:
 
-164
-00:05:29,550 --> 00:05:30,840
+163
+00:05:29,640 --> 00:05:30,930
 weather, medicine,
 
-165
-00:05:30,930 --> 00:05:31,830
+164
+00:05:31,020 --> 00:05:31,920
 physics.
 
-166
-00:05:31,860 --> 00:05:32,960
+165
+00:05:31,950 --> 00:05:33,050
 And it builds CUDA into
 
-167
-00:05:32,960 --> 00:05:34,530
+166
+00:05:33,050 --> 00:05:34,620
 its ordinary gaming chips.
 
-168
-00:05:35,380 --> 00:05:36,980
+167
+00:05:35,470 --> 00:05:37,070
 Millions of gamers carry a supercomputer
 
-169
-00:05:36,980 --> 00:05:38,670
+168
+00:05:37,070 --> 00:05:38,760
 feature they will never use.
 
-170
-00:05:39,170 --> 00:05:42,560
+169
+00:05:39,270 --> 00:05:42,660
 The idea: put the tool in millions of computers first,
 
-171
-00:05:42,950 --> 00:05:45,180
+170
+00:05:43,050 --> 00:05:45,280
 and the people who need it will find it.
 
-172
-00:05:45,610 --> 00:05:46,960
+171
+00:05:45,710 --> 00:05:47,060
 Wall Street sees the bill,
 
-173
-00:05:47,090 --> 00:05:47,990
+172
+00:05:47,190 --> 00:05:48,090
 not the point.
 
-174
-00:05:48,570 --> 00:05:49,530
+173
+00:05:48,660 --> 00:05:49,620
 In 2008,
 
-175
-00:05:49,530 --> 00:05:50,790
+174
+00:05:49,620 --> 00:05:50,880
 Nvidia takes a charge of about
 
-176
-00:05:50,790 --> 00:05:53,330
+175
+00:05:50,880 --> 00:05:53,420
 200 million dollars for faulty laptop chips,
 
-177
-00:05:53,330 --> 00:05:54,470
+176
+00:05:53,420 --> 00:05:54,560
 and the stock falls
 
-178
-00:05:54,470 --> 00:05:56,220
+177
+00:05:54,560 --> 00:05:56,310
 31 percent in one day.
 
-179
-00:05:56,670 --> 00:05:57,970
+178
+00:05:56,760 --> 00:05:58,060
 By the end of that year,
 
-180
-00:05:57,970 --> 00:05:59,050
+179
+00:05:58,060 --> 00:05:59,140
 it has lost about three
 
-181
-00:05:59,050 --> 00:06:00,560
+180
+00:05:59,140 --> 00:06:00,650
 quarters of its value.
 
-182
-00:06:01,530 --> 00:06:03,020
+181
+00:06:01,620 --> 00:06:03,110
 Remember thirty days from dead?
 
-183
-00:06:03,190 --> 00:06:05,720
+182
+00:06:03,280 --> 00:06:05,810
 This time, Nvidia keeps paying for CUDA anyway.
 
-184
-00:06:06,220 --> 00:06:07,180
+183
+00:06:06,310 --> 00:06:07,270
 A tool for a market
 
-185
-00:06:07,180 --> 00:06:08,750
+184
+00:06:07,270 --> 00:06:08,840
 that doesn't exist yet.
 
-186
-00:06:13,070 --> 00:06:14,440
+185
+00:06:13,160 --> 00:06:14,530
 Then, in 2012,
 
-187
-00:06:14,670 --> 00:06:16,070
+186
+00:06:14,760 --> 00:06:16,160
 the market finally shows up,
 
-188
-00:06:16,070 --> 00:06:17,700
+187
+00:06:16,160 --> 00:06:17,790
 at a student's parents' house.
 
-189
-00:06:18,160 --> 00:06:19,350
+188
+00:06:18,250 --> 00:06:19,440
 Alex Krizhevsky,
 
-190
-00:06:19,500 --> 00:06:21,520
+189
+00:06:19,590 --> 00:06:21,610
 his friend Ilya Sutskever and their
 
-191
-00:06:21,520 --> 00:06:23,540
+190
+00:06:21,610 --> 00:06:23,630
 professor Geoffrey Hinton want to
 
-192
-00:06:23,540 --> 00:06:25,390
+191
+00:06:23,630 --> 00:06:25,480
 teach a computer to recognize pictures.
 
-193
-00:06:26,040 --> 00:06:27,060
+192
+00:06:26,140 --> 00:06:27,160
 They train a neural network
 
-194
-00:06:27,060 --> 00:06:28,990
+193
+00:06:27,160 --> 00:06:29,090
 on two Nvidia gaming cards,
 
-195
-00:06:29,100 --> 00:06:30,160
+194
+00:06:29,200 --> 00:06:30,260
 GTX 580s,
 
-196
-00:06:30,160 --> 00:06:31,090
+195
+00:06:30,260 --> 00:06:31,190
 for about a week.
 
-197
-00:06:31,530 --> 00:06:33,130
+196
+00:06:31,620 --> 00:06:33,220
 It enters the biggest image contest
 
-198
-00:06:33,130 --> 00:06:35,300
+197
+00:06:33,220 --> 00:06:35,390
 in the world and wins by a mile:
 
-199
-00:06:35,350 --> 00:06:36,920
+198
+00:06:35,440 --> 00:06:37,010
 about 15 percent wrong,
 
-200
-00:06:36,990 --> 00:06:39,180
+199
+00:06:37,080 --> 00:06:39,270
 when the next best was 26.
 
-201
-00:06:39,400 --> 00:06:40,660
+200
+00:06:39,500 --> 00:06:40,760
 The math inside a neural network
 
-202
-00:06:40,660 --> 00:06:43,570
+201
+00:06:40,760 --> 00:06:43,670
 is the same kind of simple sums as coloring pixels.
 
-203
-00:06:43,920 --> 00:06:45,730
+202
+00:06:44,020 --> 00:06:45,830
 Millions of them, all at once.
 
-204
-00:06:46,320 --> 00:06:48,330
+203
+00:06:46,420 --> 00:06:48,430
 The stadium of kids was built for games.
 
-205
-00:06:48,600 --> 00:06:49,950
+204
+00:06:48,700 --> 00:06:50,050
 It was perfect for AI.
 
+205
+00:06:50,740 --> 00:06:51,900
+You may have heard Nvidia
+
 206
-00:06:50,650 --> 00:06:52,800
-You may have heard Nvidia just got lucky with AI.
+00:06:51,900 --> 00:06:53,410
+just got lucky with AI.
 
 207
-00:06:53,390 --> 00:06:55,430
-Partly true. But luck only pays if
+00:06:53,700 --> 00:06:54,600
+Partly true.
 
 208
-00:06:55,430 --> 00:06:56,860
-you're already standing there.
+00:06:54,700 --> 00:06:55,860
+But luck only pays if
 
 209
-00:06:57,520 --> 00:06:59,090
-Jensen goes all in.
+00:06:55,860 --> 00:06:57,270
+you're already standing there.
 
 210
-00:06:59,280 --> 00:07:00,190
-In 2016,
+00:06:57,900 --> 00:06:59,470
+Jensen goes all in.
 
 211
-00:07:00,360 --> 00:07:02,253
-he hand-delivers the first DGX-1,
+00:06:59,660 --> 00:07:00,570
+In 2016,
 
 212
-00:07:02,253 --> 00:07:03,380
-an AI computer,
+00:07:00,740 --> 00:07:02,633
+he hand-delivers the first DGX-1,
 
 213
-00:07:03,380 --> 00:07:04,680
-to a small lab
+00:07:02,633 --> 00:07:03,760
+an AI computer,
 
 214
-00:07:04,680 --> 00:07:06,670
-in San Francisco called OpenAI.
+00:07:03,760 --> 00:07:05,060
+to a small lab
 
 215
-00:07:07,340 --> 00:07:10,710
-He signs it: to the future of computing and humanity.
+00:07:05,060 --> 00:07:07,050
+in San Francisco called OpenAI.
 
 216
-00:07:11,340 --> 00:07:13,740
-One of OpenAI's founders is Ilya Sutskever.
+00:07:07,710 --> 00:07:11,080
+He signs it: to the future of computing and humanity.
 
 217
-00:07:13,740 --> 00:07:15,170
-From the student's house.
+00:07:11,720 --> 00:07:14,120
+One of OpenAI's founders is Ilya Sutskever.
 
 218
-00:07:15,670 --> 00:07:17,720
-Then crypto miners buy up gaming cards,
+00:07:14,120 --> 00:07:15,550
+From the student's house.
 
 219
-00:07:18,090 --> 00:07:19,360
-crypto crashes in 2018,
+00:07:16,050 --> 00:07:18,100
+Then crypto miners buy up gaming cards,
 
 220
-00:07:19,850 --> 00:07:20,890
-and Nvidia's stock loses
+00:07:18,470 --> 00:07:19,740
+crypto crashes in 2018,
 
 221
-00:07:20,890 --> 00:07:22,580
-more than half its value in months.
+00:07:20,230 --> 00:07:21,270
+and Nvidia's stock loses
 
 222
-00:07:23,170 --> 00:07:24,990
-Regulators later fine it 5.5 million
+00:07:21,270 --> 00:07:22,960
+more than half its value in months.
 
 223
-00:07:24,990 --> 00:07:26,750
-dollars for not telling investors how
+00:07:23,540 --> 00:07:25,360
+Regulators later fine it 5.5 million
 
 224
-00:07:26,750 --> 00:07:28,360
-much crypto was behind its sales.
+00:07:25,360 --> 00:07:27,120
+dollars for not telling investors how
 
 225
-00:07:32,710 --> 00:07:33,790
-On November 30th,
+00:07:27,120 --> 00:07:28,730
+much crypto was behind its sales.
 
 226
-00:07:33,790 --> 00:07:34,880
-2022,
+00:07:33,080 --> 00:07:34,160
+On November 30th,
 
 227
-00:07:34,890 --> 00:07:37,120
-OpenAI releases ChatGPT.
+00:07:34,160 --> 00:07:35,250
+2022,
 
 228
-00:07:37,760 --> 00:07:39,920
-It was trained on a Microsoft supercomputer built
+00:07:35,260 --> 00:07:37,490
+OpenAI releases ChatGPT.
 
 229
-00:07:39,920 --> 00:07:42,050
-from tens of thousands of Nvidia chips.
+00:07:38,140 --> 00:07:40,300
+It was trained on a Microsoft supercomputer built
 
 230
-00:07:42,630 --> 00:07:43,870
-Suddenly every tech giant
+00:07:40,300 --> 00:07:42,430
+from tens of thousands of Nvidia chips.
 
 231
-00:07:43,870 --> 00:07:45,640
-on Earth wants the same thing,
+00:07:43,000 --> 00:07:44,240
+Suddenly every tech giant
 
 232
-00:07:45,890 --> 00:07:47,700
-and one company sells most of them.
+00:07:44,240 --> 00:07:46,010
+on Earth wants the same thing,
 
 233
-00:07:48,080 --> 00:07:50,150
-In a gold rush, sell shovels.
+00:07:46,260 --> 00:07:48,070
+and one company sells most of them.
 
 234
-00:07:50,730 --> 00:07:52,290
-Nvidia's top AI chip,
+00:07:48,450 --> 00:07:50,520
+In a gold rush, sell shovels.
 
 235
-00:07:52,290 --> 00:07:53,190
-the H100,
+00:07:51,110 --> 00:07:52,670
+Nvidia's top AI chip,
 
 236
-00:07:53,470 --> 00:07:55,650
-sells for tens of thousands of dollars each,
+00:07:52,670 --> 00:07:53,570
+the H100,
 
 237
-00:07:55,650 --> 00:07:57,820
-and buyers wait months to get one.
+00:07:53,850 --> 00:07:56,030
+sells for tens of thousands of dollars each,
 
 238
-00:07:58,230 --> 00:07:59,580
-In May 2023,
+00:07:56,030 --> 00:07:58,200
+and buyers wait months to get one.
 
 239
-00:07:59,590 --> 00:08:01,500
-Nvidia is worth a trillion dollars.
+00:07:58,610 --> 00:07:59,960
+In May 2023,
 
 240
-00:08:01,890 --> 00:08:03,260
-Denny's puts a plaque on the booth:
+00:07:59,970 --> 00:08:01,880
+Nvidia is worth a trillion dollars.
 
 241
-00:08:03,330 --> 00:08:05,740
-the booth that launched a 1 trillion dollar company.
+00:08:02,270 --> 00:08:03,640
+Denny's puts a plaque on the booth:
 
 242
-00:08:06,180 --> 00:08:07,390
-In June 2024,
+00:08:03,710 --> 00:08:06,120
+the booth that launched a 1 trillion dollar company.
 
 243
-00:08:07,560 --> 00:08:09,320
-it passes Microsoft and Apple to become
+00:08:06,560 --> 00:08:07,770
+In June 2024,
 
 244
-00:08:09,320 --> 00:08:11,350
-the most valuable company in the world.
+00:08:07,940 --> 00:08:09,700
+it passes Microsoft and Apple to become
 
 245
-00:08:11,840 --> 00:08:13,370
-Then, in January 2025,
+00:08:09,700 --> 00:08:11,730
+the most valuable company in the world.
 
 246
-00:08:13,940 --> 00:08:15,660
-a Chinese lab called DeepSeek shows
+00:08:12,210 --> 00:08:13,740
+Then, in January 2025,
 
 247
-00:08:15,660 --> 00:08:17,110
-off a cheap AI model,
+00:08:14,310 --> 00:08:16,030
+a Chinese lab called DeepSeek shows
 
 248
-00:08:17,140 --> 00:08:19,580
-and Nvidia loses about 589 billion
+00:08:16,030 --> 00:08:17,480
+off a cheap AI model,
 
 249
-00:08:19,580 --> 00:08:21,250
-dollars of value in one day.
+00:08:17,510 --> 00:08:19,950
+and Nvidia loses about 589 billion
 
 250
-00:08:21,690 --> 00:08:22,810
-The biggest one-day loss
+00:08:19,950 --> 00:08:21,620
+dollars of value in one day.
 
 251
-00:08:22,810 --> 00:08:24,260
-in stock market history.
+00:08:22,060 --> 00:08:23,180
+The biggest one-day loss
 
 252
-00:08:24,860 --> 00:08:26,170
-And then it just keeps climbing.
+00:08:23,180 --> 00:08:24,630
+in stock market history.
 
 253
-00:08:26,580 --> 00:08:28,230
-4 trillion in July 2025.
+00:08:25,230 --> 00:08:26,540
+And then it just keeps climbing.
 
 254
-00:08:28,720 --> 00:08:29,890
-5 trillion that October.
+00:08:26,690 --> 00:08:28,560
+4 trillion in July 2025.
 
 255
-00:08:30,400 --> 00:08:32,190
-The first company ever to reach either one.
+00:08:29,030 --> 00:08:30,940
+5 trillion that October.
 
 256
-00:08:36,320 --> 00:08:38,010
-Which brings us to right now.
+00:08:31,510 --> 00:08:33,720
+The first company ever to reach either one.
 
 257
-00:08:38,080 --> 00:08:39,570
-October 2026.
+00:08:37,970 --> 00:08:39,660
+Which brings us to right now.
 
 258
-00:08:40,160 --> 00:08:41,250
-In its last quarter,
+00:08:39,730 --> 00:08:41,220
+October 2026.
 
 259
-00:08:41,360 --> 00:08:45,120
-Nvidia brought in 96.2 billion dollars.
+00:08:41,810 --> 00:08:42,900
+In its last quarter,
 
 260
-00:08:45,120 --> 00:08:47,550
-Data centers alone were 89 billion.
+00:08:43,010 --> 00:08:46,770
+Nvidia brought in 96.2 billion dollars.
 
 261
-00:08:48,350 --> 00:08:50,550
-That's more than nine of every ten dollars.
+00:08:46,770 --> 00:08:49,200
+Data centers alone were 89 billion.
 
 262
-00:08:50,550 --> 00:08:52,880
-The gaming company now mostly sells to AI.
+00:08:49,990 --> 00:08:52,190
+That's more than nine of every ten dollars.
 
 263
-00:08:53,500 --> 00:08:54,490
-Its newest chips,
+00:08:52,190 --> 00:08:54,520
+The gaming company now mostly sells to AI.
 
 264
-00:08:54,640 --> 00:08:56,320
-Vera Rubin, are in full production,
+00:08:55,150 --> 00:08:56,140
+Its newest chips,
 
 265
-00:08:56,320 --> 00:08:59,040
-and it expects 108 billion this quarter,
+00:08:56,290 --> 00:08:57,970
+Vera Rubin, are in full production,
 
 266
-00:08:59,040 --> 00:09:01,730
-without counting any AI chip sales to China.
+00:08:57,970 --> 00:09:00,690
+and it expects 108 billion this quarter,
 
 267
-00:09:02,290 --> 00:09:03,640
-But it's not a straight line.
+00:09:00,690 --> 00:09:03,380
+without counting any AI chip sales to China.
 
 268
-00:09:04,130 --> 00:09:06,340
-On October 6th the stock hit a record,
+00:09:03,930 --> 00:09:05,280
+But it's not a straight line.
 
 269
-00:09:06,530 --> 00:09:07,610
-then chip stocks fell eight
+00:09:05,770 --> 00:09:07,980
+On October 6th the stock hit a record,
 
 270
-00:09:07,610 --> 00:09:08,640
-days in a row,
+00:09:08,170 --> 00:09:09,250
+then chip stocks fell eight
 
 271
-00:09:08,770 --> 00:09:10,820
-their longest streak since 2008.
+00:09:09,250 --> 00:09:10,280
+days in a row,
 
 272
-00:09:11,390 --> 00:09:14,840
-Today, Nvidia is worth about 5.2 trillion.
+00:09:10,410 --> 00:09:12,460
+their longest streak since 2008.
 
 273
-00:09:15,360 --> 00:09:17,770
-And remember that 12 dollar share from 1999?
+00:09:13,030 --> 00:09:16,480
+Today, Nvidia is worth about 5.2 trillion.
 
 274
-00:09:18,360 --> 00:09:19,590
-After six stock splits,
+00:09:17,010 --> 00:09:19,420
+And remember that 12 dollar share from 1999?
 
 275
-00:09:19,620 --> 00:09:20,930
-it's 480 shares,
+00:09:20,010 --> 00:09:21,240
+After six stock splits,
 
 276
-00:09:21,100 --> 00:09:23,390
-worth about 104 thousand dollars.
+00:09:21,270 --> 00:09:22,580
+it's 480 shares,
 
 277
-00:09:23,590 --> 00:09:25,370
-Jensen Huang is still the CEO,
+00:09:22,750 --> 00:09:25,040
+worth about 104 thousand dollars.
 
 278
-00:09:25,370 --> 00:09:26,920
-thirty-three years later.
+00:09:26,590 --> 00:09:28,370
+Jensen Huang is still the CEO,
 
 279
-00:09:26,930 --> 00:09:28,260
-Still in the leather jacket.
+00:09:28,370 --> 00:09:29,920
+thirty-three years later.
 
 280
-00:09:28,780 --> 00:09:30,950
-The kid who cleaned toilets in Kentucky
+00:09:29,930 --> 00:09:31,260
+Still in the leather jacket.
 
 281
-00:09:31,120 --> 00:09:34,313
-is now worth more than 200 billion dollars.
+00:09:31,780 --> 00:09:33,950
+The kid who cleaned toilets in Kentucky
 
 282
-00:09:34,520 --> 00:09:35,600
-He once said that if
+00:09:34,120 --> 00:09:37,313
+is now worth more than 200 billion dollars.
 
 283
-00:09:35,600 --> 00:09:36,650
-he could go back,
+00:09:37,510 --> 00:09:38,590
+He once said that if
 
 284
-00:09:36,660 --> 00:09:38,210
-he wouldn't start Nvidia again.
+00:09:38,590 --> 00:09:39,640
+he could go back,
 
 285
-00:09:38,720 --> 00:09:39,660
-It was a million times
+00:09:39,650 --> 00:09:41,200
+he wouldn't start Nvidia again.
 
 286
-00:09:39,660 --> 00:09:40,970
-harder than he expected.
+00:09:41,710 --> 00:09:42,650
+It was a million times
 
 287
-00:09:43,680 --> 00:09:45,470
-So why does any of this matter?
+00:09:42,650 --> 00:09:43,960
+harder than he expected.
 
 288
-00:09:46,340 --> 00:09:47,540
-Because the chips answering
+00:09:46,680 --> 00:09:48,470
+So why does any of this matter?
 
 289
-00:09:47,540 --> 00:09:48,820
-your questions are cousins
+00:09:49,340 --> 00:09:50,540
+Because the chips answering
 
 290
-00:09:48,820 --> 00:09:50,930
-of the chips drawing your video games.
+00:09:50,540 --> 00:09:51,820
+your questions are cousins
 
 291
-00:09:51,510 --> 00:09:52,480
-For twenty years,
+00:09:51,820 --> 00:09:53,930
+of the chips drawing your video games.
 
 292
-00:09:52,490 --> 00:09:53,650
-gamers paid for the machine
+00:09:54,500 --> 00:09:55,470
+For twenty years,
 
 293
-00:09:53,650 --> 00:09:54,940
-that AI would need.
+00:09:55,480 --> 00:09:56,640
+gamers paid for the machine
 
 294
-00:09:55,490 --> 00:09:57,060
-Nvidia didn't predict AI.
+00:09:56,640 --> 00:09:57,930
+that AI would need.
 
 295
-00:09:57,530 --> 00:09:59,000
-It built a stadium for games,
+00:09:58,480 --> 00:10:00,050
+Nvidia didn't predict AI.
 
 296
-00:09:59,130 --> 00:10:01,100
-kept paying for it when nobody cared,
+00:10:00,520 --> 00:10:01,990
+It built a stadium for games,
 
 297
-00:10:01,390 --> 00:10:03,360
-and was standing there when AI walked in.
+00:10:02,120 --> 00:10:04,090
+kept paying for it when nobody cared,
 
 298
-00:10:03,970 --> 00:10:04,870
-And now Google,
+00:10:04,380 --> 00:10:06,350
+and was standing there when AI walked in.
 
 299
-00:10:04,930 --> 00:10:07,110
-Amazon and AMD are all building chips
+00:10:06,970 --> 00:10:07,870
+And now Google,
 
 300
-00:10:07,110 --> 00:10:08,760
-to knock Nvidia off the top.
+00:10:07,930 --> 00:10:10,110
+Amazon and AMD are all building chips
 
 301
-00:10:09,130 --> 00:10:11,580
-Can they? Not yet. For now,
+00:10:10,110 --> 00:10:11,760
+to knock Nvidia off the top.
 
 302
-00:10:11,590 --> 00:10:14,280
-most of the world's AI chips still come from Nvidia.
+00:10:12,120 --> 00:10:14,570
+Can they? Not yet. For now,
 
 303
-00:10:15,300 --> 00:10:16,410
-In 1992,
+00:10:14,580 --> 00:10:17,270
+most of the world's AI chips still come from Nvidia.
 
 304
-00:10:16,720 --> 00:10:18,180
-three engineers drank a lot
+00:10:18,290 --> 00:10:19,400
+In 1992,
 
 305
-00:10:18,180 --> 00:10:19,892
-of coffee at a Denny's.
+00:10:19,710 --> 00:10:21,170
+three engineers drank a lot
 
 306
-00:10:20,090 --> 00:10:22,110
-Tonight, someone in that same diner can
+00:10:21,170 --> 00:10:22,882
+of coffee at a Denny's.
 
 307
-00:10:22,110 --> 00:10:23,880
-type a question into ChatGPT,
+00:10:23,090 --> 00:10:25,110
+Tonight, someone in that same diner can
 
 308
-00:10:24,150 --> 00:10:25,190
-and the answer will most
+00:10:25,110 --> 00:10:26,880
+type a question into ChatGPT,
 
 309
-00:10:25,190 --> 00:10:26,460
-likely run on their chips.
+00:10:27,150 --> 00:10:28,190
+and the answer will most
 
 310
-00:10:27,360 --> 00:10:29,180
-What happens if every undersea
+00:10:28,190 --> 00:10:29,460
+likely run on their chips.
 
 311
-00:10:29,180 --> 00:10:30,650
-internet cable is cut?
+00:10:30,360 --> 00:10:32,180
+What happens if every undersea
 
 312
-00:10:31,060 --> 00:10:32,510
-That video is right here.
+00:10:32,180 --> 00:10:33,650
+internet cable is cut?
 
 313
-00:10:32,930 --> 00:10:34,510
-Subscribe for the next whole history,
+00:10:34,060 --> 00:10:35,510
+That video is right here.
 
 314
-00:10:34,510 --> 00:10:35,790
-and tell us which company
+00:10:35,930 --> 00:10:37,510
+Subscribe for the next whole history,
 
 315
-00:10:35,790 --> 00:10:36,880
+00:10:37,510 --> 00:10:38,790
+and tell us which company
+
+316
+00:10:38,790 --> 00:10:39,880
 we should do next.
 

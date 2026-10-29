@@ -22,6 +22,9 @@
     recreated(g, 1250, 700);
     var P = poseAt(t, [[s.t0, { lh: [-40, -170], rh: [70, -170], look: [.3, -.5], mouth: 'smile', lean: .05, front: 1 }], [tT, { lh: [-20, -180], rh: [60, -186] }], [tE, { rh: [80, -200], mouth: 'grin', eyes: 'happy' }], [t2, { look: [.2, -.8], eyes: 'wide', mouth: 'o' }]]);
     guy(g, 600, 1040, 1.15, P, YOU, t);
+    /* frame 0 already names the company: the chip that will answer, glowing on the desk */
+    var zk = 1 - seg(t, t2 - .4, t2);
+    if (zk > 0) { g.save(); g.globalAlpha *= zk; glow(g, 1560, 640, 260, 'rgba(182,240,90,.5)', 1); chipD(g, 1560, 640, .95, t, { face: 'grin', glow: 1, label: 'NVIDIA' }); g.restore(); tag(g, '$5 TRILLION', 1560, 440, zk, { px: 50, rot: -.06 }); }
     g.restore();
     /* the question flies into the screen as a glowing packet */
     var pk = seg(t, t2 - .1, t2 + .9);
@@ -150,7 +153,7 @@
     /* dozens of graphics-chip startups */
     var r = mulberry(9);
     for (var i = 0; i < 18; i++) {
-      var x = 120 + (i % 9) * 210 + (r() - .5) * 40, y = 760 + Math.floor(i / 9) * 110 + r() * 20, k = pop(t, t13 + i * .09, 3, .6), sc = .7 + r() * .25;
+      var x = 120 + (i % 9) * 210 + (r() - .5) * 40, y = 760 + Math.floor(i / 9) * 110 + r() * 20, k = pop(t, Math.min(t13, s.t0 + .3) + i * .09, 3, .6), sc = .7 + r() * .25;
       if (k <= 0) continue;
       g.save(); g.translate(x, y); g.scale(sc * clamp(k, 0, 1.05), sc * clamp(k, 0, 1.05)); g.rotate((r() - .5) * .12);
       g.beginPath(); g.moveTo(-60, 0); g.lineTo(-60, -120); g.arc(0, -120, 60, Math.PI, 0); g.lineTo(60, 0); g.closePath(); fillStroke(g, '#9a95a8', 5);

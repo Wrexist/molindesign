@@ -35,6 +35,8 @@ Long-form episode 3 of Tech, explained on YouTube (16:9, about 10 minutes), and 
 | Around 2000 at Stanford, Buck linked 32 GeForce cards into one rig to run Quake III across several projectors | widely retold (GameStar, Xataka, 2025); Tom's Hardware interview with Buck on GPGPU; his Stanford résumé |
 | In the late 1990s about 70 startups chased 3D graphics chips; Nvidia and ATI survived (Acquired says ~90) | Wikipedia "Nvidia" (history); Acquired, "Nvidia: The GPU Company (1993–2006)" |
 | Huang designed microprocessors at AMD, then chips at LSI Logic, before founding Nvidia at 30 | Britannica "NVIDIA Corporation"; Nvidia leadership bio |
+| The boarding school was Oneida Baptist Institute in Oneida, Kentucky | The New Yorker (Witt, Nov 2023); Oneida Baptist Institute |
+| 3dfx's Voodoo cards led 3D gaming graphics in the late 1990s ("the king") before Nvidia bought its assets in Dec 2000 | Wikipedia "3dfx Interactive"; Nvidia/3dfx SEC filings (Dec 2000) |
 | CUDA announced November 2006 with the GeForce 8800, released February 2007, runs on ordinary GeForce cards | Wikipedia "CUDA"; Game Developer, Nov 8, 2006 |
 | July 2008: about $200 million charge for laptop chips with abnormal failure rates; shares fell 31% on the warning | Wikipedia "Nvidia"; Fortune, July 3, 2008 |
 | 2008: stock down about 75% for the year | companiesmarketcap.com price history (−75.6%) |
@@ -66,3 +68,4 @@ Long-form episode 3 of Tech, explained on YouTube (16:9, about 10 minutes), and 
 ## Log
 - 2026-10-28: brief, script and first cut. Voice: Chatterbox (seed 7, exaggeration 0.6, cfg 0.35), the long-form voice Isac picked over Ming on 2026-10-24.
 - 2026-10-28 (jury fix round, first cut scored 6.7): the Denny's meeting is dated 1992 on screen and in e5 (founding stays April 5, 1993); b1 now says he is sent to America in 1973 and the flight starts in Thailand, not Taiwan; r3 now says "one company sells most of them"; g9 says "Earlier that year" (Xbox deal before the GeForce 3dfx deal); new line e4b ("Not yet") so the rivals question gets an answer; the 8 red days are labelled chip stocks; staged ChatGPT screens carry a RE-CREATED tag; the neural-net dot art is now the stadium of kids holding up a cat; the three unsourced claims above were added.
+- 2026-10-29 (round 2 and polish, cut 3 scored 7.6 / Truth 8.8): counters roll in round steps; China card reads NOT COUNTED; podium puts Microsoft 2nd; the Oct 6 record is labelled Nvidia's and the 8-day streak chip stocks; ImageNet header reads TOP-5 ERROR; Valentine respelled for the voice.

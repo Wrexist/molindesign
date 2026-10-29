@@ -180,8 +180,8 @@
     /* the queue of problems waiting */
     for (i = 0; i < 6; i++) { var qx = 1820 - i * 18, qy = 700 - i * 60; card(g, qx, qy, 120, 70, .1 - i * .04, pop(t, tO - .2 + i * .06), function (g) { txt(g, '?', 0, 4, 46, INK, { wt: 900 }); }); }
     g.restore();
-    chip(g, 'A FEW BRILLIANT PROFESSORS', 960, 640, { px: 48, bg: CREAM, s: pop(t, tP - .2), rot: -.02, wide: true });
-    chip(g, 'ONE PROBLEM AT A TIME', 960, 740, { px: 46, bg: YEL, s: pop(t, tO - .1), rot: .02, wide: true });
+    chip(g, 'A FEW BRILLIANT PROFESSORS', 960, 230, { px: 48, bg: CREAM, s: pop(t, tP - .2), rot: -.02, wide: true });
+    chip(g, 'ONE PROBLEM AT A TIME', 960, 320, { px: 46, bg: YEL, s: pop(t, tO - .1), rot: .02, wide: true });
     vignette(g, .4);
   }
   /* 30 · a GPU: a stadium full of kids doing simple sums, all at once; two million kids, one sum each */
@@ -199,7 +199,7 @@
       if (t < tDo) return clamp(seg(t, tSa - .1, tSa + .3), 0, 1);
       return 1;
     };
-    stadium(g, 0, 320, cols, rows, cell, t, fill, { pix: function (i, c, rr0) { var u = c / cols, v = rr0 / rows; return 'rgb(' + Math.round(255 * (.6 + .4 * Math.sin(u * 3 + t))) + ',' + Math.round(140 + 100 * v) + ',' + Math.round(90 + 120 * u) + ')'; } });
+    stadium(g, 0, 320, cols, rows, cell, t, fill, { shirt: '#3a6a46', pix: function (i, c, rr0) { var u = c / cols, v = rr0 / rows; return 'rgb(' + Math.round(255 * (.6 + .4 * Math.sin(u * 3 + t))) + ',' + Math.round(140 + 100 * v) + ',' + Math.round(90 + 120 * u) + ')'; } });
     /* the giant screen the stadium paints */
     rr(g, 560, 60, 800, 230, 12); fillStroke(g, '#05070c', 8);
     var sk = t < tSa ? 0 : clamp(seg(t, tSa - .1, tSa + .3), 0, 1);

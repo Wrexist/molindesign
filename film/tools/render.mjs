@@ -10,6 +10,7 @@
 //   node render.mjs events                                                (exports DUR + EV → out/events.json)
 //   node render.mjs encode                                                (re-encode existing frames + master)
 //   node render.mjs all                                                   (audio, video, master, poster, checks)
+//   node render.mjs clean  --ranges 182-236.5,253-290 [--fps 30]            (caption-free video of time ranges → out/clean/<a>-<b>.mp4, for Shorts)
 // Any mode takes --film <dir> to render another film in film/<dir>/ (its own index.html and out/); size, length,
 // poster time and file name come from the page's window.FILM { W, H, DUR, POSTER, SLUG }.
 import { chromium } from 'playwright-core';
@@ -118,6 +119,30 @@ async function video(browser, port) {
   for (const p of pages) { if (p._errors.length) throw new Error('page errors during render'); await p.close(); }
   encode(fps);
 }
+async function clean(browser, port) {
+  // the same frames as `video`, but without the film's own captions (Shorts burn bigger ones), only for the ranges asked
+  const fps = +opt('fps', 30), samples = +opt('samples', 4), shutter = +opt('shutter', .5), workers = +opt('workers', 3);
+  const ranges = opt('ranges', '').split(',').filter(Boolean).map(r => r.split('-').map(Number));
+  const pages = await Promise.all(Array.from({ length: workers }, () => openPage(browser, port)));
+  for (const p of pages) await p.evaluate(() => { window.FILM.LIVE.text = false; });
+  for (const [a, b] of ranges) {
+    const dir = path.join(OUT, 'clean', `${a}-${b}`); fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
+    const i0 = Math.round(a * fps), n = Math.round(b * fps) - i0; let next = 0;
+    await Promise.all(pages.map(async page => {
+      for (;;) {
+        const i = next++; if (i >= n) break;
+        const t = (i0 + i + .5) / fps;
+        const data = await page.evaluate(({ t, samples, shutter, fps }) => { window.render(t, samples, shutter, fps); return document.getElementById('film').toDataURL('image/jpeg', .95); }, { t, samples, shutter, fps });
+        fs.writeFileSync(path.join(dir, String(i).padStart(5, '0') + '.jpg'), Buffer.from(data.split(',')[1], 'base64'));
+      }
+    }));
+    const out = path.join(OUT, 'clean', `${a}-${b}.mp4`);
+    ff(['-framerate', String(fps), '-i', path.join(dir, '%05d.jpg'), '-vf', 'format=yuv420p', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', out]);
+    fs.rmSync(dir, { recursive: true, force: true });
+    console.log('wrote', path.relative(ROOT, out));
+  }
+  for (const p of pages) await p.close();
+}
 function encode(fps = +opt('fps', 30)) {
   // grain belongs in the encoder, not the page: drawn grain makes every frame incompressible
   ff(['-framerate', String(fps), '-i', path.join(OUT, 'frames', '%05d.jpg'), '-vf', 'noise=alls=3:allf=t,format=yuv420p', '-c:v', 'libx264', '-preset', 'slow', '-crf', '21', '-movflags', '+faststart', path.join(OUT, 'video.mp4')]);
@@ -163,9 +188,10 @@ async function readcheck(page) {
 
 const srv = await serve(); const port = srv.address().port;
 const browser = await launch();
-if (mode === 'master' || mode === 'encode' || mode === 'video') { const p = await openPage(browser, port); await p.close(); }   // read the film's spec
+if (mode === 'master' || mode === 'encode' || mode === 'video' || mode === 'clean') { const p = await openPage(browser, port); await p.close(); }   // read the film's spec
 try {
   if (mode === 'video') await video(browser, port);
+  if (mode === 'clean') await clean(browser, port);
   else if (mode === 'master') master();
   else if (mode === 'encode') { encode(); master(); }
   else if (mode === 'all') {
