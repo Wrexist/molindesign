@@ -86,7 +86,7 @@ def words(text):
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
 WEAK = set('a an the of to in on at for with and or but it its is as by from that this'.split())
-SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4'}
+SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6'}
 
 
 def norm(w):
@@ -367,7 +367,7 @@ def align_words(script_words, heard, dur):
 
 def wer(ref, hyp):
     # Whisper sometimes writes "$5 ,000": rejoin a number it split at its thousands comma
-    join = lambda ws: re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws)).split()
+    join = lambda ws: re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws)).replace('%', ' percent').split()   # Whisper writes "37,000%" for "thirty-seven thousand percent"
     split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
     r, h = split(ref), split(hyp)
     # "$96 billion" and "96 billion dollars" are the same words spoken: when either side writes a $ amount, ignore "dollars"

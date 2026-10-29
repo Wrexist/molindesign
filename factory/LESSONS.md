@@ -159,3 +159,9 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - One hero number per film, and the poster carries it: a 40 YEARS stamp next to a "29 years" answer split the payoff (gta-vicecity r2, held at 7.2 / Truth 8.5 after 2 rounds).
 - Every wipe flip ends before the next card reveals, forward flips included (gta-vicecity r2: 2984 → 2024 beside NOV 19 2026 for 6 frames).
 - A history walk across four games is a list, not one surprise; Delta's first cut has to land near 7.8, so pick topics with one stake (gta-vicecity: 7.2 → 7.2).
+- `boundscheck.mjs` only measures glyphs: a full-width skyline band and an 845 px deck panel broke the x 90–930 rail while it printed "nothing out of bounds". Pixel-scan rendered frames for shapes too (gta-songs r1 and r2).
+- The heard-word SFX gate can starve the hero beat: gta-songs' counter roll and number landing ended up with one ratchet, and four wipes went silent. Write the pauses for the hero sounds into the script (≥ 0.5 s after the number) before voicing, not after (gta-songs r2).
+- Card scenes (a trailer card, a source card) sit high and leave y 1000–1430 empty; put the card's consequence or the next object in the lower half (gta-songs r2: fill repeated at 12–18 s).
+- A derived number on screen (≈ 370×) is a fact too: compute it exactly (36,979% = ×370.8 → "~371×") and list it in BRIEF.md as derived (gta-songs r2).
+- An end vote must not highlight one option ("new?" in pink, "old" plain); highlight both or neither (gta-songs r2).
+- Two Delta films in a row stalled at 7.2 after two rounds (vicecity, songs); both first cuts landed at 7.0–7.2. The first cut must already pass LESSONS' picture checks (fill, rail, hero sound), because fix rounds only add about 0.2.
