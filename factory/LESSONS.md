@@ -57,6 +57,12 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Frame 0 must move from the first frame: a planned ±4 px wiggle measured 0.075 mean frame difference and read as a still card (agent r1). Give it a visible glide (≥ 300 px over the first second) while frame 0 itself stays fully printed.
 - Plan every big-beat sound in the BRIEF with its silence: the SFX gate needs ~1.1 s of clear voice gap, so closing a dead tail later can silently cost the hit (agent r2 lost the gate thump that way). Reserve the gap before the first render.
 - Check every label's box against its prop's box on the final frames, not the plan: ACT sat on the clicker box and a print crossed x 930 after a re-size (agent r2, repeats qrcode r2).
+- No unplanned still stretch over 1.0 s while the voice runs: the twist scene froze for 1.87 s before the stamp (wifi r2). Build the proof on the words (slide the oven in on "microwave", grow the bracket on "frequency") so the stamp lands on a moving frame.
+- Empty stage under a wipe has now cost a point in gps r1, wifi r1 and wifi r2: build the next scene in full (props, labels, caption) under the tear's first frame, and check the wipe frames on the render before the jury.
+- End within 0.5 s of the last word: a 1.2 s still tail after "no." to dodge a Whisper 30 s window artifact cost Loop a point (wifi r2). Fix the Whisper artifact by merging the end lines into one take, not with dead air.
+- Coral is for the one hero stamp and the YES/NO chips only: coral wipe edges and coral caption words diluted SAME BAND (wifi r2).
+- A thump whose energy is all in 180–400 Hz is near-silent on a phone speaker at −26 dB RMS; keep its body there but layer a 1–3 kHz paper-slap transient and aim for about −18 dB RMS, still ≥ 3 dB under the voice (wifi r2).
+- A first cut at 6.9 doesn't reach 7.4 in one fix round (wifi 6.9 → 7.1); the plan table alone isn't enough. Before the first jury, the director watches the render at phone size for empty stages, frozen stretches and props too small to read (wifi r1: grey-square fridge, 20 px stamp).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
