@@ -69,7 +69,7 @@
     }
     /* the origin, pinned up: a diner and a video game */
     var pk = pop(t, tD - .25, 2.8, .6);
-    card(g, 1080, 520, 420, 480, -.04, clamp(pk, 0, 1), function (g, w, h) { g.fillStyle = '#f0d9b0'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140); rr(g, -150, -140, 300, 80, 14); fillStroke(g, '#ffd23d', 5); txt(g, "DENNY'S", 0, -98, 50, RED, { wt: 900, wide: true }); mug(g, -80, 60, 1.2, t, true); plate(g, 70, 70, 1); txt(g, '1992', 0, h / 2 - 60, 50, INK, { wt: 900, wide: true }); });
+    card(g, 1080, 520, 420, 480, -.04, clamp(pk, 0, 1), function (g, w, h) { g.fillStyle = '#f0d9b0'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140); rr(g, -150, -140, 300, 80, 14); fillStroke(g, '#ffd23d', 5); txt(g, "DENNY'S", 0, -98, 50, RED, { wt: 900, wide: true, maxw: 260 }); mug(g, -80, 60, 1.2, t, true); plate(g, 70, 70, 1); txt(g, '1992', 0, h / 2 - 60, 50, INK, { wt: 900, wide: true }); });
     var vk = pop(t, tV - .25, 2.8, .6);
     card(g, 1560, 560, 420, 480, .05, clamp(vk, 0, 1), function (g, w, h) {
       g.fillStyle = '#10142a'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140);
@@ -327,7 +327,7 @@
     wall(g, '#f0d9b0', '#e0bf8c');
     g.fillStyle = '#e8e2d2'; for (var x = -200; x < W + 200; x += 80) for (var y = 600; y < 880; y += 80) if (((x + y) / 80) % 2 === 0) g.fillRect(x, y, 80, 80);
     floorAt(g, 880, '#c0392b');
-    g.save(); g.translate(1500, 330); g.rotate(.02); rr(g, -190, -60, 380, 120, 22); fillStroke(g, '#ffd23d', 7); txt(g, "DENNY'S", 0, 6, 66, RED, { wt: 900, wide: true }); g.restore();
+    g.save(); g.translate(1500, 330); g.rotate(.02); rr(g, -190, -60, 380, 120, 22); fillStroke(g, '#ffd23d', 7); txt(g, "DENNY'S", 0, 6, 66, RED, { wt: 900, wide: true, maxw: 330 }); g.restore();
     chip(g, 'OREGON · AGE 15', 1500, 460, { px: 40, bg: CREAM, s: pop(t, at('b6', 'oregon.') - .1), rot: -.02 });
     /* the sink and a stack of plates */
     rr(g, 180, 600, 520, 60, 8); fillStroke(g, '#c9c6d6', 6); rr(g, 220, 660, 440, 220, 8); fillStroke(g, '#9a96a6', 6);
@@ -342,7 +342,7 @@
     guy(g, gxS, 920, 1.0, P, Object.assign({}, KID, { col: '#e0a93a', shade: '#b8862a', hair: 'spiky', hairCol: INK, hold: [null, job === 1 ? tray : job === 2 ? pad : null] }), t);
     if (job === 2) { /* a customer at the counter */ guy(g, 1580, 920, 1.0, poseAt(t, [[s.t0, { look: [-.6, 0], mouth: 'smile', lh: [-60, -150], rh: [50, -200] }]]), { col: BLUE, shade: '#2f5fc4', seed: 31, hair: 'cap', hairCol: '#6a4a3a', hold: [null, function (g) { mug(g, 0, 0, .6, t, true); }] }, t); }
     g.restore();
-    ['WASHING DISHES', 'BUSSING TABLES', 'WAITING TABLES'].forEach(function (l, i) { var tt = [tW, tB, tWa][i]; chip(g, l, 360 + i * 600, 140, { px: 42, bg: i === job ? YEL : CREAM, s: pop(t, tt - .15), rot: (i - 1) * .03, wide: true, a: i <= job ? 1 : 0 }); });
+    ['WASHING DISHES', 'BUSSING TABLES', 'WAITING TABLES'].forEach(function (l, i) { var tt = [tW, tB, tWa][i]; chip(g, l, 360 + i * 600, 200, { px: 42, bg: i === job ? YEL : CREAM, s: pop(t, tt - .15), rot: (i - 1) * .03, wide: true, a: i <= job ? 1 : 0 }); });
     sticky(g, ['REMEMBER', "DENNY'S"], 960, 520, pop(t, t7 - .1, 3, .6), -.05);
     vignette(g, .35);
   }
@@ -364,7 +364,7 @@
     guy(g, 700, 940, 1.2, P, Object.assign({}, JEN, { jacket: false, col: '#4a6a9a', shade: '#3a5680', hold: [null, null] }), t);
     g.restore();
     chip(g, 'ELECTRICAL ENGINEERING', 600, 170, { px: 46, bg: CREAM, s: pop(t, tE - .15), rot: -.03, wide: true });
-    chip(g, 'SILICON VALLEY', 1300, 140, { px: 56, bg: YEL, s: pop(t, at('b8', 'silicon') - .15), rot: .03, wide: true });
+    chip(g, 'SILICON VALLEY', 1350, 270, { px: 56, bg: YEL, s: pop(t, at('b8', 'silicon') - .15), rot: .03, wide: true });
     vignette(g, .35);
   }
   /* 16 · the booth: three engineers, coffee, eggs, hours, a plan */
@@ -408,7 +408,7 @@
     calendar(g, 520, 500, 1.3 * clamp(pop(t, tA - .2), 0, 1.05), 'APRIL', '5', { sub: '1993' });
     var ck = seg(t, t40 - .3, t40 + 1);
     for (var i = 0; i < 4; i++) { var k = pop(t, t40 - .3 + i * .12, 3, .6); if (k > 0) cash(g, 1240 + (i % 2) * 30, 680 - i * 40, clamp(k, 0, 1.05) * 1.1, 1); }
-    bigNum(g, '$' + Math.round(40000 * eo(ck)).toLocaleString('en-US'), 1260, 380, 120, NVL, pop(t, t40 - .3));
+    bigNum(g, '$' + roll(40000 * eo(ck), 40000, 5000).toLocaleString('en-US'), 1260, 380, 120, NVL, pop(t, t40 - .3));
     chip(g, 'ABOUT', 1260, 260, { px: 40, bg: CREAM, s: pop(t, t40 - .3), rot: -.03 });
     g.restore();
     chip(g, 'NVIDIA IS BORN', 960, 140, { px: 56, bg: YEL, s: pop(t, at('b11', 'start') - .15), rot: -.02, wide: true });
@@ -478,7 +478,7 @@
     guy(g, 560, 900, 1.15, J, JEN, t);
     g.restore();
     chip(g, 'DON VALENTINE · SEQUOIA', 1380, 150, { px: 44, bg: CREAM, s: pop(t, tV - .1) * (1 - seg(t, t17 - .4, t17 - .1)), rot: .03, wide: true });
-    chip(g, '…WITH A WARNING', 960, 150, { px: 44, bg: YEL, s: pop(t, tWa - .1) * (1 - seg(t, t17 - .4, t17 - .1)), rot: -.02, wide: true });
-    if (t > t17 - .2) { g.save(); g.fillStyle = 'rgba(20,6,6,' + .45 * seg(t, t17 - .2, t17 + .2) + ')'; g.fillRect(0, 0, W, H); g.restore(); quote(g, t, 'b17', 360, { px: 84, maxw: 1400, hot: /kill/i, hotCol: RED }); txt(g, 'AS TOLD IN “THE NVIDIA WAY” (TAE KIM, 2024)', 960, 560, 30, CREAM, { fam: MONO, wt: 700, outline: 6 }); }
+    chip(g, '…WITH A WARNING', 700, 260, { px: 44, bg: YEL, s: pop(t, tWa - .1) * (1 - seg(t, t17 - .4, t17 - .1)), rot: -.02, wide: true });
+    if (t > t17 - .2) { g.save(); g.fillStyle = 'rgba(20,6,6,' + .45 * seg(t, t17 - .2, t17 + .2) + ')'; g.fillRect(0, 0, W, H); g.restore(); quote(g, t, 'b17', 360, { px: 84, maxw: 1400, hot: /kill/i, hotCol: RED }); txt(g, 'AS TOLD IN “THE NVIDIA WAY” (TAE KIM, 2024)', 960, 170, 36, CREAM, { fam: MONO, wt: 700, outline: 6 }); }
     vignette(g, .45);
   }

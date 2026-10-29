@@ -10,6 +10,10 @@
    Every number is sourced in BRIEF.md. */
 (function () {
   'use strict';
+  /* per-frame layout state: a quote is on screen (the parked part tag steps aside); text inside a card fits its width */
+  var QUOTE_ON = false, CARDW = 0;
+  /* a rolling count that only shows round steps, landing on the real value (no exact-looking in-between figures) */
+  function roll(v, to, step) { return v >= to - 1e-6 ? to : Math.floor(v / step) * step; }
   var W = 1920, H = 1080, VO = window.VO, DUR = VO.dur;
   var INK = '#1c1830', NIGHT = '#221d3a', DUSK = '#352b55', PLUM = '#56406f', MAUVE = '#7a5584';
   var HEAD = '#fbf7ef', HEADS = '#e2dbcc', HOOD = '#ff5b3d', HOODS = '#d6412a';
@@ -79,6 +83,8 @@
   function fillStroke(g, fill, lw, stroke) { if (fill) { g.fillStyle = fill; g.fill(); } if (lw) { g.lineWidth = lw; g.strokeStyle = stroke || INK; g.lineJoin = 'round'; g.lineCap = 'round'; g.stroke(); } }
   function txt(g, s, x, y, px, col, o) {
     o = o || {}; if (o.a != null && o.a <= 0) return 0; font(g, px, o.wt || 800, o.fam, o.wide); ls(g, o.ls || 0);
+    var mw = o.maxw || (CARDW && !o.nofit && (o.align || 'center') === 'center' ? CARDW - 2 * Math.abs(x) : 0);
+    if (mw > 0) { var w0 = g.measureText(s).width + (o.outline || 0); if (w0 > mw) { px = px * mw / w0; font(g, px, o.wt || 800, o.fam, o.wide); } }
     var ga = g.globalAlpha; if (o.a != null) g.globalAlpha = ga * clamp(o.a, 0, 1);
     g.textAlign = o.align || 'center'; g.textBaseline = 'middle';
     if (o.outline) { g.lineWidth = o.outline; g.strokeStyle = o.ocol || INK; g.lineJoin = 'round'; g.strokeText(s, x, y); }
@@ -558,13 +564,13 @@
     g.save(); g.globalAlpha *= clamp(a, 0, 1); g.translate(x, y); g.rotate(rot || 0);
     g.fillStyle = 'rgba(8,6,18,.45)'; g.fillRect(-w / 2 + 12, -h / 2 + 16, w, h);
     g.beginPath(); g.rect(-w / 2, -h / 2, w, h); fillStroke(g, col || PAPER, 5);
-    if (fn) fn(g, w, h);
+    var cw0 = CARDW; CARDW = w - 40; if (fn) fn(g, w, h); CARDW = cw0;
     g.restore();
   }
   function tape(g, x, y, rot) { g.save(); g.translate(x, y); g.rotate(rot || 0); g.fillStyle = 'rgba(255,240,190,.75)'; g.fillRect(-50, -16, 100, 32); g.restore(); }
   /* a big number that rolls up from 0 as k goes 0..1 */
   function counter(g, x, y, k, to, px, col, o) {
-    o = o || {}; var v = to * eo(clamp(k, 0, 1)), s = o.fmt ? o.fmt(v) : Math.round(v).toLocaleString('en-US');
+    o = o || {}; var v = to * eo(clamp(k, 0, 1)), v = o.step ? roll(v, to, o.step) : v; var s = o.fmt ? o.fmt(v) : Math.round(v).toLocaleString('en-US');
     txt(g, (o.pre || '') + s + (o.post || ''), x, y, px, col || CREAM, { wt: 900, wide: true, outline: o.outline == null ? px * .14 : o.outline });
   }
 
@@ -595,6 +601,7 @@
       row.forEach(function (c) {
         var k = pop(t, c.w.t0 - .06, 3.4, .55), i = n++;
         if (k > 0) {
+          if (out > 0) QUOTE_ON = true;
           g.save(); g.globalAlpha *= out; g.translate(x + c.ww / 2, yy + (1 - clamp(k, 0, 1)) * -40); g.rotate((hash(i * 3.1 + y) - .5) * .09); g.scale(k, k);
           g.fillStyle = 'rgba(8,6,18,.45)'; g.fillRect(-c.ww / 2 + 10, -px * .66 + 14, c.ww, px * 1.32);
           g.beginPath(); g.rect(-c.ww / 2, -px * .66, c.ww, px * 1.32); fillStroke(g, (o.hot && o.hot.test(c.w.w)) ? (o.hotCol || NVL) : i % 3 === 2 ? YEL : PAPER, 5);
@@ -761,7 +768,7 @@
     if (night) { for (var i = 0; i < 40; i++) { circ(g, 320 + hash(i) * 1280, 140 + hash(i + 4) * 200, 2); g.fillStyle = 'rgba(255,250,230,.6)'; g.fill(); } g.fillStyle = '#2a2f4a'; g.fillRect(300, 400, 1320, 150); for (i = 0; i < 6; i++) { var lx = ((i * 300 + t * 90) % 1700) + 200; glow(g, lx, 470, 60, 'rgba(255,220,140,.8)', 1); } }
     else { puff(g, 600 + (t * 10) % 300, 220, .8, 'rgba(255,255,255,.85)'); puff(g, 1300 - (t * 6) % 200, 260, .6, 'rgba(255,255,255,.75)'); g.fillStyle = '#c9b48a'; g.fillRect(300, 430, 1320, 120); }
     /* the diner's own sign, seen backwards through the glass */
-    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true }); g.restore();
+    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true, maxw: 260 }); g.restore();
     g.restore();
     g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(960, 120); g.lineTo(960, 550); g.stroke();
     /* booth backs */
@@ -924,7 +931,7 @@
     }
     /* the origin, pinned up: a diner and a video game */
     var pk = pop(t, tD - .25, 2.8, .6);
-    card(g, 1080, 520, 420, 480, -.04, clamp(pk, 0, 1), function (g, w, h) { g.fillStyle = '#f0d9b0'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140); rr(g, -150, -140, 300, 80, 14); fillStroke(g, '#ffd23d', 5); txt(g, "DENNY'S", 0, -98, 50, RED, { wt: 900, wide: true }); mug(g, -80, 60, 1.2, t, true); plate(g, 70, 70, 1); txt(g, '1992', 0, h / 2 - 60, 50, INK, { wt: 900, wide: true }); });
+    card(g, 1080, 520, 420, 480, -.04, clamp(pk, 0, 1), function (g, w, h) { g.fillStyle = '#f0d9b0'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140); rr(g, -150, -140, 300, 80, 14); fillStroke(g, '#ffd23d', 5); txt(g, "DENNY'S", 0, -98, 50, RED, { wt: 900, wide: true, maxw: 260 }); mug(g, -80, 60, 1.2, t, true); plate(g, 70, 70, 1); txt(g, '1992', 0, h / 2 - 60, 50, INK, { wt: 900, wide: true }); });
     var vk = pop(t, tV - .25, 2.8, .6);
     card(g, 1560, 560, 420, 480, .05, clamp(vk, 0, 1), function (g, w, h) {
       g.fillStyle = '#10142a'; g.fillRect(-w / 2 + 20, -h / 2 + 20, w - 40, h - 140);
@@ -1182,7 +1189,7 @@
     wall(g, '#f0d9b0', '#e0bf8c');
     g.fillStyle = '#e8e2d2'; for (var x = -200; x < W + 200; x += 80) for (var y = 600; y < 880; y += 80) if (((x + y) / 80) % 2 === 0) g.fillRect(x, y, 80, 80);
     floorAt(g, 880, '#c0392b');
-    g.save(); g.translate(1500, 330); g.rotate(.02); rr(g, -190, -60, 380, 120, 22); fillStroke(g, '#ffd23d', 7); txt(g, "DENNY'S", 0, 6, 66, RED, { wt: 900, wide: true }); g.restore();
+    g.save(); g.translate(1500, 330); g.rotate(.02); rr(g, -190, -60, 380, 120, 22); fillStroke(g, '#ffd23d', 7); txt(g, "DENNY'S", 0, 6, 66, RED, { wt: 900, wide: true, maxw: 330 }); g.restore();
     chip(g, 'OREGON · AGE 15', 1500, 460, { px: 40, bg: CREAM, s: pop(t, at('b6', 'oregon.') - .1), rot: -.02 });
     /* the sink and a stack of plates */
     rr(g, 180, 600, 520, 60, 8); fillStroke(g, '#c9c6d6', 6); rr(g, 220, 660, 440, 220, 8); fillStroke(g, '#9a96a6', 6);
@@ -1197,7 +1204,7 @@
     guy(g, gxS, 920, 1.0, P, Object.assign({}, KID, { col: '#e0a93a', shade: '#b8862a', hair: 'spiky', hairCol: INK, hold: [null, job === 1 ? tray : job === 2 ? pad : null] }), t);
     if (job === 2) { /* a customer at the counter */ guy(g, 1580, 920, 1.0, poseAt(t, [[s.t0, { look: [-.6, 0], mouth: 'smile', lh: [-60, -150], rh: [50, -200] }]]), { col: BLUE, shade: '#2f5fc4', seed: 31, hair: 'cap', hairCol: '#6a4a3a', hold: [null, function (g) { mug(g, 0, 0, .6, t, true); }] }, t); }
     g.restore();
-    ['WASHING DISHES', 'BUSSING TABLES', 'WAITING TABLES'].forEach(function (l, i) { var tt = [tW, tB, tWa][i]; chip(g, l, 360 + i * 600, 140, { px: 42, bg: i === job ? YEL : CREAM, s: pop(t, tt - .15), rot: (i - 1) * .03, wide: true, a: i <= job ? 1 : 0 }); });
+    ['WASHING DISHES', 'BUSSING TABLES', 'WAITING TABLES'].forEach(function (l, i) { var tt = [tW, tB, tWa][i]; chip(g, l, 360 + i * 600, 200, { px: 42, bg: i === job ? YEL : CREAM, s: pop(t, tt - .15), rot: (i - 1) * .03, wide: true, a: i <= job ? 1 : 0 }); });
     sticky(g, ['REMEMBER', "DENNY'S"], 960, 520, pop(t, t7 - .1, 3, .6), -.05);
     vignette(g, .35);
   }
@@ -1219,7 +1226,7 @@
     guy(g, 700, 940, 1.2, P, Object.assign({}, JEN, { jacket: false, col: '#4a6a9a', shade: '#3a5680', hold: [null, null] }), t);
     g.restore();
     chip(g, 'ELECTRICAL ENGINEERING', 600, 170, { px: 46, bg: CREAM, s: pop(t, tE - .15), rot: -.03, wide: true });
-    chip(g, 'SILICON VALLEY', 1300, 140, { px: 56, bg: YEL, s: pop(t, at('b8', 'silicon') - .15), rot: .03, wide: true });
+    chip(g, 'SILICON VALLEY', 1350, 270, { px: 56, bg: YEL, s: pop(t, at('b8', 'silicon') - .15), rot: .03, wide: true });
     vignette(g, .35);
   }
   /* 16 · the booth: three engineers, coffee, eggs, hours, a plan */
@@ -1263,7 +1270,7 @@
     calendar(g, 520, 500, 1.3 * clamp(pop(t, tA - .2), 0, 1.05), 'APRIL', '5', { sub: '1993' });
     var ck = seg(t, t40 - .3, t40 + 1);
     for (var i = 0; i < 4; i++) { var k = pop(t, t40 - .3 + i * .12, 3, .6); if (k > 0) cash(g, 1240 + (i % 2) * 30, 680 - i * 40, clamp(k, 0, 1.05) * 1.1, 1); }
-    bigNum(g, '$' + Math.round(40000 * eo(ck)).toLocaleString('en-US'), 1260, 380, 120, NVL, pop(t, t40 - .3));
+    bigNum(g, '$' + roll(40000 * eo(ck), 40000, 5000).toLocaleString('en-US'), 1260, 380, 120, NVL, pop(t, t40 - .3));
     chip(g, 'ABOUT', 1260, 260, { px: 40, bg: CREAM, s: pop(t, t40 - .3), rot: -.03 });
     g.restore();
     chip(g, 'NVIDIA IS BORN', 960, 140, { px: 56, bg: YEL, s: pop(t, at('b11', 'start') - .15), rot: -.02, wide: true });
@@ -1333,8 +1340,8 @@
     guy(g, 560, 900, 1.15, J, JEN, t);
     g.restore();
     chip(g, 'DON VALENTINE · SEQUOIA', 1380, 150, { px: 44, bg: CREAM, s: pop(t, tV - .1) * (1 - seg(t, t17 - .4, t17 - .1)), rot: .03, wide: true });
-    chip(g, '…WITH A WARNING', 960, 150, { px: 44, bg: YEL, s: pop(t, tWa - .1) * (1 - seg(t, t17 - .4, t17 - .1)), rot: -.02, wide: true });
-    if (t > t17 - .2) { g.save(); g.fillStyle = 'rgba(20,6,6,' + .45 * seg(t, t17 - .2, t17 + .2) + ')'; g.fillRect(0, 0, W, H); g.restore(); quote(g, t, 'b17', 360, { px: 84, maxw: 1400, hot: /kill/i, hotCol: RED }); txt(g, 'AS TOLD IN “THE NVIDIA WAY” (TAE KIM, 2024)', 960, 560, 30, CREAM, { fam: MONO, wt: 700, outline: 6 }); }
+    chip(g, '…WITH A WARNING', 700, 260, { px: 44, bg: YEL, s: pop(t, tWa - .1) * (1 - seg(t, t17 - .4, t17 - .1)), rot: -.02, wide: true });
+    if (t > t17 - .2) { g.save(); g.fillStyle = 'rgba(20,6,6,' + .45 * seg(t, t17 - .2, t17 + .2) + ')'; g.fillRect(0, 0, W, H); g.restore(); quote(g, t, 'b17', 360, { px: 84, maxw: 1400, hot: /kill/i, hotCol: RED }); txt(g, 'AS TOLD IN “THE NVIDIA WAY” (TAE KIM, 2024)', 960, 170, 36, CREAM, { fam: MONO, wt: 700, outline: 6 }); }
     vignette(g, .45);
   }
   /* =================================================================== part 2 · thirty days from dead */
@@ -1344,7 +1351,9 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 80, 'rgba(120,200,255,.06)');
     dateTag(g, '1995', t, at('d1', '1995,') - .1);
-    chipD(g, 300, 330, .8 * clamp(pop(t, Math.min(tNV - .2, s.t0 + .2)), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : 'dot' });
+    var mv = eio(seg(t, tCu - .7, tCu - .2));
+    chipD(g, lerp(960, 300, mv), lerp(520, 330, mv), lerp(1.7, .8, mv) * clamp(pop(t, Math.min(tNV - .2, s.t0 + .2)), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : mv < 1 ? 'grin' : 'dot', glow: .6 * (1 - mv) });
+    chip(g, "NVIDIA'S FIRST CHIP", 960, 200, { px: 50, bg: YEL, s: pop(t, s.t0 + .4) * (1 - mv), rot: -.02, wide: true });
     /* left: a ship made of curves; right: the same ship made of triangles */
     var ck = pop(t, tCu - .3, 2.6, .6);
     if (ck > 0) { g.save(); g.translate(760, 560); g.scale(clamp(ck, 0, 1.05), clamp(ck, 0, 1.05)); g.rotate(Math.sin(t) * .06);
@@ -1377,7 +1386,7 @@
     bubble(g, ['…BUT PAY US ANYWAY?'], 560, 340, pop(t, tPa - .1) * (1 - seg(t, tY - .2, tY)), { px: 44, bg: YEL });
     /* the cheque and the hourglass */
     var qk = pop(t, t5 - .2, 2.8, .6);
-    if (qk > 0) { g.save(); g.translate(1060, 300); g.rotate(-.05); g.scale(clamp(qk, 0, 1.05), clamp(qk, 0, 1.05)); rr(g, -300, -100, 600, 200, 10); fillStroke(g, '#dff0d8', 6); txt(g, 'PAY TO: NVIDIA', -100, -50, 30, INK, { fam: MONO, wt: 700 }); txt(g, '$5,000,000', 40, 30, 80, '#2f6b3a', { wt: 900, wide: true }); g.restore(); }
+    if (qk > 0) { g.save(); g.translate(1060, 300); g.rotate(-.05); g.scale(clamp(qk, 0, 1.05), clamp(qk, 0, 1.05)); rr(g, -300, -100, 600, 200, 10); fillStroke(g, '#dff0d8', 6); txt(g, 'PAY TO: NVIDIA', -100, -50, 30, INK, { fam: MONO, wt: 700 }); txt(g, '$5,000,000', 40, 30, 80, '#2f6b3a', { wt: 900, wide: true, maxw: 460 }); g.restore(); }
     var hk = pop(t, tSi - .3, 2.8, .6);
     if (hk > 0) { g.save(); g.translate(1680, 560); g.scale(clamp(hk, 0, 1.05), clamp(hk, 0, 1.05)); var sand = seg(t, tSi, s.t1);
       g.beginPath(); g.moveTo(-70, -120); g.lineTo(70, -120); g.lineTo(8, 0); g.lineTo(70, 120); g.lineTo(-70, 120); g.lineTo(-8, 0); g.closePath(); fillStroke(g, 'rgba(200,230,255,.35)', 6);
@@ -1386,7 +1395,7 @@
     g.restore();
     chip(g, 'THE SAME WRONG WAY', 960, 140, { px: 50, bg: RED, fg: '#fff', s: pop(t, at('d3', 'wrong') - .15) * (1 - seg(t, t4 - .3, t4)), rot: -.03, wide: true });
     chip(g, 'SOMETHING WILD', 960, 140, { px: 54, bg: YEL, s: pop(t, tWi - .15) * (1 - seg(t, tFi - .2, tFi)), rot: .02, wide: true });
-    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1400, 470, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
+    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1300, 150, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
     vignette(g, .4);
   }
   /* 23 · half the people out; every chip on the RIVA 128 */
@@ -1425,7 +1434,7 @@
     g.fillStyle = '#4a4458'; g.fillRect(-200, 780, W + 400, 30); g.strokeStyle = INK; g.lineWidth = 5; g.strokeRect(-200, 780, W + 400, 30);
     for (i = 0; i < 9; i++) { var bx = ((i * 260 + (t - tS) * 260) % 2340) - 200; if (t < tS) break; g.save(); g.translate(bx, 700); rr(g, -80, -80, 160, 160, 6); fillStroke(g, '#c9a26a', 5); g.fillStyle = '#a8794a'; g.fillRect(-12, -80, 24, 160); txt(g, 'RIVA 128', 0, 0, 22, INK, { fam: MONO, wt: 700 }); g.restore(); }
     var mk = seg(t, tMi - .4, tF + .6);
-    if (t > t8 - .2) { bigNum(g, Math.round(1000000 * eo(mk)).toLocaleString('en-US'), 1260, 400, 140, NVL, pop(t, t8 - .2)); chip(g, 'SOLD IN 4 MONTHS', 1260, 540, { px: 50, bg: YEL, s: pop(t, tF - .1), rot: .02, wide: true }); }
+    if (t > t8 - .2) { bigNum(g, roll(1000000 * eo(mk), 1000000, 100000).toLocaleString('en-US'), 1260, 400, 140, NVL, pop(t, t8 - .2)); chip(g, 'SOLD IN 4 MONTHS', 1260, 540, { px: 50, bg: YEL, s: pop(t, tF - .1), rot: .02, wide: true }); }
     g.restore();
     vignette(g, .4);
   }
@@ -1495,8 +1504,8 @@
     });
     g.restore();
     chip(g, 'SO WHAT IS A GPU?', 960, 110, { px: 56, bg: YEL, s: pop(t, s.t0 + .1) * (1 - seg(t, t4 - .2, t4)), rot: -.02, wide: true });
-    if (t > tTw - .3) { var ck = seg(t, tTw - .2, tTw + .9); bigNum(g, Math.round(2073600 * eo(ck)).toLocaleString('en-US') + ' PIXELS', 960, 110, 76, CREAM, pop(t, tTw - .3)); }
-    chip(g, '× 60 EVERY SECOND', 1560, 230, { px: 52, bg: NVL, s: pop(t, tSi - .15), rot: .03, wide: true });
+    if (t > tTw - .3) { var ck = seg(t, tTw - .2, tTw + .9); bigNum(g, roll(2073600 * eo(ck), 2073600, 250000).toLocaleString('en-US') + ' PIXELS', 960, 110, 76, CREAM, pop(t, tTw - .3)); }
+    chip(g, '× 60 EVERY SECOND', 1480, 230, { px: 52, bg: NVL, s: pop(t, tSi - .15), rot: .03, wide: true });
     vignette(g, .4);
   }
   /* 29 · a CPU: a few brilliant professors, one problem at a time */
@@ -1552,9 +1561,9 @@
     }
     chip(g, 'GPU', 220, 230, { px: 80, bg: NVL, s: pop(t, s.t0 + .1), rot: -.05, wide: true });
     chip(g, 'A STADIUM FULL OF KIDS', 960, 890, { px: 50, bg: CREAM, s: pop(t, tSt - .15) * (1 - seg(t, t6b - .3, t6b)), rot: -.02, wide: true });
-    chip(g, 'ALL AT THE SAME MOMENT', 960, 890, { px: 50, bg: YEL, s: pop(t, tSa - .1) * (1 - seg(t, t6b - .3, t6b)), rot: .02, wide: true });
+    chip(g, 'ALL AT THE SAME MOMENT', 960, 800, { px: 50, bg: YEL, s: pop(t, tSa - .1) * (1 - seg(t, t6b - .3, t6b)), rot: .02, wide: true });
     chip(g, '2 MILLION KIDS · 1 SUM EACH', 960, 890, { px: 50, bg: NVL, s: pop(t, tTw - .1) * (1 - seg(t, t7 - .3, t7)), rot: -.01, wide: true });
-    if (t > t7 - .2) { stamp(g, 'THE STADIUM WINS', 960, 560, t, tW - .1, { px: 100, col: NVL, rot: -.08 }); }
+    if (t > t7 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.65 * seg(t, tW - .3, tW + .1)) + ')'; g.fillRect(0, 0, W, H); stamp(g, 'THE STADIUM WINS', 960, 560, t, tW - .1, { px: 100, col: NVL, rot: -.08 }); }
     vignette(g, .4);
   }
   /* 31 · 3dfx's remains; the Xbox and $200 million up front */
@@ -1572,12 +1581,13 @@
       P.lf = [-26 + Math.sin(t * 12) * 18, 0]; P.rf = [26 - Math.sin(t * 12) * 18, 0];
       var x = lerp(300, 1300, ck);
       guy(g, x, 920, 1.1, P, JEN, t);
-      g.save(); g.translate(x, 600); rr(g, -150, -110, 300, 220, 8); fillStroke(g, '#c9a26a', 6); txt(g, '3DFX', 0, -20, 64, INK, { wt: 900, wide: true }); txt(g, 'PATENTS · PEOPLE', 0, 50, 26, INK, { fam: MONO, wt: 700 }); g.restore();
+      g.save(); g.translate(x, 700); rr(g, -150, -110, 300, 220, 8); fillStroke(g, '#c9a26a', 6); txt(g, '3DFX', 0, -20, 64, INK, { wt: 900, wide: true }); txt(g, 'PATENTS · PEOPLE', 0, 50, 26, INK, { fam: MONO, wt: 700 }); g.restore();
+      stamp(g, 'BOUGHT', 1500, 420, t, tRe + .3, { px: 80, col: NVL, rot: -.1 });
       chip(g, 'THE OLD KING, BOUGHT', 960, 160, { px: 50, bg: YEL, s: pop(t, tRe - .1), rot: -.02, wide: true });
       g.restore();
     }
     if (t > t9 - .1) {
-      var xk = pop(t, tX - .3, 2.6, .6);
+      var xk = pop(t, Math.min(tX - .3, t9 + .2), 2.6, .6);
       if (xk > 0) { g.save(); g.translate(760, 560); g.scale(clamp(xk, 0, 1.05), clamp(xk, 0, 1.05)); glow(g, 0, 0, 420, 'rgba(118,185,0,.5)', 1); rr(g, -300, -170, 600, 340, 30); fillStroke(g, '#1b1820', 8); g.strokeStyle = NVL; g.lineWidth = 26; g.lineCap = 'round'; g.beginPath(); g.moveTo(-90, -90); g.lineTo(90, 90); g.moveTo(90, -90); g.lineTo(-90, 90); g.stroke(); txt(g, 'XBOX · 2001', 0, 220, 44, CREAM, { fam: MONO, wt: 700, outline: 7 }); g.restore(); }
       var mk = pop(t, t2 - .3, 2.8, .6);
       if (mk > 0) { cash(g, 1400, 700, 1.4 * clamp(mk, 0, 1.05), 6); bigNum(g, '$200 MILLION', 1400, 420, 92, NVL, mk); chip(g, 'UP FRONT', 1400, 530, { px: 44, bg: CREAM, s: pop(t, at('g9', 'front.') - .2), rot: .03, wide: true }); }
@@ -1619,7 +1629,7 @@
     g.restore();
     chip(g, 'IAN BUCK, GRAD STUDENT', 1020, 220, { px: 44, bg: YEL, s: pop(t, at('c1', 'ian') - .1) * (1 - seg(t, t2 - .2, t2)), rot: .02, wide: true });
     chip(g, 'MATH THAT ISN’T GAMES', 1460, 170, { px: 44, bg: NVL, s: pop(t, tMa - .1), rot: -.02, wide: true });
-    stamp(g, 'HIRED · 2004', 1020, 260, t, tH + .1, { px: 54, col: NVD });
+    stamp(g, 'HIRED · 2004', 880, 320, t, tH + .1, { px: 54, col: NVD });
     vignette(g, .4);
   }
   /* 34 · CUDA: the stadium on any problem; built into every gaming chip; the idea */
@@ -1697,7 +1707,7 @@
     var feed = t > tK - .3 ? Math.sin(t * 6) * 20 : 0; P.rh = [P.rh[0] + feed, P.rh[1]];
     guy(g, 560, 940, 1.2, P, Object.assign({}, JEN, { hold: [null, function (g) { coin(g, 0, -10, 18, YEL); }] }), t);
     for (var i = 0; i < 5; i++) { var ph = (t * 1.2 + i * .2) % 1; if (t < tK - .3) break; coin(g, lerp(820, 1030, ph), 600 - Math.sin(ph * Math.PI) * 120, 18, YEL, Math.cos(ph * 9)); }
-    if (t > t9 - .2) quote(g, t, 'c9', 180, { px: 64, maxw: 1600, hot: /market|yet/i });
+    if (t > t9 - .2) quote(g, t, 'c9', 220, { px: 64, maxw: 1300, hot: /market|yet/i });
     g.restore();
     chip(g, 'KEEPS PAYING ANYWAY', 1030, 900, { px: 44, bg: YEL, s: pop(t, tK - .1) * (1 - seg(t, t9 - .3, t9)), rot: -.02, wide: true });
     vignette(g, .4);
@@ -1726,7 +1736,7 @@
         var k = pop(t, c[2] - .2, 3, .6); if (k <= 0) return;
         var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [80, -200], look: [i === 0 ? .6 : i === 1 ? -.6 : 0, -.3], mouth: 'smile', eyes: 'dot' }], [tPi, { rh: [130, -280], mouth: 'grin', eyes: 'happy' }]]);
         g.save(); g.globalAlpha *= clamp(k, 0, 1); guy(g, c[0], i === 2 ? 1000 : 960, i === 2 ? .95 : 1.05, P, c[1], t); g.restore();
-        chip(g, c[3], c[0], i === 2 ? 340 : 520, { px: 28, bg: CREAM, s: k, fam: MONO, wt: 700 });
+        chip(g, c[3], c[0], i === 2 ? 340 : 520, { px: 34, bg: CREAM, s: k, fam: MONO, wt: 700 });
       });
       /* picture cards flying at the screen */
       ['🐱', '🚗', '🐶'].forEach(function (e, i) { var k = seg(t, tPi - .4 + i * .15, tPi + .8 + i * .15); if (k <= 0 || k >= 1) return; var x = lerp(200 + i * 60, 900, eio(k)), y = lerp(260 + i * 120, 500, eio(k)); card(g, x, y, 160 * (1 - k * .5), 120 * (1 - k * .5), (i - 1) * .2, 1 - seg(k, .8, 1), function (g, w) { txt(g, ['CAT', 'CAR', 'DOG'][i], 0, 4, w * .26, INK, { wt: 900 }); }); });
@@ -1802,7 +1812,6 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#31254a', '#1e1730'); floorAt(g, 880, '#2a2438');
     card(g, 560, 420, 640, 300, -.04, pop(t, s.t0 + .1), function (g) { txt(g, 'YOU MAY HAVE HEARD:', 0, -80, 34, INK, { fam: MONO, wt: 700 }); txt(g, '“NVIDIA JUST', 0, 0, 62, INK, { wt: 900, wide: true }); txt(g, 'GOT LUCKY”', 0, 76, 62, INK, { wt: 900, wide: true }); });
-    stamp(g, 'PARTLY TRUE', 640, 600, t, tPa, { px: 54, col: YEL, rot: .08 });
     /* Jensen standing on the X long before the bus labelled AI pulls in */
     var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [60, -150], look: [-.6, 0], mouth: 'flat' }], [tSt, { look: [-.9, -.1], mouth: 'smirk', eyes: 'squint' }]]);
     g.save(); g.lineCap = 'round'; g.strokeStyle = YEL; g.lineWidth = 12; g.beginPath(); g.moveTo(1380, 870); g.lineTo(1500, 910); g.moveTo(1500, 870); g.lineTo(1380, 910); g.stroke(); g.restore();
@@ -1812,6 +1821,7 @@
     g.restore();
     chip(g, 'LUCK PAYS IF YOU’RE ALREADY THERE', 960, 140, { px: 44, bg: CREAM, s: pop(t, tSt - .2), rot: -.02, wide: true });
     if (t > tLu && t < tPa) spark(g, 860, 360, t, tLu, .8);
+    stamp(g, 'PARTLY TRUE', 640, 600, t, tPa, { px: 54, col: YEL, rot: .08 });
     vignette(g, .4);
   }
   /* 41 · 2016: the first DGX-1, hand-delivered to a small lab called OpenAI, and signed */
@@ -1830,6 +1840,8 @@
     g.save(); g.translate(bx, by); rr(g, -170, -120, 340, 240, 12); fillStroke(g, '#2c2936', 7); for (var i = 0; i < 4; i++) { rr(g, -150, -100 + i * 52, 300, 40, 6); fillStroke(g, '#3a3647', 3); g.fillStyle = NVL; for (var j = 0; j < 5; j++) { circ(g, -130 + j * 18, -80 + i * 52, 4); g.fill(); } } txt(g, 'DGX-1', 70, -80, 30, NVL, { fam: MONO, wt: 700 });
     if (t > tFu - .3) { g.save(); g.rotate(-.06); var sig = 'to the future of computing and humanity', n = Math.floor(clamp(seg(t, tFu - .3, end('a8') + .2), 0, 1) * sig.length); font(g, 26, 400, SERIF); g.textAlign = 'center'; g.fillStyle = '#fff'; g.fillText(sig.slice(0, n), 0, 60); g.restore(); }
     g.restore();
+    /* the inscription, big enough to read */
+    if (t > tFu - .1 && t < t9 + .1) chip(g, '“TO THE FUTURE OF COMPUTING AND HUMANITY”', 900, 140, { px: 44, bg: CREAM, s: pop(t, tFu) * (1 - seg(t, t9 - .3, t9)), rot: -.02, fam: SERIF, wt: 700 });
     if (t > t9 - .1) {
       var Q = poseAt(t, [[t9, { lh: [-60, -150], rh: [-130, -240], look: [-.6, 0], mouth: 'smile', eyes: 'happy' }]]);
       var ik = eio(seg(t, t9 - .1, tIl + .2)); guy(g, lerp(1590, 1560, ik), 900, 1.0 * ik, Q, ILYA, t);
@@ -1946,13 +1958,13 @@
     var sw = eio(seg(t, tPa - .2, tPa + .8));
     /* Nvidia's chip climbs from third to first */
     var nx = lerp(1360, 960, sw), ny = lerp(900 - 180, 900 - 380, sw) - 130 - Math.sin(sw * Math.PI) * 160;
-    chipD(g, lerp(960, 1360, sw), 900 - lerp(380, 180, sw) - 110, .8, t, { face: sw > .5 ? 'sad' : 'dot', die: '#3d7bff', die2: '#8fb6ff', label: 'MICROSOFT', seed: 2 });
-    chipD(g, 560, 900 - 260 - 110, .8, t, { face: sw > .5 ? 'o' : 'dot', die: '#9a96a6', die2: '#e0dce8', label: 'APPLE', seed: 4 });
+    chipD(g, lerp(960, 560, sw), 900 - lerp(380, 260, sw) - 110, .8, t, { face: sw > .5 ? 'sad' : 'dot', die: '#3d7bff', die2: '#8fb6ff', label: 'MICROSOFT', seed: 2 });
+    chipD(g, lerp(560, 1360, sw), 900 - lerp(260, 180, sw) - 110 - Math.sin(sw * Math.PI) * 60, .8, t, { face: sw > .5 ? 'o' : 'dot', die: '#9a96a6', die2: '#e0dce8', label: 'APPLE', seed: 4 });
     chipD(g, nx, ny, .9, t, { face: sw > .5 ? 'grin' : 'dot', glow: sw, label: 'NVIDIA' });
     if (t > tMo) for (var i = 0; i < 3; i++) spark(g, 960 + (i - 1) * 180, 300 + (i % 2) * 80, t, tMo + i * .12, .9);
     g.restore();
     dateTag(g, 'JUN 2024', t, at('r7', 'june') - .1);
-    chip(g, 'MOST VALUABLE COMPANY IN THE WORLD', 960, 130, { px: 44, bg: YEL, s: pop(t, tMo - .1), rot: -.02, wide: true });
+    chip(g, 'MOST VALUABLE COMPANY IN THE WORLD', 900, 210, { px: 44, bg: YEL, s: pop(t, tMo - .1), rot: -.02, wide: true });
     vignette(g, .4);
   }
   /* 48 · DeepSeek, January 2025: about $589 billion gone in a day, the biggest one-day loss ever */
@@ -1964,8 +1976,8 @@
     var head = chart(g, 200, 240, 1000, 560, pts, t < tLo ? seg(t, s.t0, tLo) * .6 : lerp(.6, 1, seg(t, tLo, t9)), { col: t > tLo ? RED : NVL });
     if (t > tLo) { bigNum(g, '−$589 BILLION', 1400, 440, 76, RED, pop(t, tLo + .2)); chip(g, 'IN ONE DAY', 1480, 560, { px: 46, bg: CREAM, s: pop(t, tLo + .4), rot: .03, wide: true }); }
     /* a small whale-blue chip labelled DEEPSEEK nudges the chart */
-    var dk = pop(t, tD - .2, 2.8, .6); if (dk > 0) { chipD(g, 1500, 820, .55 * clamp(dk, 0, 1.05), t, { face: 'grin', die: '#4a7bd8', die2: '#9fc4ff', label: 'DEEPSEEK', seed: 6 }); chip(g, 'A CHEAP AI MODEL', 1500, 690, { px: 34, bg: CREAM, s: pop(t, tCh - .1), fam: MONO, wt: 700 }); }
-    if (t > t9 - .1) stamp(g, 'BIGGEST 1-DAY LOSS EVER', 960, 160, t, t9 + .1, { px: 58, rot: -.04 });
+    var dk = pop(t, tD - .2, 2.8, .6); if (dk > 0) { chipD(g, 1500, 820, .55 * clamp(dk, 0, 1.05), t, { face: 'grin', die: '#4a7bd8', die2: '#9fc4ff', label: 'DEEPSEEK', seed: 6 }); chip(g, 'A CHEAP AI MODEL', 1500, 690, { px: 42, bg: CREAM, s: pop(t, tCh - .1), fam: MONO, wt: 700 }); }
+    if (t > t9 - .1) stamp(g, 'BIGGEST 1-DAY LOSS EVER', 900, 250, t, t9 + .1, { px: 58, rot: -.04 });
     g.restore();
     dateTag(g, 'JAN 27, 2025', t, at('r8', 'january') - .1);
     vignette(g, .45);
@@ -1976,11 +1988,11 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#132108', '#070c03'); grid(g, 100, 'rgba(182,240,90,.06)');
     var pts = [[0, .1], [.12, .2], [.2, .16], [.32, .34], [.45, .42], [.55, .55], [.66, .6], [.78, .75], [.9, .88], [1, .96]];
-    var head = chart(g, 200, 180, 1400, 700, pts, seg(t, s.t0, t5 + .5), { col: NVL, lw: 14 });
+    var head = chart(g, 200, 280, 1400, 600, pts, seg(t, s.t0, t5 + .5), { col: NVL, lw: 14 });
     /* Jensen rides the head of the line up */
     var cP = poseAt(t, [[s.t0, { lh: [-90, -230], rh: [90, -230], mouth: 'grin', eyes: 'happy', look: [.5, -.4] }]]); cP.lf = [-30 + Math.sin(t * 9) * 16, 0]; cP.rf = [30 - Math.sin(t * 9) * 16, 0];
     guy(g, head[0], head[1] - 4, .42, cP, JEN, t);
-    [[t4, '$4T', 'JUL 2025', .78], [t5, '$5T', 'OCT 2025', .96]].forEach(function (f) { if (t < f[0] - .2) return; var x = 200 + f[3] * 1400 * (f[3] === .78 ? .78 / .78 : 1), y = 180 + 700 - (f[3] === .78 ? .75 : .96) * 700; var px2 = f[3] === .78 ? 200 + .78 * 1400 : 200 + 1400; g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(px2, y); g.lineTo(px2, y - 170); g.stroke(); g.beginPath(); g.moveTo(px2, y - 170); g.lineTo(px2 + 110, y - 140); g.lineTo(px2, y - 110); g.closePath(); fillStroke(g, NV, 5); tag(g, f[1], px2 - 140, y - 160, pop(t, f[0] - .1), { px: 54 }); txt(g, f[2], px2 - 140, y - 80, 28, CREAM, { fam: MONO, wt: 700, outline: 6 }); });
+    [[t4, '$4T', 'JUL 2025', .78], [t5, '$5T', 'OCT 2025', .96]].forEach(function (f) { if (t < f[0] - .2) return; var x = 200 + f[3] * 1400 * (f[3] === .78 ? .78 / .78 : 1), y = 280 + 600 - (f[3] === .78 ? .75 : .96) * 600; var px2 = f[3] === .78 ? 200 + .78 * 1400 : 200 + 1400; g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(px2, y); g.lineTo(px2, y - 170); g.stroke(); g.beginPath(); g.moveTo(px2, y - 170); g.lineTo(px2 + 110, y - 140); g.lineTo(px2, y - 110); g.closePath(); fillStroke(g, NV, 5); tag(g, f[1], px2 - 140, y - 160, pop(t, f[0] - .1), { px: 54 }); txt(g, f[2], px2 - 140, y - 80, 28, CREAM, { fam: MONO, wt: 700, outline: 6 }); });
     g.restore();
     chip(g, 'KEEPS CLIMBING', 760, 120, { px: 48, bg: CREAM, s: pop(t, s.t0 + .2), rot: -.03, wide: true });
     stamp(g, 'FIRST COMPANY EVER', 1100, 560, t, tFi, { px: 64, col: NVL, rot: -.08 });
@@ -2002,7 +2014,7 @@
     if (t > t2 - .1) {
       var a = clamp(seg(t, t2 - .1, t2 + .2), 0, 1); g.save(); g.globalAlpha = a;
       chip(g, 'LAST QUARTER', 960, 120, { px: 40, bg: CREAM, fam: MONO, wt: 700, s: a });
-      bigNum(g, '$' + (96.2 * eo(seg(t, t96 - .3, t96 + .7))).toFixed(1) + ' BILLION', 960, 260, 110, CREAM, pop(t, t96 - .3));
+      bigNum(g, '$' + (function (v) { return v >= 96.2 ? '96.2' : String(Math.floor(v / 10) * 10); })(96.2 * eo(seg(t, t96 - .3, t96 + .7))) + ' BILLION', 960, 260, 110, CREAM, pop(t, t96 - .3));
       /* ten coins: nine data center, one everything else */
       for (var i = 0; i < 10; i++) { var k = pop(t, t89 - .3 + i * .05, 3, .6); if (k <= 0) continue; var dc = i < 9 && t > t89, x = 330 + i * 140; g.save(); g.translate(x, 560); g.scale(clamp(k, 0, 1.05), clamp(k, 0, 1.05)); coin(g, 0, 0, 56, dc ? NVL : '#c9c6d6', 1); g.restore(); }
       if (t > t89 - .1) { g.strokeStyle = NVL; g.lineWidth = 8; g.beginPath(); g.moveTo(300, 650); g.lineTo(300, 680); g.lineTo(1450, 680); g.lineTo(1450, 650); g.stroke(); chip(g, 'DATA CENTERS · $89B', 875, 730, { px: 40, bg: NVL, s: pop(t, t89), wide: true }); chip(g, 'EVERYTHING ELSE', 1590, 730, { px: 28, bg: '#c9c6d6', s: pop(t, t89 + .2), fam: MONO, wt: 700 }); }
@@ -2023,7 +2035,7 @@
     chip(g, 'VERA RUBIN · IN FULL PRODUCTION', 960, 130, { px: 44, bg: NVL, s: pop(t, tFu - .2), rot: -.02, wide: true });
     g.restore();
     if (t > t108 - .3) { bigNum(g, '$108B', 760, 300, 120, CREAM, pop(t, t108 - .2)); chip(g, 'EXPECTED THIS QUARTER', 760, 400, { px: 36, bg: CREAM, s: pop(t, t108), fam: MONO, wt: 700 }); }
-    if (t > tCh - .4) { card(g, 1460, 330, 300, 200, .05, pop(t, tCh - .4), function (g) { txt(g, 'CHINA', 0, -40, 48, INK, { wt: 900, wide: true }); txt(g, 'AI CHIPS: $0', 0, 30, 32, INK, { fam: MONO, wt: 700 }); }); cross(g, 1460, 330, 2.2, pop(t, tCh), RED); }
+    if (t > tCh - .4) { card(g, 1460, 330, 300, 200, .05, pop(t, tCh - .4), function (g) { txt(g, 'CHINA', 0, -40, 48, INK, { wt: 900, wide: true }); txt(g, 'NOT COUNTED', 0, 30, 32, INK, { fam: MONO, wt: 700 }); }); }
     vignette(g, .4);
   }
   /* 52 · not a straight line: a record on Oct 6, then eight red days; worth about $5.2 trillion today */
@@ -2032,19 +2044,18 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 90);
     rr(g, 180, 200, 1560, 600, 18); fillStroke(g, '#191527', 5);
-    txt(g, 'CHIP STOCKS · DAILY', 360, 245, 30, CREAM, { fam: MONO, wt: 700 });
     /* candles: a climb to the record, then eight red days, then a few mixed */
     var c = [.3, .36, .34, .42, .48, .55, .62, .58, .5, .45, .4, .37, .34, .31, .3, .34, .38], n = Math.floor(clamp(seg(t, s.t0, tEi + 1.4), 0, 1) * c.length);
     for (var i = 0; i < n; i++) {
       var y0 = i ? c[i - 1] : .25, y1 = c[i], up = y1 >= y0, red8 = i >= 7 && i <= 14, x = 240 + i * 88, ya = 760 - Math.max(y0, y1) * 560, yb = 760 - Math.min(y0, y1) * 560;
       g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.moveTo(x + 24, ya - 20); g.lineTo(x + 24, yb + 20); g.stroke();
       rr(g, x, ya, 48, Math.max(12, yb - ya), 4); fillStroke(g, up ? NVL : RED, 4);
-      if (i === 6 && t > tRe - .2) { tag(g, 'RECORD · OCT 6', x + 40, ya - 70, pop(t, tRe - .1), { px: 34 }); }
+      if (i === 6 && t > tRe - .2) { tag(g, 'NVIDIA RECORD · OCT 6', x + 40, ya - 70, pop(t, tRe - .1), { px: 34 }); }
     }
-    if (t > tEi - .2) { var cnt = clamp(Math.floor(seg(t, tEi - .2, tEi + 1.2) * 8) + 1, 1, 8); chip(g, cnt + (cnt === 1 ? ' RED DAY' : ' RED DAYS IN A ROW'), 1300, 280, { px: 40, bg: RED, fg: '#fff', s: pop(t, tEi - .2), rot: .03, wide: true }); }
-    chip(g, 'LONGEST STREAK SINCE 2008', 1300, 380, { px: 32, bg: CREAM, s: pop(t, tSi - .1), fam: MONO, wt: 700 });
+    if (t > tEi - .2) { var cnt = clamp(Math.floor(seg(t, tEi - .2, tEi + 1.2) * 8) + 1, 1, 8); chip(g, 'CHIP STOCKS: ' + cnt + (cnt === 1 ? ' RED DAY' : ' RED DAYS IN A ROW'), 1240, 185, { px: 40, bg: RED, fg: '#fff', s: pop(t, tEi - .2), rot: .03, wide: true }); }
+    chip(g, 'LONGEST STREAK SINCE 2008', 1300, 255, { px: 32, bg: CREAM, s: pop(t, tSi - .1), fam: MONO, wt: 700 });
     g.restore();
-    chip(g, 'NOT A STRAIGHT LINE', 960, 110, { px: 50, bg: YEL, s: pop(t, s.t0 + .1) * (1 - seg(t, t6 - .2, t6)), rot: -.02, wide: true });
+    chip(g, 'NOT A STRAIGHT LINE', 960, 110, { px: 50, bg: YEL, s: pop(t, s.t0 + .1) * (1 - seg(t, tEi - .5, tEi - .25)), rot: -.02, wide: true });
     if (t > t6 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.55 * seg(t, t6 - .2, t6 + .2)) + ')'; g.fillRect(0, 0, W, H); bigNum(g, '≈ $5.2 TRILLION', 960, 500, 150, NVL, pop(t, t52 - .2)); chip(g, 'TODAY', 960, 650, { px: 50, bg: CREAM, s: pop(t, t6), rot: .02, wide: true }); }
     vignette(g, .4);
   }
@@ -2053,14 +2064,14 @@
     var tRe = at('n7', 'remember'), tSp = at('n7', 'splits,'), t480 = at('n7', '480'), t104 = at('n7', '104');
     g.save(); cam(g, t, s, .05);
     wall(g, '#2a1f3a', '#1a1428'); grid(g, 90);
-    sticky(g, ['REMEMBER', '$12?'], 1720, 420, pop(t, tRe - .1), -.06);
+    sticky(g, ['REMEMBER', '$12?'], 1710, 470, pop(t, tRe - .1), -.06, { w: 300, h: 240, px: 48 });
     var SPL = [1, 2, 4, 8, 12, 48, 480], k = clamp(seg(t, tSp - .6, t480 + .1), 0, 1), step = Math.min(6, Math.floor(k * 7)), nShares = SPL[step];
     /* the share certificates multiplying in a grid */
     var shown = Math.min(nShares, 480), cols = nShares > 48 ? 30 : nShares > 8 ? 12 : 4, cell = nShares > 48 ? 40 : nShares > 8 ? 90 : 190;
     for (var i = 0; i < shown; i++) { var c = i % cols, r = Math.floor(i / cols), x = 960 - cols * cell / 2 + c * cell + cell / 2, y = 330 + r * cell * .62; g.save(); g.translate(x, y); rr(g, -cell * .42, -cell * .26, cell * .84, cell * .52, cell * .06); fillStroke(g, '#dff0d8', Math.max(2, cell * .04)); if (cell > 60) txt(g, 'NVDA', 0, 2, cell * .18, '#2f6b3a', { fam: MONO, wt: 700 }); g.restore(); }
     chip(g, '1 SHARE' + (step ? ' → ' + nShares + ' SHARES' : ''), 960, 150, { px: 48, bg: CREAM, s: pop(t, s.t0 + .2), rot: -.02, wide: true });
     if (step > 0 && step < 6) chip(g, 'SPLIT ×' + step, 1500, 260, { px: 40, bg: YEL, s: 1, rot: .05, wide: true });
-    if (t > t104 - .3) { g.fillStyle = 'rgba(8,6,18,' + (.6 * seg(t, t104 - .3, t104)) + ')'; g.fillRect(0, 0, W, H); counter(g, 960, 560, seg(t, t104 - .3, t104 + .8), 104000, 160, NVL, { pre: '≈ $' }); chip(g, 'FROM $12', 960, 720, { px: 50, bg: YEL, s: pop(t, t104 + .3), rot: .03, wide: true }); }
+    if (t > t104 - .3) { g.fillStyle = 'rgba(8,6,18,' + (.6 * seg(t, t104 - .3, t104)) + ')'; g.fillRect(0, 0, W, H); counter(g, 960, 560, seg(t, t104 - .3, t104 + .8), 104000, 160, NVL, { pre: '≈ $', step: 10000 }); chip(g, 'FROM $12', 960, 720, { px: 50, bg: YEL, s: pop(t, t104 + .3), rot: .03, wide: true }); }
     g.restore();
     vignette(g, .4);
   }
@@ -2068,7 +2079,7 @@
   function sJensen(g, t, s) {
     var tTh = at('n8', 'thirtythree'), tJa = at('n8', 'jacket.'), t8b = start('n8b'), tTo = at('n8b', 'toilets'), t200 = at('n8b', '200'), t9 = start('n9'), tMi = at('n9', 'million');
     g.save(); cam(g, t, s, .05);
-    stageSet(g, t, function (g) { if (t >= t9) return; if (t < t8b) { chipD(g, 960, 370, 1.1, t, { face: 'grin', glow: .7, label: 'NVIDIA' }); } else { toilet(g, 860, 520, 1.1); g.save(); g.translate(1060, 520); brush(g); g.restore(); txt(g, 'KENTUCKY, 1970s', 960, 180, 40, CREAM, { fam: MONO, wt: 700 }); } });
+    stageSet(g, t, function (g) { if (t >= t9) return; if (t < t8b) { chipD(g, 960, 370, 1.1, t, { face: 'grin', glow: .7, label: 'NVIDIA' }); } else { toilet(g, 860, 520, 1.1); g.save(); g.translate(1060, 520); brush(g); g.restore(); txt(g, 'KENTUCKY, 1970s', 960, 790, 40, CREAM, { fam: MONO, wt: 700 }); } });
     var P = poseAt(t, [[s.t0, { lh: [-60, -150], rh: [140, -270], look: [-.2, -.2], mouth: 'talk' }], [tJa, { lh: [-40, -120], rh: [40, -120], mouth: 'smirk', eyes: 'squint' }], [t9, { lh: [-60, -150], rh: [60, -150], look: [.2, .2], mouth: 'flat', brow: -1 }], [tMi, { lh: [-120, -230], rh: [120, -230], mouth: 'O', eyes: 'wide', brow: 1 }]]);
     guy(g, 960, 960, 1.15, P, JEN, t);
     g.restore();
@@ -2076,7 +2087,7 @@
     chip(g, 'STILL THE JACKET', 480, 760, { px: 40, bg: YEL, s: pop(t, tJa - .1) * (1 - seg(t, t8b - .2, t8b)), rot: .04, wide: true });
     if (t > t200 - .3 && t < t9 + .2) bigNum(g, '$200 BILLION+', 960, 250, 110, NVL, pop(t, t200 - .2) * (1 - seg(t, t9, t9 + .2)));
     if (t > tTo - .2 && t < t200) sticky(g, ['REMEMBER', 'THE TOILETS?'], 1580, 300, pop(t, tTo - .2), .05, { px: 46 });
-    if (t > t9 - .1) { g.fillStyle = 'rgba(8,6,18,' + (.7 * seg(t, t9 - .1, t9 + .3)) + ')'; g.fillRect(0, 0, W, H); quote(g, t, 'n9', 420, { px: 62, maxw: 1600, hot: /million|harder/i }); txt(g, 'JENSEN HUANG ON THE ACQUIRED PODCAST, 2023', 960, 820, 28, CREAM, { fam: MONO, wt: 700, a: seg(t, t9, t9 + .4) }); }
+    if (t > t9 - .1) { g.fillStyle = 'rgba(8,6,18,' + (.7 * seg(t, t9 - .1, t9 + .3)) + ')'; g.fillRect(0, 0, W, H); quote(g, t, 'n9', 420, { px: 62, maxw: 1600, hot: /million|harder/i }); txt(g, 'JENSEN HUANG ON THE ACQUIRED PODCAST, 2023', 960, 820, 36, CREAM, { fam: MONO, wt: 700, a: seg(t, t9, t9 + .4) }); }
     vignette(g, .4);
   }
 
@@ -2099,9 +2110,11 @@
       guy(g, 1540, 1060, 1.0, Q, YOU, t); txt(g, 'AI', 1440, 150, 60, CREAM, { wt: 900, wide: true, outline: 10 });
       g.restore();
       g.strokeStyle = INK; g.lineWidth = 12; g.beginPath(); g.moveTo(W / 2, 0); g.lineTo(W / 2, H); g.stroke();
-      var ck = pop(t, tCo - .3, 2.8, .6); chipD(g, W / 2, 640, .85 * Math.max(.4, clamp(ck, 0, 1.05)), t, { face: 'grin', glow: .8, label: 'GPU' });
+      var ck = pop(t, tCo - .3, 2.8, .6); glow(g, W / 2, 640, 300, 'rgba(182,240,90,.45)', clamp(ck, 0, 1)); chipD(g, W / 2, 640, .85 * Math.max(.4, clamp(ck, 0, 1.05)), t, { face: 'grin', glow: 1, label: 'GPU' });
+      chip(g, 'GAMES · SINCE 1993', 480, 240, { px: 36, bg: CREAM, s: pop(t, tGa - .1), rot: -.02, fam: MONO, wt: 700 });
+      chip(g, 'AI · SINCE 2012', 1440, 240, { px: 36, bg: NVL, s: pop(t, tGa + .2), rot: .02, fam: MONO, wt: 700 });
       chip(g, 'COUSINS', W / 2, 820, { px: 48, bg: NVL, s: pop(t, tCo - .1), rot: -.03, wide: true });
-      if (t > t3 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.5 * seg(t, t3 - .2, t3 + .2)) + ')'; g.fillRect(0, 0, W, H); chip(g, '20 YEARS OF GAMERS PAID FOR IT', W / 2, 560, { px: 50, bg: YEL, s: pop(t, tTw - .1), rot: -.02, wide: true }); for (var i = 0; i < 10; i++) { var ph = (t * 1.4 + i * .1) % 1; if (t < tPa - .2) break; coin(g, lerp(380, W / 2, ph), lerp(700, 640, ph) - Math.sin(ph * Math.PI) * 160, 22, YEL, Math.cos(ph * 9)); } }
+      if (t > t3 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.5 * seg(t, t3 - .2, t3 + .2)) + ')'; g.fillRect(0, 0, W, H); chip(g, '20 YEARS OF GAMERS PAID FOR IT', W / 2, 300, { px: 50, bg: YEL, s: pop(t, tTw - .1), rot: -.02, wide: true }); for (var i = 0; i < 10; i++) { var ph = (t * 1.4 + i * .1) % 1; if (t < tPa - .2) break; coin(g, lerp(380, W / 2, ph), lerp(700, 640, ph) - Math.sin(ph * Math.PI) * 160, 22, YEL, Math.cos(ph * 9)); } }
     } else {
       /* the recap, three panels */
       wall(g, '#13240c', '#081405'); grid(g, 100, 'rgba(182,240,90,.05)');
@@ -2127,7 +2140,7 @@
     chipD(g, 960, 260, .9, t, { face: t > tKn && t < tNo ? 'o' : 'grin', glow: .7 + back * .3, label: 'NVIDIA', rot: knock(t, tKn, 20, 4) * .15 });
     [[tGo, 'GOOGLE TPU', 520, '#4a7bd8', '#9fc4ff'], [tAm, 'AMAZON TRAINIUM', 960, '#ff9a3d', '#ffd29a'], [tAd, 'AMD INSTINCT', 1400, '#d84a4a', '#ff9f9f']].forEach(function (r, i) {
       var k = pop(t, r[0] - .3, 2.8, .6); if (k <= 0) return; var cl = seg(t, r[0], tNo) * (1 - back * .7), y = lerp(960, 640, cl) + Math.sin(t * 6 + i) * 6, x = lerp(r[2], r[2] + (960 - r[2]) * .4, cl);
-      chipD(g, x, y, .6 * clamp(k, 0, 1.05), t, { face: 'grin', die: r[3], die2: r[4], label: r[1], seed: i + 7 });
+      chipD(g, x, y, .74 * clamp(k, 0, 1.05), t, { face: 'grin', die: r[3], die2: r[4], label: r[1], seed: i + 7 });
     });
     g.restore();
     stamp(g, 'NOT YET', 960, 560, t, tNo, { px: 90, col: NVL, rot: -.08 });
@@ -2279,7 +2292,7 @@
       if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.9 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
       var sl = pop(t, c.t, 2.8, .5), sc = s * lerp(1.6, 1, clamp(sl, 0, 1));
       g.save(); g.translate(px, py); g.scale(sc, sc); g.rotate(lerp(-.04, -.015, k) + knock(t, c.t + .1, 30, 9) * .05);
-      g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 : 1);
+      g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 * (QUOTE_ON ? 0 : 1) : 1);
       rr(g, -cw / 2 + 16, -ch / 2 + 20, cw, ch, 26); g.fillStyle = 'rgba(8,6,18,.5)'; g.fill();
       rr(g, -cw / 2, -ch / 2, cw, ch, 26); fillStroke(g, YEL, 10);
       g.fillStyle = INK; g.fillRect(-cw / 2, -ch / 2 + 20, 16, ch - 40);
@@ -2344,7 +2357,7 @@
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.fillStyle = NIGHT; g.fillRect(0, 0, W, H);
-    var i = sceneAt(t), s = SC[i];
+    var i = sceneAt(t), s = SC[i]; QUOTE_ON = false;
     g.save(); wipe(g, t, s, i > 0 ? SC[i - 1] : null); g.restore();
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1;
     partCards(g, t);

@@ -10,6 +10,10 @@
    Every number is sourced in BRIEF.md. */
 (function () {
   'use strict';
+  /* per-frame layout state: a quote is on screen (the parked part tag steps aside); text inside a card fits its width */
+  var QUOTE_ON = false, CARDW = 0;
+  /* a rolling count that only shows round steps, landing on the real value (no exact-looking in-between figures) */
+  function roll(v, to, step) { return v >= to - 1e-6 ? to : Math.floor(v / step) * step; }
   var W = 1920, H = 1080, VO = window.VO, DUR = VO.dur;
   var INK = '#1c1830', NIGHT = '#221d3a', DUSK = '#352b55', PLUM = '#56406f', MAUVE = '#7a5584';
   var HEAD = '#fbf7ef', HEADS = '#e2dbcc', HOOD = '#ff5b3d', HOODS = '#d6412a';
@@ -79,6 +83,8 @@
   function fillStroke(g, fill, lw, stroke) { if (fill) { g.fillStyle = fill; g.fill(); } if (lw) { g.lineWidth = lw; g.strokeStyle = stroke || INK; g.lineJoin = 'round'; g.lineCap = 'round'; g.stroke(); } }
   function txt(g, s, x, y, px, col, o) {
     o = o || {}; if (o.a != null && o.a <= 0) return 0; font(g, px, o.wt || 800, o.fam, o.wide); ls(g, o.ls || 0);
+    var mw = o.maxw || (CARDW && !o.nofit && (o.align || 'center') === 'center' ? CARDW - 2 * Math.abs(x) : 0);
+    if (mw > 0) { var w0 = g.measureText(s).width + (o.outline || 0); if (w0 > mw) { px = px * mw / w0; font(g, px, o.wt || 800, o.fam, o.wide); } }
     var ga = g.globalAlpha; if (o.a != null) g.globalAlpha = ga * clamp(o.a, 0, 1);
     g.textAlign = o.align || 'center'; g.textBaseline = 'middle';
     if (o.outline) { g.lineWidth = o.outline; g.strokeStyle = o.ocol || INK; g.lineJoin = 'round'; g.strokeText(s, x, y); }

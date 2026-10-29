@@ -5,7 +5,9 @@
     g.save(); cam(g, t, s, .06);
     wall(g, '#1d2440', '#121729'); grid(g, 80, 'rgba(120,200,255,.06)');
     dateTag(g, '1995', t, at('d1', '1995,') - .1);
-    chipD(g, 300, 330, .8 * clamp(pop(t, Math.min(tNV - .2, s.t0 + .2)), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : 'dot' });
+    var mv = eio(seg(t, tCu - .7, tCu - .2));
+    chipD(g, lerp(960, 300, mv), lerp(520, 330, mv), lerp(1.7, .8, mv) * clamp(pop(t, Math.min(tNV - .2, s.t0 + .2)), 0, 1.05), t, { label: 'NV1', face: t > tD ? 'x' : mv < 1 ? 'grin' : 'dot', glow: .6 * (1 - mv) });
+    chip(g, "NVIDIA'S FIRST CHIP", 960, 200, { px: 50, bg: YEL, s: pop(t, s.t0 + .4) * (1 - mv), rot: -.02, wide: true });
     /* left: a ship made of curves; right: the same ship made of triangles */
     var ck = pop(t, tCu - .3, 2.6, .6);
     if (ck > 0) { g.save(); g.translate(760, 560); g.scale(clamp(ck, 0, 1.05), clamp(ck, 0, 1.05)); g.rotate(Math.sin(t) * .06);
@@ -38,7 +40,7 @@
     bubble(g, ['…BUT PAY US ANYWAY?'], 560, 340, pop(t, tPa - .1) * (1 - seg(t, tY - .2, tY)), { px: 44, bg: YEL });
     /* the cheque and the hourglass */
     var qk = pop(t, t5 - .2, 2.8, .6);
-    if (qk > 0) { g.save(); g.translate(1060, 300); g.rotate(-.05); g.scale(clamp(qk, 0, 1.05), clamp(qk, 0, 1.05)); rr(g, -300, -100, 600, 200, 10); fillStroke(g, '#dff0d8', 6); txt(g, 'PAY TO: NVIDIA', -100, -50, 30, INK, { fam: MONO, wt: 700 }); txt(g, '$5,000,000', 40, 30, 80, '#2f6b3a', { wt: 900, wide: true }); g.restore(); }
+    if (qk > 0) { g.save(); g.translate(1060, 300); g.rotate(-.05); g.scale(clamp(qk, 0, 1.05), clamp(qk, 0, 1.05)); rr(g, -300, -100, 600, 200, 10); fillStroke(g, '#dff0d8', 6); txt(g, 'PAY TO: NVIDIA', -100, -50, 30, INK, { fam: MONO, wt: 700 }); txt(g, '$5,000,000', 40, 30, 80, '#2f6b3a', { wt: 900, wide: true, maxw: 460 }); g.restore(); }
     var hk = pop(t, tSi - .3, 2.8, .6);
     if (hk > 0) { g.save(); g.translate(1680, 560); g.scale(clamp(hk, 0, 1.05), clamp(hk, 0, 1.05)); var sand = seg(t, tSi, s.t1);
       g.beginPath(); g.moveTo(-70, -120); g.lineTo(70, -120); g.lineTo(8, 0); g.lineTo(70, 120); g.lineTo(-70, 120); g.lineTo(-8, 0); g.closePath(); fillStroke(g, 'rgba(200,230,255,.35)', 6);
@@ -47,7 +49,7 @@
     g.restore();
     chip(g, 'THE SAME WRONG WAY', 960, 140, { px: 50, bg: RED, fg: '#fff', s: pop(t, at('d3', 'wrong') - .15) * (1 - seg(t, t4 - .3, t4)), rot: -.03, wide: true });
     chip(g, 'SOMETHING WILD', 960, 140, { px: 54, bg: YEL, s: pop(t, tWi - .15) * (1 - seg(t, tFi - .2, tFi)), rot: .02, wide: true });
-    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1400, 470, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
+    chip(g, 'SHOICHIRO IRIMAJIRI · SEGA OF AMERICA', 1300, 150, { px: 32, bg: CREAM, s: pop(t, at('d5', 'shoichiro') - .1), rot: -.01 });
     vignette(g, .4);
   }
   /* 23 · half the people out; every chip on the RIVA 128 */
@@ -86,7 +88,7 @@
     g.fillStyle = '#4a4458'; g.fillRect(-200, 780, W + 400, 30); g.strokeStyle = INK; g.lineWidth = 5; g.strokeRect(-200, 780, W + 400, 30);
     for (i = 0; i < 9; i++) { var bx = ((i * 260 + (t - tS) * 260) % 2340) - 200; if (t < tS) break; g.save(); g.translate(bx, 700); rr(g, -80, -80, 160, 160, 6); fillStroke(g, '#c9a26a', 5); g.fillStyle = '#a8794a'; g.fillRect(-12, -80, 24, 160); txt(g, 'RIVA 128', 0, 0, 22, INK, { fam: MONO, wt: 700 }); g.restore(); }
     var mk = seg(t, tMi - .4, tF + .6);
-    if (t > t8 - .2) { bigNum(g, Math.round(1000000 * eo(mk)).toLocaleString('en-US'), 1260, 400, 140, NVL, pop(t, t8 - .2)); chip(g, 'SOLD IN 4 MONTHS', 1260, 540, { px: 50, bg: YEL, s: pop(t, tF - .1), rot: .02, wide: true }); }
+    if (t > t8 - .2) { bigNum(g, roll(1000000 * eo(mk), 1000000, 100000).toLocaleString('en-US'), 1260, 400, 140, NVL, pop(t, t8 - .2)); chip(g, 'SOLD IN 4 MONTHS', 1260, 540, { px: 50, bg: YEL, s: pop(t, tF - .1), rot: .02, wide: true }); }
     g.restore();
     vignette(g, .4);
   }
@@ -156,8 +158,8 @@
     });
     g.restore();
     chip(g, 'SO WHAT IS A GPU?', 960, 110, { px: 56, bg: YEL, s: pop(t, s.t0 + .1) * (1 - seg(t, t4 - .2, t4)), rot: -.02, wide: true });
-    if (t > tTw - .3) { var ck = seg(t, tTw - .2, tTw + .9); bigNum(g, Math.round(2073600 * eo(ck)).toLocaleString('en-US') + ' PIXELS', 960, 110, 76, CREAM, pop(t, tTw - .3)); }
-    chip(g, '× 60 EVERY SECOND', 1560, 230, { px: 52, bg: NVL, s: pop(t, tSi - .15), rot: .03, wide: true });
+    if (t > tTw - .3) { var ck = seg(t, tTw - .2, tTw + .9); bigNum(g, roll(2073600 * eo(ck), 2073600, 250000).toLocaleString('en-US') + ' PIXELS', 960, 110, 76, CREAM, pop(t, tTw - .3)); }
+    chip(g, '× 60 EVERY SECOND', 1480, 230, { px: 52, bg: NVL, s: pop(t, tSi - .15), rot: .03, wide: true });
     vignette(g, .4);
   }
   /* 29 · a CPU: a few brilliant professors, one problem at a time */
@@ -213,9 +215,9 @@
     }
     chip(g, 'GPU', 220, 230, { px: 80, bg: NVL, s: pop(t, s.t0 + .1), rot: -.05, wide: true });
     chip(g, 'A STADIUM FULL OF KIDS', 960, 890, { px: 50, bg: CREAM, s: pop(t, tSt - .15) * (1 - seg(t, t6b - .3, t6b)), rot: -.02, wide: true });
-    chip(g, 'ALL AT THE SAME MOMENT', 960, 890, { px: 50, bg: YEL, s: pop(t, tSa - .1) * (1 - seg(t, t6b - .3, t6b)), rot: .02, wide: true });
+    chip(g, 'ALL AT THE SAME MOMENT', 960, 800, { px: 50, bg: YEL, s: pop(t, tSa - .1) * (1 - seg(t, t6b - .3, t6b)), rot: .02, wide: true });
     chip(g, '2 MILLION KIDS · 1 SUM EACH', 960, 890, { px: 50, bg: NVL, s: pop(t, tTw - .1) * (1 - seg(t, t7 - .3, t7)), rot: -.01, wide: true });
-    if (t > t7 - .2) { stamp(g, 'THE STADIUM WINS', 960, 560, t, tW - .1, { px: 100, col: NVL, rot: -.08 }); }
+    if (t > t7 - .2) { g.fillStyle = 'rgba(8,6,18,' + (.65 * seg(t, tW - .3, tW + .1)) + ')'; g.fillRect(0, 0, W, H); stamp(g, 'THE STADIUM WINS', 960, 560, t, tW - .1, { px: 100, col: NVL, rot: -.08 }); }
     vignette(g, .4);
   }
   /* 31 · 3dfx's remains; the Xbox and $200 million up front */
@@ -233,12 +235,13 @@
       P.lf = [-26 + Math.sin(t * 12) * 18, 0]; P.rf = [26 - Math.sin(t * 12) * 18, 0];
       var x = lerp(300, 1300, ck);
       guy(g, x, 920, 1.1, P, JEN, t);
-      g.save(); g.translate(x, 600); rr(g, -150, -110, 300, 220, 8); fillStroke(g, '#c9a26a', 6); txt(g, '3DFX', 0, -20, 64, INK, { wt: 900, wide: true }); txt(g, 'PATENTS · PEOPLE', 0, 50, 26, INK, { fam: MONO, wt: 700 }); g.restore();
+      g.save(); g.translate(x, 700); rr(g, -150, -110, 300, 220, 8); fillStroke(g, '#c9a26a', 6); txt(g, '3DFX', 0, -20, 64, INK, { wt: 900, wide: true }); txt(g, 'PATENTS · PEOPLE', 0, 50, 26, INK, { fam: MONO, wt: 700 }); g.restore();
+      stamp(g, 'BOUGHT', 1500, 420, t, tRe + .3, { px: 80, col: NVL, rot: -.1 });
       chip(g, 'THE OLD KING, BOUGHT', 960, 160, { px: 50, bg: YEL, s: pop(t, tRe - .1), rot: -.02, wide: true });
       g.restore();
     }
     if (t > t9 - .1) {
-      var xk = pop(t, tX - .3, 2.6, .6);
+      var xk = pop(t, Math.min(tX - .3, t9 + .2), 2.6, .6);
       if (xk > 0) { g.save(); g.translate(760, 560); g.scale(clamp(xk, 0, 1.05), clamp(xk, 0, 1.05)); glow(g, 0, 0, 420, 'rgba(118,185,0,.5)', 1); rr(g, -300, -170, 600, 340, 30); fillStroke(g, '#1b1820', 8); g.strokeStyle = NVL; g.lineWidth = 26; g.lineCap = 'round'; g.beginPath(); g.moveTo(-90, -90); g.lineTo(90, 90); g.moveTo(90, -90); g.lineTo(-90, 90); g.stroke(); txt(g, 'XBOX · 2001', 0, 220, 44, CREAM, { fam: MONO, wt: 700, outline: 7 }); g.restore(); }
       var mk = pop(t, t2 - .3, 2.8, .6);
       if (mk > 0) { cash(g, 1400, 700, 1.4 * clamp(mk, 0, 1.05), 6); bigNum(g, '$200 MILLION', 1400, 420, 92, NVL, mk); chip(g, 'UP FRONT', 1400, 530, { px: 44, bg: CREAM, s: pop(t, at('g9', 'front.') - .2), rot: .03, wide: true }); }
@@ -280,7 +283,7 @@
     g.restore();
     chip(g, 'IAN BUCK, GRAD STUDENT', 1020, 220, { px: 44, bg: YEL, s: pop(t, at('c1', 'ian') - .1) * (1 - seg(t, t2 - .2, t2)), rot: .02, wide: true });
     chip(g, 'MATH THAT ISN’T GAMES', 1460, 170, { px: 44, bg: NVL, s: pop(t, tMa - .1), rot: -.02, wide: true });
-    stamp(g, 'HIRED · 2004', 1020, 260, t, tH + .1, { px: 54, col: NVD });
+    stamp(g, 'HIRED · 2004', 880, 320, t, tH + .1, { px: 54, col: NVD });
     vignette(g, .4);
   }
   /* 34 · CUDA: the stadium on any problem; built into every gaming chip; the idea */
@@ -358,7 +361,7 @@
     var feed = t > tK - .3 ? Math.sin(t * 6) * 20 : 0; P.rh = [P.rh[0] + feed, P.rh[1]];
     guy(g, 560, 940, 1.2, P, Object.assign({}, JEN, { hold: [null, function (g) { coin(g, 0, -10, 18, YEL); }] }), t);
     for (var i = 0; i < 5; i++) { var ph = (t * 1.2 + i * .2) % 1; if (t < tK - .3) break; coin(g, lerp(820, 1030, ph), 600 - Math.sin(ph * Math.PI) * 120, 18, YEL, Math.cos(ph * 9)); }
-    if (t > t9 - .2) quote(g, t, 'c9', 180, { px: 64, maxw: 1600, hot: /market|yet/i });
+    if (t > t9 - .2) quote(g, t, 'c9', 220, { px: 64, maxw: 1300, hot: /market|yet/i });
     g.restore();
     chip(g, 'KEEPS PAYING ANYWAY', 1030, 900, { px: 44, bg: YEL, s: pop(t, tK - .1) * (1 - seg(t, t9 - .3, t9)), rot: -.02, wide: true });
     vignette(g, .4);

@@ -82,7 +82,7 @@
       if (k < 1) { g.fillStyle = 'rgba(14,10,28,' + (.9 * (1 - k) * clamp(u * 6, 0, 1)) + ')'; g.fillRect(0, 0, W, H); }
       var sl = pop(t, c.t, 2.8, .5), sc = s * lerp(1.6, 1, clamp(sl, 0, 1));
       g.save(); g.translate(px, py); g.scale(sc, sc); g.rotate(lerp(-.04, -.015, k) + knock(t, c.t + .1, 30, 9) * .05);
-      g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 : 1);
+      g.globalAlpha = clamp(sl * 3, 0, 1) * (t > nx - .3 ? 1 - seg(t, nx - .3, nx) : 1) * (k >= 1 ? .92 * (QUOTE_ON ? 0 : 1) : 1);
       rr(g, -cw / 2 + 16, -ch / 2 + 20, cw, ch, 26); g.fillStyle = 'rgba(8,6,18,.5)'; g.fill();
       rr(g, -cw / 2, -ch / 2, cw, ch, 26); fillStroke(g, YEL, 10);
       g.fillStyle = INK; g.fillRect(-cw / 2, -ch / 2 + 20, 16, ch - 40);
@@ -147,7 +147,7 @@
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.fillStyle = NIGHT; g.fillRect(0, 0, W, H);
-    var i = sceneAt(t), s = SC[i];
+    var i = sceneAt(t), s = SC[i]; QUOTE_ON = false;
     g.save(); wipe(g, t, s, i > 0 ? SC[i - 1] : null); g.restore();
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1;
     partCards(g, t);

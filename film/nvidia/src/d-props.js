@@ -10,6 +10,7 @@
       row.forEach(function (c) {
         var k = pop(t, c.w.t0 - .06, 3.4, .55), i = n++;
         if (k > 0) {
+          if (out > 0) QUOTE_ON = true;
           g.save(); g.globalAlpha *= out; g.translate(x + c.ww / 2, yy + (1 - clamp(k, 0, 1)) * -40); g.rotate((hash(i * 3.1 + y) - .5) * .09); g.scale(k, k);
           g.fillStyle = 'rgba(8,6,18,.45)'; g.fillRect(-c.ww / 2 + 10, -px * .66 + 14, c.ww, px * 1.32);
           g.beginPath(); g.rect(-c.ww / 2, -px * .66, c.ww, px * 1.32); fillStroke(g, (o.hot && o.hot.test(c.w.w)) ? (o.hotCol || NVL) : i % 3 === 2 ? YEL : PAPER, 5);
@@ -176,7 +177,7 @@
     if (night) { for (var i = 0; i < 40; i++) { circ(g, 320 + hash(i) * 1280, 140 + hash(i + 4) * 200, 2); g.fillStyle = 'rgba(255,250,230,.6)'; g.fill(); } g.fillStyle = '#2a2f4a'; g.fillRect(300, 400, 1320, 150); for (i = 0; i < 6; i++) { var lx = ((i * 300 + t * 90) % 1700) + 200; glow(g, lx, 470, 60, 'rgba(255,220,140,.8)', 1); } }
     else { puff(g, 600 + (t * 10) % 300, 220, .8, 'rgba(255,255,255,.85)'); puff(g, 1300 - (t * 6) % 200, 260, .6, 'rgba(255,255,255,.75)'); g.fillStyle = '#c9b48a'; g.fillRect(300, 430, 1320, 120); }
     /* the diner's own sign, seen backwards through the glass */
-    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true }); g.restore();
+    g.save(); g.translate(1380, 230); g.rotate(.03); rr(g, -150, -50, 300, 100, 18); fillStroke(g, '#ffd23d', 6); txt(g, "DENNY'S", 0, 4, 52, RED, { wt: 900, wide: true, maxw: 260 }); g.restore();
     g.restore();
     g.strokeStyle = INK; g.lineWidth = 8; g.beginPath(); g.moveTo(960, 120); g.lineTo(960, 550); g.stroke();
     /* booth backs */

@@ -220,13 +220,13 @@
     g.save(); g.globalAlpha *= clamp(a, 0, 1); g.translate(x, y); g.rotate(rot || 0);
     g.fillStyle = 'rgba(8,6,18,.45)'; g.fillRect(-w / 2 + 12, -h / 2 + 16, w, h);
     g.beginPath(); g.rect(-w / 2, -h / 2, w, h); fillStroke(g, col || PAPER, 5);
-    if (fn) fn(g, w, h);
+    var cw0 = CARDW; CARDW = w - 40; if (fn) fn(g, w, h); CARDW = cw0;
     g.restore();
   }
   function tape(g, x, y, rot) { g.save(); g.translate(x, y); g.rotate(rot || 0); g.fillStyle = 'rgba(255,240,190,.75)'; g.fillRect(-50, -16, 100, 32); g.restore(); }
   /* a big number that rolls up from 0 as k goes 0..1 */
   function counter(g, x, y, k, to, px, col, o) {
-    o = o || {}; var v = to * eo(clamp(k, 0, 1)), s = o.fmt ? o.fmt(v) : Math.round(v).toLocaleString('en-US');
+    o = o || {}; var v = to * eo(clamp(k, 0, 1)), v = o.step ? roll(v, to, o.step) : v; var s = o.fmt ? o.fmt(v) : Math.round(v).toLocaleString('en-US');
     txt(g, (o.pre || '') + s + (o.post || ''), x, y, px, col || CREAM, { wt: 900, wide: true, outline: o.outline == null ? px * .14 : o.outline });
   }
 
