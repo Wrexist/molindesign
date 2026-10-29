@@ -24,7 +24,7 @@ The narration is an AI-generated voice. Grand Theft Auto is a trademark of Take-
 Which GTA 6 topic do you want first? 1 Hidden details, 2 Easter eggs, 3 Trailer breakdowns, 4 Mysteries. Drop the number.
 
 ## TikTok caption
-GTA 6 is taking over Delta. Here is why, what you get and my promise. Which topic first? 1 to 4 below #GTA6 #GTAVI #ViceCity #Delta
+GTA 6 is taking over Delta. Here is why and what you get. Which topic first? 1 to 4 below #GTA6 #GTAVI #ViceCity #Delta
 
 ## Notes
 - Main phrase: "GTA 6 channel", spoken in the first word ("GTA 6") and on screen at frame 0.

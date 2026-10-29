@@ -1,6 +1,6 @@
 # Why Delta is becoming a GTA 6 channel (Delta)
 
-Vertical 1080x1920, about 78 s. One hard idea: **the Delta triangle flips into a 6**, then a plain reason, plain list, plain promise.
+Vertical 1080x1920, about 44 s. One hard idea: **the Delta triangle flips into a 6**, then a plain reason, plain list, plain promise.
 
 ## Benchmarks
 - **Kurzgesagt-style flat explainers**: learn flat hand-built shapes, one color per idea, icons popping on a spring. Don't take the slow cosmic pacing.
@@ -14,11 +14,10 @@ Vertical 1080x1920, about 78 s. One hard idea: **the Delta triangle flips into a
 ## Line to picture
 | Line | Picture |
 |---|---|
-| hook | Huge Delta triangle, GTA 6 chip, flips to 6, DELTA chip |
-| why | WHY? chip, loading bar to ALMOST HERE |
-| date, plat, src | Calendar NOVEMBER 19 2026, two plain consoles, mock address bar with Rockstar's two words |
-| old, now | Game tiles scroll, GTA 6 tile pushes in, COMES FIRST |
-| get ... guide | Six tiles fill in one per word |
-| prom, p1-p4 | Four promise rows |
-| oldv, same | Thumbnails get checks; brackets close on the mark |
+| hook, why | Cracked Delta triangle, NOV 19 chip, flips to a 6, GTA 6 / DELTA / WHY? chips |
+| date, plat | Calendar NOVEMBER 19 2026 held, two plain consoles, source label |
+| now | Game tiles pushed aside by the GTA 6 tile, COMES FIRST |
+| daily ... guide | One hero card per word, six in total |
+| p1, p2 | Two promise cards, two rows each |
+| oldv | Thumbnails with checks, ALL OLD VIDEOS STAY UP |
 | sub, ask | Subscribe press, bell, comment bubble with four topics; dissolve to frame 0 |

@@ -1,30 +1,24 @@
-duck -6 dB over 19 phrases; voice set +8.3 dB for a 12.0 dB speech-to-music ratio
+duck -6 dB over 10 phrases; voice set +7.9 dB for a 12.0 dB speech-to-music ratio
 wrote /home/user/molindesign/film/gta-transition/out/gta-transition-vo.mp4
-integrated -14.0 LUFS   true peak -2.6 dBTP
+integrated -14.0 LUFS   true peak -2.7 dBTP
 
 IN-CONTEXT CHECK  (each line heard through the finished mix)
 ok    hook       wer 0.00  heard "GTA 6 is taking over Delta."
-ok    why        wer 0.00  heard "Here's why. GTA 6 is almost here."
+ok    why        wer 0.00  heard "Here's why."
 ok    date       wer 0.00  heard "GTA 6 launches November 19, 2026."
 ok    plat       wer 0.00  heard "On PlayStation 5 and on Xbox Series X and S."
-ok    src        wer 0.00  heard "That is the date on Rockstar's own website."
-ok    old        wer 0.00  heard "Until now, Delta covered games of every kind. You watched, and you stayed."
 ok    now        wer 0.00  heard "So from here on GTA 6 comes first."
-ok    get        wer 0.00  heard "Here is what you get."
 ok    daily      wer 0.00  heard "A new GTA 6 short, every single day."
-ok    hid        wer 0.00  heard "Hidden details in the trailers, Easter eggs, trailer breakdowns."
-ok    myst       wer 0.00  heard "Mysteries and theories always labeled as theories."
+ok    hid        wer 0.00  heard "Hidden details and Easter eggs."
+ok    brk        wer 0.00  heard "Trailer breakdowns."
+ok    myst       wer 0.00  heard "Mysteries with every theory labeled"
 ok    guide      wer 0.00  heard "And after launch, guides to help you play."
-ok    prom       wer 0.00  heard "Now, my promise to you."
-ok    p1         wer 0.00  heard "Every fact comes with a source."
-ok    p2         wer 0.00  heard "A rumor is always called a rumor."
-ok    p3         wer 0.00  heard "No leaks, if it leaked, we will not show it."
-ok    p4         wer 0.09  heard "And nothing here is affiliated with Rockstar Games or Take"
-ok    oldv       wer 0.00  heard "Your old videos all stay up every video."
-ok    same       wer 0.00  heard "Same channel, New Focus."
+ok    p1         wer 0.00  heard "Every fact has a source, and every rumor is labeled a rumor."
+ok    p2         wer 0.08  heard "No leaks, and nothing here is affiliated with Rockstar or Take"
+ok    oldv       wer 0.00  heard "Your old videos all stay up."
 ok    sub        wer 0.00  heard "Subscribe so you never miss a day."
 ok    ask1       wer 0.00  heard "Then comment below."
 ok    ask2       wer 0.00  heard "Which GTA 6 topic do you want first?"
-gta-transition-vo:  I: -14.0 LUFS  Peak: -2.6 dBFS 
-gta-transition-voice-only:  I: -14.4 LUFS  Peak: -1.4 dBFS 
+gta-transition-vo:  I: -14.0 LUFS  Peak: -2.7 dBFS 
+gta-transition-voice-only:  I: -14.3 LUFS  Peak: -1.4 dBFS 
 no black stretches

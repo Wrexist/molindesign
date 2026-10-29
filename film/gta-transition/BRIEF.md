@@ -21,18 +21,19 @@ Main search phrase: "Delta GTA 6 channel" / "GTA 6 release date" (date line, sho
 
 **Our own statements, not outside facts (labeled as the channel's promise):** daily GTA 6 Shorts (`delta/README.md`: "New videos every day until launch and after"); content types hidden details, Easter eggs, trailer breakdowns, mysteries/theories, guides after launch (`delta/REBRAND.md` playlists and `delta/README.md`); rumors/theories labeled, no leaks shown, no footage we do not own (`delta/SAFE-EDIT.md`); old videos stay up (`delta/REBRAND.md`: "Leave old videos up"); not affiliated with Rockstar Games or Take-Two (`delta/REBRAND.md` About text).
 
+**Cut in jury round 1 (runtime 78 s to about 44 s):** the 'Until now, Delta covered games of every kind' line, the 'date on Rockstar's own website' beat (the source now sits as an on-screen label), the Same channel line. The script is about 100 spoken words, below the 150-200 first briefed, because the jury and the channel's own retention data say 55 s or less.
+
 **Deliberately not said:** subscriber count (161k is from Isac, not checked on screen), any "biggest launch" claim, a day countdown (the video must stay true on any posting date), PC, price, any rumor. "Until now, Delta covered games of every kind" is the channel's own history as Isac described it.
 
 ## 4. Shots (flat hand-built shapes, Vice City palette on deep ink)
-Native move: the channel flip, a three-stripe wipe (pink, teal, orange) between scenes, and the Delta triangle that flips into a 6.
-- hook: huge Delta triangle with teal shadow over the striped sun, chip GTA 6; flips into a 6 on "over", chip becomes DELTA on "Delta".
-- why: WHY? chip, loading bar fills to ALMOST HERE on "over".
-- date: calendar page NOVEMBER 19 2026; two plain console boxes (no logos) PS5 and XBOX SERIES X|S; our mock of the Rockstar address bar with "Coming November 19, 2026" and a check; source label ROCKSTARGAMES.COM/VI.
-- old: two rows of generic game tiles (controller, car, sword, ball, rocket, blob) scroll; GTA 6 tile pushes them aside, chip COMES FIRST.
-- get: six tiles fill in on their words: DAILY SHORTS, HIDDEN DETAILS, EASTER EGGS, TRAILER BREAKDOWNS, MYSTERIES (THEORY stamp), GUIDES (AFTER LAUNCH).
-- prom: four rows on their lines: EVERY FACT SOURCED, RUMORS LABELED, NO LEAKS, NOT AFFILIATED (ROCKSTAR GAMES, TAKE-TWO as plain text).
-- oldv: six video thumbnails get a check, ALL OLD VIDEOS STAY UP; viewfinder brackets close on the triangle, SAME CHANNEL, NEW FOCUS.
-- cta: SUBSCRIBE button is pressed, bell rings; comment bubble WHICH GTA 6 TOPIC FIRST? with four options; dissolves into frame 0.
+Native move: the cracked Delta triangle that flips into a 6, and a narrow torn-edge wipe (pink, teal, orange, misregistered) with the next scene already under it. About 44 s, one hero object per beat.
+- hook: huge Delta triangle cracked in two over the striped sun, chip NOV 19; flips into a 6 by 0.8 s and holds, chip GTA 6, then DELTA, then WHY? on "Here's why".
+- date: bold calendar NOVEMBER 19 2026 (400 px numerals) holds for the whole date and platform lines; two plain console boxes (no logos) PS5 and XBOX SERIES X|S; label SOURCE: ROCKSTARGAMES.COM/VI.
+- now: generic game tiles scroll, the GTA 6 tile pushes them aside, chip COMES FIRST.
+- get: six hero cards, one every 1 to 3 s on its word: DAILY SHORTS, HIDDEN DETAILS, EASTER EGGS, TRAILER BREAKDOWNS, MYSTERIES (THEORY stamp), GUIDES (AFTER LAUNCH).
+- prom: two hero cards, two rows each: EVERY FACT SOURCED and RUMORS LABELED; NO LEAKS and NOT AFFILIATED (ROCKSTAR · TAKE-TWO as plain text).
+- oldv: six video thumbnails get checks, ALL OLD VIDEOS STAY UP.
+- cta: SUBSCRIBE is pressed, bell rings; comment bubble WHICH GTA 6 TOPIC FIRST? with four options; dissolves into frame 0 (cracked triangle, NOV 19).
 
 ## 5. Open questions
 - Re-check rockstargames.com/VI in a browser on the day of posting (live page).
@@ -41,3 +42,4 @@ Native move: the channel flip, a three-stripe wipe (pink, teal, orange) between 
 ## Log
 - 2026-10-28: hook changed from "Delta is becoming a GTA 6 channel." to "GTA 6 is taking over Delta." so GTA 6 is the first spoken word.
 - 2026-10-28: voice fixes ("Here's why. GTA 6 is almost here." avoids the wait/weight misheard word; "Your old videos all stay up. Every video."; one-sentence date line). Layout shifted down, bounds and readcheck clean, master -14.0 LUFS, 76.4 s. No independent video-jury agent could be spawned in this session (no subagent tool); a same-context self-review was done and an independent jury is still owed before posting.
+- 2026-10-29 (jury r1, 6.9): cut to about 44 s; frame 0 now a cracked triangle with NOV 19; one hero object per beat; sublabels at least 36 px; torn-edge wipe; NOV 19 calendar holds about 6 s.

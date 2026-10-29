@@ -33,111 +33,81 @@
     },
     {
       "id": "why",
-      "at": 3.45,
-      "text": "Here's why. GTA 6 is almost here."
+      "at": 2.75,
+      "text": "Here's why."
     },
     {
       "id": "date",
-      "at": 6.7,
+      "at": 4.2,
       "text": "GTA 6 launches November 19, 2026.",
       "say": "GTA 6 launches November nineteenth. Twenty twenty six."
     },
     {
       "id": "plat",
-      "at": 10.1,
+      "at": 7.97,
       "text": "On PlayStation 5 and Xbox Series X and S.",
       "say": "On PlayStation five, and on Xbox Series X and S."
     },
     {
-      "id": "src",
-      "at": 14.0,
-      "text": "That is the date on Rockstar's own website."
-    },
-    {
-      "id": "old",
-      "at": 17.65,
-      "text": "Until now, Delta covered games of every kind. You watched, and you stayed."
-    },
-    {
       "id": "now",
-      "at": 23.3,
+      "at": 11.76,
       "text": "So from here on, GTA 6 comes first."
     },
     {
-      "id": "get",
-      "at": 26.95,
-      "text": "Here is what you get."
-    },
-    {
       "id": "daily",
-      "at": 29.4,
+      "at": 14.59,
       "text": "A new GTA 6 Short, every single day."
     },
     {
       "id": "hid",
-      "at": 32.65,
-      "text": "Hidden details in the trailers. Easter eggs. Trailer breakdowns."
+      "at": 17.46,
+      "text": "Hidden details and Easter eggs."
+    },
+    {
+      "id": "brk",
+      "text": "Trailer breakdowns.",
+      "at": 20.34
     },
     {
       "id": "myst",
-      "at": 36.7,
-      "text": "Mysteries and theories, always labeled as theories."
+      "at": 22.61,
+      "text": "Mysteries, with every theory labeled."
     },
     {
       "id": "guide",
-      "at": 39.95,
+      "at": 25.17,
       "text": "And after launch, guides to help you play."
     },
     {
-      "id": "prom",
-      "at": 43.6,
-      "text": "Now, my promise to you."
-    },
-    {
       "id": "p1",
-      "at": 46.05,
-      "text": "Every fact comes with a source."
+      "at": 27.93,
+      "text": "Every fact has a source, and every rumor is labeled a rumor."
     },
     {
       "id": "p2",
-      "at": 48.9,
-      "text": "A rumor is always called a rumor."
-    },
-    {
-      "id": "p3",
-      "at": 52.15,
-      "text": "No leaks. If it leaked, we will not show it."
-    },
-    {
-      "id": "p4",
-      "at": 56.6,
-      "text": "And nothing here is affiliated with Rockstar Games or Take-Two."
+      "at": 31.89,
+      "text": "No leaks, and nothing here is affiliated with Rockstar or Take-Two."
     },
     {
       "id": "oldv",
-      "at": 61.05,
-      "text": "Your old videos all stay up. Every video."
-    },
-    {
-      "id": "same",
-      "at": 64.3,
-      "text": "Same channel. New focus."
+      "at": 36.58,
+      "text": "Your old videos all stay up."
     },
     {
       "id": "sub",
-      "at": 66.35,
+      "at": 38.71,
       "text": "Subscribe, so you never miss a day."
     },
     {
       "id": "ask1",
-      "at": 69.6,
+      "at": 41.12,
       "text": "Then comment below."
     },
     {
       "id": "ask2",
-      "at": 72.45,
+      "at": 42.69,
       "text": "Which GTA 6 topic do you want first?"
     }
   ],
-  "dur": 76.4
+  "dur": 46.4
 }

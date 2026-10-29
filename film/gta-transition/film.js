@@ -111,31 +111,127 @@
   /* ---------- scenes keyed to the voice ---------- */
   var SC = [
     { id: 'hook', name: 'Delta to 6', t0: 0 },
-    { id: 'why', name: 'The wait', t0: start('why') - .15 },
     { id: 'date', name: 'Nov 19', t0: start('date') - .15 },
-    { id: 'old', name: 'Every kind', t0: start('old') - .15 },
-    { id: 'get', name: 'What you get', t0: start('get') - .15 },
-    { id: 'prom', name: 'The promise', t0: start('prom') + .1 },
+    { id: 'now', name: 'GTA 6 first', t0: start('now') - .15 },
+    { id: 'get', name: 'What you get', t0: start('daily') - .15 },
+    { id: 'prom', name: 'The promise', t0: start('p1') - .15 },
     { id: 'oldv', name: 'Old videos stay', t0: start('oldv') - .15 },
-    { id: 'cta', name: 'Subscribe', t0: start('sub') - .15 }
+    { id: 'cta', name: 'Subscribe', t0: start('sub') + .3 }
   ];
   SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
   var SHOTS = SC.map(function (s) { return { id: s.id, name: s.name, t0: s.t0, t1: s.t1 }; });
   var HOME = end('ask2') + .35;
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   var S = {}; SC.forEach(function (s, i) { S[s.id] = i; });
+  var BIG = 36;                                    // smallest sublabel size on screen
 
   /* ---------- small flat drawing helpers ---------- */
+  function pop(t, t0) { return clamp(sp(t, t0, 3, .62), 0, 1.12); }
+  function slide(t, t0, t1) { return eio(seg(t, t0, t1)); }
+
+  /* ---------- the mark: a cracked Delta triangle that flips into a 6 ---------- */
+  var FLIP = .42;
+  var ZIG = [[0, -420], [46, -260], [-34, -120], [40, 10], [-30, 140], [24, 290], [0, 460]];
+  function mark(g, cx, cy, size, t, flipK, wob, crack) {
+    var ang = flipK * Math.PI, c = Math.abs(Math.cos(ang)), sx = c < .02 ? .02 : c, showSix = flipK > .5;
+    g.save(); g.translate(cx, cy); g.rotate(wob || 0); g.scale(sx, 1);
+    if (!showSix) {
+      var gap = crack ? 12 + 8 * Math.sin(t * 9) + crack * 18 : 0;
+      for (var half = 0; half < 2; half++) {
+        g.save();
+        if (crack) {
+          g.beginPath(); var dir = half ? 1 : -1;
+          g.moveTo(dir * 1000, -1000);
+          ZIG.forEach(function (z) { g.lineTo(z[0] * size / 560, z[1] * size / 560); });
+          g.lineTo(dir * 1000, 1000); g.closePath(); g.clip();
+          g.translate(dir * gap * .5, dir * gap * .22);
+        }
+        tri(g, 18, 22, size * .62, 0, TEAL); tri(g, 0, 0, size * .62, 0, PINK); tri(g, 0, size * .1, size * .26, 0, BG);
+        g.restore();
+        if (!crack) break;
+      }
+    } else {
+      font(g, size * 1.25, 900); g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillStyle = TEAL; g.fillText('6', 18, size * .06 + 22); g.fillStyle = PINK; g.fillText('6', 0, size * .06);
+    }
+    g.restore();
+  }
+  function hookFrame(g, t, home) {
+    var T = home ? 0 : t, flipK = home ? 0 : eio(seg(T, FLIP, FLIP + .38));
+    var wob = Math.sin(T * 2.4) * .06 + Math.sin(T * 5.1) * .015;
+    var sz = 560 * lerp(.94, 1, eo(seg(T, 0, .5))) * (1 + .04 * Math.sin(T * 3));
+    mark(g, 540, 800, sz, T, flipK, wob, home ? 1 : 1 - seg(T, FLIP - .1, FLIP + .2));
+    if (flipK < .5) chip(g, 'NOV 19', 540, 1150, { px: 130, bg: CREAM, fg: BG, rot: -.05 });
+    else {
+      var tw = at('why', 'why') - .05, afterW = !home && T > tw, kD = home ? 0 : pop(T, at('hook', 'Delta') - .05), kW = afterW ? pop(T, tw) : 0;
+      chip(g, 'GTA 6', 540, 1150, { px: 130, bg: CREAM, fg: BG, rot: -.05 });
+      if (kD > 0 && !afterW) chip(g, 'DELTA', 540, 1330, { px: 90, bg: TEAL, fg: BG, rot: .04, s: kD, a: kD * 2 });
+      if (afterW) chip(g, 'WHY?', 540, 1330, { px: 90, bg: PINK, fg: BG, rot: .04, s: kW, a: kW * 2 });
+    }
+  }
+
+  /* ---------- scene: date (the calendar holds the whole scene, consoles under it) ---------- */
+  function sceneDate(g, t) {
+    var s = SC[S.date], tD = at('date', 'November'), tP = start('plat');
+    var calK = pop(t, s.t0 + .1), flip = eo(seg(t, tD - .2, tD + .25));
+    g.save(); g.translate(540, 700); g.scale(calK * 1.0, calK * 1.0); g.rotate(-.03);
+    rr(g, -300, -330, 600, 660, 36); g.fillStyle = CREAM; g.fill();
+    g.save(); rr(g, -300, -330, 600, 660, 36); g.clip(); g.fillStyle = PINK; g.fillRect(-300, -330, 600, 120); g.restore();
+    g.fillStyle = BG; [-190, 190].forEach(function (rx) { g.beginPath(); g.arc(rx, -330, 22, 0, 6.2832); g.fill(); });
+    font(g, 74, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('NOVEMBER', 0, -266);
+    g.save(); g.globalAlpha = clamp(flip * 3, 0, 1); g.scale(1, lerp(.2, 1, flip)); font(g, 400, 900); g.fillStyle = PINK; g.fillText('19', 0, 10); g.restore();
+    font(g, 110, 900); g.fillStyle = BG; g.globalAlpha = clamp(flip * 2 - 1, 0, 1); g.fillText('2026', 0, 250);
+    g.restore();
+    var kP = pop(t, tP), kX = pop(t, at('plat', 'Xbox') - .05);
+    if (kP > 0) {
+      g.save(); g.translate(0, Math.sin(t * 2.2) * 6); console5(g, 280, 1130, t, kP * .55); g.restore();
+      g.save(); g.translate(0, Math.sin(t * 2.2 + 1.5) * 6); consoleX(g, 700, 1130, t, kX * .55); g.restore();
+      chip(g, 'PS5', 280, 1270, { px: 64, bg: CREAM, fg: BG, rot: -.04, s: kP, a: kP * 2 });
+      chip(g, 'XBOX SERIES X|S', 700, 1270, { px: 40, bg: TEAL, fg: BG, rot: .04, s: kX, a: kX * 2, pad: 22 });
+    }
+  }
+
+  /* ---------- scene: now (game tiles pushed aside by the GTA 6 tile) ---------- */
+  function sceneNow(g, t) {
+    var s = SC[S.now], tG = at('now', 'GTA'), inK = pop(t, s.t0 + .02), toOld = eio(seg(t, tG - .15, tG + .35));
+    for (var row = 0; row < 2; row++) {
+      var y = 640 + row * 260, dir = row ? -1 : 1, off = (t - s.t0) * 90 * dir;
+      for (var i = -1; i < 7; i++) {
+        var idx = ((i % 6) + 6) % 6, cx = ((i * 210 + off) % 1470 + 1470) % 1470 - 200;
+        var kk = clamp(inK * 1.4 - (i + 1) * .04, 0, 1.05), push = toOld * (cx < 540 ? -1 : 1) * 560, al = (1 - toOld * .75);
+        g.save(); g.globalAlpha = clamp(kk * 2, 0, 1) * al; g.translate(cx + push, y + Math.sin(t * 2 + i + row) * 6); g.scale(kk, kk);
+        rr(g, -90, -90, 180, 180, 34); g.fillStyle = TILE[(idx + row * 3) % 6]; g.fill(); g.translate(0, 4);
+        g.save(); g.fillStyle = BG; gameIcon(g, (idx + row * 2) % 6, 1); g.restore();
+        g.restore();
+      }
+    }
+    var big = pop(t, tG + .1);
+    if (big > 0) {
+      g.save(); g.translate(540, 780); g.scale(big, big); g.rotate(-.04);
+      rr(g, -280, -280, 560, 560, 70); g.fillStyle = PINK; g.fill(); rr(g, -280, -280, 560, 560, 70); g.strokeStyle = CREAM; g.lineWidth = 8; g.stroke();
+      font(g, 330, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('6', 0, 30);
+      font(g, 70, 900); g.fillText('GTA', 0, -190);
+      g.restore();
+      var ck = pop(t, at('now', 'first') - .25);
+      chip(g, 'COMES FIRST', 540, 1160, { px: 100, bg: TEAL, fg: BG, rot: .035, s: ck, a: ck * 2 });
+    }
+  }
+  var TILE = [PINK, TEAL, ORG, PURP, MINT, SAND];
+
+  /* ---------- scene: get (one hero object at a time) ---------- */
+
   function tri(g, cx, cy, r, rot, fill) {
     g.beginPath();
     for (var i = 0; i < 3; i++) { var a = rot - Math.PI / 2 + i * 2.0944; g[i ? 'lineTo' : 'moveTo'](cx + Math.cos(a) * r, cy + Math.sin(a) * r); }
     g.closePath(); g.fillStyle = fill; g.fill();
   }
+
   function card(g, x, y, w, h, col, a, r) {
     g.save(); g.globalAlpha *= a == null ? 1 : a; rr(g, x, y, w, h, r || 28); g.fillStyle = PANEL; g.fill();
     if (col) { rr(g, x, y, w, h, r || 28); g.strokeStyle = col; g.lineWidth = 5; g.stroke(); }
     g.restore();
   }
+
   function tick(g, cx, cy, s, col, k) {                 // a drawn check mark, k = 0..1 progress
     g.save(); g.strokeStyle = col; g.lineWidth = 12 * s; g.lineCap = 'round'; g.lineJoin = 'round';
     var p = [[-22, 2], [-6, 18], [24, -16]].map(function (q) { return [cx + q[0] * s, cy + q[1] * s]; });
@@ -145,113 +241,7 @@
     if (k2 > 0) g.lineTo(lerp(p[1][0], p[2][0], k2), lerp(p[1][1], p[2][1], k2));
     g.stroke(); g.restore();
   }
-  function pop(t, t0) { return clamp(sp(t, t0, 3, .62), 0, 1.12); }
 
-  /* ---------- the mark: Delta triangle that flips into a 6 ---------- */
-  var FLIP = at('hook', 'over') - .12;
-  function mark(g, cx, cy, size, t, flipK, wob) {
-    // flipK 0 = triangle, 1 = six. The flip is a turn around the vertical axis.
-    var ang = flipK * Math.PI, c = Math.abs(Math.cos(ang)), sx = c < .02 ? .02 : c, showSix = flipK > .5;
-    g.save(); g.translate(cx, cy); g.rotate(wob || 0); g.scale(sx, 1);
-    if (!showSix) {
-      tri(g, 18, 22, size * .62, 0, TEAL);
-      tri(g, 0, 0, size * .62, 0, PINK);
-      tri(g, 0, size * .1, size * .26, 0, BG);
-    } else {
-      font(g, size * 1.25, 900); g.textAlign = 'center'; g.textBaseline = 'middle';
-      g.fillStyle = TEAL; g.fillText('6', 18, size * .06 + 22); g.fillStyle = PINK; g.fillText('6', 0, size * .06);
-    }
-    g.restore();
-  }
-  function hookFrame(g, t, home) {
-    var T = home ? 0 : t, flipK = home ? 0 : eio(seg(T, FLIP, FLIP + .45));
-    var wob = Math.sin(T * 2.4) * .06 + Math.sin(T * 5.1) * .015;
-    var sz = 560 * lerp(.94, 1, eo(seg(T, 0, .5))) * (1 + .04 * Math.sin(T * 3));
-    mark(g, 540, 800, sz, T, flipK, wob);
-    var a = home ? 1 : 1;
-    if (flipK < .5 || (!home && T < at('hook', 'Delta') - .05)) chip(g, 'GTA 6', 540, 1150, { px: 120, bg: CREAM, fg: BG, rot: -.05 });
-    else {
-      var k = home ? 1 : pop(T, at('hook', 'Delta') - .05);
-      chip(g, 'DELTA', 540, 1150, { px: 120, bg: CREAM, fg: BG, rot: -.05, s: k, a: k * 2 });
-    }
-  }
-
-  /* ---------- scene: why (loading bar fills to done on "over") ---------- */
-  function sceneWhy(g, t) {
-    var s = SC[S.why], q = pop(t, s.t0 + .1);
-    var fillA = at('why', 'GTA') - .1, fillB = at('why', 'here') + .1, f = eio(seg(t, fillA, fillB));
-    var k = pop(t, start('why'));
-    chip(g, 'WHY?', 540, 640, { px: 150, bg: TEAL, fg: BG, rot: .04, s: k, a: k * 2 });
-    var bx = 130, bw = 820, by = 980, bh = 96, bk = pop(t, fillA - .25);
-    g.save(); g.globalAlpha = clamp(bk * 2, 0, 1); g.translate(0, (1 - Math.min(1, bk)) * 40);
-    rr(g, bx, by, bw, bh, 48); g.fillStyle = PANEL; g.fill(); rr(g, bx, by, bw, bh, 48); g.strokeStyle = CREAM; g.lineWidth = 5; g.stroke();
-    g.save(); rr(g, bx + 8, by + 8, bw - 16, bh - 16, 40); g.clip();
-    g.fillStyle = PINK; g.fillRect(bx + 8, by + 8, (bw - 16) * f, bh - 16);
-    g.fillStyle = 'rgba(255,243,230,.35)'; for (var i = 0; i < 12; i++) { var sx = bx + 8 + ((i * 90 + t * 120) % (bw + 90)) - 90; if (sx < bx + 8 + (bw - 16) * f) g.fillRect(sx, by + 8, 28, bh - 16); }
-    g.restore();
-    label(g, 'GTA 6', 540, by - 56, 1, CREAM, 40);
-    g.restore();
-    var done = pop(t, fillB);
-    if (done > 0) { chip(g, 'ALMOST HERE', 540, 1220, { px: 84, bg: ORG, fg: BG, rot: -.04, s: done, a: done * 2 }); }
-  }
-
-  /* ---------- scene: date (calendar, consoles, the Rockstar page) ---------- */
-  function console5(g, x, y, t, k) {            // plain flat slab, no logos
-    g.save(); g.translate(x, y); g.scale(k, k);
-    rr(g, -62, -190, 124, 380, 62); g.fillStyle = CREAM; g.fill();
-    rr(g, -34, -190, 68, 380, 34); g.fillStyle = PANEL2; g.fill();
-    rr(g, -10, -170, 20, 340, 10); g.fillStyle = TEAL; g.fill();
-    g.restore();
-  }
-  function consoleX(g, x, y, t, k) {
-    g.save(); g.translate(x, y); g.scale(k, k);
-    rr(g, -92, -170, 112, 340, 14); g.fillStyle = '#17112f'; g.fill(); g.strokeStyle = PURP; g.lineWidth = 4; g.stroke();
-    g.beginPath(); g.arc(-36, -100, 36, 0, 6.2832); g.fillStyle = BG; g.fill(); g.strokeStyle = TEAL; g.lineWidth = 6; g.stroke();
-    rr(g, 34, -50, 96, 220, 12); g.fillStyle = CREAM; g.fill(); g.beginPath(); g.arc(82, 10, 22, 0, 6.2832); g.fillStyle = PANEL2; g.fill();
-    g.restore();
-  }
-  function sceneDate(g, t) {
-    var s = SC[S.date], tD = at('date', 'November'), tP = start('plat'), tS = start('src');
-    var calK = pop(t, s.t0 + .1), flip = eo(seg(t, tD - .2, tD + .25));
-    var calOut = 1 - eio(seg(t, tP - .1, tP + .35));
-    // calendar page
-    if (calOut > .01) {
-      g.save(); g.globalAlpha = calOut; g.translate(540, 800 - (1 - calOut) * 60); g.scale(calK * lerp(.9, 1, calOut), calK * lerp(.9, 1, calOut)); g.rotate(-.03);
-      rr(g, -300, -330, 600, 660, 36); g.fillStyle = CREAM; g.fill();
-      g.save(); rr(g, -300, -330, 600, 660, 36); g.clip(); g.fillStyle = PINK; g.fillRect(-300, -330, 600, 120); g.restore();
-      g.fillStyle = BG; [-190, 190].forEach(function (rx) { g.beginPath(); g.arc(rx, -330, 22, 0, 6.2832); g.fill(); });
-      font(g, 74, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('NOVEMBER', 0, -266);
-      var dayA = clamp(flip * 3, 0, 1);
-      g.save(); g.globalAlpha = dayA; g.scale(1, lerp(.2, 1, flip)); font(g, 400, 900); g.fillStyle = PINK; g.fillText('19', 0, 10); g.restore();
-      font(g, 110, 900); g.fillStyle = BG; g.globalAlpha = clamp(flip * 2 - 1, 0, 1); g.fillText('2026', 0, 250);
-      g.restore();
-    }
-    // consoles
-    var kP = pop(t, tP), kX = pop(t, at('plat', 'Xbox') - .05), co = 1 - eio(seg(t, tS - .1, tS + .3));
-    if (kP > 0 && co > .01) {
-      g.save(); g.globalAlpha = co;
-      g.save(); g.translate(0, Math.sin(t * 2.2) * 8); console5(g, 300, 780, t, kP); g.restore();
-      g.save(); g.translate(0, Math.sin(t * 2.2 + 1.5) * 8); consoleX(g, 700, 780, t, kX); g.restore();
-      chip(g, 'PS5', 300, 1100, { px: 80, bg: CREAM, fg: BG, rot: -.04, s: kP, a: kP * 2 });
-      chip(g, 'XBOX SERIES X|S', 700, 1100, { px: 46, bg: TEAL, fg: BG, rot: .04, s: kX, a: kX * 2, pad: 22 });
-      g.restore();
-    }
-    // the Rockstar page (our own mock of an address bar and the quoted words)
-    var kS = pop(t, tS);
-    if (kS > 0) {
-      g.save(); g.globalAlpha = clamp(kS * 2, 0, 1); g.translate(540, 780 + (1 - Math.min(1, kS)) * 120); g.scale(Math.min(kS, 1.05), Math.min(kS, 1.05));
-      rr(g, -400, -260, 800, 520, 30); g.fillStyle = PANEL; g.fill(); rr(g, -400, -260, 800, 520, 30); g.strokeStyle = CREAM; g.lineWidth = 5; g.stroke();
-      rr(g, -370, -230, 740, 84, 42); g.fillStyle = BG; g.fill();
-      g.fillStyle = MINT; g.beginPath(); g.arc(-326, -188, 14, 0, 6.2832); g.fill();
-      font(g, 38, 500, MONO); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText('rockstargames.com/VI', -290, -186);
-      font(g, 56, 900); g.textAlign = 'center'; g.fillStyle = DIM; g.fillText('Coming', 0, -40);
-      font(g, 92, 900); g.fillStyle = PINK; g.fillText('November 19,', 0, 62); g.fillText('2026', 0, 160);
-      var tk = clamp((t - tS - .9) / .4, 0, 1); if (tk > 0) tick(g, 300, 180, 1.4, MINT, tk);
-      g.restore();
-    }
-  }
-
-  /* ---------- scene: old (a row of game tiles; GTA 6 pushes to the front) ---------- */
   function gameIcon(g, id, s) {
     g.save(); g.scale(s, s);
     if (id === 0) { rr(g, -70, -40, 140, 80, 36); g.fillStyle = CREAM; g.fill(); g.fillStyle = BG; g.fillRect(-52, -6, 34, 10); g.fillRect(-40, -18, 10, 34); g.beginPath(); g.arc(32, -8, 9, 0, 6.2832); g.arc(50, 10, 9, 0, 6.2832); g.fill(); }
@@ -262,48 +252,23 @@
     else { g.beginPath(); g.moveTo(-50, 40); g.lineTo(-50, -10); g.arc(0, -10, 50, Math.PI, 0); g.lineTo(50, 40); g.quadraticCurveTo(25, 20, 0, 40); g.quadraticCurveTo(-25, 20, -50, 40); g.fillStyle = CREAM; g.fill(); g.fillStyle = BG; g.beginPath(); g.arc(-18, -12, 9, 0, 6.2832); g.arc(18, -12, 9, 0, 6.2832); g.fill(); }
     g.restore();
   }
-  var TILE = [PINK, TEAL, ORG, PURP, MINT, SAND];
-  function sceneOld(g, t) {
-    var s = SC[S.old], tN = start('old' ) + 0, tNow = start('now'), tDown = at('old', 'stayed');
-    var inK = pop(t, s.t0 + .05), toOld = eio(seg(t, tNow - .1, tNow + .45));
-    // two scrolling rows of tiles
-    for (var row = 0; row < 2; row++) {
-      var y = 640 + row * 260, dir = row ? -1 : 1, off = (t - s.t0) * 60 * dir;
-      for (var i = -1; i < 7; i++) {
-        var idx = ((i % 6) + 6) % 6, cx = ((i * 210 + off) % 1470 + 1470) % 1470 - 200;
-        var kk = clamp(inK * 1.4 - (i + 1) * .05, 0, 1.05);
-        var push = toOld * (cx < 540 ? -1 : 1) * 520, al = (1 - toOld * .7);
-        g.save(); g.globalAlpha = clamp(kk * 2, 0, 1) * al; g.translate(cx + push, y + Math.sin(t * 2 + i + row) * 6); g.scale(kk, kk);
-        rr(g, -90, -90, 180, 180, 34); g.fillStyle = TILE[(idx + row * 3) % 6]; g.fill(); g.translate(0, 4);
-        g.save(); g.fillStyle = BG; gameIcon(g, (idx + row * 2) % 6, 1); g.restore();
-        g.restore();
-      }
-    }
-    // an "every kind" label that turns into the pointing arrow
-    var lab = pop(t, at('old', 'every') - .1) * (1 - toOld);
-    if (lab > 0) chip(g, 'EVERY KIND OF GAME', 540, 1000, { px: 62, bg: CREAM, fg: BG, rot: -.03, s: lab, a: lab * 2 });
-    // GTA 6 tile takes the middle
-    var big = pop(t, tNow + .1);
-    if (big > 0) {
-      g.save(); g.translate(540, 780); g.scale(big, big); g.rotate(-.04);
-      rr(g, -280, -280, 560, 560, 70); g.fillStyle = PINK; g.fill(); rr(g, -280, -280, 560, 560, 70); g.strokeStyle = CREAM; g.lineWidth = 8; g.stroke();
-      font(g, 330, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('6', 0, 30);
-      font(g, 70, 900); g.fillText('GTA', 0, -190);
-      g.restore();
-      chip(g, 'COMES FIRST', 540, 1160, { px: 96, bg: TEAL, fg: BG, rot: .035, s: pop(t, at('now', 'first') - .25), a: pop(t, at('now', 'first') - .25) * 2 });
-    }
+
+  function console5(g, x, y, t, k) {            // plain flat slab, no logos
+    g.save(); g.translate(x, y); g.scale(k, k);
+    rr(g, -62, -190, 124, 380, 62); g.fillStyle = CREAM; g.fill();
+    rr(g, -34, -190, 68, 380, 34); g.fillStyle = PANEL2; g.fill();
+    rr(g, -10, -170, 20, 340, 10); g.fillStyle = TEAL; g.fill();
+    g.restore();
   }
 
-  /* ---------- scene: get (six tiles fill in on their words) ---------- */
-  var GET = [
-    { name: 'DAILY SHORTS', col: PINK, tag: 'EVERY DAY', at: function () { return at('daily', 'Short'); } },
-    { name: 'HIDDEN DETAILS', col: TEAL, tag: 'IN THE TRAILERS', at: function () { return at('hid', 'Hidden'); } },
-    { name: 'EASTER EGGS', col: ORG, tag: 'EXPLAINED', at: function () { return at('hid', 'Easter'); } },
-    { name: 'TRAILER BREAKDOWNS', col: PURP, tag: 'ANNOTATED', at: function () { return at('hid', 'breakdowns'); } },
-    { name: 'MYSTERIES', col: MINT, tag: 'THEORY = LABELED', at: function () { return at('myst', 'Mysteries'); } },
-    { name: 'GUIDES', col: SAND, tag: 'AFTER LAUNCH', at: function () { return at('guide', 'guides'); } }
-  ];
-  function tileXY(i) { return [90 + (i % 2) * 430, 470 + ((i / 2) | 0) * 294]; }
+  function consoleX(g, x, y, t, k) {
+    g.save(); g.translate(x, y); g.scale(k, k);
+    rr(g, -92, -170, 112, 340, 14); g.fillStyle = '#17112f'; g.fill(); g.strokeStyle = PURP; g.lineWidth = 4; g.stroke();
+    g.beginPath(); g.arc(-36, -100, 36, 0, 6.2832); g.fillStyle = BG; g.fill(); g.strokeStyle = TEAL; g.lineWidth = 6; g.stroke();
+    rr(g, 34, -50, 96, 220, 12); g.fillStyle = CREAM; g.fill(); g.beginPath(); g.arc(82, 10, 22, 0, 6.2832); g.fillStyle = PANEL2; g.fill();
+    g.restore();
+  }
+
   function getIcon(g, i, t, t0, col) {
     var T = t - t0, k = clamp(sp(t, t0 + .1, 2.8, .7), 0, 1.1);
     g.save(); g.scale(k, k);
@@ -330,99 +295,85 @@
     }
     g.restore();
   }
+
+  var GET = [
+    { name: 'DAILY SHORTS', col: PINK, tag: 'EVERY DAY', icon: 0, at: function () { return at('daily', 'new') - .05; } },
+    { name: 'DETAILS + EGGS', col: TEAL, tag: '', icon: 1, icon2: 2, at: function () { return at('hid', 'Hidden') - .05; } },
+    { name: 'BREAKDOWNS', col: PURP, tag: '', icon: 3, at: function () { return at('brk', 'Trailer') - .2; } },
+    { name: 'MYSTERIES', col: MINT, tag: 'THEORIES LABELED', icon: 4, at: function () { return at('myst', 'Mysteries') - .05; } },
+    { name: 'GUIDES', col: SAND, tag: '', icon: 5, at: function () { return at('guide', 'guides') - .35; } }
+  ];
+  function drawHero(g, d, t, t0, dx, a) {
+    g.save(); g.translate(dx, 0); g.globalAlpha = a;
+    rr(g, 140, 470, 800, 680, 44); g.fillStyle = PANEL2; g.fill(); rr(g, 140, 470, 800, 680, 44); g.strokeStyle = d.col; g.lineWidth = 10; g.stroke();
+    if (d.icon2 != null) { g.save(); g.translate(360, 730); g.scale(2.3, 2.3); getIcon(g, d.icon, t, t0 + .02, d.col); g.restore(); g.save(); g.translate(730, 730); g.scale(2.3, 2.3); getIcon(g, d.icon2, t, t0 + .12, ORG); g.restore(); }
+    else { g.save(); g.translate(540, 730); g.scale(3.1, 3.1); getIcon(g, d.icon, t, t0 + .02, d.col); g.restore(); }
+    font(g, d.name.length > 12 ? 52 : 80, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(d.name, 540, d.tag ? 960 : 1000);
+    if (d.tag) { font(g, 38, 500, MONO); try { g.letterSpacing = '2px'; } catch (e) {} g.fillStyle = d.col; g.fillText(d.tag, 540, 1070); }
+    g.restore();
+  }
   function sceneGet(g, t) {
-    var s = SC[S.get];
-    var hk = pop(t, s.t0 + .1);
-    // the headline chip shrinks away when the first tile lands
-    var head = 1 - eio(seg(t, GET[0].at() - .35, GET[0].at() - .05));
-    if (head > .01) chip(g, 'WHAT YOU GET', 540, 760, { px: 84, bg: PINK, fg: BG, rot: -.04, s: hk * head, a: hk * 2 * head });
-    var act = -1; GET.forEach(function (d, i) { if (t >= d.at() - .1) act = i; });
-    GET.forEach(function (d, i) {
-      var t0 = d.at() - .1, k = Math.min(pop(t, t0), 1.02); if (k <= 0) return;
-      var xy = tileXY(i), isAct = i === act, ds = isAct ? 1 : lerp(1, .97, eo(seg(t, GET[Math.min(i + 1, 5)].at() - .1, GET[Math.min(i + 1, 5)].at() + .3)));
-      g.save(); g.translate(xy[0] + 205, xy[1] + 135); g.scale(k * ds, k * ds); g.globalAlpha = clamp(k * 2, 0, 1) * (isAct ? 1 : .88);
-      rr(g, -205, -135, 410, 270, 30); g.fillStyle = isAct ? PANEL2 : PANEL; g.fill();
-      rr(g, -205, -135, 410, 270, 30); g.strokeStyle = d.col; g.lineWidth = isAct ? 8 : 4; g.stroke();
-      g.save(); g.translate(0, -40); getIcon(g, i, t, t0 + .1, d.col); g.restore();
-      font(g, d.name.length > 14 ? 30 : 40, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(d.name, 0, 62);
-      font(g, 30, 500, MONO); try { g.letterSpacing = '1px'; } catch (e) {} g.fillStyle = d.col; g.fillText(d.tag, 0, 104);
-      g.restore();
-    });
-    // THEORY stamp on mysteries
-    stamp(g, 'THEORY', 540, 1290, t, at('myst', 'theories'), at('myst', 'theories') + .9, 72, ORG, -.06);
+    var act = 0; GET.forEach(function (d, i) { if (t >= d.at()) act = i; });
+    var t0 = GET[act].at(), k = seg(t, t0, t0 + .32), e = eo(k);
+    if (act > 0 && k < 1) drawHero(g, GET[act - 1], t, GET[act - 1].at(), 0, 1 - eo(seg(t, t0, t0 + .18)));
+    var first = SC[S.get].t0, kin = act === 0 ? pop(t, first + .05) : 1;
+    if (act === 0) { g.save(); g.translate(540, 810); g.scale(Math.min(kin, 1.04), Math.min(kin, 1.04)); g.translate(-540, -810); drawHero(g, GET[0], t, t0, 0, clamp(kin * 2, 0, 1)); g.restore(); }
+    else { g.save(); var sc = lerp(.94, 1, e); g.translate(540, 810); g.scale(sc, sc); g.translate(-540, -810); drawHero(g, GET[act], t, t0, 0, clamp(e * 2, 0, 1)); g.restore(); }
+    stamp(g, 'THEORY', 540, 1290, t, at('myst', 'theory'), at('myst', 'theory') + 1.1, 78, ORG, -.06);
   }
 
-  /* ---------- scene: promise (four rows, one per line) ---------- */
+  /* ---------- scene: promise (two hero cards, two lines each) ---------- */
   function promIcon(g, i, t, t0, col) {
     var T = t - t0;
-    if (i === 0) { g.beginPath(); g.arc(0, 0, 36, 0, 6.2832); g.fillStyle = col; g.fill(); tick(g, 0, 2, 1, BG, clamp(T / .35, 0, 1)); }
-    else if (i === 1) { rr(g, -54, -30, 108, 60, 12); g.fillStyle = ORG; g.fill(); g.setLineDash([8, 6]); g.strokeStyle = BG; g.lineWidth = 4; rr(g, -48, -24, 96, 48, 8); g.stroke(); g.setLineDash([]); }
-    else if (i === 2) { g.beginPath(); g.arc(0, 0, 38, 0, 6.2832); g.strokeStyle = col; g.lineWidth = 10; g.stroke(); g.beginPath(); g.moveTo(-27, 27); g.lineTo(27, -27); g.stroke(); }
-    else { // broken chain
-      var gap = 12 + 8 * Math.sin(T * 4);
-      [-1, 1].forEach(function (d) { rr(g, d * (28 + gap) - 26, -17, 52, 34, 17); g.strokeStyle = col; g.lineWidth = 9; g.stroke(); });
-    }
+    if (i === 0) { g.beginPath(); g.arc(0, 0, 46, 0, 6.2832); g.fillStyle = col; g.fill(); tick(g, 0, 2, 1.2, BG, clamp(T / .35, 0, 1)); }
+    else if (i === 1) { rr(g, -64, -38, 128, 76, 14); g.fillStyle = ORG; g.fill(); g.setLineDash([9, 7]); g.strokeStyle = BG; g.lineWidth = 5; rr(g, -56, -30, 112, 60, 9); g.stroke(); g.setLineDash([]); }
+    else if (i === 2) { g.beginPath(); g.arc(0, 0, 46, 0, 6.2832); g.strokeStyle = col; g.lineWidth = 12; g.stroke(); g.beginPath(); g.moveTo(-33, 33); g.lineTo(33, -33); g.stroke(); }
+    else { var gap = 14 + 9 * Math.sin(T * 4); [-1, 1].forEach(function (d) { rr(g, d * (34 + gap) - 32, -21, 64, 42, 21); g.strokeStyle = col; g.lineWidth = 11; g.stroke(); }); }
   }
   var PROM = [
-    { id: 'p1', word: 'source', head: 'EVERY FACT SOURCED', sub: 'LINKS IN THE DESCRIPTION', col: TEAL },
-    { id: 'p2', word: 'rumor', head: 'RUMORS LABELED', sub: 'A RUMOR IS CALLED A RUMOR', col: ORG },
-    { id: 'p3', word: 'leaks', head: 'NO LEAKS', sub: 'WE DO NOT SHOW THEM', col: PINK },
-    { id: 'p4', word: 'affiliated', head: 'NOT AFFILIATED', sub: 'ROCKSTAR · TAKE-TWO', col: PURP }
+    { card: 0, word: ['Every', 'rumor'], row: [{ head: 'EVERY FACT SOURCED', sub: 'SOURCE ON SCREEN', col: TEAL }, { head: 'RUMORS LABELED', sub: 'A RUMOR IS A RUMOR', col: ORG }], id: 'p1' },
+    { card: 1, word: ['leaks', 'affiliated'], row: [{ head: 'NO LEAKS', sub: 'WE DO NOT SHOW THEM', col: PINK }, { head: 'NOT AFFILIATED', sub: '', col: PURP }], id: 'p2' }
   ];
   function scenePromise(g, t) {
-    var s = SC[S.prom], tp = start('prom');
-    var head = pop(t, tp), gone = 1 - eio(seg(t, PROM[0].time - .35, PROM[0].time - .05));
-    if (gone > .01) chip(g, 'MY PROMISE', 540, 760, { px: 88, bg: CREAM, fg: BG, rot: .03, s: head * gone, a: head * 2 * gone });
-    PROM.forEach(function (p, i) {
-      var t0 = p.time - .1, k = Math.min(pop(t, t0), 1.02); if (k <= 0) return;
-      var y = 500 + i * 210, isAct = t < (i < 3 ? PROM[i + 1].time - .1 : 1e9);
-      g.save(); g.globalAlpha = clamp(k * 2, 0, 1); g.translate(540, y + 85); g.scale(k, k); g.translate(-540, -(y + 85));
-      rr(g, 100, y, 880 - 20, 170, 30); g.fillStyle = isAct ? PANEL2 : PANEL; g.fill(); rr(g, 100, y, 860, 170, 30); g.strokeStyle = p.col; g.lineWidth = isAct ? 8 : 4; g.stroke();
-      g.save(); g.translate(190, y + 85); promIcon(g, i, t, t0 + .1, p.col); g.restore();
-      font(g, 52, 900); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(p.head, 270, y + 62);
-      font(g, 30, 500, MONO); try { g.letterSpacing = '1px'; } catch (e) {} g.fillStyle = p.col; g.fillText(p.sub, 270, y + 122);
+    var s = SC[S.prom], tp2 = start('p2') - .1;
+    PROM.forEach(function (c, ci) {
+      var a0 = ci ? tp2 : s.t0 + .05, a1 = ci ? 1e9 : tp2 + .3;
+      if (t < a0 || t > a1) return;
+      var k = ci ? seg(t, a0, a0 + .32) : 1, e = eo(k), outK = ci ? 0 : seg(t, tp2, tp2 + .32), dx = 0, fa = ci ? clamp(e * 2, 0, 1) : 1 - eo(seg(t, tp2, tp2 + .18));
+      g.save(); g.globalAlpha = fa;
+      c.row.forEach(function (r, ri) {
+        var t0 = at(c.id, c.word[ri]) - .12, kk = Math.min(pop(t, t0), 1.03); if (kk <= 0) return;
+        var y = 500 + ri * 330;
+        g.save(); g.globalAlpha *= clamp(kk * 2, 0, 1); g.translate(540, y + 140); g.scale(kk, kk); g.translate(-540, -(y + 140));
+        rr(g, 100, y, 880 - 20, 290, 40); g.fillStyle = PANEL2; g.fill(); rr(g, 100, y, 860, 290, 40); g.strokeStyle = r.col; g.lineWidth = 8; g.stroke();
+        g.save(); g.translate(230, y + 145); g.scale(1.5, 1.5); promIcon(g, ci * 2 + ri, t, t0 + .1, r.col); g.restore();
+        font(g, 44, 900); g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(r.head, 330, r.sub ? y + 112 : y + 145);
+        if (r.sub) { font(g, BIG, 500, MONO); try { g.letterSpacing = '1px'; } catch (e) {} g.fillStyle = r.col; g.fillText(r.sub, 340, y + 196); }
+        g.restore();
+      });
       g.restore();
     });
   }
 
-  /* ---------- scene: old videos stay up, then same channel / new focus ---------- */
+  /* ---------- scene: old videos stay ---------- */
   function sceneOldVideos(g, t) {
-    var s = SC[S.oldv], tOv = start('oldv'), tSame = start('same');
-    var shelf = 1 - eio(seg(t, tSame - .1, tSame + .35));
-    if (shelf > .01) {
-      var tcol = [PINK, TEAL, ORG, PURP, MINT, SAND];
-      for (var i = 0; i < 6; i++) {
-        var col = i % 3, row = (i / 3) | 0, x = 130 + col * 290, y = 520 + row * 270;
-        var k = pop(t, s.t0 + .1 + i * .08) * shelf, stay = pop(t, at('oldv', 'stay') + .05 + i * .1);
-        if (k <= 0) continue;
-        g.save(); g.globalAlpha = clamp(k * 2, 0, 1); g.translate(x + 130, y + 100); g.scale(k, k);
-        rr(g, -130, -100, 260, 200, 22); g.fillStyle = tcol[i]; g.fill();
-        g.fillStyle = 'rgba(11,8,32,.28)'; g.fillRect(-130, 40, 260, 60);
-        poly(g, [[-18, -40], [-18, 18], [34, -11]], CREAM);
-        g.fillStyle = BG; g.fillRect(-110, 62, 120 - i * 8, 14);
-        if (stay > 0) { g.save(); g.translate(96, -70); g.scale(stay, stay); g.beginPath(); g.arc(0, 0, 34, 0, 6.2832); g.fillStyle = CREAM; g.fill(); tick(g, 0, 2, .9, BG, clamp((t - at('oldv', 'stay') - .1 - i * .1) / .3, 0, 1)); g.restore(); }
-        g.restore();
-      }
-      var ck = pop(t, at('oldv', 'all') - .1);
-      chip(g, 'ALL OLD VIDEOS STAY UP', 540, 1160, { px: 54, bg: CREAM, fg: BG, rot: -.025, s: ck * shelf, a: ck * 2 * shelf });
-    }
-    // same channel, new focus: viewfinder brackets close in on the Delta triangle, which flips to the six
-    var sk = pop(t, tSame);
-    if (sk > 0) {
-      var focus = eio(seg(t, at('same', 'focus') - .3, at('same', 'focus') + .35)), br = lerp(380, 250, focus), fl = eio(seg(t, at('same', 'focus') + .05, at('same', 'focus') + .5));
-      g.save(); g.globalAlpha = clamp(sk * 2, 0, 1);
-      mark(g, 540, 800, 400 * Math.min(sk, 1.05), t, fl, Math.sin(t * 2.4) * .05);
-      g.strokeStyle = CREAM; g.lineWidth = 12; g.lineCap = 'round';
-      [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(function (d) { var cx = 540 + d[0] * br, cy = 800 + d[1] * br; g.beginPath(); g.moveTo(cx - d[0] * 90, cy); g.lineTo(cx, cy); g.lineTo(cx, cy - d[1] * 90); g.stroke(); });
+    var s = SC[S.oldv], tcol = [PINK, TEAL, ORG, PURP, MINT, SAND];
+    for (var i = 0; i < 6; i++) {
+      var col = i % 3, row = (i / 3) | 0, x = 130 + col * 290, y = 520 + row * 270;
+      var k = pop(t, s.t0 + .1 + i * .08), stay = pop(t, at('oldv', 'stay') - .1 + i * .1);
+      if (k <= 0) continue;
+      g.save(); g.globalAlpha = clamp(k * 2, 0, 1); g.translate(x + 130, y + 100); g.scale(Math.min(k, 1.04), Math.min(k, 1.04));
+      rr(g, -130, -100, 260, 200, 22); g.fillStyle = tcol[i]; g.fill();
+      g.fillStyle = 'rgba(11,8,32,.28)'; g.fillRect(-130, 40, 260, 60);
+      poly(g, [[-18, -40], [-18, 18], [34, -11]], CREAM);
+      g.fillStyle = BG; g.fillRect(-110, 62, 120 - i * 8, 14);
+      if (stay > 0) { g.save(); g.translate(96, -70); g.scale(Math.min(stay, 1.05), Math.min(stay, 1.05)); g.beginPath(); g.arc(0, 0, 34, 0, 6.2832); g.fillStyle = CREAM; g.fill(); tick(g, 0, 2, .9, BG, clamp((t - at('oldv', 'stay') + .1 - i * .1) / .3, 0, 1)); g.restore(); }
       g.restore();
-      var ch = pop(t, at('same', 'Same') - .05);
-      chip(g, 'SAME CHANNEL', 540, 1140, { px: 84, bg: CREAM, fg: BG, rot: -.04, s: ch, a: ch * 2 });
-      var nf = pop(t, at('same', 'focus') - .15);
-      chip(g, 'NEW FOCUS', 540, 1290, { px: 84, bg: PINK, fg: BG, rot: .04, s: nf, a: nf * 2 });
     }
+    var ck = pop(t, at('oldv', 'all') - .1);
+    chip(g, 'OLD VIDEOS STAY UP', 540, 1160, { px: 54, bg: CREAM, fg: BG, rot: -.025, s: Math.min(ck, 1.03), a: ck * 2 });
   }
 
-  /* ---------- scene: subscribe + comment ---------- */
   function sceneCta(g, t) {
     var s = SC[S.cta], tSub = at('sub', 'Subscribe'), tAsk = start('ask1'), tAsk2 = start('ask2');
     var btn = 1 - eio(seg(t, tAsk - .1, tAsk + .35));
@@ -460,49 +411,52 @@
     }
   }
 
-  /* ---------- the wipe: three flat stripes, the channel flip ---------- */
-  function wipe(g, t) {
-    SC.forEach(function (s, i) {
-      if (!i) return;
-      var cols = [PINK, TEAL, ORG];
-      for (var b = 0; b < 3; b++) {
-        var a = s.t0 - .2 + b * .035, c = a + .2, d = c + .02, e = d + .2;
-        if (t < a || t > e) continue;
-        var x0 = t < d ? -40 : lerp(-40, W + 40, eio(seg(t, d, e))), x1 = t < c ? lerp(-40, W + 40, eio(seg(t, a, c))) : W + 40;
-        g.fillStyle = cols[b]; g.fillRect(x0, b * H / 3 - 1, x1 - x0, H / 3 + 2);
-      }
-    });
-  }
 
-  /* ---------- frame ---------- */
-  function bottomLabel(g, t) {
-    var si = sceneAt(t), s = SC[si], txt = '', col = DIM;
-    if (si === S.date && t > start('src') - .1) txt = 'SOURCE: ROCKSTARGAMES.COM/VI';
-    else if (si === S.date) txt = 'GTA 6 · RELEASE DATE';
-    else if (si === S.get) txt = 'OUR OWN GRAPHICS · NO ROCKSTAR FOOTAGE';
-    else if (si === S.prom) txt = 'MADE WITH OUR OWN GRAPHICS AND VOICE';
-    else return;
-    var q = seg(t, s.t0 + .35, s.t0 + .6) * (1 - seg(t, s.t1 - .15, s.t1 - .02));
-    label(g, txt, 540, 1430, q, CREAM, 30);
+  /* ---------- the wipe: a narrow torn-edge band; the next scene is already under it ---------- */
+  var WIPE_HALF = .2;
+  function wipeAt(t) {
+    for (var i = 1; i < SC.length; i++) if (t >= SC[i].t0 - WIPE_HALF && t <= SC[i].t0 + WIPE_HALF) return i;
+    return -1;
   }
-
-  function frame(g, t, homeMode) {
-    g.setTransform(1, 0, 0, 1, 0, 0);
-    var T = homeMode ? 0 : t, si = homeMode ? 0 : sceneAt(t);
-    stage(g, t, homeMode || si === 0 ? .96 : .4);
-    g.save(); g.translate(0, homeMode || si === 0 ? 60 : 100);
-    if (homeMode || si === 0) hookFrame(g, t, homeMode);
-    else if (si === S.why) sceneWhy(g, t);
+  function tornX(bx, y, side) { return bx + (hash(Math.floor(y / 44) + side * 7) - .5) * 70; }
+  function bandPath(g, bx, w, side) {
+    g.beginPath(); g.moveTo(tornX(bx, 0, 0) - w, -10);
+    for (var y = 0; y <= H + 44; y += 44) g.lineTo(tornX(bx, y, 0) - w, y);
+    for (var y2 = H + 44; y2 >= 0; y2 -= 44) g.lineTo(tornX(bx, y2, 1) + w, y2);
+    g.closePath();
+  }
+  function drawScene(g, t, si, home) {
+    g.save(); g.translate(0, home || si === 0 ? 60 : 100);
+    if (home || si === 0) hookFrame(g, t, home);
     else if (si === S.date) sceneDate(g, t);
-    else if (si === S.old) sceneOld(g, t);
+    else if (si === S.now) sceneNow(g, t);
     else if (si === S.get) sceneGet(g, t);
     else if (si === S.prom) scenePromise(g, t);
     else if (si === S.oldv) sceneOldVideos(g, t);
     else if (si === S.cta) sceneCta(g, t);
     g.restore();
+  }
+
+  /* ---------- frame ---------- */
+  function bottomLabel(g, t) {
+    var si = sceneAt(t), s = SC[si];
+    if (si !== S.date) return;
+    var q = seg(t, s.t0 + .35, s.t0 + .6) * (1 - seg(t, s.t1 - .15, s.t1 - .02));
+    label(g, 'SOURCE: ROCKSTARGAMES.COM/VI', 540, 1430, q, CREAM, BIG);
+  }
+  function frame(g, t, homeMode) {
+    g.setTransform(1, 0, 0, 1, 0, 0);
+    var si = homeMode ? 0 : sceneAt(t), wi = homeMode ? -1 : wipeAt(t);
+    stage(g, t, homeMode || si === 0 ? .96 : .4);
+    if (wi > 0) {
+      var p = eio(seg(t, SC[wi].t0 - WIPE_HALF, SC[wi].t0 + WIPE_HALF)), bx = lerp(-160, W + 160, p);
+      g.save(); g.beginPath(); g.moveTo(0, -10); for (var ya = 0; ya <= H + 44; ya += 44) g.lineTo(tornX(bx, ya, 0), ya); g.lineTo(0, H + 44); g.closePath(); g.clip();
+      drawScene(g, Math.min(t + .3, SC[wi].t1), wi, false); g.restore();
+      g.save(); g.beginPath(); g.moveTo(W, -10); for (var yb = 0; yb <= H + 44; yb += 44) g.lineTo(tornX(bx, yb, 1), yb); g.lineTo(W, H + 44); g.closePath(); g.clip();
+      drawScene(g, Math.min(t, SC[wi - 1].t1), wi - 1, false); g.restore();
+      [[TEAL, -26], [ORG, 26], [PINK, 0]].forEach(function (c) { g.save(); g.translate(c[1], 0); bandPath(g, bx, 22, 0); g.fillStyle = c[0]; g.fill(); g.restore(); });
+    } else drawScene(g, t, si, homeMode);
     if (homeMode) return;
-    wipe(g, t);
-    STAMPS.forEach(function (s) { stamp(g, s[0], 540, s[6], t, s[1], s[2], s[3], s[4], s[5]); });
     bottomLabel(g, t);
     if (LIVE.text) captions(g, t);
     var back = eio(seg(t, HOME, HOME + .45));
@@ -511,8 +465,7 @@
     g.fillStyle = PINK; g.fillRect(60, 140, (W - 120) * t / DUR, 6);
     if (LIVE.grain && NOISE) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
   }
-  var STAMPS = [['GTA 6', at('date', 'GTA'), at('plat', 'PlayStation') - .1, 120, PINK, -.05, 1280]];
-  PROM.forEach(function (p) { p.time = at(p.id, p.word); });
+
   /* ---------- captions: the narrator's words, highlighted as spoken ---------- */
   function captions(g, t) {
     var card = null;
@@ -540,18 +493,17 @@
 
 
 
+
   /* ---------- text dwell for the read check ---------- */
   function TEXTS(t) {
-    var out = [], si = sceneAt(t), s = SC[si];
+    var out = [], si = sceneAt(t);
     function add(id, text) { out.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
-    STAMPS.forEach(function (st, i) { if (t >= st[1] + .2 && t < st[2]) add('stamp' + i, st[0]); });
-    if (si === 0) add('mark', t < at('hook', 'Delta') ? 'GTA 6' : 'DELTA');
-    if (si === S.why) add('why', 'WHY? GTA 6 ALMOST HERE');
-    if (si === S.date) add('date', t < start('plat') ? 'NOVEMBER 19 2026' : t < start('src') ? 'PS5 XBOX SERIES X|S' : 'ROCKSTARGAMES.COM/VI Coming November 19, 2026');
-    if (si === S.old) add('old', t < start('now') ? 'EVERY KIND OF GAME' : 'GTA 6 COMES FIRST');
-    if (si === S.get) GET.forEach(function (d) { if (t >= d.at() - .05) add('get' + d.name, d.name + ' ' + d.tag); });
-    if (si === S.prom) PROM.forEach(function (p) { if (t >= p.time - .05) add(p.id, p.head + ' ' + p.sub); });
-    if (si === S.oldv) add('oldv', t < start('same') ? 'ALL OLD VIDEOS STAY UP' : 'SAME CHANNEL NEW FOCUS');
+    if (si === 0) add('mark', t < FLIP + .2 ? 'NOV 19' : 'GTA 6');
+    if (si === S.date) add('date', t < start('plat') ? 'NOVEMBER 19 2026' : 'NOVEMBER 19 2026 PS5 XBOX SERIES X|S SOURCE ROCKSTARGAMES.COM/VI');
+    if (si === S.now) add('now', 'GTA 6 COMES FIRST');
+    if (si === S.get) { var a = 0; GET.forEach(function (d, i) { if (t >= d.at()) a = i; }); add('get' + a, (GET[a].name + ' ' + GET[a].tag).trim()); }
+    if (si === S.prom) PROM.forEach(function (c) { c.row.forEach(function (r, ri) { if (t >= at(c.id, c.word[ri]) - .1) add(c.id + ri, (r.head + ' ' + r.sub).trim()); }); });
+    if (si === S.oldv) add('oldv', 'OLD VIDEOS STAY UP');
     if (si === S.cta) add('cta', t < start('ask1') ? 'SUBSCRIBE' : 'WHICH GTA 6 TOPIC FIRST? HIDDEN DETAILS EASTER EGGS TRAILER BREAKDOWNS MYSTERIES');
     return out;
   }
@@ -559,16 +511,15 @@
   /* ---------- events: sound design reads the same word times ---------- */
   var EV = [];
   function initTimes() {
-    EV.push({ t: FLIP + .2, type: 'stamp' }, { t: FLIP + .3, type: 'swish' });
-    SC.forEach(function (s, i) { if (i) EV.push({ t: s.t0 + .02, type: 'swish' }); });
-    EV.push({ t: at("why", "wait") - .25, type: 'blip', f: 700 }, { t: at('why', 'here') + .1, type: 'ding' });
-    EV.push({ t: at('date', 'November'), type: 'thump' }, { t: at('date', 'GTA'), type: 'stamp' }, { t: start('plat'), type: 'boop' }, { t: at('plat', 'Xbox') - .05, type: 'boop' }, { t: start('src'), type: 'click' });
-    EV.push({ t: at('old', 'every') - .1, type: 'blip', f: 760 }, { t: start('now') + .1, type: 'stamp', big: true });
-    GET.forEach(function (d, i) { EV.push({ t: d.at() - .1, type: 'blip', f: 620 + i * 90 }); });
-    EV.push({ t: at('myst', 'theories'), type: 'stamp' });
-    PROM.forEach(function (p, i) { EV.push({ t: p.time - .1, type: i === 2 ? 'thump' : 'click' }); });
-    for (var i = 0; i < 6; i++) EV.push({ t: at('oldv', 'stay') + .15 + i * .1, type: 'blip', f: 800 + i * 60 });
-    EV.push({ t: at('same', 'focus') + .05, type: 'stamp', big: true });
+    EV.push({ t: FLIP + .3, type: 'stamp', big: true }, { t: FLIP + .15, type: 'swish' });
+    SC.forEach(function (s, i) { if (i) EV.push({ t: s.t0, type: 'swish' }); });
+    EV.push({ t: at('date', 'November'), type: 'thump' }, { t: start('plat'), type: 'boop' }, { t: at('plat', 'Xbox') - .05, type: 'boop' });
+    EV.push({ t: at('now', 'GTA') + .1, type: 'stamp', big: true });
+    GET.forEach(function (d, i) { EV.push({ t: d.at() + .05, type: 'blip', f: 620 + i * 90 }); });
+    EV.push({ t: at('myst', 'theory'), type: 'stamp' });
+    PROM.forEach(function (c) { c.row.forEach(function (r, ri) { EV.push({ t: at(c.id, c.word[ri]) - .1, type: c.card && ri ? 'thump' : 'click' }); }); });
+    EV.push({ t: start('p2') - .1, type: 'swish' });
+    for (var i = 0; i < 6; i++) EV.push({ t: at('oldv', 'stay') - .1 + i * .1, type: 'blip', f: 800 + i * 60 });
     EV.push({ t: at('sub', 'never') - .3, type: 'click' }, { t: at('sub', 'never') - .23, type: 'ding' });
     for (var j = 0; j < 4; j++) EV.push({ t: start('ask2') + .05 + j * .22, type: 'blip', f: 700 + j * 90 });
     EV.sort(function (a, b) { return a.t - b.t; });
@@ -629,7 +580,7 @@
     return Promise.all(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%“”'); })).then(function () { return document.fonts.ready; }).then(function () { window.READY = true; });
   }
   initTimes();
-  window.FILM = { W: W, H: H, DUR: DUR, POSTER: FLIP + 1.2, SLUG: 'gta-transition', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE };
+  window.FILM = { W: W, H: H, DUR: DUR, POSTER: at('date', 'November') + 1.2, SLUG: 'gta-transition', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE };
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var out = {};
     for (var t = 0; t <= DUR + 1e-6; t += step || 1 / 15) { CURT = t; frame(ctx, t); }
