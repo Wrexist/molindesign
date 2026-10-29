@@ -1,6 +1,6 @@
 # Why Delta is becoming a GTA 6 channel (Delta)
 
-Vertical 1080x1920, about 44 s. One hard idea: **the Delta triangle flips into a 6**, then a plain reason, plain list, plain promise.
+Vertical 1080x1920, about 47 s. One hard idea: **the Delta triangle flips into a 6**, then a plain reason, plain list, plain promise.
 
 ## Benchmarks
 - **Kurzgesagt-style flat explainers**: learn flat hand-built shapes, one color per idea, icons popping on a spring. Don't take the slow cosmic pacing.

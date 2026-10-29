@@ -123,7 +123,7 @@
   var HOME = end('ask2') + .35;
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   var S = {}; SC.forEach(function (s, i) { S[s.id] = i; });
-  var BIG = 36;                                    // smallest sublabel size on screen
+  var BIG = 44;                                    // smallest sublabel size on screen
 
   /* ---------- small flat drawing helpers ---------- */
   function pop(t, t0) { return clamp(sp(t, t0, 3, .62), 0, 1.12); }
@@ -161,6 +161,7 @@
     var wob = Math.sin(T * 2.4) * .06 + Math.sin(T * 5.1) * .015;
     var sz = 560 * lerp(.94, 1, eo(seg(T, 0, .5))) * (1 + .04 * Math.sin(T * 3));
     mark(g, 540, 800, sz, T, flipK, wob, home ? 1 : 1 - seg(T, FLIP - .1, FLIP + .2));
+    chip(g, 'DELTA', 250, 470, { px: 64, bg: TEAL, fg: BG, rot: -.08, a: 1 - flipK });
     if (flipK < .5) chip(g, 'NOV 19', 540, 1150, { px: 130, bg: CREAM, fg: BG, rot: -.05 });
     else {
       var tw = at('why', 'why') - .05, afterW = !home && T > tw, kD = home ? 0 : pop(T, at('hook', 'Delta') - .05), kW = afterW ? pop(T, tw) : 0;
@@ -171,29 +172,37 @@
   }
 
   /* ---------- scene: date (the calendar holds the whole scene, consoles under it) ---------- */
-  function sceneDate(g, t) {
-    var s = SC[S.date], tD = at('date', 'November'), tP = start('plat');
-    var calK = pop(t, s.t0 + .1), flip = eo(seg(t, tD - .2, tD + .25));
-    g.save(); g.translate(540, 700); g.scale(calK * 1.0, calK * 1.0); g.rotate(-.03);
-    rr(g, -300, -330, 600, 660, 36); g.fillStyle = CREAM; g.fill();
-    g.save(); rr(g, -300, -330, 600, 660, 36); g.clip(); g.fillStyle = PINK; g.fillRect(-300, -330, 600, 120); g.restore();
-    g.fillStyle = BG; [-190, 190].forEach(function (rx) { g.beginPath(); g.arc(rx, -330, 22, 0, 6.2832); g.fill(); });
-    font(g, 74, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('NOVEMBER', 0, -266);
-    g.save(); g.globalAlpha = clamp(flip * 3, 0, 1); g.scale(1, lerp(.2, 1, flip)); font(g, 400, 900); g.fillStyle = PINK; g.fillText('19', 0, 10); g.restore();
-    font(g, 110, 900); g.fillStyle = BG; g.globalAlpha = clamp(flip * 2 - 1, 0, 1); g.fillText('2026', 0, 250);
+  function platCard(g, x, kind, t, k, label, px, col) {
+    g.save(); g.translate(x, 790); g.scale(k, k);
+    rr(g, -200, -300, 400, 620, 40); g.fillStyle = PANEL2; g.fill(); rr(g, -200, -300, 400, 620, 40); g.strokeStyle = col; g.lineWidth = 8; g.stroke();
+    g.save(); g.translate(0, Math.sin(t * 2.2 + (kind ? 1.5 : 0)) * 8 - 40); g.scale(1.25, 1.25); (kind ? consoleX : console5)(g, 0, 0, t, 1); g.restore();
+    font(g, px, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(label, 0, 250);
     g.restore();
-    var kP = pop(t, tP), kX = pop(t, at('plat', 'Xbox') - .05);
-    if (kP > 0) {
-      g.save(); g.translate(0, Math.sin(t * 2.2) * 6); console5(g, 280, 1130, t, kP * .55); g.restore();
-      g.save(); g.translate(0, Math.sin(t * 2.2 + 1.5) * 6); consoleX(g, 700, 1130, t, kX * .55); g.restore();
-      chip(g, 'PS5', 280, 1270, { px: 64, bg: CREAM, fg: BG, rot: -.04, s: kP, a: kP * 2 });
-      chip(g, 'XBOX SERIES X|S', 700, 1270, { px: 40, bg: TEAL, fg: BG, rot: .04, s: kX, a: kX * 2, pad: 22 });
+  }
+  function sceneDate(g, t) {
+    var s = SC[S.date], tD = at('date', 'November'), tP = start('plat') - .05;
+    var calK = pop(t, s.t0 + .1), flip = eo(seg(t, tD - .2, tD + .25)), calOut = 1 - eio(seg(t, tP, tP + .3));
+    if (calOut > .01) {
+      g.save(); g.globalAlpha = calOut; g.translate(540, 760); g.scale(calK * calOut, calK * calOut); g.rotate(-.03);
+      rr(g, -300, -330, 600, 660, 36); g.fillStyle = CREAM; g.fill();
+      g.save(); rr(g, -300, -330, 600, 660, 36); g.clip(); g.fillStyle = PINK; g.fillRect(-300, -330, 600, 120); g.restore();
+      g.fillStyle = BG; [-190, 190].forEach(function (rx) { g.beginPath(); g.arc(rx, -330, 22, 0, 6.2832); g.fill(); });
+      font(g, 74, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('NOVEMBER', 0, -266);
+      g.save(); g.globalAlpha *= clamp(flip * 3, 0, 1); g.scale(1, lerp(.2, 1, flip)); font(g, 400, 900); g.fillStyle = PINK; g.fillText('19', 0, 10); g.restore();
+      font(g, 110, 900); g.fillStyle = BG; g.globalAlpha = calOut * clamp(flip * 2 - 1, 0, 1); g.fillText('2026', 0, 250);
+      g.restore();
+      stamp(g, 'LAUNCH DAY', 540, 1170, t, at('date', '2026') - .45, tP, 96, ORG, -.06);
     }
+    var kP = pop(t, tP + .15), kX = pop(t, at('plat', 'Xbox') - .15);
+    if (kP > 0) platCard(g, 290, 0, t, Math.min(kP, 1.04), 'PS5', 90, TEAL);
+    if (kX > 0) platCard(g, 730, 1, t, Math.min(kX, 1.04), 'XBOX SERIES X|S', 38, PURP);
   }
 
   /* ---------- scene: now (game tiles pushed aside by the GTA 6 tile) ---------- */
   function sceneNow(g, t) {
-    var s = SC[S.now], tG = at('now', 'GTA'), inK = pop(t, s.t0 + .02), toOld = eio(seg(t, tG - .15, tG + .35));
+    var s = SC[S.now], tG = at('now', 'GTA'), tF = at('now', 'first'), inK = pop(t, s.t0 + .02), toOld = eio(seg(t, tG - .15, tG + .35));
+    var punch = t >= tF ? 1 + .1 * Math.exp(-(t - tF) * 7) : 1;
+    g.save(); g.translate(540, 780); g.scale(punch, punch); g.translate(-540, -780);
     for (var row = 0; row < 2; row++) {
       var y = 640 + row * 260, dir = row ? -1 : 1, off = (t - s.t0) * 90 * dir;
       for (var i = -1; i < 7; i++) {
@@ -213,8 +222,10 @@
       font(g, 70, 900); g.fillText('GTA', 0, -190);
       g.restore();
       var ck = pop(t, at('now', 'first') - .25);
-      chip(g, 'COMES FIRST', 540, 1160, { px: 100, bg: TEAL, fg: BG, rot: .035, s: ck, a: ck * 2 });
+      chip(g, 'COMES FIRST', 540, 1120, { px: 100, bg: TEAL, fg: BG, rot: .035, s: ck, a: ck * 2 });
     }
+    g.restore();
+    stamp(g, 'FIRST', 540, 1275, t, tF, tF + 1.4, 96, ORG, -.05);
   }
   var TILE = [PINK, TEAL, ORG, PURP, MINT, SAND];
 
@@ -297,29 +308,53 @@
   }
 
   var GET = [
-    { name: 'DAILY SHORTS', col: PINK, tag: 'EVERY DAY', icon: 0, at: function () { return at('daily', 'new') - .05; } },
-    { name: 'DETAILS + EGGS', col: TEAL, tag: '', icon: 1, icon2: 2, at: function () { return at('hid', 'Hidden') - .05; } },
-    { name: 'BREAKDOWNS', col: PURP, tag: '', icon: 3, at: function () { return at('brk', 'Trailer') - .2; } },
-    { name: 'MYSTERIES', col: MINT, tag: 'THEORIES LABELED', icon: 4, at: function () { return at('myst', 'Mysteries') - .05; } },
-    { name: 'GUIDES', col: SAND, tag: '', icon: 5, at: function () { return at('guide', 'guides') - .35; } }
+    { name: 'DAILY SHORTS', col: PINK, tag: 'EVERY DAY', icon: 0, shape: 'rect', enter: 'pop', at: function () { return at('daily', 'new') - .05; } },
+    { name: 'DETAILS + EGGS', col: TEAL, tag: '', icon: 1, icon2: 2, shape: 'circle', enter: 'spin', at: function () { return at('hid', 'Hidden') - .05; } },
+    { name: 'BREAKDOWNS', col: PURP, tag: '', icon: 3, shape: 'frame', enter: 'drop', at: function () { return at('brk', 'Trailer') - .2; } },
+    { name: 'MYSTERIES', col: MINT, tag: '', icon: 4, shape: 'dash', enter: 'rot', at: function () { return at('myst', 'Mysteries') - .05; } },
+    { name: 'GUIDES', col: SAND, tag: '', icon: 5, shape: 'clip', enter: 'rise', at: function () { return at('guide', 'guides') - .35; } }
   ];
-  function drawHero(g, d, t, t0, dx, a) {
-    g.save(); g.translate(dx, 0); g.globalAlpha = a;
-    rr(g, 140, 470, 800, 680, 44); g.fillStyle = PANEL2; g.fill(); rr(g, 140, 470, 800, 680, 44); g.strokeStyle = d.col; g.lineWidth = 10; g.stroke();
-    if (d.icon2 != null) { g.save(); g.translate(360, 730); g.scale(2.3, 2.3); getIcon(g, d.icon, t, t0 + .02, d.col); g.restore(); g.save(); g.translate(730, 730); g.scale(2.3, 2.3); getIcon(g, d.icon2, t, t0 + .12, ORG); g.restore(); }
-    else { g.save(); g.translate(540, 730); g.scale(3.1, 3.1); getIcon(g, d.icon, t, t0 + .02, d.col); g.restore(); }
-    font(g, d.name.length > 12 ? 52 : 80, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(d.name, 540, d.tag ? 960 : 1000);
-    if (d.tag) { font(g, 38, 500, MONO); try { g.letterSpacing = '2px'; } catch (e) {} g.fillStyle = d.col; g.fillText(d.tag, 540, 1070); }
+  function heroPanel(g, d) {
+    var cx = 540, y0 = 500, h = 700;
+    g.beginPath();
+    if (d.shape === 'circle') g.arc(cx, y0 + h / 2, 372, 0, 6.2832);
+    else if (d.shape === 'frame') g.roundRect(150, y0 + 40, 780, h - 80, 26);
+    else if (d.shape === 'clip') g.roundRect(150, y0 + 30, 780, h - 30, 36);
+    else g.roundRect(150, y0, 780, h, d.shape === 'dash' ? 90 : 44);
+    g.fillStyle = PANEL2; g.fill();
+    if (d.shape === 'dash') g.setLineDash([26, 16]);
+    g.strokeStyle = d.col; g.lineWidth = 10; g.stroke(); g.setLineDash([]);
+    if (d.shape === 'frame') { g.fillStyle = BG; for (var i = 0; i < 9; i++) { g.fillRect(170 + i * 86, y0 + 52, 40, 26); g.fillRect(170 + i * 86, y0 + h - 78, 40, 26); } }
+    if (d.shape === 'clip') { rr(g, 440, y0, 200, 70, 20); g.fillStyle = d.col; g.fill(); }
+  }
+  function drawHero(g, d, t, t0, mode, a) {
+    // mode: 0 = settled, 1..: entering with progress in a.p, handled by caller through transform
+    g.save(); g.globalAlpha = a;
+    heroPanel(g, d);
+    var big = d.shape === 'circle' ? 2.6 : 3.6, iy = d.shape === 'frame' ? 760 : 750;
+    if (d.icon2 != null) { g.save(); g.translate(400, iy); g.scale(2.5, 2.5); getIcon(g, d.icon, t, t0 + .02, d.col); g.restore(); g.save(); g.translate(690, iy); g.scale(2.5, 2.5); getIcon(g, d.icon2, t, t0 + .12, ORG); g.restore(); }
+    else { g.save(); g.translate(540, iy); g.scale(big, big); getIcon(g, d.icon, t, t0 + .02, d.col); g.restore(); }
+    font(g, d.name.length > 12 ? 56 : 84, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText(d.name, 540, d.tag ? 1000 : 1030);
+    if (d.tag) { font(g, 44, 500, MONO); try { g.letterSpacing = '2px'; } catch (e) {} g.fillStyle = d.col; g.fillText(d.tag, 540, 1110); }
     g.restore();
+  }
+  function enterXf(g, kind, e) {                 // e = 0..1, applied around the card centre
+    g.translate(540, 850);
+    if (kind === 'spin') g.scale(Math.max(.04, e), 1);
+    else if (kind === 'drop') g.translate(0, (1 - e) * -420);
+    else if (kind === 'rot') { g.rotate((1 - e) * -.35); g.scale(lerp(.7, 1, e), lerp(.7, 1, e)); }
+    else if (kind === 'rise') g.translate(0, (1 - e) * 520);
+    else g.scale(lerp(.9, 1, e), lerp(.9, 1, e));
+    g.translate(-540, -850);
   }
   function sceneGet(g, t) {
     var act = 0; GET.forEach(function (d, i) { if (t >= d.at()) act = i; });
-    var t0 = GET[act].at(), k = seg(t, t0, t0 + .32), e = eo(k);
+    var t0 = GET[act].at(), k = seg(t, t0, t0 + .36), e = act === 0 ? 1 : eo(k);
     if (act > 0 && k < 1) drawHero(g, GET[act - 1], t, GET[act - 1].at(), 0, 1 - eo(seg(t, t0, t0 + .18)));
-    var first = SC[S.get].t0, kin = act === 0 ? pop(t, first + .05) : 1;
-    if (act === 0) { g.save(); g.translate(540, 810); g.scale(Math.min(kin, 1.04), Math.min(kin, 1.04)); g.translate(-540, -810); drawHero(g, GET[0], t, t0, 0, clamp(kin * 2, 0, 1)); g.restore(); }
-    else { g.save(); var sc = lerp(.94, 1, e); g.translate(540, 810); g.scale(sc, sc); g.translate(-540, -810); drawHero(g, GET[act], t, t0, 0, clamp(e * 2, 0, 1)); g.restore(); }
-    stamp(g, 'THEORY', 540, 1290, t, at('myst', 'theory'), at('myst', 'theory') + 1.1, 78, ORG, -.06);
+    var first = SC[S.get].t0, kin = act === 0 ? Math.min(pop(t, first + .05), 1.04) : e;
+    g.save(); enterXf(g, GET[act].enter, act === 0 ? kin : e); drawHero(g, GET[act], t, t0, 0, clamp((act === 0 ? kin : e) * 2.2, 0, 1)); g.restore();
+    var tT = at('myst', 'theory'); stamp(g, 'THEORY', 540, 1215, t, tT, tT + 1.3, 78, ORG, -.06);
+    var q = seg(t, tT + .1, tT + .35) * (1 - seg(t, tT + 1.1, tT + 1.3)); if (q > 0) label(g, 'OUR THEORY · NOT ROCKSTAR', 540, 1305, q, CREAM, 40);
   }
 
   /* ---------- scene: promise (two hero cards, two lines each) ---------- */
@@ -328,7 +363,10 @@
     if (i === 0) { g.beginPath(); g.arc(0, 0, 46, 0, 6.2832); g.fillStyle = col; g.fill(); tick(g, 0, 2, 1.2, BG, clamp(T / .35, 0, 1)); }
     else if (i === 1) { rr(g, -64, -38, 128, 76, 14); g.fillStyle = ORG; g.fill(); g.setLineDash([9, 7]); g.strokeStyle = BG; g.lineWidth = 5; rr(g, -56, -30, 112, 60, 9); g.stroke(); g.setLineDash([]); }
     else if (i === 2) { g.beginPath(); g.arc(0, 0, 46, 0, 6.2832); g.strokeStyle = col; g.lineWidth = 12; g.stroke(); g.beginPath(); g.moveTo(-33, 33); g.lineTo(33, -33); g.stroke(); }
-    else { var gap = 14 + 9 * Math.sin(T * 4); [-1, 1].forEach(function (d) { rr(g, d * (34 + gap) - 32, -21, 64, 42, 21); g.strokeStyle = col; g.lineWidth = 11; g.stroke(); }); }
+    else { var gp = 10 + 7 * Math.sin(T * 5); g.strokeStyle = col; g.lineWidth = 11; g.lineCap = 'round';
+      g.beginPath(); g.arc(-34 - gp, 0, 26, .5, 6.28 - .5 + 0, false); g.stroke(); g.beginPath(); g.arc(34 + gp, 0, 26, Math.PI + .5, Math.PI - .5 + 6.28 - 0, false); g.stroke();
+      g.lineWidth = 7; [[-12, -34], [0, -40], [12, -34]].forEach(function (p) { g.beginPath(); g.moveTo(p[0] - 6, p[1] - 10); g.lineTo(p[0] + 6, p[1] + 10); g.stroke(); });
+      g.beginPath(); g.moveTo(-14, 14); g.lineTo(14, -14); g.stroke(); }
   }
   var PROM = [
     { card: 0, word: ['Every', 'rumor'], row: [{ head: 'EVERY FACT SOURCED', sub: 'SOURCE ON SCREEN', col: TEAL }, { head: 'RUMORS LABELED', sub: 'A RUMOR IS A RUMOR', col: ORG }], id: 'p1' },
@@ -400,13 +438,13 @@
       g.save(); g.globalAlpha = clamp(ak * 2, 0, 1) * out; g.translate(540, 640); g.scale(Math.min(ak, 1.05), Math.min(ak, 1.05));
       rr(g, -380, -170, 760, 300, 44); g.fillStyle = CREAM; g.fill(); poly(g, [[-100, 130], [-40, 130], [-120, 200]], CREAM);
       font(g, 62, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('WHICH GTA 6', 0, -88); g.fillText('TOPIC FIRST?', 0, -12);
-      font(g, 34, 500, MONO); g.fillStyle = PINK; g.fillText('TYPE IT IN THE COMMENTS', 0, 80);
+      font(g, 40, 500, MONO); g.fillStyle = PINK; g.fillText('TYPE IT BELOW', 0, 84);
       g.restore();
       var opts = [['HIDDEN DETAILS', TEAL], ['EASTER EGGS', ORG], ['TRAILER BREAKDOWNS', PURP], ['MYSTERIES', MINT]];
       opts.forEach(function (o, i) {
         var kk = pop(t, tAsk2 + .05 + i * .22), hot = Math.floor(((t - tAsk2) * 1.6)) % 4 === i && t > tAsk2 + 1.1;
-        var x = 540, y = 960 + i * 118;
-        chip(g, (i + 1) + '  ' + o[0], x, y, { px: 52, bg: hot ? o[1] : PANEL2, line: o[1], fg: hot ? BG : CREAM, s: kk * (hot ? 1.06 : 1), a: kk * 2 * out, lw: 5, pad: 30 });
+        var x = 540, y = 940 + i * 112;
+        chip(g, (i + 1) + '  ' + o[0], x, y, { px: 50, bg: hot ? o[1] : PANEL2, line: o[1], fg: hot ? BG : CREAM, s: kk * (hot ? 1.04 : 1), a: kk * 2 * out, lw: 5, pad: 26 });
       });
     }
   }
@@ -442,7 +480,7 @@
     var si = sceneAt(t), s = SC[si];
     if (si !== S.date) return;
     var q = seg(t, s.t0 + .35, s.t0 + .6) * (1 - seg(t, s.t1 - .15, s.t1 - .02));
-    label(g, 'SOURCE: ROCKSTARGAMES.COM/VI', 540, 1430, q, CREAM, BIG);
+    label(g, 'SOURCE: ROCKSTARGAMES.COM/VI', 540, 1430, q, CREAM, 40);
   }
   function frame(g, t, homeMode) {
     g.setTransform(1, 0, 0, 1, 0, 0);
@@ -511,7 +549,7 @@
   /* ---------- events: sound design reads the same word times ---------- */
   var EV = [];
   function initTimes() {
-    EV.push({ t: FLIP + .3, type: 'stamp', big: true }, { t: FLIP + .15, type: 'swish' });
+    EV.push({ t: .03, type: 'stamp', big: true });
     SC.forEach(function (s, i) { if (i) EV.push({ t: s.t0, type: 'swish' }); });
     EV.push({ t: at('date', 'November'), type: 'thump' }, { t: start('plat'), type: 'boop' }, { t: at('plat', 'Xbox') - .05, type: 'boop' });
     EV.push({ t: at('now', 'GTA') + .1, type: 'stamp', big: true });
@@ -522,6 +560,17 @@
     for (var i = 0; i < 6; i++) EV.push({ t: at('oldv', 'stay') - .1 + i * .1, type: 'blip', f: 800 + i * 60 });
     EV.push({ t: at('sub', 'never') - .3, type: 'click' }, { t: at('sub', 'never') - .23, type: 'ding' });
     for (var j = 0; j < 4; j++) EV.push({ t: start('ask2') + .05 + j * .22, type: 'blip', f: 700 + j * 90 });
+    /* no hit lands inside a spoken word: stamps keep 0.15 s, everything else 0.14 s clear of the word's start, so each hit moves into the gap before it */
+    var WORDS = []; VO.lines.forEach(function (l) { l.words.forEach(function (w) { WORDS.push(w); }); });
+    EV.forEach(function (e) {
+      var m = e.type === 'stamp' ? .15 : .14;
+      for (var pass = 0; pass < 6; pass++) {
+        var hit = null; WORDS.forEach(function (w) { if (e.t > w.t0 - m && e.t < w.t1) hit = w; });
+        if (!hit) break;
+        e.t = hit.t0 - m - .005;
+      }
+      e.t = Math.max(e.type === 'swish' ? .2 : 0, e.t);
+    });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
 

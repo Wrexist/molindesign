@@ -40,74 +40,75 @@
       "id": "date",
       "at": 4.2,
       "text": "GTA 6 launches November 19, 2026.",
-      "say": "GTA 6 launches November nineteenth. Twenty twenty six."
+      "say": "G T A 6 launches November nineteenth. Twenty twenty six.",
+      "take": 2
     },
     {
       "id": "plat",
-      "at": 7.97,
+      "at": 8.1,
       "text": "On PlayStation 5 and Xbox Series X and S.",
       "say": "On PlayStation five, and on Xbox Series X and S."
     },
     {
       "id": "now",
-      "at": 11.76,
+      "at": 11.89,
       "text": "So from here on, GTA 6 comes first."
     },
     {
       "id": "daily",
-      "at": 14.59,
+      "at": 15.42,
       "text": "A new GTA 6 Short, every single day."
     },
     {
       "id": "hid",
-      "at": 17.46,
+      "at": 18.29,
       "text": "Hidden details and Easter eggs."
     },
     {
       "id": "brk",
       "text": "Trailer breakdowns.",
-      "at": 20.34
+      "at": 21.17
     },
     {
       "id": "myst",
-      "at": 22.61,
+      "at": 23.44,
       "text": "Mysteries, with every theory labeled."
     },
     {
       "id": "guide",
-      "at": 25.17,
+      "at": 26.0,
       "text": "And after launch, guides to help you play."
     },
     {
       "id": "p1",
-      "at": 27.93,
+      "at": 28.76,
       "text": "Every fact has a source, and every rumor is labeled a rumor."
     },
     {
       "id": "p2",
-      "at": 31.89,
+      "at": 32.72,
       "text": "No leaks, and nothing here is affiliated with Rockstar or Take-Two."
     },
     {
       "id": "oldv",
-      "at": 36.58,
+      "at": 37.41,
       "text": "Your old videos all stay up."
     },
     {
       "id": "sub",
-      "at": 38.71,
+      "at": 39.54,
       "text": "Subscribe, so you never miss a day."
     },
     {
       "id": "ask1",
-      "at": 41.12,
+      "at": 41.95,
       "text": "Then comment below."
     },
     {
       "id": "ask2",
-      "at": 42.69,
+      "at": 43.52,
       "text": "Which GTA 6 topic do you want first?"
     }
   ],
-  "dur": 46.4
+  "dur": 47.2
 }
