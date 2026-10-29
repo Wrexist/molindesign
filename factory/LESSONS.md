@@ -117,6 +117,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Check SFX against unhinted Whisper on the finished mix, not `vo.js`: vo.js under-reads a line's last word and Whisper drifts ±0.12 s, so a "0 overlaps" from vo.js still put a rattle on "sixty percent" (temperature r2). Margins: 0.15 s for rattles/swishes/stamps, 0.14 s for knocks/pops; drop a hit with no gap.
 - Place SFX from what Whisper heard, not from vo.js: save each mix pass's heard words to `vo/heard.js`, merge the passes, place hits 0.18–0.2 s clear of them (Whisper moves a word up to 0.06 s between passes), and move the beats that carry sound into the pauses; mid-phrase stamps stay silent. Only pauses ≥ 0.45 s hold a knock or pop (password: 16 hits, 0 overlaps on the third pass after two passes with 1–2).
 - The director's own frame-0 word count and SFX check are not proof: the jury verifies both on the render (temperature r1 claimed 4 words and 0 overlaps; r2 found 7 and one).
+- Ming reading a list of short years ("'97, '02, '06") comes back from Whisper as "0206" and full years ran the line past 45 s; ask for "the year" in words and show the options as chips (gta-vicecity).
+- Whisper pins the film's first word to 0.00 s even when the voice starts at 0.2 s; check the frame-0 hit against the voice track's real onset, not the heard time (gta-vicecity).
 - The biggest visual beats need a sound: if the SFX gate leaves a stamp silent, move the stamp into the next pause rather than keep it mid-phrase; keep every hit ≥ 3 dB under the neighbouring voice and check the room tone level on the render (password r2: −37 dB measured where −50 was intended).
 
 ## Posting and sound
@@ -146,3 +148,14 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
+## Delta
+- A re-time can leave a counter showing the previous scene's year over the next scene's card: after any shift in vo/script.json, flip the dial under the wipe (before the new card shows) and re-check every scene boundary frame by frame (gta-vicecity r1: 1986 · IN-GAME YEAR over the PSP · 2006 card for 0.85 s cost Truth).
+- Never show a tag on a year that is still moving: a roll under a RELEASE YEAR tag prints "RELEASE YEAR 1999" on frames. Hide the tag and turn the digits neutral cream while the dial moves; the tag pops only when the year lands (gta-vicecity r1).
+- The native move needs its own sound: a silent flip dial cost Voice/sound (6.5). Put forward flips and backward rolls into the pauses (a flap per digit, a tick per year that speeds up, a rewind sweep), not under words (gta-vicecity r1).
+- The mix's speech-to-music ratio is measured against the bed inside the spoken spans, so turning SFX down in SCORE changes nothing; raise `duck.smr_db` (40 here) and check hit peaks against the neighbouring words on the final mix (≥ 3 dB under) (gta-vicecity r1: stamps sat 10 dB over the voice at the default 12).
+- Whisper moves a word up to 0.25 s between mix passes; merge every pass into vo/heard.js and gate at 0.2 s, or each re-mix finds a new overlap (gta-vicecity r1, four passes).
+- Pick the poster in a pause, with the stamp landed and the caption gone, never mid-caption (gta-vicecity r1).
+- A story-year roll lands on the spoken year, not after the line: start it at the word's onset and hold the tagged year ≥ 0.6 s before the wipe (gta-vicecity r2: 1986 and 1984 landed after the voice; 1984 never showed its tag).
+- One hero number per film, and the poster carries it: a 40 YEARS stamp next to a "29 years" answer split the payoff (gta-vicecity r2, held at 7.2 / Truth 8.5 after 2 rounds).
+- Every wipe flip ends before the next card reveals, forward flips included (gta-vicecity r2: 2984 → 2024 beside NOV 19 2026 for 6 frames).
+- A history walk across four games is a list, not one surprise; Delta's first cut has to land near 7.8, so pick topics with one stake (gta-vicecity: 7.2 → 7.2).

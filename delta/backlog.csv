@@ -1,8 +1,8 @@
 #,Slug,Topic,Hook,Angle,Status,Post date (ET),Notes
-1,gta-13years,13 years since GTA 5,GTA 5 came out in 2013.,Longest gap in the series; two delays crossed out on a timeline.,ready,2026-10-29,"Sources: Rockstar site, delay reports (verify May 26 date)"
-2,gta-records,The record trailers,90 million views. One day.,"Counters: trailer 1 90,421,491 YouTube views/24 h; trailer 2 475M cross-platform/24 h.",ready,2026-10-29,VGC + Push Square; YouTube-only vs all-platform noted on screen
-3,gta-leonida,Leonida region by region,This is the whole GTA 6 state.,Own-drawn silhouette; six named regions.,ready,2026-10-30,Region list conflicts across sources: verify on rockstargames.com/VI before scripting
-4,gta-vicecity,Vice City is 29 years old,Vice City is older than GTA 6 players.,1997 / 2002 / 2026 cards.,ready,2026-10-30,Verify 1997 top-down GTA map and 1986 setting
+1,gta-13years,13 years since GTA 5,GTA 5 came out in 2013.,Longest gap in the series; two delays crossed out on a timeline.,done,2026-10-29,"Sources: Rockstar site, delay reports (verify May 26 date)"
+2,gta-records,The record trailers,90 million views. One day.,"Counters: trailer 1 90,421,491 YouTube views/24 h; trailer 2 475M cross-platform/24 h.",done,2026-10-29,VGC + Push Square; YouTube-only vs all-platform noted on screen
+3,gta-leonida,Leonida region by region,This is the whole GTA 6 state.,Own-drawn silhouette; six named regions.,done,2026-10-30,Region list conflicts across sources: verify on rockstargames.com/VI before scripting
+4,gta-vicecity,Vice City is 29 years old,Vice City is older than GTA 6 players.,1997 / 2002 / 2026 cards.,held,2026-10-30,"Verify 1997 top-down GTA map and 1986 setting; 2026-10-29 jury 7.2/Truth 8.0 then 7.2/Truth 8.5 after 2 rounds: held, not posted (fix list in BRIEF.md log)"
 5,gta-songs,Why the old songs,Both trailers use old songs. Why?,Tom Petty 1989 and Pointer Sisters 1986 theory; launch trailer original song.,ready,2026-10-31,Theory label; no music played
 6,gta-lucia,Lucia makes history,GTA has never done this before.,First woman lead of a mainline GTA in the 3D era.,ready,2026-10-31,Verify claim carefully (earlier female leads in 2D era / spin-offs)
 7,gta-launch-trailer,Launch trailer details,You missed this in the launch trailer.,"3 annotated frames, theory stamp.",ready,2026-11-01,Excerpts under 5 s each
