@@ -5,6 +5,7 @@
     python3 voiceover.py plan  ../vo/script.json          # will each line fit its slot? (no synthesis)
     python3 voiceover.py layout ../vo/script.json         # long-form: speak every line, then set each `at` from the takes and `pause`
     python3 voiceover.py synth ../vo/script.json          # lines → out/vo/vo.wav, vo.json, vo.srt + vo/vo.js (captions for the page)
+    python3 voiceover.py captions ../vo/script.json       # re-cut caption cards from the existing word times (after a captions() change)
     python3 voiceover.py check ../vo/script.json          # listen check: Whisper hears every line, word error, pace, quiet zones
     python3 voiceover.py mix   ../vo/script.json [--score ../out/mix.wav --video ../out/video.mp4 --out ../out/film-vo.mp4]
     python3 voiceover.py all   ../vo/script.json          # synth, check, mix
@@ -85,7 +86,7 @@ def words(text):
 
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
-WEAK = set('a an the of to in on at for with and or but it its is as by from that this'.split())
+WEAK = set('a an the of to in on at for with and or but it its is as by from that this ai your their his her our my than more less turned worlds'.split())
 SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4'}
 
 
@@ -522,6 +523,12 @@ def process_chain(s, src, dst):
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-af', ','.join(af), '-ar', str(SR), '-ac', '1', '-c:a', 'pcm_f32le', str(dst)], check=True)
 
 
+UNITS = {'million', 'billion', 'trillion', 'thousand', 'hundred', 'dollars', 'percent', 'days', 'years', 'months', 'weeks', 'hours', 'gpus', 'cards', 'chips', 'shares', 'units'}
+NUMWORDS = {'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'hundred', 'thousand', 'a'}
+def isnum(w):
+    return bool(re.search(r'\d', w)) or norm(w) in NUMWORDS
+
+
 def captions(s, meta):
     """Short caption cards for muted viewing. Split at punctuation first, then cut long phrases into even chunks
     (5 words → 3 + 2, never 4 + 1, so no word is orphaned), then fold any card shown under min_s into its phrase-mate."""
@@ -546,6 +553,8 @@ def captions(s, meta):
             for i in range(len(chunks) - 1):        # never end a card on "of", "the", "and"…: hand it to the next card
                 while len(chunks[i]) > 1 and norm(chunks[i][-1]['w']) in WEAK:
                     chunks[i + 1].insert(0, chunks[i].pop())
+                while len(chunks[i]) > 1 and chunks[i + 1] and isnum(chunks[i][-1]['w']) and norm(chunks[i + 1][0]['w']) in UNITS:
+                    chunks[i + 1].insert(0, chunks[i].pop())    # keep a number with its unit: "200 | million" never splits
             i = 0
             while len(chunks) > 1 and i < len(chunks):
                 show = (chunks[i + 1][0]['t0'] if i + 1 < len(chunks) else chunks[i][-1]['t1'] + 0.25) - chunks[i][0]['t0']
@@ -555,10 +564,29 @@ def captions(s, meta):
                     i = 0
                     continue
                 i += 1
-            cards += chunks
+            cards += [dict(c=c, line=m['id']) for c in chunks]
+    # a card shown under min_s joins its neighbour in the same line when the pair still fits on one card
+    i = 0
+    while i < len(cards):
+        c = cards[i]['c']
+        show = (cards[i + 1]['c'][0]['t0'] if i + 1 < len(cards) else c[-1]['t1'] + 0.25) - c[0]['t0']
+        if show < min_s:
+            for j in ([i + 1, i - 1] if i + 1 < len(cards) else [i - 1]):
+                if 0 <= j < len(cards) and cards[j]['line'] == cards[i]['line']:
+                    a_, b_ = (j, i) if j < i else (i, j)
+                    both = cards[a_]['c'] + cards[b_]['c']
+                    if len(both) <= mw + 2 and len(' '.join(w['w'] for w in both)) <= mc + 12:
+                        cards[a_:b_ + 1] = [dict(c=both, line=cards[i]['line'])]
+                        i = max(0, a_ - 1)
+                        break
+            else:
+                i += 1
+            continue
+        i += 1
+    cards = [c['c'] for c in cards]
     out = []
     for i, c in enumerate(cards):
-        t1 = c[-1]['t1'] + 0.25
+        t1 = max(c[-1]['t1'] + 0.25, c[0]['t0'] + min_s)   # a short card stays up min_s when the pause allows
         if i + 1 < len(cards):
             t1 = min(t1, cards[i + 1][0]['t0'])
         out.append({'t0': c[0]['t0'], 't1': round(t1, 3), 'text': ' '.join(w['w'] for w in c), 'words': c})
@@ -570,6 +598,18 @@ def srt(caps):
         ms = int(round(t * 1000))
         return f'{ms // 3600000:02}:{ms // 60000 % 60:02}:{ms // 1000 % 60:02},{ms % 1000:03}'
     return ''.join(f'{i + 1}\n{ts(c["t0"])} --> {ts(c["t1"])}\n{c["text"]}\n\n' for i, c in enumerate(caps))
+
+
+def cmd_captions(a):
+    """Re-cut the caption cards from the word times synth already found (no re-speaking, no re-hearing)."""
+    s = load_script(a.script)
+    out = s['_out']
+    doc = json.loads((out / 'vo.json').read_text())
+    doc['captions'] = captions(s, doc['lines'])
+    (out / 'vo.json').write_text(json.dumps(doc, indent=1, ensure_ascii=False))
+    (s['_dir'] / 'vo.js').write_text('/* generated by tools/voiceover.py, do not edit */\nwindow.VO = ' + json.dumps(doc, ensure_ascii=False) + ';\n')
+    (out / 'vo.srt').write_text(srt(doc['captions']))
+    print(f'{len(doc["captions"])} caption cards, {sum(1 for c in doc["captions"] if c["t1"] - c["t0"] < s["captions"]["min_s"])} under min_s')
 
 
 def cmd_check(a):
@@ -729,7 +769,7 @@ def main():
     au.add_argument('--speed', type=float, default=0.95)
     au.add_argument('--lang')
     au.add_argument('--out', default=str(Path(__file__).resolve().parent.parent / 'out' / 'vo' / 'audition'))
-    for name in ('plan', 'layout', 'synth', 'check', 'mix', 'all'):
+    for name in ('plan', 'layout', 'synth', 'captions', 'check', 'mix', 'all'):
         sp = sub.add_parser(name)
         sp.add_argument('script')
         if name in ('mix', 'all'):
@@ -745,7 +785,7 @@ def main():
             print('(listen check flagged lines; mixing anyway so you can hear them in context)')
         cmd_mix(a)
     else:
-        {'audition': cmd_audition, 'plan': cmd_plan, 'layout': cmd_layout, 'synth': cmd_synth, 'check': cmd_check, 'mix': cmd_mix}[a.cmd](a)
+        {'audition': cmd_audition, 'plan': cmd_plan, 'layout': cmd_layout, 'synth': cmd_synth, 'captions': cmd_captions, 'check': cmd_check, 'mix': cmd_mix}[a.cmd](a)
 
 
 if __name__ == '__main__':
