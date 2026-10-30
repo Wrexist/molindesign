@@ -55,6 +55,9 @@ Write it all in `TREATMENT.md` (shot list, cue map, sound table) before code.
 - On the master: `ebur128` (loudness, true peak), `blackdetect` (unintended black), `ffprobe` (duration, size, fps).
 - Then an **independent jury**: a fresh session that did not make the film scores it 1–10 (5 student, 7 pro, 8 agency, 9 award shortlist) on style fidelity, concept/wow, motion craft, design/type, finish, sound sync, technical; lists 5–10 fixes by impact with timecode, observation, why and numbers; at least one fix must raise the wow; flags anything generic/AI-template. Keep version N, apply, re-render, re-review (verified, mg-styles-15 `rubric.md`; their films ended 7.6–8.2).
 
+## 7b. The motion kit (shared pieces)
+`film/kit/kit.js` (`window.KIT`) holds the stickman rig with 18 moves, emotes, effects, camera hits, 7 transitions, kinetic text, a scene timeline with motion blur and 18 synthesised sound effects, all pure functions of t. Load it before `film.js` and use it instead of copying a rig from an older film. `film/kit/README.md` has the API and four hook recipes for the first three seconds; `film/motionkit/` is the reel that shows every piece. The ban list below is for product and launch films; the playful stickman films may use bursts and shakes, at most one every 2–3 s.
+
 ## 8. Ban list for "high-end minimal" (verified, opus-video-prompts #16)
 Shockwave rings, particle bursts, RGB split, camera shake, lens flares, neon glows, grid floors, flashing backgrounds, bouncy easing. Also: never set `opacity`/`filter` on a `preserve-3d` element (it flattens); fade a wrapper.
 
