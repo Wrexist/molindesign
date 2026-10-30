@@ -329,6 +329,10 @@ def drop_tail(h, script, end):
     for blk in difflib.SequenceMatcher(None, a, b, autojunk=False).get_matching_blocks():
         if blk.size and blk.a + blk.size == len(a):
             last = blk.b + blk.size
+    if last is None and a:                         # the last word heard split open ("line up" for "lineup") still ends the line
+        for i in range(len(b) - 1):
+            if b[i] + b[i + 1] == a[-1]:
+                last = i + 2
     if last is not None:
         return h[:last]
     while len(h) > len(script) and (h[-1]['p'] < 0.3 or h[-1]['t0'] >= end - 0.05):

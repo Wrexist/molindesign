@@ -64,7 +64,7 @@
     M.forEach(function (b) { if (b[0] > p) F.push([p, b[0]]); p = Math.max(p, b[1]); });
     F.push([p, DUR + 9]); return F;
   }
-  var BODY = { flash: .12, crack: .14, clack: .14, tick: .03, stamp: .16, bulb: .4, tear: .22, rewind: .34, blip: .16, pop: .12, swish: .26, clang: .2, land: .18, paper: .2 };
+  var BODY = { chord: .62, flash: .12, crack: .14, clack: .1, tick: .03, stamp: .16, bulb: .4, tear: .22, rewind: .34, blip: .16, pop: .12, swish: .26, clang: .2, land: .18, paper: .2 };
   function nearGap(t, type, m) {
     var body = BODY[type] || .12, best = null;
     free(m || (window.VAD ? .15 : .2)).forEach(function (f) {
@@ -169,7 +169,7 @@
   /* =====================================================================================================
      THE LINEUP WALL: x 100–920, y 462–1442. Three rows of five 164 px slots; slot 14 is the double-width pink one.
      ===================================================================================================== */
-  var WX0 = 100, WX1 = 920, WY0 = 462, WY1 = 1412, RT = 470, RH = 290, SW = 164;
+  var WX0 = 100, WX1 = 920, WY0 = 462, WY1 = 1412, RT = 470, RH = 290, SW = 154, SX0 = 150;
   var LEADS = [
     ['CLAUDE', 'III'], ['TOMMY', 'VICE CITY'], ['CJ', 'S. ANDREAS'], ['MIKE', 'ADVANCE'], ['TONI', 'LCS'],
     ['VIC', 'VCS'], ['NIKO', 'IV'], ['JOHNNY', 'TLAD'], ['HUANG', 'CHINATOWN'], ['LUIS', 'TBOGT'],
@@ -177,12 +177,12 @@
   ];
   var SPOKEN = { 0: 'claude', 1: 'tommy', 2: 'cj', 6: 'niko', 10: 'michael', 11: 'franklin', 12: 'trevor' };
   var QUIET = [3, 4, 5, 7, 8, 9];
-  function slot(i) { var r = Math.floor(i / 5), c = i % 5; return { x0: WX0 + c * SW, y0: RT + r * RH, cx: WX0 + c * SW + SW / 2, base: RT + r * RH + 194 }; }
-  var S14 = { x0: WX0 + 3 * SW, y0: RT + 2 * RH, w: 2 * SW, h: RH, cx: WX0 + 4 * SW, cy: RT + 2 * RH + RH / 2 };
+  function slot(i) { var r = Math.floor(i / 5), c = i % 5; return { x0: SX0 + c * SW, y0: RT + r * RH, cx: SX0 + c * SW + SW / 2, base: RT + r * RH + 194 }; }
+  var S14 = { x0: SX0 + 3 * SW, y0: RT + 2 * RH, w: 2 * SW, h: RH, cx: SX0 + 4 * SW, cy: RT + 2 * RH + RH / 2 };
   var BUILD = (function () { var r = mulberry(5), out = []; for (var i = 0; i < 13; i++) out.push({ sh: .9 + r() * .2, hd: .92 + r() * .14, tilt: (r() - .5) * .05, ph: r() * 6 }); return out; })();
 
   /* a generic person: ellipse head, rounded trapezoid shoulders. kind 'f' adds a long-hair shape behind the head */
-  function person(g, x, base, s, col, kind, b) {
+  function person(g, x, base, s, col, kind, b, chest) {
     b = b || { sh: 1, hd: 1, tilt: 0 };
     g.save(); g.translate(x, base); g.scale(s, s); g.rotate(b.tilt || 0);
     var hr = 40 * b.hd, hy = -150, sw = 70 * b.sh;
@@ -195,12 +195,17 @@
     g.beginPath(); g.moveTo(-sw, 0); g.bezierCurveTo(-sw, -60, -sw + 8, -92, -26, -100); g.lineTo(26, -100); g.bezierCurveTo(sw - 8, -92, sw, -60, sw, 0); g.closePath(); g.fill();
     g.fillRect(-15, hy + hr - 10, 30, 30);
     el(g, 0, hy, hr * .9, hr);
+    if (chest) { /* a small booking board held at the chest: no text, just the board and its two lines */
+      g.fillStyle = 'rgba(0,0,0,.35)'; rr(g, -33, -66, 70, 40, 5); g.fill();
+      g.fillStyle = '#e9e1d4'; rr(g, -36, -70, 72, 40, 5); g.fill();
+      g.fillStyle = '#3a3448'; g.fillRect(-26, -60, 52, 6); g.fillRect(-26, -46, 34, 6);
+    }
     g.restore();
   }
   function board(g, x, y, name, game, a, s, col) {
     if (a <= 0) return;
     g.save(); g.globalAlpha *= clamp(a, 0, 1); g.translate(x, y); g.scale(s || 1, s || 1);
-    var w = 154, h = 88;
+    var w = 146, h = 88;
     rr(g, -w / 2 + 4, -h / 2 + 6, w, h, 8); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
     rr(g, -w / 2, -h / 2, w, h, 8); g.fillStyle = col || PAPER; g.fill();
     cond(g); g.textAlign = 'center'; g.textBaseline = 'middle';
@@ -217,9 +222,18 @@
   }
   function wallBack(g, o) {
     o = o || {};
+    var fm = o.fm == null ? 1 : o.fm;
     rr(g, WX0, WY0 + 12, WX1 - WX0, WY1 - WY0, 22); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
     rr(g, WX0, WY0, WX1 - WX0, WY1 - WY0, 22); g.fillStyle = PURP; g.fill();
-    stripes(g, 1, o.off);
+    stripes(g, .7, o.off);
+    /* the height chart: 7', 6', 5' on every row, bright lines across the wall */
+    for (var rr0 = 0; rr0 < 3; rr0++) {
+      var y0 = RT + rr0 * RH;
+      [[22, "7'"], [102, "6'"], [182, "5'"]].forEach(function (m) {
+        g.fillStyle = 'rgba(251,240,234,.6)'; g.fillRect(WX0 + 8, y0 + m[0] - 2, WX1 - WX0 - 16, 4);
+        if (fm > 0) { g.save(); g.globalAlpha *= fm; cond(g); font(g, 36, 900); g.fillStyle = CREAM; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(m[1], 125, y0 + m[0] + 22); g.restore(); g.__st = null; }
+      });
+    }
     /* the three shelves: a teal rule under each row */
     for (var r = 0; r < 3; r++) { g.fillStyle = 'rgba(25,211,197,.55)'; g.fillRect(WX0 + 8, RT + r * RH + RH - 6, WX1 - WX0 - 16, 4); }
     
@@ -235,7 +249,7 @@
     if (k > 0) {
       g.save(); g.globalAlpha *= 1 - (dim || 0) * .65;
       var bob = Math.sin(t * 1.4 + b.ph) * 2;
-      person(g, s.cx, s.base + (1 - k) * 230 + bob, .95, col || GREY, 'm', b);
+      person(g, s.cx, s.base + (1 - k) * 230 + bob, .95, col || GREY, 'm', b, true);
       g.restore();
     }
     if (fl > 0) { g.fillStyle = 'rgba(255,255,255,' + (.55 * fl).toFixed(3) + ')'; g.fillRect(s.x0 + 5, s.y0 + 4, SW - 10, RH - 14); }
@@ -275,7 +289,7 @@
   }
 
   /* fill times: spoken leads on their names, the six quiet ones in the pause after "Trevor", landing 13 on "Thirteen" */
-  var FILL = [], FALL0, R13;
+  var FILL = [], BDT = [], FALL0, R13;
   function countAt(t) {
     /* the counter rolls a step at each fill (0.14 s per step), sampled on the rendered frame */
     var tq = qt(t), v = 0;
@@ -300,16 +314,17 @@
     /* a slow dolly-in over the whole scene: the wall is never still */
     var z = 1 + .012 * seg(t, 0, 6) * dolly + .008 * eio(seg(t, ask, ask + 1.4)) * dolly;
     g.save(); g.translate(CX, 950); g.scale(z, z); g.translate(-CX, -950);
-    wallBack(g, { off: t * 6 });
+    wallBack(g, { off: t * 6, fm: home ? 0 : seg(t, .15, .45) });
     for (i = 0; i < 13; i++) slotPanel(g, i, 1);
     /* the leads: standing on frame 0, dropping out on "Count", refilling on their names */
     var dimK = eio(seg(t, ask + .1, ask + .6));
     for (i = 0; i < 13; i++) {
-      var out = eio(seg(t, FALL0 + i * .035, FALL0 + .4 + i * .035));
+      var out = eio(seg(t, FALL0 + i * .02, FALL0 + .34 + i * .02));
       var f = FILL[i], inK = home ? 0 : eo(seg(t, f - .1, f + .12));
       var k = t < FILL[i] - .1 ? 1 - out : inK;
-      var bd = home ? 0 : seg(t, f - .02, f + .16);
-      var fl = home ? 0 : (t >= f ? 1 - seg(t, f, f + .3) : 0);
+      var bt0 = BDT[i] == null ? f : BDT[i], bd = home ? 0 : seg(t, bt0 - .02, bt0 + .16);
+      var fl = home ? 0 : (t >= bt0 ? 1 - seg(t, bt0, bt0 + .3) : 0);
+      if (!home && i === 0) { var cl = at('names1', 'claude'); if (t >= cl) fl = Math.max(fl, .7 * (1 - seg(t, cl, cl + .35))); }
       lead(g, i, t, k, bd, fl, dimK);
       if (!home && t > FALL0 + .3 && k < .05) { var ss = slot(i); g.save(); g.globalAlpha *= fin(t, FALL0 + .3); g.strokeStyle = 'rgba(251,240,234,.45)'; g.lineWidth = 4; g.setLineDash([14, 10]); g.lineDashOffset = -t * 20; rr(g, ss.x0 + 12, ss.y0 + 12, SW - 24, RH - 30, 10); g.stroke(); g.restore(); }
     }
@@ -334,7 +349,7 @@
       g.save(); g.globalAlpha *= cA; g.translate(S14.cx, S14.cy - 22); g.scale(csq * lerp(1, .5, eio(seg(t, ask - .05, ask + .3))), csq * lerp(1, .5, eio(seg(t, ask - .05, ask + .3)))); g.translate(-S14.cx, -(S14.cy - 22));
       wheels(g, S14.cx, S14.cy - 22, Math.min(13, v), 2, { cw: 126, ch: 206, px: 190, gap: 10, fg: landed ? ORG : CREAM });
       g.restore();
-      label(g, landed ? 'ALL MEN' : 'STORY LEADS', S14.cx, S14.y0 + RH - 38, cA * fin(t, cnt0 + .2), landed ? ORG : CREAM, 38, 'center', 900);
+      label(g, landed ? 'OUR COUNT' : 'STORY LEADS', S14.cx, S14.y0 + RH - 38, cA * fin(t, cnt0 + .2), CREAM, 38, 'center', 900);
     }
     /* ask: the 13 settles as a small tag in the slot's corner while the "?" comes back */
     var tagA = home ? 0 : fin(t, ask + .25);
@@ -343,11 +358,26 @@
     g.restore();
     /* the scope, big in the empty wall while the line defines it, then as the credit at the wall's foot */
     if (!home) {
-      var sc0 = at('since', 'since') - .1, scA = fin(t, sc0) * (1 - seg(t, FILL[0] - .2, FILL[0] + .05));
+      var sc0 = at('since', 'since') - .1, scOut = start('names1') - .1, scA = fin(t, sc0) * (1 - seg(t, scOut - .25, scOut));
       chip(g, 'SINCE GTA III', CX, 700, { px: 92, wt: 900, bg: CREAM, fg: BG, a: scA, s: pin(t, sc0), rot: -.02 });
-      chip(g, '2001', CX, 860, { px: 120, wt: 900, bg: TEAL, fg: BG, a: fin(t, at('since', '2001') - .1) * (1 - seg(t, FILL[0] - .2, FILL[0] + .05)), s: pin(t, at('since', '2001') - .1), rot: .02 });
+      chip(g, '2001', CX, 860, { px: 120, wt: 900, bg: TEAL, fg: BG, a: fin(t, at('since', '2001') - .1) * (1 - seg(t, scOut - .25, scOut)), s: pin(t, at('since', '2001') - .1), rot: .02 });
       credit(g, 'OUR COUNT · STORY MODES · SINCE GTA III', CX, 1376, fin(t, FALL0 + .3));
+      /* the hook, captioned on the wall on "breaks"; SINCE 2001 scopes the 13 from the moment it is on screen */
+      var hb = at('hook', 'breaks') - .15, hA = fin(t, hb) * (1 - seg(t, FALL0 - .1, FALL0 + .15));
+      if (hA > 0) {
+        var hs = pin(t, hb);
+        g.save(); g.globalAlpha *= hA; g.translate(CX, 770); g.scale(hs, hs);
+        rr(g, -350 + 8, -150 + 12, 700, 236, 22); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
+        rr(g, -350, -150, 700, 236, 22); g.fillStyle = 'rgba(11,8,32,.95)'; g.fill(); g.strokeStyle = CREAM; g.lineWidth = 4; g.stroke();
+        font(g, 80, 900); g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.fillStyle = CREAM; g.fillText('BREAKS A', 0, -60);
+        var w1 = g.measureText('13-MAN ').width, w2 = g.measureText('LINEUP').width, x0 = -(w1 + w2) / 2;
+        g.textAlign = 'left'; g.fillStyle = ORG; g.fillText('13-MAN ', x0, 50); g.fillStyle = CREAM; g.fillText('LINEUP', x0 + w1, 50);
+        g.restore();
+        chip(g, 'SINCE 2001', CX, 935, { px: 48, wt: 900, bg: TEAL, fg: BG, a: hA * fin(t, hb + .2), s: pin(t, hb + .2), rot: .02 });
+      }
     }
+    /* frame 0: the wall's foot names it */
+    chip(g, 'LINEUP', CX, 1376, { px: 44, wt: 900, line: CREAM, lw: 3, fill: 'rgba(11,8,32,.94)', fg: CREAM, a: home ? 1 : 1 - seg(t, FALL0, FALL0 + .3), shadow: false });
     /* the hero stamp: ALL MEN slams across the wall in the written pause after "man." */
     if (!home) stampText(g, 'ALL MEN', CX, 556, t, GT.stamp, S('lucia').t0 - .35, 128, CREAM, -.04);
   }
@@ -394,106 +424,53 @@
     bigBoard(g, lerp(1100, 705, jk), 1230, 'JASON', 'DUVAL', fin(t, ja + .05) * (jk > .6 ? 1 : 0), pin(t, ja + .05) * kn(t, jn), PAPER);
     /* the search phrase, then CO-LEADS once Jason is in */
     chip(g, 'GTA 6 LUCIA', CX, 548, { px: 60, wt: 900, bg: HOT, fg: BG, a: fin(t, lu + .25), s: pin(t, lu + .25), rot: -.02 });
-    chip(g, 'CO-LEADS', CX, 640, { px: 48, wt: 900, bg: CREAM, fg: BG, a: fin(t, gt), s: pin(t, gt), rot: .02 });
+    chip(g, '“JASON AND LUCIA’S STORY”', CX, 640, { px: 46, wt: 900, bg: CREAM, fg: BG, a: fin(t, at('lucia', 'she') - .1), s: pin(t, at('lucia', 'she') - .1) * kn(t, ja), rot: .015, cond: true });
     credit(g, 'ROCKSTARGAMES.COM/VI', CX, 1392, fin(t, s0 + .35));
   }
 
   /* =====================================================================================================
-     SCENE 3 · dad + prison: Lucia's file card, Rockstar's own line, the bars, the plan
-     ===================================================================================================== */
-  function gloves(g, x, y, t, a) {
-    if (a <= 0) return;
-    g.save(); g.globalAlpha *= clamp(a, 0, 1); g.translate(x, y);
-    g.strokeStyle = CREAM; g.lineWidth = 5; g.beginPath(); g.moveTo(-60, -140); g.quadraticCurveTo(0, -170, 60, -140); g.stroke();
-    [[-60, 1], [60, -1]].forEach(function (p, j) {
-      var sw = Math.sin(t * 3.1 + j * 1.7) * .16;
-      g.save(); g.translate(p[0], -140); g.rotate(sw); g.strokeStyle = CREAM; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, 40); g.stroke();
-      g.translate(0, 110); g.scale(p[1], 1);
-      g.fillStyle = 'rgba(0,0,0,.35)'; rr(g, -46, -66, 104, 134, 46); g.fill();
-      g.fillStyle = j ? TEAL : HOT; rr(g, -52, -72, 104, 128, 48); g.fill();
-      el(g, -48, -4, 26, 34); g.fillStyle = CREAM; rr(g, -40, 44, 84, 34, 8); g.fill();
-      g.fillStyle = 'rgba(255,255,255,.25)'; el(g, 12, -40, 22, 14, -.4);
-      g.restore();
-    });
-    g.restore();
-  }
-  function planNote(g, x, y, k, t) {
-    if (k <= 0) return;
-    g.save(); g.translate(x, y); g.rotate(-.06);
-    var w = 300 * clamp(k, .05, 1), h = 210;
-    rr(g, -w / 2 + 6, -h / 2 + 9, w, h, 8); g.fillStyle = 'rgba(0,0,0,.35)'; g.fill();
-    g.fillStyle = '#fff6c9'; rr(g, -w / 2, -h / 2, w, h, 8); g.fill();
-    g.fillStyle = 'rgba(11,8,32,.12)'; g.fillRect(-1, -h / 2, 2, h); g.fillRect(-w / 2, -1, w, 2);
-    if (k > .9) {
-      g.strokeStyle = TEAL; g.lineWidth = 7; g.setLineDash([16, 12]); g.lineDashOffset = -t * 40; g.beginPath(); g.moveTo(-120, 70); g.bezierCurveTo(-60, -40, 10, 80, 80, -40); g.stroke(); g.setLineDash([]);
-      g.strokeStyle = HOT; g.lineWidth = 12; g.lineCap = 'round'; var xk = seg(k, .9, 1) * 10; g.beginPath(); g.moveTo(60, -62); g.lineTo(104, -18); g.moveTo(104, -62); g.lineTo(60, -18); g.stroke();
-    }
-    g.restore();
-  }
-  function fileScene(g, t) {
-    var s0 = S('file').t0, fi = at('dad', 'fight'), ro = at('dad', 'rockstar'), pr = start('prison'), ou = at('prison', 'out'), pl = at('prison', 'plan');
-    /* the card */
-    var cy = 30 * (1 - clamp(pop(t, s0, 2.6), 0, 1));
-    g.save(); g.translate(0, cy); g.rotate(-.006);
-    rr(g, 128, 498, 776, 830, 22); g.fillStyle = 'rgba(0,0,0,.42)'; g.fill();
-    rr(g, 122, 486, 776, 830, 22); g.fillStyle = PAPER; g.fill();
-    /* photo box with her silhouette */
-    rr(g, 158, 522, 230, 260, 14); g.fillStyle = PURP; g.fill();
-    g.save(); rr(g, 158, 522, 230, 260, 14); g.clip(); person(g, 273, 790, 1.35, HOT, 'f'); g.restore();
-    cond(g); g.textAlign = 'left'; g.textBaseline = 'middle';
-    font(g, 76, 900); g.fillStyle = INK; g.fillText('LUCIA', 420, 572); g.fillText('CAMINOS', 420, 646);
-    normal(g);
-    chip(g, 'ROCKSTAR’S WORDS', 560, 735, { px: 40, wt: 900, bg: TEAL, fg: BG, a: fin(t, ro - .2), s: pin(t, ro - .2) * kn(t, ro), shadow: false, cond: true });
-    /* the quote: Rockstar's own sentence, whole */
-    var qa = fin(t, s0 + .15);
-    g.save(); g.globalAlpha *= qa; g.textAlign = 'left'; g.textBaseline = 'alphabetic'; font(g, 62, 400, SERIF); g.fillStyle = INK;
-    ['“Lucia’s father taught', 'her to fight as soon', 'as she could walk.”'].forEach(function (ln, j) { g.fillText(ln, 166, 880 + j * 74); });
-    /* underline "fight" on the word */
-    var uk = eio(seg(t, fi - .05, fi + .3));
-    if (uk > 0) { font(g, 62, 400, SERIF); var x0 = 166 + g.measureText('her to ').width, fw = g.measureText('fight').width; g.fillStyle = HOT; g.fillRect(x0, 966, fw * uk, 8); }
-    g.restore();
-    /* lower half: the gloves (dad), then the plan note (prison) */
-    var gA = fin(t, s0 + .3) * (1 - seg(t, pl - .4, pl - .1));
-    g.save(); g.translate(660, 1190); g.scale(1.3, 1.3); gloves(g, 0, 0, t, gA); g.restore();
-    planNote(g, 690, 1190, eio(seg(t, pl - .2, pl + .25)), t);
-    label(g, 'HER PLAN', 690, 1325, fin(t, pl + .2), INK, 40, 'center', 900);
-    g.restore();
-    /* prison: bars drop over the card on "Now", lift on "out"; Rockstar's name for the prison stays */
-    var bd = eio(seg(t, pr - .15, pr + .2)) * (1 - eio(seg(t, ou - .05, ou + .35)));
-    if (bd > 0) {
-      g.save(); g.beginPath(); g.rect(110, 470, 800, 880); g.clip();
-      var yb = lerp(-900, 0, bd);
-      for (var i = 0; i < 7; i++) { var x = 150 + i * 120; g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(x + 6, 470 + yb, 28, 870); g.fillStyle = '#3a3448'; g.fillRect(x, 470 + yb, 28, 870); g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(x + 4, 470 + yb, 6, 870); }
-      g.fillStyle = '#3a3448'; g.fillRect(120, 760 + yb, 780, 24); g.fillRect(120, 1180 + yb, 780, 24);
-      g.restore();
-    }
-    var pA = fin(t, pr - .1);
-    chip(g, 'LEONIDA PENITENTIARY', 360, 1195, { px: 44, wt: 900, bg: INK, fg: CREAM, a: pA, s: pin(t, pr - .1), rot: -.03, shadow: true, cond: true, maxw: 420 });
-    label(g, 'FRESH OUT', 345, 1268, fin(t, ou + .15), INK, 44, 'center', 900);
-    credit(g, 'ROCKSTARGAMES.COM/VI', CX, 1392, fin(t, s0 + .35));
-  }
-
-  /* =====================================================================================================
-     SCENE 4 / 6 · the full wall with Lucia and Jason in slot 14 (but: NOT THE FIRST; since3d: FIRST SINCE 2001)
+     SCENE 3 / 5 · the full wall. book: Lucia booked into slot 14, LEONIDA PENITENTIARY, the flash, then the turn.
+     since3d: Lucia and Jason in slot 14, FIRST WOMAN LEAD OF A STORY MODE SINCE 2001 (our count).
      ===================================================================================================== */
   function fullWall(g, t, o) {
     var i;
     wallBack(g, { off: o.off == null ? t * 6 : o.off });
     for (i = 0; i < 13; i++) { slotPanel(g, i, 1); lead(g, i, t, 1, o.boards == null ? 1 : o.boards, 0, o.dim || 0); }
     slot14Frame(g, t, 1, false, 1);
-    g.save(); rr(g, S14.x0 + 6, S14.y0 + 4, S14.w - 12, S14.h - 14, 14); g.clip();
-    person(g, S14.x0 + 84, S14.y0 + 194 + Math.sin(t * 1.3) * 2, .95, HOT, 'f');
-    person(g, S14.x0 + 246, S14.y0 + 194 + Math.sin(t * 1.3 + 2) * 2, .95, TEAL, 'm', { sh: 1.08, hd: 1.02, tilt: 0 });
-    g.restore();
-    board(g, S14.x0 + 84, S14.y0 + 236, 'LUCIA', 'GTA 6', o.lb == null ? 1 : o.lb, 1);
-    board(g, S14.x0 + 246, S14.y0 + 236, 'JASON', 'GTA 6', o.lb == null ? 1 : o.lb, 1);
+    if (o.pair !== false) {
+      g.save(); rr(g, S14.x0 + 6, S14.y0 + 4, S14.w - 12, S14.h - 14, 14); g.clip();
+      person(g, S14.x0 + 77, S14.y0 + 194 + Math.sin(t * 1.3) * 2, .95, HOT, 'f');
+      person(g, S14.x0 + 231, S14.y0 + 194 + Math.sin(t * 1.3 + 2) * 2, .95, TEAL, 'm', { sh: 1.08, hd: 1.02, tilt: 0 });
+      g.restore();
+      board(g, S14.x0 + 77, S14.y0 + 236, 'LUCIA', 'GTA 6', o.lb == null ? 1 : o.lb, 1);
+      board(g, S14.x0 + 231, S14.y0 + 236, 'JASON', 'GTA 6', o.lb == null ? 1 : o.lb, 1);
+    }
   }
-  function butScene(g, t) {
-    var s0 = S('but').t0, nt = at('but', 'not'), wm = at('but', 'woman');
-    /* the rewind: the stripes run backward fast as the scene arrives, then settle */
-    var rw = s0 + PRE + .5, off = t * 6 - 900 * eio(seg(t, s0 - .2, rw));
-    fullWall(g, t, { off: off, dim: .25 * fin(t, nt) });
-    chip(g, 'NOT THE FIRST', S14.cx - 40, S14.y0 - 46, { px: 56, cond: true, wt: 900, line: CREAM, lw: 6, fill: 'rgba(11,8,32,.92)', fg: CREAM, a: fin(t, nt - .2), s: pin(t, nt - .2) * kn(t, wm), rot: -.04, shadow: false });
+  function bookScene(g, t) {
+    var s0 = S('book').t0, nw = at('prison', 'now'), fr = at('prison', 'fresh'), pr = at('prison', 'prison');
+    var bt = start('but'), ea = at('but', 'earlier'), fl = GT.flashP || end('prison') + .15;
+    /* the rewind before "But": the chart's thin lines run backward */
+    var off = t * 6 - 700 * eio(seg(t, GT.rewind || bt - .4, (GT.rewind || bt - .4) + .34));
+    fullWall(g, t, { pair: false, off: off, dim: .35 * fin(t, bt) });
+    /* Lucia steps up into slot 14 against the height chart, holding Rockstar's prison name */
+    var up = eo(seg(t, nw - .15, fr + .1));
+    g.save(); rr(g, S14.x0 + 6, S14.y0 + 4, S14.w - 12, S14.h - 14, 14); g.clip();
+    person(g, S14.cx, S14.y0 + 200 + (1 - up) * 260 + Math.sin(t * 1.3) * 2, 1.02, HOT, 'f');
+    g.restore();
+    var bA = fin(t, fr), by = S14.y0 + 196 + (1 - eo(seg(t, fr - .05, fr + .25))) * 40;
+    if (bA > 0) {
+      g.save(); g.globalAlpha *= bA; g.translate(S14.cx, by);
+      rr(g, -132 + 4, -50 + 6, 264, 100, 8); g.fillStyle = 'rgba(0,0,0,.45)'; g.fill();
+      rr(g, -132, -50, 264, 100, 8); g.fillStyle = '#e9e1d4'; g.fill();
+      cond(g); font(g, 40, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = INK; g.fillText('LEONIDA', 0, -21);
+      font(g, 40, 900); g.fillText('PENITENTIARY', 0, 22); g.restore(); g.__st = null;
+    }
+    /* the booking flash in the gap after the line */
+    var f = t >= fl ? 1 - seg(t, fl, fl + .4) : 0;
+    if (f > 0) { g.save(); g.fillStyle = 'rgba(255,255,255,' + (.75 * f).toFixed(3) + ')'; rr(g, S14.x0 + 6, S14.y0 + 4, S14.w - 12, S14.h - 14, 14); g.fill(); g.globalAlpha = .18 * f; g.fillRect(WX0, WY0, WX1 - WX0, WY1 - WY0); g.restore(); }
+    /* the turn: a quiet, untilted outline on Lucia */
+    chip(g, 'NOT THE FIRST', S14.cx, S14.y0 + 52, { px: 44, cond: true, wt: 900, line: CREAM, lw: 4, fill: 'rgba(11,8,32,.9)', fg: CREAM, a: fin(t, bt + .1), shadow: false, maxw: 296 });
+    credit(g, 'ROCKSTARGAMES.COM/VI', CX, 1376, fin(t, s0 + .35));
   }
 
   /* =====================================================================================================
@@ -532,14 +509,15 @@
       var x = PCOL[j % 4], y = PROW[Math.floor(j / 4)], a = fin(t, s0 + .1 + j * .06);
       if (a <= 0) return;
       g.save(); g.globalAlpha *= a; sprite(g, x, y, P, 11, t, j); g.restore();
-      if (P.n) label(g, P.n, x, y + 128, fin(t, s0 + .5 + j * .05), HOT, 38, 'center', 900);
+      if (P.n) { var hit = ch0 != null && t >= ch0 + [1, 3, 4, 6].indexOf(j) * .14 ? kn(t, ch0 + [1, 3, 4, 6].indexOf(j) * .14) : 1; g.save(); g.translate(x, y + 128); g.scale(hit, hit); label(g, P.n, 0, 0, fin(t, s0 + .5 + j * .05), HOT, 38, 'center', 900); g.restore(); }
     });
-    /* the cursor hops along the row and lands on a woman on "pick" */
-    var hops = [0, 2, 5, 3], hk = clamp(Math.floor(seg(t, s0 + .4, pk) * 3.999), 0, 3), tg = t >= pk ? 6 : hops[hk];
+    /* the cursor blinks on the first figure, lands on a woman on "pick", then visits all four on the chord */
+    var ch0 = GT.chord, W4 = [1, 3, 4, 6], tg = t >= pk ? 1 : 0, vis = -1;
+    if (t >= ch0) { vis = clamp(Math.floor((t - ch0) / .14), 0, 3); tg = W4[vis]; }
     var cx = PCOL[tg % 4], cyc = PROW[Math.floor(tg / 4)], blink = (Math.floor(t * 6) % 2) ? 1 : .55;
     g.save(); g.globalAlpha *= fin(t, s0 + .4) * (t >= pk ? 1 : blink); g.strokeStyle = t >= pk ? HOT : CREAM; g.lineWidth = 8;
     g.strokeRect(cx - 82, cyc - 98, 164, 196); g.restore();
-    chip(g, '8 CHARACTERS · 4 WOMEN', CX, 1322, { px: 50, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .55), s: pin(t, s0 + .55) * kn(t, on), rot: .01, cond: true });
+    chip(g, '4 OF 8 · WOMEN · 1997 PC', CX, 1322, { px: 56, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .55), s: pin(t, s0 + .55) * kn(t, ch0 + .42), rot: .01, cond: true });
     credit(g, 'NAMES: LEVELUP · OUR PIXEL ART', CX, 1392, fin(t, s0 + .45));
   }
 
@@ -547,9 +525,19 @@
      SCENE 6 · since3d: the wall, all 13 back, Lucia first since 2001
      ===================================================================================================== */
   function since3dScene(g, t) {
-    var s0 = S('since3d').t0, fs = at('since3d', 'since') + .3, ld = at('since3d', 'first');
+    var s0 = S('since3d').t0, fs = at('since3d', 'since') + .2, ld = at('since3d', 'first');
     fullWall(g, t, { dim: .3 * fin(t, fs - .2) });
-    chip(g, 'FIRST SINCE 2001', S14.cx - 60, S14.y0 - 46, { px: 56, cond: true, wt: 900, line: HOT, lw: 6, fill: 'rgba(11,8,32,.92)', fg: HOT, a: fin(t, fs - .1), s: pin(t, fs - .1) * kn(t, ld), rot: -.04, shadow: false });
+    var a = fin(t, fs - .1), sc = pin(t, fs - .1) * kn(t, ld);
+    if (a > 0) {
+      g.save(); g.globalAlpha *= a; g.translate(S14.x0 + 120, S14.y0 + 78); g.scale(sc, sc);
+      rr(g, -168, -70, 336, 140, 14); g.fillStyle = 'rgba(11,8,32,.94)'; g.fill(); g.strokeStyle = HOT; g.lineWidth = 5; g.stroke();
+      cond(g); g.textAlign = 'center'; g.textBaseline = 'middle';
+      font(g, 44, 900); g.fillStyle = HOT; g.fillText('FIRST WOMAN LEAD', 0, -38, 312);
+      font(g, 38, 900); g.fillStyle = CREAM; g.fillText('OF A STORY MODE', 0, 1, 312);
+      font(g, 44, 900); g.fillStyle = HOT; g.fillText('SINCE 2001', 0, 40, 312);
+      g.restore(); g.__st = null;
+    }
+    chip(g, 'OUR COUNT', S14.x0 + 120, S14.y0 + 168, { px: 38, wt: 900, bg: CREAM, fg: BG, a: fin(t, fs + .1), shadow: false });
     credit(g, 'ONLINE AVATARS NOT COUNTED', CX, 1376, fin(t, s0 + .02));
   }
 
@@ -570,7 +558,7 @@
   }
 
   /* ---------- captions (the voice, phrase by phrase; the hook line is carried by the picture) ---------- */
-  var CAPBRK = { since: ['since'], dad: ['rockstar'] };
+  var CAPBRK = { since: ['since'] };
   var CAPS = (function () {
     var out = [];
     VO.lines.forEach(function (l) {
@@ -632,7 +620,7 @@
 
   /* ---------- the picture ---------- */
   var NOISE;
-  var SCENES = { wall: wallScene, lucia: luciaScene, file: fileScene, but: butScene, pixel: pixelScene, since3d: since3dScene, end: endScene };
+  var SCENES = { wall: wallScene, lucia: luciaScene, book: bookScene, pixel: pixelScene, since3d: since3dScene, end: endScene };
   function stage(g) { g.fillStyle = BG; g.fillRect(0, 0, W, H); }
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   function drawScene(g, Sc, t) {
@@ -694,41 +682,43 @@
     var out = [];
     function T(id, text, a, b) { if (t >= a && t < b) out.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     function cut(id) { return S(id).t0 - .2; }
-    var ask = start('ask');
+    var hb = at('hook', 'breaks') - .15;
     T('gta', 'GTA 6', 0, start('since') - .1); T('gta', 'GTA 6', HOME + .3, DUR + 1);
+    T('lineup', 'LINEUP', 0, FALL0); T('lineup', 'LINEUP', HOME + .3, DUR + 1);
+    T('hookc', 'BREAKS A 13-MAN LINEUP', hb + .05, FALL0);
+    T('s2001', 'SINCE 2001', hb + .25, FALL0);
     T('leads', 'STORY LEADS', at('since', 'count') + .3, R13 + .1);
-    T('13', '13 · LEADS · ALL MEN', R13 + .15, cut('lucia'));
+    T('13', '13 · OUR COUNT', R13 + .15, start('ask') + .1);
     T('scope', 'OUR COUNT · STORY MODES · SINCE GTA III', FALL0 + .3, cut('lucia'));
     T('allmen', 'ALL MEN', GT.stamp + .05, cut('lucia'));
-    LEADS.forEach(function (L, i) { T('b' + i, L[0] + ' ' + L[1], FILL[i] + .1, cut('lucia')); });
-    T('srch', 'GTA 6 LUCIA', at('lucia', 'lucia') + .3, cut('file'));
-    T('luc', 'LUCIA CAMINOS', at('lucia', 'lucia') + .2, cut('file'));
-    T('jas', 'JASON DUVAL', at('lucia', 'shares') + .15, cut('file'));
-    T('co', 'CO-LEADS', at('lucia', 'gta') + .1, cut('file'));
-    T('src1', 'ROCKSTARGAMES.COM/VI', S('lucia').t0 + .45, cut('file'));
-    T('quote', 'Lucia’s father taught her to fight as soon as she could walk.', S('file').t0 + .25, cut('but'));
-    T('rw', 'ROCKSTAR’S WORDS', at('dad', 'rockstar') - .1, cut('but'));
-    T('pen', 'LEONIDA PENITENTIARY', start('prison') - .05, cut('but'));
-    T('src2', 'ROCKSTARGAMES.COM/VI', S('file').t0 + .45, cut('but'));
-    T('ntf', 'NOT THE FIRST', at('but', 'not') - .1, cut('pixel'));
-        T('y97', '1997 · PC', S('pixel').t0 + .15, cut('since3d'));
+    LEADS.forEach(function (L, i) { T('b' + i, L[0] + ' ' + L[1], (BDT[i] == null ? FILL[i] : BDT[i]) + .1, cut('lucia')); });
+    T('srch', 'GTA 6 LUCIA', at('lucia', 'lucia') + .3, cut('book'));
+    T('luc', 'LUCIA CAMINOS', at('lucia', 'lucia') + .2, cut('book'));
+    T('jas', 'JASON DUVAL', at('lucia', 'shares') + .15, cut('book'));
+    T('co', 'JASON AND LUCIA’S STORY', at('lucia', 'she'), cut('book'));
+    T('src1', 'ROCKSTARGAMES.COM/VI', S('lucia').t0 + .45, cut('book'));
+    T('pen', 'LEONIDA PENITENTIARY', at('prison', 'fresh') + .1, cut('pixel'));
+    T('src2', 'ROCKSTARGAMES.COM/VI', S('book').t0 + .45, cut('pixel'));
+    T('ntf', 'NOT THE FIRST', start('but') + .2, cut('pixel'));
+    T('y97', '1997 · PC', S('pixel').t0 + .15, cut('since3d'));
     T('w4', 'DIVINE KATIE MIKKI ULRIKA', S('pixel').t0 + .6, cut('since3d'));
-    T('n8', '8 CHARACTERS · 4 WOMEN', S('pixel').t0 + .65, cut('since3d'));
-    T('fs', 'FIRST SINCE 2001', at('since3d', 'since') + .3, cut('end'));
+    T('n8', '4 OF 8 · WOMEN · 1997 PC', S('pixel').t0 + .65, cut('since3d'));
+    T('fs', 'FIRST WOMAN LEAD OF A STORY MODE SINCE 2001', at('since3d', 'since') + .15, cut('end'));
+    T('oc', 'OUR COUNT', at('since3d', 'since') + .35, cut('end'));
     T('avt', 'ONLINE AVATARS NOT COUNTED', S('since3d').t0 + .1, cut('end'));
     T('vote', 'LUCIA JASON', S('end').t0 + .35, HOME);
     T('nov', 'GTA 6 · NOV 19, 2026', S('end').t0 + .15, HOME);
     return out;
   }
 
-  /* ---------- events: hits placed in pauses by the gate; beats with no free pause stay silent ---------- */
+  /* ---------- events: hits placed in real pauses of the voice (vo/vad.js); beats with no free pause stay silent ---------- */
+  function vadEndBefore(t, from) { var ve = from; (window.VAD || []).forEach(function (v) { if (v[0] < t - .2 && v[1] > ve) ve = v[1]; }); return ve; }
   function initTimes() {
     var i;
     SC = [
       { id: 'wall', name: 'The lineup', t0: 0 },
       { id: 'lucia', name: 'Lucia', t0: start('lucia') - .05, swipe: true },
-      { id: 'file', name: 'Her file', t0: start('dad') - .05, swipe: true },
-      { id: 'but', name: 'Not the first', t0: start('but') - .1, swipe: true },
+      { id: 'book', name: 'Fresh out of prison', t0: start('prison') - .05, swipe: true },
       { id: 'pixel', name: '1997', t0: start('first') - .05, swipe: true },
       { id: 'since3d', name: 'First since 2001', t0: start('since3d') - .05, swipe: true },
       { id: 'end', name: 'Lucia or Jason', t0: start('end') - .05, swipe: true }
@@ -736,43 +726,42 @@
     SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
     HOME = DUR - .45;
     FALL0 = at('since', 'count') - .05;
-    /* the fills */
-    for (i = 0; i < 13; i++) if (SPOKEN[i]) FILL[i] = at('names', SPOKEN[i]) - .02;
-    /* the quiet six roll in the real silence after "Trevor" (vad.js: vo.js under-reads the last word), done before Whisper's early "Thirteen" */
-    var ve = end('names'); (window.VAD || []).forEach(function (v) { if (v[0] < at('hero', 'thirteen') - .2 && v[1] > ve) ve = v[1]; });
-    var q0 = ve + .15, q1 = Math.min(q0 + .3, at('hero', 'thirteen') - .02);
-    QUIET.forEach(function (ix, j) { FILL[ix] = lerp(q0, q1, Math.pow(j / (QUIET.length - 1), .8)); });
-    R13 = Math.max.apply(null, FILL);
-    STRESS = [['since', '2001'], ['hero', 'thirteen'], ['hero', 'man'], ['ask', 'breaks'], ['lucia', 'lucia'], ['lucia', 'jason'], ['dad', 'fight'],
-      ['prison', 'prison'], ['prison', 'plan'], ['but', 'not'], ['first', '1997'], ['since3d', 'first'], ['end', 'lucia'], ['end', 'jason']]
-      .map(function (p) { return at(p[0], p[1], p[2]); });
     /* frame 0: the flash bulb, before the first word and under it in level */
     EV.push({ t: .06, type: 'flash', g: .5, id: 'flash0' });
-    /* hook: the slot cracks in the pause after "lineup" */
+    /* hook: the slot shatters in the pause after "lineup"; the leads drop out with a low slide */
     G('crack', end('hook') + .1, 'crack', .4, .7);
-    /* since: the leads drop out (a low slide) */
-    G('drop', FALL0 + .1, 'swish', .35, .45);
-    /* names: a clack per spoken name in the gap after it; the quiet six tick in the pause after "Trevor" */
-    Object.keys(SPOKEN).forEach(function (ix) { G('clack' + ix, wend('names', SPOKEN[ix]) + .04, 'clack', .25, .7); });
-    QUIET.forEach(function (ix, j) { G('tick' + ix, FILL[ix], 'tick', .04, .6 + j * .08); });
-    /* hero: the counter lands on 13 (on "Thirteen" the voice carries it); the ALL MEN stamp and the bulb in the written pause after "man." */
+    G('drop', FALL0 - .3, 'swish', .3, .45);
+    /* Claude, the first lead, drops in on "GTA 3" with a clack in the comma after it */
+    /* Claude rises on "GTA 3"; his board drops with a clack in the pause after "2001." */
+    FILL[0] = at('since', '3') - .02; BDT[0] = G('clack0', vadEndBefore(start('names1'), end('since') - .5) + .16, 'clack', .15, .8);
+    /* names1: Tommy, CJ, Niko on their names; then Mike, Toni, Vic in a three-clack burst in the gap before "Michael" */
+    FILL[1] = at('names1', 'tommy') - .02; FILL[2] = at('names1', 'cj') - .02; FILL[6] = at('names1', 'niko') - .02;
+    var g1 = vadEndBefore(start('names2'), end('names1') - .5) + .16;
+    [3, 4, 5].forEach(function (ix, j) { var tt = G('clack' + ix, g1 + j * .11, 'clack', .08, .75); FILL[ix] = tt; });
+    /* names2: Michael, Franklin, Trevor; then Johnny, Huang, Luis in a speeding tick roll after "Trevor" */
+    FILL[10] = at('names2', 'michael') - .02; FILL[11] = at('names2', 'franklin') - .02; FILL[12] = at('names2', 'trevor') - .02;
+    var g2 = vadEndBefore(at('hero', 'thirteen'), end('names2') - .5) + .16;
+    [7, 8, 9].forEach(function (ix, j) { var tt = g2 + [0, .12, .21][j]; FILL[ix] = tt; G('tick' + ix, tt, 'tick', .04, .8 + j * .1); G('tickb' + ix, tt + .045, 'tick', .03, .5); });
+    R13 = Math.max.apply(null, FILL);
+    /* one stressed word per caption at most; the end vote highlights neither name */
+    STRESS = [['since', '2001'], ['hero', 'thirteen'], ['hero', 'man'], ['ask', 'breaks'], ['lucia', 'lucia'], ['lucia', 'jason'],
+      ['prison', 'prison'], ['but', 'earlier'], ['first', '1997'], ['since3d', 'first']]
+      .map(function (p) { return at(p[0], p[1], p[2]); });
+    /* hero: the ALL MEN stamp and the bulb in the written pause after "man." */
     G('stamp', end('hero') + .1, 'stamp', .35, 1);
     G('bulb', (GT.stamp || end('hero') + .1) + .22, 'bulb', .3, .7);
-    /* the wipes */
-    SC.forEach(function (sc) { if (sc.swipe && sc.id !== 'but') G('w_' + sc.id, sc.t0 - SWIPE + .02, 'tear', .3, .85); });
-    /* lucia: the slot flash on "Lucia" falls on the word: the flash goes in the pause before Jason */
-    G('jas', at('lucia', 'jason') - .25, 'pop', .25, .6);
-    /* prison: the bars clang down in the gap before "Now" */
-    G('bars', start('prison') - .75, 'clang', .3, .8);
-    /* but: the rewind sweep in the gap before "But" */
-    G('rewind', S('but').t0 - .4, 'rewind', .35, .8);
-    /* first: the pixel blip in the pause after "one." */
-    G('blip', end('first') + .06, 'blip', .3, .8);
-    /* since3d: FIRST SINCE 2001 lands after the line */
-    /* end: the vote, and a swish home into frame 0 */
+    /* the cuts: a tear wherever the pause allows */
+    SC.forEach(function (sc) { if (sc.swipe) G('w_' + sc.id, sc.t0 - SWIPE + .02, 'tear', .35, .85); });
+    /* book: the booking flash in the gap after "prison.", the rewind just before "But" */
+    G('flashP', vadEndBefore(start('but'), end('prison') - .5) + .16, 'flash', .2, 1);
+    G('rewind', (GT.flashP || end('prison')) + .2, 'rewind', .25, .8);
+    /* first: the cursor visits the four women with a rising four-note chord in the pause after "one." */
+    G('chord', vadEndBefore(start('since3d'), end('first') - .5) + .16, 'chord', .3, .9);
+    /* end: a swish home into frame 0 */
     G('home', HOME - .05, 'swish', .3, .8);
     EV.sort(function (a, b) { return a.t - b.t; });
     if (GT.stamp == null) GT.stamp = end('hero') + .1;
+    if (GT.flashP == null) GT.flashP = end('prison') + .15;
   }
 
   function render(t, samples, shutter, fps) {
@@ -816,7 +805,7 @@
     function clang(t, g) { thump(t, .5 * g); [[220, .05], [331, .035], [497, .02]].forEach(function (p) { osc('triangle', p[0], t, t + .22, [[t, 0], [t + .004, p[1] * g], [t + .2, 0]]); }); tick(t, .5 * g); }
     function paper(t, g) { band(t, t + .18, 2500, 4500, .07 * g, .02 * g, 1.5); tick(t + .1, .25 * g); }
     /* levels balanced on the final mix (measured against the neighbouring voice): every hit audible, every hit ≥ 3 dB under the voice */
-    var LEVEL = { flash: 6, crack: 6, tick: 1.5, stamp: .5, bulb: 6, tear: 5, rewind: 6, blip: 3, pop: 3, swish: 6, clang: .9 };
+    var LEVEL = { chord: 2, flash: 6, crack: 6, tick: 1.5, stamp: .5, bulb: 6, tear: 20, rewind: 6, blip: 3, pop: 3, swish: 6, clang: .9 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1);
       if (e.type === 'flash') flash(e.t, g);
@@ -829,6 +818,7 @@
       else if (e.type === 'pop') popS(e.t, g);
       else if (e.type === 'rewind') rewind(e.t, g);
       else if (e.type === 'blip') blip(e.t, g);
+      else if (e.type === 'chord') [523.25, 659.25, 783.99, 1046.5].forEach(function (f, j) { var a = e.t + j * .14; osc('square', f, a, a + .2, [[a, 0], [a + .003, .045 * g], [a + .12, .02 * g], [a + .19, 0]]); });
       else if (e.type === 'clang') clang(e.t, g);
       else if (e.type === 'paper') paper(e.t, g);
       else if (e.type === 'swish') band(e.t, e.t + .24, 900, 5200, .1 * g, .02, 1.6);
@@ -839,7 +829,7 @@
     env(master.gain, [[0, .8], [DUR - .3, .8], [DUR, .55]]);
     /* room tone, so the loop seam is never digital zero */
     (function () { var o = bus(1), lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = .5;
-      var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .006; })();
+      var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .003; })();
   }
 
   /* ---------- boot ---------- */
