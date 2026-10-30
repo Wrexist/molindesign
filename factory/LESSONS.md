@@ -63,6 +63,11 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Coral is for the one hero stamp and the YES/NO chips only: coral wipe edges and coral caption words diluted SAME BAND (wifi r2).
 - A thump whose energy is all in 180–400 Hz is near-silent on a phone speaker at −26 dB RMS; keep its body there but layer a 1–3 kHz paper-slap transient and aim for about −18 dB RMS, still ≥ 3 dB under the voice (wifi r2).
 - A first cut at 6.9 doesn't reach 7.4 in one fix round (wifi 6.9 → 7.1); the plan table alone isn't enough. Before the first jury, the director watches the render at phone size for empty stages, frozen stretches and props too small to read (wifi r1: grey-square fridge, 20 px stamp).
+- A fix round must never add a new beat: the orchestrator asked for a new "it says it carried the one" line in math r1 and the r2 jury found it on the wrong chat and scored Truth down (7.5 → 7.0). Fix rounds fix; new ideas wait for a new film (math r2).
+- Read the topic's current research before writing the hook: "Your chatbot doesn't calculate" was contradicted by Anthropic's March 2025 interpretability post, which the researcher never read (math r1). For any AI-capability claim, search the model makers' own research pages first and phrase it for 2026 models.
+- One interpretability study of one model is not "your chatbot": scope the claim to the model in the voice or on screen ("one model, in its head") (math r2).
+- A quote chip goes on the claim it supports, and the hero hold keeps its own source on screen: "MITIGATED STRONGLY" replaced the Lee credit under WRITTEN FIRST (math r2, repeats gpus r2).
+- A sound-off mismatch must be drawn as a mismatch: commas and token cuts lined up so well the strip read "199 999 9" twice (math r2). Offset them ≥ 40 px and mark ≠.
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
