@@ -1,0 +1,110 @@
+{
+  "about": "GTA 6 Lucia: since GTA III took the series 3D in 2001, every lead Rockstar wrote was a man (13 leads in 11 games, derived). The 1997 original let you pick a woman, but the pick was only cosmetic; GTA Online lets you create a woman, but she is a blank: no name, no past. Lucia Caminos co-leads GTA 6's story with Jason (Rockstar: 'Jason and Lucia's story'), with a past Rockstar wrote for her. Hero number: 25 years (2001 to 2026, derived). Delta channel, own graphics, no Rockstar art. GTA 6 launches November 19, 2026.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Lucia",
+    "Jason",
+    "Tommy",
+    "Niko",
+    "Trevor"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 45
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6 ends a 25-year streak.",
+      "say": "G T A 6 ends a twenty-five year streak."
+    },
+    {
+      "id": "meet",
+      "at": 3.55,
+      "text": "Meet Lucia. She leads GTA 6, with Jason.",
+      "say": "Meet Lucia. She leads G T A 6 with Jason."
+    },
+    {
+      "id": "ask",
+      "at": 7.0,
+      "text": "So what streak is she breaking?"
+    },
+    {
+      "id": "three",
+      "at": 9.13,
+      "text": "GTA 3 took the series 3D in 2001.",
+      "say": "G T A three took the series three D in two thousand one."
+    },
+    {
+      "id": "men",
+      "at": 13.83,
+      "text": "Since then, every lead Rockstar wrote was a man.",
+      "say": "Since then, every lead Rockstar wrote was a man."
+    },
+    {
+      "id": "names",
+      "at": 17.04,
+      "text": "It was Tommy. CJ. Niko. Trevor.",
+      "say": "It was Tommy... C J... Niko... Trevor.",
+      "speed": 1.05
+    },
+    {
+      "id": "but",
+      "at": 21.24,
+      "text": "But you could play a woman in 1997.",
+      "say": "But you could play a woman in nineteen ninety-seven."
+    },
+    {
+      "id": "same",
+      "at": 24.09,
+      "text": "Same missions. Only the look changed."
+    },
+    {
+      "id": "online",
+      "at": 26.56,
+      "text": "GTA Online lets you make one. But she's a blank: no name, no past.",
+      "say": "G T A Online lets you make one. But she's a blank. No name, no past.",
+      "speed": 1.06
+    },
+    {
+      "id": "past",
+      "at": 32.16,
+      "text": "Now Lucia gets a past of her own."
+    },
+    {
+      "id": "fight",
+      "at": 35.13,
+      "text": "Rockstar says her father taught her to fight."
+    },
+    {
+      "id": "first",
+      "at": 37.96,
+      "text": "The first woman Rockstar wrote to lead a GTA story.",
+      "say": "The first woman Rockstar wrote to lead a G T A story."
+    },
+    {
+      "id": "end",
+      "at": 42.32,
+      "text": "Jason or Lucia: who's your pick?",
+      "say": "Jason, or Lucia? Who's your pick?"
+    }
+  ],
+  "dur": 44.9
+}

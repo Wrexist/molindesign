@@ -86,7 +86,7 @@ def words(text):
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
 WEAK = set('a an the of to in on at for with and or but it its is as by from that this'.split())
-SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6'}
+SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6', 'iii': '3'}   # GTA VI = GTA 6, GTA III = GTA 3 (the same titles)
 
 
 def norm(w):
