@@ -58,21 +58,20 @@
     carry: start('carry'), carryW: at('carry', 'carry'), right: at('carry', 'right'),
     guess: start('guess'), firstP: at('guess', 'piece'), there: at('guess', 'there'), guessEnd: lend('guess'),
     newer: start('newer'), fix: start('fix'), many: at('fix', 'many'), hand: at('fix', 'hand'), calc: at('fix', 'calculator'),
-    lie: start('lie'), say: at('lie', 'say'), didnt: at('lie', 'didnt'), lieEnd: lend('lie'),
     end: start('end'), calcQ: wend('end', 'calculator'), yes: at('end', 'yes'), no: at('end', 'no'), noEnd: wend('end', 'no')
   };
-  /* the headline becomes the question on "why" (frame 0's four words have had 2 s); NOT LIKE YOU DO lands on "one." */
-  K.swap = K.why - .08; K.chip = 1.3;
+  /* the headline becomes the question on "why" (frame 0's four words have had 2.3 s) */
+  K.swap = K.why - .08;
   K.hookOut = K.swap + 2.42;   /* the question stays up long enough to read; the chunks caption waits for it */
   /* the scissors: two cuts on "pieces", the tape falls apart in the planned silence after it */
   K.cut1 = K.pieces; K.cut2 = K.pieces + .32; K.apart = K.cut2 + .12;   /* cut2 and apart move onto the snip in initGaps */
 
-  /* scenes. swipe:true = the next scene comes in under the torn edge, drawn complete */
+  /* scenes. swipe:true = the next scene comes in under the torn edge, drawn complete; each wipe starts 0.1 s before its line */
   var SWIPE = .44;
   var SC = [
     { id: 'tape', fn: 'tape', name: 'The number tape', t0: 0 },
-    { id: 'board', fn: 'board', name: 'Left vs right', t0: at('left', 'the'), swipe: true },
-    { id: 'calc', fn: 'calc', name: 'The calculator', t0: K.hand, swipe: true }
+    { id: 'board', fn: 'board', name: 'Left vs right', t0: start('left') - .1 + SWIPE, swipe: true },
+    { id: 'calc', fn: 'calc', name: 'The calculator', t0: start('fix') - .1 + SWIPE, swipe: true }
   ];
   SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
   function S(id) { for (var i = 0; i < SC.length; i++) if (SC[i].id === id) return SC[i]; }
@@ -320,11 +319,13 @@
   ];
   var PD = { x0: TP.c3, x1: 888, ch: SIGNS, box: { x0: TP.X0 + 10 * TP.P + 4 * TP.S - 12, x1: TP.X0 + 10 * TP.P + 4 * TP.S + 64 } };
   var RK = { x0: 95, x1: 925, y: TP.y + TP.h, h: 82 };
-  var STRIP = { x0: 110, x1: 910, y0: 1258, y1: 1392 };
+  var STRIP = { x0: 110, x1: 910, y0: 1270, y1: 1384 };
+  /* 1,999,999 in pencil with natural spacing (digits 62 px apart, commas 30 px), centred under the rack */
+  var NAT = (function () { var cs = '1,999,999'.split(''), x = 263, o = []; cs.forEach(function (c) { var w = c === ',' ? 30 : 62; o.push({ c: c, x: x + w / 2 }); x += w; }); return o; })();
+  var NATD = NAT.filter(function (q) { return q.c !== ','; }), NATC = NAT.filter(function (q) { return q.c === ','; }).map(function (q) { return q.x; });
   /* after the split, where the tiles are: their gaps are the cut lines on the strip */
   function tileX(i) { return DIG[i].x + (i < 3 ? PC[0].to : i < 6 ? PC[1].to : PC[2].to); }
   var GAPS = [(PC[0].x1 + PC[0].to + PC[1].x0 + PC[1].to) / 2, (PC[1].x1 + PC[1].to + PC[2].x0 + PC[2].to) / 2];
-  var COMMAS = [(tileX(0) + tileX(1)) / 2, (tileX(3) + tileX(4)) / 2];
   /* the scissors' path: glide on frame 0, idle snips, open at the first cut on "chunks", two cuts on "pieces", then away */
   function scState(t) {
     var x, y = 740, a;
@@ -398,14 +399,19 @@
     var sc = scState(t);
     if (sc.x > -200) scissors(g, sc.x, sc.y, sc.a);
     /* labels under the rack */
-    tag(g, 'OUR ILLUSTRATION', CX, 1180, fin(t, K.hookEnd + .06) * (1 - seg(t, K.chunkW - .3, K.chunkW - .15)));
-    var la = fin(t, K.chunkW - .1);
+    var ha = fin(t, 1.3) * (1 - seg(t, K.chunkW - .3, K.chunkW - .15));
+    tag(g, 'OUR ILLUSTRATION', CX, 1423, ha);
+    /* the hook's source, scoped: one model, one study */
+    txt(g, 'ANTHROPIC, 2025', CX, 1172, 32, CREAM, 'center', 700, MONO, 820, ha);
+    txt(g, 'CLAUDE 3.5 HAIKU (ONE MODEL)', CX, 1212, 32, CREAM, 'center', 700, MONO, 820, ha);
+    /* the tokenizer labels give the space between the rows to the commas beat */
+    var la = fin(t, K.chunkW - .1) * (1 - seg(t, K.commas - .2, K.commas - .05));
     txt(g, 'ITS PIECES · OPENAI TOKENIZER', CX, 1178, 40, CREAM, 'center', 900, DISP, 820, la);
     txt(g, 'TIKTOKEN, GPT-4o/GPT-5 · OCT 29, 2026', CX, 1224, 36, CREAM, 'center', 700, MONO, 820, la);
     /* the graph strip: under the rack on frame 0 (blank, a pencil on it), out for the quote, back for the commas */
-    var out = eio(seg(t, K.hookOut + .05, K.hookOut + .45)), back = eio(seg(t, K.cut2 + .12, K.cut2 + .38));
+    var out = eio(seg(t, K.hookOut + .05, K.hookOut + .45)), back = eio(seg(t, K.cut2 - .3, K.cut2 - .05));
     var sx = -960 * out * (1 - back);
-    var qa = fin(t, K.hookOut + .3) * (1 - seg(t, K.cut2 - .02, K.cut2 + .12));
+    var qa = fin(t, K.hookOut + .3) * (1 - seg(t, K.cut2 - .36, K.cut2 - .24));
     if (qa > 0) {
       txt(g, '“…breaking a long number into', CX, 1284, 44, CREAM, 'center', 700, DISP, 820, qa);
       txt(g, '3-digit chunks, left-to-right”', CX, 1336, 44, CREAM, 'center', 700, DISP, 820, qa);
@@ -414,38 +420,42 @@
     if (sx > -940) {
       g.save(); g.translate(sx, 0);
       graphPaper(g, STRIP.x0, STRIP.y0, STRIP.x1, STRIP.y1, 37, 23, 'strip');
-      /* pencil writes 1,999,999 under the tiles (each digit under its tile digit) while "where your commas" is spoken */
+      /* pencil writes 1,999,999 with natural spacing while "where your commas" is spoken */
       var w0 = K.commas - .02, wstep = .075, nw = 0;
       ONPROP = true; font(g, 100, 600, MONO); g.fillStyle = PENCIL; g.textAlign = 'center'; g.textBaseline = 'middle';
-      for (i = 0; i < 7; i++) if (t >= w0 + i * wstep) { g.fillText(DIG[i].c, tileX(i), 1314); nw = i + 1; }
+      for (i = 0; i < 7; i++) if (t >= w0 + i * wstep) { g.fillText(NATD[i].c, NATD[i].x, 1322); nw = i + 1; }
       ONPROP = false;
-      g.strokeStyle = PENCIL; g.lineWidth = 7; g.lineCap = 'round';
-      COMMAS.forEach(function (x, k) { if (t >= w0 + (k ? 3.5 : .5) * wstep) { g.beginPath(); g.moveTo(x + 2, 1350); g.quadraticCurveTo(x + 4, 1368, x - 7, 1382); g.stroke(); } });
-      /* the tile gaps as solid cream cut lines (4 px, ink-edged on the paper) across the strip: they miss the commas */
-      var dl = seg(t, K.commaW + .1, K.commaW + .4);
-      if (dl > 0) {
-        var ly0 = STRIP.y0 - 10, ly1 = ly0 + (STRIP.y1 + 10 - ly0) * dl;
-        g.save(); g.lineCap = 'butt';
-        GAPS.forEach(function (x) { g.strokeStyle = INK; g.lineWidth = 9; g.beginPath(); g.moveTo(x, Math.max(ly0, STRIP.y0)); g.lineTo(x, Math.min(ly1, STRIP.y1)); if (ly1 > STRIP.y0) g.stroke();
-          g.strokeStyle = CREAM; g.lineWidth = 4; g.beginPath(); g.moveTo(x, ly0); g.lineTo(x, ly1); g.stroke(); });
-        g.restore();
-      }
+      g.strokeStyle = PENCIL; g.lineWidth = 9; g.lineCap = 'round';
+      NATC.forEach(function (x, k) { if (t >= w0 + (k ? 3.5 : .5) * wstep) { g.beginPath(); g.moveTo(x + 2, 1352); g.quadraticCurveTo(x + 4, 1368, x - 7, 1384); g.stroke(); } });
       /* the pencil: lying on the strip, then writing, then lifting away */
       var px, py, wr = seg(t, w0 - .25, w0), lift = eio(seg(t, K.go + .2, K.go + .75));
-      var tipX = nw ? tileX(Math.min(6, nw)) - 30 : 560, tipY = 1326;
-      if (t < w0 - .25) { pencil(g, 870, 1278, 600, 1330); }
+      var tipX = nw ? NATD[Math.min(6, nw - 1)].x + 30 : 560, tipY = 1334;
+      if (t < w0 - .25) { pencil(g, 870, 1290, 600, 1342); }
       else {
-        px = lerp(600, tipX, eio(wr)); py = lerp(1330, tipY, eio(wr));
-        if (nw >= 7) { px = lerp(tileX(6) + 20, 1000, lift); py = lerp(tipY, 1280, lift); }
+        px = lerp(600, tipX, eio(wr)); py = lerp(1342, tipY, eio(wr));
+        if (nw >= 7) { px = lerp(NATD[6].x + 30, 1000, lift); py = lerp(tipY, 1290, lift); }
         pencil(g, px + 300, py + 40, px, py);
       }
       g.restore();
     }
-    var ga = fin(t, K.cut2 + .1);
+    /* the two sets of cuts, drawn between the rows: solid cream from the tile gaps down, dashed cream from your commas up.
+       They never meet (≥ 99 px apart), and a big ≠ says so */
+    var dl = eio(seg(t, K.commaW + .1, K.commaW + .4)), yT = RK.y + RK.h + 4, yB = STRIP.y0 - 4;
+    if (dl > 0) {
+      g.save(); g.lineCap = 'butt'; g.strokeStyle = CREAM; g.lineWidth = 4;
+      GAPS.forEach(function (x) { g.beginPath(); g.moveTo(x, yT); g.lineTo(x, lerp(yT, yB, dl)); g.stroke(); });
+      g.setLineDash([14, 10]);
+      NATC.forEach(function (x) { g.beginPath(); g.moveTo(x, yB); g.lineTo(x, lerp(yB, yT, dl)); g.stroke(); });
+      g.restore();
+      var ne = fin(t, K.commaW + .4);
+      if (ne > 0) { g.save(); g.globalAlpha *= ne; g.fillStyle = CREAM; g.translate(850, 1206); g.fillRect(-44, -26, 88, 12); g.fillRect(-44, 14, 88, 12);
+        g.rotate(.5); g.fillRect(-7, -52, 14, 104); g.restore(); }
+    }
+    var ga = fin(t, K.cut2 - .25);
     txt(g, 'YOUR GROUPS', 520, 1424, 40, CREAM, 'right', 900, DISP, 420, ga);
     txt(g, '1 · 999 · 999', 548, 1424, 40, CREAM, 'left', 700, MONO, 360, ga);
   }
-  /* frame-0 type: DOESN'T / CARRY THE 1 (4 words). NOT LIKE YOU DO at 1.5 s; the question WHY IS AI / BAD AT MATH? on
+  /* frame-0 type: DOESN'T / CARRY THE 1 (4 words; the voice adds "in its head"); the question WHY IS AI / BAD AT MATH? on
      "why"; all of it leaves just before the captions take over. */
   function hookText(g, t, idle) {
     var a = idle ? 1 : 1 - seg(t, K.hookOut - .1, K.hookOut);
@@ -467,8 +477,6 @@
       Q.forEach(function (s, i) { g.save(); g.translate(CX, 356 + i * qp * 1.04 + 16 * (1 - m)); g.scale(i ? k : 1, i ? k : 1); g.fillText(s, 0, 0); g.restore(); });
       g.restore();
     }
-    var ca = a * fin(t, K.chip, 3.6);
-    chip(g, 'NOT LIKE YOU DO', CX, 530, { px: 42, wt: 900, bg: CREAM, fg: BG, a: ca, s: pop(t, K.chip, 3.6), rot: .015, r: 12 });
   }
 
   /* =====================================================================================================
@@ -481,7 +489,10 @@
   var GB = { x0: 110, x1: 636, y0: 556, y1: 968, rot: -.008 };
   var COLX = [572, 516, 460, 382, 326, 270, 192], COMX = [421, 231];   /* ones … millions; commas */
   var ROW = { carry: 618, top: 714, plus: 806, rule: 850, ans: 916 };
-  var AT = { y: 1036, h: 240, px: 114, P: 74, pad: 19, xs: [170, 470, 770] }; AT.cy = AT.y + 66;
+  var AT = { y: 1020, h: 220, px: 114, P: 74, pad: 19, xs: [170, 470, 770] }; AT.cy = AT.y + 60;
+  /* the whole sum (card, carries, pencil, race arrow) is drawn at 0.86 from its top-left corner, so the source chip fits
+     beside it */
+  var SUMK = .86;
   var TOK = [['2', '0', '0'], ['0', '0', '0'], ['0']];
   /* six hops from "carry" to just after "there": the carry reaches the millions column after 200 is already written */
   var HD = (K.there + .15 - (K.carryW + .02)) / 5.85, HDUR = HD * .85;
@@ -492,6 +503,7 @@
   function boardScene(g, t) {
     var t0 = S('board').t0, i, still = t >= GT.slam + .2;
     /* the graph card and the sum */
+    g.save(); g.translate(GB.x0, GB.y0); g.scale(SUMK, SUMK); g.translate(-GB.x0, -GB.y0);
     g.save(); g.translate((GB.x0 + GB.x1) / 2, (GB.y0 + GB.y1) / 2); g.rotate(GB.rot); g.translate(-(GB.x0 + GB.x1) / 2, -(GB.y0 + GB.y1) / 2);
     graphPaper(g, GB.x0, GB.y0, GB.x1, GB.y1, 37, 41, 'sum');
     ONPROP = true; g.fillStyle = PENCIL; g.textAlign = 'center'; g.textBaseline = 'middle';
@@ -522,21 +534,21 @@
     if (pin > 0 && pout < 1) {
       var tx = t < hopT(0) ? COLX[0] + 10 : carryX(t), ty = ROW.carry + 20;
       if (t >= LAND()) tx = COLX[6] + 30;
-      tx = lerp(1000, tx, pin); ty = lerp(900, ty, pin);
-      tx = lerp(tx, 1120, pout); ty = lerp(ty, 400, pout);
+      tx = lerp(1100, tx, pin); ty = lerp(1000, ty, pin);
+      tx = lerp(tx, 1250, pout); ty = lerp(ty, 1000, pout);
       pencil(g, tx + 80, ty - 210, tx, ty);
     }
     /* the race: one cream arrow above the sum, its tip on the travelling carry, ones → millions; YOU CARRY at its tail */
     var ya = fin(t, K.carryW + .04), ax0 = 640, tip = t < hopT(0) ? ax0 : Math.min(ax0, carryX(t) - 10);
-    txt(g, 'YOU CARRY', 805, 528, 36, CREAM, 'center', 900, DISP, 250, ya);
-    if (ax0 - tip > 34) arrow(g, ax0, tip, 528, ya, 8);
-    txt(g, 'OUR', 790, 860, 34, CREAM, 'center', 700, MONO, 250, 1, 30);
-    txt(g, 'ILLUSTRATION', 790, 902, 34, CREAM, 'center', 700, MONO, 250, 1, 30);
+    if (ax0 - tip > 34) arrow(g, ax0, tip, 524, ya, 9);
+    g.restore();
+    txt(g, 'YOU CARRY', 800, 532, 36, CREAM, 'center', 900, DISP, 250, ya);
+    txt(g, 'OUR ILLUSTRATION', 770, 990, 28, CREAM, 'center', 700, MONO, 290, 1, 26);
     /* IT WRITES → above the answer tape */
-    txt(g, 'IT WRITES', 130, 1000, 44, CREAM, 'left', 900, DISP, 320, 1);
-    arrow(g, 410, 560, 1000, 1);
+    txt(g, 'IT WRITES', 130, 988, 40, CREAM, 'left', 900, DISP, 320, 1);
+    arrow(g, 390, 540, 988, 1, 7);
     /* the answer tiles, typed by the caret */
-    var TT = [at('left', 'answer'), K.piece1, K.piece2], lift = -10 * eout(seg(t, K.firstP, K.firstP + .25));
+    var TT = [at('left', 'answer'), K.piece1, K.piece2], lift = -6 * eout(seg(t, K.firstP, K.firstP + .25));
     var caretX = AT.xs[0] + AT.pad, typed = 0;
     for (var tk = 0; tk < 3; tk++) {
       var t1 = TT[tk] - .04; if (t < t1) break;
@@ -556,31 +568,35 @@
     /* the caret (part 1's): blinks while it waits, solid while it types; gone before the carries */
     var busy = typed && t < (typed === 1 ? K.leftW : TT[typed - 1]) + .3, ca = 1 - seg(t, K.leftEnd + .2, K.leftEnd + .4);
     if (ca > 0) { var on = busy ? 1 : (Math.cos(t * Math.PI * 2 * 1.05) > -.2 ? 1 : .15); g.save(); g.globalAlpha *= ca * on; g.fillStyle = CREAM; rr(g, caretX - 7, AT.y + 12, 14, AT.h - 24, 7); g.fill(); g.restore(); }
-    /* THE stamp, on 200's lower half (never over the digits): it was guessed, not wrong */
-    stamp(g, 'WRITTEN\nFIRST', 300, AT.y + AT.h - 70 + lift, t, GT.slam, 54, HOT, -.05, 380);
-    /* the credit under the tape; after the hold the NEWER chip takes its place */
-    var na = newerA(t), la = 1 - na;
-    if (la > 0) {
-      txt(g, 'LEE ET AL., 2023 (SMALL MODELS):', CX, 1318, 36, CREAM, 'center', 700, MONO, 820, la);
-      txt(g, '“…NOT OPTIMIZED FOR GENERATING THE', CX, 1362, 36, CREAM, 'center', 700, MONO, 820, la);
-      txt(g, 'MOST SIGNIFICANT DIGIT (MSB) FIRST.”', CX, 1406, 36, CREAM, 'center', 700, MONO, 820, la);
-    }
+    /* THE stamp, below 200's digits (never over them): how it was made, not whether it is right */
+    stamp(g, 'WRITTEN\nFIRST', 300, AT.y + AT.h - 34 + lift, t, GT.slam, 54, HOT, -.05, 380);
+    /* the line under the stamp, from "before the carry gets there" */
+    txt(g, 'IT HAS TO PREDICT THE CARRY', CX, 1312, 38, CREAM, 'center', 900, DISP, 820, fin(t, at('guess', 'before')));
+    /* the Lee credit stays under the tiles for the whole scene, through the hold */
+    txt(g, 'LEE ET AL., 2023 (SMALL MODELS):', CX, 1352, 34, CREAM, 'center', 700, MONO, 820, 1, 30);
+    txt(g, '“…NOT OPTIMIZED FOR GENERATING THE', CX, 1390, 34, CREAM, 'center', 700, MONO, 820, 1, 30);
+    txt(g, 'MOST SIGNIFICANT DIGIT (MSB) FIRST.”', CX, 1428, 34, CREAM, 'center', 700, MONO, 820, 1, 30);
     newerChip(g, t);
   }
-  /* the NEWER chip: one cream card under the tape after the hold, only the source's words; gone before the second wipe */
-  function newerT() { return GT.slam - .36; }
+  /* the Singh chip: a cream card beside the sum, only the source's words; it lands 0.15 s before the
+     stamp so it is part of the held frame, and it is gone before the second wipe */
+  function newerT() { return GT.slam - .15; }
   function newerA(t) { var w = S('calc').t0 - SWIPE; return fin(t, newerT(), 3.4) * (1 - seg(t, w - .12, w - .02)); }
   function newerChip(g, t) {
     var a = newerA(t); if (a <= 0) return;
-    var s = pop(t, newerT(), 3.4), y0 = 1290, y1 = 1430;
-    g.save(); g.globalAlpha *= a; g.translate(CX, (y0 + y1) / 2); g.scale(s, s); g.rotate(-.006); g.translate(-CX, -(y0 + y1) / 2);
-    g.fillStyle = 'rgba(0,0,0,.36)'; rr(g, 112 + 7, y0 + 10, 796, y1 - y0, 14); g.fill();
-    g.fillStyle = CREAM; rr(g, 112, y0, 796, y1 - y0, 14); g.fill();
-    recBox(g, 112, y0, 908, y1, '[chip] NEWER');
-    CHIPBOX = LBL ? xbox(g, 112, y0, 908, y1) : null;
-    txt(g, 'LATER GPT-4:', CX, y0 + 32, 36, BG, 'center', 700, MONO, 760);
-    txt(g, '“MITIGATED STRONGLY”', CX, y0 + 76, 46, BG, 'center', 900, DISP, 760);
-    txt(g, 'SINGH & STROUSE, 2024', CX, y0 + 116, 34, BG, 'center', 700, MONO, 760, 1, 30);
+    var s = pop(t, newerT(), 3.4), x0 = 600, x1 = 920, y0 = 580, y1 = 960, cx = (x0 + x1) / 2;
+    g.save(); g.globalAlpha *= a; g.translate(cx, (y0 + y1) / 2); g.scale(s, s); g.rotate(.008); g.translate(-cx, -(y0 + y1) / 2);
+    g.fillStyle = 'rgba(0,0,0,.36)'; rr(g, x0 + 7, y0 + 10, x1 - x0, y1 - y0, 14); g.fill();
+    g.fillStyle = CREAM; rr(g, x0, y0, x1 - x0, y1 - y0, 14); g.fill();
+    recBox(g, x0, y0, x1, y1, '[chip] NEWER');
+    CHIPBOX = LBL ? xbox(g, x0, y0, x1, y1) : null;
+    txt(g, 'LATER GPT-4:', cx, y0 + 40, 32, BG, 'center', 700, MONO, 290, 1, 28);
+    txt(g, 'THE CHUNK-', cx, y0 + 94, 38, BG, 'center', 900, DISP, 290, 1, 30);
+    txt(g, 'DIRECTION GAP', cx, y0 + 140, 38, BG, 'center', 900, DISP, 290, 1, 30);
+    txt(g, '“MITIGATED', cx, y0 + 198, 40, BG, 'center', 900, DISP, 290, 1, 30);
+    txt(g, 'STRONGLY”', cx, y0 + 246, 40, BG, 'center', 900, DISP, 290, 1, 30);
+    txt(g, 'SINGH &', cx, y0 + 304, 30, BG, 'center', 700, MONO, 290, 1, 26);
+    txt(g, 'STROUSE, 2024', cx, y0 + 342, 30, BG, 'center', 700, MONO, 290, 1, 26);
     CHIPBOX = null;
     g.restore();
   }
@@ -591,7 +607,7 @@
      On "Did" the chat scrolls: the same question, an answer, and a paper flap folds over where RAN CODE would be.
      YES / NO. Then the torn edge lands on frame 0.
      ===================================================================================================== */
-  var BX = { x0: 140, x1: 500, y0: 620, y1: 990 };
+  var BX = { x0: 180, x1: 500, y0: 620, y1: 990 };   /* the crank's reach stays at x ≥ 104 */
   var PH = { x0: 560, x1: 922, y0: 566, y1: 1136 }, SCR = { x0: 576, x1: 906, y0: 588, y1: 1114 };
   var TRAY = (function () {
     var ts = ['199', '999', '9', '+', '1'], P = 31, pad = 8, x = 124, out = [];
@@ -642,19 +658,19 @@
     g.fillStyle = CARD; cut(g, [[BX.x0, BX.y0], [BX.x1, BX.y0], [BX.x1, BX.y1], [BX.x0, BX.y1]], r, 2.5);
     g.fillStyle = CARD_L; g.fillRect(BX.x0, BX.y0, BX.x1 - BX.x0, 14);
     g.fillStyle = '#2b2420'; rr(g, 255, BX.y0 + 3, 130, 9, 4); g.fill();
-    g.fillStyle = 'rgba(240,226,190,.5)'; g.fillRect(166, BX.y0 + 40, 22, BX.y1 - BX.y0 - 80);      /* packing tape */
+    g.fillStyle = 'rgba(240,226,190,.5)'; g.fillRect(192, BX.y0 + 40, 18, BX.y1 - BX.y0 - 80);      /* packing tape */
     g.fillStyle = '#3a3340'; rr(g, 206, 668, 264, 92, 10); g.fill();                                  /* the window */
     g.fillStyle = 'rgba(244,237,224,.12)'; rr(g, 216, 678, 244, 30, 6); g.fill();
     for (i = 0; i < 12; i++) { var kx = 220 + (i % 4) * 64, ky = 790 + Math.floor(i / 4) * 58; g.fillStyle = 'rgba(0,0,0,.25)'; rr(g, kx + 3, ky + 5, 48, 42, 8); g.fill(); g.fillStyle = i === 11 ? '#e8dcc0' : CARD_L; rr(g, kx, ky, 48, 42, 8); g.fill(); }
     g.fillStyle = '#2b2420'; g.fillRect(BX.x1 - 8, RX.y - 6, 10, 148);                                /* the receipt slot */
     prop(g, 'calculator', BX.x0, BX.y0, BX.x1 + 10, BX.y1 + 14);
     /* the crank on the side */
-    g.save(); g.translate(BX.x0 - 14, 720);
+    g.save(); g.translate(BX.x0 - 10, 720);
     g.fillStyle = '#4a4352'; el(g, 0, 0, 16, 16);
-    g.rotate(-ang); g.fillStyle = '#3b3644'; rr(g, -8, -8, 66, 16, 8); g.fill();
-    g.fillStyle = WOOD; el(g, 58, 0, 14, 14); g.fillStyle = WOOD_L; el(g, 55, -3, 6, 6);
+    g.rotate(-ang); g.fillStyle = '#3b3644'; rr(g, -8, -8, 60, 16, 8); g.fill();
+    g.fillStyle = WOOD; el(g, 52, 0, 14, 14); g.fillStyle = WOOD_L; el(g, 49, -3, 6, 6);
     g.restore();
-    prop(g, 'crank', BX.x0 - 90, 640, BX.x0, 800);
+    prop(g, 'crank', BX.x0 - 76, 644, BX.x0, 796);
     /* the phone: generic, paper, a round punch-hole camera, no logo */
     g.fillStyle = 'rgba(0,0,0,.4)'; rr(g, PH.x0 + 10, PH.y0 + 14, PH.x1 - PH.x0, PH.y1 - PH.y0, 48); g.fill();
     g.fillStyle = PHONE; rr(g, PH.x0, PH.y0, PH.x1 - PH.x0, PH.y1 - PH.y0, 48); g.fill();
@@ -671,41 +687,16 @@
     }
     ask(640);
     if (mv > 0) receipt(g, lerp(RX.x, LAND.x, mv), lerp(RX.y, LAND.y, mv) - scroll * (1 - mv), t);
-    /* "Ask how it added": the viewer's question, then the chatbot's answer, struck through on "didn't" (re-created) */
-    var qa = clamp(pop(t, K.lie + .02, 3.6), 0, 1.04);
-    if (qa > 0) {
-      g.save(); g.translate(800, 940); g.scale(qa, qa); g.translate(-800, -940);
-      g.fillStyle = BUB; rr(g, 664, 906, 228, 68, 22); g.fill();
-      ONPROP = true; txt(g, 'How did you add?', 778, 941, 34, CREAM, 'center', 700, DISP, 208, 1, 26); ONPROP = false;
-      g.restore();
-    }
-    var ba = clamp(pop(t, K.say - .04, 3.6), 0, 1.04);
-    if (ba > 0) {
-      g.save(); g.translate(700, 1030); g.scale(ba, ba); g.translate(-700, -1030);
-      g.fillStyle = BUB; rr(g, 590, 990, 262, 80, 24); g.fill();
-      /* the reply types itself out over "say it carried the one" (one character at a time, left aligned) */
-      var full = 'I carried the 1', nc = Math.max(1, Math.min(full.length, Math.ceil(full.length * seg(t, K.say, at('lie', 'one') + .25))));
-      ONPROP = true; font(g, 40, 800); var fw = g.measureText(full).width;
-      NOREC = nc < full.length;   /* half-typed text is not a label: only the finished reply counts for readcheck */
-      txt(g, full.slice(0, nc), 721 - fw / 2, 1031, 40, CREAM, 'left', 800, DISP, 240, 1, 30); ONPROP = false; NOREC = false;
-      if (nc < full.length) { g.fillStyle = CREAM; g.globalAlpha *= .8; g.fillRect(721 - fw / 2 + g.measureText(full.slice(0, nc)).width + 4, 1012, 4, 38); g.globalAlpha = 1; }
-      g.restore();
-      var sk = eio(seg(t, K.didnt - .02, K.didnt + .22));
-      if (sk > 0) { g.save(); g.strokeStyle = CREAM; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(606, 1033); g.lineTo(lerp(606, 836, sk), 1029); g.stroke(); g.restore(); }
-    }
     if (t >= K.end) {
-      ask(1100);
+      ask(960);
       var ra = clamp(pop(t, K.calcQ - .1, 3.6), 0, 1.04);
-      if (ra > 0) { g.save(); g.translate(741, 1266); g.scale(ra, ra); g.translate(-741, -1266); receipt(g, LAND.x, 1196, t, eio(seg(t, K.calcQ + .1, K.calcQ + .55))); g.restore(); }
+      if (ra > 0) { g.save(); g.translate(741, 1126); g.scale(ra, ra); g.translate(-741, -1126); receipt(g, LAND.x, 1056, t, eio(seg(t, K.calcQ + .1, K.calcQ + .55))); g.restore(); }
     }
     g.restore();
     /* labels: beside the machine, the source line under both */
-    txt(g, 'A CALCULATOR,', 320, 1040, 42, CREAM, 'center', 900, DISP, 400);
-    txt(g, 'IN CODE (PYTHON)', 320, 1088, 42, CREAM, 'center', 900, DISP, 400);
-    var aa = fin(t, K.lie + .1);
+    txt(g, 'A CALCULATOR,', 340, 1040, 42, CREAM, 'center', 900, DISP, 400);
+    txt(g, 'IN CODE (PYTHON)', 340, 1088, 42, CREAM, 'center', 900, DISP, 400);
     txt(g, 'CODE TOOLS: OPENAI · ANTHROPIC · GOOGLE', CX, 1192, 36, CREAM, 'center', 700, MONO, 810, 1, 30);
-    txt(g, 'ANTHROPIC, 2025 (CLAUDE 3.5 HAIKU, 36+59)', CX, 1240, 36, CREAM, 'center', 700, MONO, 810, aa, 30);
-    tag(g, 'RE-CREATED', 741, 1296, aa);
     /* YES / NO, coral (with the WRITTEN FIRST stamp, the only coral in the film) */
     var yk = function (w) { return 1 + .06 * Math.sin(Math.PI * seg(t, w - .06, w + .3)); };
     var ya = fin(t, K.end + .1);
@@ -728,11 +719,11 @@
       });
       if (cur.length) out.push({ id: l.id, ws: cur });
     });
-    /* nothing new prints over the stamped tape during the hold: the newer caption waits for the hold's end */
+    /* (the newer caption prints on "Newer", before the hold starts; its pill on "less" ends the hold) */
     return out.map(function (c) { var ws = c.ws; return { id: c.id, t0: ws[0].t0, s: c.id === 'chunks' && ws[0] === LINE.chunks.words[0] ? Math.max(ws[0].t0, K.hookOut + .04) : ws[0].t0, t1: ws[ws.length - 1].t1, words: ws }; });
   })();
   var STRESS = [['chunks', 'chunks'], ['split', 'three'], ['commas', 'commas'], ['left', 'left'], ['carry', 'right'], ['guess', 'first'],
-    ['newer', 'less'], ['fix', 'calculator'], ['lie', 'didnt'], ['end', 'yes'], ['end', 'no']]
+    ['newer', 'less'], ['fix', 'calculator'], ['end', 'yes'], ['end', 'no']]
     .map(function (p) { return at(p[0], p[1], p[2]); });
   function stressed(w) { for (var i = 0; i < STRESS.length; i++) if (Math.abs(STRESS[i] - w.t0) < .02) return true; return false; }
   /* captions stay through a wipe: the incoming scene arrives complete, caption included */
@@ -833,10 +824,10 @@
   function posterTitle(g) {
     var a = 'Why AI is', b = 'bad at math', px = 92;
     g.save(); font(g, px, 800); g.textBaseline = 'alphabetic';
-    g.textAlign = 'center'; g.fillStyle = CREAM; g.fillText(a, CX, 400);
+    g.textAlign = 'center'; g.fillStyle = CREAM; g.fillText(a, CX, 352);
     var wb = g.measureText(b).width, x = CX - wb / 2;
-    g.fillStyle = CREAM; g.beginPath(); g.roundRect(x - 14, 500 - 80, wb + 28, 106, 16); g.fill();
-    g.textAlign = 'left'; g.fillStyle = BG; g.fillText(b, x, 500); g.restore();
+    g.fillStyle = CREAM; g.beginPath(); g.roundRect(x - 14, 448 - 80, wb + 28, 106, 16); g.fill();
+    g.textAlign = 'left'; g.fillStyle = BG; g.fillText(b, x, 448); g.restore();
   }
   /* every text that is fully readable at t (not fading, not under a torn edge, not a caption): drawn to find out */
   function TEXTS(t) {
@@ -873,7 +864,7 @@
     });
     return best;
   }
-  /* Two hits (BRIEF §0 allowed three): the scissors' snip in the pause after "pieces." and THE stamp after "there.".
+  /* One hit (BRIEF §0 allowed three): THE stamp after "there." (the snip is gone, see initGaps).
      No scissor sound before "Your": the first word starts 0.08 s in, too close for a hit with the gate's margin. */
   var GT = {}, GS = [];
   function G(id, t, type, tol, gain, m) {
@@ -884,12 +875,11 @@
   var SLAM0 = null;
   function GTslam0() { if (SLAM0 === null) { var g0 = K.guessEnd, n0 = start('newer'); SLAM0 = nearGap(Math.max(g0 + .2, (g0 + n0) / 2 - .2), 'thump', .2); if (SLAM0 === null) SLAM0 = g0 + .2; } return SLAM0; }
   function initGaps() {
-    /* the snip: the middle of the planned pause after "pieces." (≥ 0.2 s clear each side); the second cut closes on it and
-       the tape falls apart */
-    /* placed from the voice-only envelope: it ends 0.26 s before "And" is voiced (Whisper-tested at several offsets: this one keeps both models' word edges off it) and starts well
-       after "pieces." ends; the gate checks it against what Whisper hears */
+    /* the second cut closes in the planned pause after "pieces." and the tape falls apart there, silently: a snip in that
+       pause was tried at 9–17 offsets and four gains (to −36 dB) over two rounds, and unhinted Whisper (base.en/small.en)
+       moved "and" onto it every time but one, so the SFX gate failed it. The one hit is the stamp. */
     var c0 = start('commas');
-    GT.snip = c0 - .30; GS.push({ t: GT.snip, type: 'snip', g: .82 });
+    GT.snip = c0 - .30;
     K.cut2 = GT.snip - .13; K.apart = GT.snip + .02;
     /* THE stamp: pinned 0.35 s before "Newer" (in the planned pause after "there."), checked by the gate */
     GT.slam = start('newer') - .35; GS.push({ t: GT.slam, type: 'thump', g: .36 });
@@ -935,8 +925,8 @@
       g = g || 1;
       var o = osc('sine', 250, t, t + .16, 1, [[t, 0], [t + .004, .75 * g], [t + .15, 0]], .05); o.frequency.exponentialRampToValueAtTime(180, t + .14);
       osc('triangle', 330, t, t + .08, 1, [[t, 0], [t + .002, .55 * g], [t + .07, 0]], .03);
-      band(t, .07, 1600, .9, 2.4 * g, .002, .05);
-      band(t, .045, 2500, 1.1, 1.6 * g, .001, .03);
+      band(t, .07, 1600, .9, 7.0 * g, .002, .05);
+      band(t, .045, 2500, 1.1, 4.7 * g, .001, .03);
     }
     /* paper scissors: one 0.12 s snip, a soft steel tick as the blades meet, then a short dry paper shear (mid band,
        no bright click: Whisper hooks the next word onto a sharp transient in a pause) */
@@ -977,8 +967,10 @@
   initGaps();
   initTimes();
   /* the hero hold: from the stamp settling to the NEWER chip (1.3 s, fully still) */
-  var HOLD = { t0: GT.slam + .18, t1: GT.slam + .18 + 1.3 };
-  CAPS.forEach(function (c) { if (c.id === 'newer') c.s = HOLD.t1; });
+  /* the hero hold: from the stamp settling to the pill on "less" (about 1.35 s), fully still */
+  var HOLD = { t0: GT.slam + .25, t1: at('newer', 'less') - .03 };
+  /* the newer caption prints as the stamp settles (0.1 s before "Newer"), so nothing new appears inside the hold */
+  CAPS.forEach(function (c) { if (c.id === 'newer' && c.words[0] === LINE.newer.words[0]) c.s = HOLD.t0 - .12; });
   window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: (HOLD.t0 + HOLD.t1) / 2, SLUG: 'math', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE, K: K, GT: GT, HOLD: HOLD, CAPMIN: function () { return CAPMIN; } };
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var out = {};

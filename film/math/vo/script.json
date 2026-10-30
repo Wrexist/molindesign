@@ -20,67 +20,62 @@
     "score_db": 0,
     "smr_db": 26.9
   },
-  "dur": 29.58,
+  "dur": 26.5,
   "lines": [
     {
       "id": "hook",
       "at": 0.08,
-      "text": "Your chatbot doesn't carry the one."
+      "text": "Your chatbot doesn't carry the one in its head."
     },
     {
       "id": "ask",
-      "at": 2.0,
+      "at": 2.16,
       "text": "So why is AI bad at math?",
       "say": "So why is A I bad at math?"
     },
     {
       "id": "chunks",
-      "at": 3.9,
+      "at": 4.06,
       "text": "It reads numbers in chunks, the way it reads words."
     },
     {
       "id": "split",
-      "at": 6.82,
+      "at": 6.98,
       "text": "This number becomes three pieces."
     },
     {
       "id": "commas",
-      "at": 9.52,
+      "at": 9.48,
       "text": "And not where your commas would go."
     },
     {
       "id": "left",
-      "at": 11.26,
+      "at": 11.22,
       "text": "Then it writes the answer from the left, piece by piece."
     },
     {
       "id": "carry",
-      "at": 14.56,
+      "at": 14.52,
       "text": "But you carry from the right."
     },
     {
       "id": "guess",
-      "at": 16.11,
+      "at": 16.07,
       "text": "So it writes the first piece before the carry gets there."
     },
     {
       "id": "newer",
-      "at": 19.35,
+      "at": 19.31,
       "text": "Newer models slip far less."
     },
     {
       "id": "fix",
-      "at": 21.31,
+      "at": 21.66,
       "text": "And many can now hand big sums to a calculator."
     },
     {
-      "id": "lie",
-      "at": 23.89,
-      "text": "Ask how it added, it'll say it carried the one. It didn't."
-    },
-    {
       "id": "end",
-      "at": 27.21,
+      "at": 24.17,
       "text": "Did yours use the calculator? Yes or no.",
       "say": "Did yours use the calculator, yes or no?"
     }
