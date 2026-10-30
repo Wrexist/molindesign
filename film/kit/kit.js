@@ -173,13 +173,14 @@
     if (Pp.front) arms();
     g.restore();
   }
-  function star(g, x, y, r, n, inner) {
-    g.beginPath();
-    for (var i = 0; i < n * 2; i++) { var a = -PI / 2 + i * PI / n, rr2 = i % 2 ? r * (inner || .45) : r; g.lineTo(x + Math.cos(a) * rr2, y + Math.sin(a) * rr2); }
+  /* keep = add to the current path (an iris mask) instead of starting a new one */
+  function star(g, x, y, r, n, inner, keep) {
+    if (!keep) g.beginPath();
+    for (var i = 0; i < n * 2; i++) { var a = -PI / 2 + i * PI / n, rr2 = i % 2 ? r * (inner || .45) : r; g[i ? 'lineTo' : 'moveTo'](x + Math.cos(a) * rr2, y + Math.sin(a) * rr2); }
     g.closePath();
   }
-  function heartPath(g, x, y, s) {
-    g.beginPath(); g.moveTo(x, y + s * .9);
+  function heartPath(g, x, y, s, keep) {
+    if (!keep) g.beginPath(); g.moveTo(x, y + s * .9);
     g.bezierCurveTo(x - s * 1.4, y - s * .1, x - s * .7, y - s * 1.1, x, y - s * .35);
     g.bezierCurveTo(x + s * .7, y - s * 1.1, x + s * 1.4, y - s * .1, x, y + s * .9); g.closePath();
   }
@@ -494,8 +495,8 @@
 
   /* ---------- transitions: k 0 → 1 across the cut; prev(g) and next(g) each draw a full frame ---------- */
   function shapePath(g, type, cx, cy, r) {
-    if (type === 'star') { star(g, cx, cy, r, 5, .5); return; }
-    if (type === 'heart') { heartPath(g, cx, cy + r * .1, r * .9); return; }
+    if (type === 'star') { star(g, cx, cy, r, 5, .5, true); return; }
+    if (type === 'heart') { heartPath(g, cx, cy + r * .1, r * .9, true); return; }
     g.moveTo(cx + r, cy); g.arc(cx, cy, Math.max(0, r), 0, TAU);
   }
   function blob(g, cx, cy, r, seed) {
