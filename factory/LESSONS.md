@@ -68,6 +68,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - One interpretability study of one model is not "your chatbot": scope the claim to the model in the voice or on screen ("one model, in its head") (math r2).
 - A quote chip goes on the claim it supports, and the hero hold keeps its own source on screen: "MITIGATED STRONGLY" replaced the Lee credit under WRITTEN FIRST (math r2, repeats gpus r2).
 - A sound-off mismatch must be drawn as a mismatch: commas and token cuts lined up so well the strip read "199 999 9" twice (math r2). Offset them ≥ 40 px and mark ≠.
+- Lead with the one fact that is true of every chatbot and checkable by the viewer (the tokenizer cut), not a single interpretability study; and a "why AI is bad at X" film must show a dated, sourced failure on screen, or the viewer asks "so what?" (math r3: 7.1 → 7.0 → 6.9 across three rounds, parked).
+- A third jury round didn't rescue a film whose hook and body explained different mechanisms; when round 2 drops, park instead of a third round (math).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
