@@ -43,65 +43,66 @@
     },
     {
       "id": "since",
-      "at": 2.85,
+      "at": 3.1,
       "text": "Count every GTA story lead since GTA 3, in 2001.",
       "say": "Count every G T A story lead since G T A 3, in two thousand one."
     },
     {
       "id": "names",
-      "at": 6.95,
-      "text": "Claude. Tommy. CJ. Niko. Michael, Franklin, Trevor.",
-      "say": "Claude, Tommy, C J, Niko, Michael, Franklin, Trevor."
+      "at": 7.2,
+      "text": "Claude and Tommy, CJ and Niko, Michael, Franklin and Trevor.",
+      "say": "Claude and Tommy, C J and Niko, Michael, Franklin and Trevor.",
+      "speed": 1.1
     },
     {
       "id": "hero",
-      "at": 10.9,
+      "at": 11.5,
       "text": "Thirteen leads. Every single one, a man."
     },
     {
       "id": "ask",
-      "at": 14.85,
+      "at": 15.45,
       "text": "So who finally breaks the lineup?"
     },
     {
       "id": "lucia",
-      "at": 17.1,
+      "at": 17.7,
       "text": "Lucia Caminos. She shares GTA 6 with Jason Duval.",
       "say": "Lucia Caminos. She shares G T A 6 with Jason Duval."
     },
     {
       "id": "dad",
-      "at": 21.2,
+      "at": 21.8,
       "text": "Her dad taught her to fight, Rockstar says."
     },
     {
       "id": "prison",
-      "at": 24.35,
+      "at": 24.95,
       "text": "Now she's fresh out of prison, with a plan."
     },
     {
       "id": "but",
-      "at": 27.5,
+      "at": 28.1,
       "text": "But she's not GTA's first playable woman.",
       "say": "But she's not G T A's first playable woman."
     },
     {
       "id": "first",
-      "at": 30.4,
+      "at": 31.0,
       "text": "The very first GTA, in 1997, let you pick one.",
       "say": "The very first G T A, in nineteen ninety-seven, let you pick one."
     },
     {
       "id": "since3d",
-      "at": 34.6,
+      "at": 35.2,
       "text": "Since GTA went 3D, she's the first woman lead.",
       "say": "Since G T A went three D, she's the first woman lead."
     },
     {
       "id": "end",
-      "at": 38.15,
+      "at": 38.75,
       "text": "Who are you here for: Lucia or Jason?"
     }
   ],
-  "dur": 43.3
+  "dur": 41.9
 }

@@ -165,3 +165,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A derived number on screen (≈ 370×) is a fact too: compute it exactly (36,979% = ×370.8 → "~371×") and list it in BRIEF.md as derived (gta-songs r2).
 - An end vote must not highlight one option ("new?" in pink, "old" plain); highlight both or neither (gta-songs r2).
 - Two Delta films in a row stalled at 7.2 after two rounds (vicecity, songs); both first cuts landed at 7.0–7.2. The first cut must already pass LESSONS' picture checks (fill, rail, hero sound), because fix rounds only add about 0.2.
+- Ming pauses ~0.8 s after every bare name in a list (seven names took 4.6–5 s); pairing them ("Claude and Tommy, CJ and Niko, …") read in 3.8 s. Plan list lines as pairs (gta-lucia).
+- Whisper starts words ~0.3 s early and stretches the last word over a pause in the mix ("plan." over a 0.7 s silence), which starved the SFX gate to two hits; gate on the voice track's own energy (`vo/vad.js`, 40 dB under the loudest 10 ms frame, 0.15 s margin) and keep heard.js as a cross-check (gta-lucia).
+- Setting `ctx.font` resets `fontStretch`: condensed placards rendered at full width and broke the rail until the stretch was re-applied after every font change (gta-lucia).
+- Dolly and push scales multiply the rail: a wall at x 100–920 under a 1.055 dolly reached x 77; pixel-scan every rendered frame, not stills (gta-lucia: 48 frames over x 930 that boundscheck never saw).
+

@@ -51,8 +51,10 @@
 
   /* ---------- the SFX gate: hits sit in pauses, clear of every word vo.js has and Whisper heard in the mix (vo/heard.js) ---------- */
   var EDGES = [], VOICED = [];
-  VO.lines.forEach(function (l) { l.words.forEach(function (w) { VOICED.push({ t0: w.t0, t1: w.t1 }); EDGES.push(w.t0, w.t1); }); });
-  (window.HEARD || []).forEach(function (w) { if (w[1] < .15) return; VOICED.push({ t0: w[0], t1: w[1] }); EDGES.push(w[0], w[1]); });   // Whisper pins the first word to 0.00
+  /* the gate uses where the voice really sounds (vo/vad.js, from the track's energy); without it, vo.js words + Whisper's heard words */
+  if (window.VAD) window.VAD.forEach(function (v) { VOICED.push({ t0: v[0], t1: v[1] }); EDGES.push(v[0], v[1]); });
+  else VO.lines.forEach(function (l) { l.words.forEach(function (w) { VOICED.push({ t0: w.t0, t1: w.t1 }); EDGES.push(w.t0, w.t1); }); });
+  if (!window.VAD) (window.HEARD || []).forEach(function (w) { if (w[1] < .15) return; VOICED.push({ t0: w[0], t1: w[1] }); EDGES.push(w[0], w[1]); });   // Whisper pins the first word to 0.00
   function free(m) {
     var B = [], M = [], F = [], p = 0;
     EDGES.forEach(function (e) { B.push([e - m, e + m]); });
@@ -62,10 +64,10 @@
     M.forEach(function (b) { if (b[0] > p) F.push([p, b[0]]); p = Math.max(p, b[1]); });
     F.push([p, DUR + 9]); return F;
   }
-  var BODY = { flash: .12, crack: .22, clack: .14, tick: .03, stamp: .16, bulb: .4, tear: .3, rewind: .34, blip: .16, pop: .12, swish: .26, clang: .2, land: .18, paper: .2 };
+  var BODY = { flash: .12, crack: .14, clack: .14, tick: .03, stamp: .16, bulb: .4, tear: .22, rewind: .34, blip: .16, pop: .12, swish: .26, clang: .2, land: .18, paper: .2 };
   function nearGap(t, type, m) {
     var body = BODY[type] || .12, best = null;
-    free(m || .2).forEach(function (f) {
+    free(m || (window.VAD ? .15 : .2)).forEach(function (f) {
       var lo = f[0], hi = f[1] - body; if (hi < lo) return;
       var c = clamp(t, lo, hi); if (best === null || Math.abs(c - t) < Math.abs(best - t)) best = c;
     });
@@ -83,9 +85,9 @@
   /* ---------- canvas + safe-area check ---------- */
   var cv, ctx, tmp, tctx, acc, actx, LIVE = { grain: true, text: true };
   function mk(w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
-  var BOUNDS = null, INCOMING = false, CURT = 0, SAFE = { x0: 90, x1: 930, y1: 1450 };
+  var BOUNDS = null, NOREC = false, INCOMING = false, CURT = 0, SAFE = { x0: 90, x1: 930, y1: 1450 };
   function recBox(g, x0, y0, x1, y1, text) {
-    if (!BOUNDS || INCOMING || (g !== ctx && g !== tctx) || g.globalAlpha < .05) return;
+    if (!BOUNDS || INCOMING || NOREC || (g !== ctx && g !== tctx) || g.globalAlpha < .05) return;
     var m = g.getTransform(), xs = [], ys = [];
     [[x0, y0], [x1, y0], [x0, y1], [x1, y1]].forEach(function (p) { xs.push(m.a * p[0] + m.c * p[1] + m.e); ys.push(m.b * p[0] + m.d * p[1] + m.f); });
     var a = Math.min.apply(null, xs), b = Math.max.apply(null, xs), c = Math.max.apply(null, ys);
@@ -100,12 +102,12 @@
   }
 
   /* ---------- primitives ---------- */
-  function font(g, px, wt, fam) { g.font = (wt || 800) + ' ' + px + 'px ' + (fam || DISP); }
+  function font(g, px, wt, fam) { g.font = (wt || 800) + ' ' + px + 'px ' + (fam || DISP); if (g.__st) try { g.fontStretch = g.__st; } catch (e) {} }
   function rr(g, x, y, w, h, r) { g.beginPath(); g.roundRect(x, y, w, h, Math.max(0, Math.min(r, w / 2, h / 2))); }
   function ls(g, px) { try { g.letterSpacing = px + 'px'; } catch (e) {} }
   function wide(g) { try { g.fontStretch = 'expanded'; } catch (e) {} }
-  function cond(g) { try { g.fontStretch = 'extra-condensed'; } catch (e) {} }
-  function normal(g) { try { g.fontStretch = 'normal'; } catch (e) {} }
+  function cond(g) { g.__st = 'extra-condensed'; try { g.fontStretch = 'extra-condensed'; } catch (e) {} }
+  function normal(g) { g.__st = null; try { g.fontStretch = 'normal'; } catch (e) {} }
   function chip(g, text, x, y, o) {
     o = o || {}; var px = o.px || 64, a = o.a == null ? 1 : o.a, s = o.s == null ? 1 : o.s;
     if (a <= 0 || s <= 0) return 0;
@@ -119,7 +121,7 @@
     if (o.bg) { if (o.shadow !== false) { rr(g, -w / 2 + 6, -h / 2 + 9, w, h, o.r == null ? h * .26 : o.r); g.fillStyle = 'rgba(0,0,0,.35)'; g.fill(); } rr(g, -w / 2, -h / 2, w, h, o.r == null ? h * .26 : o.r); g.fillStyle = o.bg; g.fill(); }
     if (o.line) { if (o.fill) { rr(g, -w / 2, -h / 2, w, h, o.r == null ? h * .26 : o.r); g.fillStyle = o.fill; g.fill(); } rr(g, -w / 2, -h / 2, w, h, o.r == null ? h * .26 : o.r); g.strokeStyle = o.line; g.lineWidth = o.lw || 3; g.stroke(); }
     g.fillStyle = o.fg || (o.bg ? BG : CREAM); g.textAlign = 'center'; g.textBaseline = 'middle';
-    g.fillText(text, 0, px * .04); g.restore();
+    g.fillText(text, 0, px * .04); g.restore(); g.__st = null;
     return w;
   }
   /* a source credit on a dark plate: Archivo condensed, 38 px, never under 36 */
@@ -129,7 +131,7 @@
     var w = g.measureText(text).width, dy = (1 - Math.min(1, a)) * 10;
     rr(g, x - w / 2 - 18, y - 27 + dy, w + 36, 54, 12); g.fillStyle = 'rgba(11,8,32,.94)'; g.fill();
     g.strokeStyle = 'rgba(251,240,234,.28)'; g.lineWidth = 2; g.stroke();
-    g.fillStyle = col || CREAM; g.fillText(text, x, y + 2 + dy); g.restore();
+    g.fillStyle = col || CREAM; g.fillText(text, x, y + 2 + dy); g.restore(); g.__st = null;
   }
   function label(g, text, x, y, a, col, px, align, wt) {
     px = Math.max(36, px || 40);
@@ -167,9 +169,9 @@
   /* =====================================================================================================
      THE LINEUP WALL: x 100–920, y 462–1442. Three rows of five 164 px slots; slot 14 is the double-width pink one.
      ===================================================================================================== */
-  var WX0 = 100, WX1 = 920, WY0 = 462, WY1 = 1442, RT = 470, RH = 290, SW = 164;
+  var WX0 = 100, WX1 = 920, WY0 = 462, WY1 = 1412, RT = 470, RH = 290, SW = 164;
   var LEADS = [
-    ['CLAUDE', 'III'], ['TOMMY', 'VICE CITY'], ['CJ', 'SAN ANDREAS'], ['MIKE', 'ADVANCE'], ['TONI', 'LCS'],
+    ['CLAUDE', 'III'], ['TOMMY', 'VICE CITY'], ['CJ', 'S. ANDREAS'], ['MIKE', 'ADVANCE'], ['TONI', 'LCS'],
     ['VIC', 'VCS'], ['NIKO', 'IV'], ['JOHNNY', 'TLAD'], ['HUANG', 'CHINATOWN'], ['LUIS', 'TBOGT'],
     ['MICHAEL', 'V'], ['FRANKLIN', 'V'], ['TREVOR', 'V']
   ];
@@ -204,8 +206,8 @@
     cond(g); g.textAlign = 'center'; g.textBaseline = 'middle';
     var px = 42; font(g, px, 900); while (g.measureText(name).width > w - 14 && px > 36) { px--; font(g, px, 900); }
     g.fillStyle = INK; g.fillText(name, 0, -19);
-    px = 36; font(g, px, 700); g.fillStyle = '#a3125e'; g.fillText(game, 0, 22);
-    g.restore();
+    ls(g, game.length > 9 ? -1.5 : 0); px = 36; font(g, px, 700); while (g.measureText(game).width > w - 10 && px > 36) { px--; font(g, px, 700); } g.fillStyle = '#a3125e'; g.fillText(game, 0, 22);
+    g.restore(); g.__st = null;
   }
   function stripes(g, a, off) {
     if (a <= 0) return;
@@ -215,12 +217,12 @@
   }
   function wallBack(g, o) {
     o = o || {};
-    rr(g, WX0 + 10, WY0 + 16, WX1 - WX0, WY1 - WY0, 22); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
+    rr(g, WX0, WY0 + 12, WX1 - WX0, WY1 - WY0, 22); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
     rr(g, WX0, WY0, WX1 - WX0, WY1 - WY0, 22); g.fillStyle = PURP; g.fill();
     stripes(g, 1, o.off);
     /* the three shelves: a teal rule under each row */
     for (var r = 0; r < 3; r++) { g.fillStyle = 'rgba(25,211,197,.55)'; g.fillRect(WX0 + 8, RT + r * RH + RH - 6, WX1 - WX0 - 16, 4); }
-    g.fillStyle = 'rgba(251,240,234,.2)'; g.fillRect(WX0 + 8, WY1 - 98, WX1 - WX0 - 16, 3);
+    
   }
   function slotPanel(g, i, a) {
     var s = slot(i); if (a <= 0) return;
@@ -246,7 +248,7 @@
   /* the pink slot's outline (dashed while empty) */
   function slot14Frame(g, t, a, dashed, sc) {
     if (a <= 0) return;
-    g.save(); g.globalAlpha *= a; g.translate(S14.cx, S14.cy); g.scale(sc || 1, sc || 1);
+    g.save(); g.globalAlpha *= a; g.translate(S14.cx - 400 * ((sc || 1) - 1), S14.cy); g.scale(sc || 1, sc || 1);
     rr(g, -S14.w / 2 + 6, -S14.h / 2 + 4, S14.w - 12, S14.h - 14, 14); g.fillStyle = 'rgba(255,79,163,.16)'; g.fill();
     g.strokeStyle = HOT; g.lineWidth = 7; if (dashed) { g.setLineDash([22, 14]); g.lineDashOffset = -t * 30; }
     g.stroke(); g.setLineDash([]); g.restore();
@@ -266,7 +268,7 @@
       g.save(); rr(g, x + 4, cy - ch / 2 + 8, cw, ch, 14); g.fillStyle = 'rgba(0,0,0,.35)'; g.fill();
       rr(g, x, cy - ch / 2, cw, ch, 14); g.fillStyle = '#05030f'; g.fill(); g.clip();
       font(g, px, 900); g.fillStyle = o.fg || CREAM; g.textAlign = 'center'; g.textBaseline = 'middle';
-      g.fillText(String(d), x + cw / 2, cy + 6 - r * ch); g.fillText(String((d + 1) % 10), x + cw / 2, cy + 6 + (1 - r) * ch);
+      NOREC = r > .02; g.fillText(String(d), x + cw / 2, cy + 6 - r * ch); NOREC = true; if (r > .001) g.fillText(String((d + 1) % 10), x + cw / 2, cy + 6 + (1 - r) * ch); NOREC = false;
       g.fillStyle = 'rgba(255,255,255,.07)'; g.fillRect(x, cy - ch / 2, cw, ch * .2);
       g.restore(); x += cw + gp;
     }
@@ -291,12 +293,12 @@
      SCENE 1 · hook, since, names, hero, ask: the wall, emptied and refilled, the 13 lands, the "?" returns
      ===================================================================================================== */
   function wallScene(g, t, home) {
-    var i, br = home ? 0 : at('hook', 'breaks'), sn = home ? 1e9 : start('since');
+    var i, br = home ? 0 : at('hook', 'breaks'), shk = home ? 0 : seg(t, GT.crack, GT.crack + .35), sn = home ? 1e9 : start('since');
     var hero = home ? 1e9 : at('hero', 'thirteen'), ask = home ? 1e9 : start('ask'), fin13 = home ? 1e9 : R13;
     var cnt0 = home ? 1e9 : at('since', 'count');
     var dolly = home ? 0 : 1;
     /* a slow dolly-in over the whole scene: the wall is never still */
-    var z = 1 + .03 * seg(t, 0, 6) * dolly + .025 * eio(seg(t, ask, ask + 1.4)) * dolly;
+    var z = 1 + .012 * seg(t, 0, 6) * dolly + .008 * eio(seg(t, ask, ask + 1.4)) * dolly;
     g.save(); g.translate(CX, 950); g.scale(z, z); g.translate(-CX, -950);
     wallBack(g, { off: t * 6 });
     for (i = 0; i < 13; i++) slotPanel(g, i, 1);
@@ -309,16 +311,17 @@
       var bd = home ? 0 : seg(t, f - .02, f + .16);
       var fl = home ? 0 : (t >= f ? 1 - seg(t, f, f + .3) : 0);
       lead(g, i, t, k, bd, fl, dimK);
+      if (!home && t > FALL0 + .3 && k < .05) { var ss = slot(i); g.save(); g.globalAlpha *= fin(t, FALL0 + .3); g.strokeStyle = 'rgba(251,240,234,.45)'; g.lineWidth = 4; g.setLineDash([14, 10]); g.lineDashOffset = -t * 20; rr(g, ss.x0 + 12, ss.y0 + 12, SW - 24, RH - 30, 10); g.stroke(); g.restore(); }
     }
     /* slot 14 */
-    var sc14 = 1 + .06 * eio(seg(t, ask, ask + .7)) + .02 * Math.max(0, knock(t, hero, 14, 6));
+    var sc14 = 1 + .03 * eio(seg(t, ask, ask + .7)) + .015 * Math.max(0, knock(t, hero, 14, 6));
     slot14Frame(g, t, 1, t < cnt0 || t > ask + .2, sc14);
     /* hook: the "?" pulses; a crack runs across the slot on "breaks" */
     var qA = 1 - seg(t, cnt0 - .2, cnt0 + .1);
     bigQ(g, S14.cx, S14.cy - 10, 230, qA, t);
-    var ck = eio(seg(t, br - .03, br + .3)) * (1 - seg(t, cnt0 - .2, cnt0 + .1));
+    var ck = eio(seg(t, br - .03, br + .3)) * (1 - shk);
     if (ck > 0) {
-      g.save(); g.globalAlpha *= clamp(ck * 3, 0, 1) * (1 - seg(t, cnt0 - .2, cnt0 + .1)); g.strokeStyle = CREAM; g.lineWidth = 7; g.lineJoin = 'round'; g.lineCap = 'round';
+      g.save(); g.globalAlpha *= clamp(ck * 3, 0, 1); g.translate(0, 160 * shk * shk); g.strokeStyle = CREAM; g.lineWidth = 7; g.lineJoin = 'round'; g.lineCap = 'round';
       var pts = [[S14.x0 + 4, S14.y0 + 70], [S14.x0 + 90, S14.y0 + 120], [S14.x0 + 150, S14.y0 + 96], [S14.x0 + 220, S14.y0 + 170], [S14.x0 + 290, S14.y0 + 150], [S14.x0 + S14.w - 6, S14.y0 + 220]];
       g.beginPath(); for (i = 0; i < pts.length; i++) { var u = clamp(ck * (pts.length - 1) - i + 1, 0, 1); if (!i) g.moveTo(pts[0][0], pts[0][1]); else if (u > 0) g.lineTo(lerp(pts[i - 1][0], pts[i][0], u), lerp(pts[i - 1][1], pts[i][1], u)); } g.stroke();
       g.beginPath(); g.moveTo(S14.x0 + 150, S14.y0 + 96); g.lineTo(S14.x0 + 170, S14.y0 + 30 + 66 * (1 - ck)); g.moveTo(S14.x0 + 220, S14.y0 + 170); g.lineTo(S14.x0 + 200, S14.y0 + 170 + 70 * ck); g.stroke();
@@ -331,15 +334,22 @@
       g.save(); g.globalAlpha *= cA; g.translate(S14.cx, S14.cy - 22); g.scale(csq * lerp(1, .5, eio(seg(t, ask - .05, ask + .3))), csq * lerp(1, .5, eio(seg(t, ask - .05, ask + .3)))); g.translate(-S14.cx, -(S14.cy - 22));
       wheels(g, S14.cx, S14.cy - 22, Math.min(13, v), 2, { cw: 126, ch: 206, px: 190, gap: 10, fg: landed ? ORG : CREAM });
       g.restore();
-      label(g, landed ? 'LEADS · ALL MEN' : 'STORY LEADS', S14.cx, S14.y0 + RH - 38, cA * fin(t, cnt0 + .2), landed ? ORG : CREAM, 36, 'center', 900);
+      label(g, landed ? 'ALL MEN' : 'STORY LEADS', S14.cx, S14.y0 + RH - 38, cA * fin(t, cnt0 + .2), landed ? ORG : CREAM, 38, 'center', 900);
     }
     /* ask: the 13 settles as a small tag in the slot's corner while the "?" comes back */
     var tagA = home ? 0 : fin(t, ask + .25);
     if (tagA > 0) chip(g, '13 · ALL MEN', S14.cx, S14.y0 + 44, { px: 38, wt: 900, bg: ORG, fg: BG, a: tagA, cond: true, shadow: false });
     bigQ(g, S14.cx, S14.cy + 26, 210 * kn(t, at('ask', 'breaks')), home ? 0 : fin(t, ask + .2), t);
     g.restore();
+    /* the scope, big in the empty wall while the line defines it, then as the credit at the wall's foot */
+    if (!home) {
+      var sc0 = at('since', 'since') - .1, scA = fin(t, sc0) * (1 - seg(t, FILL[0] - .2, FILL[0] + .05));
+      chip(g, 'SINCE GTA III', CX, 700, { px: 92, wt: 900, bg: CREAM, fg: BG, a: scA, s: pin(t, sc0), rot: -.02 });
+      chip(g, '2001', CX, 860, { px: 120, wt: 900, bg: TEAL, fg: BG, a: fin(t, at('since', '2001') - .1) * (1 - seg(t, FILL[0] - .2, FILL[0] + .05)), s: pin(t, at('since', '2001') - .1), rot: .02 });
+      credit(g, 'OUR COUNT · STORY MODES · SINCE GTA III', CX, 1376, fin(t, FALL0 + .3));
+    }
     /* the hero stamp: ALL MEN slams across the wall in the written pause after "man." */
-    if (!home) stampText(g, 'ALL MEN', CX, 900, t, GT.stamp, ask + .1, 150, CREAM, -.12);
+    if (!home) stampText(g, 'ALL MEN', CX, 556, t, GT.stamp, S('lucia').t0 - .35, 128, CREAM, -.04);
   }
   /* the frame-0 wall without the voice's beats (the loop home) */
   function homeWall(g, t) { wallScene(g, t, true); }
@@ -356,12 +366,12 @@
     cond(g); g.textAlign = 'center'; g.textBaseline = 'middle';
     font(g, 64, 900); g.fillStyle = INK; g.fillText(l1, 0, -28);
     font(g, 52, 800); g.fillStyle = '#a3125e'; g.fillText(l2, 0, 32);
-    g.restore();
+    g.restore(); g.__st = null;
   }
   function closeFrame(g, t, a) {
     if (a <= 0) return;
     g.save(); g.globalAlpha *= a;
-    rr(g, 110, 470, 800, 960, 30); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
+    rr(g, 100, 472, 820, 960, 30); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
     rr(g, 100, 462, 820, 960, 30); g.fillStyle = PURP; g.fill();
     g.save(); rr(g, 100, 462, 820, 960, 30); g.clip();
     for (var k = 0; k < 17; k++) { g.fillStyle = k % 5 === 0 ? 'rgba(251,240,234,.22)' : 'rgba(251,240,234,.1)'; g.fillRect(100, 500 + k * 58 + (t * 6) % 58, 820, k % 5 === 0 ? 5 : 3); }
@@ -370,7 +380,7 @@
     g.restore();
   }
   function luciaScene(g, t) {
-    var s0 = S('lucia').t0, lu = at('lucia', 'lucia'), ja = at('lucia', 'jason'), sh = at('lucia', 'shares');
+    var s0 = S('lucia').t0, lu = at('lucia', 'lucia'), ja = at('lucia', 'shares'), sh = at('lucia', 'shares'), gt = at('lucia', 'gta'), jn = at('lucia', 'jason');
     closeFrame(g, t, 1);
     var jk = eio(seg(t, ja - .35, ja + .15));
     var lx = lerp(CX, 315, jk), lk = eo(seg(t, lu - .12, lu + .25));
@@ -381,10 +391,10 @@
     var fl = t >= lu ? 1 - seg(t, lu, lu + .35) : 0; if (fl > 0) { g.fillStyle = 'rgba(255,255,255,' + (.5 * fl).toFixed(3) + ')'; g.fillRect(100, 462, 820, 960); }
     g.restore();
     bigBoard(g, lx, 1230, 'LUCIA', 'CAMINOS', fin(t, lu + .1), pin(t, lu + .1), PAPER);
-    bigBoard(g, lerp(1100, 705, jk), 1230, 'JASON', 'DUVAL', fin(t, ja + .05) * (jk > .6 ? 1 : 0), pin(t, ja + .05), PAPER);
+    bigBoard(g, lerp(1100, 705, jk), 1230, 'JASON', 'DUVAL', fin(t, ja + .05) * (jk > .6 ? 1 : 0), pin(t, ja + .05) * kn(t, jn), PAPER);
     /* the search phrase, then CO-LEADS once Jason is in */
-    chip(g, 'GTA 6 LUCIA', CX, 560, { px: 64, wt: 900, bg: HOT, fg: BG, a: fin(t, lu + .25) * (1 - seg(t, ja + .3, ja + .55)), s: pin(t, lu + .25), rot: -.02 });
-    chip(g, 'CO-LEADS · GTA 6', CX, 560, { px: 64, wt: 900, bg: CREAM, fg: BG, a: fin(t, ja + .45), s: pin(t, ja + .45), rot: -.02 });
+    chip(g, 'GTA 6 LUCIA', CX, 548, { px: 60, wt: 900, bg: HOT, fg: BG, a: fin(t, lu + .25), s: pin(t, lu + .25), rot: -.02 });
+    chip(g, 'CO-LEADS', CX, 640, { px: 48, wt: 900, bg: CREAM, fg: BG, a: fin(t, gt), s: pin(t, gt), rot: .02 });
     credit(g, 'ROCKSTARGAMES.COM/VI', CX, 1392, fin(t, s0 + .35));
   }
 
@@ -425,7 +435,7 @@
     /* the card */
     var cy = 30 * (1 - clamp(pop(t, s0, 2.6), 0, 1));
     g.save(); g.translate(0, cy); g.rotate(-.006);
-    rr(g, 132, 498, 776, 830, 22); g.fillStyle = 'rgba(0,0,0,.42)'; g.fill();
+    rr(g, 128, 498, 776, 830, 22); g.fillStyle = 'rgba(0,0,0,.42)'; g.fill();
     rr(g, 122, 486, 776, 830, 22); g.fillStyle = PAPER; g.fill();
     /* photo box with her silhouette */
     rr(g, 158, 522, 230, 260, 14); g.fillStyle = PURP; g.fill();
@@ -444,7 +454,7 @@
     g.restore();
     /* lower half: the gloves (dad), then the plan note (prison) */
     var gA = fin(t, s0 + .3) * (1 - seg(t, pl - .4, pl - .1));
-    gloves(g, 700, 1180, t, gA);
+    g.save(); g.translate(660, 1190); g.scale(1.3, 1.3); gloves(g, 0, 0, t, gA); g.restore();
     planNote(g, 690, 1190, eio(seg(t, pl - .2, pl + .25)), t);
     label(g, 'HER PLAN', 690, 1325, fin(t, pl + .2), INK, 40, 'center', 900);
     g.restore();
@@ -457,8 +467,8 @@
       g.fillStyle = '#3a3448'; g.fillRect(120, 760 + yb, 780, 24); g.fillRect(120, 1180 + yb, 780, 24);
       g.restore();
     }
-    var pA = fin(t, pr + .05);
-    chip(g, 'LEONIDA PENITENTIARY', 345, 1195, { px: 44, wt: 900, bg: INK, fg: CREAM, a: pA, s: pin(t, pr + .05), rot: -.03, shadow: true, cond: true, maxw: 420 });
+    var pA = fin(t, pr - .1);
+    chip(g, 'LEONIDA PENITENTIARY', 360, 1195, { px: 44, wt: 900, bg: INK, fg: CREAM, a: pA, s: pin(t, pr - .1), rot: -.03, shadow: true, cond: true, maxw: 420 });
     label(g, 'FRESH OUT', 345, 1268, fin(t, ou + .15), INK, 44, 'center', 900);
     credit(g, 'ROCKSTARGAMES.COM/VI', CX, 1392, fin(t, s0 + .35));
   }
@@ -483,8 +493,7 @@
     /* the rewind: the stripes run backward fast as the scene arrives, then settle */
     var rw = s0 + PRE + .5, off = t * 6 - 900 * eio(seg(t, s0 - .2, rw));
     fullWall(g, t, { off: off, dim: .25 * fin(t, nt) });
-    chip(g, 'NOT THE FIRST', S14.cx - 6, S14.y0 - 46, { px: 56, wt: 900, line: CREAM, lw: 6, fill: 'rgba(11,8,32,.92)', fg: CREAM, a: fin(t, nt - .05), s: pin(t, nt - .05) * kn(t, wm), rot: -.04, shadow: false });
-    credit(g, 'OUR COUNT · STORY MODES · SINCE GTA III', CX, 1392, fin(t, s0 + .35));
+    chip(g, 'NOT THE FIRST', S14.cx - 40, S14.y0 - 46, { px: 56, cond: true, wt: 900, line: CREAM, lw: 6, fill: 'rgba(11,8,32,.92)', fg: CREAM, a: fin(t, nt - .2), s: pin(t, nt - .2) * kn(t, wm), rot: -.04, shadow: false });
   }
 
   /* =====================================================================================================
@@ -512,7 +521,7 @@
   function pixelScene(g, t) {
     var s0 = S('pixel').t0, vf = at('first', 'first'), yr = at('first', '1997'), pk = at('first', 'pick'), on = at('first', 'one');
     /* the screen: a dark CRT-ish panel with a pixel border */
-    rr(g, 110, 474, 820 - 10, 960, 18); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
+    rr(g, 100, 472, 820, 960, 18); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
     rr(g, 100, 462, 820, 960, 18); g.fillStyle = '#05030f'; g.fill();
     g.fillStyle = TEAL; for (var k = 0; k < 41; k++) { g.fillRect(100 + k * 20, 462, 12, 8); g.fillRect(100 + k * 20, 1414, 12, 8); }
     g.fillStyle = 'rgba(255,255,255,.04)'; for (k = 0; k < 120; k++) g.fillRect(100, 466 + k * 8, 820, 3);
@@ -530,7 +539,7 @@
     var cx = PCOL[tg % 4], cyc = PROW[Math.floor(tg / 4)], blink = (Math.floor(t * 6) % 2) ? 1 : .55;
     g.save(); g.globalAlpha *= fin(t, s0 + .4) * (t >= pk ? 1 : blink); g.strokeStyle = t >= pk ? HOT : CREAM; g.lineWidth = 8;
     g.strokeRect(cx - 82, cyc - 98, 164, 196); g.restore();
-    chip(g, '8 CHARACTERS · 4 WOMEN', CX, 1322, { px: 50, wt: 900, bg: CREAM, fg: BG, a: fin(t, on - .1), s: pin(t, on - .1), rot: .01, cond: true });
+    chip(g, '8 CHARACTERS · 4 WOMEN', CX, 1322, { px: 50, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .55), s: pin(t, s0 + .55) * kn(t, on), rot: .01, cond: true });
     credit(g, 'NAMES: LEVELUP · OUR PIXEL ART', CX, 1392, fin(t, s0 + .45));
   }
 
@@ -538,10 +547,10 @@
      SCENE 6 · since3d: the wall, all 13 back, Lucia first since 2001
      ===================================================================================================== */
   function since3dScene(g, t) {
-    var s0 = S('since3d').t0, fs = at('since3d', 'first'), ld = at('since3d', 'lead');
+    var s0 = S('since3d').t0, fs = at('since3d', 'since') + .3, ld = at('since3d', 'first');
     fullWall(g, t, { dim: .3 * fin(t, fs - .2) });
-    chip(g, 'FIRST SINCE 2001', S14.cx - 20, S14.y0 - 46, { px: 56, wt: 900, line: HOT, lw: 6, fill: 'rgba(11,8,32,.92)', fg: HOT, a: fin(t, fs - .1), s: pin(t, fs - .1) * kn(t, ld), rot: -.04, shadow: false });
-    credit(g, 'STORY LEADS · ONLINE AVATARS NOT COUNTED', CX, 1392, fin(t, s0 + .3));
+    chip(g, 'FIRST SINCE 2001', S14.cx - 60, S14.y0 - 46, { px: 56, cond: true, wt: 900, line: HOT, lw: 6, fill: 'rgba(11,8,32,.92)', fg: HOT, a: fin(t, fs - .1), s: pin(t, fs - .1) * kn(t, ld), rot: -.04, shadow: false });
+    credit(g, 'ONLINE AVATARS NOT COUNTED', CX, 1376, fin(t, s0 + .02));
   }
 
   /* =====================================================================================================
@@ -556,12 +565,12 @@
     g.restore();
     chip(g, 'LUCIA', 315, 1230, { px: 84, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .2), s: pin(t, s0 + .2) * kn(t, lu), rot: -.03 });
     chip(g, 'JASON', 705, 1230, { px: 84, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .3), s: pin(t, s0 + .3) * kn(t, ja), rot: .03 });
-    chip(g, 'GTA 6 · NOV 19, 2026', CX, 560, { px: 56, wt: 900, bg: ORG, fg: BG, a: fin(t, s0 + .25), rot: -.01 });
+    chip(g, 'GTA 6 · NOV 19, 2026', CX, 560, { px: 56, wt: 900, bg: ORG, fg: BG, a: fin(t, s0 + .05), rot: -.01 });
     credit(g, 'ROCKSTARGAMES.COM/VI', CX, 1392, fin(t, s0 + .4));
   }
 
   /* ---------- captions (the voice, phrase by phrase; the hook line is carried by the picture) ---------- */
-  var CAPBRK = { lucia: [], since: ['since'] };
+  var CAPBRK = { since: ['since'], dad: ['rockstar'] };
   var CAPS = (function () {
     var out = [];
     VO.lines.forEach(function (l) {
@@ -594,7 +603,7 @@
     g.save(); g.font = '800 72px Archivo'; wide(g);
     g.textBaseline = 'alphabetic';
     var words = card0.words, ws = words.map(function (w) { return g.measureText(w.w).width; }), gap = 20;
-    var lines, lw, maxw = 800, cpx = 72;
+    var lines, lw, maxw = 740, cpx = 72;
     function lay() { lines = [[]]; lw = [0]; words.forEach(function (w, i) { var L = lines.length - 1; if (lw[L] + ws[i] > maxw && lines[L].length) { lines.push([]); lw.push(0); L++; } lines[L].push(i); lw[L] += ws[i] + gap; }); }
     function fixLines() {
       for (var L = 0; L < lines.length - 1; L++) {
@@ -660,7 +669,7 @@
       var ly = H * (1 - sk) - 70, x;
       g.save(); g.beginPath(); g.moveTo(0, H); for (x = 0; x <= W; x += 30) g.lineTo(x, edgeY(x, ly, t)); g.lineTo(W, H); g.closePath(); g.clip();
       stage(g); INCOMING = true; drawScene(g, Nx, Nx.t0 + PRE); INCOMING = false; g.restore();
-      g.save(); g.lineJoin = 'round'; g.beginPath(); g.rect(90, 0, 840, H); g.clip();
+      g.save(); g.lineJoin = 'round'; g.beginPath(); g.rect(90, 0, 840, 1448); g.clip();
       [[HOT, 10, 0], [TEAL, 6, 16]].forEach(function (c) { g.strokeStyle = c[0]; g.lineWidth = c[1]; g.beginPath(); for (x = 0; x <= W; x += 30) { var yy = edgeY(x, ly, t) + c[2]; if (x === 0) g.moveTo(x, yy); else g.lineTo(x, yy); } g.stroke(); });
       g.restore();
     }
@@ -690,26 +699,25 @@
     T('leads', 'STORY LEADS', at('since', 'count') + .3, R13 + .1);
     T('13', '13 · LEADS · ALL MEN', R13 + .15, cut('lucia'));
     T('scope', 'OUR COUNT · STORY MODES · SINCE GTA III', FALL0 + .3, cut('lucia'));
-    T('allmen', 'ALL MEN', GT.stamp + .05, ask + .3);
+    T('allmen', 'ALL MEN', GT.stamp + .05, cut('lucia'));
     LEADS.forEach(function (L, i) { T('b' + i, L[0] + ' ' + L[1], FILL[i] + .1, cut('lucia')); });
-    T('srch', 'GTA 6 LUCIA', at('lucia', 'lucia') + .3, at('lucia', 'jason') + .45);
+    T('srch', 'GTA 6 LUCIA', at('lucia', 'lucia') + .3, cut('file'));
     T('luc', 'LUCIA CAMINOS', at('lucia', 'lucia') + .2, cut('file'));
-    T('jas', 'JASON DUVAL', at('lucia', 'jason') + .15, cut('file'));
-    T('co', 'CO-LEADS · GTA 6', at('lucia', 'jason') + .55, cut('file'));
+    T('jas', 'JASON DUVAL', at('lucia', 'shares') + .15, cut('file'));
+    T('co', 'CO-LEADS', at('lucia', 'gta') + .1, cut('file'));
     T('src1', 'ROCKSTARGAMES.COM/VI', S('lucia').t0 + .45, cut('file'));
     T('quote', 'Lucia’s father taught her to fight as soon as she could walk.', S('file').t0 + .25, cut('but'));
     T('rw', 'ROCKSTAR’S WORDS', at('dad', 'rockstar') - .1, cut('but'));
-    T('pen', 'LEONIDA PENITENTIARY', start('prison') + .15, cut('but'));
+    T('pen', 'LEONIDA PENITENTIARY', start('prison') - .05, cut('but'));
     T('src2', 'ROCKSTARGAMES.COM/VI', S('file').t0 + .45, cut('but'));
-    T('ntf', 'NOT THE FIRST', at('but', 'not') + .05, cut('pixel'));
-    T('scope2', 'OUR COUNT · STORY MODES · SINCE GTA III', S('but').t0 + .45, cut('pixel'));
-    T('y97', '1997 · PC', S('pixel').t0 + .15, cut('since3d'));
+    T('ntf', 'NOT THE FIRST', at('but', 'not') - .1, cut('pixel'));
+        T('y97', '1997 · PC', S('pixel').t0 + .15, cut('since3d'));
     T('w4', 'DIVINE KATIE MIKKI ULRIKA', S('pixel').t0 + .6, cut('since3d'));
-    T('n8', '8 CHARACTERS · 4 WOMEN', at('first', 'one'), cut('since3d'));
-    T('fs', 'FIRST SINCE 2001', at('since3d', 'first'), cut('end'));
-    T('avt', 'STORY LEADS · ONLINE AVATARS NOT COUNTED', S('since3d').t0 + .4, cut('end'));
+    T('n8', '8 CHARACTERS · 4 WOMEN', S('pixel').t0 + .65, cut('since3d'));
+    T('fs', 'FIRST SINCE 2001', at('since3d', 'since') + .3, cut('end'));
+    T('avt', 'ONLINE AVATARS NOT COUNTED', S('since3d').t0 + .1, cut('end'));
     T('vote', 'LUCIA JASON', S('end').t0 + .35, HOME);
-    T('nov', 'GTA 6 · NOV 19, 2026', S('end').t0 + .35, HOME);
+    T('nov', 'GTA 6 · NOV 19, 2026', S('end').t0 + .15, HOME);
     return out;
   }
 
@@ -730,7 +738,9 @@
     FALL0 = at('since', 'count') - .05;
     /* the fills */
     for (i = 0; i < 13; i++) if (SPOKEN[i]) FILL[i] = at('names', SPOKEN[i]) - .02;
-    var q0 = end('names') + .12, q1 = at('hero', 'thirteen') - .02;
+    /* the quiet six roll in the real silence after "Trevor" (vad.js: vo.js under-reads the last word), done before Whisper's early "Thirteen" */
+    var ve = end('names'); (window.VAD || []).forEach(function (v) { if (v[0] < at('hero', 'thirteen') - .2 && v[1] > ve) ve = v[1]; });
+    var q0 = ve + .15, q1 = Math.min(q0 + .3, at('hero', 'thirteen') - .02);
     QUIET.forEach(function (ix, j) { FILL[ix] = lerp(q0, q1, Math.pow(j / (QUIET.length - 1), .8)); });
     R13 = Math.max.apply(null, FILL);
     STRESS = [['since', '2001'], ['hero', 'thirteen'], ['hero', 'man'], ['ask', 'breaks'], ['lucia', 'lucia'], ['lucia', 'jason'], ['dad', 'fight'],
@@ -739,12 +749,12 @@
     /* frame 0: the flash bulb, before the first word and under it in level */
     EV.push({ t: .06, type: 'flash', g: .5, id: 'flash0' });
     /* hook: the slot cracks in the pause after "lineup" */
-    G('crack', end('hook') + .05, 'crack', .4, .7);
+    G('crack', end('hook') + .1, 'crack', .4, .7);
     /* since: the leads drop out (a low slide) */
     G('drop', FALL0 + .1, 'swish', .35, .45);
     /* names: a clack per spoken name in the gap after it; the quiet six tick in the pause after "Trevor" */
     Object.keys(SPOKEN).forEach(function (ix) { G('clack' + ix, wend('names', SPOKEN[ix]) + .04, 'clack', .25, .7); });
-    QUIET.forEach(function (ix, j) { G('tick' + ix, FILL[ix], 'tick', .05, .6 + j * .08); });
+    QUIET.forEach(function (ix, j) { G('tick' + ix, FILL[ix], 'tick', .04, .6 + j * .08); });
     /* hero: the counter lands on 13 (on "Thirteen" the voice carries it); the ALL MEN stamp and the bulb in the written pause after "man." */
     G('stamp', end('hero') + .1, 'stamp', .35, 1);
     G('bulb', (GT.stamp || end('hero') + .1) + .22, 'bulb', .3, .7);
@@ -753,16 +763,13 @@
     /* lucia: the slot flash on "Lucia" falls on the word: the flash goes in the pause before Jason */
     G('jas', at('lucia', 'jason') - .25, 'pop', .25, .6);
     /* prison: the bars clang down in the gap before "Now" */
-    G('bars', start('prison') - .2, 'clang', .3, .8);
-    G('plan', end('prison') + .05, 'paper', .3, .7);
+    G('bars', start('prison') - .75, 'clang', .3, .8);
     /* but: the rewind sweep in the gap before "But" */
     G('rewind', S('but').t0 - .4, 'rewind', .35, .8);
     /* first: the pixel blip in the pause after "one." */
     G('blip', end('first') + .06, 'blip', .3, .8);
     /* since3d: FIRST SINCE 2001 lands after the line */
-    G('first', end('since3d') + .05, 'pop', .3, .8);
     /* end: the vote, and a swish home into frame 0 */
-    G('vote', end('end') + .05, 'pop', .3, .9);
     G('home', HOME - .05, 'swish', .3, .8);
     EV.sort(function (a, b) { return a.t - b.t; });
     if (GT.stamp == null) GT.stamp = end('hero') + .1;
@@ -798,7 +805,7 @@
     function flash(t, g) { tick(t, .7 * g); band(t, t + .1, 5000, 2500, .1 * g, .02 * g, 1.2); }
     /* the board drops onto its hooks: a wooden clack */
     function clack(t, g) { var n = noise(t, .05), bp = ac.createBiquadFilter(); bp.type = 'bandpass'; bp.frequency.value = 1300; bp.Q.value = 4; var o = bus(1, (rnd() - .5) * .4); n.connect(bp); bp.connect(o); env(o.gain, [[t, 0], [t + .002, .55 * g], [t + .045, 0]]); thump(t + .005, .22 * g); tick(t + .06, .3 * g); }
-    function crack(t, g) { tick(t, .6 * g); tick(t + .03, .45 * g); band(t, t + .2, 3200, 1400, .12 * g, .03 * g, 1.4); for (var j = 0; j < 5; j++) tick(t + .08 + j * .028 + rnd() * .01, .2 * g); }
+    function crack(t, g) { tick(t, .6 * g); tick(t + .03, .45 * g); band(t, t + .12, 3200, 1400, .12 * g, .03 * g, 1.4); for (var j = 0; j < 3; j++) tick(t + .06 + j * .025 + rnd() * .01, .2 * g); }
     function stamp(t, g) { thump(t, .7 * g); var sn = noise(t, .12), sl = ac.createBiquadFilter(); sl.type = 'lowpass'; sl.frequency.value = 1500; var so = bus(1); sn.connect(sl); sl.connect(so); env(so.gain, [[t, 0], [t + .004, .32 * g], [t + .1, 0]]); }
     /* an old flash bulb recharging: a thin rising whine */
     function bulb(t, g) { var o = osc('sine', 1800, t, t + .42, [[t, 0], [t + .05, .03 * g], [t + .34, .022 * g], [t + .4, 0]]); o.frequency.exponentialRampToValueAtTime(5200, t + .4); tick(t, .4 * g); }
@@ -808,15 +815,17 @@
     function blip(t, g) { var a = osc('square', 660, t, t + .07, [[t, 0], [t + .003, .05 * g], [t + .06, 0]]); var b = osc('square', 990, t + .07, t + .16, [[t + .07, 0], [t + .073, .05 * g], [t + .15, 0]]); }
     function clang(t, g) { thump(t, .5 * g); [[220, .05], [331, .035], [497, .02]].forEach(function (p) { osc('triangle', p[0], t, t + .22, [[t, 0], [t + .004, p[1] * g], [t + .2, 0]]); }); tick(t, .5 * g); }
     function paper(t, g) { band(t, t + .18, 2500, 4500, .07 * g, .02 * g, 1.5); tick(t + .1, .25 * g); }
+    /* levels balanced on the final mix (measured against the neighbouring voice): every hit audible, every hit ≥ 3 dB under the voice */
+    var LEVEL = { flash: 6, crack: 6, tick: 1.5, stamp: .5, bulb: 6, tear: 5, rewind: 6, blip: 3, pop: 3, swish: 6, clang: .9 };
     EV.forEach(function (e) {
-      var g = e.g == null ? 1 : e.g;
+      var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1);
       if (e.type === 'flash') flash(e.t, g);
       else if (e.type === 'clack') clack(e.t, g);
       else if (e.type === 'tick') { tick(e.t, .9 * g); thump(e.t, .08 * g); }
       else if (e.type === 'crack') crack(e.t, g);
       else if (e.type === 'stamp') stamp(e.t, g);
       else if (e.type === 'bulb') bulb(e.t, g);
-      else if (e.type === 'tear') tear(e.t, e.t + .28, g);
+      else if (e.type === 'tear') tear(e.t, e.t + .2, g);
       else if (e.type === 'pop') popS(e.t, g);
       else if (e.type === 'rewind') rewind(e.t, g);
       else if (e.type === 'blip') blip(e.t, g);

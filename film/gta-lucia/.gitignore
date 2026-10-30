@@ -13,3 +13,4 @@ out/picture.log
 out/voice*.log
 out/*.mp4
 out/mix.log
+out/mixrun.log

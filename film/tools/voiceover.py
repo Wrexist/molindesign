@@ -80,6 +80,7 @@ def spoken(s, l):
 
 def words(text):
     # a leading $ or quote stays on its word, and 5,000 / 2.5 stay one word
+    text = re.sub(r'(?<=\s)&(?=\s)', 'and', text)    # Whisper writes "and" as "&" in lists ("Claude & Tommy")
     return re.findall(r"[$€£“\"‘(]*[\w'’‑-]+(?:[.,]\d+)*[^\w\s]*", text)
 
 
@@ -367,7 +368,7 @@ def align_words(script_words, heard, dur):
 
 def wer(ref, hyp):
     # Whisper sometimes writes "$5 ,000": rejoin a number it split at its thousands comma
-    join = lambda ws: re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws)).replace('%', ' percent').split()   # Whisper writes "37,000%" for "thirty-seven thousand percent"
+    join = lambda ws: re.sub(r'(?:(?<=\s)|^)&(?=\s|$)', 'and', re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws))).replace('%', ' percent').split()   # Whisper writes "and" as "&" in lists   # Whisper writes "37,000%" for "thirty-seven thousand percent"
     split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
     r, h = split(ref), split(hyp)
     # "$96 billion" and "96 billion dollars" are the same words spoken: when either side writes a $ amount, ignore "dollars"
@@ -376,6 +377,12 @@ def wer(ref, hyp):
     # Whisper spells some compounds shut ("datacenters" for "data centers"): split a heard word that is two script words joined
     pairs = {r[i] + r[i + 1]: [r[i], r[i + 1]] for i in range(len(r) - 1)}
     h = [p for w in h for p in pairs.get(w, [w])]
+    # ...and splits some open ("line up" for "lineup"): rejoin two heard words that make one script word
+    rs, hh, i = set(r), [], 0
+    while i < len(h):
+        if i + 1 < len(h) and h[i] + h[i + 1] in rs and h[i] not in rs: hh.append(h[i] + h[i + 1]); i += 2
+        else: hh.append(h[i]); i += 1
+    h = hh
     d = list(range(len(h) + 1))
     for i in range(1, len(r) + 1):
         prev, d[0] = d[0], i
