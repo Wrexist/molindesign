@@ -683,7 +683,12 @@
     if (ba > 0) {
       g.save(); g.translate(700, 1030); g.scale(ba, ba); g.translate(-700, -1030);
       g.fillStyle = BUB; rr(g, 590, 990, 262, 80, 24); g.fill();
-      ONPROP = true; txt(g, 'I carried the 1', 721, 1031, 40, CREAM, 'center', 800, DISP, 240, 1, 30); ONPROP = false;
+      /* the reply types itself out over "say it carried the one" (one character at a time, left aligned) */
+      var full = 'I carried the 1', nc = Math.max(1, Math.min(full.length, Math.ceil(full.length * seg(t, K.say, at('lie', 'one') + .25))));
+      ONPROP = true; font(g, 40, 800); var fw = g.measureText(full).width;
+      NOREC = nc < full.length;   /* half-typed text is not a label: only the finished reply counts for readcheck */
+      txt(g, full.slice(0, nc), 721 - fw / 2, 1031, 40, CREAM, 'left', 800, DISP, 240, 1, 30); ONPROP = false; NOREC = false;
+      if (nc < full.length) { g.fillStyle = CREAM; g.globalAlpha *= .8; g.fillRect(721 - fw / 2 + g.measureText(full.slice(0, nc)).width + 4, 1012, 4, 38); g.globalAlpha = 1; }
       g.restore();
       var sk = eio(seg(t, K.didnt - .02, K.didnt + .22));
       if (sk > 0) { g.save(); g.strokeStyle = CREAM; g.lineWidth = 6; g.lineCap = 'round'; g.beginPath(); g.moveTo(606, 1033); g.lineTo(lerp(606, 836, sk), 1029); g.stroke(); g.restore(); }
@@ -743,7 +748,7 @@
     CAPS.forEach(function (c, i) { if (t >= c.s - .04) { card0 = c; ci = i; } });
     if (!card0) return;
     var nx = CAPS[ci + 1], ns = nx ? nx.s - .04 : 1e9;
-    var keep = nx && (ns - card0.t1 < .9 || card0.id === 'guess');
+    var keep = nx && (ns - card0.t1 < 1.2 || card0.id === 'guess');   /* the caption stays through the planned pauses (snip, stamp) */
     var o1 = keep ? ns : Math.min(card0.t1 + .5, ns - .12), o0 = keep ? ns : Math.min(card0.t1 + .35, o1 - .12);
     var fi = seg(t, card0.s - .04, card0.s + .06), out = keep ? (t < ns ? 1 : 0) : 1 - seg(t, o0, o1);
     if (fi * out <= 0) return;
@@ -884,10 +889,10 @@
     /* placed from the voice-only envelope: it ends 0.26 s before "And" is voiced (Whisper-tested at several offsets: this one keeps both models' word edges off it) and starts well
        after "pieces." ends; the gate checks it against what Whisper hears */
     var c0 = start('commas');
-    GT.snip = c0 - .30; GS.push({ t: GT.snip, type: 'snip', g: .5 });
+    GT.snip = c0 - .30; GS.push({ t: GT.snip, type: 'snip', g: .82 });
     K.cut2 = GT.snip - .13; K.apart = GT.snip + .02;
     /* THE stamp: pinned 0.35 s before "Newer" (in the planned pause after "there."), checked by the gate */
-    GT.slam = start('newer') - .35; GS.push({ t: GT.slam, type: 'thump', g: .14 });
+    GT.slam = start('newer') - .35; GS.push({ t: GT.slam, type: 'thump', g: .36 });
     GT.home = K.noEnd + .03;   /* the cut to frame 0, right after "no." (the tail is DUR − "no." ≤ 0.5 s) */
   }
   function initTimes() {
