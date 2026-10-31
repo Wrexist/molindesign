@@ -1,0 +1,105 @@
+{
+  "about": "Vice City's four releases as one timeline: the first Grand Theft Auto (1997, top-down, three cities, Vice City one of them), GTA Vice City (2002, story set in 1986), Vice City Stories (2006, set in 1984), and GTA 6 (November 19, 2026, Vice City in the state of Leonida). 1997 to 2026 is 29 years by release year; no exact birthday is claimed because the 1997 day is disputed. Delta channel, own flat graphics only. Narration-led: the voice is recorded first and every visual beat is keyed to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA 6",
+    "Vice City",
+    "Grand Theft Auto",
+    "Rockstar",
+    "Leonida"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 40
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6's city is from 1997.",
+      "say": "GTA six's city is from nineteen ninety-seven."
+    },
+    {
+      "id": "ask",
+      "at": 3.46,
+      "text": "So how old is the Vice City in GTA 6?",
+      "say": "So how old is the Vice City in GTA six?"
+    },
+    {
+      "id": "gta1",
+      "at": 6.72,
+      "text": "It's 1997. The first Grand Theft Auto.",
+      "say": "It's nineteen ninety-seven. The first Grand Theft Auto."
+    },
+    {
+      "id": "map",
+      "at": 9.98,
+      "text": "Seen from above. Three cities. Vice City was one."
+    },
+    {
+      "id": "vc",
+      "at": 13.59,
+      "text": "Then 2002. GTA Vice City goes 3D.",
+      "say": "Then two thousand two. GTA Vice City goes three D."
+    },
+    {
+      "id": "set",
+      "at": 17.56,
+      "text": "Its story is set in 1986.",
+      "say": "Its story is set in nineteen eighty-six."
+    },
+    {
+      "id": "forty",
+      "at": 20.47,
+      "text": "That's forty years before GTA 6 comes out.",
+      "say": "That's forty years before GTA six comes out."
+    },
+    {
+      "id": "vcs",
+      "at": 23.73,
+      "text": "Then 2006. Vice City Stories rewinds to 1984.",
+      "say": "Then two thousand six. Vice City Stories rewinds to nineteen eighty-four.",
+      "take": 1,
+      "speed": 1.1
+    },
+    {
+      "id": "now",
+      "at": 29.02,
+      "text": "Now, on November 19, GTA 6 brings it back.",
+      "say": "Now, on November nineteenth, GTA six brings it back."
+    },
+    {
+      "id": "quote",
+      "at": 32.63,
+      "text": "In Rockstar's words, we're a long way from the '80s.",
+      "say": "In Rockstar's words, we're a long way from the eighties."
+    },
+    {
+      "id": "span",
+      "at": 36.6,
+      "text": "That's 29 years of Vice City.",
+      "say": "That's twenty-nine years of Vice City."
+    },
+    {
+      "id": "best",
+      "at": 39.14,
+      "text": "Which Vice City was best? Comment the year.",
+      "say": "Which Vice City was best? Comment the year."
+    }
+  ],
+  "dur": 42.5
+}

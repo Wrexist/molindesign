@@ -1,0 +1,108 @@
+{
+  "about": "GTA 6 took thirteen years: GTA 5 (Sep 17, 2013) to GTA 6 (Nov 19, 2026), the two delays crossed out on a timeline. Delta channel, SAFE-EDIT compliant: own graphics, own voice, no Rockstar footage.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "PlayStation",
+    "November 19th, 2026",
+    "May 2nd",
+    "May 26th, 2026",
+    "November 6th",
+    "September 17th, 2013"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6 took thirteen years.",
+      "say": "G T A six took thirteen years."
+    },
+    {
+      "id": "five",
+      "at": 2.84,
+      "text": "GTA 5 came out September 17th, 2013.",
+      "say": "G T A five came out September seventeenth, twenty thirteen."
+    },
+    {
+      "id": "six",
+      "at": 7.02,
+      "text": "GTA 6 lands on November 19th, 2026.",
+      "say": "G T A six lands on November nineteenth, twenty twenty six.",
+      "take": 2
+    },
+    {
+      "id": "gap",
+      "at": 11.14,
+      "text": "That's thirteen years and two months."
+    },
+    {
+      "id": "ps",
+      "at": 13.62,
+      "text": "GTA 5 launched on PlayStation 3. GTA 6 is for PlayStation 5.",
+      "say": "G T A five launched on PlayStation three. G T A six is for PlayStation five."
+    },
+    {
+      "id": "prev",
+      "at": 18.85,
+      "text": "The longest wait before? About 5.4 years.",
+      "say": "The longest wait before? About five point four years."
+    },
+    {
+      "id": "dbl",
+      "at": 22.42,
+      "text": "This one? More than double."
+    },
+    {
+      "id": "fall",
+      "at": 24.65,
+      "text": "And it was supposed to land in fall 2025.",
+      "say": "And it was supposed to land in fall twenty twenty five."
+    },
+    {
+      "id": "d1",
+      "at": 27.62,
+      "text": "Then, on May 2nd, Rockstar said May 26th, 2026.",
+      "say": "Then, on May second, Rockstar said May twenty sixth, twenty twenty six."
+    },
+    {
+      "id": "d2",
+      "at": 32.87,
+      "text": "Then on November 6th, it moved again.",
+      "say": "Then on November sixth, it moved again."
+    },
+    {
+      "id": "held",
+      "at": 35.6,
+      "text": "Two delays. And the date has held since."
+    },
+    {
+      "id": "now",
+      "at": 38.29,
+      "text": "Now it's almost here."
+    },
+    {
+      "id": "q",
+      "at": 40.26,
+      "text": "So, are you playing day one?"
+    }
+  ],
+  "dur": 43.63
+}

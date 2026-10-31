@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The trailer songs · GTA 6</title>
+<meta name="description" content="A narrated vertical film on GTA 6 trailer songs: Trailer 1 sent Tom Petty's 1989 B-side Love Is a Long Road up 36,979% on Spotify in a week (Spotify to BBC Newsbeat); the launch trailer broke the pattern with a new Justice song. Own graphics only, no music, written in code.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#15131b">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="The trailer songs · GTA 6">
+<meta property="og:description" content="A vertical explainer written entirely in code. Every frame is a function of time.">
+<meta property="og:image" content="out/poster.jpg">
+<meta property="og:image:alt" content="A pink cassette deck counter reading 36,979%.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23000'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23c8102e'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../fonts.css">
+<style>
+  :root {
+    --ink: #1b1510; --paper: #f6efe2; --p60: rgb(236 232 223 / .6); --p30: rgb(236 232 223 / .3); --p12: rgb(236 232 223 / .12);
+    --signal: #d7262e; --ease-out: cubic-bezier(.23, 1, .32, 1); --ease-io: cubic-bezier(.76, 0, .24, 1);
+    --mono: "Geist Mono", ui-monospace, Menlo, monospace; --disp: Archivo, "Helvetica Neue", Arial, sans-serif; --serif: "Instrument Serif", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--ink); color: var(--paper); font-family: var(--disp); -webkit-font-smoothing: antialiased; }
+  body { overflow: hidden; }
+  .stage { position: fixed; inset: 0; display: grid; place-items: center; }
+  canvas#film { display: block; height: min(100vh, calc(100vw * 16 / 9)); height: min(100dvh, calc(100vw * 16 / 9)); aspect-ratio: 9 / 16; width: auto; background: #15131b; }
+  body.render canvas#film { position: fixed; left: 0; top: 0; width: 1080px; height: 1920px; }
+  body.render .ui, body.render .gate { display: none !important; }
+
+  /* gate: poster + play */
+  .gate { position: fixed; inset: 0; display: grid; align-content: end; padding: max(2.4rem, env(safe-area-inset-top)) max(1.6rem, 4vw) max(2.4rem, env(safe-area-inset-bottom)); background: linear-gradient(to top, rgb(0 0 0 / .85), rgb(0 0 0 / .1) 60%); transition: opacity .6s var(--ease-out), visibility 0s linear .6s; }
+  .gate.is-off { opacity: 0; visibility: hidden; }
+  .gate .kick { font: 400 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--p60); margin: 0 0 1rem; }
+  .gate h1 { font-weight: 700; font-stretch: 125%; letter-spacing: -.02em; font-size: clamp(40px, 7vw, 104px); line-height: .95; margin: 0 0 .4rem; }
+  .gate h1 em { font-family: var(--serif); font-weight: 400; font-stretch: 100%; letter-spacing: 0; }
+  .gate p.lede { max-width: 46ch; font-size: clamp(15px, 1.3vw, 18px); line-height: 1.55; color: var(--p60); margin: .6rem 0 1.6rem; }
+  .gate .row { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; align-items: center; }
+  .btn { appearance: none; border: 1px solid var(--p30); background: transparent; color: var(--paper); font: 500 14px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 16px 22px; border-radius: 999px; cursor: pointer; text-decoration: none; display: inline-flex; gap: .7rem; align-items: center; transition: background-color .2s ease, border-color .2s ease, transform .16s var(--ease-out); }
+  .btn:hover { border-color: var(--paper); }
+  .btn:active { transform: scale(.97); }
+  .btn.primary { background: var(--paper); color: #000; border-color: var(--paper); }
+  .btn.primary:hover { background: #fff; }
+  .btn .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--signal); }
+  .btn:focus-visible, .ui button:focus-visible, .track:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
+  .gate .meta { font: 400 12px var(--mono); letter-spacing: .1em; color: var(--p60); text-transform: uppercase; }
+
+  /* controls */
+  .ui { position: fixed; left: 0; right: 0; bottom: 0; padding: 14px max(16px, 3vw) max(14px, env(safe-area-inset-bottom)); display: grid; grid-template-columns: auto auto 1fr auto auto; gap: 14px; align-items: center; background: linear-gradient(to top, rgb(0 0 0 / .7), transparent); font: 400 12px var(--mono); letter-spacing: .08em; transition: opacity .35s var(--ease-out), transform .35s var(--ease-out); }
+  .ui.is-idle { opacity: 0; transform: translateY(8px); pointer-events: none; }
+  .ui button { appearance: none; border: 0; background: none; color: var(--paper); width: 40px; height: 40px; display: grid; place-items: center; cursor: pointer; border-radius: 50%; }
+  .ui button:hover { background: var(--p12); }
+  .ui svg { width: 18px; height: 18px; fill: currentColor; }
+  .time { min-width: 10ch; color: var(--p60); font-variant-numeric: tabular-nums; }
+  .track { position: relative; height: 40px; cursor: pointer; touch-action: none; }
+  .track .bar { position: absolute; left: 0; right: 0; top: 19px; height: 2px; background: var(--p30); }
+  .track .fill { position: absolute; left: 0; top: 19px; height: 2px; background: var(--paper); width: 0; }
+  .track .head { position: absolute; top: 14px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--signal); left: 0; transition: transform .16s var(--ease-out); }
+  .track:active .head { transform: scale(1.3); }
+  .track .ch { position: absolute; top: 15px; width: 1px; height: 10px; background: var(--p60); }
+  .track .chl { position: absolute; bottom: 30px; transform: translateX(-50%); white-space: nowrap; color: var(--p60); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+  .track:hover .chl.is-near, .track.is-drag .chl.is-near { opacity: 1; }
+  .chapter { color: var(--paper); text-transform: uppercase; letter-spacing: .12em; white-space: nowrap; }
+  @media (max-width: 640px) { .ui { grid-template-columns: auto 1fr auto auto; } .time { display: none; } .chapter { display: none; } }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  @media (prefers-reduced-motion: reduce) { .gate, .ui { transition: none; } }
+</style>
+</head>
+<body>
+<main class="stage">
+  <canvas id="film" width="1080" height="1920" role="img" aria-label="GTA 6 revived a 1989 song. Trailer 1 used Tom Petty's Love Is a Long Road, a B-side. Spotify told BBC Newsbeat its streams rose 36,979% against the week before. Trailer 2 did it again with the Pointer Sisters; the launch trailer used a brand-new song by Justice, the game's composers. Old or new?"></canvas>
+</main>
+
+<section class="gate" id="gate" aria-labelledby="gate-title">
+  <div>
+    <p class="kick">Explainer · 9:16 · <span id="len">0:42</span></p>
+    <h1 id="gate-title">The trailer <em>songs</em></h1>
+    <p class="lede">How a GTA 6 trailer revived a 1989 song, for Shorts and TikTok on Delta. Made from our own graphics and voice; no Rockstar footage. The voice was recorded first and every beat, caption and sound is cut to its words.</p>
+    <div class="row">
+      <button class="btn primary" id="play-big" type="button"><span class="dot" aria-hidden="true"></span><span id="play-label">Play with sound</span></button>
+      <a class="btn" href="TREATMENT.md">Treatment</a>
+      <span class="meta">Space plays · ← → seek · , . step a frame</span>
+    </div>
+  </div>
+</section>
+
+<div class="ui is-idle" id="ui" role="group" aria-label="Film controls" hidden>
+  <button id="pp" type="button" aria-label="Pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="pp-ico" d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg></button>
+  <span class="time" id="time" aria-live="off">0:00.0</span>
+  <div class="track" id="track" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="45" aria-valuenow="0" aria-valuetext="0 seconds">
+    <div class="bar"></div><div class="fill" id="fill"></div><div class="head" id="head"></div>
+  </div>
+  <span class="chapter" id="chapter">Hook</span>
+  <button id="mute" type="button" aria-label="Mute" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="mute-ico" d="M4 9h4l5-4v14l-5-4H4zM16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.6" fill-rule="evenodd"/></svg></button>
+</div>
+<p class="sr" id="live" aria-live="polite"></p>
+
+<script src="vo/vo.js"></script>
+<script src="vo/heard.js"></script>
+<script src="film.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var RENDER = q.has('render');
+  var canvas = document.getElementById('film');
+  var F = window.FILM, DUR = F.DUR;
+  document.getElementById('track').setAttribute('aria-valuemax', DUR.toFixed(1));
+  document.getElementById('len').textContent = Math.floor(DUR / 60) + ':' + ('0' + Math.round(DUR % 60)).slice(-2);
+  if (RENDER) document.body.classList.add('render');
+  var ready = F.init(canvas, { grain: !RENDER });
+  if (RENDER) { ready.then(function () { F.render(+q.get('t') || 0); }); return; }
+
+  var gate = document.getElementById('gate'), ui = document.getElementById('ui');
+  var pp = document.getElementById('pp'), ppIco = document.getElementById('pp-ico');
+  var track = document.getElementById('track'), fill = document.getElementById('fill'), head = document.getElementById('head');
+  var timeEl = document.getElementById('time'), chapEl = document.getElementById('chapter'), live = document.getElementById('live');
+  var muteBtn = document.getElementById('mute'), playLabel = document.getElementById('play-label');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var state = { t: +q.get('t') || 0, playing: false, ac: null, buf: null, src: null, gain: null, startedAt: 0, muted: false, raf: 0, preparing: null };
+
+  /* chapter ticks */
+  F.SHOTS.forEach(function (s, i) {
+    if (i) { var c = document.createElement('div'); c.className = 'ch'; c.style.left = (s.t0 / DUR * 100) + '%'; track.appendChild(c); }
+    var l = document.createElement('div'); l.className = 'chl'; l.textContent = s.name; l.style.left = ((s.t0 + s.t1) / 2 / DUR * 100) + '%'; l.dataset.i = i; track.appendChild(l);
+  });
+  var labels = track.querySelectorAll('.chl');
+
+  function fmt(t) { var m = Math.floor(t / 60), s = t - m * 60; return m + ':' + (s < 10 ? '0' : '') + s.toFixed(1); }
+  function shotAt(t) { for (var i = F.SHOTS.length - 1; i >= 0; i--) if (t >= F.SHOTS[i].t0) return i; return 0; }
+  var lastShot = -1;
+  function paint(t) {
+    F.render(t);
+    var k = t / DUR;
+    fill.style.width = (k * 100) + '%'; head.style.left = (k * 100) + '%';
+    timeEl.textContent = fmt(t) + ' / ' + fmt(DUR).replace(/\.\d$/, '');
+    track.setAttribute('aria-valuenow', t.toFixed(1)); track.setAttribute('aria-valuetext', Math.round(t) + ' seconds, ' + F.SHOTS[shotAt(t)].name);
+    var si = shotAt(t);
+    if (si !== lastShot) { lastShot = si; chapEl.textContent = F.SHOTS[si].name; labels.forEach(function (l) { l.classList.toggle('is-near', +l.dataset.i === si); }); }
+  }
+
+  /* sound: rendered offline from the same timeline, then played as one buffer that also keeps time */
+  /* the score renders offline as soon as the page is ready (no gesture needed for OfflineAudioContext);
+     the first Play only has to create the AudioContext */
+  var scoreBuf = null;
+  function renderScore() {
+    if (scoreBuf) return scoreBuf;
+    var OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    var off = new OAC(2, Math.ceil(48000 * DUR), 48000);
+    /* the narrated mix (voice + ducked score, mastered by tools/voiceover.py); without it, the score renders here */
+    var narrated = fetch('vo/gta-songs-vo.mp3').then(function (r) { if (!r.ok) throw 0; return r.arrayBuffer(); })
+      .then(function (ab) { return off.decodeAudioData(ab); });
+    scoreBuf = narrated.catch(function () { window.SCORE(off); return off.startRendering(); }).then(function (buf) {
+      var peak = 0, c, d, i;
+      for (c = 0; c < buf.numberOfChannels; c++) { d = buf.getChannelData(c); for (i = 0; i < d.length; i += 3) { var a = Math.abs(d[i]); if (a > peak) peak = a; } }
+      var gainK = peak > 0 ? Math.pow(10, -1 / 20) / peak : 1;
+      for (c = 0; c < buf.numberOfChannels; c++) { d = buf.getChannelData(c); for (i = 0; i < d.length; i++) d[i] *= gainK; }
+      return buf;
+    });
+    return scoreBuf;
+  }
+  function prepare() {
+    if (state.preparing) return state.preparing;
+    var AC = window.AudioContext || window.webkitAudioContext;
+    state.ac = new AC();
+    state.preparing = renderScore().then(function (buf) {
+      state.buf = buf;
+      state.gain = state.ac.createGain(); state.gain.connect(state.ac.destination);
+      state.gain.gain.value = state.muted ? 0 : 1;
+    });
+    return state.preparing;
+  }
+  function now() { return state.playing && state.ac ? Math.min(DUR, state.ac.currentTime - state.startedAt) : state.t; }
+  function startAudio(at) {
+    stopAudio();
+    state.src = state.ac.createBufferSource(); state.src.buffer = state.buf; state.src.connect(state.gain);
+    state.startedAt = state.ac.currentTime - at;
+    state.src.start(0, at);
+  }
+  function stopAudio() { if (state.src) { try { state.src.stop(); } catch (e) {} state.src.disconnect(); state.src = null; } }
+
+  function play() {
+    if (state.playing) return;
+    if (state.t >= DUR - .05) state.t = 0;
+    if (!state.buf) playLabel.textContent = 'Preparing sound…';
+    prepare().then(function () {
+      return state.ac.resume();
+    }).then(function () {
+      F.LIVE.text = true; playLabel.textContent = 'Play with sound'; gate.classList.add('is-off'); ui.hidden = false; poke();
+      state.playing = true; startAudio(state.t); setPP(); loop();
+      live.textContent = 'Playing';
+    });
+  }
+  function pause() {
+    if (!state.playing) return;
+    state.t = now(); state.playing = false; stopAudio(); cancelAnimationFrame(state.raf); setPP(); paint(state.t); poke(true);
+    live.textContent = 'Paused at ' + Math.round(state.t) + ' seconds';
+  }
+  function seek(t, keep) {
+    state.t = Math.max(0, Math.min(DUR, t));
+    if (state.playing && !keep) startAudio(state.t);
+    paint(state.t);
+  }
+  function setPP() {
+    ppIco.setAttribute('d', state.playing ? 'M6 4h4v16H6zM14 4h4v16h-4z' : 'M7 4l13 8-13 8z');
+    pp.setAttribute('aria-label', state.playing ? 'Pause' : 'Play');
+  }
+  function loop() {
+    state.raf = requestAnimationFrame(loop);
+    var t = now();
+    paint(t);
+    if (t >= DUR) { state.t = DUR; state.playing = false; stopAudio(); cancelAnimationFrame(state.raf); setPP(); poke(true); playLabel.textContent = 'Play again'; gate.classList.remove('is-off'); }
+  }
+
+  /* idle-hiding controls */
+  var idleT = 0;
+  function poke(stay) { ui.classList.remove('is-idle'); clearTimeout(idleT); if (!stay && state.playing) idleT = setTimeout(function () { ui.classList.add('is-idle'); }, 2200); }
+  ['pointermove', 'pointerdown', 'focusin'].forEach(function (e) { window.addEventListener(e, function () { if (!ui.hidden) poke(); }, { passive: true }); });
+
+  /* scrubbing */
+  var drag = false, wasPlaying = false;
+  function tAt(ev) { var r = track.getBoundingClientRect(); return (ev.clientX - r.left) / r.width * DUR; }
+  track.addEventListener('pointerdown', function (ev) {
+    drag = true; wasPlaying = state.playing; track.setPointerCapture(ev.pointerId); track.classList.add('is-drag');
+    if (state.playing) { state.t = now(); state.playing = false; stopAudio(); cancelAnimationFrame(state.raf); }
+    seek(tAt(ev), true);
+  });
+  track.addEventListener('pointermove', function (ev) { if (drag) seek(tAt(ev), true); });
+  function endDrag() { if (!drag) return; drag = false; track.classList.remove('is-drag'); if (wasPlaying) { state.playing = true; startAudio(state.t); loop(); } setPP(); }
+  track.addEventListener('pointerup', endDrag); track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); e.stopPropagation(); seek(now() + (e.key === 'ArrowRight' ? 1 : -1) * (e.shiftKey ? 5 : 1)); }
+    if (e.key === 'Home') { e.preventDefault(); seek(0); } if (e.key === 'End') { e.preventDefault(); seek(DUR); }
+  });
+
+  document.getElementById('play-big').addEventListener('click', play);
+  pp.addEventListener('click', function () { state.playing ? pause() : play(); });
+  muteBtn.addEventListener('click', function () {
+    state.muted = !state.muted; if (state.gain) state.gain.gain.setTargetAtTime(state.muted ? 0 : 1, state.ac.currentTime, .02);
+    muteBtn.setAttribute('aria-pressed', String(state.muted)); muteBtn.setAttribute('aria-label', state.muted ? 'Unmute' : 'Mute');
+    muteBtn.style.opacity = state.muted ? .5 : 1;
+  });
+  window.addEventListener('keydown', function (e) {
+    if (e.target.closest && e.target.closest('a, input')) return;
+    if (e.key === ' ' || e.key === 'k') { if (e.target.tagName === 'BUTTON' && e.key === ' ') return; e.preventDefault(); state.playing ? pause() : play(); }
+    else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { if (e.target === track) return; seek(now() + (e.key === 'ArrowRight' ? 1 : -1) * (e.shiftKey ? 5 : 1)); poke(); }
+    else if (e.key === ',' || e.key === '.') { if (state.playing) pause(); seek(state.t + (e.key === '.' ? 1 : -1) / 24); }
+  });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) pause(); });
+
+  ready.then(function () {
+    /* poster: the landed counter. Reduced motion changes nothing about what plays (it only plays when asked), but we never autoplay */
+    state.t = q.has('t') ? state.t : F.POSTER;
+    if (!q.has('t')) F.LIVE.text = false;      /* the gate carries its own type; the poster frame goes without */
+    paint(state.t);
+    if (!q.has('t')) state.t = 0;
+    setPP();
+    if (reduced) live.textContent = 'The film plays only when you press play.';
+    (window.requestIdleCallback || setTimeout)(function () { renderScore(); });
+  });
+  addEventListener('resize', function () { if (!state.playing) paint(state.t); });
+})();
+</script>
+</body>
+</html>

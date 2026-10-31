@@ -1,0 +1,109 @@
+{
+  "about": "Lucia breaks the lineup: every GTA story lead since GTA III (2001) counted, 13, all men (our count from each game's article). GTA 6's Lucia Caminos, co-lead with Jason Duval, is the first woman to lead a GTA story since then. Turn: the first GTA (1997, PC) already let you pick a woman. Rockstar's own words for Lucia from rockstargames.com/VI. Factory Delta #6.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Lucia",
+    "Caminos",
+    "Jason Duval",
+    "Claude",
+    "Tommy",
+    "CJ",
+    "Niko",
+    "Michael",
+    "Franklin",
+    "Trevor"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 42
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.3,
+      "text": "GTA 6 breaks a 13-man lineup.",
+      "say": "G T A 6 breaks a thirteen-man lineup.",
+      "speed": 1.1
+    },
+    {
+      "id": "since",
+      "at": 3.75,
+      "text": "Count every GTA story lead since GTA 3, in 2001.",
+      "say": "Count every G T A story lead since G T A 3, in two thousand one."
+    },
+    {
+      "id": "names1",
+      "at": 7.75,
+      "text": "Claude and Tommy, CJ and Niko.",
+      "say": "Claude and Tommy, C J and Niko.",
+      "speed": 1.1
+    },
+    {
+      "id": "names2",
+      "at": 10.6,
+      "text": "Michael, Franklin and Trevor.",
+      "speed": 1.1
+    },
+    {
+      "id": "hero",
+      "at": 13.2,
+      "text": "Thirteen leads. Every single one, a man."
+    },
+    {
+      "id": "ask",
+      "at": 17.15,
+      "text": "So who finally breaks the lineup?"
+    },
+    {
+      "id": "lucia",
+      "at": 19.45,
+      "text": "Lucia Caminos. She shares GTA 6 with Jason Duval.",
+      "say": "Lucia Caminos. She shares G T A 6 with Jason Duval."
+    },
+    {
+      "id": "prison",
+      "at": 23.85,
+      "text": "Now she's fresh out of prison."
+    },
+    {
+      "id": "but",
+      "at": 26.1,
+      "text": "But GTA's first playable woman came way earlier.",
+      "say": "But G T A's first playable woman came way earlier."
+    },
+    {
+      "id": "first",
+      "at": 29.8,
+      "text": "The very first GTA, in 1997, let you pick one.",
+      "say": "The very first G T A, in nineteen ninety-seven, let you pick one."
+    },
+    {
+      "id": "since3d",
+      "at": 34.6,
+      "text": "Since 2001, she's the first woman to lead a GTA story.",
+      "say": "Since two thousand one, she's the first woman to lead a G T A story."
+    },
+    {
+      "id": "end",
+      "at": 38.8,
+      "text": "Who are you here for: Lucia or Jason?"
+    }
+  ],
+  "dur": 42.25
+}

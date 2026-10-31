@@ -80,13 +80,14 @@ def spoken(s, l):
 
 def words(text):
     # a leading $ or quote stays on its word, and 5,000 / 2.5 stay one word
+    text = re.sub(r'(?<=\s)&(?=\s)', 'and', text)    # Whisper writes "and" as "&" in lists ("Claude & Tommy")
     return re.findall(r"[$€£“\"‘(]*[\w'’‑-]+(?:[.,]\d+)*[^\w\s]*", text)
 
 
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
 WEAK = set('a an the of to in on at for with and or but it its is as by from that this'.split())
-SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4'}
+SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6'}
 
 
 def norm(w):
@@ -328,6 +329,10 @@ def drop_tail(h, script, end):
     for blk in difflib.SequenceMatcher(None, a, b, autojunk=False).get_matching_blocks():
         if blk.size and blk.a + blk.size == len(a):
             last = blk.b + blk.size
+    if last is None and a:                         # the last word heard split open ("line up" for "lineup") still ends the line
+        for i in range(len(b) - 1):
+            if b[i] + b[i + 1] == a[-1]:
+                last = i + 2
     if last is not None:
         return h[:last]
     while len(h) > len(script) and (h[-1]['p'] < 0.3 or h[-1]['t0'] >= end - 0.05):
@@ -367,7 +372,7 @@ def align_words(script_words, heard, dur):
 
 def wer(ref, hyp):
     # Whisper sometimes writes "$5 ,000": rejoin a number it split at its thousands comma
-    join = lambda ws: re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws)).split()
+    join = lambda ws: re.sub(r'(?:(?<=\s)|^)&(?=\s|$)', 'and', re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws))).replace('%', ' percent').split()   # Whisper writes "and" as "&" in lists   # Whisper writes "37,000%" for "thirty-seven thousand percent"
     split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
     r, h = split(ref), split(hyp)
     # "$96 billion" and "96 billion dollars" are the same words spoken: when either side writes a $ amount, ignore "dollars"
@@ -376,6 +381,12 @@ def wer(ref, hyp):
     # Whisper spells some compounds shut ("datacenters" for "data centers"): split a heard word that is two script words joined
     pairs = {r[i] + r[i + 1]: [r[i], r[i + 1]] for i in range(len(r) - 1)}
     h = [p for w in h for p in pairs.get(w, [w])]
+    # ...and splits some open ("line up" for "lineup"): rejoin two heard words that make one script word
+    rs, hh, i = set(r), [], 0
+    while i < len(h):
+        if i + 1 < len(h) and h[i] + h[i + 1] in rs and h[i] not in rs: hh.append(h[i] + h[i + 1]); i += 2
+        else: hh.append(h[i]); i += 1
+    h = hh
     d = list(range(len(h) + 1))
     for i in range(1, len(r) + 1):
         prev, d[0] = d[0], i
