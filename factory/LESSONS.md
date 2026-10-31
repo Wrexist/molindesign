@@ -31,7 +31,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Every video carries something checkable: a named source on screen and in the description, a real date, a real number. Slop has none (house rule since #1; now mandatory on YouTube too).
 - The picture is hand-built (paper props, stamps, rulers, our palette), never generated stock or AI imagery; nothing morphs, no uncanny hands or faces (Isac's no-AI-look rule).
 - Disclose the AI voice plainly (TikTok label, YouTube "Altered content", description line). Never hide it; hiding it is what gets channels piled on.
-- Quality over count: 2 a day only while each passes the jury at 8.0+; if a run can't, skip that slot rather than post filler.
+- Quality over count: 2 a day only while each passes the gate (since 2026-10-28: 7.4+ with Truth 8.5+, re-anchored by Isac to the last posted film's level); if a run can't, skip that slot rather than post filler.
 - Reply to real comments in the first hour with a sourced extra fact; a creator who answers isn't a slop farm.
 - Never post the anti-slop copypasta or reply to it with arguments; answer a "this is AI" comment with the source link and what we made by hand.
 
@@ -51,6 +51,25 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A film that drops across jury rounds (temperature 7.5 → 7.2 → 6.9) is being patched, not fixed: each fix round must re-run every LESSONS check (frame-0 words, fill, SFX on the mix) before the next jury, and after a drop, park the film rather than add more props.
 - Two films in a row (temperature, password) stalled at 7.2–7.5 and fell with each round, while qrcode and memory passed at 8.0. Fresh juries keep finding new issues, so fix rounds can't climb: the first cut has to land near 8. Spend the effort before the first render on one hero stamp, a hand-made hero prop instead of icon-kit art, no stretch over 1.5 s without voice, and a screenshot frame planned in the brief (password r1–r3).
 - Show the bridge between mechanism and money on screen, not just in the voice: "90 % from data centers" and "now it trains AI" never met on screen, so a 14-year-old couldn't connect them (gpus r2). Re-use an earlier prop to close the loop rather than a new one.
+- The hero needs a still screenshot hold of at least 1 s: phonephoto's clean averaged face plus stamp was fully on screen for only 0.35 s before a zoom-out, so the best image of the film couldn't be screenshotted (phonephoto r2). Plan the hold in BRIEF §0 and never exit the hero with a zoom.
+- A loupe on the payoff must magnify what the line claims: one over the averaged, "clean" face showed blocky pixels and read as still grainy (phonephoto r2).
+- A 0.1 drop between rounds (7.5 → 7.4) is within jury noise; the park rule is for real drops of 0.3+ or a fix round that adds props (phonephoto).
+- Frame 0 must move from the first frame: a planned ±4 px wiggle measured 0.075 mean frame difference and read as a still card (agent r1). Give it a visible glide (≥ 300 px over the first second) while frame 0 itself stays fully printed.
+- Plan every big-beat sound in the BRIEF with its silence: the SFX gate needs ~1.1 s of clear voice gap, so closing a dead tail later can silently cost the hit (agent r2 lost the gate thump that way). Reserve the gap before the first render.
+- Check every label's box against its prop's box on the final frames, not the plan: ACT sat on the clicker box and a print crossed x 930 after a re-size (agent r2, repeats qrcode r2).
+- No unplanned still stretch over 1.0 s while the voice runs: the twist scene froze for 1.87 s before the stamp (wifi r2). Build the proof on the words (slide the oven in on "microwave", grow the bracket on "frequency") so the stamp lands on a moving frame.
+- Empty stage under a wipe has now cost a point in gps r1, wifi r1 and wifi r2: build the next scene in full (props, labels, caption) under the tear's first frame, and check the wipe frames on the render before the jury.
+- End within 0.5 s of the last word: a 1.2 s still tail after "no." to dodge a Whisper 30 s window artifact cost Loop a point (wifi r2). Fix the Whisper artifact by merging the end lines into one take, not with dead air.
+- Coral is for the one hero stamp and the YES/NO chips only: coral wipe edges and coral caption words diluted SAME BAND (wifi r2).
+- A thump whose energy is all in 180–400 Hz is near-silent on a phone speaker at −26 dB RMS; keep its body there but layer a 1–3 kHz paper-slap transient and aim for about −18 dB RMS, still ≥ 3 dB under the voice (wifi r2).
+- A first cut at 6.9 doesn't reach 7.4 in one fix round (wifi 6.9 → 7.1); the plan table alone isn't enough. Before the first jury, the director watches the render at phone size for empty stages, frozen stretches and props too small to read (wifi r1: grey-square fridge, 20 px stamp).
+- A fix round must never add a new beat: the orchestrator asked for a new "it says it carried the one" line in math r1 and the r2 jury found it on the wrong chat and scored Truth down (7.5 → 7.0). Fix rounds fix; new ideas wait for a new film (math r2).
+- Read the topic's current research before writing the hook: "Your chatbot doesn't calculate" was contradicted by Anthropic's March 2025 interpretability post, which the researcher never read (math r1). For any AI-capability claim, search the model makers' own research pages first and phrase it for 2026 models.
+- One interpretability study of one model is not "your chatbot": scope the claim to the model in the voice or on screen ("one model, in its head") (math r2).
+- A quote chip goes on the claim it supports, and the hero hold keeps its own source on screen: "MITIGATED STRONGLY" replaced the Lee credit under WRITTEN FIRST (math r2, repeats gpus r2).
+- A sound-off mismatch must be drawn as a mismatch: commas and token cuts lined up so well the strip read "199 999 9" twice (math r2). Offset them ≥ 40 px and mark ≠.
+- Lead with the one fact that is true of every chatbot and checkable by the viewer (the tokenizer cut), not a single interpretability study; and a "why AI is bad at X" film must show a dated, sourced failure on screen, or the viewer asks "so what?" (math r3: 7.1 → 7.0 → 6.9 across three rounds, parked).
+- A third jury round didn't rescue a film whose hook and body explained different mechanisms; when round 2 drops, park instead of a third round (math).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -120,6 +139,8 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - The biggest visual beats need a sound: if the SFX gate leaves a stamp silent, move the stamp into the next pause rather than keep it mid-phrase; keep every hit ≥ 3 dB under the neighbouring voice and check the room tone level on the render (password r2: −37 dB measured where −50 was intended).
 
 ## Posting and sound
+- Every TikTok scheduled in the 13:00 ET slot (noise, battery, qrcode, phonephoto) sat at exactly 0 views while the same videos got 178–1,319 on YouTube; every TikTok posted in the US evening (memory 19:00 ET, fyp 19:00 ET, gps 20:30 ET) was served (2026-10-28, PC page-data check). Until disproven: TikTok posts only at 19:00 and 23:00 ET; YouTube keeps 13:00 and 19:00 ET. Retire the sounds Self Aware and Espresso Soul (both on 0-view posts).
+- The slot theory was wrong (2026-10-29 check): agent went out at 19:00 ET and still has exactly 0 TikTok views after 13 h, like phonephoto (13:00 ET, 19 h). Every TikTok since Oct 27 (qrcode, phonephoto, agent) is at 0, the last one served was memory (Oct 26, 394), and TikTok Studio shows no notice. Treat it as an account-level hold: TikTok uploads are paused (YouTube only) until Isac checks Settings › Account status in the app and a new post gets served. Keep the evening-slot rule for when it resumes. YouTube also fell from 178–1,319 to 12–17 views per Short in the same days.
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
 - Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
 - TikTok Studio scheduling works: the one-time consent was accepted on 2026-10-24 under Isac's "schedule all posts", so every post is scheduled in its slot (noise, fyp). Before that, gps went up at once.
@@ -139,10 +160,12 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 | How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
 | TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
 | Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | TikTok 0 (6 h, "data processing", likely held in review); YouTube 216 | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
-| Torn QR code (qrcode) | 2026-10-27 17:00 UTC (Tue 13:00 ET; missed Mon, PC offline) | TikTok 0, YouTube 8 (25 min) | | | | real decoded tear; jury 7.2 → 8.0, Truth 9.0 |
+| Torn QR code (qrcode) | 2026-10-27 17:00 UTC (Tue 13:00 ET; missed Mon, PC offline) | TikTok 0 (24 h, not served?), YouTube 178 (24 h) | | | | real decoded tear; jury 7.2 → 8.0, Truth 9.0 |
 | Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | TikTok 122 (20 min), YouTube 9 | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
 | Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
 | Same question, two answers (temperature) | held (not posted) | | | | | weighted-dice + dial; jury 7.5 → 7.2 → 6.9 (r3 "don't post"), parked |
 
 | How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
 | Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
+| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | TikTok 0, YouTube 12 (6 h); TikTok 0, YouTube 17 (19 h) | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
+| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | TikTok 0, YouTube 4 (25 min); TikTok 0, YouTube 12 (13 h) | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |

@@ -1,0 +1,82 @@
+{
+  "about": "How Wi-Fi goes through walls. Factory #15, backlog row 16, playlist How tech works. One hard idea: Wi-Fi is radio waving about 2.4 billion times a second, and most building materials let it through (NIST, NISTIR 6055, 1997: 'the relative \"transparency\" of the majority of these materials'), but the loss grows with frequency ('Attenuation increases, generally, with increasing signal frequency'), so the higher 5 GHz band loses more (ASUS: 'effective transmission distance at the same power level is shorter than that of 2.4GHz'); metal blocks it worst and water soaks it up (Apple: water 'medium', metal 'very high interference potential'; FCC OET 56: RF at microwave frequencies 'efficiently transfers energy to water molecules', which is how household microwave ovens 'operate at a frequency of 2450 MHz (2.45 GHz)'). Wi-Fi's 2.4 GHz band is 2400-2483.5 MHz (47 CFR 15.247); ovens sit in the 2450 +/- 50 MHz ISM band (47 CFR 18.301): same band. Tip: center of the home, off the floor, in the open, not in a cabinet, away from the microwave (TP-Link FAQ 455, ASUS FAQ 1044838). Hero prop: the folded paper wave ribbon threading cut-paper wall samples; hero stamp SAME BAND on the microwave card on line 'twist'; screenshot hold = the floor plan on 'tip'. Narration-led: record the voice first and key every visual beat to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.9
+  },
+  "names": [
+    "Wi-Fi"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 55.0
+  },
+  "dur": 30.9,
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Your walls are see-through."
+    },
+    {
+      "id": "ask",
+      "at": 1.7,
+      "text": "To Wi-Fi, anyway. So how does Wi-Fi go through walls?"
+    },
+    {
+      "id": "radio",
+      "at": 5.08,
+      "text": "It's radio, waving about 2.4 billion times a second.",
+      "say": "It's radio, waving about two point four billion times a second."
+    },
+    {
+      "id": "lab",
+      "at": 8.46,
+      "text": "A government lab found most wall materials let the signal pass."
+    },
+    {
+      "id": "band",
+      "at": 11.82,
+      "text": "But the higher 5 GHz band loses more through walls.",
+      "say": "But the higher five gigahertz band loses more through walls."
+    },
+    {
+      "id": "metal",
+      "at": 14.94,
+      "text": "Metal is the worst."
+    },
+    {
+      "id": "water",
+      "at": 16.69,
+      "text": "And water soaks it up, even a fish tank."
+    },
+    {
+      "id": "twist",
+      "at": 19.05,
+      "text": "Here's the twist. Your microwave heats water at nearly that frequency."
+    },
+    {
+      "id": "tip",
+      "at": 23.31,
+      "text": "So put your router central, off the floor, out in the open.",
+      "speed": 0.95
+    },
+    {
+      "id": "end",
+      "at": 27.19,
+      "text": "Is yours hiding in a cabinet? Yes or no."
+    }
+  ],
+  "gap": -0.3
+}

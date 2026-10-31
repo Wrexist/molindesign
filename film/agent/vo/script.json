@@ -1,0 +1,97 @@
+{
+  "about": "What an AI agent actually is. Factory #14, backlog row 15, How AI works part 6 (posted parts 1-5: Next word, Strawberry, Hallucinate, Noise, Memory; temperature was planned as part 6 but parked). One hard idea: an agent is the same next-word guesser from part 1, put in a loop: it guesses an action instead of a word, other software does the clicking and hands back a screenshot, and it guesses again. Anthropic: agents 'are typically just LLMs using tools based on environmental feedback in a loop' (Dec 19, 2024); Claude 'looks at screenshots' and 'counts how many pixels' to move a cursor (Oct 22, 2024); 'your application runs every call' (computer use tool docs, read 2026-10-28). Google: 'The model doesn't execute the function itself' (function calling docs, read 2026-10-28); a new screenshot is 'sent back ... restarting the loop' and user confirmation 'is required for certain actions such as making a purchase' (Gemini 2.5 Computer Use, Oct 7, 2025). OpenAI: 'Keep users in control of purchases, data transmission ...' (computer use guide, read 2026-10-28). ReAct (Yao et al., arXiv Oct 6, 2022): 'multiple thought-action-observation steps'. Twist and DM moment: while Anthropic recorded launch demos, Claude 'began to peruse photos of Yellowstone National Park' (Oct 22, 2024). Hero: the click ticket (the guesser types an action as text) stamped JUST TEXT on line 'trick'; screenshot frame = the full loop held still on 'loop'. Narration-led: record the voice first and key every visual beat to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.9
+  },
+  "names": [
+    "Anthropic",
+    "Yellowstone"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 52.0
+  },
+  "dur": 29.85,
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.3,
+      "text": "Nobody touched the mouse."
+    },
+    {
+      "id": "ask",
+      "at": 1.76,
+      "text": "So what is an AI agent, actually?",
+      "say": "So what is an A I agent, actually?"
+    },
+    {
+      "id": "guesser",
+      "at": 3.82,
+      "text": "Inside is the same next-word guesser a chatbot uses.",
+      "say": "Inside is the same next word guesser a chatbot uses.",
+      "take": 9
+    },
+    {
+      "id": "action",
+      "at": 7.3,
+      "text": "But now it guesses actions. Click here.",
+      "take": 0
+    },
+    {
+      "id": "trick",
+      "at": 9.62,
+      "text": "Here's the trick. It can't click anything."
+    },
+    {
+      "id": "runs",
+      "at": 12.5,
+      "text": "Other software clicks, then shows it a screenshot."
+    },
+    {
+      "id": "loop",
+      "at": 15.31,
+      "text": "Think, act, look. Again and again.",
+      "speed": 1.1
+    },
+    {
+      "id": "wrong",
+      "at": 18.13,
+      "text": "But every step is still a guess."
+    },
+    {
+      "id": "yellowstone",
+      "at": 20.19,
+      "text": "In Anthropic's own demo, it stopped to browse Yellowstone photos.",
+      "speed": 1.08
+    },
+    {
+      "id": "ask_first",
+      "at": 24.18,
+      "text": "So before it buys or sends, it's meant to ask you."
+    },
+    {
+      "id": "end",
+      "at": 27.45,
+      "text": "Would you let it click send?"
+    },
+    {
+      "id": "yn",
+      "at": 28.62,
+      "text": "Yes or no.",
+      "take": 2
+    }
+  ],
+  "gap": -0.3
+}

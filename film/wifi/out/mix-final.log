@@ -1,0 +1,17 @@
+duck -6 dB over 5 phrases; voice set +17.1 dB for a 55.0 dB speech-to-music ratio
+wrote /home/user/molindesign/film/wifi/out/wifi-vo.mp4
+integrated -13.9 LUFS   true peak -2.6 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "Your walls are see -through."
+ok    ask        wer 0.00  heard "To Wi -Fi anyway. So how does Wi -Fi go through walls?"
+ok    radio      wer 0.00  heard "It's radio, waving about 2.4 billion times a second."
+ok    lab        wer 0.00  heard "A government lab found most wall materials let the signal pass,"
+ok    band       wer 0.00  heard "But the higher five gigahertz band loses more through walls."
+FIX   metal      wer 0.25  heard "This metal is the worst."
+ok    water      wer 0.00  heard "And water soaks it up, even a fish tank."
+ok    twist      wer 0.00  heard "Here's the twist. Your microwave heats water at nearly that frequency."
+ok    tip        wer 0.00  heard "So put your router central, off the floor, out in the open."
+ok    end        wer 0.00  heard "Is yours hiding in a cabinet? Yes or no?"
+wifi-vo:  I: -13.9 LUFS  Peak: -2.6 dBFS 
+wifi-voice-only:  I: -14.4 LUFS  Peak: -1.4 dBFS 

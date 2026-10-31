@@ -1,0 +1,84 @@
+{
+  "about": "Why AI is bad at math. Factory #16, backlog row 17, How AI works part 7 (posted parts 1-6: Next word, Strawberry, Hallucinate, Noise, Memory, Agent). One hard idea: on its own, a chatbot doesn't calculate; it predicts the answer like text. OpenAI's tokenizer reads a number in chunks of up to three digits, left to right, like word pieces (tiktoken 0.14.0, run 2026-10-29: '1999999' -> '199' | '999' | '9' in both cl100k_base and o200k_base, the GPT-4o/GPT-5 encoding; '1,999,999' -> '1' | ',' | '999' | ',' | '999'; answer '2000000' -> '200' | '000' | '0'). Singh & Strouse 2024: GPT models break 'a long number into 3-digit chunks, left-to-right'; comma-forced right-to-left chunks gave 'up to 20% higher' accuracy on gpt-3.5-turbo-0301; the effect is 'mitigated strongly in GPT-4's most recent version'. Lee et al. 2023: 'the next-token prediction objective is not optimized for generating the most significant digit (MSB) first.' It writes the answer from the left, piece by piece, but you carry from the right, so the first piece is a guess. Fix: code tools (OpenAI code interpreter, Anthropic code execution: runs code for 'Non-trivial math (large numbers, many steps, precision-sensitive results)', Gemini code execution). Hero: the adding-machine tape cut into token tiles; hero stamp GUESSED on the answer's first tile '200' on line 'guess'; screenshot frame = the column sum with right-to-left carries above the left-to-right answer tape. Narration-led: record the voice first and key every visual beat to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1,
+  "pace": {
+    "max": 3.9
+  },
+  "names": [],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 26.9
+  },
+  "dur": 26.5,
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.08,
+      "text": "Your chatbot doesn't carry the one in its head."
+    },
+    {
+      "id": "ask",
+      "at": 2.16,
+      "text": "So why is AI bad at math?",
+      "say": "So why is A I bad at math?"
+    },
+    {
+      "id": "chunks",
+      "at": 4.06,
+      "text": "It reads numbers in chunks, the way it reads words."
+    },
+    {
+      "id": "split",
+      "at": 6.98,
+      "text": "This number becomes three pieces."
+    },
+    {
+      "id": "commas",
+      "at": 9.48,
+      "text": "And not where your commas would go."
+    },
+    {
+      "id": "left",
+      "at": 11.22,
+      "text": "Then it writes the answer from the left, piece by piece."
+    },
+    {
+      "id": "carry",
+      "at": 14.52,
+      "text": "But you carry from the right."
+    },
+    {
+      "id": "guess",
+      "at": 16.07,
+      "text": "So it writes the first piece before the carry gets there."
+    },
+    {
+      "id": "newer",
+      "at": 19.31,
+      "text": "Newer models slip far less."
+    },
+    {
+      "id": "fix",
+      "at": 21.66,
+      "text": "And many can now hand big sums to a calculator."
+    },
+    {
+      "id": "end",
+      "at": 24.17,
+      "text": "Did yours use the calculator? Yes or no.",
+      "say": "Did yours use the calculator, yes or no?"
+    }
+  ],
+  "gap": -0.3
+}
