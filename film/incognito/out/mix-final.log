@@ -1,0 +1,15 @@
+duck -6 dB over 3 phrases; voice set +15.0 dB for a 46.9 dB speech-to-music ratio
+wrote /home/user/molindesign/film/incognito/out/incognito-vo.mp4
+integrated -14.0 LUFS   true peak -2.7 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "Incognito doesn't make you invisible,"
+ok    ask        wer 0.00  heard "So what does incognito mode actually hide?"
+ok    screen     wer 0.00  heard "It's printed on Chrome's own incognito screen."
+ok    visible    wer 0.00  heard "Your activity might still be visible to websites you visit."
+ok    network    wer 0.00  heard "Plus your school or work and your internet provider."
+ok    why        wer 0.00  heard "Here's why, it only forgets on your device."
+ok    travel     wer 0.00  heard "But every page still crosses your network to the site."
+ok    hero       wer 0.00  heard "It forgets for you, not for them."
+ok    settle     wer 0.00  heard "In a 2024 settlement, Google agreed to scrub billions of records."
+ok    end        wer 0.00  heard "So, did you think incognito hid you? Yes or no?"
