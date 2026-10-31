@@ -1,0 +1,81 @@
+# PC waits (GTA 6, Delta #8)
+
+Slug `gta-pc` · backlog row 8 · researched 2026-10-31 · post slot 2026-11-01 (ET, per `delta/backlog.csv`) · channel **Delta** (never Tech, explained). American English, US audience, own voice (Ming US_James, seed 7, AI voice disclosed in the post), own flat Vice City graphics, no Rockstar footage, logo, key art or character likeness, no music. GTA 6 launches **November 19, 2026** on **PlayStation 5 and Xbox Series X|S** (rockstargames.com/VI, re-read 2026-10-31).
+
+## 1. Topic and one hard idea
+**Rockstar's own GTA 6 page lists two platforms, and PC isn't one.** That is the one clean, unhedged stake: Rockstar gives it, nobody has to qualify it. The film then shows *how long PC has waited before*, as one native picture (a wait chart), with **one hero number: GTA 5's almost 19-month PC wait** (the tallest bar). The payoff is not a date guess; it is the plain state of things: Rockstar hasn't announced a GTA 6 PC version, so the question to the viewer is wait or buy a console.
+
+**Why the backlog angle was narrowed.** "GTA 5 19 months, RDR2 ~1 year" holds, but checked exactly GTA V's gap is 18 months 28 days, so the voice says "almost nineteen months" (a precision word, not a hedge on the claim). The research also turned up a stronger, unhedged pattern: **every main GTA since GTA III reached PC after console** (five of five), with III, Vice City, San Andreas and IV all under eight months. That gives the hero bar something short to tower over. Any "if history repeats" date is a small OUR MATH chip only (line `none`), never spoken, never the poster.
+
+**Main search phrase:** `GTA 6 PC` (spoken from 0.3 s in the hook, "G T A 6, P C players"). Secondary for SEO: `GTA 6 PC release date`, `will GTA 6 come to PC`, `GTA 6 PC port`.
+
+**DM-able moment:** GTA 5 came out on two console generations (PS3/360 in 2013, PS4/Xbox One in 2014) before PC got it in 2015.
+
+## 2. Hook options
+1. **"GTA 6, PC players: bad news."** (chosen; 6 written words, "GTA 6" in the first second, a stake aimed at a named viewer, and it is the backlog hook with GTA 6 put in front. The end line "So, PC players: wait, or buy a console?" loops straight back into it.)
+2. "GTA 6 isn't coming to PC." (6 words, but stated flat it overclaims: Rockstar hasn't ruled PC out, it just doesn't list it. Rejected for Truth.)
+3. "GTA 6 lists two machines. Not yours." (6 words; good picture, but "machines/yours" is vague for console owners who are also watching.)
+
+## 3. Facts used (all checked 2026-10-31)
+| # | Fact | Line | Source |
+|---|---|---|---|
+| 1 | Rockstar's GTA VI page: "Coming November 19, 2026"; platforms listed are exactly "PlayStation 5" and "Xbox Series X\|S". No PC, Windows or Steam anywhere in the page (curl of the HTML, visible text and the platform data `ps5`, `xboxsx`; a third `rockstar` entry is the account/sign-in link, not a platform). | hook, page, pair, end chip | https://www.rockstargames.com/VI (curl 2026-10-31) |
+| 2 | Take-Two CEO Strauss Zelnick to Bloomberg (Interactive Innovation Conference, Las Vegas): "Rockstar always starts on console because I think with regard to a release like that you're judged by serving the core"; also "historically Rockstar's gone to console first", and "with regard to a big title, PC can be 45%, 50% of the sales". Asked whether a Sony marketing deal set the console window: "No." | boss | VGC, Chris Scullion, 5 May 2026: https://www.videogameschronicle.com/news/rockstar-games-like-gta-release-on-console-before-pc-because-thats-the-core-consumer-take-two-ceo-zelnick-says/ (Bloomberg original not read; quote via VGC) |
+| 3 | GTA III: PS2 23 Oct 2001 (NA) → Windows 21 May 2002 (NA). **210 days = 6 months 28 days.** | fast | https://en.wikipedia.org/wiki/Grand_Theft_Auto_III (infobox) |
+| 4 | GTA Vice City: PS2 29 Oct 2002 → Windows 13 May 2003 (NA). **196 days = 6 months 14 days.** | fast | https://en.wikipedia.org/wiki/Grand_Theft_Auto:_Vice_City |
+| 5 | GTA San Andreas: PS2 26 Oct 2004 → Windows (and Xbox) 7 Jun 2005 (NA). **224 days = 7 months 12 days.** | fast | https://en.wikipedia.org/wiki/Grand_Theft_Auto:_San_Andreas |
+| 6 | GTA IV: PS3/360 29 Apr 2008 (WW) → Windows 2 Dec 2008 (NA; PAL 3 Dec). Originally set for 18 Nov 2008, then delayed. **217 days = 7 months 3 days.** | fast | https://en.wikipedia.org/wiki/Grand_Theft_Auto_IV |
+| 7 | **HERO.** GTA V: PS3/Xbox 360 17 Sep 2013 → Windows 14 Apr 2015. **574 days = 18 months 28 days → "almost 19 months".** Rockstar Newswire posts: "Grand Theft Auto V Now Available" ("now available worldwide for PlayStation 3 and Xbox 360"), "GTAV Updates: Online Heists Coming March 10, GTAV for PC Coming April 14", "Grand Theft Auto V Is Now Available for PC". The PC version was first set to launch with PS4/Xbox One, then delayed for "polish". | hero | https://www.rockstargames.com/newswire/article/o349k552518949/grand-theft-auto-v-now-available.html ; https://www.rockstargames.com/newswire/article/ak14o8838472ka/gtav-updates-online-heists-coming-march-10-gtav-for-pc ; https://www.rockstargames.com/newswire/article/25o2411812a31k/grand-theft-auto-v-is-now-available-for-pc ; dates: https://en.wikipedia.org/wiki/Grand_Theft_Auto_V (infobox + "Development") |
+| 8 | **DM-able.** GTA V reached PS4 and Xbox One on 18 Nov 2014, so PC got it after two console generations (PS3/360 2013, PS4/One 2014, PC 2015). | twice | https://en.wikipedia.org/wiki/Grand_Theft_Auto_V |
+| 9 | Red Dead Redemption 2: PS4/Xbox One 26 Oct 2018 → Windows 5 Nov 2019 (Rockstar Launcher; Steam came in December). **375 days = 12 months 10 days → "just over a year".** Rockstar: "the first game in the Red Dead Redemption series to be featured on the PC platform". | rdr | https://www.rockstargames.com/newswire/article/9k1248838o2974/Red-Dead-Redemption-2-Coming-to-PC-November-5th ("coming to PC on November 5th") ; https://www.rockstargames.com/newswire/article/75o941131a99k5/Red-Dead-Redemption-2-Now-Available-for-PC ; dates: https://en.wikipedia.org/wiki/Red_Dead_Redemption_2 |
+| 10 | No GTA 6 PC version has been announced by Rockstar or Take-Two as of 2026-10-31 (fact 1; Zelnick's on-record remarks above stop short of one; Wikipedia's GTA VI article lists no Windows release). | none | https://www.rockstargames.com/VI ; https://en.wikipedia.org/wiki/Grand_Theft_Auto_VI |
+| 11 | **Derived, OUR MATH (chip only, not spoken):** Nov 19, 2026 + the past gaps: + 196 to 224 days (III to IV) = June to early July 2027; + 375 days (RDR2) = Nov 29, 2027; + 574 days (V) = June 15, 2028. Chip text: IF PAST GAPS REPEAT: MID-2027 TO MID-2028 · OUR MATH, NOT ROCKSTAR. | none chip | derived from 3-9 |
+
+All "since GTA III" counts are the five main numbered/3D GTAs (III, Vice City, San Andreas, IV, V). Handheld spin-offs (Advance, Liberty City Stories, Vice City Stories, Chinatown Wars) are left out of the chart and never claimed in voice.
+
+**Not used / uncertain:**
+- Rockstar's Newswire pages render their dates by script; the curl/fetch got only titles and the meta descriptions, not the posted dates. The days come from Rockstar's own post titles ("Coming April 14", "Coming to PC November 5th", "Now Available for PC") with years from Wikipedia's infoboxes (and the GTA V store page, which lists the original release 14 Apr 2015). Good enough, but the dates are not read off the Newswire byline.
+- Zelnick's September 2026 shareholder-meeting remarks (reported by GamesRadar / endgametools as "PC is becoming more important") could not be read in full; not used. The older "GTA 6 is a console release" quote is from the fall-2025 era; not used.
+- Corsair CEO's "early 2026 PC" remark: speculation, not Rockstar; not used.
+- Any leak, rumor or insider date for a PC port: not used. No RUMOR chip needed because the film states none.
+- Red Dead Redemption 1 (2010) reaching PC only in 2024 would be a great DM fact, but it is a second idea and I didn't verify it today; left out.
+- "Red Dead 2" is said as Rockstar's 2018 game, not "Rockstar's last game" (Rockstar has released remasters/ports since).
+
+## 4. Shot ideas per line (Delta look: flat hand-built shapes, pink #ff4fa3, teal #19d3c5, sunset orange #ff8a3d on deep ink, cream type; our own art only)
+**Native move: the wait bars.** A horizontal timeline across the frame (x 100–920, y ~560–1360): each game is a row; a console launch pin (teal) drops at the left, then a pink "PC" bar grows to the right at a fixed scale (1 month = ~38 px, so 19 months ≈ 720 px fills the rail), ticking a month counter as it grows, and lands with a plug-in clack. The short rows (III, VC, SA, IV) stack small at the top; GTA V's bar runs nearly full width and becomes the hero; the GTA 6 row at the bottom has its console pin and an open, blinking pink bar with "?" that never closes. The platform card from lines 1-3 stays docked top (y 180–460) the whole time so the stake is always visible.
+
+| Line | Picture |
+|---|---|
+| hook "GTA 6, PC players: bad news." | Frame 0 (by 0.3 s): GTA 6 pill top-left and caption GTA 6 · PC. A flat drawn PC tower/monitor (ours) center; on "bad news" its screen flicks to a red/pink NO SIGNAL bar (sound: CRT click-off). |
+| page "Rockstar's own page lists two platforms." | A flat browser card (no Rockstar logo; URL text ROCKSTARGAMES.COM/VI, read 31 OCT 2026) slides up; two empty platform slots. Lower half: the PC tower, dimmed, waiting. |
+| pair "PlayStation 5 and Xbox Series X\|S. No PC." | Slot 1 fills: PLAYSTATION 5 (text pill, no console logos), slot 2: XBOX SERIES X\|S, one clack each in the pairing; a third dashed slot PC gets a pink stamp NOT LISTED. Card shrinks and docks top. |
+| ask "So how long will PC players wait?" | The timeline draws in under the card; a GTA 6 row at the bottom with its teal NOV 19, 2026 pin and an empty pink bar with a blinking "?". |
+| boss "Take-Two's boss says Rockstar always starts on console." | Quote card (cream, mid frame): "Rockstar always starts on console" · STRAUSS ZELNICK, TAKE-TWO CEO · BLOOMBERG, MAY 2026. No photo of him. |
+| fast "GTA 3 to GTA 4: under eight months each." | Four short rows fill fast, one tick roll each: III ~7 MO · VICE CITY ~6 MO · SAN ANDREAS ~7 MO · IV ~7 MO (nearest whole month: 210 / 196 / 224 / 217 days; all under 8 months). A thin dashed 8-month line with label 8 MO. |
+| hero "Then GTA 5. PC waited almost 19 months." | **Hero.** GTA V's bar grows past the 8-month line and keeps going, the month counter rolling to **19** (orange, ≥ 160 px) with ALMOST and MONTHS · SEP 2013 → APR 2015 under it. **Pause ≥ 0.7 s after "months."**: a long ratchet as the bar runs, a heavy clack + stamp thud when it lands. **Poster frame** in this pause: the four short bars, the long GTA 5 bar, big 19, the docked PS5 / XBOX · NO PC card. |
+| twice "It came out on two console generations first." | On the GTA V row two teal pins: PS3 · 360 2013 and PS4 · ONE 2014, the PC pin last at APR 2015 (pin pops in sequence). |
+| rdr "Red Dead 2, in 2018? Just over a year." | One more row: RED DEAD 2 · 2018, bar grows to 12 MO (stops past the 1-year tick). |
+| none "And for GTA 6, Rockstar hasn't announced PC at all." | Camera drops to the GTA 6 row: the pink bar stays empty, the "?" blinks; stamp NO PC DATE. Small grey chip at the row's end: IF PAST GAPS REPEAT: MID-2027 TO MID-2028 · OUR MATH, NOT ROCKSTAR (≤ 30 px, never larger than the row label). |
+| end "So, PC players: wait, or buy a console?" | Two vote chips WAIT / BUY A CONSOLE, same style, neither highlighted (LESSONS gta-songs); chip GTA 6 · NOV 19, 2026 · PS5 · XBOX SERIES X\|S; the PC tower from frame 0 comes back for the loop. |
+
+Turn words: "So" ~9.3 s, "Then" ~19.3 s, "And" ~30.2 s, "So" ~34 s; a new object every 2–4 s.
+
+**Sound plan (write it in, LESSONS gta-songs r2):** CRT click-off on "bad news"; a clack per platform slot in the `pair` line's gaps; tick rolls for the four short bars between words of `fast`; the hero ratchet + landing thud in the ≥ 0.7 s gap after "months." (script leaves ~1.0 s before `twice`); pin pops on `twice`; stamp on NO PC DATE. Room tone ~−50 dB in pauses. `duck.smr_db` 42 (gta-lucia r2 levels).
+
+## 5. Duration
+11 lines, 87 written words (6–10 per line; hook 6), chained at ~2.8 w/s + 0.4 s, plus ~1.0 s after the hero. Last line ends ~37 s; `dur` 39.0 s.
+
+## 6. Open questions for the director
+- **Ming reads:** "P C" is spelled in `say` everywhere; if Ming reads "PC" fine as written, either works. "Xbox Series X and S" for X|S. "Take-Two" (hyphen). "twenty eighteen". If the hook reads flat, re-roll with `take` rather than rewording.
+- **Hero gap:** `twice` starts at 23.6 s to leave ~1.0 s after "nineteen months." for the ratchet + thud; re-time from the voiced word times, keeping ≥ 0.5 s.
+- **Scale honesty:** bars must be to scale (same px per month on every row) so the 19 reads as real; GTA V's bar must stay inside x 90–930 at any push/dolly (LESSONS gta-lucia).
+- **Rounding on screen:** short rows show ~7 / ~6 / ~7 / ~7 MO (nearest month; 210, 196, 224, 217 days) under the "under eight months" line; the hero shows ALMOST 19, never a bare "19 MONTHS" alone; RDR2 shows 12 MO, never "13".
+- **No logos:** platform names as text pills only; no PlayStation/Xbox logos, no Rockstar "R", no GTA VI logo, no key art.
+- Re-check rockstargames.com/VI the day before posting (live page): if a PC version appears, the film is dead, not edited.
+
+## Log
+- 2026-10-31 (researcher): backlog hook kept with GTA 6 put first. Stake = Rockstar's own page lists PS5 and Xbox Series X|S only (curl verified). Intervals checked exactly: III 210 d, VC 196 d, SA 224 d, IV 217 d, V 574 d (18 mo 28 d → "almost 19"), RDR2 375 d (12 mo 10 d → "just over a year"). One on-record Take-Two line used (Zelnick via VGC/Bloomberg, May 2026). Date math kept to a small OUR MATH chip, not the payoff.
+- 2026-10-31 (director): voiced 11/11 lines clean (solo Whisper). Changes to script.json: `page` text now includes "GTA 6" (it was in `say` only); `pair` text reads "Xbox Series X and S" (captions print X|S); `hero` became "PC players waited almost 19 months" (Ming blurred "P C waited" into "-weighted"). Lines re-timed to write a pause (0.5–1.05 s) after every line that carries a sound beat; `dur` 41.9 s. On screen the short rows read **~7 / ~6 / ~7 / ~7 MO**: GTA III's 210 days is 6 months 28 days, so "7 MO rounded down" (section 6) would be wrong; "~" marks the nearest month. Bars are to scale at 40 px per 30.44 days. NO PC DATE lands silent on "announced" (no pause there); the "?" gets the blip in the pause after "all."
+- 2026-10-31 (director, round 2): jury r1 fixes applied. Ghost bars for "if like GTA 4 / RDR2 / GTA 5" (fix 7, optional) were left out: the GTA 6 row has no room for three tagged ghost bars without crowding NO PC DATE, so the single OUR MATH chip stays (now 38 px). The derived dates it summarises are fact 11 above (June to early July 2027, Nov 29 2027, June 15 2028). The pin year 2013 is carried by the row label "GTA 5 · 2013"; 2014 and 2015 sit above the bar.
+- 2026-10-31 (jury r1, fresh): 6.7 / Truth 8.0, fix then post. Missing RE-CREATED tag on the page card, labels ~30 px, tick burst louder than the voice, hook calm until 2.8 s, static holds 4-7 s / 14-17 s / 17.5-21.5 s. Ten of eleven fixes applied (ghost bars left out).
+- 2026-10-31 (jury r2, fresh): 7.0 / Truth 8.0, **held, not posted** (gate 7.4 / Truth 8.5). Fix list if it is ever revived: (1) frame 0's made-up "GTA 6 · PC 99%" download reads as a PC build nearly ready; open on the platform strip PS5 ✓ · XBOX ✓ · dashed empty PC ? and slam NOT LISTED ~2.3 s; (2) take the pink highlight off ALWAYS in Zelnick's quote: GTA (1997) and GTA 2 (1999) came out on PC first (source it before saying so); (3) wow: a dashed ghost bar from the GTA 6 pin growing to GTA 5's 574 days, tagged IF LIKE GTA 5: JUNE 2028 · OUR MATH, NOT ROCKSTAR; (4) freezes 4.13-5.83, 8.77-10.10, 12.2-13.2, 14.33-15.37 s; (5) SFX 12-22 dB under the voice, on/stall/yr1 inaudible, BAD NEWS and NO PC DATE silent; (6) label GTA 5 inside the 19 plate when it lands; (7) NO PC DATE sits in a slot on the RE-CREATED Rockstar card, move it to the GTA 6 row; OUR MATH chip touches the axis labels; (8) caption widow "first." touching the strip; (9) JUST OVER A YEAR lands before the RDR2 bar grows; (10) static vote hold 40.4-41.4 s.
