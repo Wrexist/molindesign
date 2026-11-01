@@ -75,6 +75,12 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - The hero hold carries the hero line's caption for its whole length; never let the next line's caption appear over the stamp (incognito r1, r2). Leave ≥ 1.2 s of silence after the hero line so the hold sits in it.
 - A prop's state must read at 540 px: a "shredded" slip drawn as neat strips read as a tidy card, so HISTORY + YOUR DEVICE ONLY looked like a privacy promise (incognito r2). Tilt ≥ 15°, gaps ≥ 12 px, drop pieces.
 - A big number needs its noun on screen: "billions of records" of what? Add the source's own term (PRIVATE-BROWSING DATA) (incognito r2).
+- A third round can work when round 2 rises and the misses are mechanical: voiceclone went 7.1 → 7.3 → 7.5 (Truth 9.0) by fixing framing, gap length and levels only. Compare with math, where the score dropped and the problem was the idea.
+- Quotes cut mid-sentence get "…" on screen every time (voiceclone r1; repeats earlier films).
+- `boundscheck` only measures glyphs; a prop group spanning x 0–1037 passed it (voiceclone r2). Measure prop boxes on rendered frames for frame 0, the hero and the end card.
+- Put the human stake in the first 10 s: the family-scam warning that people share started at 19 s, after most viewers leave (voiceclone r3).
+- A stamp that lands on the hero line can't reach its readcheck time without breaking the ≤ 1.5 s voice gap; the hero caption carries the words instead (voiceclone, accepted at 1.50 s).
+- Nothing on the end card may hint at the answer to the yes/no question (envelope parked over NO, voiceclone r3).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).

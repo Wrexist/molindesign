@@ -1,0 +1,65 @@
+{
+ "title": "How does AI voice cloning work?",
+ "caption": "How does AI voice cloning work? Microsoft's VALL-E research turned a 3-second recording into numbers, then predicted new ones in that voice.\nThe FBI's tip: a secret word with your family.\nDoes your family have one? Yes or no.",
+ "hashtags": [
+  "#ai",
+  "#voicecloning",
+  "#aivoice",
+  "#scamalert",
+  "#learnontiktok"
+ ],
+ "keywords": [
+  "ai voice cloning",
+  "how does ai voice cloning work",
+  "ai voice clone scam",
+  "family safe word",
+  "secret word scam call",
+  "fbi ai voice warning",
+  "vall-e 3 seconds",
+  "grandparent scam ai voice"
+ ],
+ "cover_text": "Your voice: 3 seconds",
+ "cover_time": 0.0,
+ "pinned_comment": "A second tip, from the FTC's alert of Mar 20, 2023: \"Call the person who supposedly contacted you and verify the story.\" \"Use a phone number you know is theirs.\" Its short version: \"Don't trust the voice.\" Who would you set up a secret word with first?",
+ "post_time_et": "YouTube Shorts: 13:00 ET (EST), Mon Nov 2, 2026 = 18:00 UTC. It's the next channel slot: packaged Sun Nov 1 at 23:17 UTC (18:17 EST), so today's 13:00 and 19:00 ET slots have passed. The US left daylight time today, so ET is now UTC-5; pick 1:00 PM from YouTube Studio's dropdown and check the saved time reads 18:00 UTC / 19:00 Stockholm (LESSONS clock-change rule). If incognito (passed Oct 31) is still unposted, it takes this slot first and voiceclone moves to 19:00 ET Mon Nov 2 = 00:00 UTC Tue. Post only if the jury passes the final cut (gate 7.4 + Truth 8.5); out/ was being re-rendered while this was written (the last mix flagged `tip` as heard \"It's tip\"). TikTok (paused, account-level hold): when Isac's Settings › Account status check clears it, post in the first 19:00 ET slot (LESSONS evening rule) = 00:00 UTC the next day.",
+ "post_time_stockholm": "19:00 Mon Nov 2 (Sweden CET, US EST: the gap is back to 6 h from today). Incognito-first fallback: 01:00 Tue Nov 3 Stockholm. TikTok later: 19:00 ET = 01:00 Stockholm the next day.",
+ "sounds": [
+  {
+   "name": "Final Game Showdown - ProdByLucK (first pick, keep near 5 %)",
+   "why": "Low tension bed under 'criminals fake loved ones' voices' without turning the explainer into horror. Checked 2026-11-01: #4 on Higgsfield tiktok_music_trending (US, ALL, 7DAY); track 114 s, covers the ~32 s film. Never the sound on a posted video (it was a backup on agent, phonephoto, qrcode and memory). Vocals not checked: preview it in the app first."
+  },
+  {
+   "name": "Suspicious News / Investigative Journalism / Report / ... (1135704) - Ney",
+   "why": "A newsroom/investigation library bed, which suits the FBI folder and the paper card. Checked 2026-11-01: #63 on the same Higgsfield US 7DAY chart; 299 s. Instrumental by its library title (not listened to). Lower in the chart, so it's the pick only if #1 sounds wrong in the app."
+  },
+  {
+   "name": "Time Back - Sinny & 7vvch (third pick)",
+   "why": "Checked 2026-11-01: #5 on Higgsfield US 7DAY; 180 s. A slow, moody beat that can sit under a voice; vocals and mood not checked, so preview it first and skip it if there's singing."
+  }
+ ],
+ "sound_note": "Checked by rule with the Higgsfield call on 2026-11-01 (US, 7DAY, top 100). Skipped from the same chart: Sunset in Girona (#1, phonephoto's sound, 0-view post), Self Aware (#2, retired), Hidden Truth Revealed (#3, agent's first pick, 0-view post; the last three posts' sounds are off limits), Espresso Soul (#66, retired). No separate web chart was read this pass. YouTube Shorts goes out with the film's own mix (voice, room tone, the thump and the folder slap), no music added. TikTok later: Isac adds the sound in the app at about 5-10 % under the voice-only cut in out/ (film about 31.9 s by the script; the clip must run at least 0:32). It can't be changed after posting.",
+ "youtube_title": "How AI Clones Your Voice From 3 Seconds 😱",
+ "youtube_title_alternatives": [
+  "Why Your Family Needs A Secret Word 😱",
+  "Your Voice Is Just Numbers 🤔"
+ ],
+ "youtube_description": "Only three seconds of your voice. So how does AI voice cloning work?\n\nIt's in Microsoft's own 2023 paper. The VALL-E paper says the model \"can be used to synthesize high-quality personalized speech with only a 3-second enrolled recording of an unseen speaker as an acoustic prompt.\"\n\nHere's how. A neural audio codec turns the recording into \"discrete codes\", which are just numbers: three seconds becomes about 1,800 of them. Then the model predicts new numbers for words you never said, and the codec turns those numbers back into sound. To the model, your voice is just numbers. Microsoft's own page adds the condition: \"the similarity, and naturalness depend on the length and quality of the speech prompt\". And it says: \"This page is for research demonstration purposes only.\"\n\nOn Dec 3, 2024, the FBI warned: \"Criminals generate short audio clips containing a loved one's voice to impersonate a close relative in a crisis situation, asking for immediate financial assistance or demanding a ransom.\" Its first tip on the same page: \"Create a secret word or phrase with your family to verify their identity.\" A copy has your sound, not your secret.\n\nSo, does your family have one? Yes or no.\n\nFine print: \"1,800 numbers\" is our math from the paper, not a figure it prints: its codec makes 75 slices a second with 8 codes each (\"given a 10-second waveform, the discrete representation is a matrix with 750 × 8 entries\"), so 3 seconds = 225 × 8 = 1,800. The paper card, the number tape, the FBI folder and the phone in the video are hand-made re-creations; the tape's digits are illustrative, not real codes from anyone's voice, and no real app or logo is shown. VALL-E is a Microsoft research model, not a product; this video names no cloning tool and doesn't say what any commercial tool needs. The FBI notice is a warning, not a study; this video gives no case counts or dollar figures. \"A copy has your sound, not your secret\" is our plain wording for why the tip works; it says nothing about detecting a fake.\n\nSources:\n- Wang et al. (Microsoft), \"Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers\", arXiv 2301.02111, submitted Jan 5, 2023, read Nov 1, 2026: https://arxiv.org/abs/2301.02111\n- Microsoft Research, VALL-E project page, read Nov 1, 2026: https://www.microsoft.com/en-us/research/project/vall-e-x/vall-e/\n- FBI (IC3) Public Service Announcement I-120324-PSA, \"Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud\", Dec 3, 2024, read Nov 1, 2026: https://www.ic3.gov/PSA/2024/PSA241203\n- FTC Consumer Alert, \"Scammers use AI to enhance their family emergency schemes\", Alvaro Puig, Mar 20, 2023, read Nov 1, 2026: https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes\n\nHow AI works, part 7. Narration is an AI voice (Ming TTS, a stock preset, not a clone of anyone); the research, script and hand-built animation are made for this channel.\n\n#shorts #voicecloning #ai",
+ "youtube_tags": [
+  "ai voice cloning",
+  "how does ai voice cloning work",
+  "ai voice clone scam",
+  "family safe word",
+  "secret word scam",
+  "fbi ai voice warning",
+  "vall-e",
+  "microsoft vall-e 3 seconds",
+  "grandparent scam",
+  "how ai works",
+  "tech explained",
+  "shorts"
+ ],
+ "youtube_playlist": "How AI works",
+ "series": "How AI works, part 7",
+ "is_aigc": true,
+ "disclosure": "AI-generated voice (Ming TTS, US_James, a stock preset, not a clone of anyone); set YouTube's Altered content: Yes now, and TikTok's AI-generated content label when TikTok resumes"
+}

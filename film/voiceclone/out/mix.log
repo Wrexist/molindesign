@@ -1,0 +1,19 @@
+duck -6 dB over 3 phrases; voice set +11.9 dB for a 53.3 dB speech-to-music ratio
+wrote /home/user/molindesign/film/voiceclone/out/voiceclone-vo.mp4
+integrated -13.9 LUFS   true peak -2.7 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "Only 3 seconds of your voice."
+ok    ask        wer 0.00  heard "So how does AI voice cloning work?"
+ok    paper      wer 0.00  heard "It's in Microsoft's own 2023 paper."
+ok    numbers    wer 0.00  heard "First, those three seconds become 1,800 numbers."
+ok    predict    wer 0.00  heard "Then it predicts numbers for words you never said."
+ok    sound      wer 0.00  heard "Played back, they can sound like you."
+ok    hero       wer 0.00  heard "To the model, your voice is just numbers."
+ok    fbi        wer 0.09  heard "In 2024 the FBI warned that criminals fake loved one's voices."
+FIX   tip        wer 0.12  heard "It's tip, a secret word with your family."
+ok    secret     wer 0.00  heard "The copy has your sound, not your secret."
+ok    end        wer 0.00  heard "So, does your family have one? Yes or no?"
+voiceclone-vo:  I: -13.9 LUFS  Peak: -2.7 dBFS 
+voiceclone-voice-only:  I: -14.2 LUFS  Peak: -1.4 dBFS 
+no black stretches
