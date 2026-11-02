@@ -459,10 +459,14 @@ def cmd_synth(a):
             problems.append(f'"{l["id"]}" runs {d - slot:.2f}s past its slot even at {speed}x: cut about {math.ceil(n * (1 - slot / d))} words or move it')
         if l.get('fade_in'):   # a short ramp so a plosive onset doesn't start from digital zero
             x = x.copy(); nf = min(len(x), int(l['fade_in'] * SR)); x[:nf] *= np.linspace(0, 1, nf, dtype=x.dtype)
-        i0 = int(round(l['at'] * SR))
-        track[i0:i0 + len(x)] += x[:len(track) - i0]
         heard = hear(x, s.get('names', []) + list(s['pronounce']))
         ws = align_words(words(l['text']), heard, d)
+        if l.get('tail_fade') and ws:   # opt-in, per line: fade the take out over `tail_fade` s after its last word, silence after (a ring-out Whisper hears as a word)
+            x = x.copy(); f0 = int(ws[-1]['t1'] * SR); f1 = min(len(x), f0 + int(l['tail_fade'] * SR))
+            if f0 < len(x):
+                x[f0:f1] *= np.linspace(1, 0, f1 - f0, dtype=x.dtype); x[f1:] = 0
+        i0 = int(round(l['at'] * SR))
+        track[i0:i0 + len(x)] += x[:len(track) - i0]
         meta.append({'id': l['id'], 'text': l['text'], 'say': spoken(s, l), 't0': l['at'], 't1': round(l['at'] + d, 3),
                      'slot': round(l['end'], 3), 'speed': speed,
                      'words': [{'w': w['w'], 't0': round(l['at'] + w['t0'], 3), 't1': round(l['at'] + w['t1'], 3)} for w in ws],

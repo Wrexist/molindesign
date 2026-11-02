@@ -81,6 +81,12 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Put the human stake in the first 10 s: the family-scam warning that people share started at 19 s, after most viewers leave (voiceclone r3).
 - A stamp that lands on the hero line can't reach its readcheck time without breaking the ≤ 1.5 s voice gap; the hero caption carries the words instead (voiceclone, accepted at 1.50 s).
 - Nothing on the end card may hint at the answer to the yes/no question (envelope parked over NO, voiceclone r3).
+- Second third-round pass: stepbystep went 7.2 → 7.3 → 7.4 (Truth 8.0 → 9.0 → 9.0) on layout-only fixes; a rising round 2 with mechanical misses is the case for asking Isac.
+- A scoped quote that drops a hedge word ("often") costs a full Truth point even with the right source; copy the hedge and both ellipses exactly (stepbystep r1).
+- Don't show the puzzle's answer while the viewer is told to try it: tint the answer only on the spoken reveal (stepbystep r1).
+- A whole beat that only adds thin lines or small tabs reads as frozen; make the mechanism prop travel ≥ 250 px or push the camera 1.0 → 1.2× (stepbystep r1, r3).
+- Whisper can hear a phantom word in a take's ring-out ("own." → "phone"); fade that line's tail with the per-line `tail_fade` key in voiceover.py before re-rolling (stepbystep polish).
+- Keep the voice stems in out/vo/ until the film is done; deleting them with the /dev/shm cleanup made the next mix silently reuse the old file (stepbystep).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).

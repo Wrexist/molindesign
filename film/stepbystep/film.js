@@ -65,14 +65,19 @@
   /* the hits are placed from the heard words before anything is timed off them (see the SFX gate below) */
   var EDGES = window.HEARD_EDGES || [], VOICED = window.VOICED || [];
   if (!EDGES.length) VO.lines.forEach(function (l) { l.words.forEach(function (w) { VOICED.push({ t0: w.t0, t1: w.t1 + .15 }); EDGES.push(w.t0, w.t1 + .15); }); });
-  var BODY = { thump: .16, knock: .15, swish: .2, pop: .06 };
+  var BODY = { thump: .16, knock: .15, swish: .2, pop: .06, dpop: .06 };
   var GT = {}, GS = [];
   (function () {
     var s1 = nearGap(K.eightEnd + .3, 'knock', .2); GT.knock = s1 === null ? K.eightEnd + .3 : s1;
     var s0 = nearGap(K.heroEnd + .2, 'thump', .2); GT.slam = s0 === null ? K.heroEnd + .2 : s0;
   })();
   /* the hero hold ends: a torn edge falls top to bottom, accelerating, so the stamp goes last. It stays up ≥ 1.6 s. */
-  K.tearA = Math.max(K.after - .05, GT.slam + 1.33);   /* the hold is ≥ 1.2 s; the wipe starts before "Steps" */
+  /* wipe 1 falls fast and evenly (0.5 s): it starts 1.0 s after the stamp, reaches the stamp ≈ 0.3 s later (so the stamp is
+     fully on screen and still for ≥ 1.2 s) and has covered it before the next caption swaps in, on "Steps" */
+  K.tearA = Math.max(K.after - .36, GT.slam + 1.0);
+  K.capA = K.tearA + .36;   /* the after-caption waits until the edge is below the stamp (y ≈ 1360) */
+  /* a soft paper pop as the last golf dimples land, in the silence after "golf balls." */
+  (function () { var dp = nearGap(Math.max(9.45, lend('balls') + .26), 'dpop', .18); GT.dpop = dp === null ? lend('balls') + .3 : dp; })();
   /* wipe 2 rides a paper swish in the silence before "Newer" (same axis) */
   (function () { var sw = nearGap(K.newer - .55, 'swish', .18); GT.swish = sw === null ? K.newer - .55 : sw; })();
   K.tearB = GT.swish + .05;   /* the edge starts falling just after the swish begins */
@@ -83,7 +88,7 @@
   /* scenes. swipe:true = the next scene comes in above the falling torn edge, drawn complete */
   var SC = [
     { id: 'desk', fn: 'desk', name: 'Five words', t0: 0 },
-    { id: 'after', fn: 'after', name: 'Steps after', t0: K.tearA + .8, swipe: true, sw: .8 },
+    { id: 'after', fn: 'after', name: 'Steps after', t0: K.tearA + .5, swipe: true, sw: .5, pw: 1 },
     { id: 'newer', fn: 'newer', name: 'Reasoning models', t0: K.tearB + .6, swipe: true, sw: .6 },
     { id: 'outro', fn: 'outro', name: 'Yes or no', t0: K.outro }
   ];
@@ -292,7 +297,7 @@
     g.fillStyle = INK; rr(g, x0 + 24, y0 + h - 9, w - 48, 6, 3); g.fill();
     ONPROP = true;
     if (label) txt(g, label, x0 + w / 2, y0 + h * .40, 40, INK, 'center', 900, DISP, w - 40);
-    if (sub) txt(g, sub, x0 + w / 2, y0 + h * .76, 30, INK, 'center', 700, MONO, w - 40, 1, 30);
+    if (sub) txt(g, sub, x0 + w / 2, y0 + h * .76, 32, INK, 'center', 700, MONO, w - 30, 1, 30);
     ONPROP = false;
     /* the slot's cardboard flap, hinged at the slot's far edge: it lifts as something goes in */
     var fl = flap || 0;
@@ -323,13 +328,13 @@
     g.restore();
   }
   /* the ANSWER row at the bottom of the strip: a mono label and one printed digit */
-  function answerRow(g, cx, cy, w, h, digit, rev, seed, a, grey, dk, dpx, dy) {
+  function answerRow(g, cx, cy, w, h, digit, rev, seed, a, grey, dk, dpx, dy, lpx) {
     if (rev <= 0 || a <= 0) return;
     tab(g, cx, cy, w, h, null, 0, seed, rev, 0, a);
     g.save(); g.globalAlpha *= a; g.translate(cx, cy);
     g.beginPath(); g.rect(-w / 2 - 14, -h / 2 - 4, w + 30, (h + 24) * rev); g.clip();
     ONPROP = true;
-    txt(g, 'ANSWER', -w / 2 + 16, -h / 2 + 22, 30, INK, 'left', 700, MONO, 200, 1, 30);
+    txt(g, 'ANSWER', -w / 2 + 14, -h / 2 + (lpx || 34) * .62, lpx || 34, INK, 'left', 700, MONO, w - 24, 1, 30);
     if (digit) txt(g, digit, -w / 2 + (dpx ? 62 : 50), dy == null ? 14 : dy, dpx || 92, INK, 'center', 900, DISP, 200, dk == null ? 1 : dk, 60);
     ONPROP = false;
     if (grey) { g.fillStyle = 'rgba(21,19,27,' + (.42 * grey) + ')'; g.fillRect(-w / 2 - 2, -h / 2 - 2, w + 4, h + 10); }
@@ -403,12 +408,16 @@
   var BXQ = { x0: 365, y0: 1185, w: 290, h: 95 };           /* the box under the grid, "golf" → "With them" */
   var STRIP = { cx: 480, w: 260 };
   var TABS = [{ y: 1012, s: '16 BALLS' }, { y: 1086, s: '8 GOLF' }, { y: 1160, s: '4 BLUE' }];
-  var R4 = { y: 1270, h: 140 }, NS = { cx: 214, cy: 1262, s: .68 }, R8Q = { cx: 510, cy: 1338, h: 100 };
+  var R4 = { y: 1270, h: 140 }, NS = { cx: 200, cy: 1262, s: .95, w: 200 }, R8Q = { cx: 510, cy: 1338, h: 100 };
+  var ZC = { x: 480, y: 1230 };
+  function ZK(t) { return eio(seg(t, K.hero + .13, K.heroEnd + .13)); }
+  /* where the overlays sit once the push is in (screen coordinates) */
+  var NSF = { cx: 200, cy: 1256 }, XF = { x: 262, y: 1256 }, LBF = { x: 290, y: 950, dy: 52 }, STF = { x: 750, y: 1240 };
   /* the 16 balls in their own grid: big under the card (P), smaller when the box comes in under it (Q), then a small
      block in the right column (C) once the strip takes the stage */
   function gridPos(j, t) {
     var c = j % 4, r = Math.floor(j / 4);
-    var P = { x: 315 + 130 * c, y: 865 + 128 * r, r: 52 }, Q = { x: 360 + 100 * c, y: 850 + 95 * r, r: 40 }, C = { x: 727 + 44 * c, y: 880 + 44 * r, r: 18 };
+    var P = { x: 315 + 130 * c, y: 865 + 128 * r, r: 52 }, Q = { x: 360 + 100 * c, y: 850 + 95 * r, r: 40 }, C = { x: 697 + 44 * c, y: 880 + 44 * r, r: 18 };
     var kq = eio(seg(t, K.golf - .05, K.golf + .35)), kc = eio(seg(t, K.wth + .05 + c * .03, K.wth + .5 + c * .03));
     var A = { x: lerp(P.x, Q.x, kq), y: lerp(P.y, Q.y, kq), r: lerp(P.r, Q.r, kq) };
     return { x: lerp(A.x, C.x, kc), y: lerp(A.y, C.y, kc), r: lerp(A.r, C.r, kc) };
@@ -427,11 +436,20 @@
     var s0 = K.wth + .02 + i * .07, m = eio(seg(t, s0, s0 + .34)), slot = { x: BX.x0 + BX.w / 2, y: BX.y0 + 4, w: 60, h: 30, px: 20 };
     return { L: lay(LAY.stack[i], slot, m), k: 1, a: (1 - seg(m, .85, 1)) * lerp(.4, 1, seg(t, K.wth - .05, K.wth + .1)) };
   }
+  /* the puzzle beat breathes: a slow drift while the question is read and the box thinks ("Half of those are blue." →
+     the ✗), eased back out as the tiles go in on "With them" (no still stretch over 1 s outside the hero hold) */
   function deskScene(g, t) {
+    var pz = .035 * eio(seg(t, lend('balls') + .3, K.said)) + .01 * seg(t, K.said, K.wth);
+    pz *= 1 - eio(seg(t, K.wth, K.wth + .55));
+    if (pz <= 0) { deskScene0(g, t); return; }
+    g.save(); g.translate(0, -800 * pz); deskScene0(g, t); g.restore();   /* a slow drift up (≈ 36 px), not a zoom: the stage is full width */
+  }
+  function deskScene0(g, t) {
     var i;
-    /* the hero push-in (1.2 %), still from the stamp on */
-    var pin = eio(seg(t, K.hero, K.heroEnd + .1)), zs = 1 + .012 * pin;
-    g.save(); g.translate(CX, 1000); g.scale(zs, zs); g.translate(-CX, -1000);
+    /* the hero camera push: 1.00 → 1.20× over the hero line, centred on the step tabs and ANSWER; still from the stamp on.
+       The side labels, the NO STEPS card, the credit and the stamp are screen overlays that slide to fit beside it. */
+    var zk = ZK(t), zs = 1 + .2 * zk;
+    g.save(); g.translate(ZC.x, ZC.y); g.scale(zs, zs); g.translate(-ZC.x, -ZC.y);
 
     /* frame 0's chat box: glides up 250 px in the first second, drops away on "They"; its 18% RIGHT → ? chip stays a
        moment longer (it has to be read), then leaves before the bars build */
@@ -449,7 +467,7 @@
       var B0 = 1230, BH = 580;
       g.strokeStyle = 'rgba(244,237,224,.32)'; g.lineWidth = 3; g.setLineDash([10, 9]);
       [[220, 410], [460, 650]].forEach(function (b) { g.strokeRect(b[0], B0 - BH, b[1] - b[0], BH); }); g.setLineDash([]);
-      var h1 = .177 * BH * eout(seg(t, K.n18 - .05, K.n18 + .35)), h2 = .787 * BH * eout(seg(t, K.n79 - .06, K.n79 + .5));
+      var h1 = .177 * BH * eio(seg(t, K.qOut + .1, K.n18 + .04)), h2 = .787 * BH * eout(seg(t, K.n79 - .06, K.n79 + .5));
       if (h1 > 1) sheet(g, 220, B0 - h1, 410, B0, 71, CARD, 1.2, 'bar');
       if (h2 > 1) sheet(g, 460, B0 - h2, 650, B0, 73, TAPE, 1.2, 'bar');
       g.fillStyle = CREAM; g.fillRect(186, B0 - 2, 498, 6);
@@ -458,13 +476,14 @@
       var la = fin(t, K.qOut + .1);
       txt(g, 'NO PROMPT', 315, B0 + 36, 40, CREAM, 'center', 800, DISP, 236, la);
       txt(g, '+ 5 WORDS', 555, B0 + 36, 40, CREAM, 'center', 800, DISP, 236, la);
-      txt(g, 'MATH WORD', 800, 980, 44, CREAM, 'center', 900, DISP, 236, la);
-      txt(g, 'PROBLEMS', 800, 1034, 44, CREAM, 'center', 900, DISP, 236, la);
-      txt(g, 'RIGHT', 800, 1088, 44, CREAM, 'center', 900, DISP, 236, la);
-      var SL = [['ONE 2022 MODEL: GPT-3', 1314, 42, 900, DISP], ['(TEXT-DAVINCI-002) · MULTIARITH TEST', 1360, 36, 700, MONO], ['KOJIMA ET AL., 2022', 1404, 38, 700, MONO]];
+      var lm = la * (1 - seg(t, K.so - .08, K.so + .12));   /* gone before the tile column moves over it */
+      txt(g, 'MATH WORD', 800, 980, 44, CREAM, 'center', 900, DISP, 236, lm);
+      txt(g, 'PROBLEMS', 800, 1034, 44, CREAM, 'center', 900, DISP, 236, lm);
+      txt(g, 'RIGHT', 800, 1088, 44, CREAM, 'center', 900, DISP, 236, lm);
+      var SL = [['ONE 2022 MODEL: INSTRUCTGPT', 1314, 42, 900, DISP], ['(TEXT-DAVINCI-002) · MULTIARITH TEST', 1360, 36, 700, MONO], ['KOJIMA ET AL., 2022', 1404, 38, 700, MONO]];
       SL.forEach(function (l, j) { var a0 = K.y2022 - .06 + j * .08, k = fin(t, a0); txt(g, l[0], CX, l[1] + 18 * (1 - eout(seg(t, a0, a0 + .3))), l[2], CREAM, 'center', l[3], l[4], 830, k, 36); });
       /* the pencil underlines the model once every scope line is fully up */
-      var w0 = tw('ONE 2022 MODEL: GPT-3', 42, 900);
+      var w0 = Math.min(830, tw('ONE 2022 MODEL: INSTRUCTGPT', 42, 900));
       penTrack(g, t, [[Math.max(at('jump', 'ai') - .02, K.y2022 + .75), .42, CX - w0 / 2, CX + w0 / 2, 1340]], 'rgba(244,237,224,.85)');
       g.restore();
     }
@@ -472,16 +491,20 @@
     /* the puzzle card: the paper's text only, slides up after the bars have gone */
     var cu = eout(seg(t, K.so + .66, K.so + 1.1));
     if (cu > 0) {
-      g.save(); g.translate(0, 560 * (1 - cu)); g.globalAlpha *= clamp(cu * 3, 0, 1);
+      var cfa = 1 - seg(t, K.hero + .13, K.hero + .55);   /* the camera push crops the card: it fades first */
+      g.save(); g.translate(0, 560 * (1 - cu)); g.globalAlpha *= clamp(cu * 3, 0, 1) * cfa;
+      if (cfa > 0) {
       sheet(g, 110, 540, 910, 752, 81, PAPER, 1.4, 'card');
       ONPROP = true;
       ['16 BALLS.', 'HALF ARE GOLF BALLS.', 'HALF OF THOSE ARE BLUE.', 'HOW MANY BLUE?'].forEach(function (s, j) { txt(g, s, 150, 584 + j * 44, 40, INK, 'left', 900, DISP, 720); });
       ONPROP = false;
       /* the pencil reads the card with the voice */
       var CW = ['16 BALLS.', 'HALF ARE GOLF BALLS.', 'HALF OF THOSE ARE BLUE.', 'HOW MANY BLUE?'].map(function (s2) { return Math.min(720, tw(s2, 40, 900)); });
-      penTrack(g, t, [[K.sixteen - .02, .3, 150, 150 + CW[0], 608], [at('balls', 'half') - .04, .42, 150, 150 + CW[1], 652], [at('eight', 'half') - .04, .48, 150, 150 + CW[2], 696], [K.blue + .3, .36, 150, 150 + CW[3], 740]], PENCIL);
+      /* each line is underlined from below once it has been said; no pencil crosses the card */
+      penTrack(g, t, [[wend('balls', 'balls') + .02, .3, 150, 150 + CW[0], 608], [lend('balls') + .02, .4, 150, 150 + CW[1], 652], [wend('eight', 'blue') + .02, .42, 150, 150 + CW[2], 696], [wend('eight', 'blue') + .5, .3, 150, 150 + CW[3], 740]], PENCIL, true);
+      }
       g.restore();
-      tag(g, 'FROM THE PAPER’S FIG. 1 · SHORTENED', CX, 789, cu >= 1 ? 1 : 0, 0);
+      tag(g, 'FROM THE PAPER’S FIG. 1 · SHORTENED', CX, 789, cu >= 1 ? cfa : 0, 0);
       /* the grid of 16, under the card: holes first, the balls drop in on "Sixteen", 8 dimple on "golf"; the 4 blue
          only on "4." (the answer is not shown before it is said) */
       var ga = clamp(cu * 3, 0, 1);
@@ -489,7 +512,7 @@
         var q = gridPos(j, t), golf = j < 8, blue = j < 4;
         g.save(); g.globalAlpha *= ga; g.strokeStyle = 'rgba(244,237,224,.22)'; g.lineWidth = 3; g.beginPath(); g.ellipse(q.x, q.y + 20 * (1 - cu), q.r + 1, q.r + 1, 0, 0, 6.283); g.stroke(); g.restore();
         var d0 = K.sixteen - .12 + j * .022, dk = eout(seg(t, d0, d0 + .2));
-        var gk = golf ? seg(t, K.golf - .05 + j * .03, K.golf + .12 + j * .03) : 0, bk = blue ? seg(t, K.four - .42 + j * .05, K.four - .27 + j * .05) : 0;
+        var gk = golf ? seg(t, GT.dpop - .42 + j * .05, GT.dpop - .3 + j * .05) : 0, bk = blue ? seg(t, K.four - .42 + j * .05, K.four - .27 + j * .05) : 0;
         var bx = q.x, by = q.y - 40 * (1 - dk), br = q.r;
         if (blue) {
           var L = blueLand(j), fl = seg(t, L - .3, L);
@@ -510,8 +533,8 @@
     var stub = eout(seg(t, K.wth + .42, K.wth + .7));
     if (stub > 0) {
       g.save(); g.beginPath(); g.rect(0, 0, W, BX.y0 + 12); g.clip(); g.translate(0, 56 * (1 - stub));
-      sheet(g, BX.x0 + BX.w / 2 - 108, BX.y0 - 36, BX.x0 + BX.w / 2 + 108, BX.y0 + 12, 91, PAPER, 1, 'stub');
-      ONPROP = true; txt(g, '+ 5 WORDS', BX.x0 + BX.w / 2, BX.y0 - 16, 30, INK, 'center', 900, DISP, 200, 1, 30); ONPROP = false;
+      sheet(g, BX.x0 + BX.w / 2 - 124, BX.y0 - 40, BX.x0 + BX.w / 2 + 124, BX.y0 + 12, 91, PAPER, 1, 'stub');
+      ONPROP = true; txt(g, '+ 5 WORDS', BX.x0 + BX.w / 2, BX.y0 - 18, 34, INK, 'center', 900, DISP, 232, 1, 32); ONPROP = false;
       g.restore();
     }
     /* the five tiles (before the box: they go into its slot) */
@@ -525,7 +548,7 @@
     /* the box rises in under the grid on "golf" */
     var bu = eout(seg(t, K.golf + .2, K.golf + .62));
     if (bu > 0) {
-      var gulp = 0; ARR.forEach(function (a0) { gulp = Math.max(gulp, Math.sin(Math.PI * seg(t, a0 + .16, a0 + .5))); });
+      var gulp = 0; ARR.forEach(function (a0) { gulp = Math.max(gulp, Math.sin(Math.PI * seg(t, a0 + .14, a0 + .42))); });
       g.save(); g.translate(0, 160 * (1 - bu)); g.globalAlpha *= clamp(bu * 2, 0, 1);
       aiBox(g, bxx, bxy, BX.w, bxh, 'GPT-3, 2022', 'RE-CREATED', 61, gulp);
       g.restore();
@@ -533,20 +556,6 @@
       txt(g, 'ASKED', 345, 1212, 40, CREAM, 'right', 900, DISP, 250, asa);
       txt(g, 'STRAIGHT', 345, 1258, 40, CREAM, 'right', 900, DISP, 250, asa);
     }
-    /* the 8 row: printed on "said" under the box; on "With them" it tears off to the left, greyed, NO STEPS */
-    var r8 = { cx: lerp(R8Q.cx, NS.cx, mv), cy: lerp(R8Q.cy, NS.cy, mv), s: lerp(1, NS.s, mv) };
-    var p8 = seg(t, K.said - .02, K.said + .2);
-    if (p8 > 0) {
-      g.save(); g.translate(r8.cx, r8.cy); g.scale(r8.s, r8.s); g.rotate(-.03 * mv);
-      answerRow(g, 0, 0, STRIP.w, R8Q.h, '8', p8, 101, 1, mv);
-      g.restore();
-    }
-    /* the cream ✗: lands with the knock, then settles 6° through the silence */
-    var xk = t >= GT.knock ? eout(seg(t, GT.knock, GT.knock + .09)) : 0, xr = .105 * eio(seg(t, GT.knock + .1, K.wth));
-    g.save(); g.translate(lerp(R8Q.cx + STRIP.w / 2 + 44, NS.cx + STRIP.w * NS.s / 2 + 22, mv), lerp(R8Q.cy, NS.cy, mv)); g.rotate(xr);
-    xmark(g, 0, 0, lerp(1.3, 1, xk) * lerp(1, .85, mv), clamp(xk * 3, 0, 1));
-    g.restore();
-    txt(g, 'NO STEPS', NS.cx, NS.cy - 66, 40, CREAM, 'center', 900, DISP, 220, fin(t, K.wth + .42));
 
     /* the step tabs print on "wrote steps", then the ANSWER row prints a big 4 */
     TABS.forEach(function (b, j) {
@@ -559,40 +568,61 @@
 
     /* "goes back in": a full-size copy of each tab peels off it, swings out right, slides up and drops into the top slot */
     ARR.forEach(function (a0, j) {
-      var m = seg(t, a0, a0 + .5); if (m <= 0 || m >= 1) return;
-      var x0 = STRIP.cx, y0 = TABS[j].y, sy = BX.y0 - 34, k1 = eio(seg(m, 0, .72)), k2 = Math.pow(seg(m, .72, 1), 3);
-      var x = x0 + 225 * Math.sin(Math.PI * k1), y = lerp(lerp(y0, sy, k1), BX.y0 + 40, k2);
-      var sc = lerp(1, .72, k1) * lerp(1, .55, k2), rot = .1 * Math.sin(Math.PI * k1);
+      var m = seg(t, a0, a0 + .36); if (m <= 0 || m >= 1) return;
+      var x0 = STRIP.cx, y0 = TABS[j].y, sy = BX.y0 - 34, k1 = eio(seg(m, 0, .75)), k2 = Math.pow(seg(m, .75, 1), 3);
+      var x = x0 + 300 * Math.sin(Math.PI * k1), y = lerp(lerp(y0, sy, k1), BX.y0 + 40, k2);
+      var sc = lerp(1, .85, k1) * lerp(1, .55, k2), rot = .12 * Math.sin(Math.PI * k1);
       g.save(); g.beginPath(); g.rect(0, 0, W, k2 > 0 ? BX.y0 + 10 : H); g.clip();
       g.translate(x, y); g.scale(sc, sc);
       tab(g, 0, 0, STRIP.w, 66, TABS[j].s, 42, 211 + j, 1, rot, 1);
       g.restore();
     });
-    var ia = fin(t, K.each);
-    ['ITS OWN', 'STEPS,', 'READ', 'AGAIN'].forEach(function (s2, j) { txt(g, s2, 326, 990 + j * 44, 38, CREAM, 'right', 900, DISP, 230, ia); });
-    var cr = fin(t, K.each + .15);
-    txt(g, 'KOJIMA ET AL., 2022 · §3.1', CX, 1384, 40, CREAM, 'center', 700, MONO, 830, cr);
-    txt(g, 'FIG. 1 · ARXIV 2205.11916', CX, 1424, 40, CREAM, 'center', 700, MONO, 830, cr);
 
     /* hero: the pencil underlines ANSWER (not the numeral) on "answer"; the bracket lines the tabs on "in view" */
     var al = STRIP.cx - STRIP.w / 2 + 16;
-    penTrack(g, t, [[K.answer - .02, .3, al, al + tw('ANSWER', 30, 700, MONO), R4.y - R4.h / 2 + 40]], PENCIL);
+    penTrack(g, t, [[K.answer - .02, .3, al, al + tw('ANSWER', 34, 700, MONO), R4.y - R4.h / 2 + 40]], PENCIL);
     bracket(g, STRIP.cx - STRIP.w / 2 - 18, TABS[0].y - 33, TABS[2].y + 33, eio(seg(t, K.inV - .04, K.inV + .3)), 1);
-    /* THE stamp, big, tilted −6°, beside the ANSWER tab on its own cream patch */
-    stamp(g, 'STEPS\nFIRST', SX, R4.y - 8, t, GT.slam, SPX, HOT, -.105, true);
     g.restore();
     g.restore();
+    deskOverlay(g, t, mv, zk);
   }
-  var SPX = 68, SX = 748;
+  /* the screen-space layer of the desk: drawn at its own place before the push, sliding to its hero place as the push goes in */
+  function deskOverlay(g, t, mv, zk) {
+    /* the 8 row: printed on "said" under the box; on "With them" it tears off to the left, greyed, NO STEPS */
+    var r8 = { cx: lerp(R8Q.cx, NS.cx, mv), cy: lerp(R8Q.cy, NS.cy, mv) - 20, s: lerp(1, NS.s, mv), w: lerp(STRIP.w, NS.w, mv) };
+    r8.cx = lerp(r8.cx, NSF.cx, zk); r8.cy = lerp(r8.cy, NSF.cy, zk);
+    var p8 = seg(t, K.said - .02, K.said + .2);
+    if (p8 > 0) {
+      g.save(); g.translate(r8.cx, r8.cy); g.scale(r8.s, r8.s); g.rotate(-.03 * mv);
+      answerRow(g, 0, 0, r8.w, lerp(R8Q.h, 116, mv), '8', p8, 101, 1, mv, null, null, lerp(14, 22, mv), lerp(34, 38, mv));
+      g.restore();
+    }
+    /* the cream ✗: lands with the knock, then settles 6° through the silence */
+    var xk = t >= GT.knock ? eout(seg(t, GT.knock, GT.knock + .09)) : 0, xr = .105 * eio(seg(t, GT.knock + .1, K.wth));
+    var xx = lerp(R8Q.cx + STRIP.w / 2 + 44, NS.cx + NS.w * NS.s / 2 + 22, mv), xy = lerp(R8Q.cy, NS.cy, mv) - 20;
+    g.save(); g.translate(lerp(xx, XF.x, zk), lerp(xy, XF.y, zk)); g.rotate(xr);
+    xmark(g, 0, 0, lerp(1.3, 1, xk) * lerp(1, .85, mv), clamp(xk * 3, 0, 1));
+    g.restore();
+    txt(g, 'NO STEPS', lerp(NS.cx, NSF.cx, zk), lerp(NS.cy - 86, NSF.cy - 74, zk), 38, CREAM, 'center', 900, DISP, 220, fin(t, K.wth + .42));
+    var ia = fin(t, K.each);
+    ['ITS OWN', 'STEPS,', 'READ', 'AGAIN'].forEach(function (s2, j) { txt(g, s2, lerp(326, LBF.x, zk), lerp(970 + j * 44, LBF.y + j * LBF.dy, zk), 38, CREAM, 'right', 900, DISP, 230, ia); });
+    var cr = fin(t, K.each + .15);
+    txt(g, 'KOJIMA ET AL., 2022 · §3.1', CX, 1374, 38, CREAM, 'center', 700, MONO, 830, cr);
+    txt(g, 'FIG. 1 · ARXIV 2205.11916', CX, 1410, 38, CREAM, 'center', 700, MONO, 830, cr);
+    /* THE stamp, big, tilted −6°, beside the ANSWER tab on its own cream patch (it lands after the push has stopped) */
+    stamp(g, 'STEPS\nFIRST', STF.x, STF.y, t, GT.slam, SPX, HOT, -.105, true);
+  }
+  var SPX = 68;
   var ARR = [];
   /* a pencil that underlines lines in turn: U = [[t0, dur, x0, x1, y], …]; it comes in from the right, rides each line, leaves */
-  function penTrack(g, t, U, col) {
+  function penTrack(g, t, U, col, noPen) {
     g.save(); g.strokeStyle = col || PENCIL; g.lineWidth = 5; g.lineCap = 'round';
     U.forEach(function (u) { var k = eio(seg(t, u[0], u[0] + u[1])); if (k > 0) { g.beginPath(); g.moveTo(u[2], u[4]); g.lineTo(lerp(u[2], u[3], k), u[4] + 2 * k); g.stroke(); } });
     g.restore();
     var PK = [[U[0][0] - .4, 1180, U[0][4] + 160]];
     U.forEach(function (u) { PK.push([u[0], u[2], u[4]]); PK.push([u[0] + u[1], u[3], u[4] + 2]); });
     var L = PK[PK.length - 1]; PK.push([L[0] + .4, 1180, L[2] + 160]);
+    if (noPen) return;
     if (t <= PK[0][0] || t >= PK[PK.length - 1][0]) return;
     var pi = 0; while (pi < PK.length - 2 && t > PK[pi + 1][0]) pi++;
     var A = PK[pi], B = PK[pi + 1], pk = seg(t, A[0], B[0]), drawing = U.some(function (u) { return t >= u[0] && t <= u[0] + u[1]; });
@@ -606,20 +636,22 @@
      the ANSWER row moves up under the box and reprints 8 ✗; the tabs drop below it, tilted, swaying. The Wei card on top;
      the pencil underlines it on "No better".
      ===================================================================================================== */
-  var AB = { x0: 430, y0: 908, w: 290, h: 108 }, ACX = 575;
+  var AB = { x0: 430, y0: 916, w: 290, h: 108 }, ACX = 575;
   function afterScene(g, t) {
     var sw = eio(seg(t, K.after + .05, K.afterW + .45));
     /* the Wei card */
-    sheet(g, 110, 540, 910, 884, 131, PAPER, 1.4, 'weicard');
+    sheet(g, 110, 540, 910, 846, 131, PAPER, 1.4, 'weicard');
     ONPROP = true;
-    ['“…PERFORMS', 'ABOUT THE', 'SAME AS THE', 'BASELINE…”'].forEach(function (s, j) { txt(g, s, CX, 584 + j * 46, 42, INK, 'center', 900, DISP, 760); });
-    g.fillStyle = 'rgba(33,29,38,.45)'; g.fillRect(150, 752, 720, 3);
-    [['WEI ET AL.,', CX - 190, 786], ['2022 · GSM8K', CX - 190, 828], ['LAMDA 137B,', CX + 190, 786], ['PALM 540B', CX + 190, 828]].forEach(function (c) { txt(g, c[0], c[1], c[2], 36, INK, 'center', 700, MONO, 360, 1, 34); });
+    ['“…PERFORMS', 'ABOUT THE', 'SAME AS THE', 'BASELINE…”'].forEach(function (s, j) { txt(g, s, CX, 584 + j * 44, 42, INK, 'center', 900, DISP, 760); });
+    g.fillStyle = 'rgba(33,29,38,.45)'; g.fillRect(150, 742, 720, 3);
+    [['WEI ET AL.,', CX - 190, 772], ['2022 · GSM8K', CX - 190, 810], ['LAMDA 137B,', CX + 190, 772], ['PALM 540B', CX + 190, 810]].forEach(function (c) { txt(g, c[0], c[1], c[2], 36, INK, 'center', 700, MONO, 360, 1, 34); });
     ONPROP = false;
+    /* what "baseline" means here, outside the quote marks */
+    txt(g, 'BASELINE = NO STEPS', CX, 884, 36, CREAM, 'center', 700, MONO, 760);
     /* the pencil underlines "about the same as the baseline" on "No better" */
-    var U = [[K.no - .1, 'ABOUT THE', 626], [K.no + .14, 'SAME AS THE', 672], [K.no + .3, 'BASELINE…”', 718]], pen = null;
+    var U = [[K.no - .1, 'ABOUT THE', 628], [K.no + .14, 'SAME AS THE', 672], [K.no + .3, 'BASELINE…”', 716]], pen = null;
     g.save(); g.strokeStyle = PENCIL; g.lineWidth = 5; g.lineCap = 'round';
-    U.forEach(function (u) { var w = tw(u[1], 42, 900), k = eio(seg(t, u[0], u[0] + .2)); if (k > 0) { g.beginPath(); g.moveTo(CX - w / 2, u[2] + 28); g.lineTo(CX - w / 2 + w * k, u[2] + 29); g.stroke(); if (k < 1 || u === U[2]) pen = [CX - w / 2 + w * k, u[2] + 28]; } });
+    U.forEach(function (u) { var w = tw(u[1], 42, 900), k = eio(seg(t, u[0], u[0] + .2)); if (k > 0) { g.beginPath(); g.moveTo(CX - w / 2, u[2] + 26); g.lineTo(CX - w / 2 + w * k, u[2] + 27); g.stroke(); if (k < 1 || u === U[2]) pen = [CX - w / 2 + w * k, u[2] + 26]; } });
     g.restore();
     var pIn = eio(seg(t, K.no - .35, K.no - .1)), pOut = eio(seg(t, K.no + .55, K.no + 1.0));
     if (pIn > 0 && pOut < 1) { var qx = pen ? pen[0] : CX - 160, qy = pen ? pen[1] : 672; qx = lerp(lerp(1150, qx, pIn), 1150, pOut); qy = lerp(lerp(560, qy, pIn), 520, pOut); pencil(g, qx + 240, qy + 75, qx, qy); }
@@ -629,7 +661,7 @@
     var top = AB.y0 + AB.h + 66, yA = lerp(1284, top, sw);
     var TD = [{ y: 1186, x: 562, r: -.19 }, { y: 1272, x: 592, r: .19 }, { y: 1358, x: 566, r: -.18 }];
     TD.forEach(function (d, j) {
-      var k = eio(seg(t, K.after + .05 + j * .05, K.afterW + .45 + j * .05)), y0 = 1020 + j * 80 - 100;
+      var k = eio(seg(t, K.after + .05 + j * .05, K.afterW + .45 + j * .05)), y0 = 1040 + j * 80 - 100;
       var swing = .028 * Math.sin(t * 2.2 + j * 1.7) * seg(t, K.afterW + .4, K.afterW + .8);
       tab(g, lerp(ACX, d.x, k), lerp(y0, d.y, k), STRIP.w, 62, TABS[j].s, 42, 141 + j, 1, d.r * k + swing, 1);
     });
@@ -663,28 +695,34 @@
      SCENE 3 · newer reasoning models: the re-created OpenAI guide card (its own sentence, from "prompting"), a 2025+
      reasoning box that prints its own tabs with nothing in its slot, and Wharton's 2025 line beside it.
      ===================================================================================================== */
-  var NB = { x0: 480, y0: 1030, w: 290, h: 112 };
+  var NB = { x0: CX - 145, y0: 1140, w: 290, h: 96 };
   function newerScene(g, t) {
     var drift = 4 * Math.sin((t - K.newer) * 1.1);
     g.save(); g.translate(0, drift);
-    sheet(g, 110, 540, 910, 1000, 161, PAPER, 1.4, 'guide');
+    sheet(g, 110, 520, 910, 984, 161, PAPER, 1.4, 'guide');
     ONPROP = true;
-    ['“…PROMPTING', 'THEM TO ‘THINK', 'STEP BY STEP’ OR', '‘EXPLAIN YOUR', 'REASONING’ IS', 'UNNECESSARY.”'].forEach(function (s, j) { txt(g, s, CX, 590 + j * 46, 40, INK, 'center', 900, DISP, 760); });
-    g.fillStyle = 'rgba(33,29,38,.45)'; g.fillRect(150, 868, 720, 3);
-    ['OPENAI’S', 'REASONING GUIDE', 'READ NOV 2, 2026'].forEach(function (s, j) { txt(g, s, CX, 896 + j * 38, 34, INK, 'center', 700, MONO, 760, 1, 34); });
+    ['“…PROMPTING', 'THEM TO ‘THINK', 'STEP BY STEP’ OR', '‘EXPLAIN YOUR', 'REASONING’ IS', 'UNNECESSARY.”'].forEach(function (s, j) { txt(g, s, CX, 566 + j * 51, 46, INK, 'center', 900, DISP, 760, 1, 40); });
+    g.fillStyle = 'rgba(33,29,38,.45)'; g.fillRect(150, 853, 720, 3);
+    var o1 = tw('OPENAI’S', 36, 700, MONO), o2 = tw('REASONING GUIDE', 36, 700, MONO), osp = tw(' ', 36, 700, MONO), ox = CX - (o1 + o2 + osp) / 2;
+    txt(g, 'OPENAI’S', ox, 890, 36, INK, 'left', 700, MONO, 0); txt(g, 'REASONING GUIDE', ox + o1 + osp, 890, 36, INK, 'left', 700, MONO, 0);
+    txt(g, 'READ NOV 2, 2026', CX, 930, 36, INK, 'center', 700, MONO, 760, 1, 36);
     ONPROP = false;
     /* the pencil underline under "unnecessary." on "own" */
-    var uk = eio(seg(t, K.own - .2, K.own + .15)), uw = tw('UNNECESSARY.”', 40, 900);
-    if (uk > 0) { g.save(); g.strokeStyle = PENCIL; g.lineWidth = 5; g.lineCap = 'round'; g.beginPath(); g.moveTo(CX - uw / 2, 852); g.lineTo(CX - uw / 2 + uw * uk, 853); g.stroke(); g.restore(); }
+    var uk = eio(seg(t, K.own - .2, K.own + .15)), uw = tw('UNNECESSARY.”', 46, 900);
+    if (uk > 0) { g.save(); g.strokeStyle = PENCIL; g.lineWidth = 5; g.lineCap = 'round'; g.beginPath(); g.moveTo(CX - uw / 2, 820); g.lineTo(CX - uw / 2 + uw * uk, 821); g.stroke(); g.restore(); }
     g.restore();
-    tag(g, 'RE-CREATED', 786, 548, 1, .03);
+    tag(g, 'RE-CREATED', 786, 528, 1, .03);
     g.save(); g.translate(0, drift * .6);
     aiBox(g, NB.x0, NB.y0, NB.w, NB.h, '2025+', 'REASONING', 65, 0);
-    [0, 1, 2].forEach(function (j) { var p0 = K.doW - .02 + j * .22; tab(g, NB.x0 + NB.w / 2, NB.y0 + NB.h + 50 + j * 72, 260, 62, null, 0, 171 + j, eout(seg(t, p0, p0 + .2)), 0, 1, true); });
-    bracket(g, NB.x0 - 6, NB.y0 + NB.h + 16, NB.y0 + NB.h + 50 + 144 + 34, eio(seg(t, K.own - .05, K.own + .3)), 1);
+    [0, 1, 2].forEach(function (j) { var p0 = K.doW - .02 + j * .22; tab(g, NB.x0 + NB.w / 2, NB.y0 + NB.h + 38 + j * 58, 260, 52, null, 0, 171 + j, eout(seg(t, p0, p0 + .2)), 0, 1, true); });
+    bracket(g, NB.x0 - 6, NB.y0 + NB.h + 10, NB.y0 + NB.h + 38 + 116 + 28, eio(seg(t, K.own - .05, K.own + .3)), 1);
     g.restore();
-    /* Wharton 2025 on reasoning models, its own words (cut both ends, so both ends get "…") */
-    ['WHARTON, 2025,', 'REASONING', 'MODELS:', '“…OFTEN', 'RESULTS IN', 'ONLY MARGINAL,', 'IF ANY, GAINS…”'].forEach(function (s2, j) { txt(g, s2, 450, 1088 + j * 46, 36, CREAM, 'right', 800, DISP, 356); });
+    /* Wharton 2025 on reasoning models as a quiet credit, its own words in full (cut both ends, so both ends get "…").
+       Each line is set from short pieces so every piece gets its own read time. */
+    [['WHARTON 2025 ·', 'REASONING', 'MODELS:'], ['“…OFTEN', 'RESULTS IN'], ['ONLY MARGINAL,', 'IF ANY, GAINS…”']].forEach(function (P, j) {
+      var sp = tw(' ', 36, 700, MONO), wd = P.reduce(function (a, p) { return a + tw(p, 36, 700, MONO); }, 0) + sp * (P.length - 1), x = CX - wd / 2;
+      P.forEach(function (p) { txt(g, p, x, 1020 + j * 40, 36, CREAM, 'left', 700, MONO, 0); x += tw(p, 36, 700, MONO) + sp; });
+    });
   }
 
   /* =====================================================================================================
@@ -733,7 +771,7 @@
     return out.map(function (c) {
       var ws = c.ws, s = ws[0].t0, isFirst = !first[c.id]; first[c.id] = 1;
       if (isFirst && c.id === 'jump') s = Math.max(s, K.cut + .05);
-      if (isFirst && c.id === 'after') s = Math.max(s, K.tearA);   /* the caption swaps with the wipe, before "Steps" is said */
+      if (isFirst && c.id === 'after') s = Math.max(s, K.capA);   /* the caption swaps with the wipe, before "Steps" is said */
       if (isFirst && c.id === 'newer') s = Math.max(s, K.tearB + .1);
       return { id: c.id, t0: ws[0].t0, s: s, t1: ws[ws.length - 1].t1, words: ws };
     });
@@ -805,7 +843,7 @@
     /* the torn edge is placed at the frame's own time, not per motion-blur sample: the wipe stays opaque */
     var te = EDGE_T == null ? t : EDGE_T;
     var si = sceneAt(te), Sc = SC[si], Nx = SC[si + 1];
-    var sk0 = Nx && Nx.swipe ? seg(te, Nx.t0 - Nx.sw, Nx.t0) : 0, sk = sk0 * sk0;   /* accelerating: the bottom (the stamp) goes last */
+    var sk0 = Nx && Nx.swipe ? seg(te, Nx.t0 - Nx.sw, Nx.t0) : 0, sk = Nx && Nx.pw === 1 ? sk0 : sk0 * sk0;   /* accelerating: the bottom (the stamp) goes last */
     var ly = (H + 40) * sk - 20;
     COVTOP = sk > 0 ? ly + 14 : -1e9;
     drawScene(g, Sc, t);
@@ -874,6 +912,8 @@
     GS.push({ t: GT.knock, type: 'knock', g: .7 });
     GS.push({ t: GT.slam, type: 'thump', g: .24 });
     GS.push({ t: GT.swish, type: 'swish', g: .5 });
+    /* (a dimple pop at GT.dpop was tried: it sits inside a bridged voice span, so the mix read it as music under speech and
+       raised the voice 16.8 dB, burying every other hit; the dimples still land on GT.dpop, silently) */
     GS.push({ t: GT.pop, type: 'pop', g: 1.6 });
   }
   function initTimes() {
@@ -943,7 +983,7 @@
       if (e.type === 'thump') stampThump(e.t, e.g);
       else if (e.type === 'knock') knock(e.t, e.g);
       else if (e.type === 'swish') swish(e.t, e.g);
-      else if (e.type === 'pop') popS(e.t, e.g);
+      else if (e.type === 'pop' || e.type === 'dpop') popS(e.t, e.g);
     });
     /* no music: Isac adds a trending TikTok sound on the platform; the film ships voice + sound effects */
     var MUSIC = false;
@@ -975,9 +1015,9 @@
   }
   initGaps();
   initTimes();
-  ARR = [0, 1, 2].map(function (j) { return K.goes + .12 + j * .3; });   /* the copies go in on "goes back in" */
+  ARR = [0, 1, 2].map(function (j) { return K.goes + .14 + j * .3; });   /* the copies go in on "goes back in" */
   /* the hero hold: from the stamp settling to the torn edge, fully still */
-  var HOLD = { t0: GT.slam + .12, t1: K.tearA };
+  var HOLD = { t0: GT.slam + .12, t1: K.tearA + .3 };   /* the stamp is fully on screen and still until the edge reaches it */
   SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
   SHOTS = SC.map(function (s) { return { id: s.id, name: s.name, t0: s.t0, t1: s.t1 }; });
   window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: Math.round((HOLD.t0 + HOLD.t1) / 2 * 30) / 30 + 1 / 60, SLUG: 'stepbystep', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE, K: K, GT: GT, HOLD: HOLD, SC: SC, CAPMIN: function () { return CAPMIN; } };
