@@ -238,7 +238,8 @@
       g.restore();
       var cy = lerp(1400, 640, k) + 20;
       var dur = Math.max(.4, zero - bank - .05);
-      K.counter(g, 2500000, 0, W / 2, cy, 120, t - bank - .05, dur, { pre: '£', col: t >= zero ? RED : C.CREAM, ease: function (q) { return q * q; } });
+      if (t < zero) K.counter(g, 2500000, 0, W / 2, cy, 92, t - bank - .05, dur, { pre: '£', col: C.CREAM, ease: function (q) { return q * q; } });
+      else { var zk = 1 - .12 * knock(t, zero, 26, 7); g.save(); g.translate(W / 2, cy); g.scale(zk, zk); K.sticker(g, '£0', 0, 0, 120, { col: RED }); g.restore(); }
       if (t >= zero) K.stretch(g, 'ZERO.', W / 2, 260, 150, t - zero, { col: RED });
       if (t < zero) K.actor(g, 540, 1300, 1.0, 'think', t - bank, Object.assign({ emote: false }, BOSS), t);
       else K.actor(g, 540, 1300, 1.0, 'panic', t - zero, BOSS, t);
