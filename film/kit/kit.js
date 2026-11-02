@@ -620,7 +620,7 @@
   K.counter = function (g, from, to, x, y, px, u, dur, o) {
     if (u < 0) return; o = o || {};
     var k = (o.ease || function (q) { return 1 - Math.pow(1 - q, 3); })(clamp(u / dur, 0, 1)), v = lerp(from, to, k), fin = Math.round(to);
-    var digits = String(Math.abs(fin)).length, dw = measure(g, '0', px, o) * 1.02, cw = measure(g, ',', px, o), lh = px * 1.1;
+    var digits = String(Math.max(Math.abs(Math.round(from)), Math.abs(fin))).length, dw = measure(g, '0', px, o) * 1.02, cw = measure(g, ',', px, o), lh = px * 1.1;
     var groups = o.commas === false ? 0 : Math.floor((digits - 1) / 3), pre = o.pre || '', suf = o.suf || '';
     var pw = pre ? measure(g, pre, px, o) : 0, sw = suf ? measure(g, suf, px, o) : 0, tw = pw + digits * dw + groups * cw + sw;
     var land = u > dur ? 1 - .1 * knock(u, dur, 26, 7) : 1, x0 = -tw / 2;
