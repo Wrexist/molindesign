@@ -1,0 +1,77 @@
+{
+  "about": "2005: ESRB re-rated GTA San Andreas from M to AO over hidden content unlocked by a third-party mod; Walmart, Target, Best Buy pulled it; M restored on a new version. Delta, pillar 7.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Walmart",
+    "Rockstar",
+    "San Andreas"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 33
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Walmart once pulled GTA off its shelves.",
+      "say": "Walmart once pulled G T A off its shelves."
+    },
+    {
+      "id": "year",
+      "at": 3.2,
+      "text": "It was 2005, and the game was GTA San Andreas.",
+      "say": "It was two thousand five, and the game was G T A San Andreas."
+    },
+    {
+      "id": "found",
+      "at": 6.8,
+      "text": "A hidden adult scene was left locked on the disc, and a fan-made mod unlocked it."
+    },
+    {
+      "id": "rating",
+      "at": 12.0,
+      "text": "So the ratings board took away its M, and made it AO: Adults Only.",
+      "say": "So the ratings board took away its M, and made it A O. Adults only."
+    },
+    {
+      "id": "pulled",
+      "at": 17.2,
+      "text": "Walmart, Target and Best Buy pulled every copy."
+    },
+    {
+      "id": "fixed",
+      "at": 20.45,
+      "text": "Rockstar cut the scene, and the new version got its M back."
+    },
+    {
+      "id": "six",
+      "at": 24.4,
+      "text": "GTA 6 is out November 19th.",
+      "say": "G T A 6 is out November nineteenth."
+    },
+    {
+      "id": "end",
+      "at": 27.3,
+      "text": "Should hidden content change a game's rating?",
+      "speed": 0.9
+    }
+  ],
+  "dur": 30.0
+}
