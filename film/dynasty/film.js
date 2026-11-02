@@ -98,6 +98,59 @@
 
   /* ================= scenes ================= */
 
+  /* ---------- real game art (copied from the Dynasty Manager repo into assets/) ---------- */
+  var IMG = {}, IMGS = ['gold', 'gold-back', 'icon', 'legends', 'pack-gold', 'pack-legends', 'plinth', 'floodlight', 'logo', 'prospect', 'erling-haaland', 'kylian-mbappe', 'vinicius-junior', 'lineup', 'tactics', 'match', 'home', 'market'];
+  var CRESTS = ['real-madrid', 'liverpool', 'barcelona', 'bayern-munich', 'juventus', 'arsenal', 'ac-milan', 'paris-saint-germain', 'boca-juniors', 'ajax', 'manchester-city', 'benfica', 'celtic', 'napoli', 'flamengo', 'porto', 'chelsea', 'inter-milan', 'river-plate', 'tottenham-hotspur', 'atletico-madrid', 'manchester-united'];
+  function srcOf(n) { return CRESTS.indexOf(n) > -1 ? 'assets/crests/' + n + '.svg' : 'assets/' + n + (/^(lineup|tactics|match|home|market)$/.test(n) ? '.jpg' : '.webp'); }
+  function loadImages() {
+    return Promise.all(IMGS.concat(CRESTS).map(function (n) {
+      return new Promise(function (res, rej) { var im = new Image(); im.onload = function () { IMG[n] = im; res(); }; im.onerror = function () { rej(new Error('missing ' + n)); }; im.src = srcOf(n); });
+    }));
+  }
+  /* draw an image centred at x, y, w wide (height from its aspect unless h) */
+  function pic(g, n, x, y, w, h, o) {
+    var im = IMG[n]; if (!im) return; o = o || {}; h = h || w * im.height / im.width;
+    g.save(); g.translate(x, y); if (o.rot) g.rotate(o.rot); if (o.a != null) g.globalAlpha *= o.a; g.drawImage(im, -w / 2, -h / 2, w, h); g.restore();
+  }
+  /* a player card in the game's own frames: portrait, rating, position, name and the six stats */
+  function gameCard(g, x, y, s, c, t) {
+    var w = 300, h = 450; g.save(); g.translate(x, y); if (c.rot) g.rotate(c.rot); g.scale(s, s);
+    /* glow behind */
+    var gl = g.createRadialGradient(0, 0, 40, 0, 0, 330); gl.addColorStop(0, c.glow || 'rgba(255,214,102,.55)'); gl.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gl; g.fillRect(-340, -340, 680, 680);
+    pic(g, c.frame || 'gold', 0, 0, w, h);
+    if (c.back) { g.restore(); return; }
+    /* portrait in the upper window, fading into the card */
+    var pw = 200, ph = 200, py = -h / 2 + 62;
+    g.save(); g.beginPath(); g.rect(-pw / 2 + 18, py, pw, ph); g.clip();
+    pic(g, c.face, 18, py + ph / 2, pw, ph);
+    var fd = g.createLinearGradient(0, py + ph * .55, 0, py + ph); fd.addColorStop(0, 'rgba(0,0,0,0)'); fd.addColorStop(1, c.fade || 'rgba(214,160,40,1)'); g.fillStyle = fd; g.fillRect(-pw / 2 + 18, py, pw, ph);
+    g.restore();
+    var ink = c.ink || '#2a1a02';
+    txt(g, String(c.ovr), -w / 2 + 64, -h / 2 + 98, 62, ink, 900);
+    txt(g, c.pos, -w / 2 + 64, -h / 2 + 146, 30, ink, 800);
+    txt(g, c.name, 0, 80, c.name.length > 10 ? 30 : 36, ink, 900);
+    g.fillStyle = ink; g.globalAlpha = .5; g.fillRect(-100, 102, 200, 3); g.globalAlpha = 1;
+    var lab = ['PAC', 'SHO', 'PAS', 'DRI', 'DEF', 'PHY'];
+    lab.forEach(function (l, i) { var cx = -80 + (i % 3) * 80, cy = 124 + Math.floor(i / 3) * 38; txt(g, String(c.st[i]), cx - 24, cy, 24, ink, 900, 'center'); txt(g, l, cx + 18, cy, 18, ink, 700, 'center', '"Geist Mono"'); });
+    /* shine sweep */
+    g.save(); g.globalCompositeOperation = 'overlay'; g.globalAlpha = .55; var sx = ((t || 0) * 300) % 1000 - 500; g.translate(sx, 0); g.rotate(.4); g.fillStyle = '#fff'; g.fillRect(-26, -500, 52, 1000); g.restore();
+    g.restore();
+  }
+  /* a phone showing a real in-game screen */
+  function phone(g, n, x, y, s, rot) {
+    var w = 560, im = IMG[n], h = w * im.height / im.width;
+    g.save(); g.translate(x, y); if (rot) g.rotate(rot); g.scale(s, s);
+    g.shadowColor = 'rgba(0,0,0,.55)'; g.shadowBlur = 60; g.shadowOffsetY = 24;
+    K.rr(g, -w / 2 - 14, -h / 2 - 14, w + 28, h + 28, 64); g.fillStyle = '#05070c'; g.fill(); g.shadowColor = 'transparent';
+    g.lineWidth = 6; g.strokeStyle = 'rgba(255,255,255,.18)'; g.stroke();
+    K.rr(g, -w / 2, -h / 2, w, h, 52); g.save(); g.clip(); g.drawImage(im, -w / 2, -h / 2, w, h); g.restore();
+    g.restore();
+    return h;
+  }
+  var PROSPECT = { frame: 'gold', face: 'prospect', ovr: 77, pos: 'CAM', name: 'MASTANTUONO', st: [74, 71, 75, 80, 50, 63] };
+  var STAR = { frame: 'icon', face: 'erling-haaland', ovr: 90, pos: 'ST', name: 'HAALAND', st: [86, 91, 70, 80, 45, 88], fade: 'rgba(235,235,235,1)', ink: '#1c1830', glow: 'rgba(143,233,255,.5)' };
+
+
   /* 1 HOOK: frame 0 already moving. He sprints in, a contract slams down, HIRED is stamped on it. */
   function sHook(g, t, u) {
     bg(g, NAVY, t);
@@ -143,8 +196,8 @@
       var y = y0 + i * rh, me = i === rows - 1;
       if (me) { g.fillStyle = 'rgba(255,74,61,.28)'; g.fillRect(100, y - 8, 880, rh - 10); }
       txt(g, String(i + 1), 160, y + 36, 40, me ? RED : 'rgba(244,237,224,.6)', 800, 'center', '"Geist Mono"');
-      K.circ(g, 240, y + 36, 24); g.fillStyle = me ? '#8a6a4a' : ['#3d7bff', '#ff7ab6', '#5fb86b', '#ffc83d', '#8b5cf6'][i % 5]; g.fill();
-      txt(g, me ? 'YOUR CLUB' : 'CLUB ' + String.fromCharCode(65 + i), 290, y + 36, 40, me ? C.CREAM : 'rgba(244,237,224,.75)', 800, 'left');
+      if (me) pic(g, 'logo', 240, y + 36, 70); else pic(g, CRESTS[(i * 5) % CRESTS.length], 240, y + 36, 54, 54);
+      txt(g, me ? 'YOUR CLUB' : 'CLUB ' + String.fromCharCode(65 + i), 300, y + 36, 40, me ? C.CREAM : 'rgba(244,237,224,.75)', 800, 'left');
       txt(g, String(me ? 3 : 62 - i * 3), 930, y + 36, 40, me ? RED : 'rgba(244,237,224,.75)', 800, 'right', '"Geist Mono"');
     }
     g.restore();
@@ -195,74 +248,62 @@
   }
   sBoard.sfx = function () { var p = at('board', 'promotion'), b = at('bank'), z = at('bank', 'zero'); return [[at('board') - .05, 'whoosh', { d: .25 }], [p, 'slam'], [p + .05, 'pop', { g: .7 }], [p + .13, 'pop', { g: .7 }], [p + .21, 'pop', { g: .7 }], [b - .05, 'swish'], [b, 'ratchet', { t1: z }], [z, 'boing', { g: 1.2 }], [z + .02, 'thud']]; };
 
-  /* 4 SCOUT: a magnifier sweeps a row of face-down cards; one flips: a 17-year-old nobody wanted. */
+  /* 4 SCOUT: face-down cards in the game's own card backs; the magnifier stops on one and it flips:
+     a real 17-year-old from the game's database (rating and stats from its FC26 data). */
   function sScout(g, t, u) {
     bg(g, '#0c2a2c', t, { glow: 'rgba(34,211,138,.25)' });
     var t0 = at('scout'), seven = at('scout', 'seventeenyearold'), nob = at('scout', 'nobody');
     floor(g, 1330, 'rgba(0,0,0,.25)');
     var xs = [150, 345, 540, 735, 930], pick = 2;
-    var mx = t < seven - .05 ? lerp(120, 900, ss(seg(t, t0, seven - .3))) + 0 : lerp(900, xs[pick], eo(seg(t, seven - .3, seven)));
+    var mx = t < seven - .3 ? lerp(120, 900, ss(seg(t, t0, seven - .3))) : lerp(900, xs[pick], eo(seg(t, seven - .3, seven)));
     xs.forEach(function (x, i) {
-      var flipped = i === pick && t >= seven, fl = i === pick ? seg(t, seven, seven + .25) : 0;
-      var sx = Math.abs(Math.cos(fl * Math.PI)) * (i === pick ? lerp(1, 1.5, eo(seg(t, seven + .1, seven + .5))) : 1);
-      var yy = 830 - (i === pick ? 120 * eo(seg(t, seven + .1, seven + .5)) : 0);
-      if (i === pick && fl > 0) return;
-      card(g, x + (i === pick ? 0 : 0), yy, .55, { hidden: true }, t);
+      if (i === pick && t >= seven) return;
+      gameCard(g, x, 830 + Math.sin(t * 2 + i) * 6, .58, { frame: 'gold-back', back: true, glow: 'rgba(0,0,0,0)' }, t);
     });
-    if (t >= seven) K.burst(g, xs[pick], 760, 330 * pop(t, seven + .05, 3, .5), t - seven, GOLD, null);
     if (t >= seven) {
-      var fl2 = seg(t, seven, seven + .25), scx = Math.abs(Math.sin(fl2 * Math.PI / 2)), scl = lerp(.55, 1.15, eo(seg(t, seven, seven + .45)));
+      K.burst(g, xs[pick], 760, 360 * pop(t, seven + .05, 3, .5), t - seven, GOLD, null);
+      var fl = seg(t, seven, seven + .22), scx = Math.max(.02, Math.abs(Math.sin(fl * Math.PI / 2)));
       g.save(); g.translate(xs[pick], lerp(830, 760, eo(seg(t, seven, seven + .45)))); g.scale(scx, 1);
-      card(g, 0, 0, scl, { ovr: 64, pos: 'ST', name: 'N. VALE', line: 'AGE 17 · POT 94' }, t);
+      gameCard(g, 0, 0, lerp(.58, 1.35, eo(seg(t, seven, seven + .45))), PROSPECT, t);
       g.restore();
     }
-    /* magnifier */
     if (t < seven + .2) {
       g.save(); g.translate(mx, 820 + Math.sin(t * 5) * 18); g.globalAlpha = 1 - seg(t, seven, seven + .2);
       K.circ(g, 0, 0, 95); g.fillStyle = 'rgba(143,233,255,.18)'; g.fill(); g.lineWidth = 16; g.strokeStyle = INK; g.stroke();
       g.save(); g.rotate(.7); K.rr(g, 92, -16, 150, 32, 14); K.fillStroke(g, '#6b4a2b', 8); g.restore(); g.restore();
     }
-    K.popWords(g, ['AGE', '*17.'], W / 2, 330, 140, t - seven, { gap: .12 });
-    if (t >= nob) K.chip(g, 'NOBODY WANTED HIM', W / 2, 1200, 30, { align: 'center', bg: RED, col: C.CREAM });
-    K.actor(g, 150, 1460, .75, t < seven ? 'sneak' : 'point', t < seven ? t - t0 : t - seven, Object.assign({ emote: false }, BOSS), t);
+    K.popWords(g, ['AGE', '*17.'], W / 2, 250, 140, t - seven, { gap: .12 });
+    if (t >= nob) { var k = pop(t, nob, 3, .55); g.save(); g.translate(W / 2, 1210); g.scale(k, k); K.chip(g, 'POTENTIAL 88', 0, 0, 34, { align: 'center', bg: EM, col: INK }); g.restore(); }
+    K.actor(g, 130, 1470, .7, t < seven ? 'sneak' : 'point', t < seven ? t - t0 : t - seven, Object.assign({ emote: false }, BOSS), t);
     captions(g, t);
   }
-  sScout.sfx = function () { var s = at('scout', 'seventeenyearold'); return [[at('scout') - .1, 'whoosh', { d: .3 }], [at('scout') + .2, 'tick', { g: .12 }], [at('scout') + .6, 'tick', { g: .12 }], [s - .05, 'zip'], [s + .05, 'shutter'], [s + .1, 'sparkle'], [s + .14, 'pop', { g: 1.2 }], [at('scout', 'nobody'), 'pop']]; };
+  sScout.sfx = function () { var s = at('scout', 'seventeenyearold'); return [[at('scout') - .1, 'whoosh', { d: .3 }], [at('scout') + .2, 'tick', { g: .12 }], [at('scout') + .6, 'tick', { g: .12 }], [s - .05, 'zip'], [s + .05, 'shutter'], [s + .1, 'sparkle'], [s + .14, 'pop', { g: 1.2 }], [at('scout', 'nobody'), 'ding', { g: .7 }]]; };
 
-  /* 5 TACTICS: a 4-3-3 lands on the board, then press, tempo and width sliders kick on their words. */
-  var F433 = [[0, .92], [-.62, .72], [-.22, .76], [.22, .76], [.62, .72], [-.42, .52], [0, .56], [.42, .52], [-.55, .27], [0, .22], [.55, .27]];
+  /* 5 TACTICS: the real Match Prep screen (4-3-3 on the pitch), then the real instructions screen, with the
+     press, tempo and width sliders circled on their words. */
   function sTactics(g, t, u) {
-    bg(g, '#0b2216', t, { glow: 'rgba(34,211,138,.2)' });
-    var form = at('tactics', 'formation'), pr = at('tactics', 'press'), te = at('tactics', 'tempo'), wi = at('tactics', 'width');
-    var px0 = 150, py0 = 440, pw = 780, ph = 620;
-    g.save(); g.translate(0, 0);
-    K.rr(g, px0, py0, pw, ph, 28); K.fillStroke(g, PITCH, 8);
-    for (var s2 = 0; s2 < 6; s2++) { g.fillStyle = PITCH2; if (s2 % 2) g.fillRect(px0 + 4, py0 + s2 * ph / 6, pw - 8, ph / 6); }
-    g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 5; g.strokeRect(px0 + 30, py0 + 30, pw - 60, ph - 60);
-    g.beginPath(); g.moveTo(px0 + 30, py0 + ph / 2); g.lineTo(px0 + pw - 30, py0 + ph / 2); g.stroke(); K.circ(g, px0 + pw / 2, py0 + ph / 2, 70); g.stroke();
-    g.restore();
-    F433.forEach(function (p, i) {
-      var k = pop(t, form - .2 + i * .04, 3.2, .55), x = px0 + pw / 2 + p[0] * pw * .45, y = py0 + p[1] * ph;
-      /* pressing pushes the line up */
-      y -= 40 * eio(seg(t, pr, pr + .3)) * (i > 0 ? 1 : 0);
-      x += (p[0]) * 60 * eio(seg(t, wi, wi + .3));
-      if (k <= 0) return;
-      g.save(); g.translate(x, y); g.scale(k, k); K.circ(g, 0, 0, 30); K.fillStroke(g, i === 0 ? GOLD : C.CREAM, 6); txt(g, String(i === 0 ? 1 : i + 1), 0, 2, 26, INK, 900); g.restore();
-    });
-    if (t > pr) { K.arrow(g, px0 + pw / 2 - 160, py0 + ph * .5, px0 + pw / 2 - 160, py0 + ph * .22, eio(seg(t, pr, pr + .3)), GOLD, 9, .1); K.arrow(g, px0 + pw / 2 + 160, py0 + ph * .5, px0 + pw / 2 + 160, py0 + ph * .22, eio(seg(t, pr + .08, pr + .38)), GOLD, 9, -.1); }
-    if (t > form) K.chip(g, '4-3-3', px0 + 30, py0 - 40, 30, { bg: GOLD });
-    /* sliders */
-    [['PRESS', pr], ['TEMPO', te], ['WIDTH', wi]].forEach(function (s, i) {
-      var y = 1150 + i * 92, on = t >= s[1], k = eo(seg(t, s[1], s[1] + .3));
-      txt(g, s[0], 160, y, 38, on ? C.CREAM : 'rgba(244,237,224,.4)', 800, 'left', '"Geist Mono"');
-      K.rr(g, 400, y - 10, 520, 20, 10); g.fillStyle = 'rgba(255,255,255,.15)'; g.fill();
-      K.rr(g, 400, y - 10, 520 * lerp(.35, .88, k), 20, 10); g.fillStyle = EM; g.fill();
-      K.circ(g, 400 + 520 * lerp(.35, .88, k), y, 24 * (1 + .25 * Math.max(0, knock(t, s[1] + .3, 20, 7)))); K.fillStroke(g, C.CREAM, 6);
-    });
-    K.popWords(g, ['YOUR', '*CALL.'], W / 2, 300, 130, t - form + .2, { gap: .15, hot: EM });
+    bg(g, '#0b2216', t, { glow: 'rgba(34,211,138,.25)' });
+    var t0 = at('tactics'), form = at('tactics', 'formation'), set = at('tactics', 'set'), pr = at('tactics', 'press'), te = at('tactics', 'tempo'), wi = at('tactics', 'width');
+    var swap = eio(seg(t, set - .15, set + .2));
+    var s = .92, py = 850 + 30 * (1 - eo(seg(t, t0 - .1, t0 + .4)));
+    /* lineup phone slides off left as the instructions phone slides in */
+    if (swap < 1) phone(g, 'lineup', W / 2 + 40 - 900 * swap, py, s, -.03);
+    if (swap > 0) {
+      var x2 = W / 2 + 40 + 900 * (1 - swap), h = phone(g, 'tactics', x2, py, s, .02);
+      /* circles on the sliders: screen y fractions of the instructions screen */
+      var top = py - h * s / 2;
+      [[pr, .80], [te, .55], [wi, .425]].forEach(function (q, i) {
+        if (t < q[0]) return; var yy = top + q[1] * h * s, k = eio(seg(t, q[0], q[0] + .3));
+        K.scribble(g, x2 + 10, yy, 290, 52, k, GOLD, 9, i + 1);
+      });
+    }
+    if (t >= form && swap < .5) { var kk = eio(seg(t, form, form + .35)); K.scribble(g, W / 2 + 40, py - 366, 300, 52, kk, GOLD, 9, 7); }
+    K.popWords(g, ['YOUR', '*CALL.'], W / 2, 190, 120, t - form + .2, { gap: .15, hot: EM });
+    K.actor(g, 120, 1470, .62, t < set ? 'present' : 'point', t - t0, Object.assign({ emote: false }, BOSS), t);
     captions(g, t);
   }
-  sTactics.sfx = function () { var f = at('tactics', 'formation'); var e = [[at('tactics') - .1, 'whoosh', { d: .3 }]]; for (var i = 0; i < 11; i++) e.push([f - .2 + i * .04, 'pop', { g: .45 }]); ['press', 'tempo', 'width'].forEach(function (w) { e.push([at('tactics', w), 'zip']); e.push([at('tactics', w) + .3, 'tick', { g: .3 }]); }); return e; };
+  sTactics.sfx = function () { var e = [[at('tactics') - .1, 'whoosh', { d: .3 }], [at('tactics', 'formation'), 'swish'], [at('tactics', 'set') - .15, 'whoosh', { d: .3 }]]; ['press', 'tempo', 'width'].forEach(function (w) { e.push([at('tactics', w), 'zip']); e.push([at('tactics', w) + .3, 'tick', { g: .3 }]); }); return e; };
+
 
   /* 6 MATCH: the clock races to 90, the last-minute shot, GOAL. */
   function sMatch(g, t, u) {
@@ -293,6 +334,7 @@
     g.save(); g.translate(W / 2, 250);
     K.rr(g, -330, -80, 660, 160, 30); K.fillStroke(g, NAVY2, 8, INK);
     txt(g, score, 0, 4, 100, t >= gl ? GOLD : C.CREAM, 900);
+    pic(g, 'logo', -250, 0, 120); pic(g, 'bayern-munich', 250, 0, 110, 110);
     g.restore();
     K.chip(g, (mins >= 90 && t > last - .2 ? "90+3'" : mins + "'"), W / 2, 395, 34, { align: 'center', bg: t > last - .2 ? RED : EM, col: C.CREAM });
     if (t >= gl) { K.burst(g, W / 2, 620, 300 * pop(t, gl, 3, .5), t - gl, GOLD, 'GOAL!', 1.5); K.confetti(g, 540, 600, t - gl, 120, 3); }
@@ -333,33 +375,40 @@
   }
   sClimb.sfx = function () { var c0 = at('climb'), e = [[c0 - .1, 'whoosh', { d: .3 }]]; for (var i = 0; i < 5; i++) e.push([c0 + .42 * (i + 1) - .05, 'boing', { g: .5 + i * .1 }]); e.push([at('climb', 'climb') + .2, 'sparkle']); e.push([at('scale', '45'), 'slam', { g: .8 }]); e.push([at('scale', '51'), 'slam', { g: .9 }]); e.push([c0 + .42 * 5, 'cheer']); return e; };
 
-  /* 8 PACKS: a gold pack shakes, rips, a card walks out on light rays; then energy timers get crossed out. */
+  /* 8 PACKS: the game's real Gold pack shakes and rips; a real card walks out between the floodlights onto the
+     plinth (the game's walkout art); then energy timers get crossed out. */
   function sPacks(g, t, u) {
     bg(g, '#120a24', t, { glow: 'rgba(242,181,29,.3)', stripe: GOLD });
-    var p0 = at('packs'), day = at('packs', 'day'), no = at('packs', 'no'), en = at('packs', 'energy');
-    var rip = p0 + .55;
+    var p0 = at('packs'), no = at('packs', 'no'), en = at('packs', 'energy');
+    var rip = p0 + .62;
     if (t < no - .1) {
-      /* rays */
-      if (t > rip) { g.save(); g.translate(W / 2, 820); g.rotate(t * .4); g.globalAlpha = .35 * eo(seg(t, rip, rip + .3)); g.fillStyle = GOLDL; for (var i = 0; i < 14; i++) { g.rotate(Math.PI * 2 / 14); g.beginPath(); g.moveTo(0, 0); g.lineTo(-60, -1100); g.lineTo(60, -1100); g.fill(); } g.restore(); }
+      if (t > rip) {
+        g.save(); g.translate(W / 2, 760); g.rotate(t * .4); g.globalAlpha = .35 * eo(seg(t, rip, rip + .3)); g.fillStyle = GOLDL;
+        for (var i = 0; i < 14; i++) { g.rotate(Math.PI * 2 / 14); g.beginPath(); g.moveTo(0, 0); g.lineTo(-60, -1100); g.lineTo(60, -1100); g.fill(); }
+        g.restore();
+        var fk = eo(seg(t, rip, rip + .3));
+        pic(g, 'floodlight', 150, lerp(-200, 330, fk), 260, null, { rot: .25 });
+        pic(g, 'floodlight', 930, lerp(-200, 330, fk), 260, null, { rot: -.25 });
+        pic(g, 'plinth', W / 2, 1210, 640);
+      }
       if (t < rip) {
-        var shk = Math.sin(t * 60) * 12 * seg(t, p0, rip);
-        g.save(); g.translate(W / 2 + shk, 820); g.rotate(shk * .004);
-        K.rr(g, -190, -280, 380, 560, 30); var gr = g.createLinearGradient(0, -280, 0, 280); gr.addColorStop(0, GOLDL); gr.addColorStop(1, GOLDD); g.fillStyle = gr; g.fill(); g.lineWidth = 9; g.strokeStyle = INK; g.stroke();
-        txt(g, 'FREE', 0, -60, 84, INK, 900); txt(g, 'DAILY PACK', 0, 30, 40, INK, 800); K.star(g, 0, 150, 50, 5, .45); K.fillStroke(g, C.CREAM, 6);
+        var shk = Math.sin(t * 60) * 14 * seg(t, p0, rip), ps = 1 + .06 * seg(t, p0, rip);
+        g.save(); g.translate(W / 2 + shk, 800); g.rotate(shk * .004); g.scale(ps, ps);
+        var gl = g.createRadialGradient(0, 0, 60, 0, 0, 520); gl.addColorStop(0, 'rgba(255,214,102,.6)'); gl.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gl; g.fillRect(-600, -600, 1200, 1200);
+        pic(g, 'pack-gold', 0, 0, 470);
         g.restore();
       } else {
-        var k = eo(seg(t, rip, rip + .4));
-        card(g, W / 2, lerp(980, 800, k), lerp(.4, 1.25, k), { ovr: 89, pos: 'CM', name: 'T. ORLO', line: 'GOLD · RARE', kit: C.BLUE }, t);
-        /* torn halves fly */
+        var k = eo(seg(t, rip, rip + .45)), spin = (1 - k) * Math.PI * 3;
+        g.save(); g.translate(W / 2, lerp(1000, 780, k)); g.scale(Math.max(.03, Math.abs(Math.cos(spin))), 1);
+        gameCard(g, 0, 0, lerp(.35, 1.45, k), STAR, t); g.restore();
         var f = seg(t, rip, rip + .5);
-        g.save(); g.globalAlpha = 1 - f; g.translate(W / 2 - 300 * f, 820 - 500 * f); g.rotate(-f * 2); K.rr(g, -190, -100, 380, 200, 20); g.fillStyle = GOLD; g.fill(); g.restore();
-        g.save(); g.globalAlpha = 1 - f; g.translate(W / 2 + 300 * f, 820 + 400 * f); g.rotate(f * 2); K.rr(g, -190, -100, 380, 200, 20); g.fillStyle = GOLDD; g.fill(); g.restore();
-        K.confetti(g, W / 2, 700, t - rip, 80, 9);
+        g.save(); g.globalAlpha = 1 - f; g.beginPath(); g.rect(0, 0, W, 800); g.clip(); pic(g, 'pack-gold', W / 2 - 300 * f, 800 - 500 * f, 470, null, { rot: -f * 2 }); g.restore();
+        g.save(); g.globalAlpha = 1 - f; g.beginPath(); g.rect(0, 800, W, 900); g.clip(); pic(g, 'pack-gold', W / 2 + 300 * f, 800 + 400 * f, 470, null, { rot: f * 2 }); g.restore();
+        K.confetti(g, W / 2, 650, t - rip, 80, 9);
       }
-      K.popWords(g, ['FREE', 'PACKS', '*DAILY'], W / 2, 290, 110, t - p0, { gap: .14, maxW: 960 });
+      K.popWords(g, ['FREE', 'PACKS', '*DAILY'], W / 2, 200, 104, t - p0, { gap: .14, maxW: 1000 });
       K.flash(g, W, H, t - rip, .55);
     } else {
-      /* energy bar, crossed out */
       g.save(); g.translate(W / 2 + 20, 800);
       K.rr(g, -330, -90, 600, 180, 30); K.fillStroke(g, NAVY2, 9, C.CREAM);
       K.rr(g, 270, -40, 40, 80, 8); g.fillStyle = C.CREAM; g.fill();
@@ -376,39 +425,42 @@
     }
     captions(g, t);
   }
-  sPacks.sfx = function () { var p = at('packs'), r = p + .55, en = at('packs', 'energy'); return [[p - .1, 'whoosh', { d: .3 }], [p, 'rise', { t1: r }], [p + .1, 'pop'], [p + .24, 'pop'], [p + .38, 'pop', { g: 1.2 }], [r, 'splat'], [r + .02, 'sparkle', { g: 1.3 }], [r + .05, 'cheer', { g: .8 }], [at('packs', 'no') - .1, 'whoosh', { d: .25 }], [en, 'scratch'], [en + .15, 'slam']]; };
+  sPacks.sfx = function () { var p = at('packs'), r = p + .62, en = at('packs', 'energy'); return [[p - .1, 'whoosh', { d: .3 }], [p, 'rise', { t1: r }], [p + .1, 'pop'], [p + .26, 'pop'], [p + .42, 'pop', { g: 1.2 }], [r, 'splat'], [r + .02, 'sparkle', { g: 1.3 }], [r + .05, 'cheer', { g: .8 }], [r + .45, 'slam', { g: .8 }], [at('packs', 'no') - .1, 'whoosh', { d: .25 }], [en, 'scratch'], [en + .15, 'slam']]; };
 
-  /* 9 CTA: the name slams down with a crown; FREE ON iPHONE. */
+  /* 9 CTA: the game's real crest logo, the name, and the real home screen on a phone. */
   function sCta(g, t, u) {
     bg(g, NAVY, t, { glow: 'rgba(242,181,29,.3)', stripe: GOLD });
     var c0 = at('cta'), fr = at('cta', 'free');
-    /* crown */
-    g.save(); g.translate(W / 2, 470 - 20 * Math.max(0, knock(t, c0 + .1, 18, 6))); var ck = pop(t, c0 - .05, 3, .5); g.scale(ck * 1.6, ck * 1.6);
-    g.beginPath(); g.moveTo(-90, 40); g.lineTo(-100, -50); g.lineTo(-45, -5); g.lineTo(0, -70); g.lineTo(45, -5); g.lineTo(100, -50); g.lineTo(90, 40); g.closePath(); K.fillStroke(g, GOLD, 7);
-    [-100, 0, 100].forEach(function (x, i) { K.circ(g, x, [-50, -70, -50][i], 13); K.fillStroke(g, i === 1 ? RED : EM, 5); });
-    g.restore();
-    K.slam(g, 'DYNASTY', W / 2, 720, fit(g, 'DYNASTY', 190, 980), t - c0, { col: GOLD });
-    K.slam(g, 'MANAGER', W / 2, 900, fit(g, 'MANAGER', 150, 980), t - c0 - .25, { col: C.CREAM });
+    phone(g, 'home', W / 2 + 230, 1180 + 40 * (1 - eo(seg(t, c0, c0 + .5))), .62 * eo(seg(t, c0 - .1, c0 + .3)) + .001, .12);
+    var lk = pop(t, c0 - .05, 3, .5);
+    g.save(); g.translate(W / 2, 360 - 14 * Math.max(0, knock(t, c0 + .1, 18, 6))); g.scale(lk, lk);
+    var gl = g.createRadialGradient(0, 0, 40, 0, 0, 300); gl.addColorStop(0, 'rgba(255,214,102,.5)'); gl.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = gl; g.fillRect(-320, -320, 640, 640);
+    pic(g, 'logo', 0, 0, 360); g.restore();
+    K.slam(g, 'DYNASTY', W / 2, 650, fit(g, 'DYNASTY', 180, 980), t - c0, { col: GOLD });
+    K.slam(g, 'MANAGER', W / 2, 810, fit(g, 'MANAGER', 140, 980), t - c0 - .25, { col: C.CREAM });
     if (t > fr) {
       var k = pop(t, fr, 3, .55);
-      g.save(); g.translate(W / 2, 1110); g.scale(k, k);
-      K.rr(g, -290, -60, 580, 120, 60); K.fillStroke(g, EM, 8);
-      txt(g, 'FREE ON iPHONE', 0, 4, 54, INK, 900); g.restore();
+      g.save(); g.translate(330, 1000); g.scale(k, k); g.rotate(-.04);
+      K.rr(g, -270, -58, 540, 116, 58); K.fillStroke(g, EM, 8);
+      txt(g, 'FREE ON iPHONE', 0, 4, 50, INK, 900); g.restore();
     }
-    K.confetti(g, 540, 600, t - c0 - .2, 70, 4, .8);
-    K.actor(g, 180, 1420, .7, 'present', t - c0, Object.assign({ emote: false }, BOSSC), t);
+    K.confetti(g, 540, 500, t - c0 - .2, 70, 4, .8);
     captions(g, t);
   }
   sCta.sfx = function () { var c = at('cta'), f = at('cta', 'free'); return [[c - .15, 'zip'], [c, 'slam', { g: 1.2 }], [c + .25, 'slam'], [c + .3, 'sparkle'], [f, 'pop', { g: 1.3 }], [f + .05, 'ding']]; };
 
-  /* 10 ASK: he points at you with a crown on; the question. */
+  /* 10 ASK: the game's club crests rain down behind him while he points at you. */
   function sAsk(g, t, u) {
     bg(g, '#0b1a2e', t, { glow: 'rgba(34,211,138,.25)' });
     var a0 = at('ask'), sv = at('ask', 'saving'), fi = at('ask', 'first');
-    floor(g, 1330, 'rgba(0,0,0,.25)');
+    /* crest rain: each crest falls on its own column and phase */
+    CRESTS.forEach(function (n, i) {
+      var col = (i * 7) % 11, x = 60 + col * 96 + (i % 2) * 30, sp = 260 + (i * 53) % 160, y = ((t - a0 + 2 + i * .37) * sp) % 2300 - 200;
+      pic(g, n, x, y, 120, 120, { rot: Math.sin(t * 2 + i) * .3, a: .9 });
+    });
+    floor(g, 1330, 'rgba(0,0,0,.35)');
     var zk = 1 + .1 * eo(seg(t, a0, a0 + 2.5));
     g.save(); K.applyCam(g, W, H, { z: zk, cx: 540, cy: 1000 });
-    K.speedLines(g, W, H, 540, 900, t, .5, { col: C.CREAM, r0: 520 });
     K.actor(g, 540, 1330, 1.55, 'point', t - a0, Object.assign({ emote: false, flip: true }, BOSSC), t);
     g.restore();
     K.popWords(g, ['WHICH', 'CLUB'], W / 2, 170, 92, t - a0, { gap: .12, maxW: 1000 });
@@ -419,6 +471,7 @@
     captions(g, t);
   }
   sAsk.sfx = function () { var a = at('ask'), s = at('ask', 'saving'), f = at('ask', 'first'); return [[a - .1, 'whoosh', { d: .3 }], [a, 'pop', { g: .6 }], [a + .12, 'pop', { g: .6 }], [a + .24, 'pop', { g: .6 }], [a + .36, 'pop', { g: .6 }], [s, 'pop', { g: 1.1 }], [s + .25, 'boing'], [f + .3, 'sparkle', { g: .7 }]]; };
+
 
   /* ---------- the timeline: cuts sit a hair before each line ---------- */
   var DUR = VO.dur;
@@ -458,7 +511,7 @@
   function render(t, samples, shutter, fps) { FILMK.render(ctx, t, samples, shutter, fps); }
   function init(canvas) {
     cv = canvas; ctx = cv.getContext('2d'); cv.width = W; cv.height = H;
-    return Promise.all(K.FONTS.map(function (f) { return document.fonts.load(f, 'Aa0%?!·£'); })).then(function () { return document.fonts.ready; }).then(function () { window.READY = true; });
+    return Promise.all(K.FONTS.map(function (f) { return document.fonts.load(f, 'Aa0%?!·£'); }).concat([loadImages()])).then(function () { return document.fonts.ready; }).then(function () { window.READY = true; });
   }
   window.FILM = { W: W, H: H, DUR: DUR, POSTER: at('goal', 'goal') + .25, SLUG: 'dynasty-manager', SHOTS: SHOTS, init: init, render: render, LIVE: {} };
   window.DUR = DUR; window.EV = EV; window.TEXTS = TEXTS; window.SCORE = SCORE; window.READY = false;

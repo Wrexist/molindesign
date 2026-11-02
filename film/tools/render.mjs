@@ -28,7 +28,7 @@ const PAGE = (FILMDIR ? FILMDIR + '/' : '') + 'index.html';
 let SPEC = { W: 1920, H: 1080, DUR: 34, POSTER: 29.9, SLUG: 'halden-lf1-held' };
 fs.mkdirSync(path.join(OUT, 'check'), { recursive: true });
 
-const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.woff2': 'font/woff2', '.jpg': 'image/jpeg', '.md': 'text/plain' };
+const TYPES = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.woff2': 'font/woff2', '.jpg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.mp3': 'audio/mpeg', '.md': 'text/plain' };
 function serve() {
   return new Promise(res => {
     const srv = http.createServer((req, rsp) => {
