@@ -1,0 +1,83 @@
+{
+  "about": "What incognito mode really hides. Factory #17, backlog row 18, playlist How tech works. One hard idea: incognito only forgets on your device; every page still travels across your network to the site, so the sites, your school or work network and your internet provider can still see you. Checkable by every viewer: Chrome's own incognito screen (Chromium source, components/new_or_sad_tab_strings.grdp, main branch at version 159.0.8135.0, read 2026-10-31): 'Your activity might still be visible to: Websites you visit / Your employer or school / Your internet service provider'; 'Chrome won't save: Your browsing history / Cookies and site data / Information entered in forms'. Google Chrome Help 'Browse in Incognito mode' (read 2026-10-31): 'it doesn't make you invisible. Websites you visit, including Google sites, and organizations that manage your network, like your school, employer, or internet service provider, may be able to observe your activity in Incognito.' Stake, dated: Brown v. Google, N.D. Cal. 4:20-cv-03664-YGR, settlement agreement filed Apr 1, 2024 (ECF 1097-4): Google agreed to delete or remediate at-issue private browsing data, which by 'Google's current estimate' will impact 'billions of event records'; Google denies all claims and admits no liability; no money to users. Hero: the paper envelope route (laptop -> Wi-Fi booth -> provider booth -> website) with the coral stamp YOUR DEVICE ONLY on the shredded history slip in the 1.0 s gap after 'Not for them.'; screenshot hold = the whole route frame, >= 1.2 s still. Narration-led: record the voice first and key every visual beat to its word times. Two planned 1.0 s silences for sound: after 'them.' (hero thump) and after 'records.' (folder slap).",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1,
+  "pace": {
+    "max": 3.9
+  },
+  "names": [
+    "Chrome",
+    "Google"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 46.9
+  },
+  "dur": 29.78,
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.1,
+      "text": "Incognito doesn't make you invisible."
+    },
+    {
+      "id": "ask",
+      "at": 2.18,
+      "text": "So what does incognito mode actually hide?"
+    },
+    {
+      "id": "screen",
+      "at": 4.65,
+      "text": "It's printed on Chrome's own incognito screen."
+    },
+    {
+      "id": "visible",
+      "at": 7.49,
+      "text": "Your activity might still be visible to websites you visit."
+    },
+    {
+      "id": "network",
+      "at": 10.41,
+      "text": "Plus your school or work, and your internet provider."
+    },
+    {
+      "id": "why",
+      "at": 13.2,
+      "text": "Here's why. It only forgets on your device."
+    },
+    {
+      "id": "travel",
+      "at": 15.82,
+      "text": "But every page still crosses your network to the site."
+    },
+    {
+      "id": "hero",
+      "at": 18.64,
+      "text": "It forgets for you. Not for them."
+    },
+    {
+      "id": "settle",
+      "at": 22.14,
+      "text": "In a 2024 settlement, Google agreed to scrub billions of records.",
+      "say": "In a twenty twenty-four settlement, Google agreed to scrub billions of records.",
+      "take": 1
+    },
+    {
+      "id": "end",
+      "at": 26.73,
+      "text": "So, did you think incognito hid you? Yes or no.",
+      "say": "So, did you think incognito hid you, yes or no?"
+    }
+  ],
+  "gap": -0.3
+}

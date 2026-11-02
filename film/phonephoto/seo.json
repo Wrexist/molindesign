@@ -1,0 +1,59 @@
+{
+  "title": "Why phone photos look better than real life",
+  "caption": "Why do phone photos look better than real life? One tap can be nine photos. It starts shooting before you even tap.\nThey're shot too dark on purpose, then stacked so the grain mostly cancels. At night a Pixel stacks up to 15: \"brighter than reality,\" says Google.\nWas your last photo real? Yes or no.",
+  "hashtags": [
+    "#tech",
+    "#phonephotography",
+    "#nightmode",
+    "#computationalphotography",
+    "#learnontiktok"
+  ],
+  "keywords": [
+    "phone photos look better than real life",
+    "why do photos look better than real life",
+    "why do my photos look different after I take them",
+    "how does night mode work on phones",
+    "why do my phone pictures look grainy",
+    "computational photography",
+    "pixel night sight",
+    "iphone deep fusion"
+  ],
+  "cover_text": "Better than real life?",
+  "cover_time": 0.0,
+  "pinned_comment": "Plot twist: at night it flips. Night Sight waits until after you tap, then shoots up to 15 frames handheld, or 6 longer ones (up to a second each) on a tripod (Google, 2018). Do you hold still after you tap? Yes or no.",
+  "post_time_et": "19:00 ET, Wed Oct 28, 2026, scheduled in TikTok Studio (the playbook's 19:00-21:00 ET scheduled window: US evening, when people scroll and look back at the day's photos; qrcode took yesterday's 13:00 ET slot). If the orchestrator gives tonight's slot to another film, use 13:00 ET Thu Oct 29 (18:00 Stockholm, 17:00 UTC). Jury 7.4 is under LESSONS' 8.0 bar for a second post in one day: never stack it on a day that already has a post.",
+  "post_time_stockholm": "00:00 Thu Oct 29 (midnight) = 23:00 UTC Wed Oct 28. Sweden is on CET and the US stays on EDT until Nov 1, so the gap is 5 h this week. Pick the slot from YouTube's dropdown and check the saved time.",
+  "sounds": [
+    {
+      "name": "Sunset in Girona - Noah Preminger & Max Light (first pick)",
+      "why": "Cozy, chill jazz (Metricool's words) under a film whose hero scene is literally a sunset on a pier. Checked 2026-10-28: #1 on Higgsfield tiktok_music_trending (US, ALL, 7DAY; full track 281 s) and #1 on Metricool 'Trending TikTok Songs This Week: Oct 27th, 2026'. Length checked: the track is 4:41, and its in-app clip is 1:00 (LESSONS, gps), which covers the 32.6 s film. Vocals: unhinted Whisper (small.en, VAD) heard no lyrics in the first 60 s, only a one-line music hallucination. Last used on fyp (Oct 24), 4 posts back, so allowed."
+    },
+    {
+      "name": "Hidden Truth Revealed - Adauto Assis",
+      "why": "A reveal for a 'your photo isn't one moment' reveal. Never on our posts. Checked 2026-10-28: #2 on Higgsfield tiktok_music_trending (US, ALL, 7DAY; track 182 s). Not on Metricool's Oct 27 top 10, and no page describes its mood: preview it in the app before using. Vocals: Whisper heard no speech in the first 60 s."
+    },
+    {
+      "name": "Final Game Showdown - ProdByLucK (keep near 5 %)",
+      "why": "'Slow-building, suspenseful' (Metricool): fits the build from one dark frame to 15 stacked. Never on our posts. Checked 2026-10-28: #6 on Higgsfield tiktok_music_trending (US, ALL, 7DAY; track 114 s) and #4 on Metricool (Oct 27, 2026). Vocals: Whisper heard no speech in the first 60 s (first time this was checked)."
+    }
+  ],
+  "sound_note": "Skipped by rule, the last three posts: Self Aware (qrcode), Espresso Soul (battery), Mint Breeze (memory). How checked, 2026-10-28: Higgsfield tiktok_music_trending, US, returned 98 tracks for ALL 7DAY this time (it returned 0 on Oct 23-26), so the first two picks are on TikTok's own US chart; CHILL_BEATS 7DAY returned 16 lo-fi tracks (Late Spring, BCD Studio, #1, 64 s) but none also on Metricool, so they're passed over. Metricool's newest weekly list is Oct 27, 2026 (#1 Sunset in Girona, #2 Time Back, #3 Self Aware, #4 Final Game Showdown); it doesn't say it is US-only. Vocals: the full tracks TikTok's preview links serve were run through unhinted faster-whisper small.en with VAD over 0-60 s. Passed over: Time Back (#3 Higgsfield, techno), V-Cut, G-Lock, H.O.M.P. and r o l l i t u p (vocal), SHADOWS FALL (uptempo techno). TikTok drafts don't keep music, so Isac adds the sound in the app at about 5-10 % under out/phonephoto-voice-only.mp4 (32.6 s; the film has no music bed). It can't be changed after posting.",
+  "youtube_title": "Why Phone Photos Look Better Than Real Life 🤔",
+  "youtube_description": "One tap. Nine photos. So why do phone photos look better than real life? Because your photo isn't one moment. It's a blend.\n\nIt starts shooting before you even tap. Google says that as soon as you open the Pixel camera app, it begins capturing frames into a buffer that keeps erasing the oldest ones; when you press the shutter, it sends the most recent 9 or 15 frames to its HDR+ software. Apple said the same kind of thing about Deep Fusion on the iPhone 11 Pro at its September 10, 2019 event: nine images, most of them shot before you press the button.\n\nHere's the trick. Google's HDR+ captures \"a rapid series of deliberately underexposed images\". Shooting dark keeps the bright sky from turning white, but dark frames come out grainy. So the phone lines the frames up and averages them. The grain is random and changes every frame; the scene doesn't. Averaging keeps the scene and thins out the grain. Google: \"The idea of averaging frames to reduce imaging noise is as old as digital imaging.\"\n\nAt night, a Pixel's Night Sight stacks up to 15 frames handheld (6 longer ones on a tripod). In Google's own words, it takes clean shots \"and makes them brighter than reality.\"\n\nSo, was your last photo real? Yes or no.\n\nFine print: frame counts are what Google said for Pixel phones (2018: 9 or 15 frames on the shutter press, up to 15 for Night Sight handheld; 2021: between 2 and 15 frames depending on conditions) and what Apple said for the iPhone 11 Pro's Deep Fusion in 2019 (nine images). Other phones and newer models may differ, and no single number fits every phone or every shot. \"Starts shooting before you tap\" is about the everyday photo; Google says Night Sight in dim light waits until after you press the shutter. \"Too dark on purpose\" describes HDR+'s capture strategy; since 2021 Pixel's HDR+ with Bracketing adds some longer frames, and Deep Fusion adds one long exposure. \"The grain mostly cancels\" is our plain wording: averaging reduces noise, it doesn't remove it. Apple's nine-image figure comes from its keynote, which we could not re-check word for word, so it is not shown as a quote. The pier, sunset and night scenes are hand-made illustrations, not real photos, and the stacking in the video is a real per-pixel average of nine frames with random grain.\n\nSources:\n- Google Research blog, \"Night Sight: Seeing in the Dark on Pixel Phones\", Marc Levoy and Yael Pritch, Nov 14, 2018 (read Oct 28, 2026): https://research.google/blog/night-sight-seeing-in-the-dark-on-pixel-phones/\n- Google Research blog, \"HDR+ with Bracketing on Pixel Phones\", Apr 23, 2021 (read Oct 28, 2026): https://research.google/blog/hdr-with-bracketing-on-pixel-phones/\n- Hasinoff et al., \"Burst photography for high dynamic range and low-light imaging on mobile cameras\", SIGGRAPH Asia 2016: https://research.google/pubs/burst-photography-for-high-dynamic-range-and-low-light-imaging-on-mobile-cameras/\n- Apple special event, Sept 10, 2019 (Deep Fusion, iPhone 11 Pro); Apple Newsroom, Sept 10, 2019: https://www.apple.com/newsroom/2019/09/iphone-11-pro-and-iphone-11-pro-max-the-most-powerful-and-advanced-smartphones/\n\nHow tech works, part 5. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.\n\n#shorts #tech #phonephotography",
+  "youtube_tags": [
+    "phone photos look better than real life",
+    "why do photos look better than real life",
+    "how does night mode work",
+    "night sight",
+    "deep fusion",
+    "computational photography",
+    "hdr+",
+    "how tech works",
+    "tech explained",
+    "shorts"
+  ],
+  "youtube_playlist": "How tech works",
+  "series": "How tech works, part 5",
+  "is_aigc": true,
+  "disclosure": "AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes"
+}

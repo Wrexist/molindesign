@@ -1,0 +1,91 @@
+{
+ "about": "How AI clones a voice from 3 seconds. Factory #18, backlog row 19, playlist How AI works. One hard idea: to a voice-cloning model, your voice is just numbers. Checkable by every viewer: Microsoft's VALL-E paper (arXiv 2301.02111, submitted Jan 5, 2023) and its research page (read 2026-11-01): 'synthesize high-quality personalized speech with only a 3-second enrolled recording of an unseen speaker as an acoustic prompt'; 'This page is for research demonstration purposes only.' Mechanism from the paper: a neural audio codec (EnCodec) turns sound into discrete codes ('given a 10-second waveform, the discrete representation is a matrix with 750 x 8 entries', so 3 s = 225 x 8 = 1,800 codes, our math), the language model predicts new codes 'conditioned on a phoneme sequence x and an acoustic prompt matrix', and the codec decoder turns them back into sound. Condition from the page: 'the similarity, and naturalness depend on the length and quality of the speech prompt'. Stake, dated: FBI PSA I-120324-PSA, Dec 3, 2024: 'Criminals generate short audio clips containing a loved one's voice to impersonate a close relative in a crisis situation, asking for immediate financial assistance or demanding a ransom.' Tip, same page: 'Create a secret word or phrase with your family to verify their identity.' Hero: the paper voice tape (8 rows of number tiles) with the coral stamp JUST NUMBERS in the 1.2 s silence after 'just numbers.'; screenshot hold = whole tape frame, >= 1.2 s still. No how-to beyond the paper's high-level pipeline. Narration-led: record the voice first and key every visual beat to its word times. Two planned silences for sound: 1.2 s after 'numbers.' (hero thump) and 0.9 s after 'voices.' (FBI folder slap).",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.9
+ },
+ "names": [
+  "Microsoft",
+  "FBI"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 53.3
+ },
+ "dur": 31.89,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Only three seconds of your voice."
+  },
+  {
+   "id": "ask",
+   "at": 2.23,
+   "text": "So how does AI voice cloning work?"
+  },
+  {
+   "id": "paper",
+   "at": 4.33,
+   "text": "It's in Microsoft's own 2023 paper.",
+   "say": "It's in Microsoft's own twenty twenty-three paper."
+  },
+  {
+   "id": "numbers",
+   "at": 6.99,
+   "text": "First, those three seconds become 1,800 numbers.",
+   "say": "First, those three seconds become eighteen hundred numbers.",
+   "take": 1
+  },
+  {
+   "id": "predict",
+   "at": 10.35,
+   "text": "Then it predicts numbers for words you never said."
+  },
+  {
+   "id": "sound",
+   "at": 13.45,
+   "text": "Played back, they can sound like you."
+  },
+  {
+   "id": "hero",
+   "at": 15.51,
+   "text": "To the model, your voice is just numbers."
+  },
+  {
+   "id": "fbi",
+   "at": 19.22,
+   "text": "In 2024, the FBI warned that criminals fake loved ones' voices.",
+   "say": "In twenty twenty-four, the FBI warned that criminals fake loved ones' voices."
+  },
+  {
+   "id": "tip",
+   "at": 24.26,
+   "text": "Its tip: a secret word with your family."
+  },
+  {
+   "id": "secret",
+   "at": 26.86,
+   "text": "The copy has your sound, not your secret.",
+   "take": 1
+  },
+  {
+   "id": "end",
+   "at": 29.55,
+   "text": "So, does your family have one? Yes or no.",
+   "say": "So, does your family have one, yes or no?"
+  }
+ ],
+ "gap": -0.3
+}

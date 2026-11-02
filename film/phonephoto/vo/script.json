@@ -1,0 +1,91 @@
+{
+  "about": "Why your phone photos look better than real life. Factory #13, backlog row 14. Number hook, then one mechanism (stack dark frames, the grain cancels), then an escalation (night: up to 15) and Google's own words as the payoff. Nine is sourced twice: Apple's Sept 10, 2019 event on Deep Fusion (iPhone 11 Pro): 'It shoots nine images.' (Phil Schiller, transcribed by iMore; verify against Apple's event video), and Google's Night Sight post (Nov 14, 2018): on shutter press the Pixel camera 'sends the most recent 9 or 15 frames to our HDR+ or Super Res Zoom software'; it was already capturing 'As soon as you open the camera app'. HDR+ captures 'a rapid series of deliberately underexposed images' (Google, Apr 23, 2021), which keeps the sky from clipping to white at the cost of noisy shadows; merging the burst reduces noise (Hasinoff et al., SIGGRAPH Asia 2016; Google 2018: 'averaging frames to reduce imaging noise'). Night Sight captures 'up to 15 if it is handheld' and 'makes them brighter than reality' (Google, Nov 14, 2018). Hero moment: line 'stack', nine grainy translucent sheets snap into alignment and the grain fades; the film's only coral stamp, 9 -> 1. Screenshot frame: lines 'night'-'reality', 1 FRAME vs 15 STACKED with Google's quote. Narration-led: record the voice first and key every visual beat to its word times.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.9
+  },
+  "names": [
+    "Google",
+    "Pixel"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 52.0
+  },
+  "dur": 32.58,
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.11,
+      "text": "One tap. Nine photos."
+    },
+    {
+      "id": "ask",
+      "at": 2.1,
+      "text": "So why do phone photos look better than real life?"
+    },
+    {
+      "id": "before",
+      "at": 4.64,
+      "text": "It starts shooting before you even tap."
+    },
+    {
+      "id": "dark",
+      "at": 6.69,
+      "text": "Here's the trick. They're shot too dark, on purpose."
+    },
+    {
+      "id": "sky",
+      "at": 10.05,
+      "text": "That keeps the bright sky from turning white."
+    },
+    {
+      "id": "grain",
+      "at": 12.42,
+      "text": "But dark frames come out grainy."
+    },
+    {
+      "id": "stack",
+      "at": 14.58,
+      "text": "So it stacks them. The grain mostly cancels out."
+    },
+    {
+      "id": "why",
+      "at": 18.56,
+      "text": "Grain changes every frame. The scene doesn't."
+    },
+    {
+      "id": "night",
+      "at": 21.58,
+      "text": "At night, a Pixel stacks up to 15.",
+      "say": "At night, a Pixel stacks up to fifteen."
+    },
+    {
+      "id": "reality",
+      "at": 24.35,
+      "text": "In Google's own words, brighter than reality."
+    },
+    {
+      "id": "blend",
+      "at": 27.42,
+      "text": "Your photo isn't one moment. It's a blend."
+    },
+    {
+      "id": "end",
+      "at": 29.99,
+      "text": "Was your last photo real? Yes or no."
+    }
+  ],
+  "gap": -0.3
+}
