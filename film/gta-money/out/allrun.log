@@ -1,0 +1,79 @@
+hook         0.20–  3.12  (slot to 3.20)  speed 1.06  2.40 w/s
+three        3.35–  6.85  (slot to 6.95)  speed 1.10  2.00 w/s
+said         7.10– 10.14  (slot to 10.40)  speed 0.92  3.62 w/s
+movie       10.55– 13.13  (slot to 14.30)  speed 1.00  3.10 w/s
+still       14.45– 18.57  (slot to 19.55)  speed 1.00  2.18 w/s
+six         19.70– 22.27  (slot to 22.50)  speed 1.00  2.33 w/s
+end         22.65– 25.12  (slot to 25.75)  speed 1.00  3.24 w/s
+wrote out/vo/vo.wav, vo.json, vo.srt and vo/vo.js
+
+LISTEN CHECK  (Whisper hears each line; fix word error > 10 % or pace outside 1.8 w/s to pace.max + 0.3; soft = words heard under 0.45 confidence, listen to those)
+ok    hook       wer 0.00  2.40 w/s    (soft: A 0.20, Billion 0.41, Three 0.22)
+ok    three      wer 0.00  2.00 w/s    (soft: Take 0.43)
+ok    said       wer 0.00  3.62 w/s  
+ok    movie      wer 0.00  3.10 w/s  
+ok    still      wer 0.00  2.18 w/s    (soft: And 0.14)
+ok    six        wer 0.00  2.33 w/s  
+ok    end        wer 0.00  3.24 w/s  
+wrote out/mix.wav
+
+READCHECK  (need ≥ letters/15 + 1.5 s, and ≥ 1.8 s)
+ok    pill   13.46s / 1.80s  "GTA 5"
+ok    band   3.29s / 2.10s  "$1 BILLION"
+ok    cover  3.00s / 1.83s  "3 DAYS"
+ok    est    2.67s / 2.57s  "TAKE-TWO ESTIMATE"
+ok    cal    2.50s / 2.30s  "SEP 17-19 2013"
+ok    quote  6.75s / 6.63s  "“…the fastest that any entertainment property … has reached this significant milestone.”"
+ok    qsrc   5.63s / 2.77s  "TAKE-TWO, SEPT 20 2013"
+ok    mcap   3.04s / 2.83s  "FASTEST MOVIES (2012):"
+ok    case   6.00s / 1.80s  "GTA 5"
+ok    ticket 6.00s / 2.63s  "THE AVENGERS (2012)"
+ok    d3     5.42s / 1.83s  "3 DAYS"
+ok    d19    3.71s / 1.90s  "19 DAYS"
+ok    stamp  2.63s / 2.10s  "3 VS 19 DAYS"
+ok    count  3.13s / 2.30s  "230,000,000+"
+ok    src    3.13s / 3.10s  "SOLD-IN · TAKE-TWO, AUG 2026"
+ok    pill6  2.38s / 1.80s  "GTA 6"
+ok    nov    4.83s / 2.10s  "NOV 19 2026"
+ok    l5     2.04s / 1.80s  "GTA 5"
+ok    l6     2.04s / 1.80s  "GTA 6"
+ok    yes    1.92s / 1.80s  "YES"
+ok    no     1.92s / 1.80s  "NO"
+wrote gta-money/out/check/sheet.jpg
+wrote gta-money/out/poster.jpg
+frame 60/773  192 ms/frame
+frame 120/773  196 ms/frame
+frame 180/773  205 ms/frame
+frame 240/773  203 ms/frame
+frame 300/773  202 ms/frame
+frame 360/773  199 ms/frame
+frame 420/773  197 ms/frame
+frame 480/773  200 ms/frame
+frame 540/773  205 ms/frame
+frame 600/773  207 ms/frame
+frame 660/773  208 ms/frame
+frame 720/773  208 ms/frame
+wrote out/video.mp4
+wrote gta-money/out/gta-money.mp4
+
+CHECKS
+stream|codec_name=h264|width=1080|height=1920|r_frame_rate=30/1
+stream|codec_name=aac|r_frame_rate=0/0
+format|duration=25.766667
+integrated I:         -16.9 LUFS   true peak Peak:       -2.5 dBFS
+black spans ≥0.4 s: none
+duck -6 dB over 5 phrases; voice set +14.3 dB for a 39 dB speech-to-music ratio
+wrote /home/user/molindesign/film/gta-money/out/gta-money-vo.mp4
+integrated -14.0 LUFS   true peak -2.7 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "GTA 5, A Billion Dollars, Three Days."
+ok    three      wer 0.00  heard "That's Take -Two's own estimate, from September 2013."
+ok    said       wer 0.00  heard "They said no game or movie had ever been that fast."
+ok    movie      wer 0.00  heard "The fastest movies back then took 19 days."
+ok    still      wer 0.00  heard "And GTA 5 kept selling over 230 million copies."
+ok    six        wer 0.00  heard "GTA 6 comes out November 19th."
+ok    end        wer 0.00  heard "Can it beat three days? Yes or no?"
+gta-money-vo:  I: -14.0 LUFS  Peak: -2.7 dBFS 
+gta-money-voice-only:  I: -14.3 LUFS  Peak: -1.4 dBFS 
+no black stretches

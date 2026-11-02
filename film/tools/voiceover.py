@@ -87,11 +87,15 @@ def words(text):
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
 WEAK = set('a an the of to in on at for with and or but it its is as by from that this'.split())
-SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6', 'mt': 'mount'}
+SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6', 'v': '5', 'mt': 'mount'}
 
 
 def norm(w):
     w = re.sub(r"[^\w']", '', w.lower().replace('’', "'"))
+    # ordinals are the same word spoken: Whisper writes "nineteenth" as 19th one pass and 19 the next
+    w = re.sub(r'^(\d+)(?:st|nd|rd|th)$', r'\1', w)
+    if w.endswith('th') and w[:-2] in NUM:
+        w = w[:-2]
     return SAME.get(NUM.get(w, w), NUM.get(w, w))
 
 
