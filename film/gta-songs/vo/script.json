@@ -1,0 +1,111 @@
+{
+  "about": "GTA 6 trailer songs: GTA 6's first trailer turned Tom Petty's 1989 B-side 'Love Is a Long Road' into a streaming spike (Spotify to BBC Newsbeat: +36,979% vs the week before). Trailer 2 did it again with the Pointer Sisters; the launch trailer broke the pattern with a new Justice song. No music played. Factory Delta #5.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Spotify",
+    "BBC",
+    "Tom Petty",
+    "Pointer Sisters",
+    "Justice"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 56
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.3,
+      "text": "GTA 6 revived",
+      "say": "G T A 6 revived",
+      "speed": 1.1
+    },
+    {
+      "id": "hook2",
+      "at": 2.25,
+      "text": "a 1989 song.",
+      "say": "a nineteen eighty-nine song.",
+      "speed": 1.1
+    },
+    {
+      "id": "song",
+      "at": 3.95,
+      "text": "The GTA 6 trailer song? Tom Petty, \"Love Is a Long Road.\"",
+      "say": "The G T A 6 trailer song? Tom Petty, Love Is a Long Road."
+    },
+    {
+      "id": "bside",
+      "at": 8.83,
+      "text": "It wasn't even a single. Just a B-side.",
+      "say": "It wasn't even a single. Just a B side."
+    },
+    {
+      "id": "ask",
+      "at": 12.3,
+      "text": "What can one trailer do to an old song?",
+      "say": "What can one trailer do... to an old song?"
+    },
+    {
+      "id": "bbc",
+      "at": 15.25,
+      "text": "Here's what Spotify told the BBC.",
+      "say": "Here's what Spotify told the B B C."
+    },
+    {
+      "id": "num",
+      "at": 18.2,
+      "text": "Streams jumped about 37,000 percent.",
+      "say": "Streams jumped about thirty-seven thousand percent.",
+      "speed": 1.05,
+      "take": 1
+    },
+    {
+      "id": "week",
+      "at": 21.8,
+      "text": "That's against the week before the trailer."
+    },
+    {
+      "id": "never",
+      "at": 24.45,
+      "text": "Spotify said soundtracks had spiked before, but never anything like this."
+    },
+    {
+      "id": "two",
+      "at": 29.35,
+      "text": "Then trailer two did it again, with the Pointer Sisters."
+    },
+    {
+      "id": "but",
+      "at": 32.9,
+      "text": "But the launch trailer broke the pattern."
+    },
+    {
+      "id": "new",
+      "at": 35.55,
+      "text": "A brand-new song, from Justice, the composers of the game.",
+      "say": "A brand new song, from Justice, the composers of the game."
+    },
+    {
+      "id": "end",
+      "at": 39.3,
+      "text": "So which trailer song wins: old or new?"
+    }
+  ],
+  "dur": 43.05
+}

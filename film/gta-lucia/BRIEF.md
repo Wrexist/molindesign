@@ -1,0 +1,76 @@
+# Lucia breaks the lineup (GTA 6, Delta #6)
+
+Slug `gta-lucia` · backlog row 6 · researched 2026-10-30 · post slot 2026-10-31 (ET) · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, AI voice disclosed in the post), own graphics, no Rockstar footage, logo, key art or likeness of Lucia (our own flat silhouette only). GTA 6 launches **November 19, 2026** on PS5 and Xbox Series X|S (rockstargames.com/VI, re-read 2026-10-30).
+
+## 1. Topic and one hard idea
+**Count every story lead since GTA went 3D with GTA III in 2001: thirteen, all men. GTA 6's Lucia Caminos is the first woman to lead a GTA story since then.** One hero number (13) and one hero image (a police lineup wall with 13 grey silhouettes and one empty pink slot); the poster carries both.
+
+**Why the backlog hook was replaced.** "GTA has never done this before" is false: the first *Grand Theft Auto* (1997) let PC players pick from eight characters, and four were women (Divine, Katie, Mikki, Ulrika; LevelUp; Shacknews also says the original "had selectable female protagonist"). GTA Online (2013) also lets you create a female avatar (Game Informer). So the film claims only what our count supports: *story leads* since 2001. The 1997 fact is kept as the turn (and the DM-able moment), so the film corrects the popular "first ever" myth instead of repeating it. **Rockstar itself never says "first"** on its pages; the count is ours and is labeled OUR COUNT on screen.
+
+**One stake:** the lineup every GTA story since 2001 has filled with men gets its first woman on November 19. **Not a history walk:** the 13 leads appear as one image (the lineup fills in about 3 s), with only 7 names spoken; no per-game cards.
+
+**Main search phrase:** `GTA 6 Lucia` (spoken at ~16.5 s; "GTA 6" spoken from 0.3 s in the hook, "Lucia" shown as text from the ask line). Secondary for SEO: `GTA 6 female protagonist`, `first female GTA protagonist`, `Lucia Caminos`.
+
+## 2. Hook options
+1. **"GTA 6 breaks a 13-man lineup."** (chosen; 6 words, "GTA 6" first, the hero number and a picture in one line: a police lineup is GTA's own world. Line 2 defines the set at once, "every GTA story lead since GTA 3, in 2001", so the number is never left unscoped.)
+2. "GTA 6 changes who you play." (6 words, true, but no number and no picture.)
+3. "GTA 6 breaks a 25-year pattern." (6 words; puts a second number, 25 years, against the 13 and invites "what about GTA 2?" since the pattern's start before 2001 isn't sourced. Rejected per LESSONS "one hero number".)
+
+## 3. Facts used (all checked 2026-10-30)
+| # | Fact | Line | Source |
+|---|---|---|---|
+| 1 | GTA VI "November 19, 2026"; PlayStation 5 and Xbox Series X\|S. Rockstar's page says "Jason and Lucia's story" and "Jason and Lucia have always known the deck is stacked against them" (two leads). | lucia, end chip | https://www.rockstargames.com/VI ; Newswire: https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026 (checked for gta-songs 2026-10-29) |
+| 2 | Lucia's full name **Lucia Caminos**, Jason's **Jason Duval** (Rockstar's people menu). | lucia | https://www.rockstargames.com/VI/only-in-leonida/lucia (page source, read 2026-10-30) |
+| 3 | Rockstar's own words: "Lucia's father taught her to fight as soon as she could walk." | dad | same Rockstar page |
+| 4 | Rockstar's own words: "Fresh out of prison and ready to change the odds in her favor, Lucia's committed to her plan — no matter what it takes." (Also: "Fighting for her family landed her in the Leonida Penitentiary.") | prison | same Rockstar page |
+| 5 | GTA III (October 2001) "brought the series into a three-dimensional environment for the first time"; player controls "the mute criminal Claude". NA PS2 release 23 Oct 2001. | since, names | https://en.wikipedia.org/wiki/Grand_Theft_Auto ; https://en.wikipedia.org/wiki/Grand_Theft_Auto_III |
+| 6 | Every GTA title from 2001 to 2013 (Wikipedia's series list: III, Vice City, San Andreas, Advance, Liberty City Stories, Vice City Stories, IV, The Lost and Damned, Chinatown Wars, The Ballad of Gay Tony, V; GTA VI next) and its story lead(s): Claude (III), Tommy Vercetti (Vice City), Carl "CJ" Johnson (San Andreas), Mike (Advance), Toni Cipriani (LCS), Victor "Vic" Vance (VCS), Niko Bellic (IV), Johnny Klebitz (TLAD), Huang Lee (Chinatown Wars), Luis Fernando Lopez (TBoGT), Michael De Santa, Franklin Clinton, Trevor Philips (V). All men. | names, hero | https://en.wikipedia.org/wiki/Grand_Theft_Auto (series list) and each game's article: .../Grand_Theft_Auto:_Vice_City , .../Grand_Theft_Auto:_San_Andreas , .../Grand_Theft_Auto_Advance , .../Grand_Theft_Auto:_Liberty_City_Stories , .../Grand_Theft_Auto:_Vice_City_Stories , .../Grand_Theft_Auto_IV , .../Grand_Theft_Auto_IV:_The_Lost_and_Damned , .../Grand_Theft_Auto:_Chinatown_Wars , .../Grand_Theft_Auto:_The_Ballad_of_Gay_Tony , .../Grand_Theft_Auto_V |
+| 7 | **HERO, derived (our count): 13 story leads, 2001–2013, all men.** 10 single-leads + GTA V's three = 13. Remasters (2021 Trilogy) add no new leads. Counted as "story leads" = the single-player protagonists in item 6; GTA Online / multiplayer avatars are not story leads (see 9). On screen: OUR COUNT · STORY MODES · SINCE GTA III. | hook, hero | derived from item 6 |
+| 8 | **Turn / DM-able:** the original *Grand Theft Auto* (1997) let you choose "a character from among eight—four in the PlayStation version" (Wikipedia; PC/DOS released 28 Nov 1997 in Europe); four of them were women: Divine, Katie, Mikki, Ulrika (LevelUp, 5 Dec 2023). Shacknews (Donovan Erskine, 4 Dec 2023): "the original Grand Theft Auto had selectable female protagonist" and Lucia "will be the first woman protagonist in a mainline entry since the franchise made the jump" to open world with GTA 3. Show **1997 · PC**: whether the PlayStation four included a woman is not confirmed. | but, first | https://en.wikipedia.org/wiki/Grand_Theft_Auto_(video_game) ; https://www.levelup.com/en/news/gta-6-lucia-is-not-the-first-female-protagonist-in-the-franchise/ ; https://www.shacknews.com/article/137976/gta-6-female-protagonist |
+| 9 | GTA Online (2013): "you create your own unique male or female" (Game Informer, Matt Bertz, 12 Sep 2013). Why the film says "story lead", never "playable woman", for the 3D era. Small chip only. | since3d chip | https://www.gameinformer.com/games/grand_theft_auto_v/b/ps3/archive/2013/09/12/hands-on-with-rockstars-ambitious-take-on-online-play.aspx |
+| 10 | Other outlets framing it the same way: Insider Gaming, "the first of her kind since 1997's GTA" (5 Dec 2023); PC Gamer headline "the series' first proper leading lady". Context only, not on screen. | — | https://insider-gaming.com/who-is-lucia-gta-6/ ; https://www.pcgamer.com/with-grand-theft-auto-6s-lucia-being-the-series-first-proper-leading-lady-im-hoping-she-doesnt-become-another-caricature-or-stereotype |
+
+**Not used / uncertain:** GTA 2 and the London 1969/1961 packs (1999): Wikipedia doesn't say whether a woman could be picked, so the film says nothing about 1998–2000 and never claims "no woman since 1997" or a 29-year streak. "Lucia is the 5th / 8th female protagonist" counts (LevelUp vs GTABoom disagree). Anything from the leaks. Any claim about how switching between Jason and Lucia works (Rockstar hasn't described it), so the end question doesn't say "play first". Lucia's voice actor (not on Rockstar's page). "Her mom dreamed of the good life since their days in Liberty City" (Rockstar page; nice, but a second idea).
+
+## 4. Shot ideas per line (Delta look: flat hand-built shapes, pink #ff4fa3, teal #19d3c5, sunset orange #ff8a3d on deep ink, cream type; our own art only, no character likenesses)
+**Native move: the lineup wall.** A police lineup back wall fills y 330–1400: cream height-chart lines every 80 px with small numbers, teal rule lines, two rows of seven slots (row 1 y 360–860, row 2 y 900–1400), x 110–910. Each lead is a flat grey head-and-shoulders silhouette (generic, not a likeness) with a name placard (cream, 30 px). A slot fills with a **clack** (placard drop) and a short flash bulb. Slot 14 stays empty, outlined in pink, with a "?". This one wall stays on screen from frame 0 to the end; everything happens on it (fills y 300–1430 the whole film).
+
+| Line | Picture |
+|---|---|
+| hook "GTA 6 breaks a 13-man lineup." | Frame 0 (by 0.3 s): the lineup wall already full, 13 grey silhouettes, slot 14 empty pink "?"; a GTA 6 pill top-left; the "13" in orange on the height chart. On "breaks" the pink slot's frame cracks (a crack line runs across the wall, sound: glass tick). |
+| since "Count every GTA story lead since GTA 3, in 2001." | Wall empties (silhouettes slide down out of frame), a chip SINCE GTA III · 2001 · STORY MODES top; a counter 00 on the height chart. |
+| names "Claude. Tommy. CJ. Niko. Michael, Franklin, Trevor." | Slots fill left to right, row 1 then row 2, one clack per spoken name, plus the six unspoken leads (Mike, Toni, Vic, Johnny, Huang, Luis) filling in between at a faster tick; each placard shows the name and game (CLAUDE · III, TOMMY · VICE CITY …). Counter climbs with each clack. |
+| hero "Thirteen leads. Every single one, a man." | **Hero.** Counter lands on **13** (orange, ≥ 160 px, in the empty pink slot area or on the height chart), a MEN stamp; tag OUR COUNT only after it lands. **Pause 0.9 s after "man."**: a stamp thud + a long flash-bulb whine. **Poster frame** in this pause: 13 grey silhouettes, big 13, empty pink slot 14 with "?". |
+| ask "So who finally breaks the lineup?" | Camera pushes toward slot 14; the "?" pulses; the other 13 dim. |
+| lucia "Lucia Caminos. She shares GTA 6 with Jason Duval." | Slot 14 fills with a **pink** silhouette (generic, long hair shape, not Rockstar's design) and placard LUCIA CAMINOS · GTA 6; on "Jason" a teal silhouette JASON DUVAL slides in beside her as a 15th placard outside the wall's frame, label CO-LEADS. Search caption GTA 6 LUCIA. Source line ROCKSTARGAMES.COM/VI. |
+| dad "Her dad taught her to fight, Rockstar says." | Lucia's placard flips: Rockstar's line in quote marks, "taught her to fight as soon as she could walk." Small pair of flat boxing gloves drawn beside it. |
+| prison "Now she's fresh out of prison, with a plan." | Height-chart wall turns into the penitentiary gate (two bars slide away), chip LEONIDA PENITENTIARY (Rockstar's name); a folded plan note with a pink X. |
+| but "But she's not GTA's first playable woman." | Hard stop: the wall rewinds (sound: rewind sweep in the gap before "But"); a chip NOT THE FIRST. |
+| first "The very first GTA, in 1997, let you pick one." | **DM-able.** A pixel-art top-down character-select strip (our own 8 pixel figures, 4 tinted pink) with chip 1997 · PC · PICK YOUR CHARACTER; placards DIVINE · KATIE · MIKKI · ULRIKA under the pink ones. Pause 0.4 s after "one." (pixel blip). |
+| since3d "Since GTA went 3D, she's the first woman lead." | Back to the lineup: 13 grey + pink Lucia; stamp FIRST SINCE 2001; small grey chip STORY LEADS · ONLINE AVATARS NOT COUNTED. |
+| end "Who are you here for: Lucia or Jason?" | Two vote chips LUCIA / JASON, same style, neither highlighted (LESSONS gta-songs); chip GTA 6 · NOV 19, 2026 at y ~1260; wall dims back to the frame-0 lineup for the loop. |
+
+Turn words: "So" ~14.0 s, "But" ~26.9 s, "Since" ~34.5 s; new object every 2–4 s (the lineup fill carries 6.7–13 s).
+
+**Sound plan (write it in, LESSONS gta-songs r2):** clack per name in the gaps between names; a speeding tick roll under the six unspoken leads just after "Trevor."; the 13 stamp + bulb whine in the 0.9 s pause after "man."; rewind sweep in the gap before "But"; pixel blip in the 0.4 s pause after "one.". Room tone ~−50 dB in pauses.
+
+## 5. Duration
+12 lines, 96 written words (6–11 per line), chained at ~2.8 wps + 0.4 s, plus a 0.9 s hero pause after `hero` and 0.4 s after `first`. Last line ends ~41 s; `dur` 43.5 s.
+
+## 6. Open questions for the director
+- **Ming reads:** "thirteen-man lineup" (Whisper may hear "13 man line up"); "C J" in the names line; "Caminos" (ka-MEE-nohs) and "Duval" (doo-VAL) are not given by Rockstar, the read is a guess; "nineteen ninety-seven"; "3D" read as "three D". If "thirteen-man" mushes, the fallback hook is "GTA 6 breaks a lineup of 13." (7 words, over the limit, so prefer a re-take).
+- **Names line pace:** 7 names in ~3 s. If Ming rushes, add "..." between names in `say` or split into two lines ("Claude. Tommy. CJ. Niko." / "Michael, Franklin, Trevor.").
+- **The 13 must stay scoped:** the chip OUR COUNT · STORY MODES · SINCE GTA III must be legible whenever the 13 is (poster included). Show all 13 placards so a viewer can count.
+- **Lucia silhouette:** generic shape, not traced from trailer stills or Rockstar art (SAFE-EDIT). Same for Jason.
+- **1997 strip:** pixel figures are ours; don't copy the original game's sprites. Only show 1997 · PC (the PS version's four are unconfirmed).
+- `duck.smr_db` 56 as in gta-songs (stamps and clacks ≥ 3 dB under the voice).
+- Re-check rockstargames.com/VI and the Lucia page the day before posting (live pages).
+
+## Log
+- 2026-10-30 (researcher): backlog hook "GTA has never done this before" dropped as false (1997 GTA had four selectable women on PC; GTA Online has female avatars). Reframed to one scoped hero number: 13 story leads since GTA III (2001), all men, our count from Wikipedia's game articles. 1997 kept as the turn and DM-able fact. No "29 years", no "first ever", no claim about 1998–2000.
+
+### 2026-10-30 jury, held (not posted)
+- **Round 1: 7.1, Truth 8.5** (Hook 6.5, Retention 7.0, Clarity 7.0, Truth 8.5, Craft 7.0, Voice/sound 7.0, Loop 6.0, Share 7.5). Uncaptioned hook, silhouettes read as default avatars, "first playable woman" assumed Lucia is playable, stamps over the JOHNNY/HUANG/LUIS boards, end vote held a highlight on "Jason?" (repeat), dad-line bio detour, silent name fills, near-silent tears. All 10 fixes applied in round 2.
+- **Round 2 (fresh jury): 7.1, Truth 8.5** (Hook 7.0, Retention 6.8, Clarity 7.5, Truth 8.5, Craft 6.5, Voice/sound 7.0, Loop 6.5, Share 7.0). Under the Delta gate of 7.4: held.
+- Fix list if it is ever revived: (1) the FIRST WOMAN LEAD plate covers Lucia in slot 14; move it to the dimmed top row and pop slot 14 pink at 1.15×; (2) 23.5-29.3 s is one wall for 5.8 s; make "But" a visible event and bring the 1997 strip in early; (3) Truth: "But GTA's first playable woman came way earlier" still implies Lucia is playable; use "But women were playable in GTA way earlier" plus a LOOK ONLY · SAME STORY chip (Wikipedia: "purely aesthetic"); (4) the pixel scene opens on a mostly black stage at 29.4 s; (5) frame 0's wall is small and dim, scale 1.2× and push into the "?"; (6) the 1997 chord is the quietest hit (-27 dBFS), and 6 of 7 name fills are silent; (7) CHINATOWN overflows its board; (8) ALL MEN ghosts over Lucia's card at 19.2 s; (9) the end line doesn't loop ("Lucia or Jason: who breaks it for you?"); (10) the 13 · ALL MEN tag is ~29 px and the poster's title band runs to x 55-965.
+- A parallel run on another branch made its own cut of this topic (7.3 / Truth 8.0, then Truth 8.5 with "first woman Rockstar wrote to lead a GTA story"); not used here.

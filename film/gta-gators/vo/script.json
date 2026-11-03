@@ -1,0 +1,100 @@
+{
+  "about": "GTA 6's swamp, Grassrivers: Rockstar's own page says the gators 'may be the most famous attraction, but there are far deadlier predators and weirder discoveries among the mangroves' (rockstargames.com/VI/only-in-leonida/grassrivers, read 2026-11-01). Rockstar does not say what those predators are, so the film never names them as fact. Rockstar also writes that the Leonida Keys sit on 'some of the most beautiful and dangerous waters in all of America'. One beat, labeled THEORY and spoken as 'our guess': the real Everglades hides invasive Burmese pythons (NPS, Everglades National Park). Ends on an open question the picture does not answer. GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S. Factory Delta #14.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Grassrivers",
+    "Leonida",
+    "Keys",
+    "Everglades",
+    "Burmese"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 38
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Don't swim in GTA 6.",
+      "say": "Don't swim in G T A 6.",
+      "speed": 1.1
+    },
+    {
+      "id": "stake",
+      "at": 2.3,
+      "text": "In Grassrivers, the gators aren't the deadliest thing.",
+      "say": "In Grass Rivers, the gators aren't the deadliest thing.",
+      "speed": 0.95
+    },
+    {
+      "id": "quote",
+      "at": 5.76,
+      "text": "In Rockstar's own words: far deadlier predators and weirder discoveries.",
+      "say": "In Rockstar's own words: far deadlier predators and weirder discoveries.",
+      "speed": 0.95
+    },
+    {
+      "id": "ask",
+      "at": 10.7,
+      "text": "So what are they? Rockstar doesn't say.",
+      "speed": 0.95
+    },
+    {
+      "id": "beneath",
+      "at": 13.44,
+      "text": "It also says: you never know what lies beneath.",
+      "say": "It also says: you never know what lies beneath.",
+      "speed": 0.92
+    },
+    {
+      "id": "keys",
+      "at": 17.11,
+      "text": "Down in the Keys, Rockstar says look out.",
+      "speed": 0.95,
+      "take": 1
+    },
+    {
+      "id": "waters",
+      "at": 20.08,
+      "text": "The most beautiful and dangerous waters in all of America.",
+      "speed": 0.95
+    },
+    {
+      "id": "theory",
+      "at": 23.68,
+      "text": "Our best guess? The real Everglades hides Burmese pythons.",
+      "say": "Our best guess: the real Everglades hides Burmese pythons.",
+      "speed": 0.95
+    },
+    {
+      "id": "end",
+      "at": 28.32,
+      "text": "So, what do you think is down there? One word.",
+      "say": "So, what do you think is down there? One word.",
+      "speed": 0.82,
+      "take": 0
+    }
+  ],
+  "dur": 32.3,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "about": "Rockstar's own GTA 6 page names Tommy Vercetti: in the Vintage Vice City Pack (a pre-order bonus marked for both Standard and Ultimate), the item 'Weapon Pattern' is titled 'Channel the Original Kingpin' and reads 'Adorn most guns with a tropical pattern inspired by Tommy Vercetti's iconic palm tree button-up.' (rockstargames.com/VI, plain curl 2026-11-02). Tommy's story was GTA Vice City (Steam listing of the Definitive Edition: 'Tommy Vercetti’s tale'), first released October 2002 on PS2 (Take-Two/Rockstar press release, 6 Dec 2012). The page never says Tommy is in GTA 6, and the film says so in the voice. The Ultimate-only 'Vercetti Estate' revolvers are left out (second scope; see BRIEF.md). Ends on a neutral yes/no that loops into line 1. GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S. Delta.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Tommy Vercetti",
+    "Vercetti",
+    "Vice City",
+    "Kingpin"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 33
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6's page names Tommy Vercetti.",
+      "say": "G T A 6's page names Tommy Vercetti.",
+      "speed": 1.08
+    },
+    {
+      "id": "who",
+      "at": 2.95,
+      "text": "His story was GTA Vice City, in 2002.",
+      "say": "His story was G T A Vice City, in twenty oh two."
+    },
+    {
+      "id": "ask",
+      "at": 6.35,
+      "text": "So why is he on GTA 6's page?",
+      "say": "So why is he on G T A 6's page?"
+    },
+    {
+      "id": "words",
+      "at": 9.2,
+      "text": "Rockstar's words:",
+      "speed": 1.0
+    },
+    {
+      "id": "kingpin",
+      "at": 10.45,
+      "text": "Channel the Original Kingpin.",
+      "speed": 0.97
+    },
+    {
+      "id": "look",
+      "at": 12.5,
+      "text": "Look: a pattern for most guns."
+    },
+    {
+      "id": "shirt",
+      "at": 15.0,
+      "text": "Inspired by Tommy Vercetti's iconic palm tree button-up.",
+      "speed": 0.97
+    },
+    {
+      "id": "any",
+      "at": 19.4,
+      "text": "And any pre-order gets it, Standard or Ultimate."
+    },
+    {
+      "id": "never",
+      "at": 22.5,
+      "text": "But the page never says Tommy's in GTA 6.",
+      "say": "But the page never says Tommy's in G T A 6."
+    },
+    {
+      "id": "end",
+      "at": 26.1,
+      "text": "So, Tommy's palms on your guns? Yes or no.",
+      "speed": 0.95,
+      "take": 0
+    }
+  ],
+  "dur": 30.2,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  }
+}

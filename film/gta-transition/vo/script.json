@@ -1,0 +1,114 @@
+{
+  "about": "Delta channel transition: why the channel becomes a GTA 6 channel. GTA 6 launches Nov 19, 2026 on PS5 and Xbox Series X|S (rockstargames.com/VI). Own graphics, Ming US_James, no music.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Take-Two",
+    "Delta",
+    "Easter"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6 is taking over Delta."
+    },
+    {
+      "id": "why",
+      "at": 2.75,
+      "text": "Here's why."
+    },
+    {
+      "id": "date",
+      "at": 4.2,
+      "text": "GTA 6 launches November 19, 2026.",
+      "say": "G T A 6 launches November nineteenth. Twenty twenty six.",
+      "take": 2
+    },
+    {
+      "id": "plat",
+      "at": 8.1,
+      "text": "On PlayStation 5 and Xbox Series X and S.",
+      "say": "On PlayStation five, and on Xbox Series X and S."
+    },
+    {
+      "id": "now",
+      "at": 11.89,
+      "text": "So from here on, GTA 6 comes first."
+    },
+    {
+      "id": "daily",
+      "at": 15.42,
+      "text": "A new GTA 6 Short, every single day."
+    },
+    {
+      "id": "hid",
+      "at": 18.29,
+      "text": "Hidden details and Easter eggs."
+    },
+    {
+      "id": "brk",
+      "text": "Trailer breakdowns.",
+      "at": 21.17
+    },
+    {
+      "id": "myst",
+      "at": 23.44,
+      "text": "Mysteries, with every theory labeled."
+    },
+    {
+      "id": "guide",
+      "at": 26.0,
+      "text": "And after launch, guides to help you play."
+    },
+    {
+      "id": "p1",
+      "at": 28.76,
+      "text": "Every fact has a source, and every rumor is labeled a rumor."
+    },
+    {
+      "id": "p2",
+      "at": 32.72,
+      "text": "No leaks, and nothing here is affiliated with Rockstar or Take-Two."
+    },
+    {
+      "id": "oldv",
+      "at": 37.41,
+      "text": "Your old videos all stay up."
+    },
+    {
+      "id": "sub",
+      "at": 39.54,
+      "text": "Subscribe, so you never miss a day."
+    },
+    {
+      "id": "ask1",
+      "at": 41.95,
+      "text": "Then comment below."
+    },
+    {
+      "id": "ask2",
+      "at": 43.52,
+      "text": "Which GTA 6 topic do you want first?"
+    }
+  ],
+  "dur": 47.2
+}

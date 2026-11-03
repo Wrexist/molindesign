@@ -1,0 +1,2 @@
+/* SFX gate input: where the voice track (out/vo/vo.wav) is actually sounding, from its energy (10 ms frames within 40 dB of the loudest), as [start, end]. Whisper stretches words over the pauses, so the gate uses this instead and keeps every hit 0.15 s clear. */
+window.VAD = [[0.22, 2.38], [2.50, 3.08], [3.40, 4.85], [5.21, 6.81], [7.15, 10.09], [10.60, 13.09], [14.53, 16.21], [16.49, 18.27], [19.73, 22.22], [22.74, 23.74], [24.14, 24.79]];

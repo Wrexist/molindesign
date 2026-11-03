@@ -1,0 +1,101 @@
+{
+  "about": "GTA 6 editions and price: Standard $79.99, Ultimate $99.99 (US list price on the PlayStation Store and Xbox Store, read 2026-10-31; same prices in Rockstar's June 24, 2026 announcement). The gap is exactly $20. Pre-orders and purchases before November 20, 2026 get the Vintage Vice City Pack in either edition. Rockstar's edition comparison lists 16 Ultimate-only items (cars, a boat, revolvers, outfits) and five shops 'only open for business with the Ultimate Edition'. Rockstar's edition picker offers Ultimate as Digital only; the boxed Standard holds a download code. Factory Delta #11.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "Rockstar",
+    "Vice City",
+    "Standard",
+    "Ultimate"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 22
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.3,
+      "text": "GTA 6 has two prices.",
+      "say": "G T A 6 has two prices.",
+      "speed": 1.1
+    },
+    {
+      "id": "ask",
+      "at": 2.45,
+      "text": "So which one should you buy?"
+    },
+    {
+      "id": "hero",
+      "at": 4.35,
+      "text": "That's a $20 gap.",
+      "say": "That's a twenty-dollar gap."
+    },
+    {
+      "id": "bonus",
+      "at": 6.65,
+      "text": "Before November 20, both get the Vintage Vice City Pack.",
+      "say": "Before November twentieth, both get the Vintage Vice City Pack."
+    },
+    {
+      "id": "adds",
+      "at": 10.35,
+      "text": "The $20 adds cars and a boat, revolvers and outfits.",
+      "say": "The twenty adds cars, and a boat, revolvers, and outfits."
+    },
+    {
+      "id": "shops",
+      "at": 14.75,
+      "text": "But five shops only open if you buy Ultimate.",
+      "say": "But five shops only open if you buy Ultimate."
+    },
+    {
+      "id": "names",
+      "at": 18.25,
+      "text": "Tattoos and a salon, two mod shops and a clothing store.",
+      "say": "Tattoos and a salon. Two mod shops and a clothing store."
+    },
+    {
+      "id": "box",
+      "at": 22.15,
+      "text": "Want a box?"
+    },
+    {
+      "id": "box2",
+      "at": 23.75,
+      "text": "Only Standard comes in one."
+    },
+    {
+      "id": "code",
+      "at": 25.55,
+      "text": "And inside that box is a download code."
+    },
+    {
+      "id": "upgrade",
+      "at": 28.45,
+      "text": "Change your mind later? The upgrade is $20 too.",
+      "say": "Change your mind later? The upgrade is twenty dollars, too."
+    },
+    {
+      "id": "end",
+      "at": 31.95,
+      "text": "So, twenty dollars more: Standard or Ultimate?",
+      "say": "So, twenty dollars more: Standard, or Ultimate?"
+    }
+  ],
+  "dur": 35.35
+}
