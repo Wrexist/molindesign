@@ -7,7 +7,7 @@ description: Run one turn of the video factory - pick the next topic from the Dr
 
 One run makes one finished TikTok explainer, end to end. Four agents in `.claude/agents/` do the work; this skill is the orchestrator that runs them in order and owns every outside call (Drive, Higgsfield, TikTok, GitHub). Read `factory/README.md` once for the why and `factory/TIKTOK-PLAYBOOK.md` for the reach techniques every video applies.
 
-**Standing rules (Isac):** American English narration and captions, aimed at a **US audience** (Isac posts from Sweden, so the content, keywords, sounds and post time must all say US); no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; disclose the AI voice. Never press Post: TikTok requires Isac to confirm every post himself.
+**Standing rules (Isac):** American English narration and captions, aimed at a **US audience** (Isac posts from Sweden, so the content, keywords, sounds and post time must all say US); no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; no AI tag (no #ai, no "AI voice" line, YouTube Altered content No; Isac 2026-11-03). Never press Post: TikTok requires Isac to confirm every post himself.
 
 ## 0. Setup (≈ 1 min, ≈ 5 min in a fresh container)
 - `bash factory/setup.sh`.

@@ -1,6 +1,6 @@
 # SEO and posting text: Why Delta is becoming a GTA 6 channel
 
-Channel: **Delta** only (@deltaisac). Switch to Delta and verify the channel name in YouTube Studio / TikTok before uploading. Post before the name change (REBRAND.md step 1), pin as channel trailer and Community post. Upload `out/gta-transition-vo.mp4` (voice + sound effects, no music). The voice is AI-generated (Ming US_James): tick the altered/synthetic content disclosure. Nothing has been uploaded or scheduled.
+Channel: **Delta** only (@deltaisac). Switch to Delta and verify the channel name in YouTube Studio / TikTok before uploading. Post before the name change (REBRAND.md step 1), pin as channel trailer and Community post. Upload `out/gta-transition-vo.mp4` (voice + sound effects, no music). YouTube Altered content: No (no AI tag, Isac 2026-11-03). Nothing has been uploaded or scheduled.
 
 ## YouTube title (36 chars)
 Why Delta Is Becoming a GTA 6 Channel
