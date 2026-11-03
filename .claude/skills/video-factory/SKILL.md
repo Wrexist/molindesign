@@ -30,8 +30,8 @@ Spawn the `video-director` agent with the slug. It records the voice, builds `fi
 ## 4. Quality gate → `video-jury`
 Spawn a **fresh** `video-jury` agent with the slug (never the director; it must not have seen the making). Then:
 - **post**: go on.
-- **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 8.0 with Truth ≥ 8.5. Even on "post", apply the jury's fixes before upload.
-- **don't post**, or still under 8.0 after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
+- **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 7.4 with Truth ≥ 8.5 (Isac re-anchored the gate to the last posted film's level on 2026-10-28; re-check that level weekly with a fresh jury on the last posted film). Even on "post", apply the jury's fixes before upload.
+- **don't post**, or still under 7.4 (or Truth under 8.5) after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
 
 ## 5. Packaging → `video-seo`
 Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and the AI disclosure.

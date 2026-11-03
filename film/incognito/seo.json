@@ -1,0 +1,66 @@
+{
+  "title": "What does incognito mode actually hide?",
+  "caption": "What does incognito mode actually hide? Less than the name says. Chrome's own incognito screen lists who might still see your activity.\nWebsites, your school or work, your internet provider. It only forgets on your device.\nDid you think incognito hid you? Yes or no.",
+  "hashtags": [
+    "#tech",
+    "#incognito",
+    "#incognitomode",
+    "#onlineprivacy",
+    "#googlechrome",
+    "#learnontiktok"
+  ],
+  "keywords": [
+    "incognito mode",
+    "what does incognito mode hide",
+    "does incognito mode hide you",
+    "can my school see incognito",
+    "can wifi owner see incognito history",
+    "is incognito really private",
+    "google incognito lawsuit",
+    "chrome incognito explained"
+  ],
+  "cover_text": "Incognito isn't invisible",
+  "cover_time": 0.0,
+  "pinned_comment": "Bonus from the same settlement: Google also agreed to change the incognito screen itself, to make clear incognito \"won't change how data is collected by websites you visit and the services they use, including Google.\" (Brown v. Google, filed Apr 1, 2024; Google admits no wrongdoing.) Ever read that screen before today?",
+  "post_time_et": "YouTube Shorts: 13:00 ET (EDT), Sat Oct 31, 2026 = 17:00 UTC. The first channel slot after 12:00 UTC today (13:00 or 19:00 ET), and the better of today's two: 19:00 ET tonight is Halloween trick-or-treat hour in the US. Gate first: fix round 1 was 7.4 with Truth 8.0, under the 7.4 + Truth 8.5 bar; post only if the final jury passes. If the cut or gate isn't done by about 16:00 UTC, skip 19:00 ET tonight and take 13:00 ET (EST) Sun Nov 1 = 18:00 UTC; that's the US clock-change day, so pick the time from YouTube's dropdown and check the saved time. TikTok (paused, account-level hold): when Isac's Settings › Account status check clears it, post in the first 19:00 ET slot (LESSONS evening rule); after Nov 1 that is 00:00 UTC the next day.",
+  "post_time_stockholm": "18:00 Sat Oct 31 (Sweden is on CET since Oct 25, the US on EDT until Nov 1, so the gap is 5 h today). Fallback Sun Nov 1 13:00 EST = 19:00 Stockholm (gap back to 6 h).",
+  "sounds": [
+    {
+      "name": "Final Game Showdown - ProdByLucK (candidate, re-check before use)",
+      "why": "Slow-build tension bed that fits the envelope crossing the booths. NOT checked this week: it was #6 on Higgsfield tiktok_music_trending (US, 7DAY) and #7 on Metricool's Oct 27 list in agent's Oct 28 check, and never used on our posts. Run tiktok_music_trending again on the day TikTok resumes; drop it if it's off the chart."
+    },
+    {
+      "name": "Hidden Truth Revealed - Adauto Assis (candidate, re-check before use)",
+      "why": "A quiet 'reveal' bed for 'it forgets for you, not for them'. NOT checked this week (Oct 28: #2 on Higgsfield US 7DAY). It was agent's first pick, so skip it if agent went up with it; the last three posts' sounds are off limits."
+    },
+    {
+      "name": "Third pick open",
+      "why": "No US instrumental could be verified today (2026-10-31): Tokchart's free chart is worldwide, top 10 only (MAFIA - Soothewave, Ramalama (Bang Bang) - Roisin Murphy, the rest original audios with vocals); Metricool's and SocialCal's public lists shown were dated May 12, 2026. The Higgsfield TikTok call wasn't run in this pass (not permitted). Pick it from that call when TikTok resumes."
+    }
+  ],
+  "sound_note": "Unchecked this week, by rule: never claim a sound is trending without the Higgsfield call. YouTube Shorts goes out with the film's own mix (voice, room tone, the two paper hits), no music added. TikTok later: Isac adds the sound in the app at about 5-10 % under the voice-only cut in out/ (name it from the director's hand-off) (film about 29.2 s; the clip must run at least 0:30). It can't be changed after posting. Self Aware and Espresso Soul are retired (LESSONS).",
+  "youtube_title": "What Incognito Mode Really Hides 🤔",
+  "youtube_title_alternatives": [
+    "Who Can Still See Your Incognito Tabs 😱",
+    "Incognito Isn't Invisible 🤔"
+  ],
+  "youtube_description": "Incognito doesn't make you invisible. So what does incognito mode actually hide?\n\nIt's printed on Chrome's own incognito screen. Under \"Chrome won't save:\" it lists \"Your browsing history\", \"Cookies and site data\" and \"Information entered in forms\". Under \"Your activity might still be visible to:\" it lists \"Websites you visit\", \"Your employer or school\" and \"Your internet service provider\".\n\nHere's why. Incognito only forgets on your device. Google's Chrome Help page says: \"While Incognito can help keep your browsing private on your device, it doesn't make you invisible.\" Every page you open still crosses your network to the site, and the same page says \"organizations that manage your network, like your school, employer, or internet service provider, may be able to observe your activity in Incognito.\" It forgets for you. Not for them.\n\nIn a 2024 settlement of Brown v. Google, Google agreed to delete or remediate old private browsing data, which by \"Google's current estimate\" will impact \"billions of event records\". Google admits no wrongdoing: the agreement says \"Google is not admitting any liability, fault, or violation of law.\"\n\nSo, did you think incognito hid you? Yes or no.\n\nFine print: the incognito screen, the laptop, the booths and the court folder in the video are hand-made re-creations; no real app or logo is shown. The screen text is copied from Chrome's source code (Chromium main branch, version 159.0.8135.0, a development build) on Oct 31, 2026; the Chrome on your computer may word it slightly differently, and the Help page names the same three. \"Every page still crosses your network\" is our plain wording for why networks may be able to observe you; this video doesn't claim what exactly each one can see. \"Scrub\" is our word for the settlement's deletion and remediation of data. Google agreed to the settlement, filed Apr 1, 2024, and denies all claims; this video doesn't say whether or when final approval was given. Only Chrome's wording is quoted; other browsers weren't checked.\n\nSources:\n- Google Chrome Help, \"Browse in Incognito mode\" (Computer), read Oct 31, 2026: https://support.google.com/chrome/answer/95464?hl=en&co=GENIE.Platform%3DDesktop\n- Chromium source, incognito new tab strings (components/new_or_sad_tab_strings.grdp), main branch, read Oct 31, 2026: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/new_or_sad_tab_strings.grdp\n- Brown v. Google LLC, N.D. Cal. case 4:20-cv-03664-YGR, Settlement Agreement, ECF 1097-4, filed Apr 1, 2024 (copy hosted by ClassAction.org), read Oct 31, 2026: https://www.classaction.org/media/brown-et-al-v-google-llc-et-al-settlement-agreement.pdf\n\nHow tech works, part 6. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.\n\n#shorts #incognito #privacy",
+  "youtube_tags": [
+    "incognito mode",
+    "what does incognito mode hide",
+    "does incognito hide you",
+    "can my school see incognito",
+    "can wifi owner see incognito history",
+    "is incognito private",
+    "chrome incognito",
+    "google incognito lawsuit",
+    "brown v google",
+    "how tech works",
+    "tech explained",
+    "shorts"
+  ],
+  "youtube_playlist": "How tech works",
+  "series": "How tech works, part 6",
+  "is_aigc": true,
+  "disclosure": "AI-generated voice (Ming TTS, US_James); set YouTube's Altered content: Yes now, and TikTok's AI-generated content label when TikTok resumes"
+}

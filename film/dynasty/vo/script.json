@@ -1,0 +1,124 @@
+{
+ "about": "Dynasty Manager promo (Isac's football manager game, github.com/Wrexist/dynasty-manager). 9:16 animated stickman short with the motion kit: a manager is hired by the worst club, has no money, scouts a wonderkid, sets tactics, wins in the last minute, climbs the leagues, opens free packs. Facts from the repo's APP_STORE_LISTING.md (45+ divisions, 51 nations, 11 formations, daily free packs, no energy timers). No real club, league or player names. Chatterbox voice, no music.",
+ "engine": "chatterbox",
+ "lang": "en-us",
+ "speed": 0.97,
+ "pace": {
+  "max": 3.6
+ },
+ "fit": {
+  "min": 1.0,
+  "max": 1.0
+ },
+ "names": [
+  "Dynasty Manager"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.12
+ },
+ "duck": {
+  "db": -8,
+  "score_db": 0
+ },
+ "captions": {
+  "max_words": 6,
+  "max_chars": 34,
+  "min_s": 0.8
+ },
+ "tail": 1.4,
+ "chatterbox": {
+  "seed": 7,
+  "exaggeration": 0.62,
+  "cfg": 0.35,
+  "level_db": -20
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "text": "You just got hired.",
+   "pause": 0.2,
+   "at": 0.15
+  },
+  {
+   "id": "worst",
+   "text": "By the worst club in the whole league.",
+   "pause": 0.35,
+   "at": 1.44,
+   "speed": 0.88,
+   "take": 2,
+   "say": "By the worst club... in the whole league."
+  },
+  {
+   "id": "board",
+   "text": "The board wants promotion.",
+   "pause": 0.2,
+   "at": 4.21
+  },
+  {
+   "id": "bank",
+   "text": "The bank account says zero.",
+   "pause": 0.35,
+   "at": 5.62
+  },
+  {
+   "id": "scout",
+   "text": "So you find a seventeen-year-old nobody wanted.",
+   "pause": 0.35,
+   "at": 7.52
+  },
+  {
+   "id": "tactics",
+   "text": "Pick a formation. Set the press, the tempo, the width.",
+   "pause": 0.3,
+   "at": 10.52
+  },
+  {
+   "id": "match",
+   "text": "Then live all 90 minutes.",
+   "pause": 0.2,
+   "at": 13.95,
+   "say": "Then live all ninety minutes."
+  },
+  {
+   "id": "goal",
+   "text": "Last minute. Goal!",
+   "pause": 0.4,
+   "at": 15.58
+  },
+  {
+   "id": "climb",
+   "text": "Season after season, you climb.",
+   "pause": 0.2,
+   "at": 17.38
+  },
+  {
+   "id": "scale",
+   "text": "45 divisions. 51 nations.",
+   "pause": 0.35,
+   "at": 19.53,
+   "say": "Forty-five divisions. Fifty-one nations."
+  },
+  {
+   "id": "packs",
+   "text": "Free packs every day. No energy timers.",
+   "pause": 0.4,
+   "at": 22.33
+  },
+  {
+   "id": "cta",
+   "text": "Dynasty Manager. Free on iPhone.",
+   "pause": 0.3,
+   "at": 25.64
+  },
+  {
+   "id": "ask",
+   "text": "Which club are you saving first?",
+   "pause": 0.3,
+   "at": 28.32,
+   "speed": 0.88,
+   "take": 1
+  }
+ ],
+ "dur": 31.74
+}

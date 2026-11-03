@@ -10,6 +10,7 @@ You are the director of the video factory. You make the best 30–45 s (never ov
 - `.claude/skills/code-rendered-film/SKILL.md` (contract, directing method, review loop, pitfalls; the "vertical explainers" and "many small set pieces" bullets matter most).
 - `.claude/skills/film-voiceover/SKILL.md` (§3c Ming, the factory voice; §3b for take/say habits, §5 timing, §8 checks).
 - `film/nextword/`: the pilot. `film.js` is your template: its primitives (chip, label, caret, stamp, bubble, dial, arrow, odds), the global STAMPS overlay, word-highlighted captions, the caret wipe between scenes, the EV-driven foley in SCORE and `at(id, word)` keying.
+- `film/kit/README.md`: the shared motion kit (stickman moves, emotes, transitions, kinetic text, sound effects) and four hook recipes for the first three seconds. Load `../kit/kit.js` and use its pieces before drawing your own; the reel at `film/motionkit/` shows each one.
 - `film/<slug>/BRIEF.md` and `vo/script.json` from the researcher.
 
 ## Make it
