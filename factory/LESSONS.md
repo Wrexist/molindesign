@@ -42,7 +42,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Every video carries something checkable: a named source on screen and in the description, a real date, a real number. Slop has none (house rule since #1; now mandatory on YouTube too).
 - The picture is hand-built (paper props, stamps, rulers, our palette), never generated stock or AI imagery; nothing morphs, no uncanny hands or faces (Isac's no-AI-look rule).
 - Disclose the AI voice plainly (TikTok label, YouTube "Altered content", description line). Never hide it; hiding it is what gets channels piled on.
-- Quality over count: 2 a day only while each passes the gate (since 2026-10-28: 7.4+ with Truth 8.5+, re-anchored by Isac to the last posted film's level); if a run can't, skip that slot rather than post filler.
+- Quality over count: 2 a day only while each passes the gate (since 2026-11-03: jury 7.0+ with Truth 8.5+ and packaging 4/6+, Isac's call after the views analysis; 7.4 from 2026-10-28 until then); if a run can't, skip that slot rather than post filler.
 - Reply to real comments in the first hour with a sourced extra fact; a creator who answers isn't a slop farm.
 - Never post the anti-slop copypasta or reply to it with arguments; answer a "this is AI" comment with the source link and what we made by hand.
 
