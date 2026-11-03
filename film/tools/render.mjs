@@ -147,7 +147,9 @@ async function clean(browser, port) {
 }
 function encode(fps = +opt('fps', 30)) {
   // grain belongs in the encoder, not the page: drawn grain makes every frame incompressible
-  ff(['-framerate', String(fps), '-i', path.join(FRAMES, '%05d.jpg'), '-vf', 'noise=alls=3:allf=t,format=yuv420p', '-c:v', 'libx264', '-preset', 'slow', '-crf', '21', '-movflags', '+faststart', path.join(OUT, 'video.mp4')]);
+  ff(['-framerate', String(fps), '-i', path.join(FRAMES, '%05d.jpg'), '-vf', 'noise=alls=3:allf=t,format=yuv420p', '-c:v', 'libx264', '-preset', 'slow', '-crf', '21',
+    // opt-in: X264_PARAMS (e.g. keyint=450) keeps the encoder's periodic keyframe, and its grain refresh, out of a held still
+    ...(process.env.X264_PARAMS ? ['-x264-params', process.env.X264_PARAMS] : []), '-movflags', '+faststart', path.join(OUT, 'video.mp4')]);
   console.log('wrote out/video.mp4');
 }
 

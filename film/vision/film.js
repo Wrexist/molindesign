@@ -76,15 +76,18 @@
   (function () {
     place('slide', 'slide', K.thirdEnd + .3, .2);
     place('snick', 'snick', K.sqEnd + .28, .2);
+    /* the knife leaving the AFTER crop, in the gap after "read." (kept only if it lands inside that gap) */
+    place('snick2', 'snick', K.read + .32, .16); if (GT.snick2 < K.read + .1 || GT.snick2 > K.tip - .1) GT.snick2 = null;
     place('knock', 'knock', K.capEnd + .25, .2);
     place('slam', 'thump', Math.max(K.heroEnd + .3, heroV + .18), .2);
   })();
   /* the hero hold runs in the silence after "squares." and ends with a torn edge falling top to bottom (0.5 s, even
      speed) that starts on "So" (its audible onset); the next caption waits until the edge is below the stamp. */
-  K.tearA = K.blur + .08;
+  K.shrinkT = .6;   /* the shrink starts on "photo?", well before "shrinks" */
+  K.tearA = K.blur + .12;
   K.capA = K.tearA + 1.05;
   /* the end card: the receipt desk leaves right after "first.", frame 0's print is in place before the chips pop */
-  K.outro = K.tipEnd + .3;
+  K.outro = K.tipEnd + .78;
   K.chips = K.outro + .42;
 
   var SC = [
@@ -221,6 +224,7 @@
   }
 
   /* ---------- the receipt face (receipt units: 560 × 680; drawn into offscreen canvases only) ---------- */
+  var TINY = 2.5;   /* the receipt's smallest line: 7 px type, about 5 px cap height in the 4032 × 3024 photo (2.7 px after the resize) */
   var FINE = 4;   /* the fine print's size in receipt units (item lines are 24): 11.3 px type, about 8 px cap height in the 4032 × 3024 photo */
   var ITEMS = [['OAT MILK', '4.29'], ['BREAD', '3.99'], ['APPLES', '5.12'], ['COFFEE', '8.49'], ['EGGS', '1.59']];   /* = $23.48 */
   function receiptFace(g, s, marks) {
@@ -247,6 +251,7 @@
     ITEMS.forEach(function (it, j) { var y = 184 + j * 40; g.textAlign = 'left'; T(it[0], 36, y); g.textAlign = 'right'; T(it[1], 524, y); });
     /* the item's fine print, the kind every receipt has under a line */
     font(g, FINE, 600, MONO); g.textAlign = 'left'; T('2 @ 2.145  ORGANIC 1L  #40412', 38, 201);
+    font(g, TINY, 600, MONO); T('LOT 2611 · BEST BY 12/14 · KEEP COLD', 38, 208);
     dash(380);
     font(g, 50, 900); g.textAlign = 'left'; T('TOTAL', 36, 428); g.textAlign = 'right'; T('$23.48', 524, 428);
     dash(472);
@@ -299,7 +304,7 @@
      grid = how far the grid knife has cut (0…1, left to right): 79 × 60 squares, the shrunk photo's 4,740 */
   var PW = 760, PH = 580, PB = 22, IW = 716, IH = 536, COLS = 79, ROWS = 60, FCOLS = 144, FROWS = 108;
   var LIFT = [36, 37, 38, 39, 40, 41].map(function (c) { return [c, 30]; }), TOKC = [55, 14];
-  var PRINT = null, HROW = [55, 56, 57, 58, 59, 60], HROWY = 19;   /* the hero's lifted row: six squares across the mug */
+  var HTILES = [], PRINT = null, HROW = [55, 56, 57, 58, 59, 60], HROWY = 19;   /* the hero's lifted row: six squares across the mug */
   function paintPrint() {
     var k = 2, c = mk(PW * k, PH * k), g = c.getContext('2d');
     g.scale(k, k); g.translate(PW / 2, PH / 2);
@@ -415,7 +420,7 @@
     e = eio(seg(t, K.hero - .05, K.hero + .5)); k = lerp(k, 1, e); cy = lerp(cy, REST.cy, e);
     /* slow camera pushes so no beat freezes before the hero hold: after the shrink and on "12 million pixels" (back
        on "cuts"), and into the hero line (stopped well before the stamp) */
-    var hc = (.025 * eio(seg(t, K.shrinks + .36, K.send + .4)) + .025 * eio(seg(t, K.send + .4, K.cuts))) * (1 - eio(seg(t, K.cuts, K.cuts + .25)));
+    var hc = (.07 * eio(seg(t, K.shrinkT + .3, K.send + .2)) + .045 * eio(seg(t, K.send + .2, K.cuts))) * (1 - eio(seg(t, K.cuts, K.cuts + .25)));
     k *= 1 + hc;
     k *= 1 + .04 * eio(seg(t, K.sq + .3, K.each)) * (1 - eio(seg(t, K.each - .05, K.each + .42)));
     k *= 1 + .03 * eio(seg(t, K.hero + .5, K.n4700 + .3));
@@ -424,7 +429,7 @@
   function printState(t) {
     var G = groupState(t), ps, dim = 0, e, dy = 0;
     /* shrunk once, on "shrinks", and it stays shrunk to the end of the desk */
-    ps = lerp(1, SHR, eio(seg(t, K.shrinks - .02, K.shrinks + .36)));
+    ps = lerp(1, SHR, eio(seg(t, K.shrinkT, K.shrinkT + .38)));
     /* the paper slide as the shrunk print settles (on the slide hit), back to centre on "Because" */
     dy = 14 * eio(seg(t, GT.slide, GT.slide + .22)) * (1 - eio(seg(t, K.because - .05, K.because + .4)));
     e = eio(seg(t, K.each - .05, K.each + .42)); dim = lerp(dim, .15, e);   /* ≥ 80 % bright while it is the token's source */
@@ -459,7 +464,7 @@
     g.restore();
   }
   function outline(g, t, st) {
-    var G = st.G, a = lerp(pulseA(t), 1, seg(t, K.shrinks - .1, K.shrinks + .1));
+    var G = st.G, a = lerp(pulseA(t), 1, seg(t, K.shrinkT - .1, K.shrinkT + .1));
     g.save(); g.translate(G.cx, G.cy); g.scale(G.k, G.k);
     /* cap: the full photo's squares, 144 × 108 = 15,552, wiped in left to right on "photo", gone on "newer" */
     var gw = eio(seg(t, K.photo - .1, K.photo + .45)), ga = 1 - seg(t, K.newer, K.newer + .4);
@@ -537,17 +542,15 @@
     txt(g, 'ANY CLAUDE MODEL', CX, 1350, 38, CREAM, 'center', 700, MONO, 820, sa);
     txt(g, 'OUR MATH, CLAUDE’S RESIZE RULE', CX, 1394, 38, CREAM, 'center', 700, MONO, 820, sa);
 
-    /* the docs card: both of the docs' sentences on patches, slides up on "Because", leaves on "Counted" */
+    /* the docs card, cut to one line (the docs: a 28×28-pixel block is a visual token), up on "Because", gone on "Counted" */
     var cu = eout(seg(t, K.because + .02, K.because + .45)), co = eio(seg(t, K.counted - .12, K.counted + .25));
     if (cu > 0 && co < 1) {
       g.save(); g.globalAlpha *= 1 - co; g.translate(0, 60 * (1 - cu) + 30 * co);
-      docCard(g, 110, 1126, 910, 1418, ['“CLAUDE PROCESSES IMAGES IN', 'PATCHES INSTEAD OF PIXELS.', 'EACH PATCH IS A 28×28-PIXEL', 'BLOCK OF THE IMAGE, REFERRED', 'TO AS A VISUAL TOKEN.”'], 38, 'CLAUDE VISION DOCS · RE-CREATED', 41, clamp(cu * 3, 0, 1));
-      /* the pencil marks: "patches" on "squares", "visual token" on "token" */
+      docCard(g, 110, 1130, 910, 1262, ['28×28-PIXEL BLOCK = VISUAL TOKEN'], 42, 'CLAUDE VISION DOCS · RE-CREATED', 41, clamp(cu * 3, 0, 1));
+      /* the pencil mark: "visual token" on "token" */
       g.save(); g.strokeStyle = PENCIL; g.lineWidth = 5; g.lineCap = 'round';
-      var u1 = eio(seg(t, K.sq - .05, K.sq + .3)), w1 = tw('PATCHES', 38, 900), l1 = tw('PATCHES INSTEAD OF PIXELS.', 38, 900);
-      var y1u = cardLineY(1126, 38, 1) + 22; if (u1 > 0) { g.beginPath(); g.moveTo(CX - l1 / 2, y1u); g.lineTo(CX - l1 / 2 + w1 * u1, y1u + 1); g.stroke(); }
-      var u2 = eio(seg(t, K.tok - .05, K.tok + .3)), l2 = tw('TO AS A VISUAL TOKEN.”', 38, 900), w2 = tw('VISUAL TOKEN', 38, 900), x2 = CX - l2 / 2 + tw('TO AS A ', 38, 900);
-      var y2u = cardLineY(1126, 38, 4) + 20; if (u2 > 0) { g.beginPath(); g.moveTo(x2, y2u); g.lineTo(x2 + w2 * u2, y2u + 1); g.stroke(); }
+      var u2 = eio(seg(t, K.tok - .05, K.tok + .3)), l2 = tw('28×28-PIXEL BLOCK = VISUAL TOKEN', 42, 900), w2 = tw('VISUAL TOKEN', 42, 900), x2 = CX + l2 / 2 - w2;
+      var y2u = cardLineY(1130, 42, 0) + 24; if (u2 > 0) { g.beginPath(); g.moveTo(x2, y2u); g.lineTo(x2 + w2 * u2, y2u + 1); g.stroke(); }
       g.restore();
       g.restore();
     }
@@ -616,12 +619,9 @@
       var kc = seg(t, K.words - .1, K.words + .3);
       if (kc > 0 && kc < 1) knife(g, lerp(CX - tot / 2 - 40, CX + tot / 2 + 60, kc), 935, 1035, 10, 1 - seg(kc, .8, 1));
     }
-    /* +1 per cell as each token lands */
-    for (var c = 0; c < 6; c++) {
-      var land = c === 0 ? K.counted + .42 : K.type - .06 + (c - 1) * .08 + .34;
-      var pk = pop(t, land, 3.4), pa2 = fin(t, land) * (1 - tout);
-      if (pa2 > 0) txt(g, '+1', cellX(c), TAPEY - 82 + 10 * (1 - Math.min(1, pk)), 40, CREAM, 'center', 900, DISP, 120, pa2);
-    }
+    /* each cell on the tape: about one token per square or word */
+    var e1 = fin(t, K.counted + .42) * (1 - tout), pk1 = Math.min(1, pop(t, K.counted + .42, 3.4));
+    if (e1 > 0) txt(g, '≈1 TOKEN EACH', CX, TAPEY - 80 + 10 * (1 - pk1), 40, CREAM, 'center', 900, DISP, 790, e1);
     var sla = fin(t, K.type + .3) * (1 - seg(t, K.hero + .1, K.hero + .3));
     txt(g, 'SAME TALLY,', CX, 942, 42, CREAM, 'center', 900, DISP, 820, sla);
     txt(g, 'SAME PRICE PER TOKEN', CX, 994, 42, CREAM, 'center', 900, DISP, 820, sla);
@@ -665,25 +665,29 @@
       g.fillStyle = INK; g.fillRect(xv - 3, gy - GA.h / 2 - 14, 6, GA.h + 28);
       prop(g, 'gauge', GA.x0 - 10, gy - GA.h / 2 - 22, GA.x1 + 24, gy + GA.h / 2 + 22);
       g.restore();
-      txt(g, 'CAP 4,784', GA.x1 + 12, GA.y - 46, 40, CREAM, 'right', 900, DISP, 360, ga);
-      var fa = fin(t, K.andW - .1) * (1 - seg(t, K.hero + .38, K.hero + .52));
-      txt(g, 'FULL PHOTO: 15,552', CX, 1376, 40, CREAM, 'center', 900, DISP, 820, fa);
+      /* the cap carries its scope from its first frame; short again once = 4,740 TOKENS takes the left side */
+      var cs = seg(t, K.n4700, K.n4700 + .1);
+      txt(g, 'CAP 4,784 (CLAUDE 4.7+)', GA.x1 + 12, GA.y - 46, 40, CREAM, 'right', 900, DISP, 700, ga * (1 - cs));
+      txt(g, 'CAP 4,784', GA.x1 + 12, GA.y - 46, 40, CREAM, 'right', 900, DISP, 360, ga * cs);
+      var fa = fin(t, K.andW - .1) * (1 - seg(t, K.hero + .6, K.hero + .68));
+      txt(g, 'FULL PHOTO: 15,552 > 4,784', CX, 1376, 40, CREAM, 'center', 900, DISP, 820, fa);
       var tOver = K.every - .05 + Math.cbrt(4784 / 15552) * (GT.knock - K.every + .05);
-      txt(g, '15,552 > 4,784', GA.x0 - 8, GA.y - 46, 40, CREAM, 'left', 900, DISP, 420, fin(t, tOver) * (1 - seg(t, K.n4700, K.n4700 + .1)));
       txt(g, '= 4,740 TOKENS', GA.x0 - 8, GA.y - 46, 40, CREAM, 'left', 900, DISP, 420, fin(t, K.n4700 + .1));
     }
     /* hero: the scope, then THE stamp in the silence */
-    var ca = fin(t, K.hero + .53);
+    var ca = fin(t, K.hero + .7);
     txt(g, 'CLAUDE 4.7 AND LATER · OUR MATH', CX, 1370, 38, CREAM, 'center', 900, DISP, 820, ca);
     txt(g, 'CLAUDE VISION DOCS, READ NOV 3, 2026', CX, 1410, 36, CREAM, 'center', 700, MONO, 820, ca);
     /* the hero's lifted row: six squares rise out of the print and line up at 60 px each, done before the stamp */
     if (hk > 0) HROW.forEach(function (c, i) {
-      var b = cellBox(c, HROWY), sx = st.cx + (b.x + b.w / 2) * st.s, sy = st.cy + (b.y + b.h / 2) * st.s;
-      var k = eio(clamp(hk * 1.3 - i * .06, 0, 1)), z = lerp(b.w * st.s, 60, k), x = lerp(sx, CX + (i - 2.5) * 72, k), y = lerp(sy, 1030, k) - 40 * Math.sin(Math.PI * k);
-      g.fillStyle = 'rgba(0,0,0,.5)'; g.fillRect(x - z / 2 + 5, y - z / 2 + 8, z, z);
-      g.drawImage(PHOTO, PHW * c / COLS, PHH * HROWY / ROWS, PHW / COLS, PHH / ROWS, x - z / 2, y - z / 2, z, z);
-      g.strokeStyle = CREAM; g.lineWidth = 2; g.strokeRect(x - z / 2, y - z / 2, z, z);
-      prop(g, 'tile', x - z / 2, y - z / 2, x + z / 2 + 5, y + z / 2 + 8);
+      var b = cellBox(c, HROWY), sx = st.cx + (b.x + b.w / 2) * st.s, sy = st.cy + (b.y + b.h / 2) * st.s, d = i - 2.5;
+      var k = eio(clamp(hk * 1.3 - i * .06, 0, 1)), z = lerp(b.w * st.s, 112, k), x = lerp(sx, CX + d * 124, k), y = lerp(sy, 1002 + 5 * d * d, k) - 60 * Math.sin(Math.PI * k);
+      g.save(); g.translate(x, y); g.rotate(.05 * d * k);
+      g.fillStyle = 'rgba(0,0,0,.5)'; g.fillRect(-z / 2 + 6, -z / 2 + 10, z, z);
+      var sm = g.imageSmoothingEnabled; g.imageSmoothingEnabled = false; g.drawImage(HTILES[i], -z / 2, -z / 2, z, z); g.imageSmoothingEnabled = sm;
+      g.strokeStyle = CREAM; g.lineWidth = 3; g.strokeRect(-z / 2, -z / 2, z, z);
+      prop(g, 'tile', -z / 2, -z / 2, z / 2 + 6, z / 2 + 10);
+      g.restore();
     });
     var G = st.G; txt(g, 'YOUR 12 MP PHOTO', CX, G.cy - PH * G.k / 2 + 38, 36, CREAM, 'center', 700, MONO, 700, fin(t, K.hero + .3));
     stamp(g, '4,740\nSQUARES', CX, 1150, t, GT.slam, 60, HOT, -.06, true);
@@ -698,7 +702,7 @@
      same way. The 28-px squares are drawn at their true size on each resized crop. */
   var BIGW = 4032, BIGH = 3024, SMW = 2212, SMH = 1659, ZC = 2.2;
   var PAN = { w: 800, h: 150, x: 110, ya: 545, yb: 760 };
-  var CROP = { cx: 75, cy: 201, w: 74, h: 74 * 150 / 800 };    /* receipt units: just the item's fine print line */
+  var CROP = { cx: 66, cy: 208.2, w: 58, h: 58 * 150 / 800 };    /* receipt units: just the smallest line */
   var PB_BEFORE = null, PB_AFTER = null, PB_CLOSE = null, PB_GRID = {};
   function testPhoto(z, cxB, cyB) {
     var c = mk(BIGW, BIGH), g = c.getContext('2d');
@@ -743,7 +747,9 @@
     /* where the crop sits in the 4032 × 3024 photo (the receipt is turned −0.075 rad on the table) */
     var m = new DOMMatrix().scale(BIGW / PHW, BIGH / PHH).translate(170, 250).rotate(-.075 * 180 / Math.PI);
     var p = m.transformPoint(new DOMPoint(CROP.cx, CROP.cy)), sx = BIGW / PHW, w = CROP.w * sx, h = CROP.h * sx;
-    var A = testCrops(testPhoto(1), p.x, p.y, w, h);
+    var big = testPhoto(1), A = testCrops(big, p.x, p.y, w, h);
+    /* the hero's six squares: the real 28 × 28 pixels of the resized photo, one visual token each */
+    HTILES = HROW.map(function (c) { return areaShrink(big, c * 28, HROWY * 28, 28, 28, SMW / BIGW); });
     PB_BEFORE = A.before; PB_AFTER = A.after; PB_GRID.after = A.grid;
     /* closer: the camera 2.2 × closer on the same spot; the same pixel window, so the text fills it 2.2 × bigger */
     var B = testCrops(testPhoto(ZC, p.x, p.y), BIGW / 2, BIGH / 2, w, h);
@@ -770,7 +776,7 @@
     var s0 = S('receipt').t0;
     var dr = 3 * Math.sin((t - s0) * 1.6);
     /* blur: BEFORE over AFTER RESIZE; the AFTER crop starts as the original and the knife leaves the resized pixels */
-    var kk = eio(seg(t, K.hard - .45, K.read + .1));
+    var kk = eio(seg(t, K.hard - .45, K.read + .35));
     /* tip ("Reading fine print?"): BEFORE leaves, AFTER RESIZE moves up, CLOSER comes in below it */
     var tk = eio(seg(t, K.tip - .15, K.tip + .35));
     g.save(); g.translate(0, dr);
@@ -787,12 +793,12 @@
     panel(g, PB_CLOSE, PAN.x + 200 * (1 - tk), PAN.yb, 'CLOSER', clamp(3 * tk - 1.5, 0, 1), PB_GRID.close, gc);
     g.restore();
     /* get closer: the rule, on the tip */
-    var la = fin(t, K.tip - .2);
+    var la = fin(t, K.tip + .35);   /* only once CLOSER is fully in */
     txt(g, 'GET CLOSER =', CX, 954, 46, CREAM, 'center', 900, DISP, 800, la);
     txt(g, 'BIGGER TEXT', CX, 1006, 46, CREAM, 'center', 900, DISP, 800, la);
     tag(g, 'SAME RECEIPT · OUR TEST', CX, 1068, 1, .01);
     /* what the resized panels are: "AFTER RESIZE … TO CLAUDE'S SIZE"; on the tip, both lower panels are resized */
-    txt(g, 'BOTH RESIZED', CX, 1122, 36, CREAM, 'center', 700, MONO, 820, fin(t, K.tip - .1));
+    txt(g, 'BOTH RESIZED', CX, 1122, 36, CREAM, 'center', 700, MONO, 820, fin(t, K.tip + .35));
     txt(g, 'TO CLAUDE’S SIZE (2212 × 1659)', CX, 1168, 36, CREAM, 'center', 700, MONO, 820);
     docCard(g, 110, 1212, 910, 1404, ['“…THIS MIGHT, FOR EXAMPLE,', 'MAKE TEXT LESS LEGIBLE.”'], 42, 'CLAUDE VISION DOCS · RE-CREATED', 61, 1);
   }
@@ -985,7 +991,8 @@
     GS.push({ t: GT.slide, type: 'slide', g: .5 });
     GS.push({ t: GT.snick, type: 'snick', g: 1 });
     GS.push({ t: GT.knock, type: 'knock', g: .8 });
-    GS.push({ t: GT.slam, type: 'thump', g: .24 });
+    GS.push({ t: GT.slam, type: 'thump', g: .2 });
+    if (GT.snick2 != null) GS.push({ t: GT.snick2, type: 'snick', g: .8 });
     /* no pop: Whisper hears "Did" right after "first.", so there is no clear gap for the chips' hit; they rise silently */
   }
   function initTimes() {

@@ -87,6 +87,11 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A whole beat that only adds thin lines or small tabs reads as frozen; make the mechanism prop travel ≥ 250 px or push the camera 1.0 → 1.2× (stepbystep r1, r3).
 - Whisper can hear a phantom word in a take's ring-out ("own." → "phone"); fade that line's tail with the per-line `tail_fade` key in voiceover.py before re-rolling (stepbystep polish).
 - Keep the voice stems in out/vo/ until the film is done; deleting them with the /dev/shm cleanup made the next mix silently reuse the old file (stepbystep).
+- Three flat rounds (7.2 → 7.2 → 7.2) mean the idea's picture is the ceiling, not the fixes: vision's one small print on a dark stage never got past 7.2. Plan a hero prop that fills ≥ 700 px before the first render (vision).
+- A resolution story must be shown at real pixel density: area-average the test image to the model's size and scale it up nearest-neighbour, at a text size that honestly fails (about 5 px cap at 4032 wide); a Gaussian blur or a crop that still reads costs Clarity (vision r1–r3).
+- When a before/after panel pair changes to a new pair, swap every label with it; a label left up reads backwards with the sound off and costs a Truth point (vision r2).
+- Scope every capped number from its first frame ("CAP 4,784 (CLAUDE 4.7+)"); a bare number that is wrong on another tier is a Truth flag (vision r3).
+- A 1-frame blip inside a still hold can be x264's periodic keyframe (keyint 250 = 8.33 s at 30 fps); set `X264_PARAMS=keyint=450` in render.mjs's encode for films with a hold near a multiple of 8.33 s (vision polish).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
