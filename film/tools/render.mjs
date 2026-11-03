@@ -27,6 +27,8 @@ const mode = args[0] || 'sheet';
 const opt = (k, d) => { const i = args.indexOf('--' + k); return i > -1 ? args[i + 1] : d; };
 const FILMDIR = opt('film', '');
 const OUT = path.join(ROOT, FILMDIR, 'out');
+// opt-in: FRAMES_DIR=/dev/shm/<slug>-frames keeps the frame JPEGs off a tight disk (default: out/frames)
+const FRAMES = process.env.FRAMES_DIR ? path.resolve(process.env.FRAMES_DIR) : path.join(OUT, 'frames');
 const PAGE = (FILMDIR ? FILMDIR + '/' : '') + 'index.html';
 let SPEC = { W: 1920, H: 1080, DUR: 34, POSTER: 29.9, SLUG: 'halden-lf1-held' };
 fs.mkdirSync(path.join(OUT, 'check'), { recursive: true });
@@ -104,7 +106,7 @@ async function audio(page) {
 async function video(browser, port) {
   const fps = +opt('fps', 30), samples = +opt('samples', 4), shutter = +opt('shutter', .5), workers = +opt('workers', 3);
   const dur = SPEC.DUR, n = Math.round(dur * fps);
-  const dir = path.join(OUT, 'frames'); fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
+  const dir = FRAMES; fs.rmSync(dir, { recursive: true, force: true }); fs.mkdirSync(dir, { recursive: true });
   const pages = await Promise.all(Array.from({ length: workers }, () => openPage(browser, port)));
   let next = 0, done = 0; const t0 = Date.now();
   await Promise.all(pages.map(async page => {
@@ -145,7 +147,7 @@ async function clean(browser, port) {
 }
 function encode(fps = +opt('fps', 30)) {
   // grain belongs in the encoder, not the page: drawn grain makes every frame incompressible
-  ff(['-framerate', String(fps), '-i', path.join(OUT, 'frames', '%05d.jpg'), '-vf', 'noise=alls=3:allf=t,format=yuv420p', '-c:v', 'libx264', '-preset', 'slow', '-crf', '21', '-movflags', '+faststart', path.join(OUT, 'video.mp4')]);
+  ff(['-framerate', String(fps), '-i', path.join(FRAMES, '%05d.jpg'), '-vf', 'noise=alls=3:allf=t,format=yuv420p', '-c:v', 'libx264', '-preset', 'slow', '-crf', '21', '-movflags', '+faststart', path.join(OUT, 'video.mp4')]);
   console.log('wrote out/video.mp4');
 }
 

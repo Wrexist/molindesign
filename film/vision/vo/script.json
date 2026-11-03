@@ -1,0 +1,105 @@
+{
+ "about": "How AI sees a photo (Claude, scoped). Factory #20, backlog row 21, playlist How AI works. One hard idea: Claude takes in a photo as 28-pixel squares, each one a token counted like the words you type, and every photo has a cap on squares, so a 12-megapixel photo is shrunk to under a third of its pixels first (about 4,740 squares on Claude 4.7 and later), which can make small text hard to read. Source sentences: Claude Vision docs (platform.claude.com/docs/en/build-with-claude/vision, read 2026-11-03): 'Claude processes images in patches instead of pixels. Each patch is a 28x28-pixel block of the image, referred to as a visual token.' 'Images larger than either limit are downscaled before processing'; limits 2,576 px / 4,784 visual tokens (Claude 4.7 and later), 1,568 px / 1,568 tokens (all other models); 'To estimate cost, multiply the token count by the per-token price of the model'; resizing 'might, for example, make text less legible'; 'If the image contains important text, make sure it's legible and not too small.' Derived with the docs' own resize code: 4032x3024 (12.19 MP) -> 2212x1659 = 79 x 60 = 4,740 visual tokens, 30.1% of the pixels (high-resolution tier); 1270x952 = 1,564 tokens, 9.9% (standard tier). Background idea, not claimed as Claude's design: Dosovitskiy et al. 2020, 'An Image is Worth 16x16 Words' (Google Research, arXiv 2010.11929): 'Image patches are treated the same way as tokens (words) in an NLP application.' Hero: the paper print cut into a square grid, coral stamp 4,740 SQUARES in the 1.3 s silence after 'squares.' Narration-led: record the voice first and key every visual beat to its word times. No AI tag anywhere (Isac, 2026-11-03).",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.9
+ },
+ "names": [
+  "Claude"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 50.5
+ },
+ "dur": 30.71,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Your photo? Claude shrinks it first.",
+   "pause": 0.15,
+   "take": 0
+  },
+  {
+   "id": "send",
+   "at": 2.76,
+   "text": "Send it 12 million pixels.",
+   "say": "Send it twelve million pixels.",
+   "pause": 0.15
+  },
+  {
+   "id": "third",
+   "at": 4.74,
+   "text": "It cuts that to under a third.",
+   "pause": 0.5
+  },
+  {
+   "id": "ask",
+   "at": 7.03,
+   "text": "So why throw the rest away?",
+   "pause": 0.2
+  },
+  {
+   "id": "squares",
+   "at": 8.88,
+   "text": "Because it works in squares, not pixels.",
+   "pause": 0.5
+  },
+  {
+   "id": "token",
+   "at": 11.36,
+   "text": "Each 28-pixel square is one token.",
+   "say": "Each twenty-eight pixel square is one token.",
+   "pause": 0.15
+  },
+  {
+   "id": "counted",
+   "at": 14.14,
+   "text": "Counted like the words you type.",
+   "pause": 0.15
+  },
+  {
+   "id": "cap",
+   "at": 15.84,
+   "text": "And every photo has a token cap.",
+   "pause": 0.55
+  },
+  {
+   "id": "hero",
+   "at": 18.19,
+   "text": "On newer models, your photo is about 4,700 squares.",
+   "say": "On newer models, your photo is about forty-seven hundred squares.",
+   "pause": 1.1
+  },
+  {
+   "id": "blur",
+   "at": 22.81,
+   "text": "So small text might get hard to read.",
+   "pause": 0.15
+  },
+  {
+   "id": "tip",
+   "at": 25.05,
+   "text": "Reading fine print? Get closer first.",
+   "pause": 0.5,
+   "tail_fade": 0.12
+  },
+  {
+   "id": "end",
+   "at": 27.95,
+   "text": "Did you know it shrinks your photos? Yes or no."
+  }
+ ],
+ "tail": 0.4
+}
