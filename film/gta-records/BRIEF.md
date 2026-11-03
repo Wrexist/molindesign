@@ -1,6 +1,6 @@
 # The record trailers (GTA 6, Delta #2)
 
-Slug `gta-records` · backlog row 2 · researched 2026-10-28 · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, AI voice disclosed in the post), own graphics, no Rockstar footage, no music. GTA 6 launches 2026-11-19 (delta/README.md).
+Slug `gta-records` · backlog row 2 · researched 2026-10-28 · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, no AI tag in the post), own graphics, no Rockstar footage, no music. GTA 6 launches 2026-11-19 (delta/README.md).
 
 ## 1. Topic and one hard idea
 **Two trailers, two "records", and they are not measured the same way: Trailer 1 holds the YouTube-only Guinness record (90,421,491 views in 24 h); Trailer 2 holds Rockstar's all-platform claim (475M+), but on YouTube alone it got fewer views than Trailer 1.** The film is a counter: an odometer rolls to 90,421,491, then to 475M, then a balance weighs them and asks which is bigger.

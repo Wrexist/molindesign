@@ -22,4 +22,4 @@ Rule of thumb: a person who has never read a GTA 6 article should still understa
 - Weekly long video: a wide one ("Every GTA ranked", "The GTA 5 money machine").
 
 ## What does not change (SAFE-EDIT)
-Own graphics and voice, no Rockstar footage, logo or music, no leaks, rumors labeled, every fact sourced, AI voice disclosed, jury gate with Truth 8.5.
+Own graphics and voice, no Rockstar footage, logo or music, no leaks, rumors labeled, every fact sourced, no AI tag, jury gate with Truth 8.5.

@@ -1,6 +1,6 @@
 # SEO and posting text: GTA 6 Leonida region by region
 
-Channel: **Delta** (GTA 6 channel) only. Switch to Delta and verify the channel name in YouTube Studio / TikTok before uploading. Slot: 2026-10-30 (ET), backlog row 3. Upload `out/gta-leonida-vo.mp4` (voice + sound effects, no music). Voice is AI-generated (Ming US_James): tick the altered/synthetic content disclosure.
+Channel: **Delta** (GTA 6 channel) only. Switch to Delta and verify the channel name in YouTube Studio / TikTok before uploading. Slot: 2026-10-30 (ET), backlog row 3. Upload `out/gta-leonida-vo.mp4` (voice + sound effects, no music). Voice is Ming US_James. Altered content setting: No (Isac, 2026-11-03).
 
 ## YouTube Shorts title (55 chars)
 GTA 6: All 6 Leonida Regions Rockstar Names, Mapped
@@ -14,7 +14,7 @@ GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S.
 
 Source: Rockstar Games, "Only in Leonida", https://www.rockstargames.com/VI/only-in-leonida (read October 28, 2026). The quotes are Rockstar's. The map is our own simple drawing, not Rockstar's map, and region positions are approximate except where Rockstar says (Mount Kalaga on the northern border, Ambrosia in the heart of Leonida). This is not the full state: six names so far, and no size claim is made.
 
-Fan-made graphics and our own AI voice. Not affiliated with Rockstar Games or Take-Two Interactive. Grand Theft Auto is a trademark of Take-Two Interactive.
+Fan-made graphics and our own voice. Not affiliated with Rockstar Games or Take-Two Interactive. Grand Theft Auto is a trademark of Take-Two Interactive.
 
 ## Hashtags (5)
 #GTA6 #GTAVI #ViceCity #Leonida #Shorts

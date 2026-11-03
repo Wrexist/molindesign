@@ -1,6 +1,6 @@
 # SEO and posting text: Don't swim in GTA 6
 
-Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta, so no TikTok caption is written. Switch to Delta and verify the channel name in YouTube Studio before uploading. Slot: 2026-11-06 (ET), backlog row 14. Upload `out/gta-gators-vo.mp4` (voice + sound effects, no music, 32.3 s). Voice is AI-generated (Ming US_James): tick the altered/synthetic content disclosure. Written 2026-11-01 for a US audience. Facts and sources: `BRIEF.md`.
+Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta, so no TikTok caption is written. Switch to Delta and verify the channel name in YouTube Studio before uploading. Slot: 2026-11-06 (ET), backlog row 14. Upload `out/gta-gators-vo.mp4` (voice + sound effects, no music, 32.3 s). Voice is Ming US_James. Altered content setting: No (Isac, 2026-11-03). Written 2026-11-01 for a US audience. Facts and sources: `BRIEF.md`.
 
 ## YouTube Shorts title (53 chars)
 Don't Swim in GTA 6: Something Deadlier Than Gators 😱
@@ -22,7 +22,6 @@ Sources:
 - National Park Service, Everglades National Park, Burmese python (real world, not the game): https://www.nps.gov/ever/learn/nature/burmese-python.htm (read November 1, 2026)
 
 Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
-The narration voice is AI-generated.
 Grand Theft Auto is a trademark of Take-Two Interactive.
 
 #GTA6 #GTAVI #Grassrivers #Leonida #Shorts
@@ -37,7 +36,7 @@ What's down there in GTA 6's swamp? One word only.
 GTA 6 Facts
 
 ## YouTube settings
-Altered or synthetic content: Yes (AI voice). Made for kids: No. Language English (US). Category Gaming. Post at 13:00 ET on 2026-11-06 (19:00 Stockholm; the US is back on standard time from Nov 1, so the gap is 6 hours): US lunch break, and it leaves the afternoon and evening for the first comments.
+Altered content: No. Made for kids: No. Language English (US). Category Gaming. Post at 13:00 ET on 2026-11-06 (19:00 Stockholm; the US is back on standard time from Nov 1, so the gap is 6 hours): US lunch break, and it leaves the afternoon and evening for the first comments.
 
 ## Source URLs (plain, one per line)
 https://www.rockstargames.com/VI/only-in-leonida/grassrivers
