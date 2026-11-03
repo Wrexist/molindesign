@@ -313,7 +313,7 @@
     P.nov19 = page([['NOV', 54, HOT, -96], ['19', 150, INK, 4], ['2026', 46, INK, 100]]);
 
     /* THE QUOTE CARD: Take-Two's own words, exactly, cut with … at both ends; never highlighted */
-    P.quote = cardPiece(800, 470, CREAM, [['“…the fastest that any', 68, INK, -132, 'condensed'], ['entertainment property', 68, INK, -46, 'condensed'], ['… has reached this', 68, INK, 40, 'condensed'], ['significant milestone.”', 68, INK, 126, 'condensed']], { r: 10, ring: 'rgba(29,18,51,.18)', before: function (g) {
+    P.quote = cardPiece(800, 470, CREAM, [['“…the fastest', 104, HOT, -110, 'condensed'], ['that any entertainment', 78, INK, 0, 'condensed'], ['property…”', 78, INK, 96, 'condensed']], { r: 10, ring: 'rgba(29,18,51,.18)', before: function (g) {
       g.fillStyle = 'rgba(29,18,51,.05)'; for (var y = -220; y < 230; y += 10) g.fillRect(-390, y, 780, 1);
       g.fillStyle = HOT; g.fillRect(-400, -235, 14, 470);
     } });
@@ -418,7 +418,7 @@
     /* scene 1-2 */
     if (t >= T.pad0 - .02 && t < T.padOut + .6) {
       var k0 = cd(t, T.pad0, 20), gk = eio(seg(t, T.padGrow, T.padGrow + .6)), ok = eio(seg(t, T.padOut, T.padOut + .5));
-      var x = lerp(715, 510, gk), y = lerp(lerp(1262, 1284, k0), 905, gk) - ok * 1100, s = lerp(.95 * lerp(1.12, 1, k0), 1.72, gk) * kn(t, T.pad0, .07), rot = lerp(.05, -.015, gk) - (1 - k0) * .08 + .01 * osc(t, 5);
+      var x = lerp(680, 510, gk), y = lerp(lerp(700, 720, k0), 905, gk) - ok * 1100, s = lerp(1.48 * lerp(1.12, 1, k0), 1.72, gk) * kn(t, T.pad0, .07), rot = lerp(.05, -.015, gk) - (1 - k0) * .08 + .01 * osc(t, 5);
       var pages, tk = 0, seed = 0;
       var tears = [T.tear0, T.tear1, T.tear2], seq = [P.cover, P.sep17, P.sep18, P.sep19], i = 0;
       while (i < 3 && t >= tears[i] + .45) i++;
@@ -525,9 +525,10 @@
   }
   /* the movie line's caption: one card, so GTA 5 never sits over "took nineteen days"; 19 DAYS lands on "nineteen" */
   function movieCard(g, t) {
+    return; /* dropped 2026-11-03: the ticket THE AVENGERS (2012) + 19 DAYS and the stamp carry the line */
     if (t < T.mcIn - .02 || t > T.grow + .4) return;
     var a = fin(t, T.mcIn, .1) * (1 - seg(t, T.grow, T.grow + .25)); if (a <= 0) return;
-    var p1 = 'FASTEST MOVIES (2012):', p2 = '19 DAYS', y = 878, k = cd(t, T.mcIn, 16);
+    var p1 = 'MOVIE RECORD IN 2013:', p2 = '19 DAYS', y = 878, k = cd(t, T.mcIn, 16);
     g.save(); g.globalAlpha *= a; cond(g); font(g, 56, 900); ls(g, 1);
     var w1 = g.measureText(p1 + ' ').width, w = w1 + g.measureText(p2).width, x0 = 510 - w / 2;
     g.translate(0, (1 - k) * 24);
@@ -538,6 +539,7 @@
   }
   function glass(g, t) {
     chipAt(g, t, 'TAKE-TWO ESTIMATE', 510, 1330, T.estIn, T.estOut, { px: 56, bg: ORG });
+    chipAt(g, t, '≈ $14 MILLION AN HOUR', 510, 1238, T.hourIn, T.estOut + .3, { px: 56, bg: TEAL });
     if (t >= T.qsrc - .02 && t < T.quoteOut + .5) { var q = qXf(t); chipAt(g, t, 'TAKE-TWO, SEPT 20 2013', 510, q.y + 230 * q.s + 36, T.qsrc, T.quoteOut, { px: 46, bg: ORG, rot: -.01 }); if (q.moving) NOREC = false; }
     movieCard(g, t);
     if (t >= T.stamp - .02 && t < T.stampOut + .5) {
@@ -603,7 +605,8 @@
     var nx = CAPS[ci + 1], ns = nx ? nx.t0 - .04 : 1e9, o1 = Math.min(card0.t1 + .5, ns - .12), o0 = Math.min(card0.t1 + .35, o1 - .12);
     var fi = seg(t, card0.t0 - .04, card0.t0 + .06), outk = 1 - seg(t, o0, o1);
     if (fi * outk <= 0) return;
-    if (t > T.qUp - .1 && t < T.raceOut + .15) return;
+    if (t > T.raceIn - .1 && t < T.raceOut + .15) return;
+    if (t > T.towerIn - .1 && t < T.towerOut + .3) return;
     var CY = CAPY, k = cd(t, card0.t0 - .04, 16);
     g.save(); cond(g); var cpx = 74; font(g, cpx, 900); ls(g, 1); g.textBaseline = 'alphabetic';
     var words = card0.words, up = words.map(function (w) { return w.w.toUpperCase(); }), ws = up.map(function (u) { return g.measureText(u).width; }), gap = cpx * .26;
@@ -653,7 +656,7 @@
     if (!POSTERMODE && LIVE.text) captions(g, t);
     if (LIVE.grain && NOISE && LIVE2.bg) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
   }
-  var QTXT = '“…the fastest that any entertainment property … has reached this significant milestone.”';
+  var QTXT = '“…the fastest that any entertainment property…”';
   function TEXTS(t) {
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
@@ -662,13 +665,13 @@
     Tx('cover', '3 DAYS', T.pad0 + .1, T.tear0 + .2); Tx('cover', '3 DAYS', T.endIn + .4, T.clear + .05);
     Tx('cal', 'SEP 17-19 2013', T.tear0 + .3, T.padOut + .1);
     Tx('est', 'TAKE-TWO ESTIMATE', T.estIn + .15, T.estOut + .05);
+    Tx('hour', '≈ $14 MILLION AN HOUR', T.hourIn + .15, T.estOut + .35);
     Tx('quote', QTXT, T.quoteIn + .3, T.quoteOut + .05);
     Tx('qsrc', 'TAKE-TWO, SEPT 20 2013', T.qsrc + .15, T.quoteOut + .05);
-    Tx('mcap', 'FASTEST MOVIES (2012):', T.mcIn + .1, T.grow + .1);
     Tx('case', 'GTA 5', T.raceIn + .3, T.raceOut + .05);
     Tx('ticket', 'THE AVENGERS (2012)', T.raceIn + .3, T.raceOut + .05);
     Tx('d3', '3 DAYS', T.lab5 + .15, T.raceOut + .05); Tx('d19', '19 DAYS', T.tix1 + .1, T.grow + .05); Tx('d19', '19 DAYS', T.lab19 + .15, T.raceOut + .05);
-    Tx('stamp', '3 VS 19 DAYS', T.stamp + .05, T.stampOut + .05);
+    Tx('stamp', '3 VS 19 DAYS', T.stamp + .03, T.stampOut + .08);
     Tx('count', '230,000,000+', T.c1, T.towerOut + .05);
     Tx('src', 'SOLD-IN · TAKE-TWO, AUG 2026', T.srcIn + .15, Math.min(T.srcOut, T.towerOut + .2) + .05);
     Tx('nov', 'NOV 19 2026', T.padIn2 + .3, T.clear + .1);
@@ -688,7 +691,7 @@
     T.brickOut = T.tear0 - .05; T.padGrow = T.tear0 - .05; T.pillUp = T.tear0 - .1;
     T.tear1 = at('three', 'estimate'); T.tear2 = at('three', 'september');
     G('tear1', T.tear1, 'tear', .15, .8); G('tear2', T.tear2, 'tear', .15, .8);
-    T.estIn = T.tear0 + .05;
+    T.estIn = T.tear0 + .05; T.hourIn = T.tear0 + .3;
     /* said: the pad flies off as the quote card rises on the last word of "three" */
     T.padOut = lastw('three') - .45; T.quoteIn = T.padOut + .05;
     G('quoteS', T.quoteIn, 'swish', .3, .7);
@@ -697,19 +700,19 @@
     T.quoteOut = Math.max(T.quoteIn + .3 + need(QTXT) - .2, T.qsrc + need('TAKE-TWO, SEPT 20 2013'));
     /* movie: the quote steps up to a header and the race board rises under it; GTA 5's three days stack at once,
        the ticket's blocks count up with no label from "movies" to "nineteen"; the caption is one card */
-    T.qUp = start('movie') - .45; T.raceIn = T.qUp - .05; T.pHide = start('movie') - .45; T.mcIn = T.qUp + .1;
+    T.quoteOut = Math.min(T.quoteOut, start('movie') + .7); T.qUp = 1e9; T.raceIn = T.quoteOut + .3; T.pHide = start('movie') - .45; T.mcIn = T.raceIn + .1;
     G('raceS', T.raceIn, 'thock', .3, .8);
     T.case0 = T.raceIn + .35; T.case1 = T.case0 + .35; T.lab5 = T.case1 + .05;
-    T.tix0 = at('movie', 'movies'); T.tix1 = at('movie', 'nineteen') + .04;
+    T.tix0 = Math.max(at('movie', 'movies'), T.raceIn + .35); T.tix1 = Math.max(at('movie', 'nineteen') + .04, T.tix0 + .6);
     /* the hero frame: the quote leaves, the race grows to fill the frame, the one stamp lands in the written pause */
-    T.grow = Math.max(T.quoteOut - .1, lastw('movie') + .05, T.mcIn + 3.05); T.lab19 = T.grow + .35;
+    T.grow = Math.max(T.quoteOut - .1, lastw('movie') + .05); T.lab19 = T.grow + .35;
     G('growS', T.grow, 'swish', .2, .7);
     T.stamp = G('stamp', T.grow + .45, 'stamp', .3, 1.2, { heavy: true });
-    T.stampOut = T.stamp + 2.6;
-    T.raceOut = T.stampOut;
+    T.stampOut = T.stamp + 2.1;
+    T.raceOut = T.stampOut + .25;
     /* still: cases rise under the race as it lifts away; the counter rolls in round millions and lands on "230";
        only then the SOLD-IN tag; a last case drops onto the tower in the pause */
-    T.towerIn = T.raceOut - .15; T.c0 = T.raceOut + .2; T.c1 = at('still', '230') + .05; T.pBack = T.raceOut + .3;
+    T.towerIn = T.raceOut - .15; T.c0 = T.raceOut + .2; T.c1 = Math.max(at('still', '230') + .05, T.c0 + .6); T.pBack = T.raceOut + .3;
     T.srcIn = T.c1 + .05;
     T.srcOut = T.srcIn + need('SOLD-IN · TAKE-TWO, AUG 2026');
     T.lastCase = G('lastCase', after('still') + .25, 'thock', .3, 1);
