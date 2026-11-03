@@ -34,7 +34,7 @@ Spawn a **fresh** `video-jury` agent with the slug (never the director; it must 
 - **don't post**, or still under 7.4 (or Truth under 8.5) after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
 
 ## 5. Packaging → `video-seo`
-Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and the AI disclosure.
+Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and no AI tag anywhere (no #ai, no "AI voice" line, YouTube Altered content No; see `video-seo` rules).
 
 ## 6. Upload for Isac's tap
 1. `tiktok_accounts`. If there is no `active` account, skip to step 7 and put a fresh `tiktok_connect` link in the report.

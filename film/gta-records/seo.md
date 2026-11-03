@@ -19,21 +19,21 @@ Sources:
 
 The 475 million figure is Rockstar's own all-platform claim, reported by The Hollywood Reporter (we could not open the article itself, only secondary reports of it). It includes platforms other than YouTube and is not a Guinness record.
 
-All graphics and the voice are ours. No Rockstar footage is used. Narration is an AI voice. GTA 6 is out November 19, 2026 on PS5 and Xbox Series X|S.
+All graphics are ours. No Rockstar footage is used. GTA 6 is out November 19, 2026 on PS5 and Xbox Series X|S.
 
 **Hashtags:** #GTA6 #GTAVI #Rockstar #gaming #shorts
 
 **Pinned comment (one question):**
 Which counts more: 90 million on YouTube alone, or 475 million across every platform? Trailer 1 or trailer 2?
 
-**YouTube settings:** Altered content (synthetic voice): yes. Not made for kids. Language English (US). Category Gaming.
+**YouTube settings:** Altered content: No. Not made for kids. Language English (US). Category Gaming.
 
 ## TikTok
 
 **Caption (about 230 characters):**
 GTA 6 trailer 1 got 90 million views in one day. Trailer 2 got 475 million, but only if you count every platform. On YouTube alone it got fewer. Which record is bigger? #GTA6 #GTAVI #Rockstar #gaming #gamingnews
 
-**Settings:** AI-generated content label on (synthetic voice). Add a quiet trending sound at upload (use the voice-only file). First spoken second says "GTA 6".
+**Settings:** No AI label. Add a quiet trending sound at upload (use the voice-only file). First spoken second says "GTA 6".
 
 ## Check before posting
 - 475M is Rockstar's claim via secondary reporting (not independently audited); the video says so on screen.

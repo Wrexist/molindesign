@@ -22,8 +22,7 @@ Jury: round 2 says **post** (8.0, Truth 9.0; round 1 was 7.8). The director is a
   - No message count is given. None is published.
 - **Line 3** is the film's ending, a yes-or-no answer. It's what the video asks, so it isn't bait.
 
-**Hashtags:** #ai #chatgpt #contextwindow #chatgpttips #learnontiktok
-- **#ai** is the series' broad tag.
+**Hashtags:** #chatgpt #contextwindow #chatgpttips #learnontiktok
 - **#chatgpt** is the product people search.
 - **#contextwindow** is the exact concept.
 - **#chatgpttips** catches US users looking for fixes.
@@ -65,7 +64,7 @@ This is the brief's first pinned-comment idea: Liu et al. 2024 (Stanford; BRIEF 
 - The US stays on EDT until Nov 1, and Sweden went to CET this morning, so the gap is 5 h this week.
 - In Stockholm the slot falls on the next calendar day, so pick **Oct 26** in any Stockholm-time picker. On YouTube, pick from the dropdown and check the saved time (clock-change lesson).
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James). Turn on TikTok's **AI-generated content** label (`is_aigc: true`); on YouTube set **Altered content: Yes**.
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 
@@ -114,9 +113,9 @@ This is the brief's first pinned-comment idea: Liu et al. 2024 (Stanford; BRIEF 
 > - Google AI for Developers, "Long context" (updated Oct 15, 2026): https://ai.google.dev/gemini-api/docs/long-context
 > - Liu et al., "Lost in the Middle: How Language Models Use Long Contexts", TACL 12 (2024): https://arxiv.org/abs/2307.03172
 >
-> How AI works, part 5. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+> How AI works, part 5. The research, script and hand-built animation are made for this channel.
 >
-> #shorts #ai #chatgpt
+> #shorts #chatgpt
 
 **Tags:** why does chatgpt forget, chatgpt forgets conversation, chatgpt context window, context window, chatgpt memory, why does chatgpt forget things in the same chat, how ai works, tech explained, shorts
 

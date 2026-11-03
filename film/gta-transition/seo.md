@@ -14,8 +14,8 @@ Which GTA 6 topic do you want first? Tell me in the comments.
 
 Source: Rockstar Games, https://www.rockstargames.com/VI ("Coming November 19, 2026", PlayStation 5 and Xbox Series X and S), read October 28, 2026.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
-The narration is an AI-generated voice. Grand Theft Auto is a trademark of Take-Two Interactive.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
+Grand Theft Auto is a trademark of Take-Two Interactive.
 
 ## Hashtags (5)
 #GTA6 #GTAVI #ViceCity #Delta #Shorts
