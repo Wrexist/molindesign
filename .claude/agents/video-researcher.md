@@ -11,6 +11,7 @@ The orchestrator gives you: the topic row (number, slug, topic, hook idea, angle
 - `.claude/skills/film-voiceover/SKILL.md` §2, §3, §3b and §3c (script format, retention rules, the Ming voice).
 - `film/nextword/vo/script.json` and `film/nextword/TREATMENT.md`: the house pilot. Match its voice, pace and honesty.
 - `factory/README.md` for the house rules and `factory/TIKTOK-PLAYBOOK.md` for what TikTok rewards.
+- `factory/PERFORMANCE.md`: which videos got views and why. Score the topic on its packaging score (§7) and write the six marks at the top of BRIEF.md. Under 4/6, say what would lift it (a belief to break, a check for the viewer) or say the topic should be skipped.
 - If the topic sheet has performance columns (views, average watch time, % watched to the end, shares), note which earlier hooks and structures retained best and lean into them.
 
 ## Research (30 minutes at most)
@@ -23,7 +24,7 @@ The orchestrator gives you: the topic row (number, slug, topic, hook idea, angle
 Write `film/<slug>/vo/script.json` in the house format (copy the header from `film/nextword/vo/script.json`: `"engine": "ming"`, `"ming": {"voice": "US_James", "seed": 7}`, `"lang": "en-us"`, `"pace": {"max": 3.5}`, `"chain": {"room": 0.25}`, `"duck": {"db": -6, "score_db": 0}`, `names` for proper nouns, `dur`).
 - The channel is **Tech, explained**: everyday tech and AI for a general audience. Don't make it sound like an AI channel: no channel name in the script, and name AI only when the topic is about AI.
 - **American English** for a **US audience**: US spelling (math, color), US examples, brands and units (miles, dollars, °F with °C only if it matters). **30–45 s, never over 59 s** (first real numbers, 2026-10-24: viewers watched 10–16 s of our 80 s videos; under 60 s also unlocks duet and stitch), 8–13 lines, 2.8–3.2 words per second overall. One idea, one story; cut everything else.
-- Line 1 is the hook, spoken from 0.2 s, **6 words or fewer**: a stake, a number or a contradiction. No greeting, no "did you know", no channel name. Lead with a story (a person, a court case) or a puzzle the viewer can try; abstract "how X works" openings did worst (stats 2026-10-24).
+- Line 1 is the hook, spoken from 0.2 s, **6 words or fewer**: a stake, a number or a contradiction. The best openers turned a belief about something the viewer uses ("Incognito doesn't make you invisible.", "Your phone battery is already shrinking.") or handed them a test ("Find the cat in this static."). A definition ("What is an AI agent?") or a flattering fact got the fewest views. No greeting, no "did you know", no channel name. Lead with a story (a person, a court case) or a puzzle the viewer can try; abstract "how X works" openings did worst (stats 2026-10-24).
 - End on a one-word-answer question or a line that loops straight back into line 1.
 - Say the **main search phrase** (what an American would type, e.g. "strawberry ChatGPT") in the first 5 s, and list it in BRIEF.md so the director shows it and the SEO agent captions it.
 - Plant **one DM-able moment**: a fact or image someone would send a friend.

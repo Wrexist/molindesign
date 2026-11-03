@@ -14,11 +14,12 @@ One run makes one finished TikTok explainer, end to end. Four agents in `.claude
 - If `factory/` or `film/nextword/` is missing on your branch, the factory hasn't been merged yet: `git fetch origin claude/project-thread-0hox72` and `git merge --no-edit origin/claude/project-thread-0hox72` into your working branch, then continue.
 
 - Read `factory/LESSONS.md` and pass it to every agent: each video must be better than the last (Isac, 2026-10-23).
+- Run `python3 factory/stats.py` (needs `pip install yt-dlp curl_cffi`) and refresh LESSONS' Performance table with the latest posts, so this run starts from real numbers. A TikTok marked `served: NO` was never pushed to For You; say so in the report.
 
 ## 1. Pick the next topic
 - Drive folder **Video factory** (`1mMSFv1m8sFh337SRdWxJUBNK3m6cJx1k`), sheet **Video factory topics** (`1GZmiQSHpOqv9SI7WkqslBeQMxbRFpnFV_VLzaD9PxVg`): read it with `read_file_content`. Isac edits this sheet; it wins over `factory/backlog.csv`.
 - A topic is taken if any of these is true: Status is `done`, `skip` or `wip`; a Drive doc titled `Factory #<n> ·` exists in the folder (`search_files` with `parentId = '1mMSFv1m8sFh337SRdWxJUBNK3m6cJx1k' and title contains 'Factory #'`); `film/<slug>/` exists on `main` or on an open PR branch (`list_pull_requests`, look for "Factory #").
-- Take the row marked `next` if there is one, otherwise the lowest-numbered free row. If none is left, have the researcher propose five new topics in the same columns, report them, and stop.
+- Take the row marked `next` if there is one. Otherwise score every free row on the packaging score in `factory/PERFORMANCE.md` §7 (mine, myth/threat, frame-0 test, takeaway, title, searched; one point each) and take the highest scorer at 4/6 or more, the lowest number breaking ties. Views follow this score, not the jury score (2026-11-03 analysis). Put the score and its six marks in the claim doc. If no free row reaches 4, have the researcher propose topics that do. If none is left, have the researcher propose five new topics in the same columns, report them, and stop.
 - Create the per-video doc **now** as the claim marker: `create_file` in the folder, title `Factory #<n> · <topic>`, `text/markdown` content with the topic row and "Status: in production (run started <date>)". Its link goes in the final report.
 
 ## 2. Research and script → `video-researcher`
@@ -48,7 +49,7 @@ Spawn the `video-seo` agent with the slug and the final jury report. It writes `
 
 ## 8. Learn
 - Write down what this run taught: add each jury finding that was a real mistake, and anything you'd do differently, to `factory/LESSONS.md` as one-line rules with the video's slug. Remove lessons a later video proved wrong.
-- If the earlier posts have TikTok numbers (Isac pastes them, or the sheet has them), fill the Performance table and say which hook or structure did best, so the next researcher leans into it.
+- Add this post to `factory/posts.csv` (slug, channel, platform, id, posted UTC, length, jury, hook, title) once it has an ID, so `factory/stats.py` tracks it. Fill the Performance table from `stats.py` at 24 h and 72 h, and say which hook or structure did best, so the next researcher leans into it. When 10 new posts have numbers, re-check whether the packaging score still lines up with views and update PERFORMANCE.md §7.
 - Commit LESSONS.md with the run.
 
 ## Timing and cost
