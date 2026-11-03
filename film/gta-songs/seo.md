@@ -1,6 +1,6 @@
 # The trailer songs: packaging (Delta)
 
-Slug `gta-songs` · Delta #5 · channel **Delta** only (switch to Delta and verify the channel name in YouTube Studio before uploading) · written 2026-10-29 for a US audience. Slot: 2026-10-31 (ET), backlog row 5. YouTube only for now (TikTok paused). Upload `out/gta-songs-vo.mp4` (voice + sound effects, no music, no song audio). GTA 6 launches 2026-11-19.
+Slug `gta-songs` · Delta #5 · channel **Delta** only (switch to Delta and verify the channel name in YouTube Studio before uploading) · written 2026-10-29 for a US audience; facts re-checked 2026-11-03 (BBC Newsbeat 36,979%, Gematsu/Rockstar Justice credit, rockstargames.com/VI November 19, 2026). Backlog row 5. YouTube only for now (TikTok paused). Upload `out/gta-songs-vo.mp4` (voice + sound effects, no music, no song audio). GTA 6 launches 2026-11-19.
 
 ## YouTube Short
 
@@ -33,10 +33,11 @@ Sources:
 - Rockstar Games, GTA VI (release date): https://www.rockstargames.com/VI
 - Rockstar Newswire, launch date November 19, 2026: https://www.rockstargames.com/newswire/article/ak3ak31a49a221/grand-theft-auto-vi-is-now-set-to-launch-november-19-2026
 
-The 36,979% is Spotify's own figure as told to BBC Newsbeat: streams of the track in the days after trailer 1 compared with the same days one week earlier. It is not a total stream count. Rockstar's trailer 2 page does not name the song; the credit comes from press reports. No music or lyrics from any of these songs are played in this Short.
+On screen "~371×" is derived: 36,979% more = 370.8 times the week before. The 36,979% is Spotify's own figure as told to BBC Newsbeat: streams of the track in the days after trailer 1 compared with the same days one week earlier. It is not a total stream count. Rockstar's trailer 2 page does not name the song; the credit comes from press reports. No music or lyrics from any of these songs are played in this Short.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 GTA 6 is out November 19, 2026 on PS5 and Xbox Series X|S. Grand Theft Auto is a trademark of Take-Two Interactive.
+
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 
 #GTA6 #GTAVI #GTA6Trailer #TomPetty #Shorts
 
