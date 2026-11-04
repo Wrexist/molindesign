@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-kalaga/out/gta-kalaga-vo.mp4: 26.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.383, 0-3 s 0.349, median 0.218, still frames 9.1 %
+/home/user/molindesign/film/gta-kalaga/out/gta-kalaga-vo.mp4: 26.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.453, 0-3 s 0.455, median 0.33, still frames 0.1 %
 OK    no frozen stretches, opening moves
