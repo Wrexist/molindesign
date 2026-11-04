@@ -113,6 +113,11 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - When a before/after panel pair changes to a new pair, swap every label with it; a label left up reads backwards with the sound off and costs a Truth point (vision r2).
 - Scope every capped number from its first frame ("CAP 4,784 (CLAUDE 4.7+)"); a bare number that is wrong on another tier is a Truth flag (vision r3).
 - A 1-frame blip inside a still hold can be x264's periodic keyframe (keyint 250 = 8.33 s at 30 fps); set `X264_PARAMS=keyint=450` in render.mjs's encode for films with a hold near a multiple of 8.33 s (vision polish).
+- Every quote chip cut from a list or mid-sentence needs "…" at each cut, also for short phrases like "extra fingers"; the first detect cut lost a full Truth point on two chips (detect r1).
+- Scope a source to what it studied on screen ("AI-IMAGE GUIDE") when the film is about a neighbouring medium (video); an unscoped credit costs half a Truth point (detect r1).
+- A tag next to a generic "AI LABEL" chip reads as a claim about our own art; write "DRAWN BY US", never "OUR DRAWINGS" under an AI label (detect r2).
+- A bigger centred hero prop leaves no room for a 300 px frame-0 glide; get the travel from the headline sliding off a band on the picture instead (detect r2b).
+- Plan sound gaps in the script: in a 32 s, 86-word film the voice left no 0.6 s gap for the coin, the ALSO MADE UP stamp or YES/NO, so the biggest beats stayed silent (detect polish). Put a written pause after each planned hit line.
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -198,11 +203,11 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (from `python3 factory/stats.py`; refresh at the start of every run)
-Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
+Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
 | Video | Posted (UTC) | Length | Jury | YT | TT | Packaging | What it taught |
 |---|---|---|---|---|---|---|---|
 | noise | Oct 24 17:00 | 45 s | 7.8 | 1,319 | 0* | 4 | a task on frame 0 ("Find the cat") holds the swipe; best like rate |
-| incognito | Nov 2 18:00 | 30 s | 7.5 | 843 (6 h) | – | 6 | belief broken about a thing everyone uses; fastest start |
+| incognito | Nov 2 18:00 | 30 s | 7.5 | 1,281 (36 h) | – | 6 | belief broken about a thing everyone uses; fastest start |
 | battery | Oct 25 17:00 | 40 s | 8.0 | 455 | 0* | 6 | threat about the phone in your hand plus a check |
 | memory | Oct 25 23:00 | 39 s | 8.0 | 441 | 395 | 5 | everyday annoyance; most comments (3) |
 | fyp | Oct 24 23:00 | 40 s | 8.1 | 331 | 200 | 4 | viewer as subject |
@@ -213,7 +218,9 @@ Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 | phonephoto | Oct 28 17:00 | 33 s | 7.4 | 22 | 0* | 2 | flattering premise, nothing to fix |
 | agent | Oct 28 23:00 | 30 s | 7.4 | 14 | 0* | 1 | a definition of a buzzword |
 | strawberry | Oct 23 | 75 s | 7.7 | 14 | 237 | 2 | a myth that's already fixed |
-| voiceclone | Nov 3 00:00 | 32 s | 7.5 | 4 (17 min) | – | 5 | read at 24 h |
+| voiceclone | Nov 3 00:00 | 32 s | 7.5 | 1,195 (30 h) | – | 5 | slept 5 views for 6 h, then took off; read at 24 h, not before |
+| stepbystep | Nov 3 18:00 | 30 s | 7.4 | 24 (12 h) | – | 3 | prompt trick, no stake for the viewer; read again at 24 h |
+| vision | Nov 4 18:00 | 31 s | 7.2 | – | – | 3 | first post with no AI tag; read at 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
