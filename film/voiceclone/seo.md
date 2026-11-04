@@ -10,7 +10,7 @@ Factory #18 · How AI works, part 7 · film about 31.9 s (script dur 31.89 s; ou
 - Alternatives: Why Your Family Needs A Secret Word 😱 · Your Voice Is Just Numbers 🤔
 - "From 3 Seconds", not the brief's "In 3 Seconds": the paper used a 3-second recording; "in 3 seconds" reads as the cloning taking 3 seconds, which nothing here shows.
 
-**Playlist:** How AI works · **Tags:** ai voice cloning, how does ai voice cloning work, ai voice clone scam, family safe word, secret word scam, fbi ai voice warning, vall-e, microsoft vall-e 3 seconds, grandparent scam, how ai works, tech explained, shorts · **Altered content:** Yes
+**Playlist:** How AI works · **Tags:** ai voice cloning, how does ai voice cloning work, ai voice clone scam, family safe word, secret word scam, fbi ai voice warning, vall-e, microsoft vall-e 3 seconds, grandparent scam, how ai works, tech explained, shorts · **Altered content:** No
 
 **Slot:** YouTube Shorts: 13:00 ET (EST), Mon Nov 2, 2026 = 18:00 UTC. It's the next channel slot: packaged Sun Nov 1 at 23:17 UTC (18:17 EST), so today's 13:00 and 19:00 ET slots have passed. The US left daylight time today, so ET is now UTC-5; pick 1:00 PM from YouTube Studio's dropdown and check the saved time reads 18:00 UTC / 19:00 Stockholm (LESSONS clock-change rule). If incognito (passed Oct 31) is still unposted, it takes this slot first and voiceclone moves to 19:00 ET Mon Nov 2 = 00:00 UTC Tue. Post only if the jury passes the final cut (gate 7.4 + Truth 8.5); out/ was being re-rendered while this was written (the last mix flagged `tip` as heard "It's tip"). TikTok (paused, account-level hold): when Isac's Settings › Account status check clears it, post in the first 19:00 ET slot (LESSONS evening rule) = 00:00 UTC the next day.
 
@@ -45,9 +45,9 @@ Sources:
 - FBI (IC3) Public Service Announcement I-120324-PSA, "Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud", Dec 3, 2024, read Nov 1, 2026: https://www.ic3.gov/PSA/2024/PSA241203
 - FTC Consumer Alert, "Scammers use AI to enhance their family emergency schemes", Alvaro Puig, Mar 20, 2023, read Nov 1, 2026: https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes
 
-How AI works, part 7. Narration is an AI voice (Ming TTS, a stock preset, not a clone of anyone); the research, script and hand-built animation are made for this channel.
+How AI works, part 7. The research, script and hand-built animation are made for this channel.
 
-#shorts #voicecloning #ai
+#shorts #voicecloning
 ```
 
 ### Quote check (all re-read 2026-11-01)
@@ -68,7 +68,7 @@ The FBI's tip: a secret word with your family.
 Does your family have one? Yes or no.
 ```
 
-**Hashtags:** #ai #voicecloning #aivoice #scamalert #learnontiktok (no #safeword: on TikTok it mostly means something else; "family safe word" stays in the keywords)
+**Hashtags:** #voicecloning #aivoice #scamalert #learnontiktok (no #safeword: on TikTok it mostly means something else; "family safe word" stays in the keywords)
 
 **Keywords** (the first, "ai voice cloning", is spoken in `ask` at about 2.2-4.4 s and shown as HOW DOES AI VOICE CLONING WORK? from about 2.2 s; volumes not checked; "family safe word" is the phrase US news and safety pages use for the FBI's "secret word", searched 2026-11-01): ai voice cloning; how does ai voice cloning work; ai voice clone scam; family safe word; secret word scam call; fbi ai voice warning; vall-e 3 seconds; grandparent scam ai voice
 
@@ -76,7 +76,7 @@ Does your family have one? Yes or no.
 
 **Post time:** first 19:00 ET slot after the hold clears (see slot note above).
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James, a stock preset, not a clone of anyone); set YouTube's Altered content: Yes now, and TikTok's AI-generated content label when TikTok resumes
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ### Sounds (checked 2026-11-01, Higgsfield tiktok_music_trending, US, 7DAY)
 

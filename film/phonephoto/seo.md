@@ -57,7 +57,7 @@ Google's Night Sight post (Nov 14, 2018, re-read 2026-10-28): Night Sight in dim
 **When:** **19:00 ET, Wed Oct 28, 2026, scheduled in TikTok Studio (the playbook's 19:00-21:00 ET scheduled window: US evening, when people scroll and look back at the day's photos; qrcode took yesterday's 13:00 ET slot). If the orchestrator gives tonight's slot to another film, use 13:00 ET Thu Oct 29 (18:00 Stockholm, 17:00 UTC). Jury 7.4 is under LESSONS' 8.0 bar for a second post in one day: never stack it on a day that already has a post.**
 - Stockholm: 00:00 Thu Oct 29 (midnight) = 23:00 UTC Wed Oct 28. Sweden is on CET and the US stays on EDT until Nov 1, so the gap is 5 h this week. Pick the slot from YouTube's dropdown and check the saved time.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes.
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 
@@ -96,7 +96,7 @@ The film is 32.6 s with no music bed: lay the sound at about **5-10 %** under `o
 > - Hasinoff et al., "Burst photography for high dynamic range and low-light imaging on mobile cameras", SIGGRAPH Asia 2016: https://research.google/pubs/burst-photography-for-high-dynamic-range-and-low-light-imaging-on-mobile-cameras/
 > - Apple special event, Sept 10, 2019 (Deep Fusion, iPhone 11 Pro); Apple Newsroom, Sept 10, 2019: https://www.apple.com/newsroom/2019/09/iphone-11-pro-and-iphone-11-pro-max-the-most-powerful-and-advanced-smartphones/
 >
-> How tech works, part 5. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+> How tech works, part 5. The research, script and hand-built animation are made for this channel.
 >
 > #shorts #tech #phonephotography
 

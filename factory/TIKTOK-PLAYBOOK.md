@@ -36,7 +36,7 @@ What the factory does on every video to reach a **US audience** and get pushed b
 | 11 | **Few, precise hashtags** | seo | 3–5 topic tags plus 1 broad tag. No #fyp or #viral. The caption reads like a search result, not a tag dump. |
 | 12 | **Pinned comment that starts a thread** | seo, Isac | A follow-up question or a bonus fact. Isac pins it right after posting. |
 | 13 | **First-hour replies** | Isac | Reply to the first US commenters within the hour. Answer the best question with a **video reply**: it's a free next video with a built-in hook. |
-| 14 | **AI label on** | orchestrator | `is_aigc: true`. TikTok requires a label on realistic AI content, and an honest label protects the account. |
+| 14 | **TikTok AI toggle only, nothing else** | orchestrator | No #ai, no "AI voice" text in the caption (Isac 2026-11-03). The `is_aigc` toggle stays on for now: TikTok asks for a label on content with realistic AI audio, and a stock narrator voice may count, so turning it off risks removals on an account already held since Oct 27. Isac decides; TikTok posting is paused anyway. |
 
 ## One-time setup for Isac
 
