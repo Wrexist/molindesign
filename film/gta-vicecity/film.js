@@ -318,7 +318,7 @@
     var T = home ? 0 : t, out = 1 - seg(T, start('ask') - .45, start('ask') - .1);
     var ck = home ? 1 : lerp(.9, 1, eo(seg(T, 0, .3)));
     if (out > 0) chip(g, 'GTA 6', 540, 1190, { px: 120, bg: TEAL, fg: BG, wt: 900, rot: -.04, s: ck * lerp(.8, 1, out), a: out });
-    pixCar(g, home ? 190 : 190 + T * 190, 1425, out);
+    pixCar(g, 190 + t * 190, 1425, out);
     if (home) return;
     var vk = pop(t, at('hook', 'city') - .06);
     chip(g, 'VICE CITY', 540, 1310, { px: 64, bg: PINK, fg: BG, wt: 900, rot: .03, s: vk * lerp(.8, 1, out), a: vk * 3 * out });
@@ -360,15 +360,19 @@
     return { m: m, rows: rows, cols: cols };
   }
   var TILES = [tileMap(5), tileMap(8), tileMap(11)];
+  /* each city gets its own palette so the three rows read as three places (jury r2): Vice pink, Liberty slate, San Andreas sand */
+  TILES[0].pal = { ground: '#156b4a', b1: PURP, b2: PINK, water: TEAL };
+  TILES[1].pal = { ground: '#3d4a5c', b1: '#8fa3bf', b2: '#c9d4e3', water: '#4a7fb0' };
+  TILES[2].pal = { ground: '#9a6a2e', b1: ORG, b2: SAND, water: '#2fa7c9' };
   function drawTile(g, tm, t, carOn) {    // drawn at 1x around (0,0): GC*CELL x GR*CELL
     var w = GC * CELL, h = GR * CELL, x0 = -w / 2, y0 = -h / 2;
     rr(g, x0 - 10, y0 - 10, w + 20, h + 20, 18); g.fillStyle = CREAM; g.fill();
     for (var y = 0; y < GR; y++) for (var x = 0; x < GC; x++) {
       var c = tm.m[y][x], px = x0 + x * CELL, py = y0 + y * CELL;
-      g.fillStyle = c === 1 ? '#3a3360' : c === 3 ? TEAL : '#156b4a';
+      var pl = tm.pal; g.fillStyle = c === 1 ? '#3a3360' : c === 3 ? pl.water : pl.ground;
       g.fillRect(px, py, CELL, CELL);
       if (c === 1) { g.fillStyle = 'rgba(255,243,230,.5)'; if (tm.rows.indexOf(y) >= 0) g.fillRect(px + 14, py + CELL / 2 - 3, 28, 6); else g.fillRect(px + CELL / 2 - 3, py + 14, 6, 28); }
-      if (c === 2 || c === 5) { g.fillStyle = c === 5 ? PINK : PURP; g.fillRect(px + 6, py + 6, CELL - 12, CELL - 12); g.fillStyle = 'rgba(11,8,32,.35)'; g.fillRect(px + 6, py + CELL - 16, CELL - 12, 10); g.fillStyle = CREAM; g.fillRect(px + 16, py + 16, 8, 8); }
+      if (c === 2 || c === 5) { g.fillStyle = c === 5 ? pl.b2 : pl.b1; g.fillRect(px + 6, py + 6, CELL - 12, CELL - 12); g.fillStyle = 'rgba(11,8,32,.35)'; g.fillRect(px + 6, py + CELL - 16, CELL - 12, 10); g.fillStyle = CREAM; g.fillRect(px + 16, py + 16, 8, 8); }
       if (c === 4) { g.fillStyle = '#7a4a2a'; g.fillRect(px + 24, py + 24, 8, 8); g.fillStyle = MINT; g.fillRect(px + 12, py + 20, 32, 8); g.fillRect(px + 24, py + 8, 8, 32); g.fillRect(px + 16, py + 12, 8, 8); g.fillRect(px + 32, py + 36, 8, 8); }
       if (c === 3) { var wv = Math.floor(t * 3 + x + y) % 3; g.fillStyle = 'rgba(255,243,230,.55)'; g.fillRect(px + 10 + wv * 8, py + 20, 16, 5); }
     }
@@ -449,8 +453,14 @@
   }
   function scenePost(g, t) {
     var s0 = SC[S.post].t0, k = clamp(sp(t, s0 + .05, 2.2, .78), 0, 1.06);
-    var d3 = function (i) { var a0 = at('vc', 'goes') - .25 + i * .1; return eio(seg(t, a0, a0 + .45)); };
-    postcard(g, t, 520, 1135 + (1 - Math.min(1, k)) * 200, lerp(.85, 1, Math.min(1, k)), -.03 + Math.sin(t * 1.1) * .008, d3);
+    /* jury r2: the flat 1997 tile tilts back on "goes" and the 3D skyline stands up out of it on "3D" */
+    var tilt = eio(seg(t, at('vc', 'goes') - .1, at('vc', '3D') + .1)), rise = eio(seg(t, at('vc', 'goes') + .05, at('vc', '3D') + .3));
+    if (tilt < 1) {
+      var ty = 1135 + (1 - Math.min(1, k)) * 200 + tilt * 170, push = 1 + .04 * seg(t, s0, at('vc', 'goes'));
+      g.save(); g.globalAlpha = 1 - seg(t, at('vc', '3D') - .05, at('vc', '3D') + .15); g.translate(520, ty); g.transform(1, 0, -.35 * tilt, 1, 0, 0); g.scale(1.05 * push, 1.05 * push * lerp(1, .22, tilt)); drawTile(g, TILES[0], t, true); g.restore();
+    }
+    var d3 = function (i) { var a0 = at('vc', '3D') - .3 + i * .07; return eio(seg(t, a0, a0 + .4)); };
+    if (rise > 0) postcard(g, t, 520, lerp(1330, 1135, rise), lerp(.6, 1, rise), -.03 + Math.sin(t * 1.1) * .008, d3);
     var ck = pop(t, GT.ps2);
     chip(g, 'PS2 · OCT 2002', 690, 1352, { px: 46, bg: TEAL, fg: BG, wt: 900, rot: .03, s: ck, a: ck * 3 });
     var dk = pop(t, GT.p3d);
@@ -506,6 +516,7 @@
     label(g, 'STORY YEAR', 100, RY + 150, k, CREAM, 38, 'left');
     label(g, 'GTA 6 OUT', 925, RY + 150, k, CREAM, 38, 'right');
     label(g, 'STORY 1986 \u2192 GTA 6 2026', 510, 1385, eo(seg(t, GT.st40 + .35, GT.st40 + .7)), CREAM, 44);
+    var fk = pop(t, GT.st40); chip(g, '40 YEARS', 510, 1255, { px: 72, bg: ORG, fg: BG, wt: 900, rot: -.04, s: fk * (1 + .015 * Math.sin(t * 3)), a: fk * 3 });   /* a chip, not a stamp: 29 YEARS is the one hero (jury r2) */
     /* brace over the ruler */
     var bk = eio(seg(t, GT.roll40 + .2, GT.roll40 + 1.0));
     if (bk > 0) { g.save(); g.strokeStyle = CREAM; g.lineWidth = 6; g.lineCap = 'round'; g.globalAlpha = bk; var m = (RX0 + RX1) / 2, hw = (RX1 - RX0) / 2 * bk;
@@ -572,14 +583,14 @@
     g.save(); g.globalAlpha = clamp(vk * 3, 0, 1); g.strokeStyle = CREAM; g.lineWidth = 4; g.beginPath(); g.moveTo(dx - 14, dy + 16); g.lineTo(300, 1300); g.stroke(); g.restore();
     chip(g, 'VICE CITY', 250, 1330, { px: 44, bg: CREAM, fg: BG, wt: 900, s: vk, a: vk * 3, rot: -.03 });
     /* the date card and the platform card, right column */
-    var ck = pop(t, s0 + .2);
+    var ck = pop(t, s0 + .42);
     if (ck > 0) {
       g.save(); g.globalAlpha = clamp(ck * 3, 0, 1); g.translate(745, 1005); g.scale(ck, ck); g.rotate(.03);
       rr(g, -170, -115, 340, 230, 26); g.fillStyle = CREAM; g.fill();
       font(g, 86, 900); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = BG; g.fillText('NOV 19', 0, -40); g.fillStyle = PINK; g.fillText('2026', 0, 50);
       g.restore();
     }
-    var pk = pop(t, s0 + .4);
+    var pk = pop(t, s0 + .62);
     if (pk > 0) {
       g.save(); g.globalAlpha = clamp(pk * 3, 0, 1); g.translate(745, 1255); g.scale(pk, pk); g.rotate(-.02);
       rr(g, -170, -105, 340, 210, 26); g.fillStyle = PANEL2; g.fill(); g.strokeStyle = TEAL; g.lineWidth = 6; g.stroke();
@@ -594,7 +605,8 @@
      ===================================================================================================== */
   function sceneQuote(g, t) {
     var s0 = SC[S.quote].t0, k = clamp(sp(t, s0 + .05, 2.2, .78), 0, 1.06);
-    g.save(); g.translate(520, 1110 + (1 - Math.min(1, k)) * 200); g.rotate(-.03 + Math.sin(t * 1.2) * .006);
+    var qp = 1 + .07 * eio(seg(t, s0 + .4, SC[S.quote].t1));
+    g.save(); g.translate(520, 1110 + (1 - Math.min(1, k)) * 200); g.rotate(-.03 + Math.sin(t * 1.2) * .006 - .02 * seg(t, s0 + .4, SC[S.quote].t1)); g.scale(qp, qp);
     rr(g, -380 + 12, -235 + 16, 760, 470, 18); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
     rr(g, -380, -235, 760, 470, 18); g.fillStyle = CREAM; g.fill();
     /* tape */
@@ -630,7 +642,7 @@
   function sceneTime(g, t) {
     var s0 = SC[S.time].t0, k = eio(seg(t, s0 + .05, s0 + .5)), bo = 1 - seg(t, GT.dq - .1, GT.dq + .15);
     g.save(); g.globalAlpha = k; g.strokeStyle = CREAM; g.lineWidth = 8; g.lineCap = 'round'; g.beginPath(); g.moveTo(TL.x0, TL.y); g.lineTo(TL.x1, TL.y); g.stroke(); g.restore();
-    var YRS = [1997, 2002, 2006, 2026], COL = [PINK, TEAL, ORG, PINK], TIER = [1015, 905, 1015, 1015], LY = [1162, 1162, 1214, 1162];
+    var YRS = [1997, 2002, 2006, 2026], COL = [PINK, TEAL, ORG, PINK], TIER = [1015, 905, 1015, 1015], LY = [1162, 1162, 1226, 1162];
     YRS.forEach(function (y, i) {
       var pk = pop(t, s0 + .15 + i * .12), x = tx(y);
       if (pk <= 0) return;
@@ -643,11 +655,11 @@
     if (bk > 0) { g.save(); g.strokeStyle = PINK; g.lineWidth = 7; g.lineCap = 'round'; g.globalAlpha = bk; var m = (TL.x0 + TL.x1) / 2, hw = (TL.x1 - TL.x0) / 2 * Math.min(1, bk * 1.2), Y = 1262;
       g.beginPath(); g.moveTo(m - hw, Y - 26); g.quadraticCurveTo(m - hw, Y, m - hw + 34, Y); g.lineTo(m - 26, Y); g.lineTo(m, Y + 26); g.lineTo(m + 26, Y); g.lineTo(m + hw - 34, Y); g.quadraticCurveTo(m + hw, Y, m + hw, Y - 26); g.stroke(); g.restore(); }
     if (t >= GT.s29) { var nk = sp(t, GT.s29, 3, .55), sc = lerp(1.3, 1, clamp(nk, 0, 1.2));
-      chip(g, '29 YEARS', 505, 1338, { px: 92, bg: PINK, fg: BG, wt: 900, rot: -.04, s: sc, a: clamp(nk * 3, 0, 1) * bo }); }
-    label(g, 'BY RELEASE YEAR \u00b7 2026 \u2212 1997', 505, 1418, eo(seg(t, GT.s29 + .2, GT.s29 + .5)) * bo, CREAM, 36);
+      chip(g, '29 YEARS', 505, 1330, { px: 124, bg: PINK, fg: BG, wt: 900, rot: -.04, s: sc * (1 + .012 * Math.sin((t - GT.s29) * 4)), a: clamp(nk * 3, 0, 1) * bo }); }
+    label(g, 'BY RELEASE YEAR \u00b7 2026 \u2212 1997', 505, 1430, eo(seg(t, GT.s29 + .2, GT.s29 + .5)) * bo, CREAM, 36);
     YRS.forEach(function (v, i) {
       var vk = pop(t, GT.vote[i]), col = i % 2, row = (i / 2) | 0;
-      chip(g, String(v), 330 + col * 370, 1290 + row * 118, { px: 70, bg: PANEL2, line: COL[i], fg: CREAM, wt: 900, lw: 5, pad: 34, s: vk, a: vk * 3, rot: (i % 2 ? .03 : -.03) });
+      chip(g, String(v), 330 + col * 370, 1290 + row * 118 + Math.sin(t * 2.4 + i * 1.6) * 7, { px: 70, bg: PANEL2, line: COL[i], fg: CREAM, wt: 900, lw: 5, pad: 34, s: vk * (1 + .03 * Math.max(0, Math.sin(t * 3.1 - i * 1.4))), a: vk * 3, rot: (i % 2 ? .03 : -.03) + Math.sin(t * 1.7 + i) * .015 });
     });
   }
 
@@ -711,7 +723,7 @@
     if (LIVE.text) captions(g, t);
     /* the loop: the last frame dissolves back into frame 0 */
     var back = eio(seg(t, HOME, HOME + .45));
-    if (back > 0) { g.save(); g.globalAlpha = back; frame(g, 0, true); g.restore(); }
+    if (back > 0) { g.save(); g.globalAlpha = back; frame(g, t - DUR, true); g.restore(); }   /* home keeps moving (sun stripes, car) and lands exactly on frame 0 at DUR */
     g.fillStyle = 'rgba(255,243,230,.12)'; g.fillRect(60, 140, W - 120, 6);
     g.fillStyle = PINK; g.fillRect(60, 140, (W - 120) * t / DUR, 6);
     if (LIVE.grain && NOISE) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
@@ -762,8 +774,8 @@
     if (si === S.ruler && t > GT.st40 + .5) add('ruler', 'STORY 1986 GTA 6 2026');
     if (si === S.hand && t > SC[S.hand].t0 + .3) add('hand', 'PSP 2006');
     if (si === S.hand && t > GT.s84 + .15) add('hand84', 'SET IN 1984');
-    if (si === S.leo && t > SC[S.leo].t0 + .3) add('leo', 'NOV 19 2026');
-    if (si === S.leo && t > SC[S.leo].t0 + .5) add('plat', 'PS5 XBOX SERIES X|S');
+    if (si === S.leo && t > SC[S.leo].t0 + .52) add('leo', 'NOV 19 2026');
+    if (si === S.leo && t > SC[S.leo].t0 + .72) add('plat', 'PS5 XBOX SERIES X|S');
     if (si === S.quote && t > SC[S.quote].t0 + .1) add('quote', 'We\u2019re a long way from the \u201980s\u2026');
     if (si === S.time && t > GT.s29 + .15 && t < GT.dq) add('span', '29 YEARS');
     if (si === S.time && t > GT.vote[0] + .2 && t < HOME) add('best', '1997 2002 2006 2026');
@@ -774,14 +786,14 @@
   var EV = [];
   function initGaps() {
     GT.d2002 = SC[S.post].t0 - .15;                                   /* forward flips land under the wipe, in the pause, with a flap per digit */
-    GT.d1986 = wend('set', '1986') + .15; GT.d1986e = GT.d1986 + .45;  /* the backward roll sits in the pause after "1986" */
+    GT.d1986 = at('set', '1986') - .4; GT.d1986e = at('set', '1986') + .1;  /* jury r2: the backward roll lands on the spoken "1986" */
     GT.roll40 = start('forty') - .05;
-    G('st40', start('forty') - .3, 'stamp', .35, .55);
+    G('st40', start('forty') - .3, 'blip', .35, .7);
     GT.d2006 = SC[S.hand].t0 - .14;
     GT.s84 = at('vcs', 'Stories') - .05;
-    GT.d1984 = wend('vcs', '1984') + .15; GT.d1984e = GT.d1984 + .42;  /* the rewind, in the pause after "1984" */
-    G('rew', GT.d1984, 'rewind', .15, .7);
-    GT.d2026 = SC[S.leo].t0 - .15;
+    GT.d1984 = at('vcs', '1984') - .4; GT.d1984e = at('vcs', '1984') + .1;  /* lands on the spoken "1984" and holds ~1 s with its tag */
+    G('rew', wend('vcs', '1984') + .1, 'rewind', .3, .7);
+    GT.d2026 = SC[S.leo].t0 - .3;   /* the flip is done before the NOV 19 card pops */
     GT.ps2 = G('ps2', wend('vc', '2002') + .15, 'blip', .3, .9);
     GT.p3d = G('p3d', wend('vc', '3D') + .05, 'blip', .4, .9);
     GT.leoDot = SC[S.leo].t0 + .45; GT.leoBack = G('leoBack', wend('now', 'back') + .05, 'blip', .3, .9);
@@ -793,6 +805,7 @@
   function initTimes() {
     function A(t, type, g, extra) { if (t !== null) { var e = { t: t, type: type, g: g }; if (extra) for (var k in extra) e[k] = extra[k]; EV.push(e); } }
     GS.forEach(function (e) { A(e.t, e.type, e.g); });
+    A(0, 'flap', .8); A(.02, 'thump', .6);   /* jury r2: a hook sound before the first word (voice starts at 0.2 s) */
     SC.forEach(function (sc, i) { if (i > 1 && i !== S.ruler) { var s = gapSpan(sc.t0 - .22, sc.t0 + .2); if (s) A(s[0], 'swish', .9, { t1: s[1] }); } });
     var FR = free(.2);
     function ok(t0, body) { return FR.some(function (f) { return t0 >= f[0] && t0 + body <= f[1]; }); }
@@ -873,12 +886,10 @@
   }
   initGaps();
   initDial();
-  STAMPS = [['40 YEARS', GT.st40, SC[S.hand].t0 - .25, 118, ORG, 510, 1250]];
+  STAMPS = [];
   initTimes();
   /* poster: 40 YEARS fully landed, the caption above it gone (the pause after "comes out.") */
-  var POSTER_T = GT.st40 + .9;
-  VO.captions.forEach(function (c) { if (c.t0 >= start('forty') && c.t1 < start('vcs')) POSTER_T = c.t1 + .2; });
-  POSTER_T = Math.min(POSTER_T, SC[S.hand].t0 - .3);
+  var POSTER_T = Math.min(GT.s29 + .4, start('span') - .06);   /* poster: the 29 YEARS hero landed, before the caption comes up (jury r2) */
   window.FILM = { W: W, H: H, DUR: DUR, POSTER: POSTER_T, SLUG: 'gta-vicecity', SHOTS: SHOTS, init: init, render: render, frame: frame, LIVE: LIVE };
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var out = {};
