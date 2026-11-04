@@ -1,0 +1,2 @@
+../gta-vicecity/out/gta-vicecity-vo.mp4: 42.5 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.199, 0-3 s 0.202, median 0.15, still frames 16.8 %
+WARN  motion over 0-3 s is 0.20 (< 0.3); every Short over 300 views had 0.24+, most 0.30+
