@@ -19,8 +19,8 @@ Jury round 1: 7.4, **don't post as is** (Truth 7.5). This packaging assumes the 
 - Line 3 matches the film's last line, a one-word answer (LESSONS: zero comments so far). It asks for an opinion, not "comment X to get…".
 - No number in the caption, so the "training looks" condition can't get separated from its figure.
 
-**Hashtags:** #ai #aiimagegenerator #stablediffusion #diffusionmodel #learnontiktok
-- #ai is the broad tag. #aiimagegenerator and #stablediffusion are what Americans search, and #diffusionmodel catches the "explained" crowd. #learnontiktok is the US education feed.
+**Hashtags:** #aiimagegenerator #stablediffusion #diffusionmodel #learnontiktok
+- #aiimagegenerator and #stablediffusion are what Americans search, and #diffusionmodel catches the "explained" crowd. #learnontiktok is the US education feed.
 - #aiart was left out on purpose. It's big, but it's where the anti-AI-art pile-ons live, and this video isn't AI art.
 
 **Cover:** frame 0 (`cover_time` 0.0) = `out/poster.jpg`, the static with FIND THE CAT and the magnifier. Cover text **Can you find it?** goes in the band under the static (about y 1500–1620, inside the 3:4 grid crop).
@@ -35,7 +35,7 @@ It's a sourced bonus fact from BRIEF (§3, fact 2), and it ends with a one-word-
 - GPS went up Fri 20:30 ET (no Studio scheduling consent yet), so Saturday 13:00 ET is the next free daily slot. It's East Coast lunchtime, inside the playbook's 12:00–15:00 ET hand-posting window, and it puts the channel back on one daily US time.
 - If it slips past Saturday: 13:00 ET is **18:00 Stockholm** from Sun Oct 25 to Sat Oct 31 (Sweden leaves summer time a week before the US), then 19:00 again from Sun Nov 1.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James). Turn on TikTok's **AI-generated content** label (`is_aigc: true`), and on YouTube set **Altered content: Yes**.
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 
@@ -94,9 +94,9 @@ TikTok's own suggestions can't be read from here. Before posting, type "how do a
 > - Sohl-Dickstein et al., "Deep Unsupervised Learning using Nonequilibrium Thermodynamics" (2015): https://arxiv.org/abs/1503.03585
 > - Quanta Magazine, "The Physics Principle That Inspired Modern AI Art" (Jan 5, 2023): https://www.quantamagazine.org/the-physics-principle-that-inspired-modern-ai-art-20230105/
 >
-> How AI works, part 4. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+> How AI works, part 4. The research, script and hand-built animation are made for this channel.
 >
-> #shorts #tech #ai
+> #shorts #tech
 
 **Tags:** how do ai image generators work, ai image generator, stable diffusion, diffusion model, how ai works, tech explained, how it works, shorts
 

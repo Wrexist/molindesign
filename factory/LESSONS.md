@@ -4,6 +4,17 @@ The factory's memory of what made videos better or worse. Every run reads this b
 
 Isac's standing ask (2026-10-23): each video must be better than the last. Look at every video harshly, criticise everything, learn, and never repeat a mistake.
 
+## What the numbers say (31 posts, read 2026-11-03; full analysis in `factory/PERFORMANCE.md`)
+These outrank every craft lesson below: views follow the topic and title, not the polish.
+- Jury score barely predicts views (ρ 0.19 over 11 Shorts: hallucinate and gps at 8.2 got 135 and 50; incognito at 7.5 got 843 in 6 h). Keep Truth strict; don't spend a fix round chasing 0.2 points.
+- Winners break a belief about something the viewer uses or hand them a test in frame 0: incognito "doesn't make you invisible" 843 (6 h), noise "Find the cat in this static" 1,319, battery "already shrinking" 455, memory "forgets your name" 441, Delta 13years 1,251.
+- Flops explain a thing instead: definitions (agent 14), flattering premises (phonephoto 22), textbook titles (gps 50), myths that are already fixed (strawberry 14), insider lists (gta-leonida 116).
+- Score every topic on the six-point packaging score (PERFORMANCE.md §7: mine, myth/threat, frame-0 test, takeaway, title, searched) before the researcher starts; make only 4/6 or more. Retro ρ 0.85 with views, fitted after the fact, so re-check it after 10 more posts.
+- Titles: the everyday thing in the first three words, ≤ 7 words, Title Case and one emoji, a consequence verb ("Really Hides", "Is Shrinking", "Forgets"). Never "#Shorts", never "Actually Is".
+- TikTok's public page shows whether a post is pushed: `indexEnabled` is set on every served post and missing on every 0-play one (noise, battery, qrcode, phonephoto, agent, the hallucinate repost). The AI label was on all 14, served ones included. Check `served` with `python3 factory/stats.py` an hour after each TikTok.
+- Long-form on a channel without subscribers gets nothing (cables 21 views in 10 days). Hold long-form on Tech, explained until Shorts have built an audience.
+- Delta's 161k subscribers don't carry views (1,251 → 312 → 116). One feeling every gamer has (the 13-year wait) beats Rockstar's own place names.
+
 ## Real numbers, first stats review (2026-10-24, under 5 h after posting; early signal)
 - Every video lost almost everyone at 0:01. The dark, text-heavy title card on frame 0 is the problem. Open on one huge moving object, ≤ 5 words, hook spoken ≤ 6 words.
 - 80 s is far too long: average watch 10–16 s. Make 30–45 s, never over 59 s.
@@ -30,10 +41,20 @@ Example Isac sent: Jeremy Bearimy (@JeremyBearimyTheory), "What If You Could See
 Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI animation and AI voices. Ours must read as made with care, and must be honest:
 - Every video carries something checkable: a named source on screen and in the description, a real date, a real number. Slop has none (house rule since #1; now mandatory on YouTube too).
 - The picture is hand-built (paper props, stamps, rulers, our palette), never generated stock or AI imagery; nothing morphs, no uncanny hands or faces (Isac's no-AI-look rule).
-- Disclose the AI voice plainly (TikTok label, YouTube "Altered content", description line). Never hide it; hiding it is what gets channels piled on.
-- Quality over count: 2 a day only while each passes the gate (since 2026-10-28: 7.4+ with Truth 8.5+, re-anchored by Isac to the last posted film's level); if a run can't, skip that slot rather than post filler.
+- **No AI tag (Isac, 2026-11-03: "remove ai tag everywhere").** YouTube Altered content: **No**; no "AI voice" line in titles, descriptions, captions or pinned comments; no #ai hashtag (use the precise topic tag instead, e.g. #chatgpt). YouTube only asks for the label on *realistic* altered content (a real person made to say something, a real event or place altered, a realistic scene that didn't happen, generated music); a stock narrator voice over our hand-made, plainly illustrated animation is none of those (https://support.google.com/youtube/answer/14328491). The one exception: if a film ever uses a cloned real person's voice or realistic generated footage, it gets the label. Never claim the voice is a human's; if a viewer asks, answer honestly. (Replaces the 2026-10-24 rule to disclose the voice on every post.)
+- Quality over count: 2 a day only while each passes the gate (since 2026-11-03: jury 7.0+ with Truth 8.5+ and packaging 4/6+, Isac's call after the views analysis; 7.4 from 2026-10-28 until then); if a run can't, skip that slot rather than post filler.
 - Reply to real comments in the first hour with a sourced extra fact; a creator who answers isn't a slop farm.
 - Never post the anti-slop copypasta or reply to it with arguments; answer a "this is AI" comment with the source link and what we made by hand.
+
+## What ernestosoftware's viral reel teaches (studied 2026-11-04)
+Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on a reel he says Claude made in under an hour; the skill is behind a follow gate, so we studied the 10 s "anatomy" video instead). It splits the reel into 7 layers: footage (an animated character), dialogue, captions, 55 cuts, story arc, music, real footage.
+- Measure pace, don't eyeball it: `film/tools/pacecheck.py` on our 13 posted Shorts found motion over 0–3 s lines up with views (Spearman 0.74) while overall motion doesn't (0.12). Winners 0.24–0.78, flops 0.13–0.22 (agent 0.13, gps 0.13, strawberry 0.17). `make.sh mix` now writes it to out/pace.txt.
+- We cut almost never: 0–1 hard cuts per film against his 55. Our glides and wipes keep motion up, so this isn't a rule yet; try one film built on hard cuts (a new picture every 0.6–0.8 s in the first 6 s) and compare its pace.txt and views.
+- A story arc beats a flat explanation: his has a low point ("you're gonna be a nobody"), time-jump cards ("3 MONTHS LATER", "YEARS LATER") and a rise to the payoff. The researcher now scores tension per line and needs one dip and a highest last beat.
+- Real footage at the end proves the story: our version is the sourced document, date or number on the hero hold (already a "not slop" rule; keep it).
+- Captions are one or two huge stacked words a beat, which matches our "≤ 5 words on frame 0"; his are bold condensed caps.
+- "Stop sounding like AI" is his whole pitch: `film/tools/scriptlint.py` now fails stock AI phrases before the voice is synthesized.
+- Don't copy: the follow-gated "free skill in comments" funnel (TIKTOK-PLAYBOOK, What we don't do) or the AI-generated character (Isac's no-AI-look rule).
 
 ## Hook and first frame
 - Frame 0 shows the conflict, never the answer (strawberry r1: the answer on frame 0 killed the reason to watch).
@@ -87,6 +108,11 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - A whole beat that only adds thin lines or small tabs reads as frozen; make the mechanism prop travel ≥ 250 px or push the camera 1.0 → 1.2× (stepbystep r1, r3).
 - Whisper can hear a phantom word in a take's ring-out ("own." → "phone"); fade that line's tail with the per-line `tail_fade` key in voiceover.py before re-rolling (stepbystep polish).
 - Keep the voice stems in out/vo/ until the film is done; deleting them with the /dev/shm cleanup made the next mix silently reuse the old file (stepbystep).
+- Three flat rounds (7.2 → 7.2 → 7.2) mean the idea's picture is the ceiling, not the fixes: vision's one small print on a dark stage never got past 7.2. Plan a hero prop that fills ≥ 700 px before the first render (vision).
+- A resolution story must be shown at real pixel density: area-average the test image to the model's size and scale it up nearest-neighbour, at a text size that honestly fails (about 5 px cap at 4032 wide); a Gaussian blur or a crop that still reads costs Clarity (vision r1–r3).
+- When a before/after panel pair changes to a new pair, swap every label with it; a label left up reads backwards with the sound off and costs a Truth point (vision r2).
+- Scope every capped number from its first frame ("CAP 4,784 (CLAUDE 4.7+)"); a bare number that is wrong on another tier is a Truth flag (vision r3).
+- A 1-frame blip inside a still hold can be x264's periodic keyframe (keyint 250 = 8.33 s at 30 fps); set `X264_PARAMS=keyint=450` in render.mjs's encode for films with a hold near a multiple of 8.33 s (vision polish).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -159,7 +185,7 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 
 ## Posting and sound
 - Every TikTok scheduled in the 13:00 ET slot (noise, battery, qrcode, phonephoto) sat at exactly 0 views while the same videos got 178–1,319 on YouTube; every TikTok posted in the US evening (memory 19:00 ET, fyp 19:00 ET, gps 20:30 ET) was served (2026-10-28, PC page-data check). Until disproven: TikTok posts only at 19:00 and 23:00 ET; YouTube keeps 13:00 and 19:00 ET. Retire the sounds Self Aware and Espresso Soul (both on 0-view posts).
-- The slot theory was wrong (2026-10-29 check): agent went out at 19:00 ET and still has exactly 0 TikTok views after 13 h, like phonephoto (13:00 ET, 19 h). Every TikTok since Oct 27 (qrcode, phonephoto, agent) is at 0, the last one served was memory (Oct 26, 394), and TikTok Studio shows no notice. Treat it as an account-level hold: TikTok uploads are paused (YouTube only) until Isac checks Settings › Account status in the app and a new post gets served. Keep the evening-slot rule for when it resumes. YouTube also fell from 178–1,319 to 12–17 views per Short in the same days.
+- The slot theory was wrong (2026-10-29 check): agent went out at 19:00 ET and still has exactly 0 TikTok views after 13 h, like phonephoto (13:00 ET, 19 h). Every TikTok since Oct 27 (qrcode, phonephoto, agent) is at 0, the last one served was memory (Oct 26, 394), and TikTok Studio shows no notice. (2026-11-03: the public pages show these posts were never pushed, `indexEnabled` missing; see PERFORMANCE.md §5.) Treat it as an account-level hold: TikTok uploads are paused (YouTube only) until Isac checks Settings › Account status in the app and a new post gets served. Keep the evening-slot rule for when it resumes. YouTube also fell from 178–1,319 to 12–17 views per Short in the same days.
 - The PC (Phantomen) can be offline for a whole day: incognito passed on 2026-10-31 and couldn't be scheduled (Remote Control not connected at 07:35, 09:04, 13:01 UTC). A passed film waits in the queue and the next run schedules it first; Isac must open Remote Control.
 - Every post gets one of the most popular trending sounds of the week, quiet (about 10%) under the voice. TikTok can't change a post's sound after posting (first three posts went up without one).
 - Pick sounds at least as long as the video: many trending sounds are 1:00 clips and cut out under a 1:19 film (gps: Self Aware and Sunset in Girona were skipped for Espresso Soul).
@@ -171,24 +197,24 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - On a clock-change day YouTube Studio's typed time can shift an hour; pick the slot from the dropdown and check the saved time (battery, 2026-10-25).
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
-## Performance (fill in from TikTok analytics)
-| Video | Posted | Views 24 h | Avg watch | % to end | Shares | What it taught |
-|---|---|---|---|---|---|---|
-| Next word | 2026-10-23 | 201 (5 h) | 9.6 s | 3.0 % | 0 | abstract opening, worst completion |
-| Strawberry | 2026-10-23 | 220 (5 h) | 16.0 s | 7.3 % | 0 | puzzle: most views |
-| Why AI makes things up | 2026-10-23 | 186 (5 h) | 14.7 s | 9.1 % | 0 | real story: best completion |
-| How GPS works | 2026-10-24 00:30 UTC (Fri 20:30 ET) | 55 (10 min) | 1.2 s | 0 % | 0 | dense static text card on frame 0 |
-| TikTok algorithm (fyp) | 2026-10-24 23:00 UTC (Sat 19:00 ET) | | | | | viewer-as-subject puzzle; jury 7.6 → 8.1 |
-| Phone battery | 2026-10-25 17:00 UTC (Sun 13:00 ET) | TikTok 0 (6 h, "data processing", likely held in review); YouTube 216 | | | | self-check hook ("check yours"); jury 7.7 → 8.0, Truth 9.0 |
-| Torn QR code (qrcode) | 2026-10-27 17:00 UTC (Tue 13:00 ET; missed Mon, PC offline) | TikTok 0 (24 h, not served?), YouTube 178 (24 h) | | | | real decoded tear; jury 7.2 → 8.0, Truth 9.0 |
-| Why AI forgets (memory) | 2026-10-25 23:00 UTC (Sun 19:00 ET) | TikTok 122 (20 min), YouTube 9 | | | | question hook + erased name tag on frame 0; jury 7.8 → 8.0, Truth 9.0 |
-| Noise → pictures | 2026-10-24 17:00 UTC (Sat 13:00 ET) | | | | | first 30–45 s puzzle under the new rules; jury 7.4 → 7.8, fixed |
-| Same question, two answers (temperature) | held (not posted) | | | | | weighted-dice + dial; jury 7.5 → 7.2 → 6.9 (r3 "don't post"), parked |
-
-| How long to crack a password (password) | held (not posted) | | | | | leaked-first + length ladder; jury 7.4 → 7.3 → 7.2 (r3 Truth 8.0, don't post), parked |
-| Why AI made Nvidia rich (gpus) | held (not posted) | | | | | one hero print block, cardboard card; jury 7.0 → 6.9 ("don't post"), parked |
-| Why phone photos look better (phonephoto) | 2026-10-28 17:00 UTC (Wed 13:00 ET) | TikTok 0, YouTube 12 (6 h); TikTok 0, YouTube 17 (19 h) | | | | nine grainy sheets averaged into one clean print; first cut 7.5, best in four films; r2 7.4, Truth 8.5 |
-| What an AI agent is (agent) | 2026-10-28 23:00 UTC (Wed 19:00 ET) | TikTok 0, YouTube 4 (25 min); TikTok 0, YouTube 12 (13 h) | | | | paper click ticket + think/act/look ring; jury 7.4 → 7.4 (Truth 9.0), first post under the 7.4 gate |
+## Performance (from `python3 factory/stats.py`; refresh at the start of every run)
+Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
+| Video | Posted (UTC) | Length | Jury | YT | TT | Packaging | What it taught |
+|---|---|---|---|---|---|---|---|
+| noise | Oct 24 17:00 | 45 s | 7.8 | 1,319 | 0* | 4 | a task on frame 0 ("Find the cat") holds the swipe; best like rate |
+| incognito | Nov 2 18:00 | 30 s | 7.5 | 843 (6 h) | – | 6 | belief broken about a thing everyone uses; fastest start |
+| battery | Oct 25 17:00 | 40 s | 8.0 | 455 | 0* | 6 | threat about the phone in your hand plus a check |
+| memory | Oct 25 23:00 | 39 s | 8.0 | 441 | 395 | 5 | everyday annoyance; most comments (3) |
+| fyp | Oct 24 23:00 | 40 s | 8.1 | 331 | 200 | 4 | viewer as subject |
+| qrcode | Oct 27 17:00 | 40 s | 8.0 | 182 | 0* | 3 | clever object, no stake for the viewer |
+| nextword | Oct 23 | 81 s | – | 179 | 212 | 2 | too long, abstract |
+| hallucinate | Oct 23 | 82 s | 8.2 | 135 | 203 | 4 | good story, too long, "#Shorts" title |
+| gps | Oct 24 | 79 s | 8.2 | 50 | 204 | 2 | text card on frame 0, textbook title |
+| phonephoto | Oct 28 17:00 | 33 s | 7.4 | 22 | 0* | 2 | flattering premise, nothing to fix |
+| agent | Oct 28 23:00 | 30 s | 7.4 | 14 | 0* | 1 | a definition of a buzzword |
+| strawberry | Oct 23 | 75 s | 7.7 | 14 | 237 | 2 | a myth that's already fixed |
+| voiceclone | Nov 3 00:00 | 32 s | 7.5 | 4 (17 min) | – | 5 | read at 24 h |
+| Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
 - A re-time can leave a counter showing the previous scene's year over the next scene's card: after any shift in vo/script.json, flip the dial under the wipe (before the new card shows) and re-check every scene boundary frame by frame (gta-vicecity r1: 1986 · IN-GAME YEAR over the PSP · 2006 card for 0.85 s cost Truth).

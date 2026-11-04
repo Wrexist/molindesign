@@ -1,0 +1,65 @@
+{
+ "title": "How AI sees images: Claude shrinks your photo first",
+ "caption": "How does AI see your photo? Claude shrinks it first: a 12 MP photo keeps under a third of its pixels, about 4,740 squares of 28 px each.\nSmall text can get harder to read, so get closer for fine print.\nDid you know it shrinks your photos? Yes or no.",
+ "hashtags": [
+  "#claude",
+  "#anthropic",
+  "#phonephotography",
+  "#techtips",
+  "#learnontiktok"
+ ],
+ "keywords": [
+  "how ai sees images",
+  "claude image upload",
+  "claude image size limit",
+  "claude image tokens",
+  "why can't ai read small text",
+  "does claude resize images",
+  "image patches",
+  "an image is worth 16x16 words"
+ ],
+ "cover_text": "12 MILLION PIXELS",
+ "cover_time": 0.0,
+ "pinned_comment": "On older Claude models (before 4.7, the docs' standard tier) the cap is 1,568 squares. The same 12 MP photo is cut to 1270 × 952 by the docs' resize code: 46 × 34 = 1,564 squares, just 9.9% of its pixels. Which Claude do you send your photos to?",
+ "pinned_backups": [
+  {
+   "if": "Does ChatGPT do this too?",
+   "reply": "We didn't test the ChatGPT app. OpenAI's API guide says that for its newest models (gpt-6-astra and the gpt-5.6 family), \"original\" detail \"preserves the image's dimensions\" up to 65,535 px a side, and \"auto\" uses the same sizing. That's why the film says Claude, not every chatbot."
+  },
+  {
+   "if": "Can I stop it from shrinking my photo?",
+   "reply": "Send one that already fits: on Claude 4.7 and later that's up to 4,784 squares and 2,576 px a side (2212 × 1659 for a 4:3 photo). Developers can also set \"oversized_image\": \"error\" on an image block to get an error instead of a resize (Claude's resize guide, read Nov 3, 2026). For fine print, getting closer still helps most."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: the first free slot after stepbystep. If 19:00 ET (EST) Tue Nov 3 is still open after the queue (incognito/voiceclone/stepbystep), that is 00:00 UTC Wed Nov 4; otherwise 13:00 ET Wed Nov 4 = 18:00 UTC. Pick the time from YouTube Studio's dropdown and check the saved UTC time. Both slots have produced winners (PERFORMANCE 4). Post only on a jury pass. TikTok: on hold (account-level hold); when it resumes, the first 19:00 ET slot.",
+ "post_time_stockholm": "01:00 Wed Nov 4 (19:00 ET slot) or 19:00 Wed Nov 4 (13:00 ET slot). Sweden CET, US EST, 6 h apart. TikTok later: 19:00 ET = 01:00 Stockholm the next day.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold, and a trending-sound pick goes stale in days. When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick an instrumental bed at 5-10 % under the voice-only cut (out/vision-voice-only.mp4, 30.7 s). Skip Self Aware and Espresso Soul (retired) and the last three posts' sounds. YouTube Shorts goes out with the film's own mix (voice, room tone, four paper hits), no music added.",
+ "youtube_title": "Why Claude Shrinks Your Photos 🤔",
+ "youtube_title_alternatives": [
+  "What Claude Does to Your Photo First 😮",
+  "Your Photo Is 4,740 Squares to Claude 🤔"
+ ],
+ "youtube_description": "Your photo? Claude shrinks it first. This is how AI sees images in Claude's case, and what it means for the small text in your photos.\n\nClaude's vision docs: \"Claude processes images in patches instead of pixels. Each patch is a 28×28-pixel block of the image, referred to as a visual token.\" Every model has a cap, and \"Images larger than either limit are downscaled before processing.\"\n\nThe numbers for a 12-megapixel photo (4032 × 3024 = 12,192,768 pixels):\n- At full size it would be 144 × 108 = 15,552 squares, over every Claude cap.\n- Claude 4.7 and later (high-resolution tier: 2,576 px long edge, 4,784 visual tokens): resized to 2212 × 1659 = 79 × 60 = 4,740 squares, 30.1% of the pixels.\n- All other Claude models (standard tier: 1,568 px, 1,568 tokens): resized to 1270 × 952 = 46 × 34 = 1,564 squares, 9.9% of the pixels.\nEither way, under a third of the pixels are left. These sizes are our math with the reference resize code in Claude's docs. The same code gives the docs' own examples: 1920 × 1080 → 1456 × 819, and 3840 × 2160 → 2576 × 1449 on the newer models.\n\nWhy squares: each square is one visual token, and images are priced by tokens like the words you type. The docs: \"To estimate cost, multiply the token count by the per-token price of the model you're using.\" A cap on squares is a cap on cost.\n\nWhat it can do to small text. The docs: \"Take into account that your image might be resized if it is too large…; this might, for example, make text less legible.\" And: \"If the image contains important text, make sure it's legible and not too small.\"\n\nThe tip: reading fine print? Get closer first. A closer shot makes the text bigger in the frame, so more of it survives the resize. The docs also say: \"Avoid cropping out key visual context solely to enlarge the text.\" Developers can pre-resize or crop images themselves before sending them, as the docs suggest.\n\nDid you know it shrinks your photos? Yes or no.\n\nFine print: this is about Claude only. Other services handle photos differently; OpenAI's images guide, for example, says its newest models keep a photo's dimensions by default. Photos already inside Claude's limits aren't resized (a 1000 × 1000 image isn't). The before/after receipt in the film is our own test: our hand-made table photo, rendered at 4032 × 3024 and resized to 2212 × 1659 with a standard area-average resample. It is not Claude's own resize code and not a real Claude run. The \"closer\" shot is the same table 2.2× closer, resized the same way. 4,740 squares is our math for a 4032 × 3024 photo on Claude 4.7 and later; the voice rounds it to \"about forty-seven hundred\". The docs describe Claude's models and developer API; we didn't test the claude.ai app. The photo, receipt, grid, gauge and docs cards are hand-made re-creations; no real app or logo is shown. The square-patch idea is older than Claude: a 2020 Google paper, \"An Image is Worth 16x16 Words\", treated image patches \"the same way as tokens (words)\". That is background, not a claim about how Claude is built.\n\nSources:\n- Claude Docs, \"Vision\", sections \"Resolution and token cost\" and \"Image quality guidance\", read Nov 3, 2026: https://platform.claude.com/docs/en/build-with-claude/vision\n- Claude Docs, \"Coordinates and bounding boxes\", section \"How Claude resizes and pads images\" and its reference resize code, read Nov 3, 2026: https://platform.claude.com/docs/en/build-with-claude/vision-coordinates\n- OpenAI, \"Images and vision\" guide, \"Model sizing behavior\", read Nov 3, 2026: https://developers.openai.com/api/docs/guides/images-vision\n- Background: Dosovitskiy et al. (Google Research, Brain Team), \"An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale\", arXiv 2010.11929, submitted Oct 22, 2020 (ICLR 2021): https://arxiv.org/abs/2010.11929\n\nHow AI works, part 9.\n\n#shorts #claude #anthropic",
+ "youtube_tags": [
+  "how ai sees images",
+  "claude image upload",
+  "claude image size limit",
+  "claude image resize",
+  "does claude resize images",
+  "claude vision",
+  "claude visual tokens",
+  "image tokens",
+  "image patches",
+  "an image is worth 16x16 words",
+  "small text in photos",
+  "anthropic",
+  "how ai works",
+  "tech explained",
+  "shorts"
+ ],
+ "youtube_playlist": "How AI works",
+ "youtube_altered_content": "No",
+ "series": "How AI works, part 9",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration disclosure line, no #ai. YouTube Altered content: No. TikTok's is_aigc toggle is handled separately, not here."
+}

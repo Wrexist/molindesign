@@ -24,7 +24,7 @@ The date has moved twice:
 
 Sources: rockstargames.com/VI, Rockstar's statements as reported by VGC (May 2, 2025) and Variety (November 7, 2025), rockstarnorth.com for the GTA 5 date. The year counts are our own arithmetic from those release dates.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with or endorsed by Rockstar Games or Take-Two.
+Made with our own graphics. No Rockstar footage. Not affiliated with or endorsed by Rockstar Games or Take-Two.
 
 Are you playing day one?
 

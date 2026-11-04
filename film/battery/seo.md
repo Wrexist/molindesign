@@ -53,7 +53,7 @@ A sourced bonus fact (BRIEF fact 11, re-read on Apple's page 2026-10-25: "design
 
 **When:** **13:00 ET, Sunday Oct 25, 2026** = **18:00 Stockholm** = 17:00 UTC. Sweden left summer time at 03:00 today; the US stays on EDT until Nov 1, so the gap is 5 h this week, not 6. That's the playbook's hand-post window (12:00–15:00 ET), US Sunday early afternoon, and the slot fyp left free when it went up Sat 19:00 ET. Post by hand (Studio scheduling still needs Isac's one-time consent). YouTube Studio can schedule the Short for the same moment.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James). Turn on TikTok's **AI-generated content** label (`is_aigc: true`); on YouTube set **Altered content: Yes**.
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 
@@ -99,7 +99,7 @@ Film: 38.9 s. Floor: **at least 45 s**. The film has no music bed, so lay the so
 > - Battery University, BU-808 "How to Prolong Lithium-based Batteries", Table 3 (updated Oct 11, 2023): https://batteryuniversity.com/article/bu-808-how-to-prolong-lithium-based-batteries
 > - Keil et al., "Calendar Aging of Lithium-Ion Batteries I", J. Electrochem. Soc. 163(9) A1872 (2016): https://iopscience.iop.org/article/10.1149/2.0411609jes
 >
-> How tech works, part 3. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+> How tech works, part 3. The research, script and hand-built animation are made for this channel.
 >
 > #shorts #tech #batteryhealth
 

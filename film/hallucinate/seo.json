@@ -2,7 +2,6 @@
   "title": "Why does AI make things up? AI hallucination explained",
   "caption": "ChatGPT made up 6 court cases, and lawyers filed them in federal court. Why does AI make things up? It's called AI hallucination.\nIt even said it had double-checked. Why? AI gets graded like a test where \"I don't know\" scores zero.\nHas a chatbot ever made something up to you?",
   "hashtags": [
-    "#ai",
     "#chatgpt",
     "#aihallucination",
     "#lawtok",
@@ -40,5 +39,5 @@
   "sound_note": "TikTok's trending chart couldn't be read: Higgsfield tiktok_music_trending (US, ALL / LO-FI / CHILL_BEATS, 7- and 30-day windows) returned 0 tracks on 2026-10-23 for the connected account, so no track is named as trending. Pick one in the app (English (US)), instrumental only, at about 5-10 % volume under the voice-only cut.",
   "series": "How AI works, part 3",
   "is_aigc": true,
-  "disclosure": "AI-generated voice (Chatterbox, watermarked); set TikTok's AI-generated content label"
+  "disclosure": "No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14"
 }

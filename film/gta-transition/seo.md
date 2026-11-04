@@ -1,6 +1,6 @@
 # SEO and posting text: Why Delta is becoming a GTA 6 channel
 
-Channel: **Delta** only (@deltaisac). Switch to Delta and verify the channel name in YouTube Studio / TikTok before uploading. Post before the name change (REBRAND.md step 1), pin as channel trailer and Community post. Upload `out/gta-transition-vo.mp4` (voice + sound effects, no music). The voice is AI-generated (Ming US_James): tick the altered/synthetic content disclosure. Nothing has been uploaded or scheduled.
+Channel: **Delta** only (@deltaisac). Switch to Delta and verify the channel name in YouTube Studio / TikTok before uploading. Post before the name change (REBRAND.md step 1), pin as channel trailer and Community post. Upload `out/gta-transition-vo.mp4` (voice + sound effects, no music). YouTube Altered content: No (no AI tag, Isac 2026-11-03). Nothing has been uploaded or scheduled.
 
 ## YouTube title (36 chars)
 Why Delta Is Becoming a GTA 6 Channel
@@ -14,8 +14,8 @@ Which GTA 6 topic do you want first? Tell me in the comments.
 
 Source: Rockstar Games, https://www.rockstargames.com/VI ("Coming November 19, 2026", PlayStation 5 and Xbox Series X and S), read October 28, 2026.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
-The narration is an AI-generated voice. Grand Theft Auto is a trademark of Take-Two Interactive.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
+Grand Theft Auto is a trademark of Take-Two Interactive.
 
 ## Hashtags (5)
 #GTA6 #GTAVI #ViceCity #Delta #Shorts

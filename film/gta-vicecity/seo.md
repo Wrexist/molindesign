@@ -1,6 +1,6 @@
 # SEO and posting text: GTA 6 Vice City is from 1997
 
-Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only for now; TikTok is paused (a caption is kept below for later). Switch to Delta and verify the channel name in YouTube Studio before uploading. Slot: 2026-10-30 (ET), backlog row 4. Upload `out/gta-vicecity-vo.mp4` (voice + sound effects, no music, 41.9 s). Voice is Ming US_James. Altered content setting: No (Isac, 2026-11-03). Written 2026-10-29 for a US audience. Facts and sources: `BRIEF.md`.
+Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only for now; TikTok is paused (a caption is kept below for later). Switch to Delta and verify the channel name in YouTube Studio before uploading. Slot: 2026-10-30 (ET), backlog row 4. Upload `out/gta-vicecity-vo.mp4` (voice + sound effects, no music, 41.9 s). Altered content: No. Written 2026-10-29 for a US audience. Facts and sources: `BRIEF.md`.
 
 ## YouTube Shorts title
 GTA 6's city is from 1997: 29 years of Vice City
@@ -24,7 +24,7 @@ Sources:
 
 Years are by release year, or by in-game year where the video labels them so.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 Grand Theft Auto is a trademark of Take-Two Interactive.
 
 #GTA6 #GTAVI #ViceCity #GTAViceCity #Shorts
@@ -39,7 +39,7 @@ Which Vice City was best? One year only: 1997, 2002, 2006 or 2026?
 GTA 6 Facts
 
 ## YouTube settings
-Altered content: No. Not made for kids. Language English (US). Category Gaming. Post at 13:00 ET on 2026-10-30 (19:00 Stockholm): US lunch break, and it leaves the afternoon and evening for the first comments.
+Altered or synthetic content: No. Not made for kids. Language English (US). Category Gaming. Post at 13:00 ET on 2026-10-30 (19:00 Stockholm): US lunch break, and it leaves the afternoon and evening for the first comments.
 
 ## TikTok caption (for later, TikTok is paused)
 GTA 6's Vice City is from 1997. Four Vice Cities, 29 years by release year. Which one was best? Comment the year. #gta6 #vicecity #gtavicecity #gaming

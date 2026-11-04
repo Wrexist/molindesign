@@ -9,7 +9,7 @@ Isac's channel for the factory videos, made 2026-10-23: **Tech, explained**, han
 - **Description:**
   > How the tech you use every day actually works, in about a minute. GPS, Wi-Fi, your phone's battery and camera, QR codes, passwords, and how ChatGPT and other AI really work. Every fact is checked against a source (in each video's description). New Shorts every day.
   >
-  > Narration is an AI voice; the research, script and animation are made for this channel.
+  > The research, script and animation are made for this channel.
 - **Links:** TikTok https://www.tiktok.com/@techexplained.daily
 - **Layout:** Home tab → Shorts shelf first. Add a "How tech works" and a "How AI works" playlist and put each Short in its series.
 
@@ -20,8 +20,8 @@ Isac's channel for the factory videos, made 2026-10-23: **Tech, explained**, han
 
 ## Upload defaults (Settings → Upload defaults)
 - Visibility Public, category **Science & Technology**, language English (US), caption certification "None of the above" (our captions are burned in).
-- Altered content: **Yes** (synthetic narration voice). Comments on, sort by Top. License Standard YouTube.
-- Description template: `<hook line>\n\n<one-paragraph answer>\n\nSources: <from seo.json/BRIEF>\n\nNarration is an AI voice. #shorts #tech`
+- Altered content: **No** (stock narrator voice over hand-made animation is not realistic altered content; see factory/LESSONS.md "Not slop"). Comments on, sort by Top. License Standard YouTube.
+- Description template: `<hook line>\n\n<one-paragraph answer>\n\nSources: <from seo.json/BRIEF>\n\n#shorts #tech`
 - Tags template: `tech explained, how it works, technology, science, shorts`
 
 ## Each upload
