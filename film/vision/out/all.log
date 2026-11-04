@@ -1,0 +1,118 @@
+hook         0.20–  2.55  (slot to 2.61)  speed 1.03  2.56 w/s
+send         2.76–  4.59  (slot to 4.59)  speed 1.00  2.73 w/s
+third        4.74–  6.52  (slot to 6.88)  speed 1.00  3.93 w/s
+ask          7.03–  8.68  (slot to 8.73)  speed 1.00  3.64 w/s
+squares      8.88– 10.86  (slot to 11.21)  speed 1.00  3.54 w/s
+token       11.36– 13.99  (slot to 13.99)  speed 1.00  2.28 w/s
+counted     14.14– 15.69  (slot to 15.69)  speed 1.00  3.87 w/s
+cap         15.84– 17.63  (slot to 18.04)  speed 0.94  3.91 w/s
+hero        18.19– 21.71  (slot to 22.44)  speed 1.00  2.56 w/s
+blur        22.59– 24.68  (slot to 24.68)  speed 1.00  3.83 w/s
+tip         24.83– 27.23  (slot to 27.58)  speed 1.00  2.50 w/s
+end         27.73– 30.03  (slot to 30.21)  speed 0.95  3.91 w/s
+wrote out/vo/vo.wav, vo.json, vo.srt and vo/vo.js
+
+LISTEN CHECK  (Whisper hears each line; fix word error > 10 % or pace outside 1.8 w/s to pace.max + 0.3; soft = words heard under 0.45 confidence, listen to those)
+ok    hook       wer 0.00  2.56 w/s    (soft: Claude 0.15)
+ok    send       wer 0.00  2.73 w/s  
+ok    third      wer 0.00  3.93 w/s  
+ok    ask        wer 0.00  3.64 w/s  
+ok    squares    wer 0.00  3.54 w/s    (soft: Because 0.22)
+ok    token      wer 0.00  2.28 w/s  
+ok    counted    wer 0.00  3.87 w/s    (soft: Counted 0.24)
+ok    cap        wer 0.00  3.91 w/s    (soft: And 0.32)
+ok    hero       wer 0.00  2.56 w/s  
+ok    blur       wer 0.00  3.83 w/s  
+ok    tip        wer 0.00  2.50 w/s  
+ok    end        wer 0.00  3.91 w/s  
+wrote out/mix.wav
+
+READCHECK  (need ≥ letters/15 + 1.5 s, and ≥ 1.8 s)
+ok    1      5.25s / 1.80s  "1"
+ok    12 MILLION PIXELS 2.92s / 2.50s  "12 MILLION PIXELS"
+ok    4032 × 3024 4.42s / 2.10s  "4032 × 3024"
+ok    = 12,192,768 PIXELS 4.29s / 2.63s  "= 12,192,768 PIXELS"
+ok    TO CLAUDE 6.00s / 2.03s  "TO CLAUDE"
+ok    12 MP PHOTO (4032 × 3024) 3.63s / 2.83s  "12 MP PHOTO (4032 × 3024)"
+ok    ANY CLAUDE MODEL 3.63s / 2.43s  "ANY CLAUDE MODEL"
+ok    OUR MATH, CLAUDE’S RESIZE RULE 3.63s / 3.23s  "OUR MATH, CLAUDE’S RESIZE RULE"
+ok    UNDER 1/3 OF THE 3.25s / 2.37s  "UNDER 1/3 OF THE"
+ok    PIXELS LEFT 3.25s / 2.17s  "PIXELS LEFT"
+ok    “CLAUDE PROCESSES IMAGES IN 5.17s / 3.10s  "“CLAUDE PROCESSES IMAGES IN"
+ok    PATCHES INSTEAD OF PIXELS. 5.17s / 3.03s  "PATCHES INSTEAD OF PIXELS."
+ok    EACH PATCH IS A 28×28-PIXEL 5.17s / 3.03s  "EACH PATCH IS A 28×28-PIXEL"
+ok    BLOCK OF THE IMAGE, REFERRED 5.17s / 3.10s  "BLOCK OF THE IMAGE, REFERRED"
+ok    TO AS A VISUAL TOKEN.” 5.17s / 2.70s  "TO AS A VISUAL TOKEN.”"
+ok    CLAUDE VISION DOCS · RE-CREATED 8.42s / 3.30s  "CLAUDE VISION DOCS · RE-CREATED"
+ok    28 × 28 2.17s / 1.83s  "28 × 28"
+ok    PIXELS 2.17s / 1.90s  "PIXELS"
+ok    TOKEN  5.25s / 1.83s  "TOKEN"
+ok    HOW    3.67s / 1.80s  "HOW"
+ok    MUCH   3.67s / 1.80s  "MUCH"
+ok    IS     3.67s / 1.80s  "IS"
+ok    THIS   3.67s / 1.80s  "THIS"
+ok    ?      3.67s / 1.80s  "?"
+ok    +1     3.50s / 1.80s  "+1"
+ok    SAME TALLY, 2.67s / 2.17s  "SAME TALLY,"
+ok    SAME PRICE PER TOKEN 2.67s / 2.63s  "SAME PRICE PER TOKEN"
+ok    FULL PHOTO: 15,552 2.75s / 2.57s  "FULL PHOTO: 15,552"
+ok    CAP 4,784 7.92s / 2.03s  "CAP 4,784"
+ok    CLAUDE 4.7 AND LATER · OUR MATH 5.00s / 3.17s  "CLAUDE 4.7 AND LATER · OUR MATH"
+ok    CLAUDE VISION DOCS, READ NOV 3, 2026 5.04s / 3.50s  "CLAUDE VISION DOCS, READ NOV 3, 2026"
+ok    = 4,740 TOKENS 3.71s / 2.30s  "= 4,740 TOKENS"
+ok    4,740  2.13s / 1.83s  "4,740"
+ok    SQUARES 2.17s / 1.97s  "SQUARES"
+ok    OUR ILLUSTRATION 3.33s / 2.50s  "OUR ILLUSTRATION"
+ok    “…THIS MIGHT, FOR EXAMPLE, 3.29s / 3.03s  "“…THIS MIGHT, FOR EXAMPLE,"
+ok    MAKE TEXT LESS LEGIBLE.” 3.29s / 2.90s  "MAKE TEXT LESS LEGIBLE.”"
+ok    GET CLOSER = 2.21s / 2.17s  "GET CLOSER ="
+ok    BIGGER TEXT 2.21s / 2.17s  "BIGGER TEXT"
+ok    IN THE SHOT 2.21s / 2.10s  "IN THE SHOT"
+ok    YES    2.58s / 1.80s  "YES"
+ok    NO     2.58s / 1.80s  "NO"
+wrote vision/out/check/sheet.jpg
+wrote vision/out/poster.jpg
+frame 60/906  74 ms/frame
+frame 120/906  78 ms/frame
+frame 180/906  77 ms/frame
+frame 240/906  76 ms/frame
+frame 300/906  80 ms/frame
+frame 360/906  89 ms/frame
+frame 420/906  92 ms/frame
+frame 480/906  94 ms/frame
+frame 540/906  95 ms/frame
+frame 600/906  97 ms/frame
+frame 660/906  97 ms/frame
+frame 720/906  97 ms/frame
+frame 780/906  99 ms/frame
+frame 840/906  98 ms/frame
+frame 900/906  97 ms/frame
+wrote out/video.mp4
+wrote vision/out/vision.mp4
+
+CHECKS
+stream|codec_name=h264|width=1080|height=1920|r_frame_rate=30/1
+stream|codec_name=aac|r_frame_rate=0/0
+format|duration=30.200000
+integrated I:         -17.8 LUFS   true peak Peak:       -2.8 dBFS
+black spans ≥0.4 s: none
+duck -6 dB over 7 phrases; voice set +13.2 dB for a 57 dB speech-to-music ratio
+wrote /home/user/molindesign/film/vision/out/vision-vo.mp4
+integrated -14.0 LUFS   true peak -2.6 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "Your photo? Claude shrinks it first."
+ok    send       wer 0.00  heard "Send it 12 million pixels."
+ok    third      wer 0.00  heard "It cuts that to under a third."
+ok    ask        wer 0.00  heard "So why throw the rest away?"
+ok    squares    wer 0.00  heard "Because it works in squares, not pixels."
+ok    token      wer 0.00  heard "Each 28 pixel square is one token."
+ok    counted    wer 0.00  heard "Counted like the words you type."
+ok    cap        wer 0.00  heard "And every photo has a token cap."
+ok    hero       wer 0.00  heard "On newer models, your photo is about 4700 squares."
+ok    blur       wer 0.00  heard "So small text might get hard to read."
+ok    tip        wer 0.00  heard "Reading fine print, get closer first."
+ok    end        wer 0.00  heard "Did you know it shrinks them? Yes or no?"
+vision-vo:  I: -14.0 LUFS  Peak: -2.6 dBFS 
+vision-voice-only:  I: -14.4 LUFS  Peak: -1.5 dBFS 
+no black stretches
