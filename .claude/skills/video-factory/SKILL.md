@@ -7,18 +7,19 @@ description: Run one turn of the video factory - pick the next topic from the Dr
 
 One run makes one finished TikTok explainer, end to end. Four agents in `.claude/agents/` do the work; this skill is the orchestrator that runs them in order and owns every outside call (Drive, Higgsfield, TikTok, GitHub). Read `factory/README.md` once for the why and `factory/TIKTOK-PLAYBOOK.md` for the reach techniques every video applies.
 
-**Standing rules (Isac):** American English narration and captions, aimed at a **US audience** (Isac posts from Sweden, so the content, keywords, sounds and post time must all say US); no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; disclose the AI voice. Never press Post: TikTok requires Isac to confirm every post himself.
+**Standing rules (Isac):** American English narration and captions, aimed at a **US audience** (Isac posts from Sweden, so the content, keywords, sounds and post time must all say US); no music (ship voice + SFX and a voice-only cut, Isac adds a TikTok sound); constant motion; honest facts with sources; no AI tag (no #ai, no "AI voice" line, YouTube Altered content No; Isac 2026-11-03). Never press Post: TikTok requires Isac to confirm every post himself.
 
 ## 0. Setup (≈ 1 min, ≈ 5 min in a fresh container)
 - `bash factory/setup.sh`.
 - If `factory/` or `film/nextword/` is missing on your branch, the factory hasn't been merged yet: `git fetch origin claude/project-thread-0hox72` and `git merge --no-edit origin/claude/project-thread-0hox72` into your working branch, then continue.
 
 - Read `factory/LESSONS.md` and pass it to every agent: each video must be better than the last (Isac, 2026-10-23).
+- Run `python3 factory/stats.py` (needs `pip install yt-dlp curl_cffi`) and refresh LESSONS' Performance table with the latest posts, so this run starts from real numbers. A TikTok marked `served: NO` was never pushed to For You; say so in the report.
 
 ## 1. Pick the next topic
 - Drive folder **Video factory** (`1mMSFv1m8sFh337SRdWxJUBNK3m6cJx1k`), sheet **Video factory topics** (`1GZmiQSHpOqv9SI7WkqslBeQMxbRFpnFV_VLzaD9PxVg`): read it with `read_file_content`. Isac edits this sheet; it wins over `factory/backlog.csv`.
 - A topic is taken if any of these is true: Status is `done`, `skip` or `wip`; a Drive doc titled `Factory #<n> ·` exists in the folder (`search_files` with `parentId = '1mMSFv1m8sFh337SRdWxJUBNK3m6cJx1k' and title contains 'Factory #'`); `film/<slug>/` exists on `main` or on an open PR branch (`list_pull_requests`, look for "Factory #").
-- Take the row marked `next` if there is one, otherwise the lowest-numbered free row. If none is left, have the researcher propose five new topics in the same columns, report them, and stop.
+- Take the row marked `next` if there is one. Otherwise score every free row on the packaging score in `factory/PERFORMANCE.md` §7 (mine, myth/threat, frame-0 test, takeaway, title, searched; one point each) and take the highest scorer at 4/6 or more, the lowest number breaking ties. Views follow this score, not the jury score (2026-11-03 analysis). Put the score and its six marks in the claim doc. If no free row reaches 4, have the researcher propose topics that do. If none is left, have the researcher propose five new topics in the same columns, report them, and stop.
 - Create the per-video doc **now** as the claim marker: `create_file` in the folder, title `Factory #<n> · <topic>`, `text/markdown` content with the topic row and "Status: in production (run started <date>)". Its link goes in the final report.
 
 ## 2. Research and script → `video-researcher`
@@ -30,11 +31,11 @@ Spawn the `video-director` agent with the slug. It records the voice, builds `fi
 ## 4. Quality gate → `video-jury`
 Spawn a **fresh** `video-jury` agent with the slug (never the director; it must not have seen the making). Then:
 - **post**: go on.
-- **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 7.4 with Truth ≥ 8.5 (Isac re-anchored the gate to the last posted film's level on 2026-10-28; re-check that level weekly with a fresh jury on the last posted film). Even on "post", apply the jury's fixes before upload.
-- **don't post**, or still under 7.4 (or Truth under 8.5) after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
+- **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 7.0 with Truth ≥ 8.5 and the topic scored 4/6 or more on the packaging score (Isac, 2026-11-03, the same bar as Delta: views follow the topic, not the last few jury points; factory/PERFORMANCE.md). Even on "post", apply the jury's fixes before upload.
+- **don't post**, or still under 7.0 (or Truth under 8.5) after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
 
 ## 5. Packaging → `video-seo`
-Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and the AI disclosure.
+Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and no AI tag anywhere (no #ai, no "AI voice" line, YouTube Altered content No; see `video-seo` rules).
 
 ## 6. Upload for Isac's tap
 1. `tiktok_accounts`. If there is no `active` account, skip to step 7 and put a fresh `tiktok_connect` link in the report.
@@ -48,7 +49,7 @@ Spawn the `video-seo` agent with the slug and the final jury report. It writes `
 
 ## 8. Learn
 - Write down what this run taught: add each jury finding that was a real mistake, and anything you'd do differently, to `factory/LESSONS.md` as one-line rules with the video's slug. Remove lessons a later video proved wrong.
-- If the earlier posts have TikTok numbers (Isac pastes them, or the sheet has them), fill the Performance table and say which hook or structure did best, so the next researcher leans into it.
+- Add this post to `factory/posts.csv` (slug, channel, platform, id, posted UTC, length, jury, hook, title) once it has an ID, so `factory/stats.py` tracks it. Fill the Performance table from `stats.py` at 24 h and 72 h, and say which hook or structure did best, so the next researcher leans into it. When 10 new posts have numbers, re-check whether the packaging score still lines up with views and update PERFORMANCE.md §7.
 - Commit LESSONS.md with the run.
 
 ## Timing and cost

@@ -4,7 +4,7 @@
 **File:** `solar-vo.mp4` (16:9, 1920×1080, 30 fps, about 3:32).
 **Thumbnail:** `thumbnail.jpg` (1280×720).
 **Captions:** upload `solar.srt` as English subtitles (Subtitles → Upload file → With timing).
-**Playlist:** What if… (tech). **Category:** Science & Technology. **Altered content:** Yes (AI voice).
+**Playlist:** What if… (tech). **Category:** Science & Technology. **Altered content:** No.
 **End screen:** Subscribe, plus the cables episode (https://youtu.be/6vv67EjasNs) as "video", over the last 10 s, where the film shows its own "watch next" card.
 
 ## Title (pick one)
@@ -38,7 +38,7 @@ Tomorrow's storm is a scenario; every number comes from a past event or a publis
 
 Next: what if every undersea internet cable was cut? https://youtu.be/6vv67EjasNs
 
-Narration is an AI voice (Chatterbox TTS). Script, research and every frame are made by hand in code.
+Script, research and every frame are made by hand in code.
 
 #solarstorm #space #techexplained
 ```

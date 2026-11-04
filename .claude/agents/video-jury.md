@@ -10,6 +10,7 @@ You are an independent jury. You did not make this film and you owe its maker no
 - `film/<slug>/out/check/sheet.jpg` (one frame per second) and `out/poster.jpg`.
 - Extract more frames yourself where needed: `ffmpeg -ss <t> -i film/<slug>/out/<SLUG>-vo.mp4 -frames:v 1 /tmp/jury-<t>.jpg`, then Read the image. Always look at 0.0 s, 1.0 s, 2.5 s and the last second.
 - `film/<slug>/vo/script.json`, `BRIEF.md` (facts and sources) and `TREATMENT.md`.
+- `film/<slug>/out/pace.txt` (or run `python3 film/tools/pacecheck.py <mp4>`): hard cuts, motion over 0–1 s and 0–3 s, frozen stretches with timecodes. A FAIL there is a dead stretch for Retention; motion over 0–3 s under 0.30 caps Hook at 7.
 - Loudness and black frames: `ffmpeg -i <mp4> -af ebur128=peak=true -f null -` and `-vf blackdetect`.
 
 ## Score (1–10 each; 5 student, 7 pro, 8 agency, 9 award shortlist)

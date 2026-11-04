@@ -35,7 +35,7 @@ Sources:
 
 The 36,979% is Spotify's own figure as told to BBC Newsbeat: streams of the track in the days after trailer 1 compared with the same days one week earlier. It is not a total stream count. Rockstar's trailer 2 page does not name the song; the credit comes from press reports. No music or lyrics from any of these songs are played in this Short.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 GTA 6 is out November 19, 2026 on PS5 and Xbox Series X|S. Grand Theft Auto is a trademark of Take-Two Interactive.
 
 #GTA6 #GTAVI #GTA6Trailer #TomPetty #Shorts

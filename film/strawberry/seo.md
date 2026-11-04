@@ -12,7 +12,7 @@ Factory #2 · slug `strawberry` · 76 s · **AI explained, part 2** (part 1: "Ne
 > To ChatGPT, strawberry isn't 10 letters. It's one number: 101830. Then the trick that puts all 3 r's in plain sight.
 > What word should we make AI count next?
 
-**Hashtags:** #ai #chatgpt #aiexplained #llm #learnontiktok
+**Hashtags:** #chatgpt #aiexplained #llm #learnontiktok
 
 **Cover:** frame 0 (`cover_time` 0.0). It already shows the question, STRAWBERRY with its three r's numbered, and ChatGPT's "There are **2** r's in strawberry." Add the cover text **Why AI can't count** in the empty band under the chat bubble (around y 1300–1450). That band stays inside the 3:4 crop TikTok uses in the profile grid.
 
@@ -28,7 +28,7 @@ It adds a fact the voice doesn't say. The flash in `single` shows it, and BRIEF 
 
 **Sounds:** none picked. TikTok's trending-sound tool needs a connected TikTok account, and none is connected to Higgsfield (`tiktok_accounts` returned no accounts), so I couldn't pull the US chart. I'm not naming any sound as trending without that data. **Isac:** in the app, open Sounds → Trending (with the app set to English (US)), pick a calm, instrumental or lo-fi track, and set it to about 5–10 % volume under the voice-only cut. If trending sounds are missing, the account is a Business account; the playbook says to switch to Personal or Creator.
 
-**Disclosure:** AI-generated voice (Chatterbox, watermarked). Turn on TikTok's **AI-generated content** label (`is_aigc: true`).
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Search keywords
 

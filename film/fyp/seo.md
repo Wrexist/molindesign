@@ -56,7 +56,7 @@ It's a sourced bonus fact (BRIEF fact 8) that viewers can check on their own fee
 - **Catch:** Studio scheduling still needs Isac's one-time consent to store the video (LESSONS: GPS went up immediately because of it). Without it, this slot means posting by hand at 01:00 Stockholm. If that isn't happening, take the **next free slot: 13:00 ET Sun Oct 25 = 18:00 Stockholm** (Sweden is on CET from that morning, the US not until Nov 1).
 - YouTube Studio can schedule the Short for 19:00 ET Sat either way.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James). Turn on TikTok's **AI-generated content** label (`is_aigc: true`), and on YouTube set **Altered content: Yes**.
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 
@@ -97,7 +97,7 @@ Film: 41.0 s. Floor: **at least 45 s**. The film has no music bed, so lay the so
 > - TikTok Newsroom, "How TikTok recommends videos #ForYou" (June 18, 2020): https://newsroom.tiktok.com/en-us/how-tiktok-recommends-videos-for-you
 > - Ben Smith, "How TikTok Reads Your Mind", The New York Times (Dec 5, 2021): https://www.nytimes.com/2021/12/05/business/media/tiktok-algorithm.html (syndicated on Boston.com, Dec 6, 2021: https://www.boston.com/news/commentary/2021/12/06/how-tiktok-reads-your-mind)
 >
-> How tech works, part 2. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+> How tech works, part 2. The research, script and hand-built animation are made for this channel.
 >
 > #shorts #tech #tiktok
 

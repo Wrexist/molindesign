@@ -9,7 +9,7 @@ Factory #17 · How tech works, part 6 · film about 29.2 s (script dur 29.18 s; 
 **Title:** What Incognito Mode Really Hides 🤔
 - Alternatives: Who Can Still See Your Incognito Tabs 😱 · Incognito Isn't Invisible 🤔
 
-**Playlist:** How tech works · **Tags:** incognito mode, what does incognito mode hide, does incognito hide you, can my school see incognito, can wifi owner see incognito history, is incognito private, chrome incognito, google incognito lawsuit, brown v google, how tech works, tech explained, shorts · **Altered content:** Yes
+**Playlist:** How tech works · **Tags:** incognito mode, what does incognito mode hide, does incognito hide you, can my school see incognito, can wifi owner see incognito history, is incognito private, chrome incognito, google incognito lawsuit, brown v google, how tech works, tech explained, shorts · **Altered content:** No
 
 **Slot:** YouTube Shorts: 13:00 ET (EDT), Sat Oct 31, 2026 = 17:00 UTC. The first channel slot after 12:00 UTC today (13:00 or 19:00 ET), and the better of today's two: 19:00 ET tonight is Halloween trick-or-treat hour in the US. Gate first: fix round 1 was 7.4 with Truth 8.0, under the 7.4 + Truth 8.5 bar; post only if the final jury passes. If the cut or gate isn't done by about 16:00 UTC, skip 19:00 ET tonight and take 13:00 ET (EST) Sun Nov 1 = 18:00 UTC; that's the US clock-change day, so pick the time from YouTube's dropdown and check the saved time. TikTok (paused, account-level hold): when Isac's Settings › Account status check clears it, post in the first 19:00 ET slot (LESSONS evening rule); after Nov 1 that is 00:00 UTC the next day.
 
@@ -41,7 +41,7 @@ Sources:
 - Chromium source, incognito new tab strings (components/new_or_sad_tab_strings.grdp), main branch, read Oct 31, 2026: https://chromium.googlesource.com/chromium/src/+/refs/heads/main/components/new_or_sad_tab_strings.grdp
 - Brown v. Google LLC, N.D. Cal. case 4:20-cv-03664-YGR, Settlement Agreement, ECF 1097-4, filed Apr 1, 2024 (copy hosted by ClassAction.org), read Oct 31, 2026: https://www.classaction.org/media/brown-et-al-v-google-llc-et-al-settlement-agreement.pdf
 
-How tech works, part 6. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+How tech works, part 6. The research, script and hand-built animation are made for this channel.
 
 #shorts #incognito #privacy
 ```
@@ -66,7 +66,7 @@ Did you think incognito hid you? Yes or no.
 
 **Post time:** first 19:00 ET slot after the hold clears (see slot note above).
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James); set YouTube's Altered content: Yes now, and TikTok's AI-generated content label when TikTok resumes
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ### Sounds (not checked this week)
 

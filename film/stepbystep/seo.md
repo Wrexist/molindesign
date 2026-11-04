@@ -10,7 +10,7 @@ Factory #19 · How AI works, part 8 · film about 30.5 s (script dur 30.49 s; ou
 - Alternatives: Five Words That Helped AI Do Math 🤔 · The Puzzle a 2022 AI Got Wrong 🤔
 - It matches the poster ("Why "think step by step" works") and the search phrase. Not "Fixed" (overclaims) and not "ChatGPT" (the paper tested text-davinci-002 through the API, not ChatGPT), per the brief.
 
-**Playlist:** How AI works · **Tags:** think step by step, let's think step by step, chain of thought prompting, does think step by step still work, prompt engineering, reasoning models, zero-shot reasoners, kojima 2022, ai math word problems, how ai works, tech explained, shorts · **Altered content:** Yes
+**Playlist:** How AI works · **Tags:** think step by step, let's think step by step, chain of thought prompting, does think step by step still work, prompt engineering, reasoning models, zero-shot reasoners, kojima 2022, ai math word problems, how ai works, tech explained, shorts · **Altered content:** No
 
 **Slot:** YouTube Shorts: 13:00 ET (EST), Tue Nov 3, 2026 = 18:00 UTC, the slot set for this film. ET is UTC-5 since the Nov 1 clock change: pick 1:00 PM from YouTube Studio's dropdown and check the saved time reads 18:00 UTC / 19:00 Stockholm (LESSONS clock-change rule). Queue rule: if incognito or voiceclone is still unposted, it takes this slot first and stepbystep moves to the next free slot (19:00 ET Tue Nov 3 = 00:00 UTC Wed). Nov 3, 2026 is US Election Day (midterms), so US feeds will be news-heavy; the slot stands, but read its first-day views with that in mind. Jury passed (7.4, Truth 9.0). TikTok (paused, account-level hold): when Isac's Settings › Account status check clears it, post in the first 19:00 ET slot (LESSONS evening rule) = 00:00 UTC the next day.
 
@@ -51,9 +51,9 @@ Sources:
 - OpenAI, "Reasoning best practices" (developer guide), read Nov 2, 2026: https://developers.openai.com/api/docs/guides/reasoning-best-practices
 - Meincke, Mollick, Mollick, Shapiro (Wharton Generative AI Labs), "Prompting Science Report 2: The Decreasing Value of Chain of Thought in Prompting", arXiv 2506.07142, June 8, 2025, read Nov 2, 2026: https://arxiv.org/abs/2506.07142
 
-How AI works, part 8. Narration is an AI voice (Ming TTS, a stock preset, not a clone of anyone); the research, script and hand-built animation are made for this channel.
+How AI works, part 8. The research, script and hand-built animation are made for this channel.
 
-#shorts #promptengineering #ai
+#shorts #promptengineering
 ```
 
 ### Quote check (all re-read 2026-11-02, from fresh downloads)
@@ -75,7 +75,7 @@ Each step it writes goes back in before it answers.
 Newer reasoning models do the steps on their own. Do you still need them? Yes or no.
 ```
 
-**Hashtags:** #ai #promptengineering #chainofthought #aiprompts #learnontiktok (no #chatgpt: the film is about a 2022 GPT-3 model and says nothing about ChatGPT; "think step by step prompt chatgpt" stays a keyword because that's how people search the tip)
+**Hashtags:** #promptengineering #chainofthought #aiprompts #learnontiktok (no #chatgpt: the film is about a 2022 GPT-3 model and says nothing about ChatGPT; "think step by step prompt chatgpt" stays a keyword because that's how people search the tip)
 
 **Keywords** (the first, "think step by step", is spoken in `hook` at 0.09-about 1.7 s and shown as the flipped LET'S · THINK · STEP · BY · STEP tiles from about 0.6 s; volumes not checked): think step by step; let's think step by step prompt; chain of thought prompting; does think step by step still work; think step by step prompt chatgpt; reasoning models; prompt engineering tips; ai math word problems
 
@@ -83,7 +83,7 @@ Newer reasoning models do the steps on their own. Do you still need them? Yes or
 
 **Post time:** first 19:00 ET slot after the hold clears (see slot note above).
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James, seed 7, a stock preset, not a clone of anyone); set YouTube's Altered content: Yes now, and TikTok's AI-generated content label when TikTok resumes
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ### Sounds (checked 2026-11-02, Higgsfield tiktok_music_trending, US, ALL, 7DAY)
 

@@ -37,6 +37,7 @@ record            → Drive doc "Factory #n · topic", factory/backlog.csv, PR "
 - **On a schedule:** a scheduled task starts a fresh session every morning (Stockholm time) that runs the `video-factory` skill once.
 - **By hand:** ask Claude to "make the next factory video", or name a topic or slug.
 - **Just the render:** `bash factory/setup.sh` once, then `bash factory/make.sh <slug>` (or `voice`, `picture`, `mix`).
+- **Checks you can run on their own:** `python3 film/tools/scriptlint.py film/<slug>/vo/script.json` (AI-sounding phrases, long sentences; `make.sh voice` runs it first) and `python3 film/tools/pacecheck.py <mp4>` (hard cuts, opening motion, frozen stretches; `make.sh mix` writes it to `out/pace.txt`).
 
 ## Why it's built this way
 

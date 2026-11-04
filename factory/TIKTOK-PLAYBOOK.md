@@ -36,7 +36,7 @@ What the factory does on every video to reach a **US audience** and get pushed b
 | 11 | **Few, precise hashtags** | seo | 3–5 topic tags plus 1 broad tag. No #fyp or #viral. The caption reads like a search result, not a tag dump. |
 | 12 | **Pinned comment that starts a thread** | seo, Isac | A follow-up question or a bonus fact. Isac pins it right after posting. |
 | 13 | **First-hour replies** | Isac | Reply to the first US commenters within the hour. Answer the best question with a **video reply**: it's a free next video with a built-in hook. |
-| 14 | **AI label on** | orchestrator | `is_aigc: true`. TikTok requires a label on realistic AI content, and an honest label protects the account. |
+| 14 | **TikTok AI toggle only, nothing else** | orchestrator | No #ai, no "AI voice" text in the caption (Isac 2026-11-03). The `is_aigc` toggle stays on for now: TikTok asks for a label on content with realistic AI audio, and a stock narrator voice may count, so turning it off risks removals on an account already held since Oct 27. Isac decides; TikTok posting is paused anyway. |
 
 ## One-time setup for Isac
 
@@ -53,6 +53,7 @@ What the factory does on every video to reach a **US audience** and get pushed b
 - **Engagement bait:** no "comment X to get…" and no follow-for-follow.
 - **Recycled clips:** no reposting other creators' clips.
 - **Fake stats:** no fake numbers on screen.
+- **Gated freebies:** no "free X in comments" behind a follow wall (ernestosoftware's funnel, 2026-11-04). It farms comments and follows, which TikTok's rules treat as engagement bait, and our edge is that everything is open and sourced.
 - **Overclaiming hooks:** the hook must be paid off by the video.
 - **Over-polish:** some creators report that it reads as an ad and erodes trust. Keep the look clean and graphic, not glossy.
 
