@@ -14,6 +14,11 @@ Rule of thumb: a person who has never read a GTA 6 article should still understa
 7. **Pop culture.** Famous GTA controversies, songs and celebrities in the series, how the world reacted to the trailers.
 8. **GTA 6 deep cuts** (the old pillar). Kept to one in four.
 
+## What the numbers say (2026-11-03, see factory/PERFORMANCE.md)
+- 13years 1,251 views, records 312, leonida 116. The 161k subscribers don't carry a Short; each one is judged alone.
+- The winner is one feeling every gamer has (the 13-year wait) carried by one number in the first three words. The flop is a list of Rockstar's place names, which casual viewers don't know.
+- Score Delta topics on the same six-point packaging score (PERFORMANCE.md §7): for Delta "mine" means the game they own or are waiting for, and "takeaway" means something they'll do on launch day. Make only 4/6 or more.
+
 ## Format changes
 - Hook promises a payoff anyone gets: a number, a ranking, a "did you know", a yes/no question. No insider jargon (Leonida, Grassrivers) without a one-line explanation.
 - Titles: lead with the wide idea. "GTA" or "GTA 6" in the title or the first line is enough; it no longer has to be the first spoken word.

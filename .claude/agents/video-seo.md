@@ -30,7 +30,7 @@ You are the growth and SEO lead of the video factory. The film is done; your job
   "post_time_et": "US Eastern, e.g. 13:00 ET (12:00–15:00 ET suits a manual post; 19:00–21:00 ET via TikTok Studio scheduling), with one line why",
   "post_time_stockholm": "the same moment in Europe/Stockholm, e.g. 19:00",
   "sounds": [{"name": "", "why": ""}],
-  "youtube_title": "4–8 plain words, Title Case, Why/How/What if, one emoji at the end (🤔 why/how, 😮 wow, 😱 danger), e.g. \"Why Your Phone Needs Einstein 🤔\"; see LESSONS.md viral study",
+  "youtube_title": "≤ 7 words, Title Case, one emoji at the end (🤔 why/how, 😮 wow, 😱 danger); the everyday thing in the first three words and a consequence verb, e.g. \"What Incognito Mode Really Hides 🤔\" (843 views in 6 h), \"Why Your Phone Battery Is Shrinking 🤔\"; never \"#Shorts\", never a definition (\"What an AI Agent Actually Is\" got 14); see factory/PERFORMANCE.md §7",
   "youtube_description": "full description with sources and fine print; never use < or > (YouTube rejects them), write menu paths with ›",
   "series": "How AI works, part N (AI topics) or How tech works, part N (general tech); never brand the account as an AI channel",
   "disclosure": "No AI label: YouTube Altered content No; TikTok label per factory/TIKTOK-PLAYBOOK.md row 14"
