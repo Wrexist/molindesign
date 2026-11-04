@@ -1,0 +1,2 @@
+out/foldoff-real-vo.mp4: 38.2 s, 21 hard cuts (5.5/10 s), motion 0-1 s 4.76, 0-3 s 3.653, median 1.104, still frames 0.3 %
+OK    no frozen stretches, opening moves
