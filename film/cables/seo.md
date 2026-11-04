@@ -33,7 +33,7 @@ Sources
 • U.S. Navy response to the USCC (2026), ITU cable resilience report (2026), heise: about 20–30 dedicated repair ships; median 8 days before a repair starts
 The "almost a year" is rough math (570 cables ÷ 25 ships × 2 weeks), not a forecast.
 
-Narration is an AI voice (Ming-3.0 TTS). Script, research and every frame are made by hand in code.
+Script, research and every frame are made by hand in code.
 
 #internet #undersea #techexplained
 ```
@@ -41,7 +41,7 @@ Narration is an AI voice (Ming-3.0 TTS). Script, research and every frame are ma
 ## Upload settings
 - **Visibility:** Public, or scheduled for Saturday 12:00 ET.
 - **Audience:** not made for kids.
-- **Altered or synthetic content:** **Yes**, because the voice is synthetic. Tick it on every upload; it isn't a default.
+- **Altered or synthetic content:** **No** (stock narrator voice over hand-drawn stickmen; nothing realistic or impersonated).
 - **Category:** Science & Technology.
 - **Language:** English. Caption certification: none.
 - **Playlist:** a new "What if… (tech)" playlist for the long-form series.

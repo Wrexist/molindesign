@@ -1,6 +1,6 @@
 # SEO and posting text: GTA 6's page names Tommy Vercetti
 
-Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta. Switch to Delta and verify the channel name in YouTube Studio before uploading. Upload `out/gta-vercetti-vo.mp4` (voice + sound effects, no music, 30.2 s). Voice is AI-generated (Ming US_James): tick the altered/synthetic content disclosure. Written 2026-11-02 for a US audience. Facts and sources: `BRIEF.md`.
+Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta. Switch to Delta and verify the channel name in YouTube Studio before uploading. Upload `out/gta-vercetti-vo.mp4` (voice + sound effects, no music, 30.2 s). Altered content: No. Written 2026-11-02 for a US audience. Facts and sources: `BRIEF.md`.
 
 **Status: HELD, not uploaded.** Jury 6.7 / Truth 7.5, then 6.8 / Truth 7.5 after round-1 fixes (gate 7.4 / 8.5). This pack is ready if the film is reopened.
 
@@ -19,8 +19,7 @@ Sources:
 - Steam, Grand Theft Auto: Vice City – The Definitive Edition ("Tommy Vercetti's tale"): https://store.steampowered.com/app/1546990 (read November 2, 2026)
 - Take-Two Interactive press release, December 6, 2012 (Vice City "originally released in October 2002 for the PlayStation 2"): ir.take2games.com (read November 2, 2026)
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
-The narration voice is AI-generated.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 Grand Theft Auto is a trademark of Take-Two Interactive.
 
 #GTA6 #GTAVI #TommyVercetti #ViceCity #Shorts
@@ -35,4 +34,4 @@ Tommy's palm print on your guns in GTA 6: yes or no? (Ultimate also has revolver
 Mysteries and Easter Eggs
 
 ## YouTube settings
-Altered or synthetic content: Yes (AI voice). Made for kids: No. Language English (US). Category Gaming. Slot: next free 13:00 or 19:00 ET slot if reopened.
+Altered or synthetic content: No. Made for kids: No. Language English (US). Category Gaming. Slot: next free 13:00 or 19:00 ET slot if reopened.

@@ -4,7 +4,7 @@
 **File:** `nvidia-vo.mp4` (16:9, 1920×1080, 30 fps, about 10:51).
 **Thumbnail:** `thumbnail.jpg` (1280×720).
 **Captions:** upload `nvidia.srt` as English subtitles (Subtitles → Upload file → With timing).
-**Playlist:** new playlist "The whole history of…" (the weekly series). **Category:** Science & Technology. **Altered content:** Yes (AI voice).
+**Playlist:** new playlist "The whole history of…" (the weekly series). **Category:** Science & Technology. **Altered content:** No.
 **End screen:** Subscribe, plus the undersea cables episode (https://youtu.be/6vv67EjasNs) as "video", over the last 10 s, where the film shows its own "watch next" card.
 
 ## Title and thumbnail (pick one pair)
@@ -47,11 +47,11 @@ Sources
 • Huang on Acquired (Oct 2023): "a million times harder than I expected"
 People are drawn as stickmen; no logos are used. Nvidia, Denny's and the other names belong to their owners. Not financial advice.
 
-Narration is an AI voice (Chatterbox TTS, which embeds an inaudible watermark). Script, research and every frame are made by hand in code.
+Script, research and every frame are made by hand in code.
 
 Next: what if every undersea internet cable was cut? https://youtu.be/6vv67EjasNs
 
-#nvidia #ai #techexplained
+#nvidia #techexplained
 ```
 
 ## Tags

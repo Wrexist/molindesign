@@ -14,7 +14,7 @@ It guesses an action, other software clicks, a screenshot comes back. In Anthrop
 Would you let it click send? Yes or no.
 ```
 
-**Hashtags:** #ai #aiagents #agenticai #anthropic #learnontiktok
+**Hashtags:** #aiagents #agenticai #anthropic #learnontiktok
 
 **Keywords** (the first is spoken at about 1.8 s and shown on screen as WHAT IS AN AI AGENT?; search volumes not checked): what is an AI agent; AI agents explained; how do AI agents work; AI agent vs chatbot; agentic AI explained; Claude computer use; ChatGPT agent; AI agent Yellowstone
 
@@ -28,7 +28,7 @@ Would you let it click send? Yes or no.
 
 **Stockholm:** 00:00 Thu Oct 29 (midnight) = 23:00 UTC Wed Oct 28. Sweden is on CET and the US stays on EDT until Nov 1, so the gap is 5 h this week. The slot crosses midnight in Stockholm: pick the date and time from YouTube's dropdown and check the saved time.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James); set TikTok's AI-generated content label and YouTube's Altered content: Yes
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sounds (add one in the app at about 5-10 % under out/agent-voice-only.mp4)
 
@@ -43,7 +43,7 @@ How checked: Skipped by rule, the last three posts: Sunset in Girona (phonephoto
 **Title:** What an AI Agent Actually Is 🤔
 - Alternatives: Why AI Agents Can't Really Click 🤔 · The AI That Got Distracted by Yellowstone 😮
 
-**Playlist:** How AI works · **Tags:** what is an ai agent, ai agents explained, how do ai agents work, ai agent vs chatbot, agentic ai, claude computer use, computer use, how ai works, tech explained, shorts · **Altered content:** Yes
+**Playlist:** How AI works · **Tags:** what is an ai agent, ai agents explained, how do ai agents work, ai agent vs chatbot, agentic ai, claude computer use, computer use, how ai works, tech explained, shorts · **Altered content:** No
 
 **Description** (paste it in full; the PC can't read repo files). No < or > characters (checked by script):
 
@@ -72,9 +72,9 @@ Sources:
 - OpenAI API docs, "Computer use" (read Oct 28, 2026): https://developers.openai.com/api/docs/guides/tools-computer-use
 - Yao et al., "ReAct: Synergizing Reasoning and Acting in Language Models", arXiv, Oct 6, 2022: https://arxiv.org/abs/2210.03629
 
-How AI works, part 6. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+How AI works, part 6. The research, script and hand-built animation are made for this channel.
 
-#shorts #ai #aiagents
+#shorts #aiagents
 ```
 
 ## Two alternative hooks (for an A/B test, not a repost)

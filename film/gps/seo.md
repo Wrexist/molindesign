@@ -20,7 +20,7 @@ Jury (fresh eyes, round 2): **post**, 8.2 overall, Truth 9.0. The DM-able frame 
 - Every claim is in the script and BRIEF (facts 2, 8 and 10). Nothing says your map would be 7 miles off (BRIEF, "Kept out").
 
 **Hashtags:** #tech #gps #physics #einstein #learnontiktok
-- #tech is the broad tag, and it fits the channel's general-tech identity (no #ai on a non-AI video).
+- #tech is the broad tag, and it fits the channel's general-tech identity.
 - #gps is the exact topic, and #physics and #einstein are where the relativity half gets found. #learnontiktok is the US education feed.
 
 **Cover:** frame 0 (`cover_time` 0.0), which is also `out/poster.jpg` and where the loop lands. It already reads silently: "Your phone finds you with clocks in space", HOW DOES GPS WORK?, and the two clocks with the ≠ chip. Add the cover text **Einstein is in your map.** in the empty band under the phone (about y 1500–1620). That's inside the 3:4 grid crop (about y 240–1680), and it names the twist the headline doesn't.
@@ -36,7 +36,7 @@ This is from BRIEF "Kept out": the voice says "pinned to one spot", and this is 
 - 13:00 ET is lunchtime on the East Coast and noon in the Central zone, inside the playbook's 12:00–15:00 ET hand-posting window, and it keeps one daily US time.
 - If it slips past Saturday: 13:00 ET is **18:00 Stockholm** from Sun Oct 25 to Sat Oct 31 (Sweden leaves summer time a week before the US), then 19:00 again from Sun Nov 1. The scheduled alternative, 19:00 ET Sat Oct 24 in TikTok Studio, is 01:00 Stockholm on Sun Oct 25.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James). Turn on TikTok's **AI-generated content** label (`is_aigc: true`).
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 

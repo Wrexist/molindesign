@@ -19,11 +19,11 @@ Sources:
 
 The game was pulled by stores, not banned by law. The ESRB said the content was on the final discs but could only be reached with a third-party patch.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two. The narration is an AI voice.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 
 **Hashtags:** #GTA #GTASanAndreas #GTA6 #gaming #shorts
 
 **Pinned comment (one question):**
 Should hidden content left on a disc change a game's age rating, even if you need a mod to see it? Yes or no?
 
-**YouTube settings:** Altered content (synthetic voice): yes. Not made for kids. Language English (US). Category Gaming. Playlist "GTA History" (create it if missing).
+**YouTube settings:** Altered content: No. Not made for kids. Language English (US). Category Gaming. Playlist "GTA History" (create it if missing).

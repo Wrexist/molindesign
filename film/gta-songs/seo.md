@@ -35,8 +35,7 @@ Sources:
 
 The 36,979% is Spotify's own figure as told to BBC Newsbeat: streams of the track in the days after trailer 1 compared with the same days one week earlier. It is not a total stream count. Rockstar's trailer 2 page does not name the song; the credit comes from press reports. No music or lyrics from any of these songs are played in this Short.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
-The narration voice is AI-generated.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 GTA 6 is out November 19, 2026 on PS5 and Xbox Series X|S. Grand Theft Auto is a trademark of Take-Two Interactive.
 
 #GTA6 #GTAVI #GTA6Trailer #TomPetty #Shorts
@@ -48,7 +47,7 @@ Old or new: Tom Petty, the Pointer Sisters, or the new Justice song? And which o
 
 **Playlist:** GTA 6 Facts. (It covers all three trailers but only their songs, not what happens in them, so it is a fact, not a trailer breakdown. It can also go in Trailer Breakdowns as a second playlist if you want.)
 
-**YouTube settings:** Altered content (synthetic voice): yes. Not made for kids. Language English (US). Category Gaming.
+**YouTube settings:** Altered content: No. Not made for kids. Language English (US). Category Gaming.
 
 ## Search
 - Main phrase: `GTA 6 trailer song` (spoken at about 4 s, on screen from about 2 s).

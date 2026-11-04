@@ -19,14 +19,14 @@ Sources:
 
 The $1 billion is Take-Two's estimate of worldwide retail sales. Sold-in means copies shipped to stores plus digital sales.
 
-Made with our own graphics and voice. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two. The narration is an AI voice.
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 
 **Hashtags:** #GTA6 #GTA5 #GTA #gaming #shorts
 
 **Pinned comment (one question):**
 GTA 5 took 3 days to make $1 billion. Will GTA 6 do it faster? Yes or no?
 
-**YouTube settings:** Altered content (synthetic voice): yes. Not made for kids. Language English (US). Category Gaming. Playlist "GTA History" (create it if missing).
+**YouTube settings:** Altered content: No. Not made for kids. Language English (US). Category Gaming. Playlist "GTA History" (create it if missing).
 
 ## Check before posting
 - "$1 billion in 3 days" is Take-Two's own estimate (said on screen and in the description).

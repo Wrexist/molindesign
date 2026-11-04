@@ -62,7 +62,7 @@ This is the brief's first pinned-comment idea (Denso Wave FAQ: overlaying an ill
 - On YouTube, pick the slot from the dropdown and check the saved time (clock-change lesson).
 - Post only on the round-2 **post** verdict. If the director re-renders with polish fixes, upload the newest `out/qrcode-vo.mp4` and recheck nothing spoken changed.
 
-**Disclosure:** AI-generated voice (Ming TTS, US_James). Turn on TikTok's **AI-generated content** label (`is_aigc: true`); on YouTube set **Altered content: Yes**.
+**Disclosure:** No AI label (Isac 2026-11-03): YouTube Altered content: No. Stock narrator voice over hand-made animation, nothing realistic or impersonated. TikTok label: see factory/TIKTOK-PLAYBOOK.md row 14.
 
 ## Sound (add before posting; it can't be changed after)
 
@@ -109,7 +109,7 @@ This is the brief's first pinned-comment idea (Denso Wave FAQ: overlaying an ill
 > - Denso Wave, qrcode.com, FAQ (read Oct 26, 2026): https://www.qrcode.com/en/faq.html
 > - ISO/IEC 18004, the QR code standard (as outlined by Denso Wave)
 >
-> How tech works, part 4. Narration is an AI voice (Ming TTS); the research, script and hand-built animation are made for this channel.
+> How tech works, part 4. The research, script and hand-built animation are made for this channel.
 >
 > #shorts #tech #qrcode
 
