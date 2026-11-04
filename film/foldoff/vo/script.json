@@ -1,0 +1,159 @@
+{
+ "about": "The Fold-Off: an experimental 9:16 stickman parody of a big-money YouTube challenge show, made to test the format grammar from the AI 'MrBeast AGI challenge' clip DramaAlert shared (Nov 2026): familiar show format x a topical subject (AI), absurd stakes vs a tiny task, three contestants whose jokes are their stereotype, a runner gag that pays off as the last line, hard cuts on every line with shot/reverse-shot coverage and name slams. All characters are original; no real people, brands or companies. Kokoro voices, one per character. No music.",
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.6
+ },
+ "fit": {
+  "min": 0.9,
+  "max": 1.12
+ },
+ "names": [
+  "Yapper",
+  "Dream-9",
+  "Safe-T",
+  "June"
+ ],
+ "captions": {
+  "max_words": 4,
+  "max_chars": 22,
+  "min_s": 0.5
+ },
+ "tail": 0.6,
+ "lines": [
+  {
+   "id": "open",
+   "voice": "am_puck",
+   "text": "Three robots. One million dollars.",
+   "pause": 0.15,
+   "at": 0.12,
+   "sentence_pause": 0.12
+  },
+  {
+   "id": "task",
+   "voice": "am_puck",
+   "text": "All they have to do is fold one shirt.",
+   "pause": 0.2,
+   "at": 2.07,
+   "say": "All they have to do, is fold one shirt."
+  },
+  {
+   "id": "june",
+   "voice": "bf_emma",
+   "text": "I've folded shirts for sixty years. Impress me.",
+   "pause": 0.2,
+   "at": 4.51,
+   "sentence_pause": 0.12,
+   "say": "I've folded shirts for sixty years, impress me."
+  },
+  {
+   "id": "r1",
+   "voice": "am_puck",
+   "text": "Robot one!",
+   "pause": 0.1,
+   "at": 7.19
+  },
+  {
+   "id": "yap1",
+   "voice": "af_nicole",
+   "text": "Great question! Folding is a rich and complex topic. Step one of forty.",
+   "pause": 0.15,
+   "at": 8.12,
+   "sentence_pause": 0.12,
+   "speed": 1.12,
+   "say": "Great question! Folding is a rich, and complex topic, step one of forty."
+  },
+  {
+   "id": "just",
+   "voice": "bf_emma",
+   "text": "Just fold it.",
+   "pause": 0.1,
+   "at": 14.8
+  },
+  {
+   "id": "yap2",
+   "voice": "af_nicole",
+   "text": "Step two of forty.",
+   "pause": 0.2,
+   "at": 16.02
+  },
+  {
+   "id": "r2",
+   "voice": "am_puck",
+   "text": "Robot two!",
+   "pause": 0.1,
+   "at": 17.76
+  },
+  {
+   "id": "dream1",
+   "voice": "am_echo",
+   "text": "Done. A perfect fold.",
+   "pause": 0.25,
+   "at": 18.79,
+   "sentence_pause": 0.12
+  },
+  {
+   "id": "sleeves",
+   "voice": "bf_emma",
+   "text": "That shirt has six sleeves.",
+   "pause": 0.1,
+   "at": 20.73,
+   "say": "That shirt has six... sleeves."
+  },
+  {
+   "id": "dream2",
+   "voice": "am_echo",
+   "text": "You're absolutely right. Here's seven.",
+   "pause": 0.2,
+   "at": 22.84,
+   "sentence_pause": 0.12
+  },
+  {
+   "id": "r3",
+   "voice": "am_puck",
+   "text": "Robot three!",
+   "pause": 0.1,
+   "at": 25.3
+  },
+  {
+   "id": "safe",
+   "voice": "bm_george",
+   "text": "Folding may cause creases. So for your safety, I have wrapped the shirt.",
+   "pause": 0.2,
+   "at": 26.36,
+   "sentence_pause": 0.12,
+   "say": "Folding may cause creases, so for your safety, I have wrapped the shirt."
+  },
+  {
+   "id": "zero",
+   "voice": "am_puck",
+   "text": "Three robots. Zero folded shirts.",
+   "pause": 0.15,
+   "at": 30.93,
+   "sentence_pause": 0.12
+  },
+  {
+   "id": "done",
+   "voice": "bf_emma",
+   "text": "Done.",
+   "pause": 0.15,
+   "at": 33.09
+  },
+  {
+   "id": "wins",
+   "voice": "am_puck",
+   "text": "Grandma wins a million dollars!",
+   "pause": 0.2,
+   "at": 34.02
+  },
+  {
+   "id": "yap3",
+   "voice": "af_nicole",
+   "text": "Step three of forty.",
+   "pause": 0.1,
+   "at": 35.87
+  }
+ ],
+ "dur": 38.18
+}
