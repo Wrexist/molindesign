@@ -1,6 +1,6 @@
 # The trailer songs (GTA 6, Delta #5)
 
-Slug `gta-songs` · backlog row 5 · researched 2026-10-29 · post slot 2026-10-31 (ET) · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, AI voice disclosed in the post), own graphics, no Rockstar footage, logo or key art. **No music, no lyrics, no hummed or "sound-alike" melody**: song titles and artists are named only. GTA 6 launches 2026-11-19 on PS5 and Xbox Series X|S (checked on rockstargames.com/VI, see facts).
+Slug `gta-songs` · backlog row 5 · researched 2026-10-29 · post slot 2026-10-31 (ET) · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, no AI tag in the post), own graphics, no Rockstar footage, logo or key art. **No music, no lyrics, no hummed or "sound-alike" melody**: song titles and artists are named only. GTA 6 launches 2026-11-19 on PS5 and Xbox Series X|S (checked on rockstargames.com/VI, see facts).
 
 ## 1. Topic and one hard idea
 **One GTA 6 trailer took a forgotten 1989 Tom Petty B-side and made its Spotify streams jump about 37,000% in a week (36,979%, Spotify to BBC Newsbeat).** That is the one hero number; the poster carries it. Trailer 2 "did it again" (no second number spoken), and the launch trailer is the turn: it broke the old-song pattern with a brand-new song. The film ends on a one-word vote: old or new.

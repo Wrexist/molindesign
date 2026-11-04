@@ -1,6 +1,6 @@
 # PC waits (GTA 6, Delta #8)
 
-Slug `gta-pc` · backlog row 8 · researched 2026-10-31 · post slot 2026-11-01 (ET, per `delta/backlog.csv`) · channel **Delta** (never Tech, explained). American English, US audience, own voice (Ming US_James, seed 7, AI voice disclosed in the post), own flat Vice City graphics, no Rockstar footage, logo, key art or character likeness, no music. GTA 6 launches **November 19, 2026** on **PlayStation 5 and Xbox Series X|S** (rockstargames.com/VI, re-read 2026-10-31).
+Slug `gta-pc` · backlog row 8 · researched 2026-10-31 · post slot 2026-11-01 (ET, per `delta/backlog.csv`) · channel **Delta** (never Tech, explained). American English, US audience, own voice (Ming US_James, seed 7, no AI tag in the post), own flat Vice City graphics, no Rockstar footage, logo, key art or character likeness, no music. GTA 6 launches **November 19, 2026** on **PlayStation 5 and Xbox Series X|S** (rockstargames.com/VI, re-read 2026-10-31).
 
 ## 1. Topic and one hard idea
 **Rockstar's own GTA 6 page lists two platforms, and PC isn't one.** That is the one clean, unhedged stake: Rockstar gives it, nobody has to qualify it. The film then shows *how long PC has waited before*, as one native picture (a wait chart), with **one hero number: GTA 5's almost 19-month PC wait** (the tallest bar). The payoff is not a date guess; it is the plain state of things: Rockstar hasn't announced a GTA 6 PC version, so the question to the viewer is wait or buy a console.

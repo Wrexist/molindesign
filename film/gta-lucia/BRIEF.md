@@ -1,6 +1,6 @@
 # Lucia breaks the lineup (GTA 6, Delta #6)
 
-Slug `gta-lucia` · backlog row 6 · researched 2026-10-30 · post slot 2026-10-31 (ET) · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, AI voice disclosed in the post), own graphics, no Rockstar footage, logo, key art or likeness of Lucia (our own flat silhouette only). GTA 6 launches **November 19, 2026** on PS5 and Xbox Series X|S (rockstargames.com/VI, re-read 2026-10-30).
+Slug `gta-lucia` · backlog row 6 · researched 2026-10-30 · post slot 2026-10-31 (ET) · channel **Delta** (never Tech, explained). American English, own voice (Ming US_James, seed 7, no AI tag in the post), own graphics, no Rockstar footage, logo, key art or likeness of Lucia (our own flat silhouette only). GTA 6 launches **November 19, 2026** on PS5 and Xbox Series X|S (rockstargames.com/VI, re-read 2026-10-30).
 
 ## 1. Topic and one hard idea
 **Count every story lead since GTA went 3D with GTA III in 2001: thirteen, all men. GTA 6's Lucia Caminos is the first woman to lead a GTA story since then.** One hero number (13) and one hero image (a police lineup wall with 13 grey silhouettes and one empty pink slot); the poster carries both.
