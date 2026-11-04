@@ -3,7 +3,7 @@
 #   factory/make.sh <slug> [voice|picture|mix|all]      (default all)
 # voice   : synth + Whisper listen check (film/<slug>/vo/script.json → vo/vo.js, vo/<SLUG>-vo.mp3)
 # picture : render.mjs all (score/sfx, readcheck, contact sheet, poster, frames, master → out/<SLUG>.mp4)
-# mix     : voice + sfx (out/<SLUG>-vo.mp4) and voice only (out/<SLUG>-voice-only.mp4), both at −14 LUFS
+# mix     : voice + sfx (out/<SLUG>-vo.mp4) and voice only (out/<SLUG>-voice-only.mp4), both at −14 LUFS; pacecheck → out/pace.txt
 # Needs factory/setup.sh to have run once in this container.
 set -euo pipefail
 SLUG_DIR="${1:?usage: make.sh <slug> [voice|picture|mix|all]}"
@@ -20,6 +20,8 @@ SLUG="$(grep -o "SLUG: *'[^']*'" "$FILM/film.js" | head -1 | sed "s/.*'\(.*\)'/\
 SLUG="${SLUG:-$SLUG_DIR}"
 
 voice() {
+  # Stock AI phrasing fails the run before any synth time is spent (ernestosoftware lesson, 2026-11-04).
+  python3 "$TOOLS/scriptlint.py" "$FILM/vo/script.json" || { echo "fix the FAIL lines in vo/script.json first"; exit 3; }
   ( cd "$TOOLS" && "$PY" voiceover.py synth "$FILM/vo/script.json" )
   # The solo check is advisory: Whisper sometimes invents words in a dry line's fade-out ("Thank you.").
   # Fix lines it flags for pace or a real misread; the in-context check in `mix` is the gate.
@@ -44,6 +46,8 @@ mix() {
     ffmpeg -hide_banner -nostats -i "$FILM/out/$f.mp4" -af ebur128=peak=true -f null - 2>&1 | grep -E "^\s+I:|Peak:" | tr -s ' ' | tr '\n' ' '
     echo
   done
+  # Pace: hard cuts, motion in the first 3 s, frozen stretches. The jury reads out/pace.txt.
+  python3 "$TOOLS/pacecheck.py" "$FILM/out/$SLUG-vo.mp4" | tee "$FILM/out/pace.txt" || echo "pacecheck FAIL: a frozen stretch over 1 s (see out/pace.txt); fix it before the jury"
   ffmpeg -hide_banner -nostats -i "$FILM/out/$SLUG-vo.mp4" -vf blackdetect=d=0.3:pix_th=0.05 -an -f null - 2>&1 | grep blackdetect || echo "no black stretches"
   # Copy the deliverables where every thread can reach them, when the project folder exists.
   if [ -d /mnt/project-files ]; then
