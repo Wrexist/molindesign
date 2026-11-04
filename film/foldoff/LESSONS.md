@@ -44,3 +44,16 @@
 
 ## First render (2026-11-04)
 `out/pace.txt`: 38.2 s, motion 0–3 s **2.59** (the original: 3.0; our factory Shorts: 0.13–0.4), no frozen stretch. pacecheck counts 12 hard cuts against 27 by design: cuts between shots on the same studio set change too little for scdet's threshold, so read its cut count as a floor for set-based films.
+
+## Realistic version: `film/foldoff-real/` (Isac, 2026-11-04: "realistic image as well, like the video")
+The script, voices and cuts are the same, with a photoreal still for every shot. There are 16 SDXL 1.0 base images, made in ComfyUI on Isac's PC (RTX 3060, about 35 s each, free). The motion is ours: a push or drift on every shot, handheld wobble, zoom punches and shakes, plus the same chrome.
+
+- **Keeping a face the same across shots:** use the same seed and change only the pose words. Seed 104 gave the host twice and seed 201 gave the judge four times.
+- **Flux schnell:** ComfyUI's default checkpoint workflow returns mush (it needs the Flux guidance nodes), so use SDXL.
+- **Weak spots in SDXL base:**
+  - several subjects in one frame;
+  - "six sleeves";
+  - a "neatly folded shirt", which failed.
+  - Fix these with code overlays: stamps, a picture-in-picture, a scribble circle.
+- **pace.txt:** motion over 0–3 s is **3.65** (the original: 3.0) and there are 21 detected cuts.
+- **Still missing compared with the original:** real motion and lip sync. That needs a paid video model, such as Higgsfield/Kling with credits, or a local Wan/LTX install, which isn't there yet.
