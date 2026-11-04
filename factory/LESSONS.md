@@ -35,6 +35,16 @@ Viewers are pasting anti-"AI slop" comments under channels with AI scripts, AI a
 - Reply to real comments in the first hour with a sourced extra fact; a creator who answers isn't a slop farm.
 - Never post the anti-slop copypasta or reply to it with arguments; answer a "this is AI" comment with the source link and what we made by hand.
 
+## What ernestosoftware's viral reel teaches (studied 2026-11-04)
+Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on a reel he says Claude made in under an hour; the skill is behind a follow gate, so we studied the 10 s "anatomy" video instead). It splits the reel into 7 layers: footage (an animated character), dialogue, captions, 55 cuts, story arc, music, real footage.
+- Measure pace, don't eyeball it: `film/tools/pacecheck.py` on our 13 posted Shorts found motion over 0–3 s lines up with views (Spearman 0.74) while overall motion doesn't (0.12). Winners 0.24–0.78, flops 0.13–0.22 (agent 0.13, gps 0.13, strawberry 0.17). `make.sh mix` now writes it to out/pace.txt.
+- We cut almost never: 0–1 hard cuts per film against his 55. Our glides and wipes keep motion up, so this isn't a rule yet; try one film built on hard cuts (a new picture every 0.6–0.8 s in the first 6 s) and compare its pace.txt and views.
+- A story arc beats a flat explanation: his has a low point ("you're gonna be a nobody"), time-jump cards ("3 MONTHS LATER", "YEARS LATER") and a rise to the payoff. The researcher now scores tension per line and needs one dip and a highest last beat.
+- Real footage at the end proves the story: our version is the sourced document, date or number on the hero hold (already a "not slop" rule; keep it).
+- Captions are one or two huge stacked words a beat, which matches our "≤ 5 words on frame 0"; his are bold condensed caps.
+- "Stop sounding like AI" is his whole pitch: `film/tools/scriptlint.py` now fails stock AI phrases before the voice is synthesized.
+- Don't copy: the follow-gated "free skill in comments" funnel (TIKTOK-PLAYBOOK, What we don't do) or the AI-generated character (Isac's no-AI-look rule).
+
 ## Hook and first frame
 - Frame 0 shows the conflict, never the answer (strawberry r1: the answer on frame 0 killed the reason to watch).
 - A tease hidden in frame 0 must be visible on a 540-wide phone frame: a 45 % brightness bias was invisible; it took ~90 % cream inside the lens, held 0.35 s (noise r2).

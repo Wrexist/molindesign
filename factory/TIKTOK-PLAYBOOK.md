@@ -53,6 +53,7 @@ What the factory does on every video to reach a **US audience** and get pushed b
 - **Engagement bait:** no "comment X to get…" and no follow-for-follow.
 - **Recycled clips:** no reposting other creators' clips.
 - **Fake stats:** no fake numbers on screen.
+- **Gated freebies:** no "free X in comments" behind a follow wall (ernestosoftware's funnel, 2026-11-04). It farms comments and follows, which TikTok's rules treat as engagement bait, and our edge is that everything is open and sourced.
 - **Overclaiming hooks:** the hook must be paid off by the video.
 - **Over-polish:** some creators report that it reads as an ad and erodes trust. Keep the look clean and graphic, not glossy.
 
