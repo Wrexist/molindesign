@@ -9,7 +9,8 @@ Sources: Rockstar's [video policy](https://support.rockstargames.com/articles/20
 4. No trailer or radio music. Our own sound only (the factory SFX). Trending sounds are added at upload on TikTok, quietly.
 5. Anything Rockstar has not confirmed is labeled Rumor or Theory on screen, with the source.
 6. "GTA 6" in the title and in the first spoken second.
-7. Spoiler videos (after launch): own capture, "SPOILERS" in the title and the first second, no unbroken story cutscenes, no ending, no edited cutscene compilations.
+7. **Trailer mode (Isac, 2026-11-03: "use pieces of trailers, animate other things yourself or extend things from the trailers, use everything interesting for viewers").** Rockstar's official trailers (1, 2, launch) are now a normal source, under rule 3: each excerpt muted, under 5 s, annotated, at most about a third of the runtime in total, and never the same clip in two videos. "Extending" a trailer shot means our own drawn graphics (map, diagram, reconstruction, what-is-just-off-frame) in our flat style, never realistic AI-generated game footage. That keeps Altered content = No. If a film ever uses realistic generated footage, it must be labeled FAN ANIMATION on screen and Altered content = Yes. Trailer files live outside the repo (the PC: delta/trailers/, not committed). Description closing line for films with trailer clips: "Trailer clips: Rockstar Games (Trailer N), used for commentary. Not affiliated with Rockstar Games or Take-Two." Start with 2 Shorts and check Studio for Content ID claims before making more.
+8. Spoiler videos (after launch): own capture, "SPOILERS" in the title and the first second, no unbroken story cutscenes, no ending, no edited cutscene compilations.
 
 ## Never
 - Leaked footage or builds, however obtained.

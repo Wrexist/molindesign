@@ -172,7 +172,7 @@
   var WX0 = 100, WX1 = 920, WY0 = 462, WY1 = 1412, RT = 470, RH = 290, SW = 154, SX0 = 150;
   var LEADS = [
     ['CLAUDE', 'III'], ['TOMMY', 'VICE CITY'], ['CJ', 'S. ANDREAS'], ['MIKE', 'ADVANCE'], ['TONI', 'LCS'],
-    ['VIC', 'VCS'], ['NIKO', 'IV'], ['JOHNNY', 'TLAD'], ['HUANG', 'CHINATOWN'], ['LUIS', 'TBOGT'],
+    ['VIC', 'VCS'], ['NIKO', 'IV'], ['JOHNNY', 'TLAD'], ['HUANG', 'CW'], ['LUIS', 'TBOGT'],
     ['MICHAEL', 'V'], ['FRANKLIN', 'V'], ['TREVOR', 'V']
   ];
   var SPOKEN = { 0: 'claude', 1: 'tommy', 2: 'cj', 6: 'niko', 10: 'michael', 11: 'franklin', 12: 'trevor' };
@@ -353,7 +353,7 @@
     }
     /* ask: the 13 settles as a small tag in the slot's corner while the "?" comes back */
     var tagA = home ? 0 : fin(t, ask + .25);
-    if (tagA > 0) chip(g, '13 · ALL MEN', S14.cx, S14.y0 + 44, { px: 38, wt: 900, bg: ORG, fg: BG, a: tagA, cond: true, shadow: false });
+    if (tagA > 0) chip(g, '13 · ALL MEN', S14.cx, S14.y0 + 44, { px: 48, wt: 900, bg: ORG, fg: BG, a: tagA, cond: true, shadow: false });
     bigQ(g, S14.cx, S14.cy + 26, 210 * kn(t, at('ask', 'breaks')), home ? 0 : fin(t, ask + .2), t);
     g.restore();
     /* the scope, big in the empty wall while the line defines it, then as the credit at the wall's foot */
@@ -363,7 +363,7 @@
       chip(g, '2001', CX, 860, { px: 120, wt: 900, bg: TEAL, fg: BG, a: fin(t, at('since', '2001') - .1) * (1 - seg(t, scOut - .25, scOut)), s: pin(t, at('since', '2001') - .1), rot: .02 });
       credit(g, 'OUR COUNT · STORY MODES · SINCE GTA III', CX, 1376, fin(t, FALL0 + .3));
       /* the hook, captioned on the wall on "breaks"; SINCE 2001 scopes the 13 from the moment it is on screen */
-      var hb = at('hook', 'breaks') - .15, hA = fin(t, hb) * (1 - seg(t, FALL0 - .1, FALL0 + .15));
+      var hb = at('hook', 'breaks') - .15, hA = fin(t, hb) * (1 - seg(t, FALL0 - .05, FALL0 + .2));
       if (hA > 0) {
         var hs = pin(t, hb);
         g.save(); g.globalAlpha *= hA; g.translate(CX, 770); g.scale(hs, hs);
@@ -379,7 +379,7 @@
     /* frame 0: the wall's foot names it */
     chip(g, 'LINEUP', CX, 1376, { px: 44, wt: 900, line: CREAM, lw: 3, fill: 'rgba(11,8,32,.94)', fg: CREAM, a: home ? 1 : 1 - seg(t, FALL0, FALL0 + .3), shadow: false });
     /* the hero stamp: ALL MEN slams across the wall in the written pause after "man." */
-    if (!home) stampText(g, 'ALL MEN', CX, 556, t, GT.stamp, S('lucia').t0 - .35, 128, CREAM, -.04);
+    if (!home) stampText(g, 'ALL MEN', CX, 556, t, GT.stamp, S('lucia').t0 - .75, 128, CREAM, -.04);
   }
   /* the frame-0 wall without the voice's beats (the loop home) */
   function homeWall(g, t) { wallScene(g, t, true); }
@@ -518,6 +518,7 @@
     g.save(); g.globalAlpha *= fin(t, s0 + .4) * (t >= pk ? 1 : blink); g.strokeStyle = t >= pk ? HOT : CREAM; g.lineWidth = 8;
     g.strokeRect(cx - 82, cyc - 98, 164, 196); g.restore();
     chip(g, '4 OF 8 · WOMEN · 1997 PC', CX, 1322, { px: 56, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .55), s: pin(t, s0 + .55) * kn(t, ch0 + .42), rot: .01, cond: true });
+    chip(g, 'LOOK ONLY · SAME STORY', CX, 662, { px: 44, wt: 900, line: HOT, lw: 4, fg: HOT, fill: 'rgba(11,8,32,.92)', a: fin(t, s0 + .35), shadow: false, cond: true });   // Wikipedia: the choice is purely aesthetic
     credit(g, 'NAMES: LEVELUP · OUR PIXEL ART', CX, 1392, fin(t, s0 + .45));
   }
 
@@ -529,7 +530,7 @@
     fullWall(g, t, { dim: .3 * fin(t, fs - .2) });
     var a = fin(t, fs - .1), sc = pin(t, fs - .1) * kn(t, ld);
     if (a > 0) {
-      g.save(); g.globalAlpha *= a; g.translate(S14.x0 + 120, S14.y0 + 78); g.scale(sc, sc);
+      g.save(); g.globalAlpha *= a; g.translate(CX, RT + RH / 2); g.scale(sc, sc);   // over the dimmed top row, not over Lucia
       rr(g, -168, -70, 336, 140, 14); g.fillStyle = 'rgba(11,8,32,.94)'; g.fill(); g.strokeStyle = HOT; g.lineWidth = 5; g.stroke();
       cond(g); g.textAlign = 'center'; g.textBaseline = 'middle';
       font(g, 44, 900); g.fillStyle = HOT; g.fillText('FIRST WOMAN LEAD', 0, -38, 312);
@@ -685,7 +686,7 @@
     var hb = at('hook', 'breaks') - .15;
     T('gta', 'GTA 6', 0, start('since') - .1); T('gta', 'GTA 6', HOME + .3, DUR + 1);
     T('lineup', 'LINEUP', 0, FALL0); T('lineup', 'LINEUP', HOME + .3, DUR + 1);
-    T('hookc', 'BREAKS A 13-MAN LINEUP', hb + .05, FALL0);
+    T('hookc', 'BREAKS A 13-MAN LINEUP', hb, FALL0 + .05);
     T('s2001', 'SINCE 2001', hb + .25, FALL0);
     T('leads', 'STORY LEADS', at('since', 'count') + .3, R13 + .1);
     T('13', '13 · OUR COUNT', R13 + .15, start('ask') + .1);
@@ -703,6 +704,7 @@
     T('y97', '1997 · PC', S('pixel').t0 + .15, cut('since3d'));
     T('w4', 'DIVINE KATIE MIKKI ULRIKA', S('pixel').t0 + .6, cut('since3d'));
     T('n8', '4 OF 8 · WOMEN · 1997 PC', S('pixel').t0 + .65, cut('since3d'));
+    T('look', 'LOOK ONLY · SAME STORY', S('pixel').t0 + .5, cut('since3d'));
     T('fs', 'FIRST WOMAN LEAD OF A STORY MODE SINCE 2001', at('since3d', 'since') + .15, cut('end'));
     T('oc', 'OUR COUNT', at('since3d', 'since') + .35, cut('end'));
     T('avt', 'ONLINE AVATARS NOT COUNTED', S('since3d').t0 + .1, cut('end'));
@@ -756,7 +758,7 @@
     G('flashP', vadEndBefore(start('but'), end('prison') - .5) + .16, 'flash', .2, 1);
     G('rewind', (GT.flashP || end('prison')) + .2, 'rewind', .25, .8);
     /* first: the cursor visits the four women with a rising four-note chord in the pause after "one." */
-    G('chord', vadEndBefore(start('since3d'), end('first') - .5) + .16, 'chord', .3, .9);
+    G('chord', vadEndBefore(start('since3d'), end('first') - .5) + .16, 'chord', .3, 1.6);
     /* end: a swish home into frame 0 */
     G('home', HOME - .05, 'swish', .3, .8);
     EV.sort(function (a, b) { return a.t - b.t; });

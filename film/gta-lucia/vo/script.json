@@ -39,7 +39,8 @@
       "at": 0.3,
       "text": "GTA 6 breaks a 13-man lineup.",
       "say": "G T A 6 breaks a thirteen-man lineup.",
-      "speed": 1.1
+      "speed": 1.1,
+      "take": 2
     },
     {
       "id": "since",
@@ -84,8 +85,8 @@
     {
       "id": "but",
       "at": 26.1,
-      "text": "But GTA's first playable woman came way earlier.",
-      "say": "But G T A's first playable woman came way earlier."
+      "text": "But women were playable in GTA way earlier.",
+      "say": "But women were playable in G T A way earlier."
     },
     {
       "id": "first",
@@ -102,7 +103,7 @@
     {
       "id": "end",
       "at": 38.8,
-      "text": "Who are you here for: Lucia or Jason?"
+      "text": "Lucia or Jason: who breaks it for you?"
     }
   ],
   "dur": 42.25

@@ -386,8 +386,8 @@
   }
   function askScene(g, t) {
     var s0 = S('ask').t0, on = at('ask', 'one'), tr = at('ask', 'trailer'), dd = at('ask', 'do'), od = at('ask', 'old');
-    trailerCard(g, 340, 720, 430, 266, t, fin(t, s0 + .02), lerp(.85, 1, clamp(pop(t, s0, 3), 0, 1)) * kn(t, on));
-    chip(g, 'TRAILER 1', 340, 905, { px: 50, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .1), rot: -.03 });
+    trailerCard(g, 340, 800, 430, 266, t, fin(t, s0 + .02), lerp(.85, 1, clamp(pop(t, s0, 3), 0, 1)) * kn(t, on));
+    chip(g, 'TRAILER 1', 340, 985, { px: 50, wt: 900, bg: CREAM, fg: BG, a: fin(t, s0 + .1), rot: -.03 });
     var wob = Math.max(0, knock(t, od, 14, 5)) * .06;
     cassette(g, 680, 1170, 420, { clean: -520, ang: spin(t, 1e9), rot: .05 + wob, tt: t, year: '1989', yearBig: 1, a: fin(t, s0 + .05) });
     label(g, 'AN OLD SONG', 680, 1340, fin(t, s0 + .3), CREAM, 40);
@@ -395,7 +395,7 @@
     var ak = eio(seg(t, tr - .05, tr + .45));
     if (ak > 0) {
       g.save(); g.strokeStyle = TEAL; g.lineWidth = 12; g.lineCap = 'round'; g.setLineDash([26, 18]); g.lineDashOffset = -t * 60;
-      g.beginPath(); var x0 = 560, y0 = 760, x1 = 690, y1 = 1010, cxp = 740, cyp = 790;
+      g.beginPath(); var x0 = 560, y0 = 840, x1 = 690, y1 = 1010, cxp = 740, cyp = 870;
       for (var i = 0; i <= 30 * ak; i++) { var u = i / 30, xx = (1 - u) * (1 - u) * x0 + 2 * u * (1 - u) * cxp + u * u * x1, yy = (1 - u) * (1 - u) * y0 + 2 * u * (1 - u) * cyp + u * u * y1; if (!i) g.moveTo(xx, yy); else g.lineTo(xx, yy); }
       g.stroke(); g.setLineDash([]);
       if (ak >= 1) { g.fillStyle = TEAL; tri(g, x1 - 26, y1 - 30, x1 + 22, y1 - 34, x1 + 2, y1 + 12); }
@@ -435,7 +435,7 @@
     }
     /* the source card */
     if (ex < 1) {
-      var cyC = lerp(780, 1060, ex), sc = lerp(1, .3, ex);
+      var cyC = lerp(900, 1060, ex), sc = lerp(1, .3, ex);
       g.save(); g.globalAlpha *= 1 - ex; g.translate(CX, cyC); g.scale(sc, sc); g.rotate(-.02);
       rr(g, -390 + 12, -230 + 18, 780, 460, 18); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill();
       rr(g, -390, -230, 780, 460, 18); g.fillStyle = PAPER; g.fill();
@@ -452,7 +452,7 @@
     label(g, 'VIA BBC NEWSBEAT · DEC 2023', CX, 1060, seg(ex, .6, 1), CREAM, 36, 'center', true);
     /* the counter: pops in big as the card leaves, rolls through the line, lands on "percent" */
     var cw = 104, ch = 250, px = 158, gp = 10, cg = 30, cy = 760;
-    var sq = (1 + .025 * Math.max(0, knock(t, R1, 16, 6))) * lerp(.8, 1, clamp(pop(t, R0 - .3, 3), 0, 1));
+    var sq = (1 + .13 * Math.max(0, knock(t, R1, 16, 6))) * lerp(.8, 1, clamp(pop(t, R0 - .3, 3), 0, 1));
     function wfor(nn) { return nn * cw + (nn - 1) * gp + (nn > 3 ? cg + gp : 0); }
     var c4 = cross(1000), c5 = cross(10000), wNow = wfor(3) + (wfor(4) - wfor(3)) * eio(seg(t, c4, c4 + .18)) + (wfor(5) - wfor(4)) * eio(seg(t, c5, c5 + .18));
     var sufK = landed ? clamp(pop(t, R1, 3.4), 0, 1.04) : 0, sufW = 0;
@@ -466,8 +466,8 @@
     }
     /* tags only once the number has landed */
     chip(g, 'SPOTIFY STREAMS', CX, 545, { px: 54, wt: 900, bg: TEAL, fg: BG, a: fin(t, R1 + .05), s: pin(t, R1 + .05), rot: -.015 });
-    chip(g, 'VS. THIS TIME LAST WEEK', CX, 975, { px: 48, wt: 900, bg: CREAM, fg: BG, a: fin(t, R1 + .2), s: Math.min(1.05, pin(t, R1 + .2)), rot: .015, maxw: 720 });
-    label(g, 'NOT TO SCALE · ~370×', 430, 1200, fin(t, R1 + .45), CREAM, 36, 'center', true);
+    chip(g, 'VS. THIS TIME LAST WEEK', 440, 975, { px: 48, wt: 900, bg: CREAM, fg: BG, a: fin(t, R1 + .2), s: Math.min(1.05, pin(t, R1 + .2)), rot: .015, maxw: 640 });
+    label(g, 'NOT TO SCALE · ~371×', 430, 1200, fin(t, R1 + .45), CREAM, 36, 'center', true);
   }
   var CROSS = {};
   function cross(v) {
@@ -636,7 +636,7 @@
     return out.map(function (ws) { return { t0: ws[0].t0, t1: ws[ws.length - 1].t1, words: ws }; });
   })();
   var STRESS = [['song', 'song'], ['song', 'road'], ['bside', 'single'], ['bside', 'bside'], ['ask', 'one'], ['bbc', 'bbc'], ['num', '37000'], ['num', 'percent'],
-    ['week', 'before'], ['never', 'never'], ['two', 'again'], ['but', 'broke'], ['new', 'brandnew'], ['new', 'justice'], ['end', 'old'], ['end', 'new']]
+    ['week', 'before'], ['never', 'never'], ['two', 'again'], ['but', 'broke'], ['new', 'brandnew'], ['new', 'justice']]
     .map(function (p) { return at(p[0], p[1], p[2]); });
   function stressed(w) { for (var i = 0; i < STRESS.length; i++) if (Math.abs(STRESS[i] - w.t0) < .02) return true; return false; }
   /* captions never draw over a cut */
@@ -669,7 +669,7 @@
     lay(); fixLines();
     function widest() { return Math.max.apply(null, lw) - gap; }
     while ((lines.length > 2 || widest() > maxw) && cpx > 52) { cpx -= 4; g.font = '800 ' + cpx + 'px Archivo'; wide(g); ws = words.map(function (w) { return g.measureText(w.w).width; }); gap = cpx * .28; lay(); fixLines(); }
-    var lh = cpx * 1.18, y0 = 380 - (lines.length - 1) * lh / 2;
+    var lh = cpx * 1.18, y0 = Math.max(380 - (lines.length - 1) * lh / 2, 300 + cpx * .9);   // caption tops stay at y >= 300
     g.globalAlpha = fi * out * wipeHide(t) * (alpha == null ? 1 : alpha);
     lines.forEach(function (ln, li) {
       var x = CX - (lw[li] - gap) / 2, y = y0 + li * lh + (1 - Math.min(1, k)) * 40;
@@ -690,7 +690,7 @@
   function stage(g, t) {
     g.fillStyle = BG; g.fillRect(0, 0, W, H);
     var sa = t == null ? 1 : clamp(1 - seg(t, 4.5, 5.5) + seg(t, HOME - .5, HOME), 0, 1); if (sa <= 0) return;
-    g.save(); g.globalAlpha *= sa;
+    g.save(); g.globalAlpha *= sa * .8; g.beginPath(); g.rect(90, 300, 840, 1130); g.clip(); g.translate(0, -400);   // the skyline stays inside x 90-930, y <= 1430
     SKY.forEach(function (b) { g.fillStyle = '#140a33'; g.fillRect(b[0], 1830 - b[2], b[1], b[2] + 100); b[3].forEach(function (w) { g.fillStyle = w[2] ? 'rgba(255,138,61,.55)' : 'rgba(25,211,197,.28)'; g.fillRect(b[0] + w[0], 1830 - b[2] + w[1], 12, 18); }); });
     g.fillStyle = 'rgba(25,211,197,.35)'; g.fillRect(0, 1830, W, 4);
     g.restore();
@@ -762,7 +762,7 @@
     T('hero', '36,979%', R1 + .1, cut('meter'));
     T('strm', 'SPOTIFY STREAMS', R1 + .2, cut('meter'));
     T('vs', 'VS. THIS TIME LAST WEEK', R1 + .35, cut('meter'));
-    T('nts', 'NOT TO SCALE ~370×', R1 + .6, cut('meter'));
+    T('nts', 'NOT TO SCALE ~371×', R1 + .6, cut('meter'));
     T('past', 'PAST SPIKES', at('never', 'spiked'), cut('two'));
     T('nlt', 'NEVER LIKE THIS', at('never', 'had') + .04, cut('two'));
     T('t1m', 'TRAILER 1', at('never', 'spiked') + .15, cut('two'));
@@ -801,6 +801,7 @@
     for (i = 0; i < 6; i++) G('wind' + i, R0 - .62 + i * .1 - i * i * .006, 'wind', .03, .5 + i * .08);
     var s0 = R0, ss = R1 - R0;
     for (i = 0; i < 18; i++) { var u = i / 17; G('roll' + i, s0 + ss * eio(u), 'tick', .02, .45 + .3 * u); }
+    G('bell', (GT.land || end('num') + .5) + .55, 'ding', .25, .8, { m: .15 });
     GT.land = end('num') + .5; EV.push({ t: GT.land, type: 'ratchet', g: 1, id: 'land' });   // pinned: the voice is silent ~0.3–1.3 s after vo.js's "percent"; Whisper pins the next word early (checked on the final mix)
     /* never: the needle hits the peg after "this" */
     G('slam', end('never') + .04, 'thump', .3, .55);
@@ -818,6 +819,7 @@
 
   function render(t, samples, shutter, fps) {
     t = clamp(t, 0, DUR); samples = samples || 1;
+    for (var wi = 0; wi < SC.length; wi++) if (SC[wi].swipe && t > SC[wi].t0 - SWIPE - .04 && t < SC[wi].t0 + .04) samples = 1;
     if (samples === 1) { POSTERMODE = t === window.FILM.POSTER; frame(ctx, t); POSTERMODE = false; return; }
     var span = (shutter || .5) / (fps || 30);
     for (var k = 0; k < samples; k++) {
@@ -875,7 +877,7 @@
     env(master.gain, [[0, .8], [DUR - .3, .8], [DUR, .55]]);
     /* room tone, so the loop seam is never digital zero */
     (function () { var o = bus(1), lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = .5;
-      var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .006; })();
+      var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .03; })();   // about -50 dB in the pauses
   }
 
   /* ---------- boot ---------- */
