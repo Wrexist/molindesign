@@ -118,6 +118,13 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - A tag next to a generic "AI LABEL" chip reads as a claim about our own art; write "DRAWN BY US", never "OUR DRAWINGS" under an AI label (detect r2).
 - A bigger centred hero prop leaves no room for a 300 px frame-0 glide; get the travel from the headline sliding off a band on the picture instead (detect r2b).
 - Plan sound gaps in the script: in a 32 s, 86-word film the voice left no 0.6 s gap for the coin, the ALSO MADE UP stamp or YES/NO, so the biggest beats stayed silent (detect polish). Put a written pause after each planned hit line.
+- Fill y 1000–1430 in every second, measured on the render: energy lost a full Craft point in round 2 for an empty lower third (2.5–9.5 s, 21–23 s), the third film to repeat it. Lay out props from the bottom of the safe box up, not from the caption down (energy r2).
+- Never leave a ghosted or placeholder card as the end card; the frame before the loop must be frame 0 at full opacity with YES/NO ≥ 110 px (energy r2).
+- A hero stamp must be peeled before the next source's line starts, or two sources' numbers share a frame; if that cuts the read time, ink the stamp in on its own key word instead (energy r2, readcheck 0.88 → 2.33 s).
+- Scope a modelled multiplier in the voice or in a ≥ 48 px line right under it ("13× · ANSWERS 15× LONGER"); a 36 px chip alone costs Truth (energy r2).
+- Name a funded source honestly: call Microsoft "other researchers", never "outside", when it invests in the company being checked (energy r1).
+- Jury scores swing ±0.2 between fresh juries (energy 7.1 → 6.9 after fixes); fix the craft gaps LESSONS already names before round 1, since that's where the points go.
+- `voiceover.py` mix used `-shortest` and dropped the last 4 video frames; it now pads the audio to the video length (energy).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).

@@ -761,10 +761,14 @@ def master(s, wav, video, dst):
     # clicks under a voice do that), and the dynamic mode overshoots. So: plain gain into the oversampled limiter,
     # measured and corrected once, which always stays linear.
     gain = m['lufs'] - float(j['input_i'])
+    # the master runs exactly as long as the picture: the audio is padded with silence (apad) and cut at the video's
+    # duration (-t). -shortest with a copied video stream dropped the last frames when the audio ended a few ms early.
+    vdur = subprocess.run(['ffprobe', '-v', 'error', '-select_streams', 'v:0', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(video)],
+                          capture_output=True, text=True).stdout.strip()
     for _ in range(4):
-        chain = f'volume={gain:.2f}dB,aresample=192000,alimiter=limit={lim:.3f}:level=false:attack=1:release=60,aresample=48000'
+        chain = f'volume={gain:.2f}dB,aresample=192000,alimiter=limit={lim:.3f}:level=false:attack=1:release=60,aresample=48000,apad'
         subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(video), '-i', str(wav), '-map', '0:v:0', '-map', '1:a:0',
-                        '-af', chain, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-shortest', '-movflags', '+faststart', str(dst)], check=True)
+                        '-af', chain, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '256k', '-t', vdur, '-movflags', '+faststart', str(dst)], check=True)
         r = subprocess.run(['ffmpeg', '-hide_banner', '-nostats', '-i', str(dst), '-af', 'ebur128=peak=true', '-f', 'null', '-'], capture_output=True, text=True)
         got = float(re.findall(r'I:\s+(-?[\d.]+) LUFS', r.stderr)[-1])
         tp = float(re.findall(r'Peak:\s+(-?[\d.]+) dBFS', r.stderr)[-1])
