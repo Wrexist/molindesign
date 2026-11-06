@@ -380,6 +380,16 @@ def wer(ref, hyp):
     join = lambda ws: re.sub(r'(?:(?<=\s)|^)&(?=\s|$)', 'and', re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws))).replace('%', ' percent').split()   # Whisper writes "and" as "&" in lists   # Whisper writes "37,000%" for "thirty-seven thousand percent"
     split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
     r, h = split(ref), split(hyp)
+    # Whisper writes a spoken "number three" as a list mark ("3.") or "No. 1": read "no" before a number as "number",
+    # and don't count a "number" it dropped in front of a number it did hear (gta-ranked)
+    h = ['number' if w == 'no' and i + 1 < len(h) and h[i + 1].isdigit() else w for i, w in enumerate(h)]
+    miss = r.count('number') - h.count('number')
+    if miss > 0:
+        r2 = []
+        for i, w in enumerate(r):
+            if miss > 0 and w == 'number' and i + 1 < len(r) and r[i + 1].isdigit(): miss -= 1; continue
+            r2.append(w)
+        r = r2
     # "$96 billion" and "96 billion dollars" are the same words spoken: when either side writes a $ amount, ignore "dollars"
     if any('$' in w for w in list(ref) + list(hyp)):
         r, h = [w for w in r if w not in ('dollars', 'dollar')], [w for w in h if w not in ('dollars', 'dollar')]
