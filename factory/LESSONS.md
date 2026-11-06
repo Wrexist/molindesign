@@ -125,6 +125,12 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - Name a funded source honestly: call Microsoft "other researchers", never "outside", when it invests in the company being checked (energy r1).
 - Jury scores swing ±0.2 between fresh juries (energy 7.1 → 6.9 after fixes); fix the craft gaps LESSONS already names before round 1, since that's where the points go.
 - `voiceover.py` mix used `-shortest` and dropped the last 4 video frames; it now pads the audio to the video length (energy).
+- A what-if beyond the source's table is fine when the voice says "by our math" and the same formula reproduces the source's own cells on screen; both juries accepted it at Truth 8.5–9.0 (whatif-password).
+- A counter's unit must match its example: "14 LETTERS" under `sunnybeach2024` (10 letters, 4 digits) cost Truth; use an all-letter example or say CHARACTERS (whatif-password r1).
+- Write a guideline's scope into the big type ("FEDERAL GUIDELINE FOR LOGINS WITH NO SECOND STEP"), not only a credit line; the password r2 lesson repeated itself because the brief's scope line was dropped in the build (whatif-password r1).
+- A tile, digit or stamp must land on the same frame as the state it changes; three frames of 9 tiles under "8 · 2 WEEKS" was flagged even at 30 fps (whatif-password r2).
+- Hits close to speech get ducked by the mix: pops under −30 dB RMS vanish on a phone; layer 1–3 kHz and plan their gaps in the script (whatif-password r2).
+- The SFX gate reads out/events.json, which only `render.mjs events` writes; regenerate it after every re-time or the gate checks stale hits (whatif-password).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).

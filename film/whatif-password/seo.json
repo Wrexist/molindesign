@@ -1,0 +1,84 @@
+{
+ "title": "How long should your password be? 8 random lowercase letters: about 2 weeks to crack. 20: over 4 quadrillion years (our math).",
+ "caption": "How long should your password be? 8 random lowercase letters: about 2 weeks to crack. 20: over 4 quadrillion years (our math).\nHive Systems 2026 table, stolen bcrypt hash, 16 RTX 5090s. Reused or real words? Instantly.\nIs two-step on for your email? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#passwords",
+  "#cybersecurity",
+  "#passwordsecurity",
+  "#2fa"
+ ],
+ "keywords": [
+  "how long should your password be",
+  "how long to crack a password",
+  "password crack time 2026",
+  "hive systems password table 2026",
+  "is a 20 character password safe",
+  "nist password length 15",
+  "turn on two step verification",
+  "how long should a password be"
+ ],
+ "cover_text": "HOW LONG IS YOURS?",
+ "cover_time": 0.0,
+ "pinned_comment": "One more from the same NIST rules (SP 800-63B-4, July 2025): logins that follow them \"…SHALL NOT require subscribers to change passwords periodically\", but must force a change if there's evidence it was compromised. Does a site still make you change yours every few months?",
+ "pinned_backups": [
+  {
+   "if": "Mine has symbols and numbers, so I'm fine.",
+   "reply": "Only if it's random and long. Hive's 2026 FAQ: a random 8-character password using numbers, upper- and lowercase letters and symbols \"would take a hacker about 132 years\" offline. Length adds more: \"Each additional character multiplies the number of possible combinations far more than adding another symbol type does\". And if it's reused or real words, it's \"Instantly\" either way."
+  },
+  {
+   "if": "Should I use a password manager?",
+   "reply": "NIST's rules (SP 800-63B-4) say logins that follow them \"SHALL allow the use of password managers and autofill functionality.\" A manager makes long, random and never-reused easy. Then turn on two-step for your email."
+  },
+  {
+   "if": "Why bcrypt? What if a site stores passwords badly?",
+   "reply": "Hive picked bcrypt because \"it's the hashing method most commonly found in real-world breaches\". Every time in the video assumes it. That's also why the video ends on two-step: Hive's table assumes MFA \"isn't used or has been bypassed\"."
+  },
+  {
+   "if": "Four quadrillion? Hive's table says that?",
+   "reply": "No, and the video says \"by our math\". Hive's table stops at 18 letters. We took Hive's measured 138,675 guesses a second and did 26^20 ÷ 138,675 ≈ 4.55 quadrillion years. The same sum gives back Hive's own cells (17.4 days for 8 letters, 21,806 years for 12)."
+  },
+  {
+   "if": "So every site has to allow 15?",
+   "reply": "No. NIST SP 800-63B-4 binds federal systems and logins that choose to follow it, and the 15 is for a password used with no second step; with two-step NIST allows a minimum of eight. Most sites set their own rules."
+  },
+  {
+   "if": "How do they actually crack it?",
+   "reply": "We don't show that, on purpose. This one is about how long and what to do: go long, never reuse, turn on two-step."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: the first free Tech, explained slot after energy (the orchestrator confirms which is free). 19:00 ET (EST) Fri Nov 6 = 00:00 UTC Sat Nov 7 if free; otherwise 13:00 ET Sat Nov 7 = 18:00 UTC. Both slots have produced winners (incognito 13:00, voiceclone 19:00). Pick the time from YouTube Studio's dropdown and check the saved UTC time. Post only on a jury pass. TikTok: on hold (account-level hold); when it resumes, the first 19:00 ET slot.",
+ "post_time_stockholm": "01:00 Sat Nov 7 (19:00 ET slot) or 19:00 Sat Nov 7 (13:00 ET slot). Sweden CET, US EST, 6 h apart.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold, and a trending-sound pick goes stale in days. When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick an instrumental bed at 5-10 % under the voice-only cut (about 37 s; the sound must be at least that long). Skip Self Aware and Espresso Soul (retired) and the last three posts' sounds. YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "Your Password Length Changes Everything 😱",
+ "youtube_title_alternatives": [
+  "What If Your Password Had 20 Letters? 😮",
+  "Why Reused Passwords Crack Instantly 😱"
+ ],
+ "youtube_title_rejected": {
+  "What If Your Password Had 20 Letters? 😮": "Picked by the packaging rules (PERFORMANCE.md §7, mark 5): the thing sits in words 3-4, not 1-3, and there is no consequence verb, so it costs the title point; Tech, explained's only what-if title so far (cables, long-form) got 21 views. The film still runs the what-if inside (line 3, \"What if it were twenty letters?\"). Kept as alternative 1 for a 24 h title swap if the first title stalls."
+ },
+ "youtube_description": "How long should your password be? On Hive Systems' 2026 rig, with the hash already stolen, eight random lowercase letters can be cracked in about two weeks. Twenty would take over four quadrillion years, by our math. But a reused password, or one made of real words, falls instantly at any length.\n\nThe table. Hive Systems' 2026 Password Table (July 14, 2026) times how long it takes to crack a password after its hash was stolen, offline, on 16 RTX 5090 graphics cards: \"two 8x RTX 5090 setups running at a measured 138,675 hashes per second combined\", against a bcrypt (cost 10) hash. Its Lowercase Letters column, for random passwords: 8 letters, 2 weeks. 9 letters, 1 year. 12 letters, 21k years. 18 letters, 6tn years. The table stops at 18.\n\nEach letter multiplies. Hive: \"Each additional character multiplies the number of possible combinations far more than adding another symbol type does…\" With lowercase letters, every extra random letter multiplies the possible passwords by 26.\n\nTwenty letters is our math, not Hive's. 26^20 possible passwords ÷ 138,675 guesses a second ≈ 4.55 quadrillion years (365.25-day years). The same sum gives back Hive's own cells: 17.4 days for 8 letters, 1.24 years for 9, 21,806 years for 12, 6.7 trillion years for 18.\n\nReused or real words? Instantly. Hive's second table, \"Password table if your password has been previously stolen, uses dictionary words, or if you reuse it between websites.\", says \"Instantly\" in every cell, from 4 to 18 characters.\n\nSo how long? NIST SP 800-63B-4 (July 2025): \"Verifiers and CSPs SHALL require passwords that are used as a single-factor authentication mechanism to be a minimum of 15 characters in length.\" That's for federal systems and logins that follow NIST, when the password is the only step; it isn't a rule for every site.\n\nTurn on two-step. CISA: \"…unauthorized users will be unable to meet the second authentication requirement…\"\n\nIs it on for your email? Yes or no.\n\nFine print: every crack time in this video comes from Hive Systems' 2026 table for a RANDOM, LOWERCASE password whose bcrypt (cost 10) hash was stolen and cracked offline on 16 RTX 5090 cards at 138,675 hashes a second. Hive's own limits: \"These metrics assume passwords are randomly generated.\" \"Non-random passwords are much easier and faster to crack…\" \"These metrics assume a password that hasn't been part of a past breach.\" \"The implied attack assumes MFA isn't used or has been bypassed.\" The 20-letter \"over four quadrillion years\" is our arithmetic at Hive's measured speed (26^20 ÷ 138,675 per second ≈ 4.55 quadrillion years); Hive's table ends at 18 characters. NIST's 15 characters applies to federal and NIST-following logins where the password is used with no second factor; with a second factor NIST allows a minimum of eight. The CISA quote is from its Multifactor Authentication page as saved by the Wayback Machine on Oct 23, 2026, because the live page refused our download (403); the ellipses mark where the sentence goes on. This video says how long and what to do, never how: no tools or methods are shown. The passwords on screen are made-up examples. Every prop (the paper password field, the letter tiles, the crack-time tag, the torn table strips, the guideline card, the phone and the envelope) is hand-drawn by us; no real app screen or account is shown.\n\nSources (all read Nov 6, 2026):\n- Hive Systems (Corey Neskey), \"Are Your Passwords in the Green?\", 2026 Password Table, published July 14, 2026, updated July 21, 2026: https://www.hivesystems.com/blog/are-your-passwords-in-the-green\n- NIST SP 800-63B-4, \"Digital Identity Guidelines: Authentication and Authenticator Management\", July 2025: https://pages.nist.gov/800-63-4/sp800-63b.html (status page: https://csrc.nist.gov/pubs/sp/800/63/b/4/final)\n- CISA, \"Multifactor Authentication\" (undated page), Wayback Machine snapshot of Oct 23, 2026: https://web.archive.org/web/20261023204225/https://www.cisa.gov/topics/cybersecurity-best-practices/multifactor-authentication\n\nHow tech works, part 7.\n\n#passwords #cybersecurity #2fa",
+ "youtube_tags": [
+  "how long should your password be",
+  "how long should a password be",
+  "how long to crack a password",
+  "password crack time",
+  "hive systems password table 2026",
+  "is a 20 character password safe",
+  "password length",
+  "nist password guidelines",
+  "nist 15 character password",
+  "two-step verification",
+  "2fa",
+  "multifactor authentication",
+  "password security",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 7",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration disclosure line, no #ai. YouTube Altered content: No (every prop is hand-drawn and plainly illustrated; no real person, place, event, account or app screen is shown). The fine print says the props are hand-drawn by us; that is a picture note, not an AI disclosure. TikTok's is_aigc toggle is handled separately, not here."
+}
