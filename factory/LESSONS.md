@@ -131,6 +131,7 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - A tile, digit or stamp must land on the same frame as the state it changes; three frames of 9 tiles under "8 · 2 WEEKS" was flagged even at 30 fps (whatif-password r2).
 - Hits close to speech get ducked by the mix: pops under −30 dB RMS vanish on a phone; layer 1–3 kHz and plan their gaps in the script (whatif-password r2).
 - The SFX gate reads out/events.json, which only `render.mjs events` writes; regenerate it after every re-time or the gate checks stale hits (whatif-password).
+- Keep the upload mp4 under 9.5 MB: the PC's upload tool caps at 10 MB and re-compressed the 10.4 MB whatif-password file (lower bitrate). Set the final x264 bitrate so a 37 s film lands near 9 MB (whatif-password).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
