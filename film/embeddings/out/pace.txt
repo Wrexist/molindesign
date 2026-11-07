@@ -1,0 +1,2 @@
+/home/user/molindesign/film/embeddings/out/embeddings-vo.mp4: 31.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 2.281, 0-3 s 1.108, median 0.182, still frames 9.5 %
+OK    no frozen stretches, opening moves

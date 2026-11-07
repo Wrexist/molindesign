@@ -1,0 +1,101 @@
+{
+ "about": "How Spotify knows your taste. Factory #24, backlog row 24 (embeddings), playlist How tech works. Packaging 5/6 (6/6 by the letter; the myth/threat mark is soft). One hard idea: in Spotify's own words, every skip, play, search and save shapes your 'taste profile'; in Spotify Research's 2025 system each song becomes 80 numbers (a point in a space; our drawing flattens it to a map), songs land close when they share playlists or sound alike, each listener is a point too, and a new artist streamed can move that point within minutes, so a week of your kid's songs pulls your recommendations until you exclude them from your taste profile. Sources, all read 2026-11-07: Spotify Safety & Privacy Center, 'Understanding recommendations on Spotify' (Last updated: October 23, 2026), spotify.com/us/safetyandprivacy/understanding-recommendations: 'actions such as searching, listening, skipping, or saving to Your Library influence our interpretation of your taste. We call this your “taste profile”'; 'When you exclude content from your taste profile, it will have less influence on your future recommendations. You can exclude tracks, playlists or kids and family music'. Spotify Research, 'Generalized user representations for large-scale recommendations' (Sep 18, 2025; RecSys 2025 Industry), research.atspotify.com/2025/9/generalized-user-representations-for-large-scale-recommendations: 'Each listener is mapped to a high-dimensional embedding within a stable vector space'; 'Audio encoder: learns track embeddings directly from audio features, capturing acoustic similarity.'; 'Collaborative encoder: learns track embeddings from playlist co-occurrence'; 'These 80-dimensional track embeddings'; 'NRT inference, triggered by user activity events (e.g., streaming a new artist), refreshes embeddings within minutes.' Spotify For the Record, Oskar Stal interview (October 13, 2021): 'Imagine you and another person have similar music tastes. You have four of the same top artists, but your fifth artists are different. We would take those two near-matches and think, Hmm, maybe each person would like the other's fifth artist and suggest it.' Not used: 'it doesn't listen to the music' (contradicted by Spotify Research's audio encoder). No Spotify logo or app UI; every map is OUR DRAWING, SIMPLIFIED. No AI tag anywhere (Isac, 2026-11-03). dur is the chain estimate; Ming reads about 0.855x, so expect about 30 s.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Spotify"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0.5,
+  "smr_db": 54
+ },
+ "dur": 31.28,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Every skip feeds your taste profile.",
+   "pause": 0.6
+  },
+  {
+   "id": "ask",
+   "at": 3.23,
+   "text": "So how does Spotify know what you like?",
+   "pause": 0.2,
+   "say": "So, how does Spotify know what you like?",
+   "take": 1
+  },
+  {
+   "id": "song",
+   "at": 5.44,
+   "text": "Its research turns every song into 80 numbers.",
+   "say": "Its research turns every song into eighty numbers.",
+   "pause": 0.5
+  },
+  {
+   "id": "map",
+   "at": 8.93,
+   "text": "Like a dot on a map.",
+   "pause": 0.2,
+   "say": "Like a dot, on a map."
+  },
+  {
+   "id": "near",
+   "at": 10.69,
+   "text": "Songs in the same playlists land close.",
+   "pause": 1.0
+  },
+  {
+   "id": "sound",
+   "at": 14.28,
+   "text": "So do songs that sound alike.",
+   "pause": 0.4
+  },
+  {
+   "id": "you",
+   "at": 16.68,
+   "text": "You're also a dot, from your listening.",
+   "pause": 0.4
+  },
+  {
+   "id": "picks",
+   "at": 19.19,
+   "text": "Then it tries what listeners near you love.",
+   "pause": 0.6
+  },
+  {
+   "id": "dip",
+   "at": 22.26,
+   "text": "But your kids' songs can move you within minutes.",
+   "pause": 0.9
+  },
+  {
+   "id": "fix",
+   "at": 25.73,
+   "text": "Exclude them from your taste profile.",
+   "pause": 0.9,
+   "tail_fade": 0.12
+  },
+  {
+   "id": "end",
+   "at": 28.51,
+   "text": "Has one song hijacked your mix? Yes or no.",
+   "say": "Has one song hijacked your mix, yes or no?",
+   "pause": 0
+  }
+ ],
+ "tail": 0.2
+}
