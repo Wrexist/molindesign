@@ -285,3 +285,8 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - An end question must not restate the cause wrongly: "Should a mod change a rating?" contradicted ESRB, which re-rated because the content was on the disc (gta-pulled r1, Truth 8.0).
 - Say the hook's subject on screen at frame 0: "Walmart" spoken first but not shown until 17 s cost Hook (gta-pulled r2). An unlabeled year tile on a game case reads as its release year (gta-pulled r2: 2005 on a 2004 game).
 - Wide topics did not fix the score: both broad Shorts (gta-money, gta-pulled) still landed 6.8-7.2 with Truth 8.5; the juries mark down stillness (a change every 1.2 s) and quiet hero sounds, not topic width.
+
+### embeddings (#24), jury r1 7.1/T8.0, r2 7.1/T8.0 — parked
+- When a sheet or new subject (YOU) arrives, peel every strip and stamp from the previous subject before it lands; a quote left beside a new subject reads as a claim about it (third repeat of this lesson).
+- Animate only what the source says: "would like the other's fifth artist… and suggest it" is a SUGGESTED copy, not a move into your top artists.
+- Fixing round-1 Truth items can expose new ones; before round 2, re-walk every strip/subject boundary yourself, not only the listed fixes.
