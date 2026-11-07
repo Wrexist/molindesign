@@ -1,0 +1,75 @@
+{
+ "title": "How much energy does ChatGPT use? The 10x-a-Google-search stat is old: about a third of a watt-hour.",
+ "caption": "How much energy does ChatGPT use? The 10x-a-Google-search stat is old: about a third of a watt-hour.\nBut long answers cost more: about 13x in a 2026 Microsoft Research model of answers 15x longer.\nDid you think it was worse? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#chatgpt",
+  "#electricity",
+  "#gemini",
+  "#openai"
+ ],
+ "keywords": [
+  "how much energy does chatgpt use",
+  "chatgpt energy per query",
+  "chatgpt electricity use",
+  "how much power does chatgpt use",
+  "is chatgpt bad for the environment",
+  "gemini energy per prompt",
+  "chatgpt vs google search energy",
+  "thinking mode energy"
+ ],
+ "cover_text": "10× A GOOGLE SEARCH?",
+ "cover_time": 0.0,
+ "pinned_comment": "Pasting a long document costs more too. Epoch AI estimates a 10k-token input (a long magazine article) \"would substantially increase the cost per query to around 2.5 watt-hours\" for GPT-4o, vs roughly 0.3 for a typical question. Do you paste whole files in?",
+ "pinned_backups": [
+  {
+   "if": "What about training?",
+   "reply": "Not in these numbers: every figure here is per answer, for serving it. We didn't find a dated, primary energy figure for training a current model, so we left it out rather than guess."
+  },
+  {
+   "if": "Of course Altman says it's low.",
+   "reply": "Fair: it's OpenAI's own figure and his post gives no method. That's why the video shows Epoch AI (roughly 0.3 Wh for a typical GPT-4o query) and Microsoft Research (0.31 Wh median for big models). Same size, different methods."
+  },
+  {
+   "if": "What about water?",
+   "reply": "Google says its median Gemini Apps text prompt uses 0.26 mL of water (its own figure, not independently verified). Altman says about 0.000085 gallons per ChatGPT query, with no method given. We kept water out of the video because it's a different measure."
+  },
+  {
+   "if": "But data centers use huge amounts of power.",
+   "reply": "This video is about one answer, not totals. Microsoft's paper estimates that serving 1 billion queries a day takes 0.7 GWh, and 1.7 GWh a day if 10% are long queries (before efficiency fixes). Long answers are where it adds up."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: the first free slot after detect (19:00 ET Wed Nov 4). 13:00 ET (EST) Thu Nov 5 = 18:00 UTC if this passes the gate before then; otherwise 19:00 ET Thu Nov 5 = 00:00 UTC Fri Nov 6. Both slots have produced winners (PERFORMANCE 4). Pick the time from YouTube Studio's dropdown and check the saved UTC time. Post only on a jury pass. TikTok: on hold (account-level hold); when it resumes, the first 19:00 ET slot.",
+ "post_time_stockholm": "19:00 Thu Nov 5 (13:00 ET slot) or 01:00 Fri Nov 6 (19:00 ET slot). Sweden CET, US EST, 6 h apart.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold, and a trending-sound pick goes stale in days. When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick an instrumental bed at 5-10 % under the voice-only cut (out/energy-voice-only.mp4, 32.7 s). Skip Self Aware and Espresso Soul (retired) and the last three posts' sounds. YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "ChatGPT's Energy Stat Is Out of Date 😮",
+ "youtube_title_alternatives": [
+  "How Much Energy Does ChatGPT Really Use 🤔",
+  "Why Long ChatGPT Answers Burn More Power 🤔"
+ ],
+ "youtube_title_rejected": {
+  "ChatGPT's Energy Stat Is 10x Off 😮": "\"Off\" reads as wrong for every answer, but the film says \"old\", not wrong, and Microsoft's modelled long answers (3.91 Wh) land above the old 3 Wh stat. Epoch's own words are \"almost 10 times lower\" for a typical 500-token GPT-4o query only."
+ },
+ "youtube_description": "How much energy does ChatGPT use? Less than the stat everyone shares. \"10 times a Google search\" is an old estimate, and the companies' own numbers and other researchers now put a typical text answer around a third of a watt-hour. Long answers are a different story.\n\nThe old stat. Epoch AI: \"A commonly-cited claim is that powering an individual ChatGPT query requires around 3 watt-hours of electricity, or 10 times as much as a Google search.\" It \"comes from Alex de Vries (2023)\", and \"The comparison with Google searches comes from a very old estimate from Google in 2009 that each search consumes 0.3 Wh.\"\n\nOpenAI's number. Sam Altman, OpenAI's CEO (June 10, 2025): \"…the average query uses about 0.34 watt-hours, about what an oven would use in a little over one second, or a high-efficiency lightbulb would use in a couple of minutes.\" That's the company's own figure; the post gives no method.\n\nGoogle's number. Google (Aug 21, 2025): \"…we estimate the median Gemini Apps text prompt uses 0.24 watt-hours (Wh) of energy…\" and \"The per-prompt energy impact is equivalent to watching TV for less than nine seconds.\" Google's own footnote: \"The data and claims have not been verified by an independent third-party.\"\n\nOther researchers got about the same. Epoch AI (Feb 7, 2025): \"We find that typical ChatGPT queries using GPT-4o likely consume roughly 0.3 watt-hours\" and, for a query with 500 output tokens, \"This is almost 10 times lower than the widely-cited 3 Wh estimate!\" Microsoft Research (Joule, 2026), for frontier-scale models over 200B parameters on H100 nodes: \"…we estimate a median energy of 0.31 Wh/query (IQR 0.16-0.60), indicating widely cited estimates are overstated by 4-20x.\"\n\nBut long answers cost more. In the same Microsoft paper, in modelled \"test-time scaling scenarios 15x longer than typical queries, the median energy rises 13x to 3.91 Wh (IQR 2.15-7.05).\" That 13x is a model estimate (the median for big models, answers 15 times longer), not a measurement of any app's thinking mode.\n\nQuick question? Skip the thinking mode. (That tip is our advice, drawn from the length result above.)\n\nDid you think it was worse? Yes or no.\n\nFine print: these are per-answer figures for text prompts, for serving the answer only; training isn't included, and neither are images or video. OpenAI's 0.34 Wh and Google's 0.24 Wh are the companies' own figures: Altman gives no method, and Google says its figures are not independently verified. The four numbers measure different things (OpenAI's average query, Google's median Gemini Apps text prompt, Epoch's typical GPT-4o query, Microsoft's median for models over 200B parameters), so \"about the same\" means about the same size, not the same measurement. The oven is Altman's comparison and the TV is Google's; we never moved one company's number onto another's comparison. The 13x is Microsoft Research's modelled case of answers 15 times longer, not a measured thinking mode, and \"skip the thinking mode\" is our advice, not a claim about how any app routes your question. Microsoft invests in OpenAI, which is why we call its researchers \"other researchers\", not independent ones. Every prop in this video (the oven, the TV, the chat bubble, the answer scroll, the meter, the THINKING switch) is hand-drawn by us; no real app screen is shown.\n\nSources (all read Nov 5, 2026):\n- Sam Altman, \"The Gentle Singularity\", June 10, 2025: https://blog.samaltman.com/the-gentle-singularity\n- Google Cloud blog (Amin Vahdat, Jeff Dean), \"Measuring the environmental impact of AI inference\", Aug 21, 2025: https://cloud.google.com/blog/products/infrastructure/measuring-the-environmental-impact-of-ai-inference\n- Elsworth et al. (Google), \"Measuring the environmental impact of delivering AI at Google Scale\", arXiv 2508.15734, Aug 2025: https://arxiv.org/abs/2508.15734\n- Josh You (Epoch AI), \"How much energy does ChatGPT use?\", Feb 7, 2025: https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use\n- Oviedo, Kazhamiaka, Choukse, Kim, Luers, Nakagawa, Bianchini and Lavista Ferres (Microsoft), \"Energy Use of AI Inference, Efficiency Pathways, and Test-Time Scaling\", arXiv 2509.20241v2, June 9, 2026; Joule (2026) 102430: https://arxiv.org/abs/2509.20241v2\n- Google, \"Powering a Google search\", Jan 11, 2009: https://googleblog.blogspot.com/2009/01/powering-google-search.html\n\nHow AI works, part 11.\n\n#chatgpt #electricity #gemini",
+ "youtube_tags": [
+  "how much energy does chatgpt use",
+  "chatgpt energy per query",
+  "chatgpt electricity",
+  "how much power does chatgpt use",
+  "is chatgpt bad for the environment",
+  "chatgpt vs google search",
+  "gemini energy per prompt",
+  "watt-hours per query",
+  "sam altman oven",
+  "epoch ai",
+  "microsoft research",
+  "thinking mode",
+  "how ai works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How AI works",
+ "youtube_altered_content": "No",
+ "series": "How AI works, part 11",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration disclosure line, no #ai. YouTube Altered content: No (every prop is hand-drawn, plainly illustrated; no real person, place, event or app screen is shown). The fine print says the props are hand-drawn by us; that is a picture note, not an AI disclosure. TikTok's is_aigc toggle is handled separately, not here."
+}

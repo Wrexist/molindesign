@@ -1,0 +1,64 @@
+{
+ "title": "How to tell if a video is AI: check who posted it",
+ "caption": "How to tell if a video is AI: the glitches are getting harder to spot. In a 2024 study, people were right about half the time.\nCheck who posted it first: tap the name, find the original upload, look for an AI label.\nDo you check who posted it? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#deepfake",
+  "#contentcredentials",
+  "#medialiteracy",
+  "#factcheck"
+ ],
+ "keywords": [
+  "how to tell if a video is ai",
+  "is this video ai",
+  "how to spot ai videos",
+  "how to spot a deepfake",
+  "content credentials",
+  "ai label youtube",
+  "ai generated label tiktok",
+  "reverse image search"
+ ],
+ "cover_text": "REAL OR AI?",
+ "cover_time": 0.0,
+ "pinned_comment": "From the same 2024 study of 1,276 people: knowing more about AI fakes didn't make people better at spotting them. Cooke et al.: \"higher degrees of prior knowledgeability about synthetic media does not significantly impact detection accuracy rates\". Think you'd beat the coin toss?",
+ "pinned_backups": [
+  {
+   "if": "So no label means it's real?",
+   "reply": "No. NIST says file metadata \"can similarly be stripped altogether, as it often is when files are shared (e.g., via social media platforms).\" TikTok's auto-label needs \"the Content Credentials metadata\" to work. So a missing label proves nothing either way; find the first upload instead."
+  },
+  {
+   "if": "Can't YouTube just detect it?",
+   "reply": "Sometimes. YouTube Help says it \"may automatically apply an AI label\" for content made with YouTube's own GenAI tools, \"Content that contains C2PA metadata\", and content its internal systems detect, and creators must disclose realistic AI content. A label helps; no label doesn't clear a video."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 19:00 ET (EST) Wed Nov 4 = 00:00 UTC Thu Nov 5, the evening slot after vision (13:00 ET Nov 4); voiceclone took off from that slot. If it's taken, 13:00 ET Thu Nov 5 = 18:00 UTC. Pick the time from YouTube Studio's dropdown and check the saved UTC time. Post only on a jury pass. TikTok: on hold (account-level hold); when it resumes, the first 19:00 ET slot.",
+ "post_time_stockholm": "01:00 Thu Nov 5 (19:00 ET slot) or 19:00 Thu Nov 5 (13:00 ET slot). Sweden CET, US EST, 6 h apart.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold, and a trending-sound pick goes stale in days. When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick an instrumental bed at 5-10 % under the voice-only cut (out/detect-voice-only.mp4, 32.1 s). Skip Self Aware and Espresso Soul (retired) and the last three posts' sounds. YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "AI Videos Are Fooling Your Eyes 😱",
+ "youtube_title_alternatives": [
+  "AI Video or Real? Check This First 🤔",
+  "Spot AI Videos by Who Posted Them 🤔"
+ ],
+ "youtube_description": "Is this video real? Here's how to tell if a video is AI: the glitches people hunt for are getting harder to spot, so check who posted it first.\n\nThe classic tells. Northwestern's 2024 guide to AI images (Kamali, Groh et al.) lists \"artifacts, inconsistencies, and implausibilities that often appear in AI-generated images.\" Hands: \"People in AI-generated images often have missing fingers, extra fingers, merged fingers, nonexistent fingernails, and unlikely hand proportions.\" Text: \"AI-generated text can appear glyph-like, but be in a nonexistent language or produce nonexistent words, spelling errors, and incomprehensible sentences.\" Shadows: \"AI-generated images can produce shadows cast in inconsistent directions or in shapes that do not correspond to their source.\"\n\nBut they're fading. The same guide: \"Text in AI image generation is an area that is rapidly improving and these artifacts may not always be noticeable at first glance.\" NIST (Nov 2024): \"…humans may find detection more difficult as synthetic content generation continues to increase in sophistication.\"\n\nAbout half the time. In \"As Good As A Coin Toss\" (Cooke et al., CSIS, 2024), 1,276 people judged real and fake images, audio, video and audiovisual clips. The authors: \"…on average, people struggled to distinguish between synthetic and authentic media, with the mean detection performance close to a chance level performance of 50%.\" That's the average across all those media types, not video alone.\n\nSo check the source, not the pixels. Tap the name and find the original upload. Northwestern's guide on reverse image search: \"This may trace you back to the original source of the image…\" and \"Be sure to do some research on the image and the scene portrayed through reputable news sources or official social media accounts.\"\n\nThen look for an AI label or Content Credentials. YouTube Help: \"We require creators to disclose AI-generated or altered content that seems realistic.\" And \"YouTube may automatically apply an AI label on the video player or in the expanded description for\" content made with YouTube's own tools, \"Content that contains C2PA metadata\" and content its systems detect. TikTok (May 9, 2024): \"Content Credentials attach metadata to content, which we can use to instantly recognize and label AIGC.\" contentcredentials.org: \"The Content Credentials pin signals that the content contains information about its provenance.\"\n\nNo label? That proves nothing. NIST: \"Metadata recorded within a file can similarly be stripped altogether, as it often is when files are shared (e.g., via social media platforms).\" TikTok said its auto-labels \"may be gradual at first, since it needs to have the Content Credentials metadata for us to identify and label it.\"\n\nDo you check who posted it? Yes or no.\n\nFine print: every clip in this video is hand-drawn by us. None of it is AI footage or real footage, and no real person, account, app screen or logo is shown. The tells (a sixth finger, a misspelled sign, a shadow toward the sun) are our own drawings of the cues in Northwestern's guide, which is about AI images; we show them on a frame of our drawn clip. The clean redraw is made up too. The AI label and CR chips are our drawings, not real app labels. The 50% is the study's average over images, audio, video and audiovisual stimuli. \"We all hunt for glitches\" is our framing, not a survey result. A missing camera badge doesn't prove a video is fake either: YouTube's \"Captured with a camera\" page says \"If it's missing, it doesn't mean the content has modified audio or visuals.\"\n\nSources (all read Nov 4, 2026):\n- Kamali, Nakamura, Chatzimparmpas, Hullman and Groh (Northwestern University, Kellogg), \"How to Distinguish AI-Generated Images from Authentic Photographs\", arXiv 2406.08651, submitted Jun 12, 2024: https://arxiv.org/abs/2406.08651\n- Cooke, Edwards, Barkoff and Kelly (CSIS), \"As Good As A Coin Toss: Human detection of AI-generated images, videos, audio, and audiovisual stimuli\", arXiv 2403.16760, v1 Mar 25, 2024: https://arxiv.org/abs/2403.16760\n- NIST AI 100-4, \"Reducing Risks Posed by Synthetic Content\", November 2024: https://doi.org/10.6028/NIST.AI.100-4\n- YouTube Help, \"Disclosing use of GenAI content\": https://support.google.com/youtube/answer/14328491\n- YouTube Help, \"Building trust on YouTube: 'Captured with a camera' disclosure\": https://support.google.com/youtube/answer/15446725\n- TikTok Newsroom, \"Partnering with our industry to advance AI transparency and literacy\", May 9, 2024: https://newsroom.tiktok.com/en-us/partnering-with-our-industry-to-advance-ai-transparency-and-literacy\n- Content Credentials (C2PA): https://contentcredentials.org/\n\nHow AI works, part 10.\n\n#deepfake #contentcredentials #medialiteracy",
+ "youtube_tags": [
+  "how to tell if a video is ai",
+  "is this video ai",
+  "how to spot ai videos",
+  "how to spot a deepfake",
+  "deepfake",
+  "content credentials",
+  "c2pa",
+  "ai label youtube",
+  "ai generated label tiktok",
+  "reverse image search",
+  "media literacy",
+  "as good as a coin toss",
+  "how ai works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How AI works",
+ "youtube_altered_content": "No",
+ "series": "How AI works, part 10",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration disclosure line, no #ai. YouTube Altered content: No (every clip is hand-drawn, plainly illustrated). The fine print says the clips are hand-drawn by us; that is a footage note, not an AI disclosure. TikTok's is_aigc toggle is handled separately, not here."
+}

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/energy/out/energy-vo.mp4: 32.7 s, 0 hard cuts (0.0/10 s), motion 0-1 s 2.339, 0-3 s 0.884, median 0.128, still frames 10.2 %
+OK    no frozen stretches, opening moves

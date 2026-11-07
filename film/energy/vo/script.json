@@ -1,0 +1,107 @@
+{
+ "about": "How much energy one AI answer uses. Factory #22, backlog row 22, playlist How tech works. Packaging 5/6. One hard idea: the widely shared stat (a ChatGPT query uses about 3 watt-hours, '10 times as much as a Google search') is old; the makers' own figures and two independent estimates now put a typical text answer at about a third of a watt-hour, about a second of an oven, but long 'thinking' answers use about 13 times more. Sources, all read 2026-11-05: Sam Altman, 'The Gentle Singularity', blog.samaltman.com, June 10, 2025: 'the average query uses about 0.34 watt-hours, about what an oven would use in a little over one second, or a high-efficiency lightbulb would use in a couple of minutes.' Google Cloud blog, Aug 21, 2025, and Elsworth et al., arXiv 2508.15734: 'the median Gemini Apps text prompt uses 0.24 watt-hours (Wh) of energy'; 'equivalent to watching TV for less than nine seconds'; counts active chips, host CPU and RAM, idle machines and data center overhead; 'not been verified by an independent third-party'. Epoch AI (Josh You), Feb 7, 2025: 'typical ChatGPT queries using GPT-4o likely consume roughly 0.3 watt-hours'; the 'commonly-cited claim' of 'around 3 watt-hours of electricity, or 10 times as much as a Google search' comes from Alex de Vries (2023). Oviedo et al., Microsoft, 'Energy Use of AI Inference: Efficiency Pathways and Test-Time Compute', Joule (2026), arXiv 2509.20241v2 (June 9, 2026): 'a median energy of 0.31 Wh/query (IQR 0.16-0.60)' for '>200B parameters' on H100 nodes; for queries '15x longer than typical queries' 'the median energy rises 13x to 3.91 Wh'; 'widely cited estimates are overstated by 4-20x'. Comparisons are the makers' own (oven, TV); no derived household numbers and no scope mixing across sources. Training is not in the film. Hero: a paper oven (>= 700 px) whose kitchen timer clicks one second; coral stamp ABOUT 1 SECOND in the 1.2 s silence after 'oven.' No AI tag anywhere (Isac, 2026-11-03). dur is the expected Ming length (chain 35.0 s x 0.855).",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.9
+ },
+ "names": [
+  "ChatGPT",
+  "OpenAI",
+  "Gemini",
+  "Google"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 31
+ },
+ "dur": 32.66,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "That ChatGPT energy stat is old.",
+   "pause": 0.15
+  },
+  {
+   "id": "myth",
+   "at": 2.67,
+   "text": "One answer, ten Google searches?",
+   "pause": 0.5
+  },
+  {
+   "id": "ask",
+   "at": 5.47,
+   "text": "So how much energy does ChatGPT use?",
+   "say": "So, how much energy does ChatGPT use?",
+   "pause": 0.2
+  },
+  {
+   "id": "maker",
+   "at": 8.46,
+   "text": "OpenAI's boss says about a third of a watt-hour.",
+   "pause": 0.2
+  },
+  {
+   "id": "hero",
+   "at": 11.57,
+   "text": "That's a little over one second of your oven.",
+   "pause": 1.2
+  },
+  {
+   "id": "gemini",
+   "at": 15.06,
+   "text": "Google's median Gemini prompt? Under nine seconds of TV.",
+   "say": "Google's median Gemini prompt? Under nine seconds of T V.",
+   "pause": 0.2
+  },
+  {
+   "id": "outside",
+   "at": 18.86,
+   "text": "Other researchers got about the same.",
+   "pause": 0.3
+  },
+  {
+   "id": "but",
+   "at": 20.94,
+   "text": "But long, thinking answers cost more.",
+   "pause": 0.15
+  },
+  {
+   "id": "dip",
+   "at": 23.72,
+   "text": "About thirteen times more, in a 2026 study.",
+   "say": "About thirteen times more, in a twenty twenty-six study.",
+   "pause": 0.85
+  },
+  {
+   "id": "tip",
+   "at": 27.65,
+   "text": "Quick question? Skip the thinking mode.",
+   "pause": 0.4,
+   "tail_fade": 0.05
+  },
+  {
+   "id": "end",
+   "at": 30.24,
+   "text": "Did you think it was worse? Yes or no.",
+   "say": "Did you think it was worse, yes or no?",
+   "pause": 0
+  }
+ ],
+ "tail": 0.2,
+ "fit": {
+  "min": 0.86,
+  "max": 1.1
+ }
+}
