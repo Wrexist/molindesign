@@ -290,3 +290,10 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - When a sheet or new subject (YOU) arrives, peel every strip and stamp from the previous subject before it lands; a quote left beside a new subject reads as a claim about it (third repeat of this lesson).
 - Animate only what the source says: "would like the other's fifth artist… and suggest it" is a SUGGESTED copy, not a move into your top artists.
 - Fixing round-1 Truth items can expose new ones; before round 2, re-walk every strip/subject boundary yourself, not only the listed fixes.
+
+### forceclose (#25), jury r1 7.5 / Truth 8.5 — posted
+- First-round pass at the new gate: a 6/6 packaging topic (myth + frame-0 test + takeaway) with first-party quotes beat a 4/6 topic that needed two rounds. Pick topics from PERFORMANCE §7's idea list first.
+- Researcher softened the backlog hook ("is draining" → "won't save") because no primary source says closing drains; keep doing that check before the script.
+- Scope lines must match each maker's own fix: Apple = close only if frozen, or turn off Background App Refresh; Google = restrict, then force stop. Use the maker's own term ("Background Activity", not "background apps"), or the list reads as the myth.
+- Hero thump peak (not just RMS) must sit ≥ 3 dB under the next voice peak; measure with astats.
+- YouTube description: the PC reported angle brackets/arrow paths trouble and 4,952 of 5,000 chars. Keep descriptions ≤ 4,600 chars and write menu paths with "›" or ", ".
