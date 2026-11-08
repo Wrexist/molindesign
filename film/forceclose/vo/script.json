@@ -1,0 +1,120 @@
+{
+ "about": "Does closing apps save battery? Factory #25, backlog row 29, slug forceclose. One hard idea: swiping apps away from the app switcher doesn't save battery, because those apps are mostly paused; reopening one from scratch is more work, not less. Primary sources: Apple Support 'Close an app on your iPhone or iPod touch' (https://support.apple.com/en-us/109359, published Oct 15, 2026): 'You should close an app only if it's unresponsive.' / 'If your iPhone seems to run slowly or its battery-life drains too quickly, closing all of your apps does not impact your device's overall performance. Recently used apps only use resources and power when they're active or when they're performing specific background tasks or services.' Craig Federighi's 'no and no' email reply (reported by 9to5Mac and MacRumors, Mar 10, 2016). Hiroshi Lockheimer tweet Mar 14, 2016: 'could very slightly worsen unless you and algorithm are ONE (you kill something, system wants it back etc)'. Android Developers 'App startup time': cold start 'starts from scratch' and 'the system and app have more work to do than in the other launch states'. Drains: Apple 'Maximizing Battery Life and Lifespan' (brightness, low signal, background activity); check: Apple 'Check battery usage on your iPhone' (Mar 25, 2026), Pixel Help 'Fix battery drain problem'. Hero: the 2016 email card stamped NO AND NO in the 1.0 s gap after 'No and no.' Two planned 1.0 s silences: after 'unresponsive.' (quote slap) and after 'No and no.' (hero stamp). Narration-led: record the voice first and key every visual beat to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Apple",
+  "Tim Cook",
+  "Android",
+  "Google"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 47
+ },
+ "dur": 39.64,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Closing your apps won't save battery.",
+   "pause": 0.75
+  },
+  {
+   "id": "apple",
+   "at": 2.87,
+   "text": "Apple says close an app only if it's unresponsive.",
+   "pause": 1.0
+  },
+  {
+   "id": "ask",
+   "at": 6.66,
+   "text": "So what's really draining your phone?",
+   "pause": 0.3
+  },
+  {
+   "id": "paused",
+   "at": 8.97,
+   "text": "Most of those apps are paused.",
+   "pause": 0.4
+  },
+  {
+   "id": "scratch",
+   "at": 11.04,
+   "text": "But swipe one away, and it restarts from scratch.",
+   "pause": 0.35
+  },
+  {
+   "id": "work",
+   "at": 13.97,
+   "text": "That's more work, not less.",
+   "pause": 0.6
+  },
+  {
+   "id": "email",
+   "at": 16.35,
+   "text": "In 2016, a fan emailed Tim Cook.",
+   "say": "In twenty sixteen, a fan emailed Tim Cook.",
+   "pause": 0.35
+  },
+  {
+   "id": "question",
+   "at": 19.49,
+   "text": "Do you quit apps? Is that needed for battery?",
+   "pause": 0.5
+  },
+  {
+   "id": "answer",
+   "at": 22.41,
+   "text": "The software chief at Apple wrote back.",
+   "pause": 0.7
+  },
+  {
+   "id": "nono",
+   "at": 25.09,
+   "text": "No and no.",
+   "say": "No, and no.",
+   "pause": 0.85
+  },
+  {
+   "id": "drains",
+   "at": 27.2,
+   "text": "What drains it? A bright screen, weak signal, background apps.",
+   "pause": 0.45
+  },
+  {
+   "id": "check",
+   "at": 31.42,
+   "text": "Check yours: Settings, Battery.",
+   "pause": 0.35,
+   "say": "Check yours. Settings, Battery."
+  },
+  {
+   "id": "scope",
+   "at": 33.71,
+   "text": "One app frozen or hogging it? Close that one.",
+   "pause": 0.5
+  },
+  {
+   "id": "end",
+   "at": 36.97,
+   "text": "So, still swiping them all away? Yes or no.",
+   "say": "So, still swiping them all away, yes or no?",
+   "pause": 0
+  }
+ ],
+ "tail": 0.2
+}

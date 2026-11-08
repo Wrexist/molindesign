@@ -1,0 +1,2 @@
+/home/user/molindesign/film/forceclose/out/forceclose-vo.mp4: 39.6 s, 0 hard cuts (0.0/10 s), motion 0-1 s 2.275, 0-3 s 1.651, median 0.19, still frames 9.5 %
+FAIL  frozen 1.43 s from 25.27 s (no static stretch over 1 s)
