@@ -35,11 +35,11 @@ Chapters
 0:00 GTA 5 is 13 years old and still selling
 0:14 Three days: a billion dollars before the first Friday
 0:47 The drop: the year after launch
-1:13 The second game: GTA Online and Shark Cards
-2:09 Three generations: one game, three console generations
-2:53 The machine: what it all adds up to
-3:26 The hand-off: GTA 6 on November 19
-3:56 Next video
+1:10 The second game: GTA Online and Shark Cards
+1:55 Three generations: one game, three console generations
+2:36 The machine: what it all adds up to
+3:10 The hand-off: GTA 6 on November 19
+3:39 Next video
 
 What the video says, in short:
 - Day one: over $800 million in sales (Take-Two's estimate, not counting Japan and Brazil). Day three: more than $1 billion. Take-Two said no game or movie had reached that milestone faster.

@@ -91,3 +91,18 @@ A dark accounting ledger: teal ruled lines drifting up, a pink double margin, co
     - The 1/6 label sits under the bar.
   - Not done: the chapter 5 tape tear (fix 8).
   - Final run: 247.2 s; readcheck 0 FAIL; in-mix listen 0 FIX; pacecheck OK; −14.1 LUFS, −1.7 dBTP.
+- 2026-11-08 (director, polish pass after jury round 2):
+  - Cut c2f and its envelope and drawer.
+  - The search chip now reads `HOW IS GTA 5 STILL PAYING?`, placed bottom right.
+  - Split-screen: the right counter now steps one fiscal year at a time, and that year's chip lands on the same frame.
+  - Chapter 3 is now 44.9 s card to card:
+    - c3e3 cut.
+    - c3e2 is now "Free updates kept coming, like Heists in 2015."
+    - c3q, c3a, c3b, c3c, c3e, c3f, c3g and c3h were tightened, and a few lines run a little faster (1.04-1.1x).
+    - The c3x tiles now read "GTA ONLINE WAS FREE. THE MONEY WASN'T".
+  - Shelves: PS4, Xbox One and PC now land in one line, without "April 2015" (the date stays on the chip).
+  - Ledger tape: only the last 3 prints show, at 42/72 px.
+  - Sound: a 0.85 s sub drop under −$1.3 BILLION.
+  - Chapter times (description): 0:00 Still selling · 0:14 Three days · 0:47 The drop · 1:10 The second game · 1:55 Three generations · 2:36 The machine · 3:10 The hand-off · 3:39 Next week.
+  - Final run: 230.7 s; readcheck 0 FAIL; in-mix listen 0 FIX; pacecheck OK; −14.2 LUFS, −2.6 dBTP; no black frames.
+  - The tape unspool (fix 8) is still not built.
