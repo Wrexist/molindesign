@@ -1,0 +1,493 @@
+{
+ "about": "The GTA 5 money machine: $800M day one and $1B in 3 days (Take-Two, Sept 2013), the FY2015 drop, GTA Online and Shark Cards, three console generations, 230M+ sold-in (Take-Two 10-Q, Aug 2026), over $10B from GTA products FY2014-FY2026 (our math from Take-Two 10-Ks), hand-off to GTA 6 on Nov 19 2026. Delta weekly long video, 16:9 1920x1080, 6 chapter cards, 10 s end card.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 0.94,
+ "pace": {
+  "max": 3.1
+ },
+ "names": [
+  "GTA",
+  "GTA 5",
+  "GTA 6",
+  "GTA Online",
+  "Take-Two",
+  "Rockstar",
+  "PlayStation",
+  "Xbox",
+  "Shark Cards",
+  "NPD"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 28
+ },
+ "captions": {
+  "max_words": 8,
+  "max_chars": 46,
+  "min_s": 0.9
+ },
+ "end_card": {
+  "from": 213.8,
+  "s": 10
+ },
+ "dur": 223.5,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.3,
+   "text": "GTA 5 is thirteen years old, and it's still selling.",
+   "say": "G T A 5 is thirteen years old, and it's still selling.",
+   "pause": 0.25
+  },
+  {
+   "id": "count",
+   "at": 3.88,
+   "text": "Over 230 million copies, by Take-Two's own count.",
+   "say": "Over two hundred thirty million copies, by Take-Two's own count.",
+   "pause": 0.25
+  },
+  {
+   "id": "ask",
+   "at": 6.8,
+   "text": "So how does one game keep paying for thirteen years?",
+   "pause": 0.25
+  },
+  {
+   "id": "plan",
+   "at": 10.38,
+   "text": "Six chapters. The numbers come from Take-Two's own reports.",
+   "pause": 0.75
+  },
+  {
+   "id": "c1",
+   "at": 14.13,
+   "text": "Chapter one. Three days.",
+   "pause": 0.85,
+   "card": true
+  },
+  {
+   "id": "c1q",
+   "at": 16.32,
+   "text": "First question: how fast can a game make a billion dollars?",
+   "pause": 0.25
+  },
+  {
+   "id": "c1a",
+   "at": 20.23,
+   "text": "GTA 5 launched on a Tuesday. September 17th, 2013.",
+   "say": "G T A 5 launched on a Tuesday. September seventeenth, twenty thirteen.",
+   "pause": 0.25
+  },
+  {
+   "id": "c1b",
+   "at": 23.48,
+   "text": "Day one: over 800 million dollars in sales.",
+   "say": "Day one: over eight hundred million dollars in sales.",
+   "pause": 0.25
+  },
+  {
+   "id": "c1c",
+   "at": 26.4,
+   "text": "That's Take-Two's estimate, without Japan and Brazil.",
+   "pause": 0.25
+  },
+  {
+   "id": "c1d",
+   "at": 28.98,
+   "text": "Day three: more than one billion dollars.",
+   "pause": 0.75
+  },
+  {
+   "id": "c1e",
+   "at": 32.07,
+   "text": "Take-Two said no game or movie had ever been that fast.",
+   "pause": 0.25
+  },
+  {
+   "id": "c1f",
+   "at": 35.98,
+   "text": "By our math, that's about 14 million dollars an hour.",
+   "say": "By our math, that's about fourteen million dollars an hour.",
+   "pause": 0.25
+  },
+  {
+   "id": "c1x",
+   "at": 39.57,
+   "text": "A billion dollars, before its first Friday.",
+   "pause": 0.75
+  },
+  {
+   "id": "c2",
+   "at": 42.65,
+   "text": "Chapter two. The drop.",
+   "pause": 0.85,
+   "card": true
+  },
+  {
+   "id": "c2q",
+   "at": 44.83,
+   "text": "So what happens when the launch party ends?",
+   "pause": 0.25
+  },
+  {
+   "id": "c2a",
+   "at": 47.75,
+   "text": "Take-Two's year runs from April to March.",
+   "pause": 0.25
+  },
+  {
+   "id": "c2b",
+   "at": 50.33,
+   "text": "In its next year, GTA sales fell.",
+   "say": "In its next year, G T A sales fell.",
+   "pause": 0.25
+  },
+  {
+   "id": "c2c",
+   "at": 52.92,
+   "text": "By about 1.3 billion dollars.",
+   "say": "By about one point three billion dollars.",
+   "pause": 0.75
+  },
+  {
+   "id": "c2d",
+   "at": 55.33,
+   "text": "That's Take-Two's own number, from its 2015 annual report.",
+   "say": "That's Take-Two's own number, from its twenty fifteen annual report.",
+   "pause": 0.25
+  },
+  {
+   "id": "c2e",
+   "at": 58.58,
+   "text": "Its reason: the year before had the launch.",
+   "pause": 0.25
+  },
+  {
+   "id": "c2f",
+   "at": 61.5,
+   "text": "Part of the new PlayStation 4 money was booked later, Take-Two says.",
+   "pause": 0.25
+  },
+  {
+   "id": "c2x",
+   "at": 65.75,
+   "text": "Still, even GTA 5 fell off a cliff.",
+   "say": "Still, even G T A 5 fell off a cliff.",
+   "pause": 0.75
+  },
+  {
+   "id": "c3",
+   "at": 69.17,
+   "text": "Chapter three. The second game.",
+   "pause": 0.85,
+   "card": true
+  },
+  {
+   "id": "c3q",
+   "at": 71.68,
+   "text": "So how does a game you already bought keep earning?",
+   "pause": 0.25
+  },
+  {
+   "id": "c3a",
+   "at": 75.27,
+   "text": "Two weeks after launch, Rockstar switched on GTA Online.",
+   "say": "Two weeks after launch, Rockstar switched on G T A Online.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3b",
+   "at": 78.52,
+   "text": "It came free with every copy of GTA 5.",
+   "say": "It came free with every copy of G T A 5.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3c",
+   "at": 81.77,
+   "text": "But inside it, you could buy game cash with real money.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3d",
+   "at": 85.68,
+   "text": "Rockstar calls them Shark Cards.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3e",
+   "at": 87.6,
+   "text": "In 2018, Take-Two said GTA Online's virtual cash helped drive its growth.",
+   "say": "In twenty eighteen, Take-Two said G T A Online's virtual cash helped drive its growth.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3e2",
+   "at": 91.85,
+   "text": "Meanwhile, Rockstar kept adding free updates. Heists arrived in 2015.",
+   "say": "Meanwhile, Rockstar kept adding free updates. Heists arrived in twenty fifteen.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3e3",
+   "at": 95.43,
+   "text": "By 2020, Take-Two said the updates were setting player records.",
+   "say": "By twenty twenty, Take-Two said the updates were setting player records.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3f",
+   "at": 99.02,
+   "text": "Then in 2022 came GTA Plus, a monthly membership.",
+   "say": "Then in twenty twenty two came G T A Plus, a monthly membership.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3g",
+   "at": 102.27,
+   "text": "Across all of Take-Two's games, look at spending inside games.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3h",
+   "at": 105.85,
+   "text": "Back in 2017, about a quarter of its revenue.",
+   "say": "Back in twenty seventeen, about a quarter of its revenue.",
+   "pause": 0.25
+  },
+  {
+   "id": "c3i",
+   "at": 109.1,
+   "text": "Over three quarters by this March.",
+   "pause": 0.75
+  },
+  {
+   "id": "c3x",
+   "at": 111.85,
+   "text": "GTA Online was free. The money inside it wasn't.",
+   "say": "G T A Online was free. The money inside it wasn't.",
+   "pause": 0.75
+  },
+  {
+   "id": "c4",
+   "at": 115.6,
+   "text": "Chapter four. Three generations.",
+   "pause": 0.85,
+   "card": true
+  },
+  {
+   "id": "c4q",
+   "at": 117.78,
+   "text": "How many times can you sell the same game?",
+   "pause": 0.25
+  },
+  {
+   "id": "c4a",
+   "at": 121.03,
+   "text": "2013: PlayStation 3 and Xbox 360.",
+   "say": "Twenty thirteen: PlayStation 3 and Xbox 360.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4b",
+   "at": 123.28,
+   "text": "November 2014: PlayStation 4 and Xbox One. Then PC, in April 2015.",
+   "say": "November twenty fourteen: PlayStation 4 and Xbox One. Then P C, in April twenty fifteen.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4d",
+   "at": 127.53,
+   "text": "March 2022: PlayStation 5 and Xbox Series X and S.",
+   "say": "March twenty twenty two: PlayStation 5 and Xbox Series X and S.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4e",
+   "at": 131.12,
+   "text": "Same city, same story. Three generations of consoles.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4f",
+   "at": 134.03,
+   "text": "Each time, the same city went on sale again. And the count kept climbing.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4g",
+   "at": 138.95,
+   "text": "Over 32 million copies by early 2014.",
+   "say": "Over thirty two million copies by early twenty fourteen.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4h",
+   "at": 141.53,
+   "text": "Over 100 million by 2019.",
+   "say": "Over one hundred million by twenty nineteen.",
+   "pause": 0.25
+  },
+  {
+   "id": "c4i",
+   "at": 143.45,
+   "text": "Over 230 million by this August.",
+   "say": "Over two hundred thirty million by this August.",
+   "pause": 0.75
+  },
+  {
+   "id": "c4x",
+   "at": 146.2,
+   "text": "In 2020, Take-Two cited NPD: America's best-selling game of the decade.",
+   "say": "In twenty twenty, Take-Two cited N P D: America's best-selling game of the decade.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5",
+   "at": 150.12,
+   "text": "Chapter five. The machine.",
+   "pause": 0.85,
+   "card": true
+  },
+  {
+   "id": "c5q",
+   "at": 152.3,
+   "text": "So what does it all add up to?",
+   "pause": 0.25
+  },
+  {
+   "id": "c5a",
+   "at": 155.22,
+   "text": "Every year, Take-Two reports what share of its revenue is GTA.",
+   "say": "Every year, Take-Two reports what share of its revenue is G T A.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5b",
+   "at": 159.13,
+   "text": "We multiplied it out, year by year, thirteen years.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5c",
+   "at": 162.38,
+   "text": "On the left, the launch year. 1.6 billion dollars.",
+   "say": "On the left, the launch year. One point six billion dollars.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5d",
+   "at": 165.63,
+   "text": "On the right, every year after it.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5e",
+   "at": 168.22,
+   "text": "Watch the right side keep going.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5f",
+   "at": 170.47,
+   "text": "About 9 billion more.",
+   "say": "About nine billion more.",
+   "pause": 0.75
+  },
+  {
+   "id": "c5g",
+   "at": 172.55,
+   "text": "Together, over 10 billion dollars from GTA games.",
+   "say": "Together, over ten billion dollars from G T A games.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5h",
+   "at": 175.47,
+   "text": "That's our math, from Take-Two's annual reports.",
+   "pause": 0.25
+  },
+  {
+   "id": "c5x",
+   "at": 178.05,
+   "text": "The launch was less than a sixth of the money.",
+   "pause": 0.75
+  },
+  {
+   "id": "c6",
+   "at": 182.13,
+   "text": "Chapter six. The hand-off.",
+   "pause": 0.85,
+   "card": true
+  },
+  {
+   "id": "c6q",
+   "at": 184.32,
+   "text": "So what happens to the machine now?",
+   "pause": 0.25
+  },
+  {
+   "id": "c6a",
+   "at": 186.9,
+   "text": "In the launch year, GTA was about 69 percent of Take-Two's revenue.",
+   "say": "In the launch year, G T A was about sixty nine percent of Take-Two's revenue.",
+   "pause": 0.25
+  },
+  {
+   "id": "c6b",
+   "at": 191.15,
+   "text": "By this March, about 12 percent.",
+   "say": "By this March, about twelve percent.",
+   "pause": 0.25
+  },
+  {
+   "id": "c6c",
+   "at": 193.4,
+   "text": "Take-Two got much bigger. GTA 5 got older.",
+   "say": "Take-Two got much bigger. G T A 5 got older.",
+   "pause": 0.25
+  },
+  {
+   "id": "c6d",
+   "at": 196.32,
+   "text": "And on November 19th, GTA 6 comes out.",
+   "say": "And on November nineteenth, G T A 6 comes out.",
+   "pause": 0.25
+  },
+  {
+   "id": "c6e",
+   "at": 199.23,
+   "text": "PlayStation 5 and Xbox Series X and S.",
+   "pause": 0.25
+  },
+  {
+   "id": "c6f",
+   "at": 202.15,
+   "text": "Thirteen years after GTA 5 sold a billion dollars in three days.",
+   "say": "Thirteen years after G T A 5 sold a billion dollars in three days.",
+   "pause": 0.25
+  },
+  {
+   "id": "c6x",
+   "at": 206.4,
+   "text": "The money machine finally gets a sequel.",
+   "pause": 0.75
+  },
+  {
+   "id": "next",
+   "at": 209.48,
+   "text": "Next week: what GTA 6 has to get right. It's right here.",
+   "say": "Next week: what G T A 6 has to get right. It's right here."
+  }
+ ]
+}
