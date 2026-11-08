@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-moneymachine/out/gta-moneymachine-vo.mp4: 246.4 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.152, 0-3 s 0.97, median 0.511, still frames 0.0 %
+/home/user/molindesign/film/gta-moneymachine/out/gta-moneymachine-vo.mp4: 247.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.729, 0-3 s 0.607, median 0.51, still frames 0.0 %
 OK    no frozen stretches, opening moves

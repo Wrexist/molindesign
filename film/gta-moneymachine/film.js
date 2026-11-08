@@ -79,7 +79,7 @@
     return GT[id];
   }
   function vadEnd(id) { var ve = lastw(id) - .6, nx = nextStart(id); (window.VAD || []).forEach(function (v) { if (v[0] < nx - .2 && v[1] > ve) ve = v[1]; }); return ve; }
-  function after(id) { return Math.max(vadEnd(id) + .16, Math.min(LINE[id].t1 + .04, nextStart(id) - .35)); }
+  function after(id) { return Math.max(vadEnd(id) + .16, Math.min(LINE[id].t1 + .22, nextStart(id) - .35)); }
 
   /* ---------- canvas, text recording (TEXTS = what was really drawn, legibly) ---------- */
   var cv, ctx, tmp, tctx, acc, actx, LIVE = { grain: true, text: true };
@@ -394,7 +394,7 @@
       var e = shown[i], k = n - 1 - i, y = y0 + 100 + (k - 1 + feed) * LH;
       if (y > H + 40) continue;
       g.save(); g.globalAlpha *= i === n - 1 ? fin(t, e.t, .08) : 1;
-      TX(g, e.a, x0 + 18, y - 22, { px: 36, col: PLUM, align: 'left', st: 'condensed' });
+      TX(g, e.a, x0 + 14, y - 22, { px: 36, col: PLUM, align: 'left', st: 'extra-condensed' });
       if (e.b) TX(g, e.b, x0 + TW - 16, y + 22, { px: 60, col: e.col || INK, align: 'right', st: 'extra-condensed' });
       g.fillStyle = 'rgba(29,18,51,.25)'; for (var xx = x0 + 14; xx < x0 + TW - 14; xx += 14) g.fillRect(xx, y + 56, 7, 2);
       g.restore();
@@ -463,20 +463,19 @@
 
   /* --- cold open --- */
   S('hook', function (g, t) {
-    /* frame 0: the case already in motion (glides ~430 px in the first second), the 2013 tag swinging */
-    var gx = lerp(1000, 520, eo(seg(t, 0, 1.15)));
-    g.save(); g.translate(gx, 620 + bob(t, 0)); g.rotate(-.03 + .05 * (1 - eo(seg(t, 0, 1.15))));
+    /* frame 0 (jury r1): the case sharp and at rest, `13 YEARS.` already printed, the SEPT 2013 tag readable; the calendar glides in for motion */
+    var gx = lerp(560, 520, eo(seg(t, 0, 1.15)));
+    g.save(); g.translate(gx, 620 + bob(t, 0)); g.rotate(-.03);
     /* the 2013 tag hangs off the case's top-right corner on a string, swinging */
-    g.save(); g.translate(205, -270); g.rotate(-.35 + sw(t, 0, .22, 5.5, 1.4) + .03 * Math.sin(t * 2));
+    g.save(); g.translate(205, -270); g.rotate(-.35 + sw(t, 0, .05, 5.5, 1.4) + .015 * Math.sin(t * 2));
     g.strokeStyle = CREAM; g.lineWidth = 4; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, 120); g.stroke();
     g.translate(0, 120); g.rotate(Math.PI / 2 - .1); g.translate(150, 0); g.rotate(-Math.PI / 2 + .45); priceTag(g, [['SEPT 2013', 0, 66]], .78, { w: 380, h: 150 }); g.restore();
     gameCase(g, 'GTA 5', 1.4, { px: 110 });
     g.restore();
     /* the calendar page now */
-    var kc = at('hook', 'thirteen');
-    g.save(); place(g, t, kc - .25, 1300, 610, { dx: 260, dy: -40, rot: .05, r0: .2 }); calendar(g, 'NOVEMBER', '2026', 'TODAY', 1.3, { band: TEAL, bpx: 150, bdy: -4 }); g.restore();
+    g.save(); place(g, t, 0, 1300, 610, { dx: 160, dy: -30, rot: .05, r0: .2 }); calendar(g, 'NOVEMBER', '2026', 'TODAY', 1.3, { band: TEAL, bpx: 150, bdy: -4 }); g.restore();
     /* the headline */
-    var k1 = at('hook', 'thirteen'), k2 = at('hook', 'still');
+    var k1 = -1, k2 = at('hook', 'still');
     var w1 = tw(g, '13 YEARS.', 124), w2 = tw(g, 'STILL SELLING.', 124), hx = 960 - (w1 + w2 + 50) / 2;
     if (t >= k1 - .05) { g.save(); var a = cd(t, k1 - .05, 20); g.translate(hx + w1 / 2, 196 - 30 * (1 - a)); g.scale(lerp(1.3, 1, a), lerp(1.3, 1, a)); TX(g, '13 YEARS.', 0, 0, { px: 124, col: HOT, shadow: 'rgba(0,0,0,.6)', a: fin(t, k1 - .05, .06) }); g.restore(); }
     if (t >= k2 - .05) { g.save(); var b = cd(t, k2 - .05, 20); g.translate(hx + w1 + 50 + w2 / 2, 196 - 30 * (1 - b)); g.scale(lerp(1.3, 1, b), lerp(1.3, 1, b)); TX(g, 'STILL SELLING.', 0, 0, { px: 124, col: CREAM, shadow: 'rgba(0,0,0,.6)', a: fin(t, k2 - .05, .06) }); g.restore(); }
@@ -564,7 +563,7 @@
     }
     if (t >= b1 && t < b3 + .3) {
       g.save(); if (leave(g, t, b3)) {
-        var a = at('c1b', '800'), b = wend('c1b', 'dollars'), v = rollV(t, a, b, 0, 800e6, 1e6), done = tq(t) >= b;
+        var b = at('c1b', '800') - .22, a = Math.min(b1 + .15, b - .5), v = rollV(t, a, b, 0, 800e6, 1e6), done = tq(t) >= b; /* lands before the word (jury r1) */
         place(g, t, b1, 1060, 300, { dy: -50 });
         TX(g, 'DAY 1', 0, 0, { px: 84, col: TEAL });
         TX(g, '$' + commas(v) + (done ? '+' : ''), 0, 150, { px: 150, col: done ? GOLD : CREAM, st: 'extra-condensed', shadow: 'rgba(0,0,0,.6)', reg: done, id: 'n800' });
@@ -677,9 +676,9 @@
     }
     g.restore();
   }
-  S('c2a', function (g, t) {
-    TX(g, "TAKE-TWO'S YEAR = APRIL TO MARCH", SX, 200, { px: 72, col: CREAM, a: fin(t, start('c2a')), shadow: 'rgba(0,0,0,.6)' });
-    ruler(g, t, start('c2a') - .2, t > at('c2b', 'next'), seg(t, at('c2a', 'april'), at('c2a', 'april') + .2));
+  S('c2b', function (g, t) {
+    /* c2a (April to March) was cut after jury r1: the fiscal ruler stays as a silent picture under c2b */
+    ruler(g, t, start('c2b') - .2, t > at('c2b', 'next'), seg(t, start('c2b'), start('c2b') + .3));
     var kf = at('c2b', 'fell');
     if (t >= start('c2b') - .15) {
       g.save(); var k = cd(t, start('c2b') - .15, 12); g.translate(lerp(170, 1530, .75), 620 + 30 * (1 - k)); g.globalAlpha *= fin(t, start('c2b') - .15);
@@ -689,7 +688,7 @@
   });
   S('c2c', function (g, t) {
     for (var i = 0; i < 5; i++) { var u = ((t - start('c2c')) * .5 + i / 5) % 1; g.save(); g.translate(250 + i * 60 * (i % 2 ? 1 : -1) + (i > 2 ? 1150 : 0), lerp(120, 1000, u)); g.rotate(u * 3 + i); g.globalAlpha *= .5 * Math.sin(Math.PI * u); gameCase(g, 'GTA 5', .3, { px: 100 }); g.restore(); }
-    var k = start('c2c') + .25;
+    var k = start('c2c') + .15;
     if (t >= k - .08) {
       var dk = cd(t, k - .08, 18), land = T.h13 ? cd(t, T.h13, 22) : 0;
       g.save(); g.translate(SX, 420 - 60 * (1 - dk) + 26 * land); g.scale(lerp(1.4, 1, dk), lerp(1.4, 1, dk));
@@ -711,7 +710,7 @@
     chip(g, 'RE-CREATED', 300, 830, { px: 44, bg: HOT, fg: CREAM, rot: -.04, a: fin(t, t0 + .1) });
     if (REC && g.globalAlpha >= .6 && t >= t0 + .15) REC.q2d = '“…decrease of approximately $1,315.3 million in sales from our Grand Theft Auto franchise…”';
     /* right: why (c2e), then booked later (c2f) */
-    var e0 = start('c2e') - .2, f0 = start('c2f') - .2;
+    var e0 = start('c2e') - .2, f0 = start('c2f') - .45;
     if (t >= e0 && t < f0 + .3) {
       g.save(); if (leave(g, t, f0)) {
         [['YEAR 1', 'LAUNCH', GOLD, 330], ['YEAR 2', 'NO LAUNCH', '#d9d2e6', 640]].forEach(function (b, i) {
@@ -873,26 +872,49 @@
     chip(g, 'TAKE-TWO, MAY 2022', 1220, 760, { px: 40, bg: TEAL, a: fin(t, at('c3f', '2022') + .4) });
   });
   S('c3g', function (g, t) {
-    var t0 = start('c3g') - .2, kh = at('c3h', '2017'), ki = at('c3i', 'three'), ke = lastw('c3i');
-    var frac = t < kh ? 0 : t < ki ? .258 * eio(seg(t, kh, kh + .5)) : lerp(.258, .781, eio(seg(tq(t), ki, ke)));
-    var landed = tq(t) >= ke, xs = start('c3x') - .3, mv = eio(seg(t, xs, xs + .45)), fo = 1 - seg(t, xs, xs + .15);
-    /* on the quotable (c3x) the pie and its result slide down under the tiles; the rest folds away */
-    g.save(); place(g, t, t0, lerp(500, 470, mv), lerp(540, 700, mv), { dx: -160, dy: 0, s: lerp(1, .6, mv) }); pie(g, 290, frac, frac > .5 ? HOT : TEAL);
-    if (t >= kh + .4 && t < ki) TX(g, '25.8%', 0, -80, { px: 110, col: CREAM, shadow: 'rgba(0,0,0,.6)' });
+    /* all of Take-Two, not GTA: the pie rolls 25.8% -> 78.1% and lands before "three quarters"; c3j then says where it comes from (jury r1) */
+    var t0 = start('c3g') - .2, kh = at('c3h', '2017'), ki = at('c3i', 'three') - .22, kr = Math.min(lastw('c3h') + .1, ki - .5);
+    var frac = t < kh ? 0 : t < kr ? .258 * eio(seg(t, kh, kh + .5)) : lerp(.258, .781, eio(seg(tq(t), kr, ki)));
+    var landed = tq(t) >= ki, kj = start('c3j') - .2, mv = eio(seg(t, kj, kj + .45)), fo = 1 - seg(t, kj, kj + .2);
+    g.save(); place(g, t, t0, 500, 540, { dx: -160, dy: 0 }); pie(g, 290, frac, frac > .5 ? HOT : TEAL);
+    if (t >= kh + .4 && t < kr + .1) TX(g, '25.8%', 0, -80, { px: 110, col: CREAM, shadow: 'rgba(0,0,0,.6)' });
     if (landed) TX(g, '78.1%', 0, 30, { px: 150, col: CREAM, shadow: 'rgba(0,0,0,.6)' });
     g.restore();
-    TX(g, 'SPENDING INSIDE GAMES', 1170, 230, { px: 66, col: CREAM, a: fin(t, t0 + .1) * fo, shadow: 'rgba(0,0,0,.6)' });
-    TX(g, 'SHARE OF TAKE-TWO REVENUE', 1170, 310, { px: 48, col: TEAL, a: fin(t, t0 + .2) * fo });
-    chip(g, 'ALL TAKE-TWO GAMES, NOT JUST GTA', lerp(1130, 1150, mv), lerp(420, 860, mv), { px: 46, bg: ORG, a: fin(t, at('c3g', 'all') - .1), s: lerp(.9, 1, cd(t, at('c3g', 'all') - .1)) });
-    if (t >= kh) chip(g, 'FY2017 · 25.8%', 1170, 570, { px: 64, bg: TEAL, a: fin(t, kh) * fo, s: lerp(.9, 1, cd(t, kh)) });
-    if (landed) chip(g, 'FY2026 · 78.1%', lerp(1170, 1150, mv), lerp(700, 740, mv), { px: 64, bg: HOT, fg: CREAM, a: fin(t, ke), s: lerp(.9, 1, cd(t, ke)) });
-    if (t >= kh) chip(g, 'INCL. VIRTUAL CURRENCY + ADD-ONS', 1170, 830, { px: 40, a: fin(t, kh + .5) * fo });
-    stamp(g, t, T.h78, 'OVER 3/4', lerp(820, 1150, mv), lerp(250, 610, mv), { px: 84, rot: .08, col: GOLD });
+    chip(g, 'ALL TAKE-TWO GAMES, NOT JUST GTA', 500, 900, { px: 46, bg: ORG, a: fin(t, at('c3g', 'all') - .1), s: lerp(.9, 1, cd(t, at('c3g', 'all') - .1)) });
+    TX(g, 'SPENDING INSIDE GAMES', 1170, 230, { px: 66, col: CREAM, a: fin(t, t0 + .1), shadow: 'rgba(0,0,0,.6)' });
+    TX(g, 'SHARE OF TAKE-TWO REVENUE', 1170, 310, { px: 48, col: TEAL, a: fin(t, t0 + .2) });
+    if (t >= kh && t < kr + .1) chip(g, 'FY2017 · 25.8%', 1170, 450, { px: 64, bg: TEAL, a: fin(t, kh), s: lerp(.9, 1, cd(t, kh)) });
+    if (landed) chip(g, 'FY2026 · 78.1%', 1170, 450, { px: 64, bg: HOT, fg: CREAM, a: fin(t, ki), s: lerp(.9, 1, cd(t, ki)) });
+    if (t >= kh) chip(g, 'INCL. VIRTUAL CURRENCY + ADD-ONS', 1170, 560, { px: 40, a: fin(t, kh + .5) * fo });
+    stamp(g, t, T.h78, 'OVER 3/4', 1170, 690, { px: 84, rot: .06, col: GOLD, a: fo });
+    /* c3j: where it comes from */
+    if (t >= kj) {
+      g.save(); g.globalAlpha *= fin(t, kj, .2);
+      g.save(); g.translate(1110, 700 + 40 * (1 - cd(t, kj, 12)));
+      /* a phone */
+      g.fillStyle = 'rgba(3,2,10,.5)'; rr(g, -330 + 10, -70 + 12, 120, 210, 18); g.fill();
+      g.fillStyle = '#2b2440'; rr(g, -330, -70, 120, 210, 18); g.fill(); g.fillStyle = TEAL; rr(g, -318, -52, 96, 160, 8); g.fill(); grainOn(g, -330, -70, 120, 210, .4);
+      g.restore();
+      chip(g, 'MOBILE · 50.1% OF REVENUE', 1170, 650, { px: 52, bg: HOT, fg: CREAM, s: lerp(.9, 1, cd(t, kj)) });
+      var kz = start('c3j') + .5;
+      chip(g, 'ZYNGA · BOUGHT MAY 2022', 1190, 760, { px: 48, bg: CREAM, a: fin(t, kz), s: lerp(.9, 1, cd(t, kz)) });
+      chip(g, 'TAKE-TWO 10-K · FY2026', 1190, 860, { px: 40, bg: TEAL, a: fin(t, kz) });
+      g.restore();
+    }
   });
   S('c3x', function (g, t) {
-    tiles(g, t, 'c3x', SX, 345, 1300, 92, { text: "GTA ONLINE WAS FREE. THE MONEY INSIDE IT WASN'T.", hot: /^(free|wasnt)$/ });
-  }, { overlay: true, noslide: true });
-
+    /* the quotable over its own picture: the FREE tag against the cash it brought in (jury r1: off the company-wide pie) */
+    var t0 = start('c3x') - .22, km = t0 + .3;
+    tiles(g, t, 'c3x', SX, 345, 1300, 92, { text: "GTA ONLINE WAS FREE. THE MONEY INSIDE IT WASN'T", hot: /^(free|wasnt)$/ });
+    g.save(); place(g, t, t0, 470, 800, { dx: -200, dy: 0, rot: -.05 }); priceTag(g, [['FREE', -24, 110, 0, HOT], ['GTA ONLINE · 2013', 66, 40]], .9, { w: 480, h: 230 }); g.restore();
+    if (t >= km) {
+      g.save(); g.translate(1150, 850);
+      var n = Math.min(9, Math.floor((t - km) * 9) + 1);
+      for (var i = 0; i < n; i++) { g.save(); g.translate((i % 3) * 30 - 30, -i * 22); bill(g, 1.1, (i % 2 ? .04 : -.03), { sym: 'G$', shadow: i === 0 }); g.restore(); }
+      g.restore();
+      chip(g, 'SHARK CARDS · REAL MONEY', 1150, 960, { px: 44, bg: GOLD, a: fin(t, km + .2) });
+    }
+  });
   /* --- 4 · THREE GENERATIONS --- */
   S('c4q', function (g, t) {
     var rows = [[330, 'c4a'], [585, 'c4b'], [840, 'c4d']], t0 = start('c4q') - .2;
@@ -994,29 +1016,37 @@
   var FY = [['FY2014', 68.9, 2.35, 1620], ['FY2015', 28.0, 1.08, 303], ['FY2016', 54.5, 1.41, 770], ['FY2017', 38.2, 1.78, 680], ['FY2018', 39.7, 1.79, 712], ['FY2019', 25.7, 2.67, 686], ['FY2020', 23.0, 3.09, 710],
     ['FY2021', 29.2, 3.37, 985], ['FY2022', 30.9, 3.50, 1083], ['FY2023', 14.6, 5.35, 781], ['FY2024', 14.7, 5.35, 786], ['FY2025', 12.6, 5.63, 710], ['FY2026', 12.4, 6.66, 825]];
   S('c5a', function (g, t) {
-    var t0 = start('c5a') - .2, ka = at('c5a', 'share'), kb = at('c5b', 'multiplied'), kb1 = kb + 1.0;
-    var cx = [330, 640, 1000, 1380], y0 = 210, RH = 52;
+    /* jury r1: no 13-row read wall. FY2014 and FY2026 rows stay; the 11 years between flick past in one row, the GTA $ column rolling */
+    var t0 = start('c5a') - .2, ka = at('c5a', 'share'), kb = at('c5b', 'multiplied'), kb1 = kb - .2;
+    var cx = [330, 640, 1000, 1380], y0 = 300, RH = 150;
     g.save(); place(g, t, t0, 0, 0, { dy: 60, s0: 1, nobob: true });
-    g.fillStyle = 'rgba(3,2,10,.5)'; g.fillRect(170 + 10, y0 - 40 + 14, 1420, 66 + 13 * RH + 20);
-    g.fillStyle = '#f7f1e2'; g.fillRect(170, y0 - 40, 1420, 66 + 13 * RH + 20); grainOn(g, 170, y0 - 40, 1420, 66 + 13 * RH + 20, .6);
-    g.fillStyle = INK; g.fillRect(170, y0 - 40, 1420, 70);
-    ['FISCAL YEAR', 'GTA SHARE', '× TAKE-TWO REVENUE', '= GTA $ · OUR MATH'].forEach(function (h, i) { TX(g, h, cx[i], y0 - 5, { px: 40, col: i === 3 ? GOLD : CREAM, a: i === 3 ? fin(t, kb - .1) : 1 }); });
-    FY.forEach(function (r, i) {
-      var y = y0 + 64 + i * RH, ti = t0 + .2 + i * (ka - t0) / 13;
-      if (i % 2) { g.fillStyle = 'rgba(25,211,197,.12)'; g.fillRect(170, y - RH / 2, 1420, RH); }
+    g.fillStyle = 'rgba(3,2,10,.5)'; g.fillRect(170 + 10, y0 - 50 + 14, 1420, 90 + 3 * RH);
+    g.fillStyle = '#f7f1e2'; g.fillRect(170, y0 - 50, 1420, 90 + 3 * RH); grainOn(g, 170, y0 - 50, 1420, 90 + 3 * RH, .6);
+    g.fillStyle = INK; g.fillRect(170, y0 - 50, 1420, 90);
+    ['FISCAL YEAR', 'GTA SHARE', '× TAKE-TWO REVENUE', '= GTA $ · OUR MATH'].forEach(function (h, i) { TX(g, h, cx[i], y0 - 5, { px: 44, col: i === 3 ? GOLD : CREAM, a: i === 3 ? fin(t, kb - .1) : 1 }); });
+    function row(r, y, ti, tm, col, rec) {
       if (t < ti) return; var a = fin(t, ti, .1);
-      TX(g, r[0], cx[0], y, { px: 40, col: INK, a: a });
-      TX(g, r[1].toFixed(1) + '%', cx[1], y, { px: 40, col: '#137f7a', a: a });
-      TX(g, '$' + r[2].toFixed(2) + 'B', cx[2], y, { px: 40, col: PLUM, a: a });
-      var tm = kb + i * (kb1 - kb) / 13; if (t < tm) return;
-      TX(g, '$' + commas(r[3]) + 'M', cx[3], y, { px: 40, col: i ? INK : HOT, a: fin(t, tm, .08) });
-    });
+      TX(g, r[0], cx[0], y, { px: 60, col: INK, a: a, reg: rec });
+      TX(g, r[1].toFixed(1) + '%', cx[1], y, { px: 60, col: '#137f7a', a: a, reg: rec });
+      TX(g, '$' + r[2].toFixed(2) + 'B', cx[2], y, { px: 60, col: PLUM, a: a, reg: rec });
+      if (t >= tm) TX(g, '$' + commas(r[3]) + 'M', cx[3], y, { px: 60, col: col, a: fin(t, tm, .08), reg: rec });
+    }
+    var y1 = y0 + 110, y2 = y1 + RH, y3 = y2 + RH;
+    row(FY[0], y1, t0 + .3, kb, HOT, true);
+    /* the middle row: FY2015 ... FY2025 flick by */
+    if (t >= t0 + .6) {
+      g.fillStyle = 'rgba(25,211,197,.14)'; g.fillRect(170, y2 - RH / 2 + 10, 1420, RH - 20);
+      var fl = 1 + Math.min(10, Math.floor(seg(tq(t), t0 + .6, kb1) * 11)), done = tq(t) >= kb1;
+      if (!done) row(FY[fl], y2, t0 + .6, kb, INK, false);
+      else TX(g, '+ 11 MORE YEARS', 785, y2, { px: 60, col: '#137f7a', a: fin(t, kb1, .1) });
+    }
+    row(FY[12], y3, ka - .1, kb + .3, INK, true);
     g.restore();
   });
   S('c5c', function (g, t) {
     var t0 = start('c5c') - .2, g5 = start('c5g') + .15, merge = eio(seg(t, g5, g5 + .55));
-    var la = at('c5c', '16'), lb = wend('c5c', 'dollars'), lv = rollV(t, la, lb, 0, 1.62, .01), ldone = tq(t) >= lb;
-    var ra = at('c5d', 'every'), rb = at('c5f', 'billion') + .05, rv = rollV(t, ra, rb, 0, 9.03, .01), rdone = tq(t) >= rb;
+    var lb = at('c5c', '16') - .22, la = Math.min(start('c5c') + .1, lb - .6), lv = rollV(t, la, lb, 0, 1.62, .01), ldone = tq(t) >= lb; /* lands before "1.6" (jury r1) */
+    var ra = at('c5d', 'every'), rb = at('c5f', '9') - .22, rv = rollV(t, ra, rb, 0, 9.03, .01), rdone = tq(t) >= rb;
     var BASE = 900, SC2 = 380 / 10.65;
     /* the two halves; they slam together on "Together" */
     var lx = -460 * merge, rxo = 460 * merge;
@@ -1068,7 +1098,7 @@
         g.fillStyle = TEAL; g.fillRect(bx0, by - 40, (bx1 - bx0) * bk, 80);
         g.fillStyle = HOT; g.fillRect(bx0, by - 40, (bx1 - bx0) * .152 * bk, 80);
         grainOn(g, bx0, by - 40, (bx1 - bx0) * bk, 80, .4);
-        TX(g, 'LAUNCH 15%', bx0 + 14, by + 2, { px: 40, col: CREAM, align: 'left', a: bk });
+        TX(g, 'LAUNCH 15%', bx0 + 14, by + 74, { px: 40, col: HOT, align: 'left', a: bk });
         var sx = bx0 + (bx1 - bx0) / 6; g.fillStyle = CREAM; g.fillRect(sx - 3, by - 70, 6, 140);
         chip(g, '1/6', sx, by - 88, { px: 40, bg: CREAM, a: fin(t, xk + .5) });
         g.restore();
@@ -1121,10 +1151,11 @@
     bar(860, 6.66, 12.4, start('c6b') - .2, 'FY2026', '$6.66B');
     var kc = start('c6c') - .1;
     if (t >= kc) {
-      chip(g, 'TAKE-TWO GOT BIGGER', 1320, 330, { px: 56, bg: TEAL, a: fin(t, kc), s: lerp(.9, 1, cd(t, kc)) });
+      /* jury r1: both labels clear of the tape (x < 1500) and of the GTA 12.4% chip */
+      chip(g, 'TAKE-TWO GOT BIGGER', 1230, 200, { px: 52, bg: TEAL, a: fin(t, kc), s: lerp(.9, 1, cd(t, kc)) });
       var ko = kc + .15;
-      g.save(); place(g, t, ko - .2, 1320, 640, { dy: 80 }); gameCase(g, 'GTA 5', .6, { sub: '2013' }); g.restore();
-      chip(g, 'GTA 5 GOT OLDER', 1320, 860, { px: 56, bg: ORG, a: fin(t, ko), s: lerp(.9, 1, cd(t, ko)) });
+      g.save(); place(g, t, ko - .2, 1330, 440, { dy: 80 }); gameCase(g, 'GTA 5', .5, { sub: '2013' }); g.restore();
+      chip(g, 'GTA 5 GOT OLDER', 1330, 640, { px: 48, bg: ORG, a: fin(t, ko), s: lerp(.9, 1, cd(t, ko)) });
     }
   });
   S('c6d', function (g, t) {
@@ -1277,16 +1308,16 @@
     /* the tape prints in the pauses where it can (a ratchet), silently on words otherwise */
     function print(id, a, b, t, col, quiet) { var tt = quiet ? t : G('pr-' + id, t, 'print', .3, .9); TAPE.push({ t: tt, a: a, b: b, col: col }); }
     TAPE.length = 0;
-    TAPE.push({ t: T.tapeIn + .4, a: 'GTA 5 LEDGER', b: '2013–', col: HOT });
-    print('d1', 'DAY 1', '$800M+', wend('c1b', 'dollars') + .05);
-    print('d3', 'DAY 3', '$1B+', after('c1d') - .05, HOT);
-    print('fy15', 'FY2015', '−$1.3B', after('c2c') - .05, ORG);
-    print('rcs', 'IN-GAME', '78.1%', after('c3i') + .25, '#137f7a');
-    print('u32', 'COPIES', '32.5M+', wend('c4g', 'million') + .05);
-    print('u105', 'COPIES', '105M+', wend('c4h', 'million') + .05);
-    print('u230', 'COPIES', '230M+', after('c4i') + .25, HOT);
-    print('s69', 'GTA SHARE', '68.9%', wend('c6a', 'revenue') + .05, HOT);
-    print('s12', 'GTA SHARE', '12.4%', after('c6b') - .05, HOT, true); /* silent: no gap between c6b and c6c, a ratchet here masked "March" */
+    TAPE.push({ t: T.tapeIn + .4, a: 'THE LEDGER', b: '2013–', col: HOT });
+    print('d1', 'GTA 5 · DAY 1', '$800M+', wend('c1b', 'dollars') + .05);
+    print('d3', 'GTA 5 · DAY 3', '$1B+', after('c1d') - .05, HOT);
+    print('fy15', 'ALL GTA · FY15', '−$1.3B', after('c2c') - .05, ORG);
+    print('rcs', 'ALL TAKE-TWO', '78.1%', after('c3i') + .25, '#137f7a');
+    print('u32', 'GTA 5 COPIES', '32.5M+', wend('c4g', 'million') + .05);
+    print('u105', 'GTA 5 COPIES', '105M+', wend('c4h', 'million') + .05);
+    print('u230', 'GTA 5 COPIES', '230M+', after('c4i') + .25, HOT);
+    print('s69', 'ALL GTA · FY14', '68.9%', wend('c6a', 'revenue') + .05, HOT);
+    print('s12', 'ALL GTA · FY26', '12.4%', after('c6b') - .05, HOT, true); /* silent: no gap between c6b and c6c, a ratchet here masked "March" */
     /* hero hits in the written pauses */
     T.h1b = G('h1b', after('c1d'), 'stamp', .4, 1.15, { heavy: true });
     G('ding1b', T.h1b + .3, 'ding', .3, .8);

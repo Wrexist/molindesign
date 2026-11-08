@@ -77,3 +77,17 @@ A dark accounting ledger: teal ruled lines drifting up, a pink double margin, co
     - `after()` now waits for the take's end, not only the VAD edge, so stamps no longer clip soft word tails.
   - Pacecheck failed the static chapter cards (2.4-2.9 s frozen). The cards now push in slowly and their ruled lines creep up. The result is 0 frozen stretches and 0 % still frames.
   - Final run: 246.4 s; readcheck 0 FAIL; in-mix listen 0 FIX; −14.1 LUFS, −2.0 dBTP; no black.
+- 2026-11-08 (director, after jury round 1, which failed on Truth):
+  - c3j added (BRIEF F18, read in the FY2026 10-K): "Half of Take-Two's revenue now comes from phone games. It bought Zynga in 2022." On screen: `MOBILE · 50.1% OF REVENUE`, `ZYNGA · BOUGHT MAY 2022`, `TAKE-TWO 10-K · FY2026`.
+  - The c3x quotable now has its own scene, the FREE tag against a G$ stack, and is no longer over the pie.
+  - The tape header is `THE LEDGER`. Every entry now says what it covers: `GTA 5 · DAY 1/3`, `ALL GTA · FY15/FY14/FY26`, `ALL TAKE-TWO`, `GTA 5 COPIES`.
+  - Counters now land 0.22 s before their spoken word: day 1 $800M, the 78.1% pie (the FY2017 chip swaps out at the same moment), $1.6B and $9.0B.
+  - Smaller fixes:
+    - c6c labels moved clear of the tape and of the 12.4% chip.
+    - Frame 0 holds still with `13 YEARS.` already printed.
+    - c2a cut; the ruler stays silently under c2b.
+    - c2f now reads "Take-Two says some of it was booked later."
+    - c5a shows only the FY2014 and FY2026 rows, with the years between flicking past in one row.
+    - The 1/6 label sits under the bar.
+  - Not done: the chapter 5 tape tear (fix 8).
+  - Final run: 247.2 s; readcheck 0 FAIL; in-mix listen 0 FIX; pacecheck OK; −14.1 LUFS, −1.7 dBTP.
