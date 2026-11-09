@@ -1,0 +1,105 @@
+{
+ "about": "Deleting a photo doesn't delete it. Factory #26, backlog row 30, slug deletephoto. One hard idea: on iPhone, Delete only moves a photo into the Recently Deleted album, where it waits 30 days (locked with Face ID or Touch ID by default); Google Photos keeps deleted items in Trash for 30 days; a copy a friend saved from your shared album stays in their library; it is only gone when you empty Recently Deleted or Trash, and then Apple and Google say it can't be recovered. Primary sources (read 2026-11-09): Apple Support 'Delete photos on your iPhone or iPad' (https://support.apple.com/en-us/104967, published Mar 31, 2026); Apple Support 'How to recover deleted photos on your iPhone, iPad, Mac, or Apple Vision Pro' (https://support.apple.com/en-us/124460, published Sep 15, 2025); Apple Support 'How to use Shared Albums in Photos' (https://support.apple.com/en-us/108314, published Oct 6, 2026); Google Photos Help 'Delete photos & videos' (https://support.google.com/photos/answer/6128858) and 'Restore recently deleted photos & videos' (https://support.google.com/photos/answer/9343482). Native move: a 30-day tear-off calendar on the Recently Deleted bin. Planned silences: 0.8 s after 'theirs' (dip stamp), 1.0 s after 'gone' (hero stamp CAN'T GET IT BACK). Narration-led: record the voice first and key every visual beat to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Apple",
+  "Google",
+  "Google Photos",
+  "iPhone",
+  "Face ID",
+  "Recently Deleted"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 26
+ },
+ "dur": 34.54,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Your deleted photos are still here.",
+   "pause": 0.5
+  },
+  {
+   "id": "test",
+   "at": 2.45,
+   "text": "Open Photos. Swipe up to Recently Deleted.",
+   "say": "Open Photos. Swipe up, to Recently Deleted.",
+   "pause": 0.4
+  },
+  {
+   "id": "ask",
+   "at": 6.17,
+   "text": "So when is a photo really gone?",
+   "pause": 0.3,
+   "say": "So, when is a photo really gone?"
+  },
+  {
+   "id": "moves",
+   "at": 8.47,
+   "text": "Hit delete, and your iPhone just moves it there.",
+   "pause": 0.3
+  },
+  {
+   "id": "days",
+   "at": 11.27,
+   "text": "It waits there thirty days, locked by default.",
+   "pause": 0.5
+  },
+  {
+   "id": "google",
+   "at": 14.63,
+   "text": "Google Photos keeps its trash thirty days too.",
+   "pause": 0.4
+  },
+  {
+   "id": "friend",
+   "at": 18.17,
+   "text": "But a friend who saved it from your shared album?",
+   "pause": 0.3,
+   "say": "But, a friend who saved it from your shared album?"
+  },
+  {
+   "id": "theirs",
+   "at": 21.33,
+   "text": "Their copy stays, even if you delete the album.",
+   "pause": 0.8
+  },
+  {
+   "id": "really",
+   "at": 24.7,
+   "text": "To really delete it, empty Recently Deleted or Trash.",
+   "pause": 0.3,
+   "say": "To really delete it, empty Recently Deleted, or Trash."
+  },
+  {
+   "id": "gone",
+   "at": 28.19,
+   "text": "Then, Apple and Google say, you can't get it back.",
+   "pause": 1.0
+  },
+  {
+   "id": "end",
+   "at": 32.2,
+   "text": "So, is yours empty? Yes or no.",
+   "say": "So, is yours empty, yes or no?",
+   "pause": 0
+  }
+ ],
+ "tail": 0.2
+}

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/detect/out/detect-vo.mp4: 32.1 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.483, 0-3 s 0.657, median 0.248, still frames 11.1 %
+FAIL  frozen 1.20 s from 21.10 s (no static stretch over 1 s)

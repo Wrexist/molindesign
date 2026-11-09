@@ -1,0 +1,105 @@
+{
+ "about": "How to tell if a video is AI. Factory #21, backlog row 23, playlist How tech works. Packaging 6/6. One hard idea: the glitches people hunt for (extra fingers, garbled text, shadows pointing the wrong way) are getting harder to spot, and in a 2024 study people did about as well as chance, so the check that still works is the source: who posted it first, the original upload, and an AI label or Content Credentials, while a missing label proves nothing. Sources, all read 2026-11-04: Kamali, Groh et al., 'How to Distinguish AI-Generated Images from Authentic Photographs' (Northwestern Kellogg, arXiv 2406.08651, June 2024): 'missing fingers, extra fingers, merged fingers'; text with 'nonexistent words, spelling errors'; 'shadows cast in inconsistent directions'; 'Text in AI image generation is an area that is rapidly improving and these artifacts may not always be noticeable at first glance'; reverse image search 'may trace you back to the original source'. Cooke et al., 'As Good As A Coin Toss' (CSIS, arXiv 2403.16760, 2024; 1,276 participants): 'mean detection performance close to a chance level performance of 50%'. NIST AI 100-4 (Nov 2024): 'humans may find detection more difficult as synthetic content generation continues to increase in sophistication'; metadata 'can similarly be stripped altogether, as it often is when files are shared'. YouTube Help 'Disclosing use of GenAI content': labels from creator disclosure, 'Content that contains C2PA metadata', and internal detection. TikTok newsroom (May 9, 2024): auto-labels AIGC by reading Content Credentials. Every 'AI video' in the film is drawn by hand: no real AI footage, no real faces, no real logos or app UI. Hero: the paper loupe slides off the pixels onto the poster's name tag, coral stamp WHO POSTED IT? in the 1.2 s silence after 'first.' No AI tag anywhere (Isac, 2026-11-03). dur is the chain estimate; Ming reads about 15 % faster, so expect about 31-32 s.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.9
+ },
+ "names": [
+  "Content Credentials"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 27
+ },
+ "dur": 32.08,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Is this video real? Five seconds.",
+   "pause": 0.15
+  },
+  {
+   "id": "ask",
+   "at": 2.68,
+   "text": "So how do you tell if a video is AI?",
+   "pause": 0.2,
+   "say": "So, how do you tell if a video is AI?"
+  },
+  {
+   "id": "hunt",
+   "at": 5.22,
+   "text": "We all hunt for glitches.",
+   "pause": 0.15
+  },
+  {
+   "id": "tells",
+   "at": 7.04,
+   "text": "Extra fingers. Garbled signs. Wrong-way shadows.",
+   "pause": 0.3
+  },
+  {
+   "id": "fading",
+   "at": 11.37,
+   "text": "But those glitches are getting harder to spot.",
+   "pause": 0.2
+  },
+  {
+   "id": "coin",
+   "at": 13.83,
+   "text": "In a 2024 study, people guessed right about half the time.",
+   "say": "In a twenty twenty-four study, people guessed right about half the time.",
+   "pause": 0.6
+  },
+  {
+   "id": "stop",
+   "at": 17.73,
+   "text": "So stop staring at the pixels.",
+   "pause": 0.2
+  },
+  {
+   "id": "hero",
+   "at": 19.54,
+   "text": "Check who posted it first.",
+   "pause": 1.2
+  },
+  {
+   "id": "tap",
+   "at": 22.05,
+   "text": "Tap the name. Find the original upload.",
+   "pause": 0.2
+  },
+  {
+   "id": "label",
+   "at": 24.46,
+   "text": "Look for an AI label or Content Credentials.",
+   "pause": 0.2
+  },
+  {
+   "id": "missing",
+   "at": 27.19,
+   "text": "No label? That proves nothing.",
+   "pause": 0.4,
+   "tail_fade": 0.05
+  },
+  {
+   "id": "end",
+   "at": 29.7,
+   "text": "Do you check who posted it? Yes or no.",
+   "say": "Do you check who posted it, yes or no?",
+   "pause": 0
+  }
+ ],
+ "tail": 0.2
+}

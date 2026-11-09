@@ -1,0 +1,108 @@
+{
+ "about": "What if your password were 20 letters long. Factory #23, backlog row 27 (whatif-password), playlist How tech works. Packaging 5/6. One hard idea: every extra random lowercase letter multiplies the possible passwords by 26, so 8 random letters fall in about two weeks and 20 would take over four quadrillion years (our math) on Hive Systems' 2026 rig, but a reused or dictionary-word password falls instantly at any length, which is why two-step login still matters. Sources, all read 2026-11-06: Hive Systems, 'Are Your Passwords in the Green?' (2026 Password Table, published July 14, 2026, modified July 21, 2026), hivesystems.com/password: table header 'Hardware: 16 x RTX 5090 | Password hash: bcrypt (10)'; 'two 8x RTX 5090 setups running at a measured 138,675 hashes per second combined'; Lowercase Letters column: 8 = 2 weeks, 9 = 1 year, 12 = 21k years, 18 = 6tn years (the table ends at 18); 'These metrics assume passwords are randomly generated.'; 'Password table if your password has been previously stolen, uses dictionary words, or if you reuse it between websites.' every cell 'Instantly'; FAQ 'Each additional character multiplies the number of possible combinations far more than adding another symbol type does'. Our math: 26^20 / 138,675 per s = 4.55 quadrillion years (checked against the table: 26^8 -> 17.4 days, 26^12 -> 21,806 years, 26^18 -> 6.7 trillion years). NIST SP 800-63B-4 (July 2025): 'Verifiers and CSPs SHALL require passwords that are used as a single-factor authentication mechanism to be a minimum of 15 characters in length.' CISA, Multifactor Authentication topic page (undated): 'even if you have a complex password, bad cyber actors unfortunately still have ways of getting past it.' Defensive only: no tools, wordlists or methods. No AI tag anywhere (Isac, 2026-11-03). dur is the chain estimate; Ming reads about 0.855x, so expect about 31-32 s.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.9
+ },
+ "names": [],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0.5,
+  "smr_db": 35
+ },
+ "dur": 36.88,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Eight random letters? Two weeks.",
+   "pause": 0.6
+  },
+  {
+   "id": "ask",
+   "at": 2.67,
+   "text": "So how long should your password be?",
+   "say": "So, how long should your password be?",
+   "pause": 0.2
+  },
+  {
+   "id": "whatif",
+   "at": 4.87,
+   "text": "What if it were twenty letters?",
+   "pause": 0.2
+  },
+  {
+   "id": "times",
+   "at": 6.61,
+   "text": "Each extra lowercase letter multiplies the possible passwords by 26.",
+   "pause": 0.3,
+   "say": "Each extra lowercase letter multiplies the possible passwords by twenty-six."
+  },
+  {
+   "id": "nine",
+   "at": 11.16,
+   "text": "Nine letters? One year.",
+   "pause": 0.15
+  },
+  {
+   "id": "twelve",
+   "at": 13.16,
+   "text": "Twelve? 21,000 years.",
+   "pause": 0.15,
+   "say": "Twelve? Twenty-one thousand years."
+  },
+  {
+   "id": "eighteen",
+   "at": 15.38,
+   "text": "Eighteen? Six trillion years. The chart stops there.",
+   "pause": 0.6
+  },
+  {
+   "id": "twenty",
+   "at": 19.57,
+   "text": "Twenty, by our math? Over four quadrillion years.",
+   "pause": 1.3
+  },
+  {
+   "id": "dip",
+   "at": 24.41,
+   "text": "But reused, or real words? Instantly.",
+   "pause": 0.6
+  },
+  {
+   "id": "nist",
+   "at": 27.62,
+   "text": "Federal guidelines say fifteen, if there's no second step.",
+   "pause": 0.2
+  },
+  {
+   "id": "mfa",
+   "at": 30.98,
+   "text": "Turn on two-step, so a stolen password isn't enough.",
+   "pause": 0.2
+  },
+  {
+   "id": "end",
+   "at": 34.37,
+   "text": "Is it on for your email? Yes or no.",
+   "say": "Is it on for your email, yes or no?",
+   "pause": 0,
+   "speed": 0.88
+  }
+ ],
+ "tail": 0.2,
+ "fit": {
+  "min": 0.86,
+  "max": 1.1
+ }
+}

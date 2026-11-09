@@ -113,6 +113,25 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - When a before/after panel pair changes to a new pair, swap every label with it; a label left up reads backwards with the sound off and costs a Truth point (vision r2).
 - Scope every capped number from its first frame ("CAP 4,784 (CLAUDE 4.7+)"); a bare number that is wrong on another tier is a Truth flag (vision r3).
 - A 1-frame blip inside a still hold can be x264's periodic keyframe (keyint 250 = 8.33 s at 30 fps); set `X264_PARAMS=keyint=450` in render.mjs's encode for films with a hold near a multiple of 8.33 s (vision polish).
+- Every quote chip cut from a list or mid-sentence needs "…" at each cut, also for short phrases like "extra fingers"; the first detect cut lost a full Truth point on two chips (detect r1).
+- Scope a source to what it studied on screen ("AI-IMAGE GUIDE") when the film is about a neighbouring medium (video); an unscoped credit costs half a Truth point (detect r1).
+- A tag next to a generic "AI LABEL" chip reads as a claim about our own art; write "DRAWN BY US", never "OUR DRAWINGS" under an AI label (detect r2).
+- A bigger centred hero prop leaves no room for a 300 px frame-0 glide; get the travel from the headline sliding off a band on the picture instead (detect r2b).
+- Plan sound gaps in the script: in a 32 s, 86-word film the voice left no 0.6 s gap for the coin, the ALSO MADE UP stamp or YES/NO, so the biggest beats stayed silent (detect polish). Put a written pause after each planned hit line.
+- Fill y 1000–1430 in every second, measured on the render: energy lost a full Craft point in round 2 for an empty lower third (2.5–9.5 s, 21–23 s), the third film to repeat it. Lay out props from the bottom of the safe box up, not from the caption down (energy r2).
+- Never leave a ghosted or placeholder card as the end card; the frame before the loop must be frame 0 at full opacity with YES/NO ≥ 110 px (energy r2).
+- A hero stamp must be peeled before the next source's line starts, or two sources' numbers share a frame; if that cuts the read time, ink the stamp in on its own key word instead (energy r2, readcheck 0.88 → 2.33 s).
+- Scope a modelled multiplier in the voice or in a ≥ 48 px line right under it ("13× · ANSWERS 15× LONGER"); a 36 px chip alone costs Truth (energy r2).
+- Name a funded source honestly: call Microsoft "other researchers", never "outside", when it invests in the company being checked (energy r1).
+- Jury scores swing ±0.2 between fresh juries (energy 7.1 → 6.9 after fixes); fix the craft gaps LESSONS already names before round 1, since that's where the points go.
+- `voiceover.py` mix used `-shortest` and dropped the last 4 video frames; it now pads the audio to the video length (energy).
+- A what-if beyond the source's table is fine when the voice says "by our math" and the same formula reproduces the source's own cells on screen; both juries accepted it at Truth 8.5–9.0 (whatif-password).
+- A counter's unit must match its example: "14 LETTERS" under `sunnybeach2024` (10 letters, 4 digits) cost Truth; use an all-letter example or say CHARACTERS (whatif-password r1).
+- Write a guideline's scope into the big type ("FEDERAL GUIDELINE FOR LOGINS WITH NO SECOND STEP"), not only a credit line; the password r2 lesson repeated itself because the brief's scope line was dropped in the build (whatif-password r1).
+- A tile, digit or stamp must land on the same frame as the state it changes; three frames of 9 tiles under "8 · 2 WEEKS" was flagged even at 30 fps (whatif-password r2).
+- Hits close to speech get ducked by the mix: pops under −30 dB RMS vanish on a phone; layer 1–3 kHz and plan their gaps in the script (whatif-password r2).
+- The SFX gate reads out/events.json, which only `render.mjs events` writes; regenerate it after every re-time or the gate checks stale hits (whatif-password).
+- Keep the upload mp4 under 9.5 MB: the PC's upload tool caps at 10 MB and re-compressed the 10.4 MB whatif-password file (lower bitrate). Set the final x264 bitrate so a 37 s film lands near 9 MB (whatif-password).
 
 ## Picture
 - Highlight only stressed words in captions; per-word highlighting looks like stock auto-captions (hallucinate r1).
@@ -198,11 +217,11 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (from `python3 factory/stats.py`; refresh at the start of every run)
-Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
+Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
 | Video | Posted (UTC) | Length | Jury | YT | TT | Packaging | What it taught |
 |---|---|---|---|---|---|---|---|
 | noise | Oct 24 17:00 | 45 s | 7.8 | 1,319 | 0* | 4 | a task on frame 0 ("Find the cat") holds the swipe; best like rate |
-| incognito | Nov 2 18:00 | 30 s | 7.5 | 843 (6 h) | – | 6 | belief broken about a thing everyone uses; fastest start |
+| incognito | Nov 2 18:00 | 30 s | 7.5 | 1,281 (36 h) | – | 6 | belief broken about a thing everyone uses; fastest start |
 | battery | Oct 25 17:00 | 40 s | 8.0 | 455 | 0* | 6 | threat about the phone in your hand plus a check |
 | memory | Oct 25 23:00 | 39 s | 8.0 | 441 | 395 | 5 | everyday annoyance; most comments (3) |
 | fyp | Oct 24 23:00 | 40 s | 8.1 | 331 | 200 | 4 | viewer as subject |
@@ -213,7 +232,9 @@ Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 | phonephoto | Oct 28 17:00 | 33 s | 7.4 | 22 | 0* | 2 | flattering premise, nothing to fix |
 | agent | Oct 28 23:00 | 30 s | 7.4 | 14 | 0* | 1 | a definition of a buzzword |
 | strawberry | Oct 23 | 75 s | 7.7 | 14 | 237 | 2 | a myth that's already fixed |
-| voiceclone | Nov 3 00:00 | 32 s | 7.5 | 4 (17 min) | – | 5 | read at 24 h |
+| voiceclone | Nov 3 00:00 | 32 s | 7.5 | 1,195 (30 h) | – | 5 | slept 5 views for 6 h, then took off; read at 24 h, not before |
+| stepbystep | Nov 3 18:00 | 30 s | 7.4 | 24 (12 h) | – | 3 | prompt trick, no stake for the viewer; read again at 24 h |
+| vision | Nov 4 18:00 | 31 s | 7.2 | – | – | 3 | first post with no AI tag; read at 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -264,3 +285,15 @@ Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - An end question must not restate the cause wrongly: "Should a mod change a rating?" contradicted ESRB, which re-rated because the content was on the disc (gta-pulled r1, Truth 8.0).
 - Say the hook's subject on screen at frame 0: "Walmart" spoken first but not shown until 17 s cost Hook (gta-pulled r2). An unlabeled year tile on a game case reads as its release year (gta-pulled r2: 2005 on a 2004 game).
 - Wide topics did not fix the score: both broad Shorts (gta-money, gta-pulled) still landed 6.8-7.2 with Truth 8.5; the juries mark down stillness (a change every 1.2 s) and quiet hero sounds, not topic width.
+
+### embeddings (#24), jury r1 7.1/T8.0, r2 7.1/T8.0 — parked
+- When a sheet or new subject (YOU) arrives, peel every strip and stamp from the previous subject before it lands; a quote left beside a new subject reads as a claim about it (third repeat of this lesson).
+- Animate only what the source says: "would like the other's fifth artist… and suggest it" is a SUGGESTED copy, not a move into your top artists.
+- Fixing round-1 Truth items can expose new ones; before round 2, re-walk every strip/subject boundary yourself, not only the listed fixes.
+
+### forceclose (#25), jury r1 7.5 / Truth 8.5 — posted
+- First-round pass at the new gate: a 6/6 packaging topic (myth + frame-0 test + takeaway) with first-party quotes beat a 4/6 topic that needed two rounds. Pick topics from PERFORMANCE §7's idea list first.
+- Researcher softened the backlog hook ("is draining" → "won't save") because no primary source says closing drains; keep doing that check before the script.
+- Scope lines must match each maker's own fix: Apple = close only if frozen, or turn off Background App Refresh; Google = restrict, then force stop. Use the maker's own term ("Background Activity", not "background apps"), or the list reads as the myth.
+- Hero thump peak (not just RMS) must sit ≥ 3 dB under the next voice peak; measure with astats.
+- YouTube description: the PC reported angle brackets/arrow paths trouble and 4,952 of 5,000 chars. Keep descriptions ≤ 4,600 chars and write menu paths with "›" or ", ".

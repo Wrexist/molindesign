@@ -1,0 +1,80 @@
+{
+ "title": "How does Spotify know what you like? Every skip feeds your taste profile, and in Spotify's research each song is 80 numbers.",
+ "caption": "How does Spotify know what you like? Every skip feeds your taste profile, and in Spotify's research each song is 80 numbers.\nSongs in the same playlists land close. Your kids' songs can move you in minutes; there's a setting to exclude them.\nHas one song hijacked your mix? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#spotify",
+  "#spotifyalgorithm",
+  "#spotifytips",
+  "#musicrecommendations"
+ ],
+ "keywords": [
+  "how does spotify know what you like",
+  "how does the spotify algorithm work",
+  "spotify taste profile",
+  "exclude from taste profile spotify",
+  "how to fix spotify recommendations",
+  "why does spotify recommend kids songs",
+  "spotify recommendations explained",
+  "spotify algorithm 2026"
+ ],
+ "cover_text": "WHY THIS SONG?",
+ "cover_time": 0.0,
+ "pinned_comment": "One more from the same Spotify research (Sep 18, 2025): it adds up your activity over three windows, \"~6 months (core interests), 1 month (mid-term shifts), and 1 week (fresh intent)\". What song took over your recommendations lately?",
+ "pinned_backups": [
+  {
+   "if": "So it doesn't even listen to the music?",
+   "reply": "In Spotify's 2025 research system it does: \"Audio encoder: learns track embeddings directly from audio features, capturing acoustic similarity.\" A second encoder learns from \"playlist co-occurrence\". That's why the video says songs land close when they share playlists and when they sound alike."
+  },
+  {
+   "if": "How do I stop the kids' songs?",
+   "reply": "Spotify's Understanding recommendations page (updated Oct 23, 2026): \"Exclude from taste profile: When you exclude content from your taste profile, it will have less influence on your future recommendations. You can exclude tracks, playlists or kids and family music.\" Spotify says these controls' \"availability depends on your country and subscription plan\"."
+  },
+  {
+   "if": "One song keeps showing up everywhere.",
+   "reply": "Same Spotify page: \"If you’re a Premium user, after you hide a track you can also choose to snooze it, and it won’t be suggested anywhere on Spotify for 30 days.\""
+  },
+  {
+   "if": "So I'm 80 numbers?",
+   "reply": "No, each song is 80 numbers in that system. You're \"a high-dimensional embedding\", built from those song numbers plus \"contextual, demographic, and onboarding signals\". The post doesn't say how many numbers you are, and our map squashes everything to 2."
+  },
+  {
+   "if": "Is this how Discover Weekly works?",
+   "reply": "We can't say: Spotify hasn't published Discover Weekly's recipe that we could find. The 80 numbers come from one Spotify Research system (Sep 18, 2025) that Spotify says is \"Deployed in production\", with tests on Home shelves, search re-ranking and Home ranking."
+  },
+  {
+   "if": "Spotify knows me better than my friends.",
+   "reply": "No source we found says that. What Spotify does say is that your taste profile \"is the most important input\" for its recommendations."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: the first free Tech, explained slot after whatif-password (the orchestrator confirms which is free). 19:00 ET (EST) Sat Nov 7 = 00:00 UTC Sun Nov 8 if free; otherwise 13:00 ET Sun Nov 8 = 18:00 UTC. Both slots have produced winners (incognito 13:00, voiceclone 19:00). Pick the time from YouTube Studio's dropdown and check the saved UTC time. Post only on a jury pass. TikTok: on hold (account-level hold); when it resumes, the first 19:00 ET slot.",
+ "post_time_stockholm": "01:00 Sun Nov 8 (19:00 ET slot) or 19:00 Sun Nov 8 (13:00 ET slot). Sweden CET, US EST, 6 h apart.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold, and a trending-sound pick goes stale in days. When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick an instrumental bed at 5-10 % under the voice-only cut (30.9 s; the sound must be at least that long). Never a Spotify-branded or Spotify-promo sound. Skip Self Aware and Espresso Soul (retired) and the last three posts' sounds. YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "Spotify Maps You as a Dot 😮",
+ "youtube_title_alternatives": [
+  "Your Skips Are Shaping Your Spotify 😮",
+  "How Spotify Knows What You Like 🤔"
+ ],
+ "youtube_title_check": "Kept the brief's title. Packaging rules (PERFORMANCE.md §7, mark 5): 6 words, Title Case (\"as\" and \"a\" lowercase), one emoji at the end (😮 = wow), the thing in word 1, consequence verb \"Maps\", not a definition, no \"Actually Is\", no #Shorts. Truth: \"mapped\" is Spotify Research's own verb (\"Each listener is mapped to a high-dimensional embedding…\") for a system it says is \"Deployed in production\"; \"a dot\" is the film's drawing, labelled OUR DRAWING, SIMPLIFIED, and the description's first lines carry the scope. It never says 80 numbers about the listener.",
+ "youtube_description": "How does Spotify know what you like? Spotify's own page says skipping, listening, searching and saving all shape your \"taste profile\". In Spotify's research, each song becomes 80 numbers, a point in a big space, and you're a point too. Your kids' songs can move yours within minutes, and there's a setting to exclude them.\n\nYour taste profile. Spotify, \"Understanding recommendations on Spotify\" (last updated Oct 23, 2026): \"As you engage with Spotify, actions such as searching, listening, skipping, or saving to Your Library influence our interpretation of your taste. We call this your “taste profile,” and it gives our algorithms an indication of what you're interested in and how you like to listen.\"\n\n80 numbers per song. Spotify Research's \"Generalized user representations for large-scale recommendations\" (Sep 18, 2025; paper at RecSys 2025, Industry) describes one system that Spotify says is \"Deployed in production\". It learns song embeddings two ways. \"Collaborative encoder: learns track embeddings from playlist co-occurrence…\" and \"Audio encoder: learns track embeddings directly from audio features, capturing acoustic similarity.\" Then: \"These 80-dimensional track embeddings are fused with contextual, demographic, and onboarding signals…\" So songs in the same playlists land close, and so do songs that sound alike.\n\nYou're a point too. Same post: \"Each listener is mapped to a high-dimensional embedding within a stable vector space…\" The post doesn't say how many numbers that is. The 80 is per song, never per listener.\n\nListeners near you. Oskar Stål, Spotify's VP of Personalization, on Spotify's newsroom (Oct 13, 2021): \"Imagine you and another person have similar music tastes. You have four of the same top artists, but your fifth artists are different. We would take those two near-matches and think, ‘Hmm, maybe each person would like the other’s fifth artist’ and suggest it.\"\n\nWithin minutes. Spotify Research (Sep 18, 2025): \"NRT inference, triggered by user activity events (e.g., streaming a new artist), refreshes embeddings within minutes.\" Kids' songs are our example; Spotify's example is a new artist.\n\nThe fix. Spotify's page: \"Exclude from taste profile: When you exclude content from your taste profile, it will have less influence on your future recommendations. You can exclude tracks, playlists or kids and family music.\" Spotify lists it among controls whose \"availability depends on your country and subscription plan\".\n\nHas one song hijacked your mix? Yes or no.\n\nFine print: the 80 numbers per song and the \"within minutes\" refresh come from one Spotify Research system (Sep 18, 2025), not from the app's exact recipe. Spotify hasn't published a recipe for Discover Weekly or any other playlist that we could find, so this video doesn't say how any one playlist is made. In that system the listener is \"a high-dimensional embedding\", built from the song embeddings plus \"contextual, demographic, and onboarding signals\"; the listener is not 80 numbers. The maps, pins and strings are our drawings, simplified: we squash 80 numbers into 2, and the 80 numbers have no published names, so the map has no axes. Songs and listeners sit on separate sheets because the post doesn't say they share one space. Excluding gives content \"less influence\"; Spotify doesn't say it removes it. The Exclude setting's availability depends on your country and subscription plan, in Spotify's words. \"Kids' songs\" is our example of \"streaming a new artist\", and the song titles on screen are made up. Stål's quote is from 2021 and describes the idea of listeners near you, not the 2025 system. Every prop (the paper playlist card, the number tape, the cork map, the pins and string, the quote strips) is hand-drawn by us; no Spotify logo, app screen or playlist cover is shown. Not sponsored by or affiliated with Spotify.\n\nSources (all read Nov 7, 2026):\n- Spotify Safety & Privacy Center, \"Understanding recommendations on Spotify\", last updated Oct 23, 2026: https://www.spotify.com/us/safetyandprivacy/understanding-recommendations\n- Spotify Research (Fazelnia et al.), \"Generalized user representations for large-scale recommendations\", Sep 18, 2025 (RecSys 2025, Industry): https://research.atspotify.com/2025/9/generalized-user-representations-for-large-scale-recommendations\n- Spotify For the Record, Oskar Stål interview, Oct 13, 2021: https://newsroom.spotify.com/2021-10-13/adding-that-extra-you-to-your-discovery-oskar-stal-spotify-vice-president-of-personalization-explains-how-it-works/\n\nHow tech works, part 8.\n\n#spotify #spotifyalgorithm #techexplained",
+ "youtube_tags": [
+  "how does spotify know what you like",
+  "how does the spotify algorithm work",
+  "spotify algorithm",
+  "spotify taste profile",
+  "exclude from taste profile",
+  "how to fix spotify recommendations",
+  "why does spotify recommend kids songs",
+  "spotify recommendations",
+  "spotify research",
+  "music recommendations",
+  "embeddings explained",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 8",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration disclosure line, no #ai. YouTube Altered content: No (every prop is hand-drawn and plainly illustrated; no real person, place, event, account or app screen is shown). The fine print says the props are hand-drawn by us and that the video isn't sponsored by Spotify; those are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle is handled separately, not here."
+}
