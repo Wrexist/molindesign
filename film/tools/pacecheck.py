@@ -51,7 +51,8 @@ def measure(path):
 
 def frozen_runs(times, mafd, min_len):
     runs, start = [], None
-    for t, v in zip(times + [times[-1] + 1], mafd + [1e9]):
+    dt = times[1] - times[0] if len(times) > 1 else 0   # the closing sentinel is one frame after the last, so a still tail isn't padded by a whole second
+    for t, v in zip(times + [times[-1] + dt], mafd + [1e9]):
         if v < STILL:
             start = t if start is None else start
         elif start is not None:

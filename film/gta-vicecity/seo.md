@@ -1,6 +1,6 @@
 # SEO and posting text: GTA 6 Vice City is from 1997
 
-Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only for now; TikTok is paused (a caption is kept below for later). Switch to Delta and verify the channel name in YouTube Studio before uploading. Slot: 2026-10-30 (ET), backlog row 4. Upload `out/gta-vicecity-vo.mp4` (voice + sound effects, no music, 41.9 s). Altered content: No. Written 2026-10-29 for a US audience. Facts and sources: `BRIEF.md`.
+Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only for now; TikTok is paused (a caption is kept below for later). Switch to Delta and verify the channel name in YouTube Studio before uploading. Slot: 2026-11-04 19:00 ET, backlog row 4. Upload `out/gta-vicecity-vo.mp4` (voice + sound effects, no music, 42.5 s). Altered content: No. Written 2026-10-29 for a US audience; facts re-checked 2026-11-04. Facts and sources: `BRIEF.md`.
 
 ## YouTube Shorts title
 GTA 6's city is from 1997: 29 years of Vice City
@@ -15,8 +15,8 @@ Which Vice City was best? Comment the year: 1997, 2002, 2006 or 2026.
 GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S.
 
 Sources:
-- Rockstar Games, Grand Theft Auto VI (launch date, platforms, Vice City, USA): https://www.rockstargames.com/VI (read October 29, 2026)
-- Rockstar Games, Only in Leonida (quote: "We're a long way from the '80s, but Vice City is still the sun and fun capital of America."): https://www.rockstargames.com/VI/only-in-leonida (read October 29, 2026)
+- Rockstar Games, Grand Theft Auto VI (launch date, platforms, Vice City, USA): https://www.rockstargames.com/VI (read November 4, 2026)
+- Rockstar Games, Only in Leonida (quote: "We're a long way from the '80s, but Vice City is still the sun and fun capital of America."): https://www.rockstargames.com/VI/only-in-leonida (read November 4, 2026)
 - Take-Two press release, December 6, 2012 (GTA Vice City first released October 2002 on PS2, built on GTA III's open world): https://ir.take2games.com/static-files/06ef640d-9baa-4e31-9d0c-fa28d63be501
 - Take-Two press release, "Rockstar Games Ships Grand Theft Auto: Vice City for PlayStation 2" (October 29, 2002): https://ir.take2games.com/news-releases/news-release-details/rockstar-games-ships-grand-theft-auto-vice-city-playstation-r-2
 - Take-Two press releases, Vice City Stories on PSP (October 31, 2006) and PS2 (March 2007): https://ir.take2games.com/static-files/43fadba7-2412-4215-a298-0266010c4f66 and https://ir.take2games.com/static-files/744c1b53-72cc-4587-8f90-4abb644a230d
@@ -39,7 +39,7 @@ Which Vice City was best? One year only: 1997, 2002, 2006 or 2026?
 GTA 6 Facts
 
 ## YouTube settings
-Altered or synthetic content: No. Not made for kids. Language English (US). Category Gaming. Post at 13:00 ET on 2026-10-30 (19:00 Stockholm): US lunch break, and it leaves the afternoon and evening for the first comments.
+Altered or synthetic content: No. Not made for kids. Language English (US). Category Gaming. Post at 19:00 ET on 2026-11-04 (01:00 Stockholm Nov 5), six hours after gta-lucia at 13:00 ET.
 
 ## TikTok caption (for later, TikTok is paused)
 GTA 6's Vice City is from 1997. Four Vice Cities, 29 years by release year. Which one was best? Comment the year. #gta6 #vicecity #gtavicecity #gaming
@@ -70,4 +70,4 @@ Autocomplete was not pulled; check the first phrase in YouTube search (English, 
 - A small Promote boost targeted at the US is worth it only if the vote thread takes off in the first day; otherwise skip.
 
 ## Note for the director
-`out/poster.jpg` (the 40 YEARS frame) has the caption cut mid-line ("before GTA") at the top. If the poster is used as the thumbnail, pick a frame where the caption reads whole, or the frame with the full 40 YEARS stamp and no caption.
+Since the jury-r2 fixes (2026-11-04) `out/poster.jpg` is the 29 YEARS hero frame with no caption.
