@@ -1,0 +1,92 @@
+{
+  "about": "GTA 6 costs $79.99 (US Standard, PS Store + Xbox Store, checked 2026-11-07). GTA 5 was $59.99 at its Sept 17 2013 US launch (Kotaku, 9to5Toys, May 23 2013). BLS CPI-U all items, US city average, NSA: Sept 2013 234.149, Sept 2026 336.940, ratio 1.4390, so $59.99 then = $86.33 in Sept 2026 dollars: over $85, more than GTA 6's $79.99. Delta, pillar 1.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 5",
+    "GTA 6"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 36
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6 costs $80. Too much?",
+      "say": "G T A 6 costs eighty dollars. Too much?"
+    },
+    {
+      "id": "then",
+      "at": 3.7,
+      "text": "GTA 5 was $59.99, back in 2013.",
+      "say": "G T A 5 was fifty nine ninety nine, back in twenty thirteen."
+    },
+    {
+      "id": "ask",
+      "at": 8.63,
+      "text": "So which one really cost more?",
+      "say": "So which one really cost more?"
+    },
+    {
+      "id": "paper",
+      "at": 11.17,
+      "text": "On paper, GTA 6, by twenty dollars.",
+      "say": "On paper, G T A 6, by twenty dollars."
+    },
+    {
+      "id": "prices",
+      "at": 14.37,
+      "text": "But since 2013, US prices rose over forty percent.",
+      "say": "But since twenty thirteen, U S prices rose over forty percent.",
+      "take": 1,
+      "tail_fade": 0.1
+    },
+    {
+      "id": "hero",
+      "at": 18.84,
+      "text": "So GTA 5's $59.99 is over $85 today.",
+      "say": "So G T A five's fifty nine ninety nine is over eighty five dollars today."
+    },
+    {
+      "id": "more",
+      "at": 24.79,
+      "text": "That's more than GTA 6 at $79.99.",
+      "say": "That's more than G T A six, at seventy nine ninety nine."
+    },
+    {
+      "id": "fine",
+      "at": 28.65,
+      "text": "Both are US launch prices, standard edition.",
+      "say": "Both are U S launch prices, standard edition."
+    },
+    {
+      "id": "six",
+      "at": 32.1,
+      "text": "GTA 6 comes out November 19th.",
+      "say": "G T A 6 comes out November nineteenth."
+    },
+    {
+      "id": "end",
+      "at": 35.0,
+      "text": "So, is $80 too much? Yes or no?",
+      "say": "So, is eighty dollars too much? Yes, or no?"
+    }
+  ],
+  "dur": 39.2
+}

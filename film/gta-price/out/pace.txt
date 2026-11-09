@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-price/out/gta-price-vo.mp4: 39.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.379, 0-3 s 1.12, median 0.447, still frames 0.1 %
+OK    no frozen stretches, opening moves
