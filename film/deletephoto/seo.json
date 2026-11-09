@@ -1,0 +1,80 @@
+{
+ "title": "Deleted photos aren't really gone: Recently Deleted keeps them 30 days",
+ "caption": "Deleted photos aren't really gone. Your iPhone keeps them in Recently Deleted for 30 days, and Google Photos keeps its trash 30 days too.\nHere's when a photo is really gone, and the copy you can't delete.\nIs your Recently Deleted empty? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#iphonetips",
+  "#googlephotos",
+  "#iphonephotos",
+  "#phonetips"
+ ],
+ "keywords": [
+  "deleted photos",
+  "recently deleted",
+  "recently deleted photos iphone",
+  "how to permanently delete photos on iphone",
+  "where do deleted photos go",
+  "google photos trash 30 days",
+  "recover deleted photos iphone",
+  "empty recently deleted"
+ ],
+ "cover_text": "Deleted photos: still here",
+ "cover_time": 0.0,
+ "pinned_comment": "Apple Support (Mar 31, 2026): deleted photos \"go to your Recently Deleted album for 30 days.\" Google Photos Help: they \"stay in your trash for 30 days before they are permanently deleted.\" To really delete on iPhone: Photos › swipe up › Recently Deleted › unlock › Select › More › Delete All. Google Photos: Collections › Trash › More › Empty Trash. How many are still sitting in yours?",
+ "pinned_backups": [
+  {
+   "if": "Can a recovery app get them back?",
+   "reply": "We only go as far as Apple's and Google's own pages. Apple: \"When you delete a photo or video from this album, you can't get it back.\" Google: \"Photos and videos that were permanently deleted can't be restored.\" We didn't test recovery tools, so the video makes no claim about them either way."
+  },
+  {
+   "if": "What about photos I texted someone?",
+   "reply": "We found no Apple or Google page on that, so the video sticks to shared albums, where Apple says photos a friend saved \"stay in your library even if the shared album is deleted or the person who created it stops sharing it.\""
+  },
+  {
+   "if": "Wasn't Google's trash longer?",
+   "reply": "Google's help page says it \"details the current retention policy,\" and it now reads: \"Photos and videos that you delete will stay in your trash for 30 days before they are permanently deleted.\" We went by the live page, read Nov 9, 2026."
+  },
+  {
+   "if": "If I delete it on my iPhone, is it gone from my iPad too?",
+   "reply": "With iCloud Photos, yes. Apple: \"When you use iCloud Photos and delete a photo or video on one device, it gets deleted on all other devices where you're signed in with the same Apple Account.\" It still goes to Recently Deleted first."
+  },
+  {
+   "if": "I deleted one by accident!",
+   "reply": "You may still have time. Apple: \"If you accidentally deleted a photo or video, you can recover it within 30 days in the Recently Deleted album.\" Google: \"You can only restore photos and videos if they're still in your trash.\""
+  },
+  {
+   "if": "Why does it ask for Face ID?",
+   "reply": "Apple: \"In iOS 16, iPadOS 16.1, or later, Face ID or Touch ID is required to view the Hidden and Recently Deleted albums by default.\" To turn that off: \"Open the Settings app. Tap Apps, then tap Photos. Turn off Use Face ID.\""
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 13:00 ET (EST) Mon Nov 9 = 18:00 UTC, one day after forceclose (Nov 8 18:00 UTC) and the same 13:00 ET slot that incognito and forceclose won from; only if it passes the gate in time. Otherwise 19:00 ET Mon Nov 9 = 00:00 UTC Tue Nov 10 (voiceclone's and detect's slot), else 13:00 ET Tue Nov 10 = 18:00 UTC. The orchestrator confirms the slot is free. Pick the time from YouTube Studio's dropdown and check the saved UTC time. Post only on a jury pass. TikTok: on hold (account-level hold); when it resumes, the first 19:00 ET slot.",
+ "post_time_stockholm": "19:00 Mon Nov 9 (13:00 ET slot), 01:00 Tue Nov 10 (19:00 ET slot) or 19:00 Tue Nov 10. Sweden CET, US EST, 6 h apart.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold and a trending-sound pick goes stale in days (same call as forceclose and embeddings). When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick an instrumental bed at 5-10 % under out/deletephoto-voice-only.mp4 (34.5 s; the sound must be at least 35 s). Skip Self Aware and Espresso Soul (retired). YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "Deleted Photos Aren't Really Gone 🤔",
+ "youtube_title_alternatives": [
+  "Deleting a Photo Doesn't Delete It 😮",
+  "Your Deleted Photos Are Still Here 😮"
+ ],
+ "youtube_title_check": "Kept the researcher's title. PERFORMANCE.md §7 mark 5: the thing (\"Deleted Photos\") in words 1-2, 5 words, Title Case, one emoji at the end (🤔 = why/how), consequence verb \"Aren't Really Gone\", not a definition, no #Shorts, carries the main search phrase \"deleted photos\" (spoken at 0.2 s). Truth: paid off by Apple's \"they go to your Recently Deleted album for 30 days\" and Google's 30-day trash; the description's first line scopes it (\"at least not right away\") and the film ends on Apple and Google saying an emptied photo can't come back, so the title never implies recovery tools.",
+ "youtube_description": "Deleted photos aren't really gone, at least not right away. On iPhone, hitting delete only moves a photo to the Recently Deleted album, Google Photos keeps it in the trash, and a copy a friend saved from your shared album stays with them.\n\nCheck yours. Apple Support: \"Open the Photos app, swipe up, then tap Recently Deleted in the Utilities section.\" (\"How to recover deleted photos on your iPhone, iPad, Mac, or Apple Vision Pro\", published Sep 15, 2025)\n\nThirty days, locked. Apple Support, \"Delete photos on your iPhone or iPad\" (published Mar 31, 2026): \"When you delete photos and videos, they go to your Recently Deleted album for 30 days. After 30 days, they'll be permanently deleted.\" And: \"In iOS 16, iPadOS 16.1, or later, Face ID or Touch ID is required to view the Hidden and Recently Deleted albums by default.\" To turn the lock off: \"Open the Settings app. Tap Apps, then tap Photos. Turn off Use Face ID.\"\n\nGoogle Photos too. Google Photos Help, \"Delete photos & videos\": \"Photos and videos that you delete will stay in your trash for 30 days before they are permanently deleted.\" And: \"If you delete a photo or video that's backed up in Google Photos, it will stay in your trash for 30 days.\"\n\nA friend's copy. Apple Support, \"How to use Shared Albums in Photos on your iPhone, iPad, or Apple Vision Pro\" (published Oct 6, 2026): \"Any photos that you saved or downloaded from a shared album to your Photos library stay in your library even if the shared album is deleted or the person who created it stops sharing it.\"\n\nTo really delete it. iPhone: Photos › swipe up › Recently Deleted, unlock it, tap Select, then \"Tap the More button, then tap Delete or Delete All.\" Apple: \"When you delete a photo or video from this album, you can't get it back.\" Google Photos: Collections › Trash › More › Empty Trash › Delete permanently. Google: \"When you empty your trash, you permanently delete any photos and videos in your trash, and they can't be restored.\"\n\nDeleted one by accident? Apple: \"If you accidentally deleted a photo or video, you can recover it within 30 days in the Recently Deleted album.\" Google: \"You can only restore photos and videos if they're still in your trash.\"\n\nSo, is yours empty? Yes or no.\n\nFine print: \"still here\" means photos deleted in the last 30 days that you haven't emptied out. The lock is on by default in iOS 16 and later, and you can turn it off. The friend's copy covers photos saved from a shared album only; we found no Apple or Google page on photos you texted or sent another way, so the video makes no claim about them. \"You can't get it back\" is what Apple and Google say about their own apps; this video makes no claim about recovery tools. With iCloud Photos, Apple says: \"When you use iCloud Photos and delete a photo or video on one device, it gets deleted on all other devices where you're signed in with the same Apple Account.\" Google says items you delete in Google Photos aren't automatically removed from Blogger, Drive, Gmail or YouTube, and \"Deleted photos and videos might stay on a removable memory card.\" Other gallery apps aren't covered. The phones, albums and confirm screens in the video are re-created and drawn by hand; no real interface or logo is shown. Not sponsored by or affiliated with Apple or Google.\n\nSources (all read Nov 9, 2026):\n- Apple Support, \"Delete photos on your iPhone or iPad\", published Mar 31, 2026: https://support.apple.com/en-us/104967\n- Apple Support, \"How to recover deleted photos on your iPhone, iPad, Mac, or Apple Vision Pro\", published Sep 15, 2025: https://support.apple.com/en-us/124460\n- Apple Support, \"How to use Shared Albums in Photos on your iPhone, iPad, or Apple Vision Pro\", published Oct 6, 2026: https://support.apple.com/en-us/108314\n- Google Photos Help, \"Delete photos & videos\" (Android): https://support.google.com/photos/answer/6128858?hl=en&co=GENIE.Platform%3DAndroid\n- Google Photos Help, \"Delete photos & videos\" (iPhone & iPad): https://support.google.com/photos/answer/6128858?hl=en&co=GENIE.Platform%3DiOS\n- Google Photos Help, \"Restore recently deleted photos & videos\": https://support.google.com/photos/answer/9343482?hl=en&co=GENIE.Platform%3DAndroid\n\nHow tech works, part 9.\n\n#techexplained #iphonetips #googlephotos",
+ "youtube_description_chars": 4262,
+ "youtube_tags": [
+  "deleted photos",
+  "recently deleted",
+  "recently deleted photos iphone",
+  "how to permanently delete photos on iphone",
+  "where do deleted photos go",
+  "recover deleted photos",
+  "google photos trash",
+  "empty trash google photos",
+  "shared album",
+  "iphone tips",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 9",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no #ai. YouTube Altered content: No (hand-drawn, plainly illustrated props and phones; no real person's voice, no realistic footage; the album, shared album and confirm sheets are re-created and tagged RE-CREATED). The fine print's re-created/hand-drawn/not-sponsored notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator."
+}
