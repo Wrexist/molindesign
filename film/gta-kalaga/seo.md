@@ -15,8 +15,8 @@ Rockstar's site never gives Mount Kalaga's height. So, mountain or hill? One wor
 GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S.
 
 Sources:
-- Rockstar Games, Only in Leonida: Mount Kalaga (quotes above): https://www.rockstargames.com/VI/only-in-leonida/kalaga (read November 4, 2026)
-- Rockstar Games, Grand Theft Auto VI (launch date, platforms): https://www.rockstargames.com/VI (read November 4, 2026)
+- Rockstar Games, Only in Leonida: Mount Kalaga (quotes above): https://www.rockstargames.com/VI/only-in-leonida/kalaga (read November 5, 2026)
+- Rockstar Games, Grand Theft Auto VI (launch date, platforms): https://www.rockstargames.com/VI (read November 5, 2026)
 
 Grand Theft Auto is a trademark of Take-Two Interactive.
 
