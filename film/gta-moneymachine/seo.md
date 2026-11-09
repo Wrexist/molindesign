@@ -52,7 +52,7 @@ Our own math (not Take-Two's): every year, Take-Two's annual report (10-K) says 
 
 The spending-inside-games numbers (about a quarter of revenue in FY2017, over three quarters in FY2026) are for all of Take-Two's games, not GTA alone; half of Take-Two's FY2026 revenue came from mobile games, and it bought Zynga in May 2022.
 
-Unit counts are as of Take-Two's August 2026 report (the 10-Q for the quarter ended June 30, 2026, filed August 7, 2026: "over 230 million units" sold-in). Take-Two reports again around November 9, 2026. "Sold-in" means copies sold to stores and digital storefronts, as Take-Two counts them.
+Unit counts are as of Take-Two's August 2026 report (the 10-Q for the quarter ended June 30, 2026, filed August 7, 2026: "over 230 million units" sold-in). Take-Two's November 9, 2026 release (fiscal Q2 2027) gives no new unit count and keeps GTA VI on November 19, 2026 for PS5 and Xbox Series X|S: https://www.sec.gov/Archives/edgar/data/946581/000162828026072175/ttwo2q27earningsrelease.htm "Sold-in" means copies sold to stores and digital storefronts, as Take-Two counts them.
 
 Sources (all read November 8, 2026):
 - Take-Two, September 18, 2013: first-day sell-through of more than $800 million: https://www.sec.gov/Archives/edgar/data/946581/000110465913070819/a13-20938_1ex99d1.htm
