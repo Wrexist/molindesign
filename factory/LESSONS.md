@@ -264,3 +264,9 @@ Read 2026-11-03 00:17 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - An end question must not restate the cause wrongly: "Should a mod change a rating?" contradicted ESRB, which re-rated because the content was on the disc (gta-pulled r1, Truth 8.0).
 - Say the hook's subject on screen at frame 0: "Walmart" spoken first but not shown until 17 s cost Hook (gta-pulled r2). An unlabeled year tile on a game case reads as its release year (gta-pulled r2: 2005 on a 2004 game).
 - Wide topics did not fix the score: both broad Shorts (gta-money, gta-pulled) still landed 6.8-7.2 with Truth 8.5; the juries mark down stillness (a change every 1.2 s) and quiet hero sounds, not topic width.
+
+### More graphical (Isac 2026-11-04: "make video more graphical, add more content and graphics")
+- Something new every 1-2 s: loop-periodic paper life (birds, drifting clouds, sun rays, twinkles, river shimmer, falling leaves, a critter); no empty sky, and the bench gets colour glows + halftone (texture only, no shapes).
+- Kinetic type (kit `slam`/`popWords`, ≥ 36 px) on each key word plus an icon tag per listed item, in the caption zone only while the caption is off; register each in TEXTS so readcheck holds it, and never highlight inside a quote.
+- One kit fx hit per stressed word (impact ring, scribble, arrow; one burst, on the hero), paper-ribbon wipes between beats, camera punches only while the camera is not pushed in (push × punch breaks the rail).
+- Every new shape clips itself to the rail, and there is still one hero per beat (gta-kalaga).
