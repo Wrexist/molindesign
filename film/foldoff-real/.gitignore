@@ -1,0 +1,10 @@
+out/frames/
+out/check/
+out/vo/
+out/video.mp4
+out/mix.wav
+out/events.json
+out/render.log
+out/foldoff-real.mp4
+out/foldoff-real-voice-only.mp4
+out/mix.log
