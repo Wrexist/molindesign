@@ -1,0 +1,2 @@
+/home/user/molindesign/film/coldbattery/out/coldbattery-vo.mp4: 37.7 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.961, 0-3 s 0.883, median 0.14, still frames 17.8 %
+OK    no frozen stretches, opening moves

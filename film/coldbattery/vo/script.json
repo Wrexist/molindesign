@@ -1,0 +1,112 @@
+{
+ "about": "Why your phone dies in the cold. Factory #27, backlog row 31, slug coldbattery. One hard idea: a phone that shuts off in the cold usually isn't dead; cold slows the battery's chemistry and raises its impedance, so under load the voltage drops and the phone shuts itself off to protect its parts; warm it up and battery life returns to normal. Primary sources (read 2026-11-10): Apple Support 'If your iPhone or iPad gets too hot or too cold' (https://support.apple.com/en-us/118431, published May 14, 2026); Apple Support 'iPhone battery and performance' (https://support.apple.com/en-us/101575, published Jun 1, 2026); Google Pixel Phone Help 'Check & understand your Pixel's temperature' (https://support.google.com/pixelphone/answer/15679416); Samsung US 'Galaxy Battery Care & Maintenance' and 'About Battery' (samsung.com/us/support/galaxy-battery/); Battery University BU-502 (updated 2021-10-27) and BU-410 (updated 2022-03-01). Planned silences: 0.8 s after 'protect itself.' (dip: phone goes black, OFF stamp), 1.0 s after 'comes back.' (hero: screen relights, BATTERY LIFE RETURNS stamp). Narration-led: record the voice first and key every visual beat to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Apple",
+  "iPhone",
+  "iPhones"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 52
+ },
+ "dur": 37.68,
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Your phone isn't dead. It's cold.",
+   "pause": 0.5
+  },
+  {
+   "id": "ask",
+   "at": 2.75,
+   "text": "So why does your phone die in the cold?",
+   "pause": 0.55,
+   "say": "So, why does your phone die in the cold?"
+  },
+  {
+   "id": "test",
+   "at": 5.87,
+   "text": "Check your weather app. Under 32 degrees?",
+   "say": "Check your weather app. Under thirty-two degrees?",
+   "pause": 0.55
+  },
+  {
+   "id": "apple",
+   "at": 8.97,
+   "text": "Apple designs iPhones for 32 to 95 degrees.",
+   "say": "Apple designs iPhones for thirty-two to ninety-five degrees.",
+   "pause": 0.5
+  },
+  {
+   "id": "slow",
+   "at": 13.08,
+   "text": "Cold slows the chemistry inside the battery.",
+   "pause": 0.3
+  },
+  {
+   "id": "half",
+   "at": 15.76,
+   "text": "At 0°F, a typical battery gives about half its capacity.",
+   "say": "At zero degrees, a typical battery gives about half its capacity.",
+   "pause": 0.55
+  },
+  {
+   "id": "off",
+   "at": 20.3,
+   "text": "Its voltage drops, so it shuts off to protect itself.",
+   "pause": 0.8
+  },
+  {
+   "id": "back",
+   "at": 23.96,
+   "text": "But warm it up, and the battery life comes back.",
+   "pause": 1.2,
+   "say": "But, warm it up, and the battery life comes back."
+  },
+  {
+   "id": "pocket",
+   "at": 28.16,
+   "text": "Keep it in an inside pocket.",
+   "pause": 1.0
+  },
+  {
+   "id": "charge",
+   "at": 30.8,
+   "text": "And let it warm up before you charge it.",
+   "pause": 1.0,
+   "say": "And let it warm up, before you charge it.",
+   "take": 1
+  },
+  {
+   "id": "end",
+   "at": 33.93,
+   "text": "Has yours died in the cold?",
+   "say": "Has yours died in the cold?",
+   "pause": 0.45
+  },
+  {
+   "id": "yn",
+   "text": "Yes or no.",
+   "say": "Yes, or no?",
+   "pause": 0,
+   "at": 36.09
+  }
+ ],
+ "tail": 0.2
+}

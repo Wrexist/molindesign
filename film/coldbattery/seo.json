@@ -1,0 +1,80 @@
+{
+ "title": "Why does my phone die in the cold",
+ "caption": "Why does your phone die in the cold? It isn't dead. It's cold.\nApple's own page says when the battery life comes back, plus what to do at the bus stop.\nHas yours died in the cold? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#phonebattery",
+  "#iphonetips",
+  "#coldweather",
+  "#wintertips"
+ ],
+ "keywords": [
+  "phone die in the cold",
+  "why does my phone die in the cold",
+  "phone dies in cold weather",
+  "iphone shuts off in the cold",
+  "phone battery cold weather",
+  "iphone cold weather battery",
+  "how to keep phone warm in winter",
+  "can you charge a cold phone"
+ ],
+ "cover_text": "Not dead. Cold.",
+ "cover_time": 0.0,
+ "pinned_comment": "Apple designs iPhones for 32° to 95°F air, and its support page says: \"Battery life will return to normal when you bring your device back to higher ambient temperatures.\" Has yours died in the cold? Yes or no.",
+ "pinned_backups": [
+  {
+   "if": "So does the cold ruin my battery?",
+   "reply": "The video doesn't say that. Apple calls the cold slowdown temporary: \"For a low battery state of charge and colder temperatures, performance-management changes are temporary.\" Battery University says the lost capacity \"will recover in room temperature.\" The one thing to avoid is charging it while it's still cold, which is why the video says to let it warm up first."
+  },
+  {
+   "if": "Mine died at 30%!",
+   "reply": "Apple says shutdowns are more likely \"when your battery has a low state of charge, a higher chemical age, or when you're in colder temperatures.\" We found no maker page that ties cold shutdowns to one exact percent, so the video doesn't name one."
+  },
+  {
+   "if": "Is 32 degrees the air or the phone?",
+   "reply": "Apple's 32° to 95°F is the air around the phone (\"ambient temperature\"). Google's Pixel page uses the phone's own temperature: \"If your phone's temperature is below 0°C / 32°F, it may shut down suddenly.\""
+  },
+  {
+   "if": "What's that in Celsius?",
+   "reply": "Apple's range is 0° to 35°C. Battery University's \"about half\" figure is for –18°C (0°F), compared with 27°C (80°F)."
+  },
+  {
+   "if": "Should I use a hair dryer or the car heater?",
+   "reply": "We found no maker page that suggests direct heat, so the video doesn't. Samsung says to \"let the device adjust to the optimal usage temperature (32° - 95°F) before use.\" Body heat in an inside pocket is our own tip."
+  },
+  {
+   "if": "Is it really half?",
+   "reply": "That's Battery University's typical figure for a battery at 0°F versus 80°F: \"will typically deliver only 50 percent.\" It's capacity, not the percent on your screen, and they say it \"differs with battery chemistry.\" It isn't a test of any phone model."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 19:00 ET (EST) Tue Nov 10, 2026 = 00:00 UTC Wed Nov 11. 13:00 ET today is taken, and 19:00 ET is the evening slot voiceclone, detect and deletephoto's fallback used; US evening viewers at home on a cold November night. Pick the time from YouTube Studio's dropdown and check the saved UTC time. TikTok: on hold; when it resumes, the first free 19:00 ET slot.",
+ "post_time_stockholm": "01:00 Wed Nov 11 (Sweden CET, US EST, 6 h apart).",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold and a trending-sound pick goes stale in days (same call as forceclose, embeddings and deletephoto). When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick a calm instrumental at 5-10 % under out/coldbattery-voice-only.mp4 (36.2 s; the sound must be at least 37 s). YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "Why Your Phone Dies in the Cold 🤔",
+ "youtube_title_alternatives": [
+  "Why Your Phone Dies in the Cold 🥶",
+  "Your Phone Isn't Dead, It's Cold 😮"
+ ],
+ "youtube_title_check": "Researcher's words kept; emoji set to 🤔 because PERFORMANCE.md §7 and the video-seo spec use 🤔 for why/how titles (battery, forceclose, incognito, deletephoto all 🤔). The researcher's 🥶 version is the first alternative; it is on-topic and allowed by the six marks, so the orchestrator may swap it in. Mark 5: the thing (\"Your Phone\") in words 2-3, 7 words, Title Case, one emoji at the end, consequence verb \"Dies\", not a definition, no #Shorts, carries the main search phrase \"phone die in the cold\" (spoken at about 4 s in `ask`). Truth: \"dies\" is the viewer's word for the shutdown; the film pays it off with Apple's and Samsung's own lines and the description's first line says it's usually not dead.",
+ "youtube_description": "Why does your phone die in the cold? Usually it isn't dead. It's cold. Cold slows the chemistry inside the battery, the voltage drops when the phone asks for power, and the phone shuts itself off to protect its parts. Warm it up and the battery life comes back.\n\nCheck your weather app. Apple Support, \"If your iPhone or iPad gets too hot or too cold\" (published May 14, 2026): \"iPhone and iPad devices are designed for use where the ambient temperature is between 0º and 35º C (32º to 95º F).\" Samsung gives the same range for Galaxy phones: \"The optimal usage temperature for the Galaxy is 32° - 95°F (0° - 35°C).\" Google Pixel Help: \"If your phone's temperature is below 0°C / 32°F, it may shut down suddenly.\"\n\nWhy it slows down. Battery University, \"BU-502: Discharging at High and Low Temperatures\": \"Cold temperature increases the internal resistance and lowers the capacity. A battery that provides 100 percent capacity at 27°C (80°F) will typically deliver only 50 percent at –18°C (0°F).\" That's a typical lithium-ion cell's capacity, not the percent on your status bar, and it varies with battery chemistry.\n\nWhy it shuts off. Apple Support, \"iPhone battery and performance\" (published June 1, 2026): \"A battery's impedance will temporarily increase at a low state of charge and in a cold temperature environment.\" And: \"When a device pulls power from a battery with a higher level of impedance, the battery's voltage will drop to a greater degree.\" Samsung: \"An extremely cold environment may cause a greater drop in voltage. In this case, the device might shut down temporarily to preserve its components.\"\n\nIt comes back. Apple: \"Battery life will return to normal when you bring your device back to higher ambient temperatures.\" Battery University: \"The reduced capacity at low temperature only applies while the cell is in that condition and will recover in room temperature.\"\n\nWhat to do. Keep it in an inside pocket, close to you (our tip, not a maker's words; Battery University notes that \"Warming a dying battery in a mobile phone or flashlight in our jeans might provide additional runtime due to improved electrochemical reaction.\"). And let it warm up before you charge it. Apple: \"If your iOS or iPadOS device gets too cold, it might not charge or could stop charging.\" Samsung: \"If you expose your device to temperature extremes, let the device adjust to the optimal usage temperature (32° - 95°F) before use.\" Battery University, \"BU-410: Charging at High and Low Temperatures\": \"Extreme cold and high heat reduce charge acceptance and the battery should be brought to a moderate temperature before charging.\"\n\nSo, has yours died in the cold? Yes or no.\n\nFine print: \"isn't dead\" means a phone that still had charge left when it shut off; a battery at 1% is also simply empty. Apple says shutdowns are more likely at a low charge or with an older battery. The \"about half\" figure is Battery University's typical number for batteries in general, not a measurement of any phone model. The inside pocket is our advice. This video makes no claim about lasting damage from cold and gives no set time for a phone to come back; that depends on the phone and the room. The phones, weather card, Apple page and charging message in the video are re-created and drawn by hand; no real interface or logo is shown. Not sponsored by or affiliated with Apple, Samsung or Google.\n\nSources (all read Nov 10, 2026):\n- Apple Support, \"If your iPhone or iPad gets too hot or too cold\", published May 14, 2026: https://support.apple.com/en-us/118431\n- Apple Support, \"iPhone battery and performance\", published June 1, 2026: https://support.apple.com/en-us/101575\n- Samsung US, \"Galaxy Battery: Care & Maintenance\": https://www.samsung.com/us/support/galaxy-battery/care-and-maintenance/\n- Samsung US, \"Galaxy Battery: About Battery\": https://www.samsung.com/us/support/galaxy-battery/about-battery/\n- Google Pixel Phone Help, \"Check & understand your Pixel's temperature\": https://support.google.com/pixelphone/answer/15679416?hl=en\n- Battery University, \"BU-502: Discharging at High and Low Temperatures\", last updated Oct 27, 2021: https://batteryuniversity.com/article/bu-502-discharging-at-high-and-low-temperatures\n- Battery University, \"BU-410: Charging at High and Low Temperatures\", last updated Mar 1, 2022: https://batteryuniversity.com/article/bu-410-charging-at-high-and-low-temperatures\n\nHow tech works, part 10.\n\n#techexplained #phonebattery #iphonetips",
+ "youtube_description_chars": 4474,
+ "youtube_tags": [
+  "phone dies in the cold",
+  "why does my phone die in the cold",
+  "phone dies in cold weather",
+  "iphone shuts off in cold",
+  "phone battery cold weather",
+  "iphone cold weather",
+  "battery cold temperature",
+  "winter phone tips",
+  "iphone tips",
+  "phone battery",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 10",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no #ai. YouTube Altered content: No (hand-drawn, plainly illustrated phone, weather card and battery cells; no real person's voice, no realistic footage; the Apple page and Charging On Hold chip are re-created and tagged RE-CREATED). The fine print's re-created/hand-drawn/not-sponsored notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator when TikTok resumes."
+}
