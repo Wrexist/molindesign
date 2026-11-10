@@ -303,3 +303,11 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - A prop that shows a count (DAY 30 calendar) must agree with the claim under it: a full bin on DAY 30 reads as "still there after 30 days".
 - Captions break on phrase boundaries, never mid-phrase ("Swipe up / to Recently Deleted").
 - The PC can be offline for a day: when start_remote_control says not connected, retry later and tell Isac once; don't start a second video while one is unscheduled.
+
+### coldbattery (#27), jury r1 7.0 / Truth 8.0 → r2 7.4 / Truth 8.5 — scheduled Nov 10 19:00 ET
+- The voice was clean in r1; both Truth losses were picture labels. A UI state ("Charging On Hold") must agree with the dial beside it on every frame, and a source's unit must survive into the picture: Battery University's 50 % is capacity, so no "%" inside a battery icon and say "capacity", not "charge".
+- An inferred threshold (charging resumes at 32 °F) needs an on-screen credit for the source that gives it, or flip later so no number is implied.
+- No source gives a recovery time: write "LATER · INSIDE", not "20 MIN LATER".
+- A hook hit needs a voice gap ≥ ~0.45 s; plan the pause in the script if a strike/tick on frame-0 words matters.
+- Opaque peel strips with a shadow; translucent ones double-expose captions and look like a stock preset.
+- Third film in a row with a coral stamp over a drawn phone: vary the hero device next time.
