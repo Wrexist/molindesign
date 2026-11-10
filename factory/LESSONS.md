@@ -297,3 +297,9 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - Scope lines must match each maker's own fix: Apple = close only if frozen, or turn off Background App Refresh; Google = restrict, then force stop. Use the maker's own term ("Background Activity", not "background apps"), or the list reads as the myth.
 - Hero thump peak (not just RMS) must sit ≥ 3 dB under the next voice peak; measure with astats.
 - YouTube description: the PC reported angle brackets/arrow paths trouble and 4,952 of 5,000 chars. Keep descriptions ≤ 4,600 chars and write menu paths with "›" or ", ".
+
+### deletephoto (#26), jury r1 7.0 / Truth 8.5 — posted Nov 10 (a day late)
+- Check facts that "everyone knows" on the day: Google Photos' trash dropped from 60 to 30 days in Sep 2026; old snippets still say 60. Say only what the live primary page says.
+- A prop that shows a count (DAY 30 calendar) must agree with the claim under it: a full bin on DAY 30 reads as "still there after 30 days".
+- Captions break on phrase boundaries, never mid-phrase ("Swipe up / to Recently Deleted").
+- The PC can be offline for a day: when start_remote_control says not connected, retry later and tell Isac once; don't start a second video while one is unscheduled.
