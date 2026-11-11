@@ -315,3 +315,12 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - A hook hit needs a voice gap ≥ ~0.45 s; plan the pause in the script if a strike/tick on frame-0 words matters.
 - Opaque peel strips with a shadow; translucent ones double-expose captions and look like a stock preset.
 - Third film in a row with a coral stamp over a drawn phone: vary the hero device next time.
+
+### airplanemode (#28), jury r1 7.0 / Truth 8.5 → r2 7.3 / Truth 9.0 — scheduled Nov 11 13:00 ET
+- Craft lost the most (5.5): props and the frame-0 tile were clipped flat by the 90–930 rail. Bleed backgrounds full width and keep props whole inside the rail; never let the rail cut a shape. The director added a `CLIP_RUN` prop-clip check in film.js; copy it into the next film.
+- "✓ … : OK" chips turn a hedged source ("can tolerate") into "safe". Quote the source verb on the chip, no tick.
+- Say why the mechanism matters on screen ("= INTERFERENCE ON THE GROUND"), not only that it happens.
+- A screenshot frame wants the shareable contrast in one plate ("DRONES: ✓ / YOUR CELL SIGNAL: ✗"), cream ink, not coral.
+- Moving `end` later to clear a hero hold can break the 1.5 s gap gate; split the line instead ("Your cell signal?" / stamp / "Still banned.").
+- A voice line that says "last month" dates the film: post within the month, and write the description with the real month.
+- The hero device changed this time (rule page, not a phone), as planned after coldbattery.

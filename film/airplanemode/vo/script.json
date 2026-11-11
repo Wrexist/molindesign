@@ -1,0 +1,111 @@
+{
+ "about": "Does your phone really mess with the plane? Factory #28, backlog row 32, slug airplanemode. One hard idea: airplane mode answers two rules from two agencies. The FAA's rule (14 CFR 91.21) guards the plane's navigation and communication systems, and a 2013 FAA committee found most commercial airplanes can tolerate radio interference from portable electronic devices, except some landing systems in low visibility (about 1 percent of flights), when the crew may ask you to turn devices off. The cell-signal ban itself is the FCC's (47 CFR 22.925, codified 1991) to protect ground cell networks: up high one phone is received by many cell sites at once. On Oct 29, 2026 the FCC voted to let drones use that 800 MHz band and said the passenger ban is unaffected. Primary sources (read 2026-11-11): eCFR 14 CFR 91.21 and 47 CFR 22.925 (current to 2026-11-09); FAA AC 91.21-1D (2017-10-27); FAA InFO 13010 (2013-10-28); FAA Administrator Huerta PED remarks (2013-10-31); FCC 13-157 NPRM (2013-12-13); FCC 26-72 Report and Order (released 2026-10-30); EASA press release (2014-09-26); UK CAA Paper 2003/3. Planned silences: 0.7 s after 'one flight in a hundred.' (dip: fog card, LOW VISIBILITY stamp), 1.2 s after 'Still banned.' (hero: re-created FCC rule page, STILL BANNED stamp, screenshot hold). Narration-led: record the voice first and key every visual beat to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "FAA",
+  "FCC",
+  "Wi-Fi",
+  "Bluetooth"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 50
+ },
+ "dur": 38.03,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Airplane mode isn't only for planes.",
+   "pause": 0.4,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So who makes you turn it on?",
+   "say": "So, who makes you turn it on?",
+   "pause": 0.55,
+   "at": 2.88
+  },
+  {
+   "id": "faa",
+   "text": "In 2013, an FAA panel found most airliners can tolerate phones.",
+   "say": "In twenty thirteen, an F A A panel found most airliners can tolerate phones.",
+   "pause": 0.3,
+   "at": 5.43
+  },
+  {
+   "id": "dip",
+   "text": "The exception: low visibility, about one flight in a hundred.",
+   "pause": 0.6,
+   "at": 10.32
+  },
+  {
+   "id": "crew",
+   "text": "Then the crew may ask you to switch your phone off.",
+   "pause": 0.65,
+   "at": 14.53,
+   "say": "Then, the crew may ask you to switch your phone off."
+  },
+  {
+   "id": "fcc",
+   "text": "Now, the cell ban? That's the FCC, from 1991.",
+   "say": "Now, the cell ban? That's the F C C, from nineteen ninety-one.",
+   "pause": 0.4,
+   "at": 18.31,
+   "take": 3
+  },
+  {
+   "id": "tower",
+   "text": "One phone up high reaches many towers at once.",
+   "pause": 0.75,
+   "at": 22.19
+  },
+  {
+   "id": "drone",
+   "text": "Last month, the FCC voted to let drones use those airwaves.",
+   "say": "Last month, the F C C voted to let drones use those airwaves.",
+   "pause": 0.45,
+   "at": 25.87
+  },
+  {
+   "id": "sig",
+   "text": "Your cell signal?",
+   "pause": 0.7,
+   "at": 30.27
+  },
+  {
+   "id": "still",
+   "text": "Still banned.",
+   "pause": 1.1,
+   "at": 32.14
+  },
+  {
+   "id": "end",
+   "text": "Did you think it was for the plane?",
+   "pause": 0.4,
+   "at": 34.21
+  },
+  {
+   "id": "yn",
+   "text": "Yes or no.",
+   "say": "Yes, or no?",
+   "pause": 0,
+   "at": 36.49
+  }
+ ],
+ "tail": 0.3
+}
