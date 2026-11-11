@@ -217,7 +217,7 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (from `python3 factory/stats.py`; refresh at the start of every run)
-Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
+Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
 | Video | Posted (UTC) | Length | Jury | YT | TT | Packaging | What it taught |
 |---|---|---|---|---|---|---|---|
 | noise | Oct 24 17:00 | 45 s | 7.8 | 1,319 | 0* | 4 | a task on frame 0 ("Find the cat") holds the swipe; best like rate |
@@ -235,6 +235,10 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 | voiceclone | Nov 3 00:00 | 32 s | 7.5 | 1,195 (30 h) | – | 5 | slept 5 views for 6 h, then took off; read at 24 h, not before |
 | stepbystep | Nov 3 18:00 | 30 s | 7.4 | 24 (12 h) | – | 3 | prompt trick, no stake for the viewer; read again at 24 h |
 | vision | Nov 4 18:00 | 31 s | 7.2 | – | – | 3 | first post with no AI tag; read at 24 h |
+| password (what if) | Nov 6 18:00 | 37 s | 7.3 | 375 (5 d) | – | 5 | slow but steady |
+| forceclose | Nov 8 18:00 | 40 s | 7.5 | 119 (2.5 d) | – | 6 | stalled; myth some viewers already knew |
+| deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
+| coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
