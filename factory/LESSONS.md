@@ -316,7 +316,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Opaque peel strips with a shadow; translucent ones double-expose captions and look like a stock preset.
 - Third film in a row with a coral stamp over a drawn phone: vary the hero device next time.
 
-### airplanemode (#28), jury r1 7.0 / Truth 8.5 → r2 7.3 / Truth 9.0 — scheduled Nov 11 13:00 ET
+### airplanemode (#28), jury r1 7.0 / Truth 8.5 → r2 7.3 / Truth 9.0 — scheduled Nov 11 19:00 ET (PC picked up the 08:27 UTC brief only at ~18:00 UTC)
 - Craft lost the most (5.5): props and the frame-0 tile were clipped flat by the 90–930 rail. Bleed backgrounds full width and keep props whole inside the rail; never let the rail cut a shape. The director added a `CLIP_RUN` prop-clip check in film.js; copy it into the next film.
 - "✓ … : OK" chips turn a hedged source ("can tolerate") into "safe". Quote the source verb on the chip, no tick.
 - Say why the mechanism matters on screen ("= INTERFERENCE ON THE GROUND"), not only that it happens.
