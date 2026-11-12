@@ -1,0 +1,106 @@
+{
+ "about": "Why does your unlimited data slow down? Factory #29, backlog row 33, slug unlimiteddata. One hard idea: every cell tower has a fixed amount of capacity, so when it's busy your carrier decides whose data goes first; your plan sets your place in that line, and on some plans you move back after a set amount of premium/high-speed data (T-Mobile T-Mix Saver/Standard after their 50GB premium allotment; AT&T Extra 2.0 after 100GB, Value 2.0 after 5GB; older AT&T unlimited plans after 50GB or 22GB) until the next bill cycle. The plan's FCC Broadband Facts label (required at point of sale and, per FCC 26-48, reachable from your account portal) links the carrier's network-management policy, which spells this out. Carriers' own words: 'deprioritize' is not used; they say 'may temporarily slow data speeds if the network is busy' (AT&T), 'may be temporarily slower than other traffic' / 'prioritize your data behind other traffic' (Verizon), 'reduced speeds during congestion ... due to data prioritization' (T-Mobile). Never 'throttling'. Primary sources read 2026-11-12, listed in BRIEF.md section 3. Planned silences: 0.5 s after the hook (frame-0 hit), 0.6 s after 'Until your next bill starts.' (NEXT BILL card flip), 1.2 s after 'There's the line.' (hero: re-created Broadband Facts label, coral marker circle around NETWORK MANAGEMENT, screenshot hold). Narration-led: record the voice first and key every visual beat to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Broadband Facts"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": 0,
+  "score_db": 0,
+  "smr_db": 58.7,
+  "carve_db": 0
+ },
+ "dur": 35.15,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Unlimited data isn't unlimited speed.",
+   "pause": 0.55,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So why does yours slow down?",
+   "say": "So, why does yours slow down?",
+   "pause": 0.45,
+   "at": 3.13
+  },
+  {
+   "id": "room",
+   "text": "Every cell tower has a fixed amount of room.",
+   "pause": 0.45,
+   "at": 5.49
+  },
+  {
+   "id": "busy",
+   "text": "When it's busy, your carrier decides whose data goes first.",
+   "pause": 0.45,
+   "at": 8.51
+  },
+  {
+   "id": "place",
+   "text": "Your plan sets your place in that line.",
+   "pause": 0.5,
+   "at": 11.95
+  },
+  {
+   "id": "dip",
+   "text": "After 50 gigs in a month, some plans move you back.",
+   "say": "After fifty gigs in a month, some plans move you back.",
+   "pause": 0.55,
+   "at": 14.71
+  },
+  {
+   "id": "bill",
+   "text": "Until your next bill starts.",
+   "pause": 0.8,
+   "at": 18.41
+  },
+  {
+   "id": "but",
+   "text": "But it's written down, and you can check.",
+   "pause": 0.75,
+   "at": 20.88
+  },
+  {
+   "id": "label",
+   "text": "Find the label for your plan, called Broadband Facts.",
+   "pause": 0.5,
+   "at": 23.91,
+   "take": 1
+  },
+  {
+   "id": "hero",
+   "text": "Tap its network management link. There's the line.",
+   "pause": 1.2,
+   "at": 27.17
+  },
+  {
+   "id": "end",
+   "text": "Did you think unlimited meant full speed?",
+   "pause": 0.4,
+   "at": 31.09
+  },
+  {
+   "id": "yn",
+   "text": "Yes or no.",
+   "say": "Yes, or no?",
+   "pause": 0,
+   "at": 33.58
+  }
+ ],
+ "tail": 0.3
+}

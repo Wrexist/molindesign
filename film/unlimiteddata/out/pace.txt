@@ -1,0 +1,2 @@
+/home/user/molindesign/film/unlimiteddata/out/unlimiteddata-vo.mp4: 35.2 s, 2 hard cuts (0.6/10 s), motion 0-1 s 1.941, 0-3 s 1.196, median 0.188, still frames 15.4 %
+OK    no frozen stretches, opening moves

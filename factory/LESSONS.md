@@ -217,7 +217,7 @@ Post: x.com/ErnestoSOFTWARE/status/2117765472141664455 (125k views, 17k likes on
 - Web uploads through Chrome cap files at 10 MB; drafts through Higgsfield don't.
 
 ## Performance (from `python3 factory/stats.py`; refresh at the start of every run)
-Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
+Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = not pushed, `indexEnabled` missing). Packaging = score /6 from PERFORMANCE.md §7.
 | Video | Posted (UTC) | Length | Jury | YT | TT | Packaging | What it taught |
 |---|---|---|---|---|---|---|---|
 | noise | Oct 24 17:00 | 45 s | 7.8 | 1,319 | 0* | 4 | a task on frame 0 ("Find the cat") holds the swipe; best like rate |
@@ -235,6 +235,12 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 | voiceclone | Nov 3 00:00 | 32 s | 7.5 | 1,195 (30 h) | – | 5 | slept 5 views for 6 h, then took off; read at 24 h, not before |
 | stepbystep | Nov 3 18:00 | 30 s | 7.4 | 24 (12 h) | – | 3 | prompt trick, no stake for the viewer; read again at 24 h |
 | vision | Nov 4 18:00 | 31 s | 7.2 | – | – | 3 | first post with no AI tag; read at 24 h |
+| password (what if) | Nov 6 18:00 | 37 s | 7.3 | 375 (5 d) | – | 5 | slow but steady |
+| forceclose | Nov 8 18:00 | 40 s | 7.5 | 119 (2.5 d) | – | 6 | stalled; myth some viewers already knew |
+| deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
+| coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,216 (43 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
+| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
+| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -297,3 +303,36 @@ Read 2026-11-04 05:50 UTC. YT = YouTube Shorts views, TT = TikTok plays (0* = no
 - Scope lines must match each maker's own fix: Apple = close only if frozen, or turn off Background App Refresh; Google = restrict, then force stop. Use the maker's own term ("Background Activity", not "background apps"), or the list reads as the myth.
 - Hero thump peak (not just RMS) must sit ≥ 3 dB under the next voice peak; measure with astats.
 - YouTube description: the PC reported angle brackets/arrow paths trouble and 4,952 of 5,000 chars. Keep descriptions ≤ 4,600 chars and write menu paths with "›" or ", ".
+
+### deletephoto (#26), jury r1 7.0 / Truth 8.5 — posted Nov 10 (a day late)
+- Check facts that "everyone knows" on the day: Google Photos' trash dropped from 60 to 30 days in Sep 2026; old snippets still say 60. Say only what the live primary page says.
+- A prop that shows a count (DAY 30 calendar) must agree with the claim under it: a full bin on DAY 30 reads as "still there after 30 days".
+- Captions break on phrase boundaries, never mid-phrase ("Swipe up / to Recently Deleted").
+- The PC can be offline for a day: when start_remote_control says not connected, retry later and tell Isac once; don't start a second video while one is unscheduled.
+
+### coldbattery (#27), jury r1 7.0 / Truth 8.0 → r2 7.4 / Truth 8.5 — scheduled Nov 10 19:00 ET
+- The voice was clean in r1; both Truth losses were picture labels. A UI state ("Charging On Hold") must agree with the dial beside it on every frame, and a source's unit must survive into the picture: Battery University's 50 % is capacity, so no "%" inside a battery icon and say "capacity", not "charge".
+- An inferred threshold (charging resumes at 32 °F) needs an on-screen credit for the source that gives it, or flip later so no number is implied.
+- No source gives a recovery time: write "LATER · INSIDE", not "20 MIN LATER".
+- A hook hit needs a voice gap ≥ ~0.45 s; plan the pause in the script if a strike/tick on frame-0 words matters.
+- Opaque peel strips with a shadow; translucent ones double-expose captions and look like a stock preset.
+- Third film in a row with a coral stamp over a drawn phone: vary the hero device next time.
+
+### airplanemode (#28), jury r1 7.0 / Truth 8.5 → r2 7.3 / Truth 9.0 — scheduled Nov 11 19:00 ET (PC picked up the 08:27 UTC brief only at ~18:00 UTC)
+- Craft lost the most (5.5): props and the frame-0 tile were clipped flat by the 90–930 rail. Bleed backgrounds full width and keep props whole inside the rail; never let the rail cut a shape. The director added a `CLIP_RUN` prop-clip check in film.js; copy it into the next film.
+- "✓ … : OK" chips turn a hedged source ("can tolerate") into "safe". Quote the source verb on the chip, no tick.
+- Say why the mechanism matters on screen ("= INTERFERENCE ON THE GROUND"), not only that it happens.
+- A screenshot frame wants the shareable contrast in one plate ("DRONES: ✓ / YOUR CELL SIGNAL: ✗"), cream ink, not coral.
+- Moving `end` later to clear a hero hold can break the 1.5 s gap gate; split the line instead ("Your cell signal?" / stamp / "Still banned.").
+- A voice line that says "last month" dates the film: post within the month, and write the description with the real month.
+- The hero device changed this time (rule page, not a phone), as planned after coldbattery.
+
+### unlimiteddata (#29), jury r1 7.1 / Truth 9.0 (post), fixes applied — scheduled Nov 12 13:00 ET (l_q-x9VE-XQ; PC was awake, brief picked up in about 1 h)
+- The dip scene was the low point because its props were tiny (95 px tickets, 22 px numbers) and the place they relate to (the tower door) had left the frame. The prop that carries the idea gets ≥ 160 px and ≥ 48 px type, and its context stays in frame.
+- The hero label was again under 700 px and the screenshot plate under 40 px text. Size the hero plate first, then fit the rest around it; don't shrink it to make room.
+- "There's the line" made literal (the page's mini tickets growing into the queue the viewer just watched) is the wow; turn the hero document back into the film's own picture.
+- A wipe that prints numbers (a ruler 61–67) reads as more data when the film is about numbered tickets; keep wipe props blank.
+- A chip must date the rule correctly: "FCC RULE · 47 CFR 8.1", not the year of the latest order.
+- An endless spinner says "nothing loads"; for "slower, not stopped" use a crawling progress bar.
+- Louder SFX move Whisper's word edges and can close the gaps the SFX gate needs; re-run gate.py after every gain change and drop the hits that no longer fit.
+- Researcher: Whisper heard "Broadband Facts" as "Broadband fax" and "your plan's" as "plans"; reword ("for your plan, called Broadband Facts") rather than fight the TTS.

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/airplanemode/out/airplanemode-vo.mp4: 38.0 s, 3 hard cuts (0.8/10 s), motion 0-1 s 1.06, 0-3 s 0.593, median 0.152, still frames 11.9 %
+OK    no frozen stretches, opening moves
