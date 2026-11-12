@@ -238,9 +238,9 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | password (what if) | Nov 6 18:00 | 37 s | 7.3 | 375 (5 d) | – | 5 | slow but steady |
 | forceclose | Nov 8 18:00 | 40 s | 7.5 | 119 (2.5 d) | – | 6 | stalled; myth some viewers already knew |
 | deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
-| coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
-| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
-| unlimiteddata | Nov 12 18:00 (planned) | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,079 (39 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
+| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
+| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -327,7 +327,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - A voice line that says "last month" dates the film: post within the month, and write the description with the real month.
 - The hero device changed this time (rule page, not a phone), as planned after coldbattery.
 
-### unlimiteddata (#29), jury r1 7.1 / Truth 9.0 (post), fixes applied — scheduled Nov 12 13:00 ET
+### unlimiteddata (#29), jury r1 7.1 / Truth 9.0 (post), fixes applied — scheduled Nov 12 13:00 ET (l_q-x9VE-XQ; PC was awake, brief picked up in about 1 h)
 - The dip scene was the low point because its props were tiny (95 px tickets, 22 px numbers) and the place they relate to (the tower door) had left the frame. The prop that carries the idea gets ≥ 160 px and ≥ 48 px type, and its context stays in frame.
 - The hero label was again under 700 px and the screenshot plate under 40 px text. Size the hero plate first, then fit the rest around it; don't shrink it to make room.
 - "There's the line" made literal (the page's mini tickets growing into the queue the viewer just watched) is the wow; turn the hero document back into the film's own picture.
