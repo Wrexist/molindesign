@@ -1,5 +1,5 @@
 {
- "about": "GTA 6 Trailer 2 (Rockstar Games, May 6, 2025) opens on Jason Duval up on a roof; a man below asks \"What you doing up there?\" and Jason says \"I'm just fixing some leaks.\" (heard in the trailer). Context: on September 19, 2022 Rockstar confirmed a network intrusion that leaked early development footage of the next Grand Theft Auto (about 90 videos, per reporting); on December 4, 2023 Rockstar posted \"Our trailer has leaked\" hours before Trailer 1's premiere. Rockstar never said the line is about the leaks: labeled THEORY. Trailer mode: two muted Trailer 2 excerpts (the opening house shot and the roof shot, where the line is spoken at 11.8-12.9 s of Rockstar's post), annotated. Delta.",
+ "about": "GTA 6 Trailer 2 (Rockstar Games, May 6, 2025) opens on Jason Duval up on a roof; a man below asks \"What are you doing up there?\" and Jason says \"Just fixing some leaks.\" (heard in the trailer). Context: on September 19, 2022 Rockstar confirmed a network intrusion that leaked early development footage of the next Grand Theft Auto (about 90 videos, per reporting); on December 4, 2023 Rockstar posted \"Our trailer has leaked\" hours before Trailer 1's premiere. Rockstar never said the line is about the leaks: labeled THEORY. Trailer mode: two muted Trailer 2 excerpts (the opening house shot and the roof shot, where the line is spoken at 11.8-12.9 s of Rockstar's post), annotated. Delta.",
  "engine": "ming",
  "ming": {
   "voice": "US_James",
@@ -59,7 +59,7 @@
   {
    "id": "quote",
    "at": 8.75,
-   "text": "I'm just fixing some leaks.",
+   "text": "Just fixing some leaks.",
    "speed": 0.92
   },
   {

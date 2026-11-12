@@ -166,10 +166,10 @@
     var bk = cd(t, at('ask', 'asks') - .1, 13);
     if (bk > 0) {
       g.save(); g.translate(400, 760); g.scale(bk, bk);
-      card(g, -290, -110, 600, 210, CREAM, 36);
+      card(g, -300, -110, 620, 210, CREAM, 36);
       g.fillStyle = CREAM; g.beginPath(); g.moveTo(-230, 92); g.lineTo(-210, 470); g.lineTo(-150, 92); g.fill();
-      K.sticker(g, '“WHAT YOU DOING', 10, -40, 54, { col: INK, lw: 0, shadow: false, wide: false });
-      K.sticker(g, 'UP THERE?”', 10, 35, 64, { col: HOT, lw: 0, shadow: false });
+      K.sticker(g, '“WHAT ARE YOU', 10, -40, 54, { col: INK, lw: 0, shadow: false, wide: false });
+      K.sticker(g, 'DOING UP THERE?”', 10, 35, 46, { col: HOT, lw: 0, shadow: false });
       g.restore();
     }
     if (t > start('answer') - .1) K.slam(g, 'HIS ANSWER?', MID, 1500, 80, t - start('answer') + .1, { col: YEL });
@@ -236,7 +236,7 @@
     K.chip(g, 'ABOUT 90 VIDEOS · PER REPORTS', MID, 1430, 34, { align: 'center', bg: HOT, col: CREAM });
     var u = t - T.stamp;
     if (u > 0) {
-      g.save(); g.translate(MID + 200, 800); g.rotate(-.14); var s = lerp(2.2, 1, eo(clamp(u / .16, 0, 1))); g.scale(s, s); g.globalAlpha = clamp(u / .06, 0, 1);
+      g.save(); g.translate(MID + 150, 800); g.rotate(-.14); var s = lerp(2.2, 1, eo(clamp(u / .16, 0, 1))); g.scale(s, s); g.globalAlpha = clamp(u / .06, 0, 1);
       g.lineWidth = 10; g.strokeStyle = HOT; rr(g, -210, -52, 420, 104, 16); g.stroke();
       K.sticker(g, 'CONFIRMED', 0, 3, 64, { col: HOT, ink: BG }); g.restore();
     }
@@ -252,7 +252,7 @@
     var lk = t - T.leak;
     if (lk > 0) {
       K.slam(g, 'LEAKED!', MID, y - 110, 110, lk, { col: YEL, rot: -.1 });
-      chipTop(g, 'ROCKSTAR: “OUR TRAILER HAS LEAKED”', CREAM, INK);
+      K.chip(g, 'ROCKSTAR: “OUR TRAILER HAS LEAKED”', MID, CHIPY, 30, { align: 'center', bg: CREAM, col: INK });
     }
   }
   /* ---------- own: the roof again, dripping; THEORY ---------- */
@@ -311,7 +311,7 @@
     Tx('hook1', 'OPENS WITH A LINE', .35, T.roofEnd - .45);
     Tx('hook2', 'ABOUT LEAKS', at('hook', 'about') + .05, T.roofEnd - .35);
     Tx('drawn', 'OUR DRAWING · TRAILER 2', T.roofEnd + .1, T.q0);
-    Tx('bubble', 'WHAT YOU DOING UP THERE?', at('ask', 'asks'), T.q0);
+    Tx('bubble', 'WHAT ARE YOU DOING UP THERE?', at('ask', 'asks'), T.q0);
     Tx('quote', 'JUST FIXING SOME LEAKS', at('quote', 'some') + .1, T.tiles);
     Tx('sept', 'SEPT 2022', at('why', 'in') + .1, T.t1);
     Tx('about90', 'ABOUT 90 VIDEOS · PER REPORTS', T.n90 + .05, T.t1);
@@ -332,7 +332,7 @@
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 84px Archivo', '600 30px "Geist Mono"'];
     return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0“”’·'); }))).then(function () {
       buildChunks(); initTimes();
-      window.FILM.POSTER = T.freeze + .9;
+      window.FILM.POSTER = T.freeze + .45;   // the roof freeze with the quote card, between captions
       window.FILM.SHOTS = [{ id: 'roof', name: 'The roof', t0: 0, t1: T.why }, { id: 'leaks', name: 'The leaks', t0: T.why, t1: T.never }, { id: 'theory', name: 'Joke?', t0: T.never, t1: DUR }];
       window.READY = true;
     });

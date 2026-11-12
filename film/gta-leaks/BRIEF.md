@@ -3,7 +3,7 @@
 Slug `gta-leaks` · backlog row 9 ("Trailer 2 opens with a joke.") · researched 2026-11-12 · channel **Delta** (never Tech, explained). First film made with the skill `gta-clip-short` and the worked example for it. American English, own voice (Ming US_James, seed 7), no AI tag, no music. GTA 6 launches **November 19, 2026** on PS5 and Xbox Series X|S.
 
 ## 1. One hard idea
-Rockstar's Trailer 2 opens on Jason up on a roof; a man below asks what he's doing, and he says **"I'm just fixing some leaks."** For a game whose development footage leaked in 2022 and whose first trailer leaked before its premiere, fans read the line as Rockstar joking about it. Rockstar never said so: the film labels it **THEORY** and ends on "joke or coincidence?".
+Rockstar's Trailer 2 opens on Jason up on a roof; a man below asks what he's doing, and he says **"Just fixing some leaks."** For a game whose development footage leaked in 2022 and whose first trailer leaked before its premiere, fans read the line as Rockstar joking about it. Rockstar never said so: the film labels it **THEORY** and ends on "joke or coincidence?".
 
 **Footage plan (SAFE-EDIT rules 3 and 7):** two muted excerpts from Rockstar's own Trailer 2 post, each annotated: `roof` (Jason on the roof, slowed, pink circle + label, under the hook) and `jason` (his answer, freeze-frame + quote card). Everything about the leaks is our own graphics (90 video tiles + counter, a CONFIRMED stamp with Rockstar's words, a Trailer 1 premiere card that leaks, a redrawn roof with drips + THEORY stamp, a vote). No leaked footage, no trailer audio.
 
@@ -27,3 +27,4 @@ Trailer clips: Rockstar Games (Trailer 2), used for commentary. Not affiliated w
 ## Log
 - 2026-11-12: made by the `gta-clip-short` thread as the end-to-end test of the skill. Source link Isac sent (x.com/gta_vi_6_/status/2120896947066151297) is a fan account's edit of real Miami footage with "Vice City" text added (real people, a Quavo concert, a real Porsche), not GTA 6; clipkit verdict THIRD_PARTY, footage not used.
 - 2026-11-12 jury round 1: 6.5 / Truth 7.5, held. Round 2 fixes: factual hook; quote now on the roof-shot frames where it is spoken (the round-1 close-up was from a later exchange); "about 90" + PER REPORTS chip; CONFIRMED on Rockstar's quote card; layout inside x 90-930 with captions at y 476; house redrawn in the trailer's weathered colours and labeled OUR DRAWING; no end fade; pause before the quote, read at 0.92.
+- 2026-11-12 jury round 2: 7.1 / Truth 8.5, PASS. Applied its top 3: quotes verbatim ("What are you doing up there?", "Just fixing some leaks." in voice, bubble, card, description), CONFIRMED stamp and Trailer 1 pill kept inside the rail, cover = roof freeze with the quote card at T.freeze + .45 s.
