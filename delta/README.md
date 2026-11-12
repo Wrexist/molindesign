@@ -21,7 +21,7 @@ Re-uploading or lightly editing other people's footage risks Content ID claims, 
 3. `video-director` builds the film with `factory/make.sh gta-<slug>`; art style: flat, hand-built shapes in a Vice City palette (pink #ff4fa3, teal #19d3c5, sunset orange #ff8a3d on deep ink), our own art, no Rockstar logo or key art.
 4. Fresh `video-jury` with the checklist in `SAFE-EDIT.md` added.
 5. `video-seo` writes the YouTube Short and TikTok text (`GTA 6` in the title and first line).
-6. Upload from the PC to **Delta** only, scheduled in the slot given by `backlog.csv`.
+6. Upload from the PC to **Delta** only, scheduled in the slot given by `backlog.csv`, after `python3 factory/repost.py check gta-<slug> --channel delta --at "<slot UTC>"` passes. Fillers (remixes of older Delta Shorts) follow `factory/REPOST.md`.
 
 ## Status notes
 Videos 1-9 are the first batch: Shorts built from our own graphics. Rows marked `wait` need facts checked closer to the date or footage that does not exist yet.
