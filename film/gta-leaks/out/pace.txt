@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-leaks/out/gta-leaks-vo.mp4: 28.4 s, 7 hard cuts (2.5/10 s), motion 0-1 s 1.001, 0-3 s 0.755, median 0.242, still frames 1.9 %
+OK    no frozen stretches, opening moves
