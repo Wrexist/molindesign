@@ -238,7 +238,8 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | password (what if) | Nov 6 18:00 | 37 s | 7.3 | 375 (5 d) | – | 5 | slow but steady |
 | forceclose | Nov 8 18:00 | 40 s | 7.5 | 119 (2.5 d) | – | 6 | stalled; myth some viewers already knew |
 | deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
-| coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
+| coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
+| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
