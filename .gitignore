@@ -1,1 +1,3 @@
 node_modules/
+# Delta trailer frames: rebuilt by delta/clips/clipkit.py restore, never committed
+film/*/clips/
