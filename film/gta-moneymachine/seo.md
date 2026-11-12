@@ -28,7 +28,47 @@ Alternatives for YouTube's Test and compare (title A/B), both from BRIEF.md §3:
 
 Alternative thumbnail for Test and compare: frame at **205.5 s** (`out/frames/06165.jpg`), the `$10B+` with the pink launch bar vs the long teal bar; text `1/6 OF IT` (pairs with "GTA 5's Launch Was the Small Part"). Keep the `NOT GTA 5 ALONE` chip if any small text survives.
 
-## Description
+## YouTube description (paste this one, 3,363 characters; YouTube's limit is 5,000)
+GTA 5 came out in 2013, and it is still selling: over 230 million copies, by Take-Two's own count. So how much money has GTA 5 made, and how does one game keep paying for thirteen years? Six chapters, every number from Take-Two's own reports.
+
+Chapters
+0:00 GTA 5 is 13 years old and still selling
+0:14 Three days: a billion dollars before the first Friday
+0:47 The drop: the year after launch
+1:10 The second game: GTA Online and Shark Cards
+1:55 Three generations: one game, three console generations
+2:36 The machine: what it all adds up to
+3:10 The hand-off: GTA 6 on November 19
+3:39 Next video
+
+Our own math (not Take-Two's): each year's Take-Two annual report (10-K) gives the share of net revenue from "Grand Theft Auto products". We multiplied it by that year's net revenue, FY2014 to FY2026: about $1.6 billion in the launch year and about $9.0 billion in the twelve years after, about $10.65 billion in total, so the launch year was less than a sixth. This is all GTA games (mostly GTA 5 and GTA Online), Take-Two's revenue after store cuts, not player spending, and not GTA 5 alone. The spending-inside-games shares are for all Take-Two games.
+
+Unit count as of Take-Two's August 2026 10-Q ("over 230 million units" sold-in). Take-Two's November 9, 2026 release keeps GTA VI on November 19, 2026 for PS5 and Xbox Series X|S.
+
+Sources (Take-Two filings on sec.gov, read November 8-9, 2026):
+- Sept 18, 2013, over $800 million on day one: https://www.sec.gov/Archives/edgar/data/946581/000110465913070819/a13-20938_1ex99d1.htm
+- Sept 20, 2013, over $1 billion in three days: https://www.sec.gov/Archives/edgar/data/946581/000110465913071387/a13-21085_1ex99d1.htm
+- Oct 29, 2013, GTA Online free with every copy: https://www.sec.gov/Archives/edgar/data/946581/000110465913078751/a13-23088_1ex99d1.htm
+- Feb 3, 2015, PS4 and Xbox One: https://www.sec.gov/Archives/edgar/data/946581/000110465915006277/a15-3670_1ex99d1.htm
+- May 18, 2015, PC: https://www.sec.gov/Archives/edgar/data/946581/000110465915039036/a15-12207_1ex99d1.htm
+- May 16, 2022, PS5 and Xbox Series X|S: https://www.sec.gov/Archives/edgar/data/946581/000162828022014496/ttwo4q22earningsrelease.htm
+- 10-Q, quarter ended June 30, 2026, over 230 million units: https://www.sec.gov/Archives/edgar/data/946581/000162828026054870/ttwo-20260630.htm
+- Nov 9, 2026 release, GTA VI date: https://www.sec.gov/Archives/edgar/data/946581/000162828026072175/ttwo2q27earningsrelease.htm
+- FY2014 10-K (launch year GTA share): https://www.sec.gov/Archives/edgar/data/946581/000104746914004898/a2220044z10-k.htm
+- FY2015 10-K (the drop): https://www.sec.gov/Archives/edgar/data/946581/000104746915004959/a2224758z10-k.htm
+- FY2026 10-K: https://www.sec.gov/Archives/edgar/data/946581/000162828026037434/ttwo-20260331.htm
+- All Take-Two 10-K filings FY2014-FY2026: https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000946581&type=10-K
+- Shark Cards (Rockstar Support): https://support.rockstargames.com/articles/gftN9OqZizoK0Ftt6HsxV/how-to-purchase-shark-cards-for-grand-theft-auto-online-on-steam
+
+Next week: what GTA 6 has to get right. Did you buy GTA 5 more than once? Tell us which consoles.
+
+Grand Theft Auto is a trademark of Take-Two Interactive.
+
+#GTA5 #GTA6 #GTA #GTAOnline #Gaming
+
+Made with our own graphics. No Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
+
+## Description (full version, too long for YouTube; kept as the record)
 GTA 5 came out in 2013, and it is still selling: over 230 million copies, by Take-Two's own count. So how much money has GTA 5 made, and how does one game keep paying for thirteen years? Six chapters, every number from Take-Two's own reports.
 
 Chapters

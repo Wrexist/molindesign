@@ -88,7 +88,7 @@ def words(text):
 NUM = dict(zip('zero one two three four five six seven eight nine ten eleven twelve thirteen fourteen fifteen sixteen seventeen eighteen nineteen twenty'.split(), map(str, range(21))))
 NUM.update({'thirty': '30', 'forty': '40', 'fifty': '50', 'sixty': '60', 'hundred': '100', 'thousand': '1000'})
 WEAK = set('a an the of to in on at for with and or but it its is as by from that this ai your their his her our my than more less turned worlds'.split())
-SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6', 'v': '5', 'mt': 'mount'}
+SAME = {'their': 'there', "they're": 'there', 'c': 'see', 'sea': 'see', 'u': 'you', 'r': 'are', 'to': '2', 'too': '2', 'for': '4', 'vi': '6', 'v': '5', 'mt': 'mount', 'gb': 'gigs', 'gigabytes': 'gigs', 'cancelled': 'canceled'}   # Whisper writes a spoken "gigs" as "GB" (gta-preload)
 
 
 def norm(w):
@@ -338,6 +338,8 @@ def drop_tail(h, script, end):
         for i in range(len(b) - 1):
             if b[i] + b[i + 1] == a[-1]:
                 last = i + 2
+            elif i + 2 < len(b) and b[i] + b[i + 1] + b[i + 2] == a[-1]:   # split in three ("Race 'n 'Chase", gta-origin)
+                last = i + 3
     if last is not None:
         return h[:last]
     while len(h) > len(script) and (h[-1]['p'] < 0.3 or h[-1]['t0'] >= end - 0.05):
@@ -378,7 +380,7 @@ def align_words(script_words, heard, dur):
 def wer(ref, hyp):
     # Whisper sometimes writes "$5 ,000": rejoin a number it split at its thousands comma
     join = lambda ws: re.sub(r'(?:(?<=\s)|^)&(?=\s|$)', 'and', re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws))).replace('%', ' percent').split()   # Whisper writes "and" as "&" in lists   # Whisper writes "37,000%" for "thirty-seven thousand percent"
-    split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', w) if norm(p)]
+    split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', re.sub(r'^(\d+)(gb)\b', r'\1-\2', w, flags=re.I)) if norm(p)]
     r, h = split(ref), split(hyp)
     # Whisper writes a spoken "number three" as a list mark ("3.") or "No. 1": read "no" before a number as "number",
     # and don't count a "number" it dropped in front of a number it did hear (gta-ranked)
@@ -399,7 +401,8 @@ def wer(ref, hyp):
     # ...and splits some open ("line up" for "lineup"): rejoin two heard words that make one script word
     rs, hh, i = set(r), [], 0
     while i < len(h):
-        if i + 1 < len(h) and h[i] + h[i + 1] in rs and h[i] not in rs: hh.append(h[i] + h[i + 1]); i += 2
+        if i + 2 < len(h) and h[i] + h[i + 1] + h[i + 2] in rs and h[i] not in rs: hh.append(h[i] + h[i + 1] + h[i + 2]); i += 3   # "Race 'n 'Chase" for "Race'n'Chase" (gta-origin)
+        elif i + 1 < len(h) and h[i] + h[i + 1] in rs and h[i] not in rs: hh.append(h[i] + h[i + 1]); i += 2
         else: hh.append(h[i]); i += 1
     h = hh
     d = list(range(len(h) + 1))
