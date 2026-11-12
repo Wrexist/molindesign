@@ -1,0 +1,33 @@
+{
+ "film": "gta-leaks",
+ "sources": {
+  "t2": {
+   "key": "twitter-1919733318217576448",
+   "url": "https://x.com/RockstarGames/status/1919746311382851812",
+   "title": "Rockstar Games - Watch Grand Theft Auto VI Trailer 2 Now  Explore Vice City and beyond at",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "credit": "Rockstar Games · Trailer 2"
+  }
+ },
+ "clips": {
+  "house": {
+   "src": "t2",
+   "in": 8.15,
+   "out": 9.74,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "roof": {
+   "src": "t2",
+   "in": 11.47,
+   "out": 13.6,
+   "fps": 30,
+   "frames": 64,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  }
+ }
+}
