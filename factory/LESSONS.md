@@ -240,6 +240,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
 | coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
 | airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
+| unlimiteddata | Nov 12 18:00 (planned) | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -325,3 +326,13 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Moving `end` later to clear a hero hold can break the 1.5 s gap gate; split the line instead ("Your cell signal?" / stamp / "Still banned.").
 - A voice line that says "last month" dates the film: post within the month, and write the description with the real month.
 - The hero device changed this time (rule page, not a phone), as planned after coldbattery.
+
+### unlimiteddata (#29), jury r1 7.1 / Truth 9.0 (post), fixes applied — scheduled Nov 12 13:00 ET
+- The dip scene was the low point because its props were tiny (95 px tickets, 22 px numbers) and the place they relate to (the tower door) had left the frame. The prop that carries the idea gets ≥ 160 px and ≥ 48 px type, and its context stays in frame.
+- The hero label was again under 700 px and the screenshot plate under 40 px text. Size the hero plate first, then fit the rest around it; don't shrink it to make room.
+- "There's the line" made literal (the page's mini tickets growing into the queue the viewer just watched) is the wow; turn the hero document back into the film's own picture.
+- A wipe that prints numbers (a ruler 61–67) reads as more data when the film is about numbered tickets; keep wipe props blank.
+- A chip must date the rule correctly: "FCC RULE · 47 CFR 8.1", not the year of the latest order.
+- An endless spinner says "nothing loads"; for "slower, not stopped" use a crawling progress bar.
+- Louder SFX move Whisper's word edges and can close the gaps the SFX gate needs; re-run gate.py after every gain change and drop the hits that no longer fit.
+- Researcher: Whisper heard "Broadband Facts" as "Broadband fax" and "your plan's" as "plans"; reword ("for your plan, called Broadband Facts") rather than fight the TTS.
