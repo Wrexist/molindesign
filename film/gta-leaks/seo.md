@@ -1,19 +1,19 @@
-# SEO and posting text: GTA 6 Trailer 2 opens with a joke
+# SEO and posting text: GTA 6 Trailer 2 opens with a line about leaks
 
-Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta. Switch to Delta and verify the channel name in YouTube Studio before uploading. Upload `gta-leaks-vo.mp4` (voice + sound effects, no music, 28.4 s). Altered content: No. Written 2026-11-12 for a US audience. Facts and sources: `BRIEF.md`.
+Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta. Switch to Delta and verify the channel name in YouTube Studio before uploading. Upload `gta-leaks-vo.mp4` (voice + sound effects, no music, 29.0 s). Altered content: No. Written 2026-11-12 for a US audience. Facts and sources: `BRIEF.md`.
 
 **Status: DRAFT, not uploaded.** Made from a link Isac sent in a thread, so it waits for his go in that thread (not the routine's standing go). First trailer-mode Short: after it goes live, check YouTube Studio for a Content ID claim before making more (SAFE-EDIT rule 7).
 
-## YouTube Shorts title (43 chars)
-GTA 6 Trailer 2's First Line Is a Leak Joke?
+## YouTube Shorts title (45 chars)
+GTA 6 Trailer 2 Opens With a Line About Leaks
 
 ## Cover text (poster frame, the freeze with the quote card)
-"I'M JUST FIXING SOME LEAKS."
+"JUST FIXING SOME LEAKS."
 
 ## Description
-GTA 6 Trailer 2 opens with Jason up on a roof. A man below asks what he's doing up there, and Jason says: "I'm just fixing some leaks."
+GTA 6 Trailer 2 opens with Jason up on a roof. A man below asks what he's doing up there, and Jason says: "Just fixing some leaks."
 
-Why do fans think that's a joke? In September 2022 a hacker leaked about 90 videos of early GTA 6 development footage, and Rockstar confirmed a network intrusion that included "early development footage for the next Grand Theft Auto." Then in December 2023, Rockstar posted "Our trailer has leaked" before Trailer 1's premiere.
+Why does that matter? In September 2022 a hacker leaked about 90 videos of early GTA 6 development footage, and Rockstar confirmed a network intrusion that included "early development footage for the next Grand Theft Auto." Then in December 2023, Rockstar posted "Our trailer has leaked" before Trailer 1's premiere.
 
 Rockstar has never said the roof line is about the leaks. That part is a fan theory. So: joke or coincidence? One word.
 

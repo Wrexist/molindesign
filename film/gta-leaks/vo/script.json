@@ -1,5 +1,5 @@
 {
- "about": "GTA 6 Trailer 2 (Rockstar Games, May 6, 2025) opens on Jason Duval up on a roof; a man below asks \"What you doing up there?\" and Jason says \"I'm just fixing some leaks.\" (heard in the trailer). Context: on September 19, 2022 Rockstar confirmed a network intrusion that leaked early development footage of the next Grand Theft Auto (about 90 videos, per reporting); on December 4, 2023 Rockstar posted \"Our trailer has leaked\" hours before Trailer 1's premiere. Rockstar never said the line is about the leaks: labeled THEORY. Trailer mode: three muted Trailer 2 excerpts under 3 s each, annotated. Delta.",
+ "about": "GTA 6 Trailer 2 (Rockstar Games, May 6, 2025) opens on Jason Duval up on a roof; a man below asks \"What you doing up there?\" and Jason says \"I'm just fixing some leaks.\" (heard in the trailer). Context: on September 19, 2022 Rockstar confirmed a network intrusion that leaked early development footage of the next Grand Theft Auto (about 90 videos, per reporting); on December 4, 2023 Rockstar posted \"Our trailer has leaked\" hours before Trailer 1's premiere. Rockstar never said the line is about the leaks: labeled THEORY. Trailer mode: two muted Trailer 2 excerpts (the opening house shot and the roof shot, where the line is spoken at 11.8-12.9 s of Rockstar's post), annotated. Delta.",
  "engine": "ming",
  "ming": {
   "voice": "US_James",
@@ -24,7 +24,7 @@
   "score_db": 0,
   "smr_db": 32
  },
- "dur": 28.4,
+ "dur": 29.0,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -33,57 +33,64 @@
   {
    "id": "hook",
    "at": 0.2,
-   "text": "GTA 6 Trailer 2 opens with a joke.",
-   "say": "G T A six Trailer 2 opens with a joke.",
+   "text": "GTA 6 Trailer 2 opens with a line about leaks.",
+   "say": "G T A six Trailer 2 opens with a line about leaks.",
    "speed": 1.08
   },
   {
    "id": "roof",
-   "at": 2.85,
+   "at": 3.25,
    "text": "Jason is up on a roof.",
-   "speed": 1.0
+   "speed": 0.95,
+   "take": 1
   },
   {
    "id": "ask",
-   "at": 4.62,
+   "at": 5.0,
    "text": "A man below asks what he's doing up there.",
    "speed": 1.06
   },
   {
    "id": "answer",
-   "at": 7.3,
-   "text": "His answer? I'm just fixing some leaks.",
+   "at": 7.6,
+   "text": "His answer?",
    "speed": 1.0
   },
   {
+   "id": "quote",
+   "at": 8.75,
+   "text": "I'm just fixing some leaks.",
+   "speed": 0.92
+  },
+  {
    "id": "why",
-   "at": 10.15,
-   "text": "Why is that funny? In 2022, a hacker leaked 90 videos of early GTA 6.",
-   "say": "Why is that funny? In twenty twenty-two, a hacker leaked ninety videos of early G T A 6.",
+   "at": 11.1,
+   "text": "Why does that matter? In 2022, a hacker leaked about 90 videos of early GTA 6.",
+   "say": "Why does that matter? In twenty twenty-two, a hacker leaked about ninety videos of early G T A 6.",
    "speed": 1.1
   },
   {
    "id": "conf",
-   "at": 15.85,
+   "at": 16.6,
    "text": "Rockstar confirmed it was their early footage.",
    "speed": 1.05
   },
   {
    "id": "t1",
-   "at": 18.45,
+   "at": 19.2,
    "text": "Then in 2023, Trailer 1 leaked before its premiere.",
    "say": "Then in twenty twenty-three, Trailer 1 leaked before its premiere.",
    "speed": 1.08
   },
   {
    "id": "never",
-   "at": 22.0,
+   "at": 22.75,
    "text": "Rockstar never said the roof line is a joke.",
    "speed": 1.04
   },
   {
    "id": "end",
-   "at": 24.8,
+   "at": 25.45,
    "text": "So, joke or coincidence? One word.",
    "speed": 0.96
   }
