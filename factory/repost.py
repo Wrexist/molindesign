@@ -26,7 +26,7 @@ UTC = timezone.utc
 COOLDOWN_DAYS = 7          # R1 (Isac 2026-11-12): same video, same channel + platform, not within 7 days
 FIRST_RUN_DAYS = 7         # R2: the original gets a full week before any remix of it goes up
 MAX_REMIXES = 3            # R5: per source per channel + platform, lifetime
-MAX_POSTS_PER_ET_DAY = 3   # R6: per channel + platform, fresh + fillers
+MAX_POSTS_PER_ET_DAY = {"tech": 3, "delta": 4}   # R6: per channel + platform, fresh + fillers (Delta: 3 fresh + 1 filler, Isac 2026-11-12)
 MAX_FILLERS_PER_ET_DAY = 1 # R6
 MIN_GAP_HOURS = 4          # R6: between any two posts on one channel + platform
 FILLER_SHARE_7D = 0.5      # R7: fillers at most half of a channel's posts in any trailing 7 days (fresh first)
@@ -447,7 +447,8 @@ def cmd_check(a):
                 ok("R9", f"facts checked {info['facts_checked']}")
     # R6: daily caps and spacing (fresh and fillers)
     day = [p for p in same_lane if et_day(p["when"]) == et_day(at)]
-    (ok if len(day) < MAX_POSTS_PER_ET_DAY else fail)("R6", f"{len(day)} posts already on {et_day(at)} ET on {ch}/{platform} (max {MAX_POSTS_PER_ET_DAY})")
+    cap = MAX_POSTS_PER_ET_DAY[ch]
+    (ok if len(day) < cap else fail)("R6", f"{len(day)} posts already on {et_day(at)} ET on {ch}/{platform} (max {cap})")
     if is_filler:
         fd = [p for p in day if p["filler"]]
         (ok if len(fd) < MAX_FILLERS_PER_ET_DAY else fail)("R6", f"{len(fd)} fillers already that day (max {MAX_FILLERS_PER_ET_DAY})")
