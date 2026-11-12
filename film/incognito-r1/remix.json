@@ -1,0 +1,17 @@
+{
+ "source": "incognito",
+ "source_commit": "1d52e9b",
+ "kind": "cut",
+ "created": "2026-11-12",
+ "hook": "So what does incognito mode actually hide?",
+ "title": "What Incognito Mode Actually Hides (It's on Chrome's Own Screen) 🤔",
+ "cover": "WHAT DOES INCOGNITO HIDE?",
+ "facts_checked": "2026-11-12",
+ "notes": "Example filler made while building the tool; facts as of the Oct 31 Chrome source.",
+ "from": "ask",
+ "to": "hero",
+ "t0": 1.93,
+ "t1": 21.7,
+ "length_s": 19.8,
+ "source_length_s": 29.8
+}

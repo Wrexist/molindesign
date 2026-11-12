@@ -88,6 +88,7 @@ A PostToolUse hook (`.claude/settings.json` → `tools/hooks/post-edit-check.mjs
 
 **Video factory**
 - `video-factory` — one run makes the next TikTok explainer: Drive topic sheet → `video-researcher` (facts + script) → `video-director` (film via `factory/make.sh`) → `video-jury` (fresh-eyes gate) → `video-seo` (caption, hashtags, post time) → Higgsfield upload and TikTok draft for Isac's tap → Drive doc + PR. Agents in `.claude/agents/`, how it fits together in `factory/README.md`. Template and quality bar: `film/nextword/`.
+- Archive + fillers: every rendered video and its source is kept (`/mnt/project-files/archive/`, `factory/ARCHIVE.csv`) so it can be remixed and reposted as a filler under `factory/REPOST.md` (Isac 2026-11-12: same video never within a week). `python3 factory/repost.py check` gates every scheduled post on both channels.
 
 **Workflow**
 - `site-kickoff` — plan before code: one sentence → BRIEF.md (hard idea, motion personality, skills with a job, budgets) → approval → `tools/new-site.sh`.

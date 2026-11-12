@@ -38,6 +38,7 @@ Spawn a **fresh** `video-jury` agent with the slug (never the director; it must 
 Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and no AI tag anywhere (no #ai, no "AI voice" line, YouTube Altered content No; see `video-seo` rules).
 
 ## 6. Upload for Isac's tap
+0. **Repost gate:** before handing any slot to the PC, run `python3 factory/repost.py check <slug> --channel tech --platform youtube --at "<slot UTC>"`. A FAIL blocks that slot; pick the next one or hold. Fillers (remixes of old videos) follow `factory/REPOST.md`: at most 1 a day, never on TikTok, never the same video within 7 days.
 1. `tiktok_accounts`. If there is no `active` account, skip to step 7 and put a fresh `tiktok_connect` link in the report.
 2. `media_upload` with `filename: <SLUG>-vo.mp4`, `content_type: video/mp4`; PUT the file with curl to `upload_url`; `media_confirm` with `type: video`. Do the same for `<SLUG>-voice-only.mp4` (Isac's cut for a trending sound).
 3. (`tiktok_music_trending` returned no tracks for Isac's account on 2026-10-23, and music attached in the form only survives `DIRECT_POST`, so sounds are added by Isac in the TikTok app. Isac wants a popular sound on every post (quiet, about 10% under the voice): never post without one, and TikTok can't change a post's sound afterwards. The first three posts went up without one.) `tiktok_prepare_publish` with `mode: UPLOAD_TO_DRAFT` (Isac picks the sound in the TikTok app; switch to `DIRECT_POST` only if Isac asks), `media_type: VIDEO`, the voice-only video URL, `title` = the caption's first line, `description` = caption + hashtags, `is_aigc: true` (the voice is AI-generated). Don't prefill privacy unless Isac has said. This shows Isac the publish form; he submits it. Never call `tiktok_publish` yourself.
@@ -51,6 +52,7 @@ Spawn the `video-seo` agent with the slug and the final jury report. It writes `
 - Write down what this run taught: add each jury finding that was a real mistake, and anything you'd do differently, to `factory/LESSONS.md` as one-line rules with the video's slug. Remove lessons a later video proved wrong.
 - Add this post to `factory/posts.csv` (slug, channel, platform, id, posted UTC, length, jury, hook, title) once it has an ID, so `factory/stats.py` tracks it. Fill the Performance table from `stats.py` at 24 h and 72 h, and say which hook or structure did best, so the next researcher leans into it. When 10 new posts have numbers, re-check whether the packaging score still lines up with views and update PERFORMANCE.md §7.
 - Commit LESSONS.md with the run.
+- `python3 factory/repost.py snapshot <slug>` so the source survives in `/mnt/project-files/archive/` even if the branch never merges.
 
 ## Timing and cost
 A run is ≈ 60–90 min of machine time: voice ≈ 7 min, renders ≈ 10 min, two jury rounds, agents' thinking. One run per scheduled firing; never start a second video in the same run.
