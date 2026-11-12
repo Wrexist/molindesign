@@ -1,5 +1,7 @@
 # Delta: GTA 6 channel line
 
+> **Scheduled runs: follow `delta/RUN.md`.** Since 2026-11-12 (Isac) it replaces the task prompt's "at most 2 per day": up to 3 fresh Shorts a day (13:00, 19:00, 23:00 ET) plus 1 filler at 09:00 ET, each gated by `factory/repost.py check`.
+
 Delta (YouTube and TikTok @deltaisac, about 161k subscribers) is becoming a GTA 6 channel until and after launch on **2026-11-19** (PS5, Xbox Series X|S). This is a second line next to `factory/` ("Tech, explained"). It reuses the same code-rendered film pipeline (`film/`, `factory/make.sh`, the video agents in `.claude/agents/`) and keeps its own backlog, rules and channel.
 
 **The two channels never mix.** Tech, explained videos never go to Delta; Delta videos never go to Tech, explained. Every posting instruction names the target channel and tells the PC session to switch to it and verify the channel name in YouTube Studio / TikTok before uploading.
@@ -10,6 +12,7 @@ Re-uploading or lightly editing other people's footage risks Content ID claims, 
 ## Files
 | File | What |
 |---|---|
+| `RUN.md` | What each scheduled Delta run does (3 fresh Shorts + 1 filler a day since 2026-11-12) |
 | `SAFE-EDIT.md` | The rules every video must pass, and the jury checklist addition |
 | `backlog.csv` | Topic queue, calendar order, status |
 | `REBRAND.md` | Channel switch steps and copy (name, about, banner brief, transition video) |
