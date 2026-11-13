@@ -241,6 +241,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,216 (43 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
 | airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
 | unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| notprivate | Nov 13 18:00 (planned) | 34 s | 7.3 r1 + fixes | – | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -336,3 +337,12 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - An endless spinner says "nothing loads"; for "slower, not stopped" use a crawling progress bar.
 - Louder SFX move Whisper's word edges and can close the gaps the SFX gate needs; re-run gate.py after every gain change and drop the hits that no longer fit.
 - Researcher: Whisper heard "Broadband Facts" as "Broadband fax" and "your plan's" as "plans"; reword ("for your plan, called Broadband Facts") rather than fight the TTS.
+
+### notprivate (#30), jury r1 7.3 / Truth 8.5 (post), all 10 fixes applied — scheduled Nov 13 13:00 ET
+- The backlog ran dry (no next/todo rows); this run took the last PERFORMANCE §7 idea. Add 4/6+ ideas to backlog.csv in every run's lessons so the next run never starts empty.
+- A threat topic's hook ("doesn't mean you're hacked") needs the threat on screen in the same frame as the strike; a strike through HACKED? alone reads as "NOT HACKED" with the sound off.
+- "Never do X" advice needs the do-instead next step on screen ("Back to safety"), or the jury reads an implied "otherwise go ahead" (Truth capped at 8.5).
+- A label box clipped a credit again (CHROME HEL…): check label boxes on rendered frames, not in code, and only tag re-created screens RE-CREATED, not quoted help text.
+- A locked-off composition for 20 s reads as a template even when every prop moves; give the hero object a physical pass/fail event (door opens, then slams onto the chain) and a slow push.
+- No stock icons: the bald "hacker" silhouette and a pill-stack hand read as clip art; draw them in the house cut-paper look.
+- A hit can't land mid-sentence (gate.py); put the DM number's slap in the first gap after its line.
