@@ -15,6 +15,7 @@ Re-uploading or lightly editing other people's footage risks Content ID claims, 
 | `RUN.md` | What each scheduled Delta run does (3 fresh Shorts + 1 filler a day since 2026-11-12) |
 | `SAFE-EDIT.md` | The rules every video must pass, and the jury checklist addition |
 | `backlog.csv` | Topic queue, calendar order, status |
+| `clips/` | `clipkit.py` (fetch + source verdict, cut muted clips, restore, lint) and `OFFICIAL.json` (Rockstar's accounts); skill `gta-clip-short` |
 | `REBRAND.md` | Channel switch steps and copy (name, about, banner brief, transition video) |
 | `../film/gta-<slug>/` | One film per video, same contract as `film/nextword/` |
 

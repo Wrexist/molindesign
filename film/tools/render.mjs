@@ -10,6 +10,7 @@
 //   node render.mjs events                                                (exports DUR + EV → out/events.json)
 //   node render.mjs encode                                                (re-encode existing frames + master)
 //   node render.mjs all                                                   (audio, video, master, poster, checks)
+//   node render.mjs clips                                                 (Delta trailer clips on screen → out/clips-used.json, for delta/clips/clipkit.py lint)
 //   node render.mjs clean  --ranges 182-236.5,253-290 [--fps 30]            (caption-free video of time ranges → out/clean/<a>-<b>.mp4, for Shorts)
 // Any mode takes --film <dir> to render another film in film/<dir>/ (its own index.html and out/); size, length,
 // poster time and file name come from the page's window.FILM { W, H, DUR, POSTER, SLUG }.
@@ -218,6 +219,10 @@ try {
       const out = path.resolve(opt('out', path.join(OUT, 'thumbnail.jpg'))); fs.writeFileSync(out, Buffer.from(data.split(',')[1], 'base64')); console.log('wrote', path.relative(ROOT, out));
     } else if (mode === 'audio') await audio(page);
     else if (mode === 'readcheck') await readcheck(page);
+    else if (mode === 'clips') {
+      const used = await page.evaluate(() => ({ DUR: window.DUR, uses: window.CLIP ? window.CLIP.uses() : [] }));
+      fs.writeFileSync(path.join(OUT, 'clips-used.json'), JSON.stringify(used, null, 1)); console.log(`wrote out/clips-used.json (${used.uses.length} uses)`);
+    }
     else if (mode === 'events') {
       const ev = await page.evaluate(() => ({ DUR: window.DUR, EV: window.EV }));
       fs.writeFileSync(path.join(OUT, 'events.json'), JSON.stringify(ev, null, 1)); console.log('wrote out/events.json');

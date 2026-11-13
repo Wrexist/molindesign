@@ -369,6 +369,14 @@ window.SKILLS = [
   "short": "Make a launch film, hero loop or social clip entirely in code"
  },
  {
+  "id": "gta-clip-short",
+  "cat": "Film & video",
+  "desc": "Turn a GTA video link into a Delta Short draft without breaking the channel: judge the source by account id (Rockstar's own posts or own capture only; fan edits are topic only), cut muted excerpts under 5 s with letterbox crop, draw them in a code-rendered film with a freeze, circle and credit on each, and lint the budget: at most half the runtime, no 5 s unbroken stretch, no clip reused across films. Proven on film/gta-leaks/ from Rockstar's Trailer 2 post.",
+  "title": "GTA clip Short",
+  "source": "delta/clips + film/gta-leaks",
+  "short": "A GTA link in, a rule-safe Short with annotated trailer clips out"
+ },
+ {
   "id": "film-voiceover",
   "cat": "Film & video",
   "desc": "Add professional narration to a code-rendered film: write lines viewers stay for, pick a voice, fit every line to its slot by re-speaking at a new rate, get word-timed caption cards, prove each line with a Whisper listen check alone and through the finished mix, duck and carve the score from the word times, master to −14 LUFS. Kokoro-82M (Apache-2.0) on CPU; ideas from VoiceStudio's source; proven on Held's narrated cut.",
