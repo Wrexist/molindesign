@@ -1,5 +1,5 @@
 {
-  "about": "GTA 6's mountain, Mount Kalaga: Rockstar's own page calls it 'A national landmark up against the state’s northern border' that 'offers prime hunting, fishing, and off-road trails', with 'hillbilly mystics and paranoid radicals' in the backwoods 'far from the prying eyes of the government' (rockstargames.com/VI/only-in-leonida/kalaga, read 2026-11-01). One REAL WORLD beat, scoped in the voice: Florida's highest natural point, Britton Hill, is 345 feet (USGS, Elevations and Distances in the United States). The film never says Leonida is Florida and never gives Mount Kalaga a height (Rockstar doesn't). Ends on an open one-word question that loops into line 1. GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S. Delta.",
+  "about": "GTA 6's mountain, Mount Kalaga: Rockstar's own page calls it 'A national landmark up against the state’s northern border' that 'offers prime hunting, fishing, and off-road trails', with 'hillbilly mystics and paranoid radicals' in the backwoods 'far from the prying eyes of the government' (rockstargames.com/VI/only-in-leonida/kalaga, read 2026-11-01). No real-world comparison (the Florida beat was cut after jury round 2: it only lands if Leonida = Florida, which Rockstar never says). The film never gives Mount Kalaga a height: Rockstar's site doesn't. Ends on an open one-word question that loops into line 1. GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S. Delta.",
   "engine": "ming",
   "ming": {
     "voice": "US_James",
@@ -13,8 +13,7 @@
   "names": [
     "GTA",
     "Rockstar",
-    "Kalaga",
-    "Florida"
+    "Kalaga"
   ],
   "pronounce": {},
   "chain": {
@@ -40,57 +39,50 @@
       "speed": 1.04
     },
     {
-      "id": "real",
-      "at": 4.6,
-      "text": "In the real world, Florida tops out at 345 feet.",
-      "say": "In the real world, Florida tops out at three hundred forty-five feet.",
-      "speed": 1.02
-    },
-    {
       "id": "ask",
-      "at": 8.85,
+      "at": 4.45,
       "text": "So what's out there?",
       "speed": 1.0
     },
     {
       "id": "landmark",
-      "at": 10.45,
+      "at": 6.05,
       "text": "A national landmark up against the state's northern border.",
       "speed": 1.05
     },
     {
       "id": "trails",
-      "at": 13.95,
+      "at": 9.55,
       "text": "Plus prime hunting, fishing, and off-road trails.",
       "speed": 1.1
     },
     {
       "id": "backwoods",
-      "at": 17.0,
+      "at": 12.6,
       "text": "And in the backwoods? Hillbilly mystics and paranoid radicals.",
       "speed": 1.08
     },
     {
       "id": "eyes",
-      "at": 21.0,
+      "at": 16.6,
       "text": "Far from the prying eyes of the government.",
       "speed": 0.95
     },
     {
       "id": "height",
-      "at": 24.3,
-      "text": "But Rockstar never gives its height.",
+      "at": 19.9,
+      "text": "But Rockstar's site never gives its height.",
       "speed": 1.0
     },
     {
       "id": "end",
-      "at": 27.0,
+      "at": 23.0,
       "text": "So, mountain or hill? One word.",
       "speed": 0.95,
       "take": 0
     }
   ],
-  "dur": 30.0,
+  "dur": 26.3,
   "fit": {
     "min": 0.8,
     "max": 1.1

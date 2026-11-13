@@ -1,0 +1,88 @@
+{
+ "about": "GTA 6 pre-load (Delta, pillar 6). Rockstar Newswire Nov 3 2026: digital pre-load from Nov 10 (PS5 midnight local; Xbox Series X|S 12 a.m. GMT), the pre-load file needs up to 212 GB depending on device, code-in-box versions for both consoles from Nov 12, launch Nov 19. PlayStation's GTA VI support page: 212 GB, code-in-box has no disc, releases midnight local Nov 19 on PS5, check space under Settings > Storage. Voice is date-proof for posting Nov 10-12: no 'today', no dated count in the present tense. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 22.5
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6 needs up to 212 gigs.",
+   "say": "G T A six needs up to two hundred twelve gigs.",
+   "pause": 0.4
+  },
+  {
+   "id": "open",
+   "at": 3.28,
+   "text": "Pre-load is already open.",
+   "pause": 0.22
+  },
+  {
+   "id": "fit",
+   "at": 4.93,
+   "text": "So, will it fit on your console?",
+   "take": 1,
+   "pause": 0.22
+  },
+  {
+   "id": "check",
+   "at": 7.11,
+   "text": "Check your free space first.",
+   "pause": 0.22
+  },
+  {
+   "id": "box",
+   "at": 9.03,
+   "text": "Getting the box instead? Bad news.",
+   "say": "Getting the box instead? Bad news.",
+   "pause": 0.22
+  },
+  {
+   "id": "code",
+   "at": 11.55,
+   "text": "Inside is just a download code.",
+   "pause": 0.4
+  },
+  {
+   "id": "all",
+   "at": 13.67,
+   "text": "So you download all of it too.",
+   "pause": 0.22
+  },
+  {
+   "id": "room",
+   "at": 15.89,
+   "text": "Make room before it unlocks November 19.",
+   "say": "Make room before it unlocks November nineteenth.",
+   "pause": 0.22
+  },
+  {
+   "id": "end",
+   "at": 18.62,
+   "text": "Will GTA 6 fit on yours? Yes or no?",
+   "say": "Will G T A six fit on yours? Yes or no?",
+   "pause": 0
+  }
+ ],
+ "dur": 22.3,
+ "tail": 0.9
+}
