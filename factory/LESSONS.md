@@ -239,8 +239,10 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | forceclose | Nov 8 18:00 | 40 s | 7.5 | 119 (2.5 d) | – | 6 | stalled; myth some viewers already knew |
 | deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
 | coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,216 (43 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
-| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
-| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h), 928 (31.5 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
+| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
+| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | – | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -336,3 +338,22 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - An endless spinner says "nothing loads"; for "slower, not stopped" use a crawling progress bar.
 - Louder SFX move Whisper's word edges and can close the gaps the SFX gate needs; re-run gate.py after every gain change and drop the hits that no longer fit.
 - Researcher: Whisper heard "Broadband Facts" as "Broadband fax" and "your plan's" as "plans"; reword ("for your plan, called Broadband Facts") rather than fight the TTS.
+
+### notprivate (#30), jury r1 7.3 / Truth 8.5 (post), all 10 fixes applied — scheduled Nov 13 13:00 ET
+- The backlog ran dry (no next/todo rows); this run took the last PERFORMANCE §7 idea. Add 4/6+ ideas to backlog.csv in every run's lessons so the next run never starts empty.
+- A threat topic's hook ("doesn't mean you're hacked") needs the threat on screen in the same frame as the strike; a strike through HACKED? alone reads as "NOT HACKED" with the sound off.
+- "Never do X" advice needs the do-instead next step on screen ("Back to safety"), or the jury reads an implied "otherwise go ahead" (Truth capped at 8.5).
+- A label box clipped a credit again (CHROME HEL…): check label boxes on rendered frames, not in code, and only tag re-created screens RE-CREATED, not quoted help text.
+- A locked-off composition for 20 s reads as a template even when every prop moves; give the hero object a physical pass/fail event (door opens, then slams onto the chain) and a slow push.
+- No stock icons: the bald "hacker" silhouette and a pill-stack hand read as clip art; draw them in the house cut-paper look.
+- A hit can't land mid-sentence (gate.py); put the DM number's slap in the first gap after its line.
+
+### darkmode (#31), jury r1 7.0 / Truth 8.5 → r2 7.4 / Truth 8.5 (post), r2 polish applied — scheduled Nov 14 13:00 ET (pIfs8L4zK1k; PC was asleep at 08:45 UTC, scheduled by about 09:00 UTC)
+- A gauge that says "% LESS POWER" must never rest on its 0 tick during the "doesn't help" section: with the sound off it reads as a 0 % claim. Give the needle a rest peg outside the scale.
+- Copy the source's hedge ("on average") onto every number band, not only the hero quote; a dropped hedge kept Truth at 8.5 two rounds running.
+- The needle has to agree with the voice on the word: sweep to the spoken number within 0.35 s, then slam on the hit. Round 1 had the dial at 25 under "thirty-nine" for a full second.
+- The test's two answers (LCD glows gray, OLED pitch black) belong in one frame, side by side; that frame is the DM moment and a second poster.
+- A hero object that never moves for 20 s (the meter) is a dead prop even when the rest of the frame moves: give it small reactions (jitter on each toggle, creep per bulb row) before its big event.
+- A ringing hit (the clink) alone in a 2 s voice gap makes Whisper invent words and shifts every word edge, so 8 of 9 SFX failed. Keep long holds to one dry thump.
+- The locked phone-left / meter-right layout for 3.5–23 s still read as a template in r2: plan two layout changes across the middle third next time.
+- Next ideas (score 5/6+): "Do you need to close your apps?" (Apple/Google say no), "Why does your phone get hot when charging?", "Is 5G why your battery drains?".

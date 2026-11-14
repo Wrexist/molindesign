@@ -1,0 +1,101 @@
+{
+ "about": "Why browsers say \"Your connection is not private\". Factory #30, backlog row 34, slug notprivate. One hard idea: every HTTPS site shows your browser a certificate (its ID card) that is only valid between two dates; the browser checks it, and when it can't verify it, it stops before any data is sent and shows the warning. Usual causes are boring (your device's clock is wrong, a Wi-Fi sign-in page got in the way, the site's certificate expired or is misconfigured), but sometimes someone is pretending to be the site, so on a bank, shopping or login site never click through. Sources (read 2026-11-13) in BRIEF.md section 3: Chrome Help 95669 and 95617, Chromium's own warning strings, Firefox's own warning strings, Apple Safari guide, Google's 2017 CCS paper (Acer et al.), CA/Browser Forum Baseline Requirements 2.3.1. Planned silences: 0.5 s after the hook (frame-0 hit), 0.6 s after 'a real card fails.' (card-fail buzz), 0.6 s after 'pretending to be the site.' (door knock), 1.2 s after 'never click through.' (hero: coral door chain snaps taut, screenshot hold). Narration-led: record the voice first and key every visual beat to its word times.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Google",
+  "Wi-Fi",
+  "Windows"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": 0,
+  "score_db": 0,
+  "smr_db": 46.2,
+  "carve_db": 0
+ },
+ "dur": 34.4,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "This warning doesn't mean you're hacked.",
+   "pause": 0.5,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So why does it say your connection is not private?",
+   "say": "So, why does it say your connection is not private?",
+   "pause": 0.4,
+   "at": 2.54
+  },
+  {
+   "id": "card",
+   "text": "Every secure site shows your browser a dated ID card.",
+   "say": "Every secure site shows your browser a dated I D card.",
+   "pause": 0.4,
+   "at": 5.69
+  },
+  {
+   "id": "clock",
+   "text": "Your browser checks those dates with your own clock.",
+   "pause": 0.4,
+   "at": 9.24
+  },
+  {
+   "id": "wrong",
+   "text": "If your clock is off, a real card fails.",
+   "pause": 0.6,
+   "at": 12.29
+  },
+  {
+   "id": "study",
+   "text": "One Google study blamed clocks for a third on Windows.",
+   "pause": 0.45,
+   "at": 15.32
+  },
+  {
+   "id": "wifi",
+   "text": "Airport Wi-Fi does it too, until you sign in.",
+   "pause": 0.45,
+   "at": 19.26
+  },
+  {
+   "id": "dip",
+   "text": "But sometimes, someone's pretending to be the site.",
+   "pause": 0.6,
+   "at": 22.5
+  },
+  {
+   "id": "check",
+   "text": "So check your clock and the Wi-Fi first.",
+   "pause": 0.4,
+   "at": 25.81
+  },
+  {
+   "id": "bank",
+   "text": "On a banking site, never click through.",
+   "pause": 1.2,
+   "at": 28.49
+  },
+  {
+   "id": "end",
+   "text": "Have you ever clicked through? Yes or no.",
+   "pause": 0,
+   "at": 31.94,
+   "say": "Have you ever clicked through? Yes, or no?"
+  }
+ ],
+ "tail": 0.3
+}
