@@ -35,9 +35,10 @@ Run `git fetch origin`. Work on your session's branch, starting from main plus t
 5. **Gate and upload.**
    - Gate: `python3 factory/repost.py check gta-<slug> --channel delta --at "<slot UTC>"` must pass for every post, fresh or filler.
    - Upload: send `<slug>-vo.mp4` to Higgsfield (media_upload, curl PUT, media_confirm).
-   - Start the PC: `start_remote_control`, folder `D:\Projects\Website Factory - Molin Design`, with the newest message Isac wrote in the run's own thread (his standing go is in team memory `delta-gta6-channel`).
-   - If the PC refuses: say so once and leave the video queued with its Higgsfield URL in backlog.csv.
-6. **PC instructions.**
+   - **Queue it for the PC (Isac 2026-11-14: "Always go, don't ask me. Make it automatic and seamless").** Never ask Isac for a go and never call start_remote_control for a post. Instead: `git fetch origin claude/delta-queue`, check out `delta/queue.json` from it (`git show origin/claude/delta-queue:delta/queue.json > delta/queue.json`, or start empty if the branch is missing), run `python3 delta/queue.py add gta-<slug> --url <Higgsfield URL> --slot "<slot UTC>"`, then commit only that file to `claude/delta-queue` (a worktree or `git commit` on that branch) and push it. The PC's scheduled task (`delta/PC-AUTOPOST.md`, every 2 h) uploads it, schedules it, writes back the video ID and posts the pinned question after go-live.
+   - At the start of every run, read `origin/claude/delta-queue:delta/queue.json`: copy each new `youtube_id` into backlog.csv and posts.csv, and report any `failed` item to Isac in one line.
+   - Before picking a slot, count `ready` and `scheduled` queue items as taken slots.
+6. **PC instructions** (the PC task follows `delta/PC-AUTOPOST.md`; these are its rules).
    - FIRST switch to the channel **Delta (@deltaisac)** in YouTube Studio and confirm it.
    - Never change the name, banner or about text, and never touch existing videos.
    - Schedule in the slot that passed the gate (09:00 filler; 13:00, 19:00 or 23:00 ET fresh).
