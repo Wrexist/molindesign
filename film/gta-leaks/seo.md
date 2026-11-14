@@ -2,7 +2,7 @@
 
 Channel: **Delta** (YouTube @deltaisac) only. YouTube Shorts only; TikTok is paused for Delta. Switch to Delta and verify the channel name in YouTube Studio before uploading. Upload `gta-leaks-vo.mp4` (voice + sound effects, no music, 29.0 s). Altered content: No. Written 2026-11-12 for a US audience. Facts and sources: `BRIEF.md`.
 
-**Status: DRAFT, not uploaded.** Made from a link Isac sent in a thread, so it waits for his go in that thread (not the routine's standing go). First trailer-mode Short: after it goes live, check YouTube Studio for a Content ID claim before making more (SAFE-EDIT rule 7).
+**Status: SCHEDULED** Sun Nov 15 13:00 ET, YouTube xijZbCOFH-k (Isac go 2026-11-14). Playlist GTA 6 Facts. No Content ID claim at upload; re-check after go-live (SAFE-EDIT rule 7).
 
 ## YouTube Shorts title (45 chars)
 GTA 6 Trailer 2 Opens With a Line About Leaks
