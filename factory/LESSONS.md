@@ -240,8 +240,9 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
 | coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,216 (43 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
 | airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h), 928 (31.5 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
-| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
-| notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
+| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
+| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | – | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -347,7 +348,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - No stock icons: the bald "hacker" silhouette and a pill-stack hand read as clip art; draw them in the house cut-paper look.
 - A hit can't land mid-sentence (gate.py); put the DM number's slap in the first gap after its line.
 
-### darkmode (#31), jury r1 7.0 / Truth 8.5 → r2 7.4 / Truth 8.5 (post), r2 polish applied — scheduled Nov 14 13:00 ET
+### darkmode (#31), jury r1 7.0 / Truth 8.5 → r2 7.4 / Truth 8.5 (post), r2 polish applied — scheduled Nov 14 13:00 ET (pIfs8L4zK1k; PC was asleep at 08:45 UTC, scheduled by about 09:00 UTC)
 - A gauge that says "% LESS POWER" must never rest on its 0 tick during the "doesn't help" section: with the sound off it reads as a 0 % claim. Give the needle a rest peg outside the scale.
 - Copy the source's hedge ("on average") onto every number band, not only the hero quote; a dropped hedge kept Truth at 8.5 two rounds running.
 - The needle has to agree with the voice on the word: sweep to the spoken number within 0.35 s, then slam on the hit. Round 1 had the dial at 25 under "thirty-nine" for a full second.
