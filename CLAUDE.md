@@ -88,6 +88,7 @@ A PostToolUse hook (`.claude/settings.json` → `tools/hooks/post-edit-check.mjs
 
 **Video factory**
 - `video-factory` — one run makes the next TikTok explainer: Drive topic sheet → `video-researcher` (facts + script) → `video-director` (film via `factory/make.sh`) → `video-jury` (fresh-eyes gate) → `video-seo` (caption, hashtags, post time) → Higgsfield upload and TikTok draft for Isac's tap → Drive doc + PR. Agents in `.claude/agents/`, how it fits together in `factory/README.md`. Template and quality bar: `film/nextword/`.
+- `gta-clip-short` — a GTA video link → a Delta Short draft: `delta/clips/clipkit.py` fetches it and judges the source (only Rockstar's own accounts or Isac's capture; fan posts are topic only), cuts muted clips under 5 s, `film/kit/clip.js` draws and annotates them in the film, `clipkit.py lint` holds each film to ≤ 50 % footage and no reused clips (make.sh runs it). Example: `film/gta-leaks/`.
 - Archive + fillers: every rendered video and its source is kept (`/mnt/project-files/archive/`, `factory/ARCHIVE.csv`) so it can be remixed and reposted as a filler under `factory/REPOST.md` (Isac 2026-11-12: same video never within a week). `python3 factory/repost.py check` gates every scheduled post on both channels.
 
 **Workflow**

@@ -12,7 +12,7 @@ Run `git fetch origin`. Work on your session's branch, starting from main plus t
 
 ## Each run
 1. **Queue first.** Check `delta/backlog.csv` for films already rendered that pass the gate (7.0+ overall, Truth 8.5+) and only need a fact re-check at the primary source today. Example on 2026-11-12: gta-origin is queued. gta-secrets needs a fresh jury first. Schedule the oldest one.
-2. **Otherwise make one new Short.** Use trailer mode (SAFE-EDIT rule 7), own gameplay capture after Nov 19 (rule 8), or broad backlog rows with the pillars in BROAD-TOPICS.md, never two of the same pillar in a row.
+2. **Otherwise make one new Short.** Use trailer mode (SAFE-EDIT rule 7, built with the skill `gta-clip-short`: `delta/clips/clipkit.py` fetches and cuts official clips, make.sh lints them), own gameplay capture after Nov 19 (rule 8), or broad backlog rows with the pillars in BROAD-TOPICS.md, never two of the same pillar in a row.
    - Format: 25–40 s, 1080x1920, a hook anyone gets in 3 s.
    - Title and screen: GTA or GTA 6 in the title and on screen early.
    - Visuals: dense, more-graphical frames with one hero object per beat and type at least 36 px.
