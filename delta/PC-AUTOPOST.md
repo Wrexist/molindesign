@@ -30,3 +30,9 @@ Rules: never call tiktok_publish or post to TikTok; never post `film/gta-transit
 
 ## Setup (once, on the PC)
 Task Scheduler → Create Task "Delta autopost": trigger daily, repeat every 2 hours indefinitely; action `cmd /c cd /d "D:\Projects\Website Factory - Molin Design" && claude -p "Follow delta/PC-AUTOPOST.md section 'Each tick' exactly." --permission-mode acceptEdits >> delta-autopost.log 2>&1`; "Run only when user is logged on" (Chrome and YouTube Studio need the signed-in session).
+
+## As installed on Phantomen (2026-11-14)
+- `D:\Projects\delta-queue` is a sparse clone (only `delta/`) on `claude/delta-queue`, not a worktree.
+- The task runs `D:\Projects\delta-autopost.cmd`: `git pull`, then `claude -p ... --chrome --permission-mode acceptEdits --allowedTools "Bash(git *)" "Bash(python3 *)" "Bash(curl *)" "Bash(mkdir *)" "Bash(rm *)" "mcp__claude-in-chrome"`. Without `--allowedTools`, a `-p` run silently denies git/python/curl and the Chrome tools. Log: `D:\Projects\delta-autopost.log`.
+- Created by `D:\Projects\setup-delta-autopost-task.ps1` (Isac runs it once; Windows blocked creating it remotely). Every 2 h from the next full hour, only while logged on, no overlap, 1 h limit.
+- Needs: the Claude CLI signed in (`claude` then `/login`), and Chrome open and signed in to YouTube Studio as Delta.
