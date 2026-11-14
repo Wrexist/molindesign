@@ -346,3 +346,13 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - A locked-off composition for 20 s reads as a template even when every prop moves; give the hero object a physical pass/fail event (door opens, then slams onto the chain) and a slow push.
 - No stock icons: the bald "hacker" silhouette and a pill-stack hand read as clip art; draw them in the house cut-paper look.
 - A hit can't land mid-sentence (gate.py); put the DM number's slap in the first gap after its line.
+
+### darkmode (#31), jury r1 7.0 / Truth 8.5 → r2 7.4 / Truth 8.5 (post), r2 polish applied — scheduled Nov 14 13:00 ET
+- A gauge that says "% LESS POWER" must never rest on its 0 tick during the "doesn't help" section: with the sound off it reads as a 0 % claim. Give the needle a rest peg outside the scale.
+- Copy the source's hedge ("on average") onto every number band, not only the hero quote; a dropped hedge kept Truth at 8.5 two rounds running.
+- The needle has to agree with the voice on the word: sweep to the spoken number within 0.35 s, then slam on the hit. Round 1 had the dial at 25 under "thirty-nine" for a full second.
+- The test's two answers (LCD glows gray, OLED pitch black) belong in one frame, side by side; that frame is the DM moment and a second poster.
+- A hero object that never moves for 20 s (the meter) is a dead prop even when the rest of the frame moves: give it small reactions (jitter on each toggle, creep per bulb row) before its big event.
+- A ringing hit (the clink) alone in a 2 s voice gap makes Whisper invent words and shifts every word edge, so 8 of 9 SFX failed. Keep long holds to one dry thump.
+- The locked phone-left / meter-right layout for 3.5–23 s still read as a template in r2: plan two layout changes across the middle third next time.
+- Next ideas (score 5/6+): "Do you need to close your apps?" (Apple/Google say no), "Why does your phone get hot when charging?", "Is 5G why your battery drains?".
