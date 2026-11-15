@@ -500,7 +500,9 @@
     if (L === 'bg') {
       iceSheet(g, -200, -200, 1280, 2120, 3, '#f2fdff', '#9ee3f3');
       /* the dark shape under the ice: big, near-black, hard-edged (jury r1: 85 % ink, 6 px blur) */
-      g.save(); g.globalAlpha = .88; g.translate(510, 1010 + 6 * osc(t, 2, 1)); g.rotate(-.12); g.drawImage(P.alienDark, -350 * 1.15, -470 * 1.15, 700 * 1.15, 900 * 1.15); g.fillStyle = 'rgba(244,236,214,.7)'; [[-58, -215, .5], [52, -215, -.5]].forEach(function (e) { g.save(); g.translate(e[0] * 1.15, e[1] * 1.15); g.rotate(e[2]); g.beginPath(); g.ellipse(0, 0, 30, 11, 0, 0, TAU); g.fill(); g.restore(); }); g.restore();
+      /* jury r3: no eye highlights (an unreadable shape until ice2), and it is gone by 1.9 s so the 3 SECRETS card never stands on its legs */
+      var af = 1 - sm(t, T.sec - .08, .5);
+      if (af > 0) { g.save(); g.globalAlpha = .88 * af; g.translate(510, 1010 + 6 * osc(t, 2, 1)); g.rotate(-.12); g.drawImage(P.alienDark, -350 * 1.15, -470 * 1.15, 700 * 1.15, 900 * 1.15); g.restore(); }
       /* a pale film of ice over it */
       g.fillStyle = 'rgba(226,248,255,.08)'; g.fillRect(-200, -200, 1480, 2320);
       /* the torch pool glides in from the left and settles on the shape on "secrets" */
@@ -599,7 +601,7 @@
   function ovBridge(g, t) {
     chipIn(g, t, 'FIRST MISSION', 330, 570, T.ch1a, T.ch1out, { bg: HOT, px: 52, rot: -.03, from: -30 });
     chipIn(g, t, 'NORTH YANKTON', 640, 660, T.ch1b, T.ch1out, { bg: TEAL, px: 52, rot: .02, from: -30, ph: 2 });
-    chipIn(g, t, 'OUR DRAWING', 720, 1370, T.our1, T.F2.drop - .05, { bg: CREAM, px: 44, rot: .03, from: 30 });
+    chipIn(g, t, 'OUR DRAWING', 228, 1352, T.our1, T.F2.drop - .05, { bg: CREAM, px: 44, rot: .02, from: 30 });
     /* jury r1: the stamp lands on the first hit and is gone before the SECRET 2 sheet arrives (it sits under the foil layer too) */
     stampAt(g, t, P.stNo, 510, 760, T.HITS[0], T.F2.drop - .05, -.06, 1);
   }
@@ -641,9 +643,9 @@
   var MB = [[230, 860], [410, 860], [610, 860], [790, 860]], MS = [[250, 1175], [510, 1175], [770, 1175]];
   function wMural(g, t, L) {
     if (L === 'bg') {
-      g.fillStyle = '#6d5a73'; g.fillRect(-600, -1260, 2280, 4400);
+      g.fillStyle = '#6d5a73'; g.fillRect(-1200, -1260, 3600, 4400);
       var r = mulberry(61); g.strokeStyle = 'rgba(30,20,40,.25)'; g.lineWidth = 3;
-      for (var y = -1260; y < 3140; y += 70) { g.beginPath(); g.moveTo(-600, y); g.lineTo(1680, y); g.stroke(); for (var x = -600 + ((y + 1260) / 70 % 2) * 70; x < 1680; x += 140) { g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + 70); g.stroke(); } }
+      for (var y = -1260; y < 3140; y += 70) { g.beginPath(); g.moveTo(-1200, y); g.lineTo(2400, y); g.stroke(); for (var x = -1200 + ((y + 1260) / 70 % 2) * 70; x < 2400; x += 140) { g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + 70); g.stroke(); } }
       /* the painted wall panel */
       g.fillStyle = STONE; g.fillRect(110, 470, 800, 900); g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(110, 1370, 800, 12);
       for (var i = 0; i < 900; i++) { g.fillStyle = 'rgba(90,70,50,' + (.03 + r() * .08).toFixed(3) + ')'; g.fillRect(110 + r() * 800, 470 + r() * 900, 2 + r() * 6, 2 + r() * 6); }
@@ -674,26 +676,24 @@
       if (t >= q[0] && t < q[0] + .45) KIT.impact(g, b[0], b[1], t - q[0], .55, HOT);
     });
     if (t >= T.jq - .02 && t < T.n3 + .45) { g.save(); g.globalAlpha *= 1 - sm(t, T.n3 + .15, .25); slam(g, '?', 858, 1080, 150, t - T.jq, { col: TEAL, lw: 13, rot: .12 + .03 * osc(t, 9, 2) }); g.restore(); }
-    /* mur3: pins and red string out to the fan theories */
-    if (t >= T.n1 - .02) {
-      /* jury r2: only readings the sources report (BRIEF facts 7 and 11): 100% completion (PC Gamer 2016, GamesRadar+ 2025) and "just put in there to mess with people" (Hinchliffe, GamesRadar+ 2024) */
-      var NOTES = [[T.n1, P.th1, 300, 993, -.02], [T.n2, P.th2, 720, 993, .02]];
-      NOTES.forEach(function (n) {
-        if (t < n[0] - .02) return; var k = sm(t, n[0], .3), jig = t >= T.argue ? .06 * Math.exp(-(t - T.argue) * 3) * Math.sin((t - T.argue) * 30) : 0;
-        g.save(); g.strokeStyle = RED; g.lineWidth = 6; g.beginPath(); g.moveTo(510, 770); g.lineTo(lerp(510, n[2], k), lerp(770, n[3] - 62, k)); g.stroke(); g.restore();
-        if (k >= 1) {
-          var s = kn(t, n[0] + .3, .08); g.save(); g.translate(n[2], n[3]); g.rotate(n[4] + jig); g.scale(s, s); NOREC = nr || t < n[0] + .4; putW(g, n[1], 0, 0); NOREC = nr; g.restore();
-          g.fillStyle = RED; circle(g, n[2], n[3] - 62, 12); g.fill(); g.fillStyle = 'rgba(255,255,255,.5)'; circle(g, n[2] - 4, n[3] - 66, 4); g.fill();
-        }
-        g.fillStyle = RED; circle(g, 510, 770, 12); g.fill();
-      });
-    }
   }
   function ovMural(g, t) {
     var zo = sm(t, T.mzo, .45);
-    chipIn(g, t, 'OUR DRAWING · AS PC GAMER DESCRIBES IT', 510, lerp(1360, 1222, zo), T.ourM, T.F3.drop + .3, { bg: CREAM, px: 40, from: 30 });
-    /* jury r2: clear of the caption tape (≥ 16 px), tucked on the board's top edge */
-    chipIn(g, t, 'FAN THEORIES', 510, 568, T.fan, T.F3.drop + .3, { bg: HOT, px: 52, rot: -.03, from: -30 });
+    chipIn(g, t, 'OUR DRAWING · AS PC GAMER DESCRIBES IT', 510, lerp(1360, 1150, zo), T.ourM, T.F3.drop + .3, { bg: CREAM, px: 40, from: 30 });
+    /* jury r3: the board steps back to the left and the two readings hang beside it at full size, on red string from the eye,
+       each with its own source: FAN THEORIES over 100% completion; Ben Hinchliffe (ex-Rockstar, GamesRadar+ 2024) over "mess with you" */
+    if (t >= T.n1 - .02 && t < T.F3.drop + .35) {
+      var C = camOf('mural', t), ex = C.cx + C.dx + (906 - C.cx) * C.s, ey = C.cy + C.dy + (680 - C.cy) * C.s, nr0 = NOREC;
+      [[T.n1, P.th1, 745, 735, -.02], [T.n2, P.th2, 745, 985, .02]].forEach(function (n) {
+        if (t < n[0] - .02) return; var k = sm(t, n[0], .3), jig = t >= T.argue ? .06 * Math.exp(-(t - T.argue) * 3) * Math.sin((t - T.argue) * 30) : 0, px = n[2] - 176, py = n[3] + 10;
+        g.save(); g.globalAlpha *= 1 - sm(t, T.F3.drop + .1, .2); g.strokeStyle = RED; g.lineWidth = 5; g.beginPath(); g.moveTo(ex, ey); g.lineTo(lerp(ex, px, k), lerp(ey, py, k)); g.stroke();
+        if (k >= 1) {
+          var s1 = kn(t, n[0] + .3, .08); g.save(); g.translate(n[2], n[3]); g.rotate(n[4] + jig); g.scale(s1, s1); NOREC = nr0 || t < n[0] + .4; putW(g, n[1], 0, 0); NOREC = nr0; g.restore();
+          g.fillStyle = RED; circle(g, px, py, 12); g.fill(); g.fillStyle = 'rgba(255,255,255,.5)'; circle(g, px - 4, py - 4, 4); g.fill();
+        }
+        g.fillStyle = RED; circle(g, ex, ey, 11); g.fill(); g.restore();
+      });
+    }
     /* jury r1: the stake, sourced (GamesRadar+, 2024-11-05: a 44,000-member subreddit, "no one is giving up"); slaps on at "44,000", pinned in the gap after "argue" */
     if (t >= T.n44 - .02 && t < T.F3.drop + .4) {
       var k = cd(t, T.n44, 13), nr = NOREC, pk = cd(t, T.pinT, 18), jg = t >= T.pinT ? .05 * Math.exp(-(t - T.pinT) * 5) * Math.sin((t - T.pinT) * 34) : 0;
@@ -716,7 +716,8 @@
 
   /* =========================== WORLD 5: Mount Gordo at night, the ghost =========================== */
   var STARS = (function () { var r = mulberry(88), s = []; for (var i = 0; i < 60; i++) s.push([r() * 1380 - 150, r() * 1100 - 100, 2 + r() * 4, r() * TAU, 1 + Math.floor(r() * 4)]); return s; })();
-  var RKY = 1180;
+  /* jury r3: the ghost and her rock sit 150 px lower; JOCK is painted on a standing stone beside her (JX, JY) */
+  var RKY = 1330, JX = 724, JY = 1170;
   function wNight(g, t, L) {
     if (L === 'bg') {
       var gr = g.createLinearGradient(0, -200, 0, 1500); gr.addColorStop(0, '#070b24'); gr.addColorStop(1, '#22306b'); g.fillStyle = gr; g.fillRect(-300, -300, 1680, 2620);
@@ -727,17 +728,26 @@
       for (var i = 0; i < 9; i++) { var y = 1180 + i * 46, x = (i * 173 + 120 * t * (1 + i % 3) / 4) % 400 - 400; g.strokeStyle = 'rgba(159,211,230,' + (.2 + .05 * (i % 3)) + ')'; g.lineWidth = 5; for (var xx = x; xx < 1500; xx += 400) { g.beginPath(); g.moveTo(xx, y); g.quadraticCurveTo(xx + 50, y - 14, xx + 100, y); g.quadraticCurveTo(xx + 150, y + 14, xx + 200, y); g.stroke(); } }
       /* Mount Gordo: a dark headland on the left with the lighthouse */
       g.fillStyle = '#0f2a2e'; g.beginPath(); g.moveTo(-300, 1500); g.lineTo(-300, 900); g.bezierCurveTo(100, 820, 300, 760, 470, 860); g.bezierCurveTo(620, 950, 760, 1100, 900, 1200); g.lineTo(1000, 1500); g.closePath(); g.fill();
-      g.fillStyle = '#163a3e'; g.beginPath(); g.moveTo(-300, 1700); g.lineTo(-300, 1100); g.bezierCurveTo(200, 1040, 600, 1100, 1100, 1350); g.lineTo(1380, 1700); g.closePath(); g.fill();
-      g.fillStyle = '#1f2a33'; g.fillRect(-300, 1500, 1680, 900);
-      /* the rock the ghost stands on */
-      g.fillStyle = '#4b5a6e'; g.beginPath(); g.moveTo(380, RKY); g.lineTo(450, RKY - 70); g.lineTo(800, RKY - 90); g.lineTo(880, RKY - 20); g.lineTo(900, RKY + 160); g.lineTo(360, RKY + 170); g.closePath(); g.fill();
-      g.fillStyle = '#5d6d82'; g.beginPath(); g.moveTo(450, RKY - 70); g.lineTo(800, RKY - 90); g.lineTo(780, RKY - 60); g.lineTo(470, RKY - 44); g.closePath(); g.fill();
+      g.fillStyle = '#163a3e'; g.beginPath(); g.moveTo(-300, 2400); g.lineTo(-300, 1100); g.bezierCurveTo(200, 1040, 600, 1100, 1100, 1350); g.lineTo(1380, 1500); g.lineTo(1380, 2400); g.closePath(); g.fill();
+      /* the standing stone JOCK is painted on, and the low rock the ghost stands on; both run down out of the frame */
+      g.fillStyle = '#3f4d61'; g.beginPath(); g.moveTo(580, JY - 100); g.lineTo(670, JY - 160); g.lineTo(860, JY - 140); g.lineTo(910, JY - 50); g.lineTo(950, 2400); g.lineTo(560, 2400); g.closePath(); g.fill();
+      g.fillStyle = '#56667c'; g.beginPath(); g.moveTo(670, JY - 160); g.lineTo(860, JY - 140); g.lineTo(850, JY - 116); g.lineTo(680, JY - 132); g.closePath(); g.fill();
+      g.fillStyle = '#4b5a6e'; g.beginPath(); g.moveTo(320, RKY); g.lineTo(400, RKY - 70); g.lineTo(640, RKY - 86); g.lineTo(720, RKY - 30); g.lineTo(760, 2400); g.lineTo(280, 2400); g.closePath(); g.fill();
+      g.fillStyle = '#5d6d82'; g.beginPath(); g.moveTo(400, RKY - 70); g.lineTo(640, RKY - 86); g.lineTo(630, RKY - 58); g.lineTo(416, RKY - 46); g.closePath(); g.fill();
+      g.strokeStyle = 'rgba(20,28,40,.35)'; g.lineWidth = 5; g.beginPath(); g.moveTo(470, RKY + 40); g.lineTo(520, RKY + 160); g.lineTo(500, RKY + 300); g.moveTo(800, JY + 120); g.lineTo(760, JY + 260); g.stroke();
+      /* jury r3: the foreground bank fills the bottom of the frame (grass in the wind, a few stones) instead of a flat navy floor */
+      g.fillStyle = '#1d4a40'; g.beginPath(); g.moveTo(-300, 1560); g.bezierCurveTo(200, 1470, 700, 1530, 1380, 1460); g.lineTo(1380, 2400); g.lineTo(-300, 2400); g.closePath(); g.fill();
+      g.fillStyle = '#163d35'; g.beginPath(); g.moveTo(-300, 1760); g.bezierCurveTo(300, 1690, 800, 1760, 1380, 1680); g.lineTo(1380, 2400); g.lineTo(-300, 2400); g.closePath(); g.fill();
+      var rg = mulberry(140); g.lineCap = 'round';
+      for (var gi = 0; gi < 70; gi++) { var gx = -100 + rg() * 1280, gy = 1540 + rg() * 520, gh = 26 + rg() * 40, lean = 14 * osc(t, 4, gx * .01) + 8; g.strokeStyle = gi % 3 ? 'rgba(84,140,110,.8)' : 'rgba(120,170,130,.7)'; g.lineWidth = 5;
+        g.beginPath(); g.moveTo(gx, gy); g.quadraticCurveTo(gx + lean * .3, gy - gh * .6, gx + lean, gy - gh); g.moveTo(gx + 8, gy); g.quadraticCurveTo(gx + 8 + lean * .2, gy - gh * .5, gx + 8 + lean * .7, gy - gh * .8); g.stroke(); }
+      for (gi = 0; gi < 9; gi++) { var sx2 = -60 + rg() * 1200, sy2 = 1600 + rg() * 420, sr = 16 + rg() * 26; g.fillStyle = '#56667c'; g.beginPath(); g.ellipse(sx2, sy2, sr * 1.5, sr, 0, Math.PI, TAU); g.fill(); }
       return;
     }
     /* the lighthouse and its sweeping beam (a flat paper wedge) */
     var lx = 240, ly = 830;
     var ba = .45 * Math.sin(TAU * 2 * t / DUR * 3), bk = .22 + .1 * Math.sin(t * 2);
-    g.save(); g.translate(lx, ly - 150); g.rotate(ba); g.fillStyle = 'rgba(255,240,180,' + bk.toFixed(3) + ')'; g.beginPath(); g.moveTo(0, 0); g.lineTo(560, -90); g.lineTo(560, 90); g.closePath(); g.fill(); g.restore();
+    g.save(); g.translate(lx, ly - 150); g.rotate(ba); g.fillStyle = 'rgba(255,240,180,' + bk.toFixed(3) + ')'; g.beginPath(); g.moveTo(0, 0); g.lineTo(430, -80); g.lineTo(430, 80); g.closePath(); g.fill(); g.restore();
     g.fillStyle = CREAM; g.beginPath(); g.moveTo(lx - 34, ly); g.lineTo(lx - 22, ly - 140); g.lineTo(lx + 22, ly - 140); g.lineTo(lx + 34, ly); g.closePath(); g.fill();
     g.fillStyle = RED; g.fillRect(lx - 30, ly - 70, 60, 26); g.fillStyle = GOLD; g.fillRect(lx - 20, ly - 170, 40, 30); g.fillStyle = INK2; g.beginPath(); g.moveTo(lx - 28, ly - 170); g.lineTo(lx, ly - 196); g.lineTo(lx + 28, ly - 170); g.closePath(); g.fill();
     /* the ghost */
@@ -748,27 +758,31 @@
     /* JOCK, brushed in red paint across the rock face */
     if (t >= T.jock - .02 && t < T.mid + .4) {
       var pk = seg(t, T.jock, T.jock + .38), jf = t >= T.mid - .2 ? (Math.sin((t - T.mid) * 70 + 1) > 0 ? 1 : .35) * (1 - seg(t, T.mid, T.mid + .32)) : 1;
-      g.save(); g.globalAlpha *= jf; g.beginPath(); g.rect(370, RKY - 120, 520 * pk + 10, 320); g.clip(); var nr = NOREC; NOREC = nr || pk < 1; putW(g, P.jock, 630, RKY + 60); NOREC = nr; g.restore();
-      if (pk > 0 && pk < 1) { g.save(); g.translate(380 + 500 * pk, RKY + 40 + 30 * Math.sin(pk * 9)); g.rotate(.7); g.fillStyle = '#6b4a2a'; g.fillRect(-10, -120, 20, 110); g.fillStyle = RED; rr(g, -18, -14, 36, 40, 8); g.fill(); g.restore(); }
+      g.save(); g.globalAlpha *= jf; g.beginPath(); g.rect(JX - 160, JY - 120, 320 * pk + 10, 240); g.clip(); var nr = NOREC; NOREC = nr || pk < 1; putW(g, P.jock, JX, JY); NOREC = nr; g.restore();
+      if (pk > 0 && pk < 1) { g.save(); g.translate(JX - 150 + 300 * pk, JY - 20 + 30 * Math.sin(pk * 9)); g.rotate(.7); g.fillStyle = '#6b4a2a'; g.fillRect(-10, -120, 20, 110); g.fillStyle = RED; rr(g, -18, -14, 36, 40, 8); g.fill(); g.restore(); }
     }
   }
   function ovNight(g, t) {
     if (t >= T.E0) return;
     chipIn(g, t, 'MOUNT GORDO', 300, 1360, T.ch3, T.gz + .2, { bg: TEAL, px: 58, rot: -.03, from: 40 });
     /* jury r2: every secret is tagged the same way */
-    chipIn(g, t, 'OUR DRAWING', 260, 1370, T.gz + .45, T.E0 - .1, { bg: CREAM, px: 44, rot: -.02, from: 30 });
+    chipIn(g, t, 'OUR DRAWING', 222, 1236, T.gz + .45, T.E0 - .1, { bg: CREAM, px: 44, rot: -.02, from: 30 });
     /* the clock: hands spin to 11:00 and land on "eleven" */
     clock11(g, t);
     /* gho3: an arrow from the tag to JOCK, the tag HER HUSBAND with two rings */
-    if (t >= T.arr - .02 && t < T.mid + .3) { g.save(); g.globalAlpha *= 1 - seg(t, T.mid, T.mid + .25); KIT.arrow(g, 780, 960, 735, 1120, sm(t, T.arr, .3), CREAM, 10, -.3); g.restore(); }
+    if (t >= T.arr - .02 && t < T.mid + .3) { g.save(); g.globalAlpha *= 1 - seg(t, T.mid, T.mid + .25); KIT.arrow(g, 800, 930, 770, 1060, sm(t, T.arr, .3), CREAM, 10, -.3); g.restore(); }
+    /* jury r3: the takeaway, the DM-able task: go and look tonight */
+    if (t >= T.plate - .02) {
+      var pk2 = cd(t, T.plate, 12), nr3 = NOREC; g.save(); g.translate(510, 1362 + (1 - pk2) * 70); g.rotate(-.015); g.globalAlpha *= fin(t, T.plate, .1) * (1 - seg(t, T.E0 - .1, T.E0)); var ps2 = kn(t, T.plate + .1, .05); g.scale(ps2, ps2); NOREC = nr3 || pk2 < .98; putW(g, P.plate, 0, 0); NOREC = nr3; g.restore();
+    }
     if (t >= T.husb - .02) {
       /* held still (no sway) so the screenshot reads */
-      var hk = cd(t, T.husb, 13), nr2 = NOREC; g.save(); g.translate(740, 860 + (1 - hk) * -40); g.rotate(.04); g.globalAlpha *= fin(t, T.husb, .08); NOREC = nr2 || hk < .98; putW(g, P.husb, 0, 0); NOREC = nr2; g.restore();
+      var hk = cd(t, T.husb, 13), nr2 = NOREC; g.save(); g.translate(745, 830 + (1 - hk) * -40); g.rotate(.04); g.globalAlpha *= fin(t, T.husb, .08); NOREC = nr2 || hk < .98; putW(g, P.husb, 0, 0); NOREC = nr2; g.restore();
     }
   }
   function clock11(g, t) {
     if (t < T.clk0 - .02 || t >= T.E0) return;
-    var k = cd(t, T.clk0, 10), o = sm(t, T.clkOut, .4), x = lerp(760, 805, o), y = lerp(610, 585, o), s = lerp(.4, .82, k) * lerp(1, .58, o) * kn(t, T.mid, .12);
+    var k = cd(t, T.clk0, 10), o = sm(t, T.clkOut, .4), x = lerp(790, 850, o), y = lerp(610, 576, o), s = lerp(.4, .82, k) * lerp(1, .58, o) * kn(t, T.mid, .12);
     g.save(); g.globalAlpha *= fin(t, T.clk0, .1); g.translate(x, y); g.scale(s, s); put(g, P.clockFace, 0, 0);
     if (t >= T.mid) { g.strokeStyle = HOT; g.lineWidth = 14; g.globalAlpha *= 1 - seg(t, T.mid, T.mid + .5); circle(g, 0, 0, 110 + 90 * eo(seg(t, T.mid, T.mid + .5))); g.stroke(); g.globalAlpha = 1; }
     /* the minute hand turns five times from 6:00 and lands on 12 at 11:00, creeps through the hour, and strikes 12:00 at midnight (jury r1) */
@@ -778,8 +792,8 @@
     g.lineWidth = 7; g.beginPath(); g.moveTo(0, 0); g.lineTo(Math.cos(am) * 80, Math.sin(am) * 80); g.stroke(); g.fillStyle = HOT; circle(g, 0, 0, 10); g.fill();
     g.restore();
     /* the time tag pops only once the hands have landed */
-    chipIn(g, t, '11 PM', 760, 770, T.c11, T.clkOut, { bg: GOLD, px: 64, rot: -.03, from: -20 });
-    chipIn(g, t, 'GAME TIME', 760, 850, T.c11 + .12, T.clkOut, { bg: CREAM, px: 42, rot: .02, from: -20, ph: 3 });
+    chipIn(g, t, '11 PM', 790, 770, T.c11, T.clkOut, { bg: GOLD, px: 64, rot: -.03, from: -20 });
+    chipIn(g, t, 'GAME TIME', 790, 850, T.c11 + .12, T.clkOut, { bg: CREAM, px: 42, rot: .02, from: -20, ph: 3 });
   }
 
   /* =========================== WORLD 6: GTA 6, Nov 19 2026 =========================== */
@@ -805,14 +819,22 @@
       if (t >= T.coinE - .02) { var ck = cd(t, T.coinE, 10); g.save(); ownClip(g); g.translate(lerp(1000, 812, ck) + 10 * Math.sin(t * 6), 1200 + 14 * Math.sin(t * 4.6)); g.rotate(-.5 + .2 * Math.sin(t * 5)); g.scale(1.2, 1.2); put(g, P.coin, 0, 0); g.restore(); }
     }
   }
-  /* small torn calendar pages drifting down behind the page (time passing) */
+  /* jury r3: not launch confetti: ice flecks and scratch-off foil dust drift down behind the page (the film's own materials) */
   function endDrift(g, t) {
-    var cols = [HOT, TEAL, ORG, GOLD];
-    for (var i = 0; i < 7; i++) {
-      var sp = 1 + (i % 2), ph = hash(i + 5) * TAU, x = 150 + (i * 113 + hash(i) * 60) % 720 + 26 * osc(t, 3 * sp, ph), y = 300 + ((hash(i + 9) * 1130 + 1130 * sp * 3 * t / DUR) % 1130);
-      g.save(); g.globalAlpha = .55; g.translate(x, y); g.rotate(.5 * osc(t, 2 * sp, ph)); g.scale(.9 * Math.cos(TAU * 4 * sp * t / DUR + ph), .9);
-      g.fillStyle = '#f4ead6'; g.fillRect(-26, -32, 52, 64); g.fillStyle = cols[i % 4]; g.fillRect(-26, -32, 52, 11);
-      g.fillStyle = 'rgba(29,18,51,.25)'; g.fillRect(-16, -10, 32, 4); g.fillRect(-16, 2, 22, 4); g.restore();
+    var fc = FOILCFG[1].g;
+    for (var i = 0; i < 24; i++) {
+      var sp = 1 + (i % 3), ph = hash(i + 5) * TAU, x = 130 + hash(i) * 760 + 24 * osc(t, 3 * sp, ph), y = 300 + ((hash(i + 9) * 1130 + 1130 * sp * 2 * t / DUR) % 1130), sz = 7 + hash(i + 3) * 9;
+      g.save(); g.globalAlpha = .75; g.translate(x, y); g.rotate(.8 * osc(t, 2 * sp, ph));
+      if (i % 3 === 0) {
+        /* an ice fleck: a three-stroke crystal */
+        g.strokeStyle = 'rgba(238,248,255,.95)'; g.lineWidth = 3; g.lineCap = 'round';
+        for (var k = 0; k < 3; k++) { var an = k * Math.PI / 3; g.beginPath(); g.moveTo(-Math.cos(an) * sz, -Math.sin(an) * sz); g.lineTo(Math.cos(an) * sz, Math.sin(an) * sz); g.stroke(); }
+      } else {
+        /* a foil flake turning over */
+        g.scale(Math.cos(TAU * 5 * sp * t / DUR + ph), 1); g.fillStyle = fc[i % 2 ? 1 : 0]; g.strokeStyle = 'rgba(20,22,40,.5)'; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(-sz, -sz * .4); g.lineTo(sz * .7, -sz * .6); g.lineTo(sz, sz * .35); g.lineTo(-sz * .5, sz * .55); g.closePath(); g.fill(); g.stroke();
+      }
+      g.restore();
     }
   }
   /* a torn calendar page sweeping up: the night → GTA 6 change */
@@ -829,10 +851,12 @@
   /* ---------- textures ---------- */
   function buildTextures() {
     GRAIN = buildGrain();
-    P.alien = paperFrost(alienCanvas('#9bb39a', '#2c3a3a', '#141a24')); P.alienBlur = blurred(P.alien, 9); P.alienDark = blurred(alienCanvas('#000', '#000', null), 6, '#081128');
+    P.alien = paperFrost(alienCanvas('#9bb39a', '#2c3a3a', '#141a24')); P.alienBlur = blurred(P.alien, 9); P.alienDark = blurred(alienCanvas('#000', '#000', null), 12, '#081128');
     P.ghost = ghostCanvas(); P.coin = coinPiece();
     P.foil = [1, 2, 3].map(foilCanvas); FC = mk(W, H); FG = FC.getContext('2d');
-    P.ticket = cardPiece(760, 900, CREAM, [['3 SECRETS', 92, INK, -372], ['GTA 5 · 2013', 50, HOT, 382]], { r: 18, ring: 'rgba(29,18,51,.25)', before: function (g) {
+    P.ticket = cardPiece(760, 900, CREAM, [['3 SECRETS', 92, INK, -372], ['GTA 5 · 2013', 50, HOT, 382, null, -150], ['STORY MODE', 42, INK, 384, null, 170]], { r: 18, ring: 'rgba(29,18,51,.25)', before: function (g) {
+      /* jury r3: the version caveat, a teal chip beside the year */
+      g.fillStyle = TEAL; rr(g, 170 - 118, 382 - 31, 236, 62, 10); g.fill();
       g.fillStyle = HOT; g.fillRect(-380, -450, 760, 20); g.fillStyle = TEAL; g.fillRect(-380, 430, 760, 20);
       g.fillStyle = 'rgba(29,18,51,.05)'; for (var y = -450; y < 450; y += 12) g.fillRect(-380, y, 760, 1);
     } });
@@ -840,13 +864,14 @@
     P.stNo = buildStamp(['NO', 'CRACK'], 120, 420);
     /* JOCK in red paint: hand-lettered, speckled like a brush on stone; no drips */
     var jrec = [];
-    P.jock = piece([-250, -110, 250, 110], rect(-250, -110, 250, 110), 'rgba(0,0,0,0)', { shadow: false, edge: false, grain: 0, extra: function (g) {
-      var tw = inkText(g, 'JOCK', 0, 0, 200, RED, 141, { dense: 30, big: 1.8, ls: 4, rot: -.05 }); jrec.push([-tw / 2, -100, tw / 2, 90, 'JOCK']);
+    P.jock = piece([-210, -100, 210, 100], rect(-210, -100, 210, 100), 'rgba(0,0,0,0)', { shadow: false, edge: false, grain: 0, extra: function (g) {
+      var tw = inkText(g, 'JOCK', 0, 0, 170, RED, 141, { dense: 30, big: 1.8, ls: 4, rot: -.05 }); jrec.push([-tw / 2, -86, tw / 2, 78, 'JOCK']);
     } });
     wordsOf(P.jock, jrec);
     P.note44 = cardPiece(720, 160, '#fff1a1', [['44,000 JOINED THE HUNT', 60, INK, -22], ['SUBREDDIT · GAMESRADAR, NOV 2024', 38, INK2, 44, 'condensed']], { r: 4, ring: 'rgba(29,18,51,.2)', before: function (g) { g.fillStyle = 'rgba(160,120,0,.12)'; g.fillRect(-360, -80, 720, 26); } });
-    P.th1 = cardPiece(370, 136, GOLD, [['100%', 56, INK, -24], ['COMPLETION?', 56, INK, 34]], { r: 6, ring: 'rgba(29,18,51,.25)' });
-    P.th2 = cardPiece(390, 136, GOLD, [['JUST TO MESS', 56, INK, -24], ['WITH YOU?', 56, INK, 34]], { r: 6, ring: 'rgba(29,18,51,.25)' });
+    P.th1 = cardPiece(356, 210, GOLD, [['FAN THEORIES', 34, CREAM, -76], ['100%', 54, INK, -12], ['COMPLETION?', 54, INK, 50]], { r: 6, ring: 'rgba(29,18,51,.25)', before: function (g) { g.fillStyle = HOT; g.fillRect(-178, -105, 356, 58); } });
+    P.th2 = cardPiece(356, 210, GOLD, [['EX-ROCKSTAR DEV, 2024', 31, INK, -76], ['JUST TO MESS', 54, INK, -12], ['WITH YOU?', 54, INK, 50]], { r: 6, ring: 'rgba(29,18,51,.25)', before: function (g) { g.fillStyle = TEAL; g.fillRect(-178, -105, 356, 58); } });
+    P.plate = cardPiece(790, 124, CREAM, [['GO CHECK · 11 PM–MIDNIGHT', 56, INK, -22], ['STORY MODE', 44, HOT, 34]], { r: 10, ring: 'rgba(29,18,51,.25)', before: function (g) { g.fillStyle = GOLD; g.fillRect(-395, -62, 22, 124); g.fillRect(373, -62, 22, 124); } });
     P.husb = cardPiece(300, 170, CREAM, [['HER', 46, INK, -48], ['HUSBAND', 66, HOT, 12]], { r: 10, ring: 'rgba(29,18,51,.25)', after: function (g) { g.strokeStyle = GOLD; g.lineWidth = 7; circle(g, -16, 60, 15); g.stroke(); circle(g, 12, 60, 15); g.stroke(); } });
     P.clockFace = piece([-112, -112, 112, 112], function (g) { g.beginPath(); g.arc(0, 0, 110, 0, TAU); }, CREAM, { sx: 5, sy: 9, blur: 14, extra: function (g) {
       g.strokeStyle = ORG; g.lineWidth = 14; g.beginPath(); g.arc(0, 0, 103, 0, TAU); g.stroke();
@@ -883,7 +908,7 @@
     if (w === 'ice') { c.s = 1.06 - .06 * sm(t, -.2, 2.4); c.cy = 1000; c.dy = 340 * (1 - eo(seg(t, -.25, 1.5))); }
     else if (w === 'bridge') { var k = sm(t, T.camD, .8); c.s = 1 + .32 * k; c.cy = 1400; c.dy = -260 * k; c.dx = 10 * osc(t, 2, 0); }
     else if (w === 'mount') { var z = eio(seg(t, T.mz - .7, T.mz)); c.s = (1 + .04 * seg(t, T.F2.drop, T.mz)) * (1 + 1.6 * z * z); c.cx = 720; c.cy = 600; c.dx = -210 * z; c.dy = 300 * z; }
-    else if (w === 'mural') { var s0 = lerp(1.3, 1, cd(t, T.mz, 8)), z2 = sm(t, T.mzo, .45); c.s = lerp(s0, .66, z2); c.cy = 470; c.dy = lerp(430 * (1 - s0), 130, z2); }
+    else if (w === 'mural') { var s0 = lerp(1.3, 1, cd(t, T.mz, 8)), z2 = sm(t, T.mzo, .45); c.s = lerp(s0, .56, z2); c.cy = 470; c.dy = lerp(430 * (1 - s0), 130, z2); c.dx = -186 * z2; }
     else if (w === 'night') { c.s = 1 + .05 * sm(t, T.gz, 1.2); c.cx = 630; c.cy = 1180; }
     return c;
   }
@@ -985,7 +1010,7 @@
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     Tx('gta5', 'GTA 5', 0, T.dim0); Tx('gta5', 'GTA 5', T.W5 + .1, DUR + 1);
     Tx('hides', 'STILL HIDES THIS', 0, T.dim0); Tx('hides', 'STILL HIDES THIS', T.W5 + .1, DUR + 1);
-    Tx('tk', '3 SECRETS', T.tk0 + .3, T.F1.drop + .3); Tx('tk2', 'GTA 5 · 2013', T.tk0 + .3, T.F1.drop + .3);
+    Tx('tk', '3 SECRETS', T.tk0 + .3, T.F1.drop + .3); Tx('tk2', 'GTA 5 · 2013', T.tk0 + .3, T.F1.drop + .3); Tx('tkSM', 'STORY MODE', T.tk0 + .3, T.F1.drop + .3);
     [T.F1, T.F2, T.F3].forEach(function (F, i) { Tx('f' + i, String(i + 1), F.drop + .1, foilState(0, F).end + .12); });
     Tx('fm', 'FIRST MISSION', T.ch1a + .1, T.ch1out); Tx('ny', 'NORTH YANKTON', T.ch1b + .1, T.ch1out);
     Tx('our1', 'OUR DRAWING', T.our1 + .1, T.F2.drop - .05);
@@ -994,13 +1019,13 @@
     Tx('mc', 'MOUNT CHILIAD', T.F2.sc + SDUR, T.mz - .5); Tx('hp', "GTA 5'S HIGHEST PEAK", T.F2.sc + SDUR, T.mz - .5);
     Tx('jq', '?', T.jq + .1, T.n3 + .2);
     Tx('ourM', 'OUR DRAWING · AS PC GAMER DESCRIBES IT', T.ourM + .1, T.F3.drop + .3);
-    Tx('fan', 'FAN THEORIES', T.fan + .1, T.F3.drop + .12);
+    Tx('fan', 'FAN THEORIES', T.n1 + .3, T.F3.drop + .1); Tx('exr', 'EX-ROCKSTAR DEV, 2024', T.n2 + .3, T.F3.drop + .1);
     Tx('n44a', '44,000 JOINED THE HUNT', T.n44 + .1, T.F3.drop + .15); Tx('n44c', 'SUBREDDIT · GAMESRADAR, NOV 2024', T.n44 + .1, T.F3.drop + .15);
     Tx('n1', '100% COMPLETION?', T.n1 + .3, T.F3.drop + .1); Tx('n2', 'JUST TO MESS WITH YOU?', T.n2 + .3, T.F3.drop + .1);
     Tx('gordo', 'MOUNT GORDO', T.ch3 + .1, T.gz + .2); Tx('ourG', 'OUR DRAWING', T.gz + .55, T.E0 - .1);
     Tx('pm', '11 PM', T.c11 + .1, T.clkOut); Tx('gt', 'GAME TIME', T.c11 + .2, T.clkOut);
     Tx('jock', 'JOCK', T.jock + .38, T.mid + .1);
-    Tx('husb', 'HER HUSBAND', T.husb + .1, T.E0);
+    Tx('husb', 'HER HUSBAND', T.husb + .1, T.E0); Tx('plate', 'GO CHECK · 11 PM–MIDNIGHT · STORY MODE', T.plate + .2, T.E0 - .1);
     Tx('cal', 'GTA 6 NOV 19 2026', T.cal + .3, T.W5); Tx('plat', 'PS5 · XBOX SERIES X|S', T.cal + .3, T.W5);
     Tx('e6', 'GTA 6 · ???', T.panIn + .2, T.W5);
     Tx('yes', 'YES', T.yes + .1, T.W5); Tx('nope', 'NO', T.yes + .2, T.W5);
@@ -1020,7 +1045,8 @@
     G('q', after('hook'), 'pop', .35, 1);
     /* jury r1: the ticket (3 SECRETS) drops in small under the headline on "secrets" and grows to full size when the headline leaves */
     T.tk0 = T.sec - .12; T.dim0 = start('ask') - .45;
-    T.pan = [at('ask', 'three'), at('ask', 'you'), at('ask', 'go')];
+    /* jury r3: the three panels are slotted by 2.2 s, 0.12 s apart, so the card is never empty */
+    T.pan = [0, 1, 2].map(function (i) { return T.sec + .2 + i * .12; });
     T.pan.forEach(function (p, i) { G('pan' + i, p + .08, 'pop', .08, .7); });
     T.coinIn = at('ask', 'yourself.');
     /* one: foil SECRET 1 (ice-blue), scraped; the bridge over the frozen creek */
@@ -1051,7 +1077,7 @@
     T.ch3 = at('gho1', 'climb'); T.clk0 = at('gho1', 'gordo') - .3; T.c11 = at('gho1', '11');
     G('c11', wend('gho1', 'pm.') + .1, 'thock', .5, 1);
     T.gz = start('gho2') - .1; T.gh0 = start('gho2') - .2; G('ghost', start('gho2') - .3, 'whoosh', .3, 1, { m: .05 });
-    T.clkOut = at('gho2', 'rock,');
+    T.clkOut = at('gho2', 'rock,'); T.plate = T.clkOut + .15;
     T.jock = at('gho2', 'jock.'); G('brush', after('gho2'), 'brush', .35, 1.2, { dur: .3, trim: 1.5 });
     T.husb = at('gho3', 'her') - .2; T.arr = at('gho3', "husband's"); G('husb', after('gho3'), 'pop', .35, 1);
     /* jury r1: midnight. The clock strikes 12 with a tock in the gap before "GTA 6"; the ghost and JOCK go with it (BRIEF fact 8) */
