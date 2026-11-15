@@ -241,8 +241,8 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,216 (43 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
 | airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h), 928 (31.5 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
 | unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
-| notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h), 30 (25 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
-| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
+| notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h), 30 (25 h), 35 (40 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
+| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h), 58 (15 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
 | overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | – | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
@@ -359,7 +359,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - The locked phone-left / meter-right layout for 3.5–23 s still read as a template in r2: plan two layout changes across the middle third next time.
 - Next ideas (score 5/6+): "Do you need to close your apps?" (Apple/Google say no), "Why does your phone get hot when charging?", "Is 5G why your battery drains?".
 
-### overnightcharge (#32), jury r1 6.9 / Truth 8.0 → r2 7.3 / Truth 8.5 (post), r2 polish applied — scheduled Nov 15 19:00 ET
+### overnightcharge (#32), jury r1 6.9 / Truth 8.0 → r2 7.3 / Truth 8.5 (post), r2 polish applied — scheduled Nov 15 19:00 ET (j9mHl46nO9s)
 - A label stayed on screen after the gauge moved past it (80% CHARGE beside a full column) and cost Truth 0.5. Peel every number label before the fill passes it, and show 100 only once the fill gets there.
 - A re-created settings screen with ON switches answers the end question and implies defaults. Show paths ending in a neutral chevron, and don't draw switches for features that are option choices (Pixel, Samsung).
 - A hook stated as fact ("doesn't charge all night") needs its condition on screen when the key word lands (about 0.8 s), at ≥ 40 px, held to 5 s.
