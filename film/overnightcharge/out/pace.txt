@@ -1,0 +1,2 @@
+/home/user/molindesign/film/overnightcharge/out/overnightcharge-vo.mp4: 35.4 s, 1 hard cuts (0.3/10 s), motion 0-1 s 0.685, 0-3 s 0.461, median 0.127, still frames 24.7 %
+OK    no frozen stretches, opening moves

@@ -242,7 +242,8 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h), 928 (31.5 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
 | unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
 | notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h), 30 (25 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
-| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
+| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
+| overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | – | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -357,3 +358,13 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - A ringing hit (the clink) alone in a 2 s voice gap makes Whisper invent words and shifts every word edge, so 8 of 9 SFX failed. Keep long holds to one dry thump.
 - The locked phone-left / meter-right layout for 3.5–23 s still read as a template in r2: plan two layout changes across the middle third next time.
 - Next ideas (score 5/6+): "Do you need to close your apps?" (Apple/Google say no), "Why does your phone get hot when charging?", "Is 5G why your battery drains?".
+
+### overnightcharge (#32), jury r1 6.9 / Truth 8.0 → r2 7.3 / Truth 8.5 (post), r2 polish applied — scheduled Nov 15 19:00 ET
+- A label stayed on screen after the gauge moved past it (80% CHARGE beside a full column) and cost Truth 0.5. Peel every number label before the fill passes it, and show 100 only once the fill gets there.
+- A re-created settings screen with ON switches answers the end question and implies defaults. Show paths ending in a neutral chevron, and don't draw switches for features that are option choices (Pixel, Samsung).
+- A hook stated as fact ("doesn't charge all night") needs its condition on screen when the key word lands (about 0.8 s), at ≥ 40 px, held to 5 s.
+- The payoff should land on the payoff word: the fill hit 100 two seconds before "unplug" in r1. Hold on the peg until the word, then run it in 0.6 s into the slap.
+- A drawn history line on the hero (11 PM → 80 % ALL NIGHT → 100 % AT 6:30, EXAMPLE NIGHT) turned a dead hold into the poster frame. Plan a summary drawing for every hero hold.
+- The score is peak-normalised: raising a quiet hit's gain past the loudest one doesn't make it louder relative to the voice, it fails the gate. Lower the loud hits instead. Regenerate events.json (`node render.mjs events --film <slug>`) before every gate.py run.
+- The SFX gate is at /tmp/claude-0/-home-user-molindesign/a96b585a-7a54-51cf-9d19-86c08dfe14b0/scratchpad/gate.py (two briefs had the wrong path).
+- closeapps (backlog 38) duplicated forceclose (#25); check done slugs before adding ideas.
