@@ -1,0 +1,17 @@
+{
+ "source": "gta-records",
+ "source_commit": "5268903",
+ "kind": "cut",
+ "created": "2026-11-16",
+ "hook": "Just over 90 million views on YouTube, in 24 hours.",
+ "title": "GTA 6 Trailer 1: 90 Million Views in One Day 🤯",
+ "cover": "90 million. One day.",
+ "facts_checked": "2026-11-16",
+ "notes": "Frame 0 had no GTA on screen; added a GTA 6 · TRAILER 1 pill (ffmpeg drawtext, 0-4.2 s). Guinness 90,421,491 re-read 2026-11-16 on guinnessworldrecords.com; trailer 2 numbers unchanged history (Rockstar claim via THR, YouTube-only ~84M per GTABoss).",
+ "from": "num",
+ "to": "end",
+ "t0": 9.9,
+ "t1": 45.7,
+ "length_s": 35.8,
+ "source_length_s": 45.7
+}

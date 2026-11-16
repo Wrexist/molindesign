@@ -1,0 +1,115 @@
+{
+ "about": "GTA outsold (Delta, pillar 4 gaming-wide hook ending on GTA 6). Take-Two Investor Presentation, November 2026 (posted with Q2 FY2027 results, Nov 9 2026): Grand Theft Auto V 'Nearly 235 million units sold to date' (Take-Two counts units sold-in: shipped to stores plus digital; its 10-Q filed Nov 9 2026 says 'sold-in over 230 million'). Minecraft: Xbox CEO Asha Sharma on X, Sept 26 2026: '425M+ copies sold' (VGChartz, Insider Gaming, Sept 26 2026). Tetris: The Tetris Company says 'over 520 million units have been sold worldwide', a total that adds up every Tetris release since 1984 (Wikipedia's list notes sources split on that aggregation). Wii Sports 82.90M (Nintendo IR, as of Mar 31 2024, bundled with the Wii outside Japan); Mario Kart 8 Deluxe 72.00M (Nintendo IR, Sept 30 2026). Derived: 425M+ minus under 235M = over 190M more. GTA VI: November 19, 2026 on PS5 and Xbox Series X|S (Take-Two Q2 FY27 release, rockstargames.com/VI). No GTA 6 sales prediction. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 5",
+  "GTA 6",
+  "Take-Two",
+  "Mario Kart",
+  "Wii Sports",
+  "Tetris",
+  "Minecraft",
+  "Xbox"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 26
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Which game outsold GTA 5? Guess.",
+   "say": "Which game outsold G T A five? Guess.",
+   "pause": 0.6,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "gta5",
+   "at": 3.51,
+   "text": "GTA 5: nearly 235 million sold.",
+   "say": "G T A five: nearly two hundred thirty-five million sold.",
+   "pause": 0.6
+  },
+  {
+   "id": "count",
+   "at": 7.56,
+   "text": "That's Take-Two's own count, from November.",
+   "pause": 0.3
+  },
+  {
+   "id": "notmk",
+   "at": 10.56,
+   "text": "Not Mario Kart. Not Wii Sports.",
+   "pause": 0.4
+  },
+  {
+   "id": "tetris",
+   "at": 13.09,
+   "text": "Tetris? It claims over 520 million.",
+   "say": "Tetris? It claims over five hundred twenty million.",
+   "pause": 0.3
+  },
+  {
+   "id": "every",
+   "at": 16.23,
+   "text": "But that counts every Tetris game since 1984.",
+   "say": "But that counts every Tetris game since nineteen eighty-four.",
+   "pause": 0.5
+  },
+  {
+   "id": "mine",
+   "at": 19.73,
+   "text": "One single game sold more: Minecraft.",
+   "pause": 0.7
+  },
+  {
+   "id": "xbox",
+   "at": 23.22,
+   "text": "Xbox's boss says over 425 million copies.",
+   "say": "Xbox's boss says over four hundred twenty-five million copies.",
+   "pause": 0.4
+  },
+  {
+   "id": "more",
+   "at": 27.3,
+   "text": "That's over 190 million more than GTA 5.",
+   "say": "That's over a hundred ninety million more than G T A five.",
+   "pause": 0.6
+  },
+  {
+   "id": "gta6",
+   "at": 30.73,
+   "text": "GTA 6 lands November 19.",
+   "say": "G T A six lands November nineteenth.",
+   "pause": 0.3
+  },
+  {
+   "id": "end",
+   "at": 33.57,
+   "text": "Can GTA 6 catch Minecraft?",
+   "say": "Can G T A six catch Minecraft?",
+   "pause": 0
+  }
+ ],
+ "dur": 36.6,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

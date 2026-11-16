@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-outsold/out/gta-outsold-vo.mp4: 36.6 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.421, 0-3 s 0.354, median 0.229, still frames 0.5 %
+OK    no frozen stretches, opening moves

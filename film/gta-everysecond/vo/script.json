@@ -1,0 +1,103 @@
+{
+ "about": "GTA every second (Delta, pillar 1 numbers and money). Take-Two Investor Presentation, November 2026 (posted with Q2 FY2027 results, Nov 9 2026), slide 11: Grand Theft Auto V 'Nearly 235 million units sold to date'. Take-Two counts units sold-in (shipped to stores, plus digital): its 10-Q filed Nov 9 2026 says GTA V 'has sold-in over 230 million units worldwide'. GTA V launched Sept 17, 2013. Our math: Sept 17 2013 to Nov 9 2026 = 4,801 days = 414,806,400 s; divided by 230M to 235M = one copy every 1.77 to 1.80 s on average (1.8 s); 47,907 to 48,948 a day (about 48,000). Yankee Stadium baseball capacity 46,537 (Yankees media guide via Ticketmaster/Wikipedia). GTA VI: November 19, 2026 on PS5 and Xbox Series X|S (Take-Two Q2 FY27 release, rockstargames.com/VI). Averages, not today's pace; no GTA 6 sales prediction. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 5",
+  "GTA 6",
+  "Take-Two",
+  "Yankee Stadium"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 5 sold every 1.8 seconds.",
+   "say": "G T A five sold every one point eight seconds.",
+   "pause": 0.6,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "avg",
+   "at": 3.56,
+   "text": "On average, for thirteen years straight.",
+   "pause": 0.3
+  },
+  {
+   "id": "math",
+   "at": 5.86,
+   "text": "Sounds fake? Do the math.",
+   "pause": 0.4
+  },
+  {
+   "id": "count",
+   "at": 8.19,
+   "text": "Take-Two counts nearly 235 million sold.",
+   "say": "Take Two counts nearly two hundred thirty-five million sold.",
+   "pause": 0.5
+  },
+  {
+   "id": "days",
+   "at": 11.7,
+   "text": "Spread over 4,801 days since launch.",
+   "say": "Spread over four thousand eight hundred one days since launch.",
+   "pause": 0.4
+  },
+  {
+   "id": "shipped",
+   "at": 15.26,
+   "text": "But that's copies shipped to stores, plus downloads.",
+   "pause": 0.5
+  },
+  {
+   "id": "day",
+   "at": 18.88,
+   "text": "Still, that's about 48,000 a day.",
+   "say": "Still, that's about forty-eight thousand a day.",
+   "pause": 0.5
+  },
+  {
+   "id": "stadium",
+   "at": 21.5,
+   "text": "More than a full Yankee Stadium, on an average day.",
+   "pause": 0.6
+  },
+  {
+   "id": "gta6",
+   "at": 24.96,
+   "text": "GTA 6 lands November 19.",
+   "say": "G T A six lands November nineteenth.",
+   "pause": 0.3
+  },
+  {
+   "id": "end",
+   "at": 27.8,
+   "text": "Can GTA 6 keep that up for thirteen years?",
+   "say": "Can G T A six keep that up for thirteen years?",
+   "pause": 0
+  }
+ ],
+ "dur": 32.1,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}
