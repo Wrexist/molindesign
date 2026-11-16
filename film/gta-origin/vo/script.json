@@ -1,0 +1,121 @@
+{
+ "about": "GTA origin (Delta, pillar 3 GTA history). Gary Penn (DMA Design, worked on the original GTA) to Tristan Donovan, printed by Gamasutra 2011-01-31: the game was almost canned, publisher BMG Interactive wanted to can it, it crashed all the time, the handling was appalling; 'One day, I think it was a bug, the police suddenly became mental and aggressive ... trying to ram me off the road ... That was awesome, so that stayed in.' Race'n'Chase design document dated 22 March 1995 (posted by Mike Dailly, 2011). First release 1997 (Europe, PC; day disputed, year only). GTA VI: Coming November 19, 2026 (rockstargames.com/VI). The bug is always attributed ('One developer thinks'). Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Race'n'Chase",
+  "BMG Interactive",
+  "DMA Design",
+  "Gary Penn"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA was almost canceled.",
+   "say": "G T A was almost canceled.",
+   "pause": 0.4,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "canned",
+   "at": 2.29,
+   "text": "The publisher wanted to scrap it.",
+   "pause": 0.22
+  },
+  {
+   "id": "why",
+   "at": 4.22,
+   "text": "So what saved it?",
+   "pause": 0.3
+  },
+  {
+   "id": "began",
+   "at": 5.76,
+   "text": "It began in 1995 as Race'n'Chase.",
+   "say": "It began in nineteen ninety-five as Race 'n' Chase.",
+   "pause": 0.3,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "crash",
+   "at": 9.01,
+   "text": "But it crashed all the time.",
+   "pause": 0.4
+  },
+  {
+   "id": "handling",
+   "at": 11.13,
+   "text": "And the handling was terrible.",
+   "pause": 1.0
+  },
+  {
+   "id": "crazy",
+   "at": 13.64,
+   "text": "Then one day, the cops went crazy.",
+   "pause": 0.22
+  },
+  {
+   "id": "ram",
+   "at": 16.52,
+   "text": "They tried to ram you off the road.",
+   "pause": 0.5
+  },
+  {
+   "id": "bug",
+   "at": 19.14,
+   "text": "One developer thinks it was a bug.",
+   "pause": 0.35
+  },
+  {
+   "id": "stayed",
+   "at": 21.46,
+   "text": "He called it awesome. It stayed in.",
+   "pause": 1.4
+  },
+  {
+   "id": "release",
+   "at": 24.93,
+   "text": "GTA came out in 1997.",
+   "say": "G T A came out in nineteen ninety-seven.",
+   "pause": 1.0
+  },
+  {
+   "id": "gta6",
+   "at": 28.25,
+   "text": "GTA 6 lands November 19.",
+   "say": "G T A six lands November nineteenth.",
+   "pause": 0.3
+  },
+  {
+   "id": "end",
+   "at": 31.09,
+   "text": "Good thing nobody fixed it.",
+   "pause": 0
+  }
+ ],
+ "dur": 33.22,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

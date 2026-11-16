@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-ranked/out/gta-ranked-vo.mp4: 37.9 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.408, 0-3 s 0.594, median 0.305, still frames 0.1 %
+OK    no frozen stretches, opening moves

@@ -336,3 +336,12 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - An endless spinner says "nothing loads"; for "slower, not stopped" use a crawling progress bar.
 - Louder SFX move Whisper's word edges and can close the gaps the SFX gate needs; re-run gate.py after every gain change and drop the hits that no longer fit.
 - Researcher: Whisper heard "Broadband Facts" as "Broadband fax" and "your plan's" as "plans"; reword ("for your plan, called Broadband Facts") rather than fight the TTS.
+### More graphical (Isac 2026-11-04: "make video more graphical, add more content and graphics")
+- Something new every 1-2 s: loop-periodic paper life (birds, drifting clouds, sun rays, twinkles, river shimmer, falling leaves, a critter); no empty sky, and the bench gets colour glows + halftone (texture only, no shapes).
+- Kinetic type (kit `slam`/`popWords`, ≥ 36 px) on each key word plus an icon tag per listed item, in the caption zone only while the caption is off; register each in TEXTS so readcheck holds it, and never highlight inside a quote.
+- One kit fx hit per stressed word (impact ring, scribble, arrow; one burst, on the hero), paper-ribbon wipes between beats, camera punches only while the camera is not pushed in (push × punch breaks the rail).
+- Every new shape clips itself to the rail, and there is still one hero per beat (gta-kalaga).
+- A countdown where one hero object carries over from item to item drags each item's number onto the next item's card (KH "13 / 1 MONTH SHORT" over PSYCHONAUTS 2, "16" over SHENMUE III) and implies each value builds on the last; Truth 7.5 in round 1. Knock the prop down under every title flip and rebuild from 0, digits hidden at the flip (gta-longestwait r1).
+- Past tense on a future event is false until it happens: "GTA 6 took thirteen years" posted before Nov 19 cost Truth; write pre-launch hooks in the present ("is a 13-year wait") (gta-longestwait r2).
+- A reveal shown before its question gives it away: both NOV 19 pages up before "Sound familiar?" answered it; show the first page, fly in the second on the question, stamp after (gta-longestwait r2).
+- The paper waiting room (wall clock, calendar-pad towers, kraft floor) read as hand-made to both juries and replaced the synthwave backdrop; what they docked was the identical centred composition on every beat and SFX at -23 to -31 dBFS (duck.smr_db 42 is too high for Delta; 22 got hits to -10) (gta-longestwait).

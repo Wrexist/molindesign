@@ -1,0 +1,2 @@
+/* SFX gate input: where the voice track (out/vo/vo.wav) is actually sounding, from its energy (10 ms frames within 40 dB of the loudest), as [start, end]. */
+window.VAD = [[0.30, 2.46], [2.80, 3.22], [3.75, 6.25], [6.38, 7.55], [8.68, 10.31], [11.26, 11.84], [11.98, 13.86], [14.46, 17.92], [18.95, 23.46], [24.86, 26.43], [26.55, 28.00], [28.70, 30.48], [30.62, 31.54], [32.13, 34.63], [35.07, 37.04], [37.45, 38.43]];
