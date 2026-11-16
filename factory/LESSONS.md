@@ -368,3 +368,13 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - The score is peak-normalised: raising a quiet hit's gain past the loudest one doesn't make it louder relative to the voice, it fails the gate. Lower the loud hits instead. Regenerate events.json (`node render.mjs events --film <slug>`) before every gate.py run.
 - The SFX gate is at /tmp/claude-0/-home-user-molindesign/a96b585a-7a54-51cf-9d19-86c08dfe14b0/scratchpad/gate.py (two briefs had the wrong path).
 - closeapps (backlog 38) duplicated forceclose (#25); check done slugs before adding ideas.
+
+### phonelistening (#33), jury r1 7.0 / Truth 7.5 → r2 7.5 / Truth 8.5 (post), r2 polish applied — sent to the PC for Nov 16 19:00 ET
+- Truth: a quote chip cut mid-sentence needs "…" at each cut, and the cut must not change the claim ("…NO AUDIO LEAKS AT ALL…").
+- Truth: a study's headline number needs its scope on screen with it, from the same frame as the caption: "17,000+ ANDROID APPS STUDIED · 2018" + "IN THEIR TESTS · NORTHEASTERN, 2018" (only 9,100 were run dynamically, so never "tested").
+- Truth: indicator chips wait for their dot ("iPHONE: CAMERA (± MIC)" only after the green dot pops).
+- SFX gate: a hit placed at line end + .2 with margin .15 lands on the gate's 0.15 s edge and fails when small.en word edges jitter 10–20 ms between runs. Place hits at end + .3 with margin .2.
+- Labels: a chip "anchored on the cord at mid-cord" collided with both the box and the phone (LABELS_RUN). Hang it under the strips in free space instead.
+- Frame 0 at 1.2× pushed the phone 3 px and the bubble 9 px out of the safe box (CLIP_RUN); 1.16× and bubble x 758 fit.
+- r2 wow: a 1.00 → 1.12× punch-in on the torn-open empty box right after the tear, the moment the idea pays off.
+- Tooling: the Bash safety check stopped answering mid-run for the director (and briefly for the orchestrator). Retry after ~15 min via send_later; Read/Grep/Edit kept working.

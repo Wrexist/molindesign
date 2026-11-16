@@ -1,0 +1,78 @@
+{
+ "title": "Is your phone listening to you for ads",
+ "caption": "Is your phone listening to you for ads? Probably not, and the FTC says the famous \"Active Listening\" pitch used no voice data.\nIt resold email lists from data brokers. Your searches, apps and general area do the rest.\nSee a dot at the top of yours right now? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#phoneprivacy",
+  "#isyourphonelistening",
+  "#targetedads",
+  "#iphonetips"
+ ],
+ "keywords": [
+  "is my phone listening to me for ads",
+  "is your phone listening to you for ads",
+  "phone listening for ads",
+  "is my phone listening to me",
+  "does my phone listen to me for ads",
+  "active listening ads",
+  "orange dot on iphone",
+  "green dot android microphone"
+ ],
+ "cover_text": "Listening for ads?",
+ "cover_time": 0.0,
+ "pinned_comment": "Honest version: this rests on one 2018 Android study and one FTC case, so it's \"probably\", not \"never\", and after \"Hey Siri\" your request does go to servers. See a dot on yours right now? Yes or no.",
+ "pinned_backups": [
+  {
+   "if": "Then how did I get an ad for something I only said out loud?",
+   "reply": "We can't know your case. The ads Google describes can use your searches, apps you've installed and your general area, and the FTC says data brokers sell lists of people \"presumed to have particular interests\". People near you searching the same thing is another common path. That's why we say probably, not never."
+  },
+  {
+   "if": "So the companies are just lying about it?",
+   "reply": "The FTC's case is about one ad seller's pitch: the FTC says its \"Active Listening\" service \"did not collect or use voice data in any manner\" and resold email lists. That's the FTC's allegations and a settlement, not a court ruling, and it doesn't prove no app anywhere ever does it."
+  },
+  {
+   "if": "Hey Siri / Hey Google is always listening though.",
+   "reply": "Yes, for the wake word, and the video says so. Apple says audio without the trigger \"is discarded\"; Google says in standby it \"won't send what you're saying to Google servers\". After the wake word, your request does go to their servers."
+  },
+  {
+   "if": "I see a green dot right now.",
+   "reply": "On iPhone, green means the camera (or camera and mic) is in use; orange is the mic. On Android, swipe down and tap the green indicator to see which app. If it's an app you're not using, check Settings › Privacy & Security › Microphone (iPhone) or the Privacy dashboard (Android)."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 19:00 ET (EST) Mon Nov 16, 2026 = 00:00 UTC Tue Nov 17. Our best performers went out at 7 PM ET, and Monday evening on the couch with a phone is when people notice the ad that 'heard' them. python3 factory/repost.py check phonelistening --channel tech --at \"2026-11-17 00:00\" passed on 2026-11-16 (R1 no phonelistening post within 7 days; R6 0 posts on Nov 16 ET). Fallback: 13:00 ET Tue Nov 17 = 18:00 UTC (check also passed: R1, R6 0 posts on Nov 17 ET), if the film isn't uploaded and checked by about 18:30 ET Monday. Pick the time from YouTube Studio's dropdown and check the saved UTC time. TikTok: on hold.",
+ "post_time_stockholm": "01:00 Tue Nov 17 (Sweden CET, US EST, 6 h apart). Fallback 19:00 Tue Nov 17.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold and a trending-sound pick goes stale in days (same call as overnightcharge, darkmode, notprivate). When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick a calm instrumental at 5-10 % under out/phonelistening-voice-only.mp4 (34.33 s; the sound must be at least 35 s). YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "Is Your Phone Listening for Ads? 🤔",
+ "youtube_title_alternatives": [
+  "Is Your Phone Listening to You for Ads? 🤔",
+  "The Ad Company That 'Listened' Didn't 😮"
+ ],
+ "youtube_title_check": "Google US suggestions checked Nov 16, 2026 (suggestqueries, gl=us, hl=en): \"is your phone listening\" completes to \"is your phone listening to you\" then \"is your phone listening to you for ads\" (2nd); \"phone listening for ads\" completes to \"is your phone listening for ads\" (9th); \"is my phone listening to me for ads\" is itself a suggestion (BRIEF's main phrase). Chose the 6-word \"Is Your Phone Listening for Ads?\" over the brief's 8-word example \"Is Your Phone Listening to You for Ads?\" because PERFORMANCE.md §7 caps titles at 7 words, and it is word for word the poster headline (\"Is your phone listening for ads?\") and frame 0's LISTENING / FOR ADS?. The longer, higher-ranked phrase sits in the description's first line, the caption's first line and the tags. Title Case, one emoji, the thing in words 2-3; the film answers it honestly (probably not, per one study and the FTC).",
+ "youtube_description": "Is your phone listening to you for ads? Probably not. A 2018 study of 17,000+ Android apps found no audio leaks, and the best-known \"we listen\" ad pitch used no voice data at all, the FTC says. It resold email lists from data brokers.\n\nThe study. \"Panoptispy\" (PETS 2018): \"We did not find any true positive audio files in our extracted dataset, i.e., no apps appeared to exfiltrate audio in our tests.\" Northeastern quotes co-author David Choffnes: \"There were no audio leaks at all—not a single app activated the microphone.\"\n\nThe wake word. Apple, on Siri: \"any audio that does not contain the trigger keywords is discarded.\" Google Assistant Help: \"When in standby mode, it won't send what you're saying to Google servers or anyone else.\"\n\nThe pitch. The FTC's complaint against Cox Media Group quotes its website: \"Creepy? Sure. Great for marketing? Definitely.\" The FTC alleges: \"In fact, Respondent's Active Listening service did not collect or use voice data in any manner.\" FTC, May 21, 2026: it consisted of \"reselling—at a significant markup—email lists obtained from other data brokers.\" FTC, Aug 27, 2026, finalizing the orders: \"the marketing service wasn't based on voice data.\" These are the FTC's allegations and a settlement, not a court finding.\n\nWhere ads come from. Google My Ad Center Help lists \"things you've looked for on Google Search\", \"apps you've installed on your Android device\" and \"your general area while using Google Services\". An FTC staff report found big social media and streaming companies kept data \"including information from data brokers\".\n\nThe dot. Apple: \"An orange indicator means the microphone is being used by an app on your iPhone.\" Android Help: \"When apps use your camera or mic, a green indicator will show at the top right corner of your screen.\"\n\nHow to check yours. Look at the top of your screen: on iPhone, orange = mic, green = camera (or camera and mic); on Android, a green indicator, which you can swipe down and tap to see the app. To see which apps can use your mic: iPhone, Settings › Privacy & Security › Microphone. Android 12 and later, Settings › Security and privacy › Privacy dashboard. Menu names vary.\n\nFine print: This is one 2018 study of Android apps; its authors note an app could turn audio into \"a text transcript\" they wouldn't detect, and they missed events \"in apps that require login\". So: probably, not never. The wake word is checked on the phone, but after it, your request goes to the company's servers. The screens are re-created; no real interface or logo is shown. Not affiliated with any company named.\n\nSources:\n- PETS 2018, Panoptispy, read Nov 16, 2026: https://petsymposium.org/popets/2018/popets-2018-0030.pdf\n- Northeastern, July 6, 2018, read Nov 16, 2026: https://news.northeastern.edu/2018/07/06/is-your-smartphone-spying-on-you/\n- Apple, Siri voice trigger, read Nov 16, 2026: https://machinelearning.apple.com/research/voice-trigger\n- Google Assistant privacy, read Nov 16, 2026: https://support.google.com/assistant/answer/11091714\n- FTC complaint, CMG, read Nov 16, 2026: https://search.ftc.gov/system/files/ftc_gov/pdf/CMGComplaintwithoutsignatures.pdf\n- FTC, May 21, 2026, read Nov 16, 2026: https://www.ftc.gov/news-events/news/press-releases/2026/05/ftc-require-cox-media-group-two-other-firms-pay-nearly-1-million-settle-charges-they-deceived\n- FTC, Aug 27, 2026, read Nov 16, 2026: https://www.ftc.gov/news-events/news/press-releases/2026/08/ftc-finalizes-orders-cox-media-group-two-other-firms-settling-charges-they-deceived-customers-about\n- Google My Ad Center, read Nov 16, 2026: https://support.google.com/My-Ad-Center-Help/answer/12155656\n- FTC data report, Sept 19, 2024, read Nov 16, 2026: https://www.ftc.gov/news-events/news/press-releases/2024/09/ftc-staff-report-finds-large-social-media-video-streaming-companies-have-engaged-vast-surveillance\n- Apple mic indicator, read Nov 16, 2026: https://support.apple.com/en-us/108331\n- Android mic indicator, read Nov 16, 2026: https://support.google.com/android/answer/13532937\n- Android privacy dashboard, read Nov 16, 2026: https://support.google.com/android/answer/13530434\n\nHow tech works, part 16.\n\n#techexplained #phoneprivacy #targetedads",
+ "youtube_tags": [
+  "is your phone listening to you for ads",
+  "is my phone listening to me for ads",
+  "is my phone listening to me",
+  "is your phone listening to you",
+  "is your phone listening to your conversations",
+  "does my phone listen to me for ads",
+  "can phones listen to you for ads",
+  "phone listening for ads",
+  "phone listening for targeted ads",
+  "active listening ads",
+  "cox media group active listening",
+  "orange dot iphone",
+  "green dot android",
+  "microphone permissions",
+  "phone privacy",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 16",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no AI hashtag. YouTube Altered content: No (hand-made illustrated phone, paper 'Active Listening' box, email-list sheets, a generic re-created settings screen tagged RE-CREATED; no real person's voice, no realistic footage, no real phone UI or logo). The fine print's re-created/not-affiliated notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator when TikTok resumes.",
+ "youtube_description_chars": 4210,
+ "youtube_tags_chars": 461
+}
