@@ -1,0 +1,76 @@
+{
+ "title": "Does charging overnight ruin your battery",
+ "caption": "Does charging overnight ruin your battery? Your phone may not even charge all night.\nWith its charging setting on, it can wait at 80% and finish right before you unplug. Your job: keep it cool, not under a pillow.\nIs your phone set to wait? Yes or no.",
+ "hashtags": [
+  "#techexplained",
+  "#batteryhealth",
+  "#chargingovernight",
+  "#iphonetips",
+  "#phonetips"
+ ],
+ "keywords": [
+  "does charging overnight ruin your battery",
+  "is it bad to charge your phone overnight",
+  "does charging overnight damage battery iphone",
+  "does charging overnight damage battery samsung",
+  "should i charge my phone overnight",
+  "optimized battery charging iphone",
+  "adaptive charging pixel",
+  "charging phone overnight bad for battery"
+ ],
+ "cover_text": "Charging all night?",
+ "cover_time": 0.0,
+ "pinned_comment": "Honest version: it only waits if the setting is on and has learned your routine (about 14 days), and heat still counts, so keep it out from under the pillow. Is your phone set to wait? Yes or no.",
+ "pinned_backups": [
+  {
+   "if": "So overnight charging is totally fine?",
+   "reply": "Not always. With the setting off, the phone can sit at 100% for hours, and Samsung US says to unplug \"after the device has reached a 100% charge to avoid a swollen battery.\" With the setting on and the phone kept cool, the phone handles the long hours at full."
+  },
+  {
+   "if": "Mine went straight to 100% last night.",
+   "reply": "That can happen. Apple says it delays past 80 percent \"in certain situations\" and needs at least 14 days and 9 long charges in one place to learn; Pixel says Adaptive Charging \"may turn on\". Check that the setting is on, and give it a couple of weeks of the same routine."
+  },
+  {
+   "if": "Should I just set it to stop at 80%?",
+   "reply": "That's your call. iPhone 15 and later can set a charge limit from 80 to 100 percent, Pixel 6a and later have Limit to 80%, and Galaxy has Battery protection options. The trade is less battery for the day in return for less time at full."
+  },
+  {
+   "if": "Is wireless charging worse?",
+   "reply": "Different topic, and we didn't cover it here. The same rule from Apple applies though: if the phone gets hot while it charges, take it out of its case and keep it somewhere with air around it."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 19:00 ET (EST) Sun Nov 15, 2026 = 00:00 UTC Mon Nov 16. Our best performers went out at 7 PM ET, and Sunday evening is when US viewers are on their phones in bed, the exact scene of the film. repost.py check passed for this slot on 2026-11-15 (R1 no overnightcharge post within 7 days; R6 0 posts on Nov 15 ET). Fallback: 13:00 ET Mon Nov 16 = 18:00 UTC, if the film isn't uploaded and checked by about 18:30 ET Sunday. Pick the time from YouTube Studio's dropdown and check the saved UTC time. Re-run python3 factory/repost.py check overnightcharge --platform youtube --at the chosen UTC time before scheduling. TikTok: on hold.",
+ "post_time_stockholm": "01:00 Mon Nov 16 (Sweden CET, US EST, 6 h apart). Fallback 19:00 Mon Nov 16.",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold and a trending-sound pick goes stale in days (same call as darkmode, notprivate, coldbattery). When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick a calm instrumental at 5-10 % under out/overnightcharge-voice-only.mp4 (34.97 s; the sound must be at least 35 s). YouTube Shorts goes out with the film's own mix, no music added.",
+ "youtube_title": "Does Charging Overnight Ruin Your Battery? 🤔",
+ "youtube_title_alternatives": [
+  "Your Phone Doesn't Charge All Night 😮",
+  "Charging Overnight? Your Phone Waits at 80% 🤔"
+ ],
+ "youtube_title_check": "Chose \"Does Charging Overnight Ruin Your Battery?\": typing \"does charging overnight ruin\" into Google US gives \"does charging overnight ruin your battery\" as the first suggestion, and \"does charging your phone overnight\" completes with \"... ruin the battery\" first (checked Nov 15, 2026, suggestqueries gl=us). It is the line spoken in `ask` at 2.5-4.65 s, the typed search bar on screen and the poster's headline (\"Does charging overnight ruin your battery?\"). 6 words, Title Case, one emoji, the thing in words 1-2, consequence verb \"Ruin\", phone-myth question shape (darkmode). The film answers it honestly (the phone handles the hours if the setting is on; you handle the heat), and the description keeps every hedge. The spoken hook \"Your Phone Doesn't Charge All Night\" stays as the A/B alternative.",
+ "youtube_description": "Does charging overnight ruin your battery? Your phone may not even charge all night. Two things speed up wear: heat, and long hours at full charge. With its charging setting on, your phone can hold back the last stretch and finish right before you usually unplug. It handles the hours; you handle the heat: charge it in the open, not under a pillow, out of a hot case.\n\nHours at 100%. Apple, \"About Charge Limit and Optimized Battery Charging on iPhone\": \"A battery's chemical age results from a complex combination of several factors, including temperature history and charging pattern.\" Optimized Battery Charging \"is designed to reduce the wear on your battery and improve its lifespan by reducing the time your iPhone spends fully charged.\" When it's on, \"your iPhone will delay charging past 80 percent in certain situations.\" And: \"The algorithm aims to ensure that your iPhone is still fully charged when unplugged.\"\n\nHeat. Apple, \"Maximizing Battery Life and Lifespan\": \"It's especially important to avoid exposing your device to ambient temperatures higher than 95° F (35° C), which can permanently damage battery capacity.\" On cases: \"If you notice that your device gets hot when you charge it, take it out of its case first.\"\n\nThe pillow. Apple iPhone User Guide, \"Important safety information for iPhone\": \"don't sleep on a device, power adapter, or wireless charger, or place them under a blanket, pillow, or your body, when it's connected to a power source.\"\n\nPixel. Google Pixel Help, \"Get the most life from your Pixel phone battery\": \"Your phone warms up when it's plugged in, so don't keep it charging more than needed.\" On Adaptive Charging: \"This setting completes charging right before you typically unplug, so your phone isn't at 100% for a long time. This can strain the battery long term.\" And: \"When you charge your phone for a long time or overnight, Adaptive Charging may turn on to charge to 100% one hour before you unplug.\"\n\nGalaxy. Samsung US, \"Get the most out of your Galaxy phone or tablet battery,\" on Adaptive: \"Once your device learns your routine, adaptive will automatically stop charging at 80%, and it will switch to Basic before you wake up.\" Samsung US, \"Galaxy Battery: Care and Maintenance\": \"Unplug the charger after the device has reached a 100% charge to avoid a swollen battery.\" That's why we don't call overnight charging harmless.\n\nHow to check yours. iPhone 15 and later: Settings › Battery › Charging. iPhone 14 and earlier: Settings › Battery › Battery Health & Charging. Pixel: Settings › Battery › Battery health › Charging optimization. Galaxy: Settings › Battery › Battery protection › Adaptive. When it's on, iPhone and Pixel show when the phone will be fully charged. Menus vary by model.\n\nFine print: These features work \"in certain situations\" (Apple) and need time to learn: Apple says \"at least 14 days\" and at least 9 charges of 5 hours or more in one place; Google says about 14 days. Apple says Optimized Battery Charging \"is on by default\"; Pixel and Galaxy defaults vary, so check yours. The night in the video is an illustrative example; no source says when a phone reaches 80%. Apple's pillow line is safety advice; heat trapped under a pillow is our reading of it. The screens are re-created by hand; no real interface or logo is shown. Not affiliated with Apple, Google or Samsung.\n\nSources:\n- Apple Support, \"About Charge Limit and Optimized Battery Charging on iPhone\" (108055, published December 08, 2025), read Nov 15, 2026: https://support.apple.com/en-us/108055\n- Apple, \"Batteries: Maximizing Battery Life and Lifespan\", read Nov 15, 2026: https://www.apple.com/batteries/maximizing-performance/\n- Apple iPhone User Guide, \"Important safety information for iPhone\", read Nov 15, 2026: https://support.apple.com/guide/iphone/important-safety-information-iph301fc905/ios\n- Google Pixel Help, \"Get the most life from your Pixel phone battery\" (6090612), read Nov 15, 2026: https://support.google.com/pixelphone/answer/6090612?hl=en\n- Samsung US, \"Get the most out of your Galaxy phone or tablet battery\" (ANS10002534), read Nov 15, 2026: https://www.samsung.com/us/support/answer/ANS10002534/\n- Samsung US, \"Galaxy Battery: Care and Maintenance\", read Nov 15, 2026: https://www.samsung.com/us/support/galaxy-battery/care-and-maintenance/\n\nHow tech works, part 15.\n\n#techexplained #batteryhealth #phonetips",
+ "youtube_tags": [
+  "does charging overnight ruin your battery",
+  "is it bad to charge your phone overnight",
+  "does charging overnight damage battery",
+  "does charging overnight damage battery iphone",
+  "does charging overnight damage battery samsung",
+  "should i charge my phone overnight",
+  "charging phone overnight bad for battery",
+  "optimized battery charging",
+  "optimized battery charging iphone",
+  "adaptive charging pixel",
+  "iphone charge limit 80",
+  "phone battery tips",
+  "battery health",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 15",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no AI hashtag. YouTube Altered content: No (hand-made illustrated nightstand, pillow, charge column, generic phone and a generic re-created lock-screen card and settings screen tagged RE-CREATED; no real person's voice, no realistic footage, no real phone UI or logo). The fine print's re-created/not-affiliated notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator when TikTok resumes.",
+ "youtube_description_chars": 4383,
+ "youtube_tags_chars": 462
+}

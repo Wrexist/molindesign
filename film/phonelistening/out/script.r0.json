@@ -1,0 +1,101 @@
+{
+ "about": "Is your phone listening for ads? Factory #33, backlog row 37, slug phonelistening. One hard idea: studies found no sign apps send your audio out, and the most famous 'we listen' ad pitch (Cox Media Group's Active Listening) turned out, per the FTC, to use no voice data at all; it resold email lists from data brokers, which is what ads actually run on. Hero: the cut-paper 'Active Listening' box wired to the phone, torn open by the FTC to spill email lists. Sources (read 2026-11-16) in BRIEF.md section 3. Planned silences: 0.5 s after the hook (frame-0 hit), 0.6 s after 'what you say.' (dip: the box lights up), 0.5 s after 'no voice data.' (tear), 1.2 s after 'data brokers.' (hero: lists spill, summary drawing, screenshot hold), 0.45 s after 'camera's on.' (dot pulse). Narration-led: record the voice first and key every visual beat to its word times; re-chain `at` to the real Ming takes.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Siri",
+  "Android",
+  "FTC"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 50
+ },
+ "dur": 39.89,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Your phone probably isn't listening.",
+   "pause": 0.5,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So why do ads match what you said?",
+   "pause": 0.4,
+   "at": 2.49
+  },
+  {
+   "id": "study",
+   "text": "A 2018 study of 17,000 Android apps found no audio leaks.",
+   "say": "A twenty eighteen study of seventeen thousand Android apps found no audio leaks.",
+   "pause": 0.4,
+   "at": 5.74
+  },
+  {
+   "id": "wake",
+   "text": "Yes, Hey Siri listens, but on the phone itself.",
+   "pause": 0.4,
+   "at": 10.07
+  },
+  {
+   "id": "dip",
+   "text": "Then an ad seller pitched ads from what you say.",
+   "pause": 0.6,
+   "at": 13.69
+  },
+  {
+   "id": "twist",
+   "text": "But the FTC says it used no voice data.",
+   "say": "But the F T C says it used no voice data.",
+   "pause": 0.5,
+   "at": 17.86
+  },
+  {
+   "id": "lists",
+   "text": "It resold email lists from data brokers.",
+   "pause": 1.2,
+   "at": 21.57
+  },
+  {
+   "id": "ads",
+   "text": "Ads can follow your searches, apps and rough location.",
+   "pause": 0.4,
+   "at": 25.27
+  },
+  {
+   "id": "dot",
+   "text": "A dot up top means your mic or camera's on.",
+   "pause": 0.45,
+   "at": 28.89
+  },
+  {
+   "id": "perms",
+   "text": "Settings shows which apps can use your mic.",
+   "pause": 0.4,
+   "at": 32.91
+  },
+  {
+   "id": "end",
+   "text": "See a dot on yours right now? Yes or no.",
+   "say": "See a dot on yours right now? Yes, or no?",
+   "pause": 0,
+   "at": 36.16,
+   "tail_fade": 0.15
+  }
+ ],
+ "tail": 0.15
+}

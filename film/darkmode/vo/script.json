@@ -1,0 +1,104 @@
+{
+ "about": "Does dark mode save battery? Factory #31, backlog row 35, slug darkmode. One hard idea: dark mode only saves power on OLED screens, where every pixel is its own light and black pixels switch off; on LCD screens a backlight stays on even for black. Even on OLED, the saving depends on brightness: Purdue (Dash & Hu, MobiSys 2021) found 3%-9% at 30%-50% brightness and 39%-47% at 100%. Viewer check: in a dark room, a black photo glows gray on LCD and is pitch black on OLED. Sources (read 2026-11-14) in BRIEF.md section 3. Planned silences: 0.5 s after the hook (frame-0 hit), 0.6 s after 'switch it off.' (dip: the needle doesn't move), 0.5 s after 'three to nine percent.' (needle tick), 1.2 s after 'forty-seven percent.' (hero: meter needle slams to the 39-47 band, screenshot hold). Narration-led: record the voice first and key every visual beat to its word times. Director 2026-11-14: `at` re-chained to the real Ming takes (last word + the planned pause, or take tail + 0.15 s where the take rings longer); dur = last word + 0.4 s. Jury r1 (2026-11-14): sun pause 1.7 s (hero hold), end line moved 0.5 s later, 'black screen glow' for clarity, tail_fade 0.15 on the end take.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "OLED",
+  "LCD",
+  "Purdue"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 31
+ },
+ "dur": 35.34,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Dark mode doesn't always save battery.",
+   "pause": 0.5,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So does dark mode save battery on your phone?",
+   "pause": 0.4,
+   "at": 2.71,
+   "speed": 0.92
+  },
+  {
+   "id": "test",
+   "text": "Turn off the lights and open a black photo.",
+   "pause": 0.4,
+   "at": 5.35
+  },
+  {
+   "id": "glow",
+   "text": "If the black glows gray, that's an LCD screen.",
+   "say": "If the black glows gray, that's an L C D screen.",
+   "pause": 0.4,
+   "at": 8.0
+  },
+  {
+   "id": "lamp",
+   "text": "Its backlight stays on, even for black.",
+   "pause": 0.4,
+   "at": 11.41
+  },
+  {
+   "id": "dip",
+   "text": "So dark mode can't switch it off.",
+   "pause": 0.6,
+   "at": 14.53
+  },
+  {
+   "id": "oled",
+   "text": "But if it's pitch black, it's OLED.",
+   "say": "But if it's pitch black, it's O-LED.",
+   "pause": 0.4,
+   "at": 16.74
+  },
+  {
+   "id": "pixels",
+   "text": "Every pixel is its own light, and black ones switch off.",
+   "pause": 0.45,
+   "at": 19.08
+  },
+  {
+   "id": "indoor",
+   "text": "Even then, indoors, Purdue measured just 3 to 9 percent.",
+   "say": "Even then, indoors, Purdue measured just three to nine percent.",
+   "pause": 0.5,
+   "at": 23.0
+  },
+  {
+   "id": "sun",
+   "text": "Full brightness, out in the sun? 39 to 47 percent.",
+   "say": "Full brightness, out in the sun? Thirty-nine to forty-seven percent.",
+   "pause": 1.7,
+   "at": 27.28
+  },
+  {
+   "id": "end",
+   "text": "Does your black screen glow? Yes or no.",
+   "say": "Does your black screen glow? Yes, or no?",
+   "pause": 0,
+   "at": 32.76,
+   "tail_fade": 0.15
+  }
+ ],
+ "tail": 0.3
+}

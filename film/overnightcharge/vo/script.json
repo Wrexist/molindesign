@@ -1,0 +1,109 @@
+{
+ "about": "Does charging overnight ruin your battery? Factory #32, backlog row 36, slug overnightcharge. One hard idea: two things speed up battery wear, heat and long hours at 100%; overnight, your phone handles the hours itself (Apple Optimized Battery Charging, Pixel Adaptive Charging, Samsung Adaptive battery protection can hold at 80% and finish right before you usually unplug), and you handle the heat (not under a pillow, out of a hot case). Hero: the bedside charge column with its 80 peg, plus the pillow pass/fail. Sources (read 2026-11-15) in BRIEF.md section 3. Planned silences: 0.5 s after the hook (frame-0 hit), 0.6 s after 'for good.' (dip: thermometer peaks), 0.5 s after 'just stop.' (fill clunks onto the 80 peg), 1.2 s after 'unplug.' (hero: alarm, fill to 100, screenshot hold). Narration-led: record the voice first and key every visual beat to its word times; re-chain `at` to the real Ming takes.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Pixel",
+  "Samsung",
+  "iPhone"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 50
+ },
+ "dur": 35.38,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Your phone doesn't charge all night.",
+   "pause": 0.5,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So does charging overnight ruin your battery?",
+   "pause": 0.4,
+   "at": 2.5
+  },
+  {
+   "id": "wear",
+   "text": "Two things speed up wear: heat, and hours at full charge.",
+   "pause": 0.4,
+   "at": 5.11
+  },
+  {
+   "id": "pillow",
+   "text": "But under a pillow, that heat gets trapped.",
+   "pause": 0.4,
+   "at": 9.08
+  },
+  {
+   "id": "dip",
+   "text": "And heat can damage a battery for good.",
+   "pause": 0.6,
+   "at": 11.66
+  },
+  {
+   "id": "open",
+   "text": "Charge it in the open, out of a hot case.",
+   "pause": 0.45,
+   "at": 14.55,
+   "take": 2,
+   "speed": 0.92
+  },
+  {
+   "id": "night",
+   "text": "Now watch: 11 at night, plugged in.",
+   "say": "Now watch. Eleven at night, plugged in.",
+   "pause": 0.4,
+   "at": 17.86
+  },
+  {
+   "id": "pause",
+   "text": "At 80 percent, it can just stop.",
+   "say": "At eighty percent, it can just stop.",
+   "pause": 0.5,
+   "at": 20.95
+  },
+  {
+   "id": "learn",
+   "text": "It learned your routine.",
+   "pause": 0.4,
+   "at": 23.68
+  },
+  {
+   "id": "full",
+   "text": "So it fills up right before you unplug.",
+   "pause": 2.0,
+   "at": 25.68
+  },
+  {
+   "id": "check",
+   "text": "Look under Settings, then Battery.",
+   "pause": 0.4,
+   "at": 29.96
+  },
+  {
+   "id": "end",
+   "text": "Is your phone set to wait? Yes or no.",
+   "say": "Is your phone set to wait? Yes, or no?",
+   "pause": 0,
+   "at": 32.57,
+   "tail_fade": 0.15
+  }
+ ],
+ "tail": 0.15
+}

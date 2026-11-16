@@ -1,0 +1,2 @@
+/home/user/molindesign/film/darkmode/out/darkmode-vo.mp4: 35.3 s, 1 hard cuts (0.3/10 s), motion 0-1 s 1.846, 0-3 s 0.849, median 0.134, still frames 17.8 %
+OK    no frozen stretches, opening moves

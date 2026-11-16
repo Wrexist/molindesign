@@ -1,0 +1,2 @@
+/home/user/molindesign/film/notprivate/out/notprivate-vo.mp4: 34.4 s, 3 hard cuts (0.9/10 s), motion 0-1 s 1.265, 0-3 s 0.692, median 0.208, still frames 18.3 %
+OK    no frozen stretches, opening moves

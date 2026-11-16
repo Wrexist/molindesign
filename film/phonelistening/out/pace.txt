@@ -1,0 +1,2 @@
+/home/user/molindesign/film/phonelistening/out/phonelistening-vo.mp4: 34.6 s, 1 hard cuts (0.3/10 s), motion 0-1 s 1.102, 0-3 s 0.626, median 0.144, still frames 8.9 %
+OK    no frozen stretches, opening moves

@@ -340,6 +340,10 @@ def drop_tail(h, script, end):
                 last = i + 2
             elif i + 2 < len(b) and b[i] + b[i + 1] + b[i + 2] == a[-1]:   # split in three ("Race 'n 'Chase", gta-origin)
                 last = i + 3
+    if last is None and a and a[-1] == 'percent':   # Whisper writes "...forty-seven percent" as "-47%.": the last "%" is the line's last word
+        for i in range(len(b)):
+            if '%' in h[i]['w']:
+                last = i + 1
     if last is not None:
         return h[:last]
     while len(h) > len(script) and (h[-1]['p'] < 0.3 or h[-1]['t0'] >= end - 0.05):
@@ -381,6 +385,9 @@ def wer(ref, hyp):
     # Whisper sometimes writes "$5 ,000": rejoin a number it split at its thousands comma
     join = lambda ws: re.sub(r'(?:(?<=\s)|^)&(?=\s|$)', 'and', re.sub(r'(\d) ([,.]\d)', r'\1\2', ' '.join(ws))).replace('%', ' percent').split()   # Whisper writes "and" as "&" in lists   # Whisper writes "37,000%" for "thirty-seven thousand percent"
     split = lambda ws: [norm(p) for w in join(ws) for p in re.split(r'[-‑]', re.sub(r'^(\d+)(gb)\b', r'\1-\2', w, flags=re.I)) if norm(p)]
+    # Whisper writes a spoken range "three to nine percent" as "3-9%": read a dash between two numbers as "to" when the script says "to"
+    if any(norm(w) == '2' for w in ref):
+        hyp = re.sub(r'(\d)\s*[-‑–]\s*(?=\d)', r'\1 to ', ' '.join(hyp)).split()
     r, h = split(ref), split(hyp)
     # Whisper writes a spoken "number three" as a list mark ("3.") or "No. 1": read "no" before a number as "number",
     # and don't count a "number" it dropped in front of a number it did hear (gta-ranked)

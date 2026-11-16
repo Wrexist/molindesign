@@ -239,8 +239,12 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | forceclose | Nov 8 18:00 | 40 s | 7.5 | 119 (2.5 d) | – | 6 | stalled; myth some viewers already knew |
 | deletephoto | Nov 10 18:00 | 35 s | 7.0 | 757 (12 h) | – | 6 | phone-myth + "check yours"; first pinned comment |
 | coldbattery | Nov 11 00:00 | 38 s | 7.4 | 772 (6 h), 1,078 (30 h), 1,216 (43 h) | – | 6 | timely (winter) + phone-myth; fastest start since incognito |
-| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
-| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | – | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h), 928 (31.5 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
+| unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
+| notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h), 30 (25 h), 35 (40 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
+| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h), 58 (15 h), 62 (30 h), 63 (40 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
+| overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | 10 (30 min), 18 (6 h), 23 (9 h) | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
+| phonelistening | Nov 17 00:00 | 35 s | 7.0 r1 → 7.5 r2 + polish | – | – | 5 | myth + FTC twist + "check your dot"; 7 PM ET slot; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -336,6 +340,46 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - An endless spinner says "nothing loads"; for "slower, not stopped" use a crawling progress bar.
 - Louder SFX move Whisper's word edges and can close the gaps the SFX gate needs; re-run gate.py after every gain change and drop the hits that no longer fit.
 - Researcher: Whisper heard "Broadband Facts" as "Broadband fax" and "your plan's" as "plans"; reword ("for your plan, called Broadband Facts") rather than fight the TTS.
+
+### notprivate (#30), jury r1 7.3 / Truth 8.5 (post), all 10 fixes applied — scheduled Nov 13 13:00 ET
+- The backlog ran dry (no next/todo rows); this run took the last PERFORMANCE §7 idea. Add 4/6+ ideas to backlog.csv in every run's lessons so the next run never starts empty.
+- A threat topic's hook ("doesn't mean you're hacked") needs the threat on screen in the same frame as the strike; a strike through HACKED? alone reads as "NOT HACKED" with the sound off.
+- "Never do X" advice needs the do-instead next step on screen ("Back to safety"), or the jury reads an implied "otherwise go ahead" (Truth capped at 8.5).
+- A label box clipped a credit again (CHROME HEL…): check label boxes on rendered frames, not in code, and only tag re-created screens RE-CREATED, not quoted help text.
+- A locked-off composition for 20 s reads as a template even when every prop moves; give the hero object a physical pass/fail event (door opens, then slams onto the chain) and a slow push.
+- No stock icons: the bald "hacker" silhouette and a pill-stack hand read as clip art; draw them in the house cut-paper look.
+- A hit can't land mid-sentence (gate.py); put the DM number's slap in the first gap after its line.
+
+### darkmode (#31), jury r1 7.0 / Truth 8.5 → r2 7.4 / Truth 8.5 (post), r2 polish applied — scheduled Nov 14 13:00 ET (pIfs8L4zK1k; PC was asleep at 08:45 UTC, scheduled by about 09:00 UTC)
+- A gauge that says "% LESS POWER" must never rest on its 0 tick during the "doesn't help" section: with the sound off it reads as a 0 % claim. Give the needle a rest peg outside the scale.
+- Copy the source's hedge ("on average") onto every number band, not only the hero quote; a dropped hedge kept Truth at 8.5 two rounds running.
+- The needle has to agree with the voice on the word: sweep to the spoken number within 0.35 s, then slam on the hit. Round 1 had the dial at 25 under "thirty-nine" for a full second.
+- The test's two answers (LCD glows gray, OLED pitch black) belong in one frame, side by side; that frame is the DM moment and a second poster.
+- A hero object that never moves for 20 s (the meter) is a dead prop even when the rest of the frame moves: give it small reactions (jitter on each toggle, creep per bulb row) before its big event.
+- A ringing hit (the clink) alone in a 2 s voice gap makes Whisper invent words and shifts every word edge, so 8 of 9 SFX failed. Keep long holds to one dry thump.
+- The locked phone-left / meter-right layout for 3.5–23 s still read as a template in r2: plan two layout changes across the middle third next time.
+- Next ideas (score 5/6+): "Do you need to close your apps?" (Apple/Google say no), "Why does your phone get hot when charging?", "Is 5G why your battery drains?".
+
+### overnightcharge (#32), jury r1 6.9 / Truth 8.0 → r2 7.3 / Truth 8.5 (post), r2 polish applied — scheduled Nov 15 19:00 ET (j9mHl46nO9s)
+- A label stayed on screen after the gauge moved past it (80% CHARGE beside a full column) and cost Truth 0.5. Peel every number label before the fill passes it, and show 100 only once the fill gets there.
+- A re-created settings screen with ON switches answers the end question and implies defaults. Show paths ending in a neutral chevron, and don't draw switches for features that are option choices (Pixel, Samsung).
+- A hook stated as fact ("doesn't charge all night") needs its condition on screen when the key word lands (about 0.8 s), at ≥ 40 px, held to 5 s.
+- The payoff should land on the payoff word: the fill hit 100 two seconds before "unplug" in r1. Hold on the peg until the word, then run it in 0.6 s into the slap.
+- A drawn history line on the hero (11 PM → 80 % ALL NIGHT → 100 % AT 6:30, EXAMPLE NIGHT) turned a dead hold into the poster frame. Plan a summary drawing for every hero hold.
+- The score is peak-normalised: raising a quiet hit's gain past the loudest one doesn't make it louder relative to the voice, it fails the gate. Lower the loud hits instead. Regenerate events.json (`node render.mjs events --film <slug>`) before every gate.py run.
+- The SFX gate is at /tmp/claude-0/-home-user-molindesign/a96b585a-7a54-51cf-9d19-86c08dfe14b0/scratchpad/gate.py (two briefs had the wrong path).
+- closeapps (backlog 38) duplicated forceclose (#25); check done slugs before adding ideas.
+
+### phonelistening (#33), jury r1 7.0 / Truth 7.5 → r2 7.5 / Truth 8.5 (post), r2 polish applied — scheduled Nov 16 19:00 ET (r50UjIxidX0)
+- Truth: a quote chip cut mid-sentence needs "…" at each cut, and the cut must not change the claim ("…NO AUDIO LEAKS AT ALL…").
+- Truth: a study's headline number needs its scope on screen with it, from the same frame as the caption: "17,000+ ANDROID APPS STUDIED · 2018" + "IN THEIR TESTS · NORTHEASTERN, 2018" (only 9,100 were run dynamically, so never "tested").
+- Truth: indicator chips wait for their dot ("iPHONE: CAMERA (± MIC)" only after the green dot pops).
+- SFX gate: a hit placed at line end + .2 with margin .15 lands on the gate's 0.15 s edge and fails when small.en word edges jitter 10–20 ms between runs. Place hits at end + .3 with margin .2.
+- Labels: a chip "anchored on the cord at mid-cord" collided with both the box and the phone (LABELS_RUN). Hang it under the strips in free space instead.
+- Frame 0 at 1.2× pushed the phone 3 px and the bubble 9 px out of the safe box (CLIP_RUN); 1.16× and bubble x 758 fit.
+- r2 wow: a 1.00 → 1.12× punch-in on the torn-open empty box right after the tear, the moment the idea pays off.
+- Tooling: the Bash safety check stopped answering mid-run for the director (and briefly for the orchestrator). Retry after ~15 min via send_later; Read/Grep/Edit kept working.
+
 ### More graphical (Isac 2026-11-04: "make video more graphical, add more content and graphics")
 - Something new every 1-2 s: loop-periodic paper life (birds, drifting clouds, sun rays, twinkles, river shimmer, falling leaves, a critter); no empty sky, and the bench gets colour glows + halftone (texture only, no shapes).
 - Kinetic type (kit `slam`/`popWords`, ≥ 36 px) on each key word plus an icon tag per listed item, in the caption zone only while the caption is off; register each in TEXTS so readcheck holds it, and never highlight inside a quote.
