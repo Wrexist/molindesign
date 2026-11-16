@@ -242,8 +242,8 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | airplanemode | Nov 12 00:00 | 38 s | 7.3 | 343 (6 h), 500 (9 h), 906 (18 h), 928 (31.5 h) | 8 | 6 | phone-myth + timely (FCC drone vote); evening slot after PC woke late |
 | unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
 | notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h), 30 (25 h), 35 (40 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
-| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h), 58 (15 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
-| overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | – | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
+| darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h), 58 (15 h), 62 (30 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
+| overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | 10 (30 min) | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
