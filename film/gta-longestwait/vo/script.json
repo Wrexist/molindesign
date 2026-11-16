@@ -1,0 +1,98 @@
+{
+  "about": "GTA 6 took 13 years 2 months (GTA V Sept 17 2013 to GTA VI Nov 19 2026, per Rockstar). Not a record: measured from the first release anywhere of one numbered main game to the next, Kingdom Hearts III waited 13y 1m, Psychonauts 2 16y 4m, Shenmue III 18y 2m (launched Nov 19 2019, same calendar day as GTA 6), Streets of Rage 4 26y 1m. Delta, pillar 4. Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Kingdom Hearts",
+    "Psychonauts",
+    "Shenmue",
+    "Streets of Rage"
+  ],
+  "pronounce": {
+    "Shenmue": "Shen moo"
+  },
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 22
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6 is a 13-year wait.",
+      "say": "G T A six is a thirteen year wait."
+    },
+    {
+      "id": "rec",
+      "at": 3.3,
+      "text": "And that's not a record.",
+      "say": "And that is not a record."
+    },
+    {
+      "id": "ask",
+      "at": 5.5,
+      "text": "So which famous sequels took longer?"
+    },
+    {
+      "id": "kh",
+      "at": 8.24,
+      "text": "Kingdom Hearts 3? Thirteen years too.",
+      "say": "Kingdom Hearts three? Thirteen years too."
+    },
+    {
+      "id": "tie",
+      "at": 10.98,
+      "text": "Almost a tie."
+    },
+    {
+      "id": "psy",
+      "at": 12.85,
+      "text": "But Psychonauts 2 took sixteen.",
+      "say": "But Psychonauts two took sixteen."
+    },
+    {
+      "id": "shen",
+      "at": 16.19,
+      "text": "Shenmue 3? Eighteen years.",
+      "say": "Shen moo three? Eighteen years."
+    },
+    {
+      "id": "nov",
+      "at": 19.07,
+      "text": "Shenmue's launch day? November 19th. Sound familiar?",
+      "say": "Shen moo's launch day? November nineteenth. Sound familiar?"
+    },
+    {
+      "id": "sor",
+      "at": 25.21,
+      "text": "And Streets of Rage 4? 26 years.",
+      "say": "And Streets of Rage four? Twenty six years."
+    },
+    {
+      "id": "dbl",
+      "at": 29.36,
+      "text": "Almost twice as long as GTA 6.",
+      "say": "Almost twice as long as G T A six."
+    },
+    {
+      "id": "end",
+      "at": 32.96,
+      "text": "So, is thirteen years long? Yes or no?"
+    }
+  ],
+  "dur": 36.4
+}

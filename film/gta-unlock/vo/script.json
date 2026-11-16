@@ -1,0 +1,104 @@
+{
+ "about": "GTA 6 unlock times (Delta, pillar 6). PlayStation Store listings read 2026-11-16 (concept 10000730): NZ 2026-11-18T11:00Z (midnight NZDT), AU 13:00Z (midnight AEDT), JP 15:00Z (midnight JST), GB 2026-11-19T00:00Z (midnight GMT), US 05:00Z (midnight EST = 9 PM PST Nov 18). NZ to US = 18 h. PlayStation US support: releases at midnight local time Nov 19 on PS5. Xbox times not used (no primary). Voice is date-proof for posting Nov 16-18: no today/tomorrow. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "PlayStation",
+  "New Zealand",
+  "Auckland",
+  "Sydney",
+  "Tokyo",
+  "London",
+  "New York",
+  "LA"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 26
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6 starts in New Zealand.",
+   "say": "G T A six starts in New Zealand.",
+   "pause": 0.4
+  },
+  {
+   "id": "rule",
+   "at": 2.62,
+   "text": "On PlayStation, each store unlocks at its own midnight.",
+   "pause": 0.3
+  },
+  {
+   "id": "ask",
+   "at": 6.06,
+   "text": "So how far ahead is New Zealand?",
+   "pause": 0.4,
+   "say": "So, how far ahead is New Zealand?"
+  },
+  {
+   "id": "nz",
+   "at": 8.46,
+   "text": "Midnight in Auckland is 6 AM in New York.",
+   "say": "Midnight in Auckland is six A M in New York.",
+   "pause": 0.45
+  },
+  {
+   "id": "sweep",
+   "at": 11.84,
+   "text": "Two hours later, Sydney. Then Tokyo.",
+   "pause": 0.3
+  },
+  {
+   "id": "london",
+   "at": 14.83,
+   "text": "London unlocks at 7 PM, New York time.",
+   "say": "London... unlocks at seven P M, New York time.",
+   "pause": 0.3
+  },
+  {
+   "id": "wait",
+   "at": 18.01,
+   "text": "And New York? It waits eighteen hours.",
+   "pause": 0.55,
+   "take": 1
+  },
+  {
+   "id": "but",
+   "at": 20.84,
+   "text": "But the US store lists New York's midnight.",
+   "say": "But the U S store lists New York's midnight.",
+   "pause": 0.3
+  },
+  {
+   "id": "la",
+   "at": 23.67,
+   "text": "So in LA, that's 9 PM. The night before.",
+   "say": "So in L A, that's nine P M. The night before.",
+   "pause": 1.45
+  },
+  {
+   "id": "end",
+   "at": 28.13,
+   "text": "Where does it start for you? Drop your city.",
+   "pause": 0
+  }
+ ],
+ "dur": 31.2,
+ "tail": 0.5
+}

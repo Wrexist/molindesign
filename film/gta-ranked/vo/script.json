@@ -1,0 +1,95 @@
+{
+  "about": "Which GTA sold the most? Top 3 by the last official count for each: GTA 4 25M by July 2013 (Take-Two), San Andreas 27.5M by Sept 2011 (Rockstar), GTA 5 230M+ sold-in by Aug 2026 (Take-Two), almost half of the series' ~475M. GTA 6 Nov 19. Delta, pillar 3.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 4",
+    "GTA 5",
+    "GTA 6",
+    "San Andreas",
+    "Take-Two",
+    "Rockstar"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 28
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "Which GTA sold the most? Guess.",
+      "say": "Which G T A sold the most? Guess."
+    },
+    {
+      "id": "count",
+      "at": 2.85,
+      "text": "The best-selling GTA games, by the last official count.",
+      "say": "The best selling G T A games, by the last official count."
+    },
+    {
+      "id": "three",
+      "at": 6.65,
+      "text": "Number three: GTA 4. 25 million copies by 2013.",
+      "say": "Number three. G T A 4. Twenty five million copies, by twenty thirteen."
+    },
+    {
+      "id": "two",
+      "at": 12.3,
+      "text": "Number two: San Andreas. 27.5 million by 2011.",
+      "say": "Number two. San Andreas. Twenty seven and a half million, by twenty eleven."
+    },
+    {
+      "id": "champ",
+      "at": 16.75,
+      "text": "Back then, Rockstar said it was still number one.",
+      "say": "Back then, Rockstar said it was still number one."
+    },
+    {
+      "id": "one",
+      "at": 19.75,
+      "text": "But number one: GTA 5. Over 230 million.",
+      "say": "But number one? G T A 5. Over two hundred thirty million."
+    },
+    {
+      "id": "asof",
+      "at": 24.35,
+      "text": "That's Take-Two's sold-in count, from this August.",
+      "say": "That's Take Two's sold in count, from this August.",
+      "take": 1
+    },
+    {
+      "id": "half",
+      "at": 28.3,
+      "text": "That's almost half of all GTA sales, ever.",
+      "say": "That's almost half of all G T A sales, ever."
+    },
+    {
+      "id": "six",
+      "at": 31.55,
+      "text": "GTA 6 comes out November 19th.",
+      "say": "G T A 6 comes out November nineteenth."
+    },
+    {
+      "id": "end",
+      "at": 34.7,
+      "text": "Will it beat GTA 5? Yes or no?",
+      "say": "Will it beat G T A 5? Yes, or no?"
+    }
+  ],
+  "dur": 37.9
+}

@@ -1,0 +1,130 @@
+{
+ "about": "GTA stars (Delta, pillar 7 pop culture). Samuel L. Jackson voiced Officer Frank Tenpenny, the corrupt Los Santos cop, in GTA San Andreas (2004; GameSpot cast story Oct 2004, Game Developer 2004-10-25 cast list). Ray Liotta was the voice of Tommy Vercetti in Vice City (2002; Rockstar on X 2022-05-26: 'the iconic voice of Tommy Vercetti'; Game Informer obituary: Goodfellas). Burt Reynolds was in Vice City and argued with Dan Houser over a scene; Reynolds yelled 'Get the limey out of here.' Houser (from London) to Vulture, 2018-10-14: 'we don't bring in name actors anymore because of their egos and, most important of all, because we believe we get a better sense of immersion using talented actors whose voices you don't recognize.' Houser left Rockstar in March 2020; his 2018 words are never applied to GTA 6. GTA VI: Coming November 19, 2026; Jason and Lucia (rockstargames.com/VI). No GTA 6 voice actor is named or implied. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Samuel L. Jackson",
+  "Tenpenny",
+  "San Andreas",
+  "Rockstar",
+  "Vice City",
+  "Ray Liotta",
+  "Goodfellas",
+  "Burt Reynolds",
+  "Dan Houser",
+  "Jason",
+  "Lucia",
+  "egos"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 33.5
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA's crooked cop? Samuel L. Jackson.",
+   "say": "G T A's crooked cop? Samuel L. Jackson.",
+   "pause": 0.45,
+   "tail_fade": 0.25,
+   "take": 1
+  },
+  {
+   "id": "who",
+   "at": 3.69,
+   "text": "Officer Tenpenny, San Andreas, 2004.",
+   "say": "Officer Tenpenny, San Andreas, two thousand four.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "why",
+   "at": 6.9,
+   "text": "So why did Rockstar stop casting stars?",
+   "pause": 0.35
+  },
+  {
+   "id": "liotta",
+   "at": 9.71,
+   "text": "Vice City starred Ray Liotta.",
+   "pause": 0.55
+  },
+  {
+   "id": "burt",
+   "at": 12.17,
+   "text": "Burt Reynolds was in it too.",
+   "pause": 0.4
+  },
+  {
+   "id": "argue",
+   "at": 14.28,
+   "text": "But he argued with the writer.",
+   "pause": 0.55
+  },
+  {
+   "id": "limey",
+   "at": 16.54,
+   "text": "Reynolds yelled, \"Get the limey out of here.\"",
+   "pause": 0.6
+  },
+  {
+   "id": "london",
+   "at": 19.43,
+   "text": "The writer was Dan Houser, from London.",
+   "pause": 0.3
+  },
+  {
+   "id": "rule",
+   "at": 22.19,
+   "text": "In 2018, he said: no more name actors.",
+   "say": "In twenty eighteen, he said: no more name actors.",
+   "pause": 0.6
+  },
+  {
+   "id": "egos",
+   "at": 25.79,
+   "text": "Partly egos.",
+   "pause": 0.6
+  },
+  {
+   "id": "real",
+   "at": 27.38,
+   "text": "Most of all, voices you don't recognize pull you in.",
+   "pause": 1.0
+  },
+  {
+   "id": "gta6",
+   "at": 31.42,
+   "text": "GTA 6 lands November 19: Jason and Lucia.",
+   "say": "G T A six lands November nineteenth: Jason and Lucia.",
+   "pause": 0.5
+  },
+  {
+   "id": "end",
+   "at": 35.66,
+   "text": "Will you know their voices?",
+   "pause": 0
+  }
+ ],
+ "dur": 37.72,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-origin/out/gta-origin-vo.mp4: 33.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 2.637, 0-3 s 2.631, median 2.523, still frames 0.1 %
+OK    no frozen stretches, opening moves

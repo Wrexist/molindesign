@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-preload/out/gta-preload-vo.mp4: 22.3 s, 1 hard cuts (0.4/10 s), motion 0-1 s 0.468, 0-3 s 0.685, median 0.281, still frames 0.7 %
+OK    no frozen stretches, opening moves

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-stars/out/gta-stars-vo.mp4: 37.7 s, 1 hard cuts (0.3/10 s), motion 0-1 s 2.14, 0-3 s 1.146, median 0.533, still frames 0.1 %
+OK    no frozen stretches, opening moves

@@ -1,0 +1,2 @@
+gta-everysecond-vo.mp4: 32.1 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.41, 0-3 s 0.589, median 0.309, still frames 0.1 %
+OK    no frozen stretches, opening moves

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-secrets/out/gta-secrets-vo.mp4: 39.0 s, 2 hard cuts (0.5/10 s), motion 0-1 s 0.51, 0-3 s 0.966, median 0.284, still frames 0.9 %
+OK    no frozen stretches, opening moves

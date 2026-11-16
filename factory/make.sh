@@ -30,6 +30,12 @@ voice() {
 }
 
 picture() {
+  # Delta trailer mode: rebuild the gitignored clip frames if needed, then hold the film to SAFE-EDIT rules 3 and 7.
+  if [ -f "$FILM/clips.json" ]; then
+    python3 "$ROOT/delta/clips/clipkit.py" restore "$SLUG_DIR" >/dev/null
+    ( cd "$TOOLS" && node render.mjs clips --film "$SLUG_DIR" )
+    python3 "$ROOT/delta/clips/clipkit.py" lint "$SLUG_DIR" || { echo "clip lint failed: fix the clip uses before rendering"; exit 4; }
+  fi
   ( cd "$TOOLS" && node render.mjs all --film "$SLUG_DIR" --workers "${WORKERS:-4}" --samples "${SAMPLES:-16}" )
 }
 

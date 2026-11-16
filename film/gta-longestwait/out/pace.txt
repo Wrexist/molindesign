@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-longestwait/out/gta-longestwait-vo.mp4: 36.4 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.603, 0-3 s 0.911, median 0.298, still frames 1.2 %
+OK    no frozen stretches, opening moves

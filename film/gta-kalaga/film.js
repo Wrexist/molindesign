@@ -3,11 +3,11 @@
    Contract: window.FILM, DUR, render(t), READY, EV, TEXTS(t), SCORE(ctx).
    Hero prop: ONE hand-built cut-paper pop-up book on a bench (paper grain, pale cut edges, baked shadows, V-fold glue
    tabs, a pull tab). The lower page is a flat paper map; a three-layer paper mountain rises out of the fold on frame 0
-   and snaps up on "mountain"; a toothpick flag names it MOUNT KALAGA. The camera slides right off the book to a
-   separate cardstock ruler on the bench (REAL WORLD, USGS) for the one hero number, 345 FT, then back. Rockstar's own
-   words land on torn strips while small pop-ups answer them (deer, fish, dirt bike, two cabins, binoculars, a curtain
-   of pines). A blank tape with a ? (no height given), an end vote styled identically, and the book folds flat and
-   re-opens into frame 0. Own flat shapes in a Vice City palette. No Rockstar footage, logo, key art or likeness, no music. */
+   and snaps up on "mountain"; a toothpick flag names it MOUNT KALAGA. Rockstar's own words land on torn strips while
+   pop-ups answer them (deer, fish, dirt bike, two cabins, binoculars, a curtain of pines). The hero: a blank tape with
+   a ? (Rockstar's site gives no height). The end vote is styled identically; the mountain stands on "mountain", sinks
+   on "hill", springs back on "One word.", then the book folds flat and re-opens into frame 0. The bench bleeds to the
+   full frame; every paper shape stays inside the rail. (The REAL WORLD ruler beat was cut after jury round 2.) Own flat shapes in a Vice City palette. No Rockstar footage, logo, key art or likeness, no music. */
 (function () {
   'use strict';
   var W = 1080, H = 1920, VO = window.VO, DUR = VO.dur, CX = 510;
@@ -237,7 +237,7 @@
   var BACK = [[110, 975], [190, 815], [300, 700], [395, 748], [520, 590], [640, 690], [745, 655], [845, 780], [910, 975]];
   var MIDR = [[120, 992], [205, 870], [290, 812], [380, 860], [470, 775], [565, 835], [650, 790], [765, 868], [900, 992]];
   var FRONT = [[100, 1012], [170, 935], [280, 905], [400, 928], [520, 898], [640, 922], [760, 902], [862, 942], [920, 1012]];
-  var BORDER_Y = 668, RX = 2006, RBASE = 1489, RLEN = 1012, LOWSTOP = .14, BK = .92;
+  var BORDER_Y = 668, BK = .92;
   var STREAM = [[592, 1006], [574, 1040], [600, 1066], [652, 1084], [676, 1120], [660, 1170], [640, 1220], [664, 1280], [706, 1330], [716, 1392]];
   var PINES = [[226, .9], [262, .75], [318, 1], [600, .95], [688, 1.05], [722, .8], [818, .9]];
   function polyPath(pts) { return function (g) { g.beginPath(); pts.forEach(function (p, i) { if (i) g.lineTo(p[0], p[1]); else g.moveTo(p[0], p[1]); }); g.closePath(); }; }
@@ -285,6 +285,8 @@
     P.page = piece([100, 230, 920, 990], rect(100, 230, 920, 990), grad(230, 990, [[0, '#120a30'], [.45, '#33186a'], [.8, '#6a2a8a'], [1, '#93338e']]), { sx: 0, sy: -8, blur: 18, ps: 1, extra: function (g) {
       var r = mulberry(5); g.fillStyle = 'rgba(255,240,230,.5)';
       for (var i = 0; i < 26; i++) { var x = 120 + r() * 780, y = 250 + r() * 380, s = 1.5 + r() * 2.5; g.fillRect(x, y, s, s); }
+      /* printed halftone: pink dots that grow toward the horizon, teal dots near the top */
+      for (var yy = 236; yy < 990; yy += 13) for (var xx = 104 + ((yy / 13) % 2) * 6.5; xx < 920; xx += 13) { var hk = clamp((yy - 560) / 420, 0, 1), tk = clamp((420 - yy) / 180, 0, 1); if (hk > 0) { g.fillStyle = 'rgba(255,120,190,' + (.10 + .12 * hk).toFixed(3) + ')'; g.beginPath(); g.arc(xx, yy, 1 + 3.4 * hk, 0, TAU); g.fill(); } if (tk > 0) { g.fillStyle = 'rgba(80,230,220,' + (.10 * tk).toFixed(3) + ')'; g.beginPath(); g.arc(xx, yy, 1 + 2 * tk, 0, TAU); g.fill(); } }
     } });
     P.sun = piece([-92, -92, 92, 92], function (g) { g.beginPath(); g.arc(0, 0, 90, 0, TAU); }, grad(-90, 90, [[0, '#fff1c2'], [1, '#ffc46e']]), { sy: 6, blur: 10, after: function (g) { g.strokeStyle = ORG; g.lineWidth = 6; g.beginPath(); g.arc(0, 0, 70, 0, TAU); g.stroke(); } });
     P.cloud1 = piece([0, -40, 360, 26], function (g) { g.beginPath(); g.moveTo(0, 20); g.quadraticCurveTo(40, -26, 100, -2); g.quadraticCurveTo(160, -44, 230, -6); g.quadraticCurveTo(300, -34, 340, 4); g.quadraticCurveTo(366, 10, 360, 22); g.closePath(); }, '#ff9cc9', { sy: 7, blur: 8 });
@@ -367,51 +369,26 @@
     P.stilt = piece([-6, -150, 6, 0], rect(-6, -150, 6, 0), '#dcab6c', { sx: 2, sy: 4, blur: 4 });
     /* the blank tape (no numbers: Rockstar gives no height) and its ? tag */
     P.spool = piece([-34, -34, 34, 34], function (g) { g.beginPath(); g.arc(0, 0, 32, 0, TAU); }, KRAFT, { sx: 3, sy: 5, blur: 6, after: function (g) { g.fillStyle = '#7a4d27'; g.beginPath(); g.arc(0, 0, 10, 0, TAU); g.fill(); } });
-    P.qtag = cardPiece(92, 104, PAPER, [['?', 92, HOT, 6]], { r: 8, sy: 7 });
-    /* the REAL WORLD set on the bench: ruler, flag slider, chip, tag, source, the one hero stamp */
-    P.ruler = piece([-32, -RLEN, 32, 0], rect(-32, -RLEN, 32, 0), PAPER, { sx: 6, sy: 10, blur: 14, extra: function (g) {
-      g.fillStyle = 'rgba(29,18,51,.75)'; for (var y = -10; y > -RLEN + 10; y -= 22) { var lg = Math.round(-y / 22) % 5 === 0; g.fillRect(-32, y, lg ? 30 : 16, 3); g.fillRect(32 - (lg ? 30 : 16), y, lg ? 30 : 16, 3); }
-      g.fillStyle = ORG; g.fillRect(-32, -RLEN, 64, 14);
-    } });
-    P.foot = piece([-80, -14, 80, 18], function (g) { rr(g, -80, -14, 160, 32, 6); }, KRAFT2, { sx: 4, sy: 8, blur: 10 });
-    P.slider = piece([-92, -26, 38, 26], function (g) { g.beginPath(); g.rect(-38, -14, 76, 28); g.moveTo(-38, -26); g.lineTo(-92, -26); g.lineTo(-72, 0); g.lineTo(-92, 26); g.lineTo(-38, 26); g.closePath(); }, TEAL, { sx: 4, sy: 7, blur: 8 });
-    P.rw = cardPiece(330, 86, ORG, [['REAL WORLD', 64, INK, 2]], { r: 10 });
-    P.rwTag = cardPiece(340, 216, PAPER, [['FLORIDA’S', 50, INK, -62], ['HIGHEST POINT', 50, INK, 0], ['BRITTON HILL', 50, HOT, 62]], { r: 6, ring: 'rgba(29,18,51,.25)' });
-    P.usgs = cardPiece(290, 62, TEAL, [['SOURCE: USGS', 46, INK, 2]], { r: 8 });
-    P.stamp = buildStamp();
+    P.qtag = cardPiece(140, 156, PAPER, [['?', 136, HOT, 8]], { r: 10, sy: 8, ring: HOT });
     /* the GTA 6 sticker */
     P.pill = cardPiece(212, 82, HOT, [['GTA 6', 64, INK, 3]], { r: 41, ring: 'rgba(255,240,234,.9)' });
     /* Rockstar's words, exactly as printed on rockstargames.com/VI/only-in-leonida/kalaga, cut with … */
     P.s1 = buildStrip('“A national landmark up against the state’s northern border… prime hunting, fishing, and off-road trails.”', 760, 48, 61);
+    buildMore();
     P.s3 = buildStrip('“…hillbilly mystics and paranoid radicals live far from the prying eyes of the government.”', 760, 48, 63);
   }
-  function buildStamp() {
-    var m = mk(4, 4).getContext('2d'); cond(m); font(m, 156, 900); ls(m, 2); var w1 = m.measureText('345 FT').width; unst(m);
-    var w = w1 + 44, h = 200, tp = jag(95, w, 4), bt = jag(96, w, 4);
-    var pc = piece([-w / 2, -h / 2 - 8, w / 2, h / 2 + 8], function (g) { g.beginPath(); g.moveTo(-w / 2, -h / 2 + tp[0][1]); tp.forEach(function (q) { g.lineTo(-w / 2 + q[0], -h / 2 + q[1]); }); for (var i = bt.length - 1; i >= 0; i--) g.lineTo(-w / 2 + bt[i][0], h / 2 + bt[i][1]); g.closePath(); }, NEWS, { sx: 6, sy: 12, blur: 16, extra: function (g) {
-      var r = mulberry(91);
-      g.strokeStyle = HOT; g.lineWidth = 9; g.strokeRect(-w / 2 + 10, -h / 2 + 16, w - 20, h - 32);
-      inkText(g, '345 FT', 0, 4, 156, HOT, 93, { dense: 26, big: 2.2, ls: 2 });
-      g.globalCompositeOperation = 'destination-out';
-      for (var i = 0; i < 420; i++) { g.globalAlpha = .2 + r() * .5; g.beginPath(); g.arc(-w / 2 + 16 + r() * (w - 32), -h / 2 + 14 + r() * (h - 28), .5 + r() * 1.8, 0, TAU); g.fill(); }
-    } });
-    pc.words = [[-pc.x0 - w1 / 2, -pc.y0 - 70, -pc.x0 + w1 / 2, -pc.y0 + 74, '345 FT']];
-    pc.sw = w; return pc;
-  }
-
   /* =====================================================================================================
      THE CAMERA: one camera over the bench. r = the slide right to the ruler (and a pull back), d = the dip
      into the backwoods, pu = a slow creep in under the quotes. Layers take parallax p.
      ===================================================================================================== */
-  var T = {};
+  var T = {}, LIVE2 = { bg: true, clip: true };
   function cam(t) {
-    /* after the stamp lands the camera already creeps back a little, then returns to the book */
-    var r = eio(seg(t, T.slR0, T.slR0 + .85)) * (1 - .06 * seg(t, T.creep0, T.slB0)) * (1 - eio(seg(t, T.slB0, T.slB0 + .8)));
+    var r = 0;
     var d = eio(seg(t, T.dip0, T.dip0 + .9)) * (1 - eio(seg(t, T.up0, T.up0 + .8)));
     var pu = eio(seg(t, T.push0, T.push1)) * (1 - eio(seg(t, T.dip0, T.dip0 + .9)));
     var jolt = kn(t, T.pop + .12, .03) * (1 + .03 * Math.sin(Math.PI * .5 * seg(t, 0, T.pop)) * (1 - eio(seg(t, T.fold0, T.reopen + .4)))), ey = 1 + .06 * eio(seg(t, T.ey0, T.ey1)) * (1 - eio(seg(t, T.up0, T.up0 + .8)));
-    var cl = eio(seg(t, T.climb0, T.stamp + .3)) * (1 - eio(seg(t, T.slB0, T.slB0 + .8)));
-    return { cx: 510 + 1190 * r + 10 * d + 60 * cl, cy: 865 + 40 * d + 12 * pu, s: (1 - .15 * r + .12 * d + .06 * pu + .045 * cl) * jolt * ey, r: r, d: d };
+    var pn = 1; (T.punch || []).forEach(function (p) { pn *= KIT.punch(t, p[0], p[1]); });
+    return { cx: 510 + 10 * d, cy: 865 + 40 * d + 12 * pu, s: (1 + .12 * d + .04 * pu) * jolt * ey * pn, r: r, d: d };
   }
   function L(g, C, p) { var zz = 1 + (C.s - 1) * p; g.translate(510, 865); g.scale(zz, zz); g.translate(-(510 + (C.cx - 510) * p), -(865 + (C.cy - 865) * p)); }
   function lay(g, C, p, fn) { g.save(); L(g, C, p); fn(); g.restore(); }
@@ -422,13 +399,15 @@
      "mountain"; it folds flat after the vote and starts rising again so the last frame is frame 0. ---------- */
   function riseAt(t) {
     if (t < 0) t += DUR; if (t > DUR) t -= DUR;
-    if (t >= T.reopen) return .15 * Math.pow(seg(t, T.reopen, DUR), 1.15);
-    var tt = Math.min(t, T.pop), u0 = .15 + .24 * tt - .025 * tt * tt, R = u0 + (1 - u0) * eio(seg(t, T.pop, T.pop + .2));
-    if (t >= T.fold0) R *= 1 - eio(seg(t, T.fold0, T.fold0 + .5));
+    if (t >= T.reopen) { var ru = seg(t, T.reopen, DUR); return .5 * (1 - (1 - ru) * (1 - ru)); }
+    var tt = Math.min(t, T.pop), u0 = .5 + .2 * tt, R = u0 + (1 - u0) * eio(seg(t, T.pop, T.pop + .2));
+    /* the vote: it stands on "mountain", sinks to a 30% hill on "hill", springs back up on "One word." */
+    R *= 1 - .7 * eio(seg(t, T.kH, T.kH + .3)) * (1 - eio(seg(t, T.kOne, T.kOne + .22)));
+    if (t >= T.fold0) R *= 1 - eio(seg(t, T.fold0, T.fold0 + .4));
     return R;
   }
   /* every pop-up feature folds flat just before the layers do, so the last frame is frame 0 */
-  function featFold(t) { return 1 - eio(seg(t, T.fold0 - .35, T.fold0 + .1)); }
+  function featFold(t) { return 1 - eio(seg(t, T.fold0 - .25, T.fold0 + .1)); }
   function upright(g, bx, by, sy, fn) { if (sy < .015) return; g.save(); g.translate(bx, by); g.scale(1, sy); g.translate(-bx, -by); fn(); g.restore(); }
   /* a small pop-up feature: rises on its word, folds with its layer */
   function pk(t, a, w) { return cd(t, a, w || 14); }
@@ -468,9 +447,9 @@
     put(g, P.vtab, 140, 976); put(g, P.vtab, 880, 976);
     upright(g, 0, 992, Rm, function () {
       put(g, P.mMid, 0, 0);
-      PINES.forEach(function (p, i) { var y = ridgeY(MIDR, p[0]) + 22, s = p[1]; g.save(); g.translate(p[0], y); g.rotate(.035 * osc(t, 5 + (i % 3), i) + sw(t, T.flag + .1, .05, 7, 2.4) * (i % 2 ? 1 : -1)); g.scale(s, s); put(g, P.pine, 0, 0); g.restore(); });
+      PINES.forEach(function (p, i) { var y = ridgeY(MIDR, p[0]) + 22, s = p[1]; g.save(); g.translate(p[0], y); g.rotate(.06 * osc(t, 5 + (i % 3), i) + sw(t, T.flag + .1, .05, 7, 2.4) * (i % 2 ? 1 : -1)); g.scale(s, s); put(g, P.pine, 0, 0); g.restore(); });
       /* the deer pops up on "hunting" */
-      var dk = pk(t, T.deer, 15); if (dk > .01) upright(g, 0, 862, dk * fz, function () { put(g, P.deer, 300, 862, 0, 1.6); });
+      var dk = pk(t, T.deer, 15); if (dk > .01) upright(g, 0, 862, dk * fz, function () { put(g, P.deer, 300, 862, 0, 2.0 * kn(t, T.deer + .05, .25)); });
     });
     put(g, P.vtab, 150, 994); put(g, P.vtab, 870, 994);
     upright(g, 0, 1012, Rf, function () {
@@ -478,6 +457,7 @@
       /* the cabins, paired, on "mystics" and "radicals" */
       var c1 = pk(t, T.cab1, 15) * fz, c2 = pk(t, T.cab2, 15) * fz;
       if (c1 > .01) upright(g, 0, 976, c1, function () {
+        var cs1 = 1.6 * kn(t, T.cab1 + .05, .25); g.save(); g.translate(352, 976); g.scale(cs1, cs1); g.translate(-352, -976);
         put(g, P.cab1, 352, 976);
         var dsw = Math.abs(Math.cos(Math.min(1.25, 1.25 * cd(t, T.door, 18)) * (1 - seg(t, T.door + .6, T.door + 1.1))));
         g.save(); g.translate(338, 976); g.scale(dsw, 1); put(g, P.door, 0, 0); g.restore();
@@ -485,12 +465,13 @@
         g.save(); g.translate(410, 912); g.rotate(ms); g.strokeStyle = '#e9d6bd'; g.lineWidth = 2; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, 22); g.stroke(); put(g, P.moon, 0, 40); g.restore();
         /* paper smoke curls from the chimney, always rising */
         for (var k = 0; k < 3; k++) { var u = ((t - T.cab1) * .55 + k / 3) % 1; if (t < T.cab1 + k * .6) continue; g.globalAlpha = c1 * (1 - u) * .85; g.fillStyle = CREAM; g.beginPath(); g.arc(330 + 14 * Math.sin(u * 6 + k), 860 - u * 120, 9 + u * 10, 0, TAU); g.fill(); }
-        g.globalAlpha = 1;
+        g.globalAlpha = 1; g.restore();
       });
       if (c2 > .01) upright(g, 0, 978, c2, function () {
-        put(g, P.cab2, 668, 978);
-        put(g, P.post, 772, 940);
-        NOREC = c2 < .98 || Rf < .98 || C.s < 1 || moving(C); putW(g, P.keep, 772, 944, -.05 + .02 * osc(t, 8) + sw(t, T.cab2 + .1, .1, 9, 3)); NOREC = false;
+        var cs2 = 1.6 * kn(t, T.cab2 + .05, .25); g.save(); g.translate(668, 978); g.scale(cs2, cs2); g.translate(-668, -978);
+        put(g, P.cab2, 668, 978); g.restore();
+        put(g, P.post, 512, 940);
+        NOREC = c2 < .98 || Rf < .98 || C.s < 1 || moving(C); putW(g, P.keep, 512, 944, -.05 + .02 * osc(t, 8) + sw(t, T.cab2 + .1, .1, 9, 3)); NOREC = false;
       });
       /* the dirt bike rides the trail on "off-road ... trails" */
       var bk = pk(t, T.bike, 15) * fz;
@@ -498,7 +479,7 @@
         var u = eio(seg(t, T.ride0, T.ride1)), bx, by;
         var q = u < .5 ? u * 2 : (u - .5) * 2;
         if (u < .5) { bx = lerp(lerp(730, 790, q), lerp(790, 766, q), q); by = lerp(lerp(905, 925, q), lerp(925, 960, q), q); } else { bx = lerp(lerp(766, 750, q), lerp(750, 832, q), q); by = lerp(lerp(960, 990, q), lerp(990, 1004, q), q); }
-        g.save(); g.translate(bx, by - 22); g.rotate(.18 * Math.sin(u * 9)); g.scale(1.45, 1.45); put(g, P.bike, 0, 0); g.restore();
+        var bs = 2.4 * kn(t, T.bike + .05, .25); g.save(); g.translate(bx - 70, by - 36); g.rotate(.18 * Math.sin(u * 9)); g.scale(bs, bs); put(g, P.bike, 0, 0); g.restore();
       });
     });
     put(g, P.vtab, 160, 1013); put(g, P.vtab, 860, 1013);
@@ -514,7 +495,7 @@
       var fx = 652 + 6 * osc(t, 7), fy = 1084 - 70 * fk + 5 * osc(t, 11);
       g.save(); g.strokeStyle = KRAFT2; g.lineWidth = 7; g.lineCap = 'round'; g.beginPath(); g.moveTo(520, 1060); g.lineTo(lerp(560, 610, fk), lerp(1040, 960, fk)); g.stroke();
       g.strokeStyle = 'rgba(255,250,235,.9)'; g.lineWidth = 2; g.beginPath(); g.moveTo(lerp(560, 610, fk), lerp(1040, 960, fk)); g.quadraticCurveTo(fx - 10, 980, fx + 14, fy - 4); g.stroke(); g.restore();
-      upright(g, 0, 1090, fk, function () { put(g, P.fish, fx, fy, -.9 + .25 * osc(t, 13) + sw(t, T.fish + .15, .4, 10, 3), 1.9); });
+      upright(g, 0, 1090, fk, function () { put(g, P.fish, fx, fy, -.9 + .25 * osc(t, 13) + sw(t, T.fish + .15, .4, 10, 3), 2.7 * kn(t, T.fish + .05, .25)); });
     }
     /* the blank tape rises beside the mountain on "never gives"; the ? tag drops on its tip */
     var tk = eio(seg(t, T.tape0, T.tape0 + .9)) * featFold(t);
@@ -524,7 +505,8 @@
       g.fillStyle = 'rgba(255,240,234,.55)'; g.fillRect(150, top, 3, 1050 - top); g.fillRect(187, top, 3, 1050 - top);
       g.fillStyle = '#c9ccd8'; g.fillRect(146, top - 8, 48, 12); g.restore();
       put(g, P.spool, 170, 1050, t * 2);
-      if (t >= T.qtag - .02) { var qk = cd(t, T.qtag, 18), qy = lerp(300, top - 58, qk) + (1 - tk) * 0; upright(g, 0, 1050, tk, function () { NOREC = qk < .98 || tk < .98 || moving(C); putW(g, P.qtag, 170, qy, sw(t, T.qtag + .1, .12, 8, 3) + .02 * osc(t, 9)); NOREC = false; }); }
+      if (t >= T.qtag - .02) { var qk = cd(t, T.qtag, 18), qy = lerp(300, top - 82, qk) + (1 - tk) * 0; var bu = t - T.qtag - .1, bq = bu < 0 ? 0 : eo(seg(bu, 0, .16)) * featFold(t); if (bq > .01) KIT.burst(g, 236, top - 60, 104 * bq, bu, ORG);
+        upright(g, 0, 1050, tk, function () { NOREC = qk < .98 || tk < .98 || moving(C); putW(g, P.qtag, 170, qy, sw(t, T.qtag + .1, .12, 8, 3) + .02 * osc(t, 9)); NOREC = false; }); }
     }
     /* the frame-0 question and the end vote, pop-up panels on stilts */
     var qa = 1 - pk(t, T.tagDown, 16) + pk(t, T.tagUp, 16);
@@ -541,43 +523,220 @@
       NOREC = k < .98 || moving(C); var kt = ph === 1 ? T.kM : ph === 2 ? T.kH : -9; g.save(); g.translate(x, base - 80); var ks = kn(t, kt, .1); g.scale(ks, ks); g.rotate(sw(t, kt, .06, 9, 3)); g.translate(-x, -(base - 80)); putW(g, Pc, x, base - 10, .012 * osc(t, 6, ph)); g.restore(); NOREC = false;
     });
   }
-  function benchSet(g, t, C) {
-    /* the ruler, standing on its own foot, far from the book */
-    put(g, P.ruler, RX, RBASE); put(g, P.foot, RX, RBASE);
-    var ck = eio(seg(t, T.climb0, T.climb1)), sy = RBASE - 40 - ck * LOWSTOP * RLEN - 6 * kn(t, T.stamp, .4) + 6;
-    put(g, P.slider, RX, sy);
-    var on = C.r > .999;
-    function card(Pc, x, y, tin, rot, from) { if (t < tin - .02 || C.r < .5) return; var k = cd(t, tin, 16), a = fin(t, tin, .08); g.save(); g.globalAlpha *= a; NOREC = !on || k < .98; putW(g, Pc, x, y + (1 - k) * (from || 50), rot); NOREC = false; g.restore(); }
-    card(P.rw, 1594, 600, T.rw, -.02, -40);
-    card(P.rwTag, 1594, 883, T.rwTag, .015, 60);
-    card(P.usgs, 1594, 1380, T.usgs, -.01, 40);
-    if (t >= T.stamp - .02 && C.r > .5) { var k = cd(t, T.stamp, 30), s = lerp(1.35, 1, k); g.save(); g.globalAlpha *= clamp((t - T.stamp) * 14, 0, 1); g.translate(1594, 1238); g.rotate(-.05); g.scale(s, s); NOREC = !on || k < .98; putW(g, P.stamp, 0, 0); NOREC = false; g.restore(); }
-  }
   function world(g, t, C) {
-    lay(g, C, 1, function () { put(g, P.bench, 0, 0); if (C.r > .001) benchSet(g, t, C); });
     book(g, C, .9, function () {
       put(g, P.page, 0, 0);
       put(g, P.sun, 238 + 5 * osc(t, 1), 640 + 4 * osc(t, 2));
       [[P.cloud1, 150, 590, 1, 0], [P.cloud2, 560, 760, 1, 2]].forEach(function (c) { var x = c[1] + 40 * osc(t, c[3], c[4]), y = c[2] + 6 * osc(t, 3, c[4]); g.strokeStyle = 'rgba(233,214,189,.6)'; g.lineWidth = 2; g.beginPath(); g.moveTo(x + 120, 230); g.lineTo(x + 120, y - 20); g.stroke(); put(g, c[0], x, y, .02 * osc(t, 4, c[4])); });
+      skyMore(g, t);
       ribbon(g, t);
       /* the N tab flips up with the border's snap */
       var nk = cd(t, T.ntab, 16) * (1 - eio(seg(t, T.fold0, T.fold0 + .4)));
       upright(g, 0, 650, Math.max(.08, nk), function () { NOREC = nk < .98 || moving(C); putW(g, P.ntab, 866, 606); NOREC = false; });
+      /* a hand-drawn circle lands on the N tab as the border snaps */
+      var nsa = 1 - seg(t, T.ntab + 1.8, T.ntab + 2.1); if (t > T.ntab + .1 && nsa > 0) { g.save(); g.globalAlpha *= nsa; KIT.scribble(g, 866, 606, 62, 58, eio(seg(t, T.ntab + .1, T.ntab + .45)), CREAM, 7, 2); g.restore(); }
     });
     book(g, C, 1, function () {
       put(g, P.map, 0, 0);
+      leaves(g, t);
       mountain(g, t, C);
+      mapMore(g, t);
       mapProps(g, t, C);
       /* the backwoods curtain slides across on "government" and away on "But" */
       var ck = eio(seg(t, T.cur0, T.cur0 + .6)), co = eio(seg(t, T.up0, T.up0 + .7));
-      if (ck > 0 && co < 1) put(g, P.curtain, lerp(-1060, 0, ck) + co * -1060, 0);
+      if (ck > 0 && co < 1) { put(g, P.curtain, lerp(-1060, 0, ck) + co * -1060, 0); woodsMore(g, t, lerp(-1060, 0, ck) + co * -1060, ck * (1 - co)); }
       /* the binoculars poke in from the right on "prying" and retreat behind the curtain */
       var bi = eio(seg(t, T.bin0, T.bin0 + .55)) * (1 - eio(seg(t, T.binOut, T.binOut + .5)));
       if (bi > 0) put(g, P.binoc, lerp(1120, 820, bi), 838 + 6 * osc(t, 9), -.05 + .03 * Math.sin(t * 3));
       /* the magnifier sweeps the slopes on "In Rockstar's words" */
       var mg = seg(t, T.mag0, T.mag0 + 1.5);
       if (mg > 0 && mg < 1) put(g, P.mag, lerp(-160, 1180, eio(mg)), 800 - 90 * Math.sin(mg * Math.PI), -.2 + .3 * mg);
+      setFx(g, t);
     });
+  }
+
+  /* =====================================================================================================
+     MORE GRAPHICAL (Isac, 2026-11-04): denser frames without touching the voice or a fact. Ambient paper life
+     (birds, drifting clouds, sun rays, twinkles, river shimmer, falling leaves, a rabbit, jumping fish, an owl,
+     fireflies), kit kinetic type on the key words, icon tags for each activity, kit fx hits, camera punches and
+     paper-ribbon wipes between beats. Every ambient motion is periodic in DUR (the loop holds); every new shape
+     clips itself to the rail, so nothing crosses x 90-930 / y 300-1430 even with the safety clip off.
+     ===================================================================================================== */
+  var KIT = window.KIT;
+  function frac(x) { return x - Math.floor(x); }
+  function railClip(g) { g.beginPath(); g.rect(BX0, BY0, BX1 - BX0, BY1 - BY0); g.clip(); }
+  function pageClip(g) { g.beginPath(); g.rect(104, 236, 812, 750); g.clip(); }
+  function buildMore() {
+    P.cloud3 = piece([0, -34, 300, 22], function (g) { g.beginPath(); g.moveTo(0, 18); g.quadraticCurveTo(30, -22, 90, -6); g.quadraticCurveTo(150, -40, 210, -8); g.quadraticCurveTo(280, -26, 300, 16); g.closePath(); }, '#ffd9a8', { sy: 6, blur: 8 });
+    P.cloud4 = piece([0, -26, 220, 18], function (g) { g.beginPath(); g.moveTo(0, 14); g.quadraticCurveTo(40, -26, 100, -4); g.quadraticCurveTo(170, -30, 220, 14); g.closePath(); }, '#c9a4ff', { sy: 6, blur: 8 });
+    P.leaves = [ORG, HOT, '#ffd27e', TEAL].map(function (col, i) { return piece([-16, -9, 16, 9], function (g) { g.beginPath(); g.moveTo(-16, 0); g.quadraticCurveTo(0, -12, 16, 0); g.quadraticCurveTo(0, 12, -16, 0); g.closePath(); }, col, { sx: 2, sy: 4, blur: 4, pad: 12, extra: function (g) { g.strokeStyle = 'rgba(60,20,10,.35)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(-12, 0); g.lineTo(13, 0); g.stroke(); } }); });
+    P.rabbit = piece([-34, -52, 34, 2], function (g) { g.beginPath(); g.ellipse(-4, -16, 24, 16, 0, 0, TAU); g.moveTo(26, -26); g.arc(18, -26, 11, 0, TAU); g.moveTo(16, -34); g.ellipse(14, -44, 4.5, 13, -.25, 0, TAU); g.moveTo(24, -34); g.ellipse(22, -44, 4.5, 13, .2, 0, TAU); g.moveTo(-22, -12); g.arc(-28, -14, 7, 0, TAU); g.rect(-20, -4, 10, 6); g.rect(4, -4, 10, 6); }, '#efe2c8', { sx: 2, sy: 4, blur: 5, pad: 14, after: function (g) { g.fillStyle = INK; g.beginPath(); g.arc(22, -28, 2.4, 0, TAU); g.fill(); g.fillStyle = HOT; g.beginPath(); g.arc(28.5, -24, 2.2, 0, TAU); g.fill(); } });
+    P.owl = piece([-30, -70, 30, 0], function (g) { g.beginPath(); g.moveTo(-26, 0); g.quadraticCurveTo(-32, -40, -22, -56); g.lineTo(-18, -70); g.lineTo(-8, -58); g.quadraticCurveTo(0, -61, 8, -58); g.lineTo(18, -70); g.lineTo(22, -56); g.quadraticCurveTo(32, -40, 26, 0); g.closePath(); }, '#9a6a3c', { sx: 2, sy: 4, blur: 5, pad: 14, extra: function (g) { g.fillStyle = '#c99a62'; g.beginPath(); g.ellipse(0, -16, 15, 16, 0, 0, TAU); g.fill(); g.fillStyle = ORG; g.beginPath(); g.moveTo(-4, -40); g.lineTo(4, -40); g.lineTo(0, -32); g.closePath(); g.fill(); } });
+  }
+  /* sky: slow paper rays behind the sun, twinkles, two more clouds drifting, a flock of paper birds */
+  function skyMore(g, t) {
+    g.save(); pageClip(g);
+    var sx = 238 + 5 * osc(t, 1), sy = 640 + 4 * osc(t, 2), rot = TAU / 14 * 2 * t / DUR;
+    g.fillStyle = 'rgba(255,190,120,.10)';
+    for (var i = 0; i < 14; i++) { var a = rot + i * TAU / 14; g.beginPath(); g.moveTo(sx, sy); g.lineTo(sx + Math.cos(a - .09) * 760, sy + Math.sin(a - .09) * 760); g.lineTo(sx + Math.cos(a + .09) * 760, sy + Math.sin(a + .09) * 760); g.closePath(); g.fill(); }
+    var r = mulberry(77);
+    for (i = 0; i < 16; i++) { var x = 130 + r() * 760, y = 260 + r() * 330, k = .5 + .5 * osc(t, 7 + (i % 5), r() * 6), s = (5 + r() * 7) * (.5 + .7 * k); g.save(); g.translate(x, y); g.rotate(TAU * t / DUR); g.globalAlpha = .35 + .6 * k; g.fillStyle = i % 4 ? '#fff1d8' : '#ffb3d9'; g.beginPath(); g.moveTo(0, -s); g.lineTo(s * .25, -s * .25); g.lineTo(s, 0); g.lineTo(s * .25, s * .25); g.lineTo(0, s); g.lineTo(-s * .25, s * .25); g.lineTo(-s, 0); g.lineTo(-s * .25, -s * .25); g.closePath(); g.fill(); g.restore(); }
+    /* two more clouds cross the sky, wrapping inside the page */
+    [[P.cloud3, 1, .15, 470], [P.cloud4, 2, .6, 395]].forEach(function (c) { var u = frac(t / DUR * c[1] + c[2]), x = lerp(-320, 940, u); put(g, c[0], x, c[3] + 6 * osc(t, 5, c[2] * 9)); });
+    /* paper birds: a flock of five crosses twice per loop, wings flapping */
+    for (var f = 0; f < 2; f++) {
+      var u = frac(t / DUR * 2 + (f ? .55 : .05)), bx = lerp(-120, 1040, u), by = (f ? 430 : 520) - 40 * Math.sin(u * Math.PI);
+      for (var b = 0; b < 5; b++) {
+        var ox = -b * 46 + (b % 2) * 10, oy = (b % 2 ? -1 : 1) * b * 15, fl = osc(t, 70 + b * 3, b), sc = f ? .8 : 1;
+        g.save(); g.translate(bx + ox * sc, by + oy * sc); g.scale(sc, sc);
+        g.fillStyle = 'rgba(6,3,18,.35)'; bird(g, 3, 5, fl); g.fillStyle = b % 2 ? '#fbf0ea' : '#ffe2c4'; bird(g, 0, 0, fl);
+        g.restore();
+      }
+    }
+    g.restore();
+  }
+  function bird(g, x, y, fl) { var w = 18 * fl; g.beginPath(); g.moveTo(x - 22, y - w); g.quadraticCurveTo(x - 10, y - w * .3, x, y + 4); g.quadraticCurveTo(x + 10, y - w * .3, x + 22, y - w); g.quadraticCurveTo(x + 8, y - 2, x, y + 10); g.quadraticCurveTo(x - 8, y - 2, x - 22, y - w); g.closePath(); g.fill(); }
+  /* map life: river shimmer, small fish jumping out of the stream, a rabbit hopping along the beach */
+  function mapMore(g, t) {
+    g.save();
+    for (var k = 0; k < 9; k++) { var u = frac(t / DUR * 5 + k / 9), f = u * (STREAM.length - 1), i = Math.floor(f), a = STREAM[i], b = STREAM[Math.min(i + 1, STREAM.length - 1)], x = lerp(a[0], b[0], f - i), y = lerp(a[1], b[1], f - i), tw = .5 + .5 * osc(t, 23 + k, k); g.globalAlpha = .5 + .5 * tw; g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(x, y - 7 * tw); g.lineTo(x + 2, y); g.lineTo(x, y + 7 * tw); g.lineTo(x - 2, y); g.closePath(); g.fill(); g.fillRect(x - 7 * tw, y - 1, 14 * tw, 2); }
+    g.globalAlpha = 1;
+    /* three little jumps per loop at three bends of the stream */
+    var ju = t / DUR * 3 + .32, jn = ((Math.floor(ju) % 3) + 3) % 3, jk = frac(ju) / .14;
+    if (jk < 1) { var sp = STREAM[[6, 4, 8][jn]], hx = sp[0] + (jk - .5) * 70, hy = sp[1] - 70 * Math.sin(Math.PI * jk);
+      g.strokeStyle = 'rgba(255,255,255,' + (.8 * (1 - jk)).toFixed(3) + ')'; g.lineWidth = 3; g.beginPath(); g.ellipse(sp[0] - 35, sp[1], 10 + 30 * jk, 4 + 10 * jk, 0, 0, TAU); g.stroke();
+      put(g, P.fish, hx, hy, (jk - .5) * 2.2, .8); }
+    /* the rabbit crosses the beach once per loop, hopping */
+    var ru = frac(t / DUR + .55), rx = lerp(150, 870, ru), hop = Math.abs(osc(t, 17, 0)), ra = clamp(Math.min(ru, 1 - ru) / .05, 0, 1);
+    if (ra > 0) { g.globalAlpha = ra; g.fillStyle = 'rgba(6,3,18,.25)'; g.beginPath(); g.ellipse(rx, 1356, 26 - 8 * hop, 5, 0, 0, TAU); g.fill(); put(g, P.rabbit, rx, 1354 - 26 * hop, -.18 * osc(t, 17, Math.PI / 2)); g.globalAlpha = 1; }
+    g.restore();
+  }
+  /* falling leaves over the whole book: eight at a time, each falls the height of the set in a few seconds */
+  function leaves(g, t) {
+    g.save(); g.beginPath(); g.rect(120, 300, 780, 1080); g.clip();
+    for (var i = 0; i < 8; i++) {
+      var r = mulberry(300 + i), x0 = 150 + r() * 700, k = 3 + (i % 3), ph = r(), u = frac(t / DUR * k + ph);
+      var y = lerp(260, 1400, u), x = x0 + 46 * osc(t, k * 3, i) + 30 * Math.sin(u * 7 + i), a = clamp(Math.min(u, 1 - u) / .08, 0, 1);
+      g.globalAlpha = a * .95; put(g, P.leaves[i % 4], x, y, 2.5 * osc(t, k * 2, i * 2) + i, 1 + .3 * (i % 2));
+    }
+    g.restore();
+  }
+  /* backwoods life on the pine curtain: an owl that blinks, fireflies */
+  function woodsMore(g, t, xoff, vis) {
+    if (vis <= .01) return;
+    g.save(); g.globalAlpha = vis;
+    var ok = cd(t, T.owl, 14); if (ok > .01) { g.save(); g.translate(xoff + 258, 880); g.scale(1.7 * ok, 1.7 * ok); put(g, P.owl, 0, 0); var bl = Math.abs(Math.sin(TAU * 3 * t / DUR * 4)) < .12 ? .15 : 1; g.fillStyle = '#ffe9a8'; [-9, 9].forEach(function (ex) { g.beginPath(); g.ellipse(ex, -44, 6.5, 6.5 * bl, 0, 0, TAU); g.fill(); }); g.fillStyle = INK; [-9, 9].forEach(function (ex) { g.beginPath(); g.ellipse(ex, -44, 2.6, 2.6 * bl, 0, 0, TAU); g.fill(); }); g.restore(); }
+    for (var i = 0; i < 12; i++) { var r = mulberry(500 + i), x = 150 + r() * 720, y = 760 + r() * 230, fx = x + 26 * osc(t, 11 + i, i), fy = y + 18 * osc(t, 13 + i, i * 2), gl = .5 + .5 * osc(t, 29 + i, i * 3); g.fillStyle = 'rgba(255,230,120,' + (.25 * gl).toFixed(3) + ')'; g.beginPath(); g.arc(fx, fy, 12, 0, TAU); g.fill(); g.fillStyle = 'rgba(255,248,200,' + (.6 + .4 * gl).toFixed(3) + ')'; g.beginPath(); g.arc(fx, fy, 3.5, 0, TAU); g.fill(); }
+    g.restore();
+  }
+  /* the bench: coloured light pools and a halftone texture (texture only, no shapes) */
+  var BENCHFX = null;
+  function benchMore(g, t) {
+    if (!BENCHFX) {
+      BENCHFX = mk(W, H); var q = BENCHFX.getContext('2d');
+      [[60, 1720, 700, 'rgba(255,79,163,.30)'], [1040, 260, 640, 'rgba(25,211,197,.24)'], [1060, 1600, 520, 'rgba(255,138,61,.22)'], [20, 380, 460, 'rgba(160,110,255,.24)']].forEach(function (L) { var gr = q.createRadialGradient(L[0], L[1], 0, L[0], L[1], L[2]); gr.addColorStop(0, L[3]); gr.addColorStop(1, 'rgba(0,0,0,0)'); q.fillStyle = gr; q.fillRect(0, 0, W, H); });
+      q.fillStyle = 'rgba(255,200,240,.07)'; for (var y = 6; y < H; y += 14) for (var x = (y / 14 % 2) * 7; x < W; x += 14) { var d = Math.min(x, W - x, Math.abs(y - 1100) * .6) / 300; q.beginPath(); q.arc(x, y, 1.2 + 2.2 * clamp(1 - d, 0, 1), 0, TAU); q.fill(); }
+    }
+    g.save(); g.globalAlpha = .85 + .15 * osc(t, 2); g.drawImage(BENCHFX, 0, 0); g.restore();
+  }
+
+  /* ---------- kinetic type and fx on the glass (screen coordinates, clipped to the rail) ---------- */
+  function sk(g, s, x, y, px, o) { return KIT.sticker(g, s, x, y, px, Object.assign({ wide: false, ink: INK, lw: Math.max(5, px * .14) }, o)); }
+  function slamIn(u, from) { var k = eo(clamp(u / .14, 0, 1)); return lerp(from || 1.3, 1, k) - .06 * (u > .12 ? Math.exp(-(u - .12) * 8) * Math.sin((u - .12) * 30) : 0); }
+  /* an icon tag: coloured card, cream icon disc, sticker word */
+  function iconTag(g, word, icon, x, y, px, bg, s, rot, a) {
+    if (s <= .01 || a <= .01) return;
+    g.save(); g.globalAlpha *= a; g.translate(x, y); g.rotate(rot || 0); g.scale(s, s);
+    var tw = KIT.measure(g, word, px, { wide: false }), h = px * 1.55, ir = h * .36, w = tw + ir * 2 + px * .9;
+    rr(g, -w / 2 + 5, -h / 2 + 8, w, h, 14); g.fillStyle = 'rgba(6,3,18,.4)'; g.fill();
+    rr(g, -w / 2, -h / 2, w, h, 14); g.fillStyle = bg; g.fill(); g.lineWidth = 4; g.strokeStyle = 'rgba(255,247,228,.9)'; g.stroke();
+    g.save(); g.globalAlpha *= .35; rr(g, -w / 2, -h / 2, w, h, 14); g.clip(); g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fillRect(-w / 2, -h / 2, w, h); g.restore();
+    var ix = -w / 2 + px * .3 + ir; g.beginPath(); g.arc(ix, 0, ir, 0, TAU); g.fillStyle = CREAM; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke();
+    g.save(); g.translate(ix, 0); icon(g, ir); g.restore();
+    sk(g, word, ix + ir + px * .3 + tw / 2, px * .04, px, { col: CREAM });
+    g.restore();
+  }
+  var ICON = {
+    deer: function (g, r) { put(g, P.deer, 0, r * .62, 0, r / 70); },
+    fish: function (g, r) { put(g, P.fish, 0, 0, -.2, r / 34); },
+    bike: function (g, r) { put(g, P.bike, 0, r * .25, 0, r / 50); },
+    moon: function (g, r) { put(g, P.moon, 0, 0, 0, r / 22); },
+    warn: function (g, r) { g.beginPath(); g.moveTo(0, -r * .8); g.lineTo(r * .8, r * .6); g.lineTo(-r * .8, r * .6); g.closePath(); g.fillStyle = ORG; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke(); g.fillStyle = INK; g.fillRect(-2.5, -r * .35, 5, r * .5); g.beginPath(); g.arc(0, r * .35, 3.2, 0, TAU); g.fill(); }
+  };
+  /* speed lines, kept inside the rail */
+  function focus(g, cx, cy, t, a) { if (a <= 0) return; g.save(); railClip(g); KIT.speedLines(g, W, H, cx, cy, t, a, { n: 44, col: CREAM, r0: 300 }); g.restore(); }
+  /* the beat wipe: three torn paper ribbons whip across inside the rail */
+  function whip(g, t, t0) {
+    if (t < t0 || t > t0 + .6) return;
+    g.save(); railClip(g);
+    [[HOT, 600], [TEAL, 880], [ORG, 1160]].forEach(function (c, i) {
+      var s0 = t0 + i * .05, a = eio(seg(t, s0, s0 + .2)), b = eio(seg(t, s0 + .22, s0 + .42)); if (a <= b) return;
+      var x0 = lerp(BX0, BX1, b), x1 = lerp(BX0, BX1, a), y = c[1], hh = 74, r = mulberry(91 + i);
+      g.beginPath(); g.moveTo(x0, y - hh / 2); for (var x = x0; x < x1; x += 14) g.lineTo(x, y - hh / 2 + (r() - .5) * 8); g.lineTo(x1, y - hh / 2); g.lineTo(x1 - 14, y); g.lineTo(x1, y + hh / 2); for (x = x1; x > x0; x -= 14) g.lineTo(x, y + hh / 2 + (r() - .5) * 8); g.lineTo(x0, y + hh / 2); g.closePath();
+      g.save(); g.shadowColor = 'rgba(6,3,18,.5)'; g.shadowBlur = 10; g.shadowOffsetY = 8; g.fillStyle = c[0]; g.fill(); g.restore();
+    });
+    g.restore();
+  }
+  /* kinetic words: [text, x, y, px, col, tin, tout, from, rot] */
+  var KW = [];
+  function kinetic(g, t) {
+    g.save(); railClip(g);
+    /* hook pop: focus lines and a hit ring on the peak as the mountain snaps up */
+    focus(g, 510, 640, t, .55 * (1 - seg(t, T.pop + .05, T.pop + .45)) * (t >= T.pop ? 1 : 0));
+    KIT.impact(g, 510, 640, t - T.pop, .8, CREAM);
+    /* KALAGA slams on the map, holds, then flies up into its flag */
+    var ku = t - T.kal;
+    if (ku >= 0 && t < T.kalOut + .4) {
+      var fly = eio(seg(t, T.kalOut, T.kalOut + .4)), kx = lerp(CX, 776, fly), ky = lerp(1068, 662, fly), ks = slamIn(ku, 1.5) * lerp(1, .3, fly);
+      NOREC = ku < .16 || fly > 0;
+      g.save(); g.globalAlpha *= clamp(ku / .05, 0, 1) * (1 - seg(fly, .7, 1)); g.translate(kx, ky); g.rotate(-.04); g.scale(ks, ks); sk(g, 'KALAGA', 0, 0, 92, { col: HOT }); g.restore(); NOREC = false;
+    }
+    /* the activity tags: big on their words, then they tuck into one row before the backwoods caption */
+    var tuck = eio(seg(t, T.tuck, T.tuck + .35)), tagOut = seg(t, T.tagsOut, T.tagsOut + .3);
+    [['HUNTING', ICON.deer, ORG, T.deer, 300, 455, 240, -.04], ['FISHING', ICON.fish, TEAL, T.fish, 724, 455, 545, .035], ['OFF-ROAD', ICON.bike, HOT, T.bike + .05, 510, 560, 390, -.02]].forEach(function (q) {
+      var u = t - q[3]; if (u < 0 || tagOut >= 1) return;
+      var s = slamIn(u, 1.25) * lerp(1, .85, tuck) * (1 - .3 * tagOut), x = lerp(q[4], q[6], tuck), y = q[5] + lerp(0, q[5] > 500 ? 105 : 117, tuck) + 60 * tagOut;
+      NOREC = u < .16 || (tuck > 0 && tuck < 1) || tagOut > 0;
+      iconTag(g, q[0], q[1], x, y, 46, q[2], s, q[7] * (1 - .5 * tuck), clamp(u / .05, 0, 1) * (1 - tagOut)); NOREC = false;
+    });
+    /* the backwoods pair: two sticker lines slam on their words */
+    var bo = seg(t, T.bwOut, T.bwOut + .3);
+    [['HILLBILLY MYSTICS', ICON.moon, '#ffd27e', T.bw1, 426, -.025], ['PARANOID RADICALS', ICON.warn, TEAL, T.bw2, 504, .02]].forEach(function (q) {
+      var u = t - q[3]; if (u < 0 || bo >= 1) return;
+      NOREC = u < .16 || bo > 0;
+      g.save(); g.globalAlpha *= clamp(u / .05, 0, 1) * (1 - bo); g.translate(CX, q[4] - 70 * bo); g.rotate(q[5]); var s = slamIn(u, 1.12); g.scale(s, s);
+      var tw = KIT.measure(g, q[0], 56, { wide: false }), w = tw + 80; g.save(); g.translate(-w / 2 + 28, 0); g.beginPath(); g.arc(0, 0, 27, 0, TAU); g.fillStyle = CREAM; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke(); q[1](g, 27); g.restore();
+      sk(g, q[0], -w / 2 + 68 + tw / 2, 2, 56, { col: q[2] }); g.restore(); NOREC = false;
+    });
+    /* the hero: HEIGHT? slams beside the ? tag, a burst behind the tag, focus lines, an arrow to it */
+    var hu = t - T.qtag;
+    if (hu >= 0 && t < T.hOut + .3) {
+      var ho = seg(t, T.hOut, T.hOut + .3);
+      focus(g, 198, 592, t, .5 * (1 - seg(hu, .05, .45)));
+      NOREC = hu < .16 || ho > 0;
+      var lift = eio(seg(t, T.voteM - .2, T.voteM + .15)), hx = lerp(560, 560, lift), hy = lerp(1215, 562, lift);
+      NOREC = NOREC || (lift > 0 && lift < 1);
+      g.save(); g.globalAlpha *= clamp(hu / .05, 0, 1) * (1 - ho); g.translate(hx, hy); g.rotate(-.035); var hs = slamIn(hu, 1.3) * lerp(1, .6, lift); g.scale(hs, hs); sk(g, 'HEIGHT?', 0, 0, 108, { col: HOT }); g.restore(); NOREC = false;
+      g.save(); g.globalAlpha *= (1 - ho) * (1 - lift); KIT.arrow(g, 300, 1236, 214, 1100, eio(seg(hu, .18, .5)), CREAM, 9, -.3); g.restore();
+    }
+    /* the vote: one identical hit ring on each panel on its own word */
+    KIT.impact(g, 317, 1196, t - T.kM, .5, CREAM); KIT.impact(g, 703, 1196, t - T.kH, .5, CREAM);
+    /* wipes between beats */
+    T.wipes.forEach(function (w0) { whip(g, t, w0); });
+    g.restore();
+  }
+  /* fx that ride the set (book coordinates): hit rings on each pop-up, scribbles on the N tab, KEEP OUT, the lenses */
+  function setFx(g, t) {
+    KIT.impact(g, 300, 760, t - T.deer, .55, CREAM);
+    KIT.impact(g, 652, 1010, t - T.fish, .45, CREAM);
+    KIT.impact(g, 700, 930, t - T.bike, .5, CREAM);
+    KIT.impact(g, 352, 900, t - T.cab1, .5, CREAM);
+    KIT.impact(g, 668, 910, t - T.cab2, .5, CREAM);
+    var fo = 1 - eio(seg(t, T.cur0 - .1, T.cur0 + .2));
+    if (fo > 0) { g.save(); g.globalAlpha *= fo; KIT.scribble(g, 512, 944, 112, 50, eio(seg(t, T.cab2 + .25, T.cab2 + .6)), HOT, 8, 3); g.restore(); }
+    var bo = 1 - eio(seg(t, T.binOut, T.binOut + .3));
+    if (bo > 0 && t > T.bin0) { g.save(); g.globalAlpha *= bo; KIT.scribble(g, 816, 838, 110, 64, eio(seg(t, T.bin0 + .45, T.bin0 + .8)), HOT, 8, 5); g.restore(); }
+    var sa = 1 - seg(t, T.lmk + 2.2, T.lmk + 2.5); if (t > T.lmk && sa > 0) { g.save(); g.globalAlpha *= sa; KIT.emote(g, 'sparkle', 862, 596, .85, t - T.lmk, t); g.restore(); }
   }
 
   /* =====================================================================================================
@@ -587,10 +746,11 @@
     o = o || {};
     if (t < tin - .02 || t > tout + .5) return;
     var k = cd(t, tin, 15), peel = eio(seg(t, tout, tout + .45)), dir = o.dir || 1;
-    var yy = lerp(y + (o.from || 360), y, k), rot = (o.rot || -.012) + (1 - k) * .08 * dir + peel * .3 * dir, xx = x + peel * 1050 * dir;
-    var s = kn(t, tin + .12, .03);
+    /* it peels up and off inside the rail (never sideways over the edge) */
+    var yy = lerp(y + (o.from || 360), y, k) - peel * 140, rot = (o.rot || -.012) + (1 - k) * .08 * dir + peel * .06 * dir, xx = x;
+    var s = kn(t, tin + .12, .03) * (1 - .12 * peel);
     NOREC = k < .98 || peel > 0;
-    g.save(); g.translate(xx, yy); g.rotate(rot); g.scale(s, s);
+    g.save(); g.globalAlpha *= 1 - peel; g.translate(xx, yy); g.rotate(rot); g.scale(s, s);
     putW(g, Pc, -Pc.sw / 2, -Pc.sh / 2);
     tape(g, -Pc.sw / 2 + 40, -Pc.sh / 2 + 4, 90, 30, -.3); tape(g, Pc.sw / 2 - 40, -Pc.sh / 2 + 4, 90, 30, .28);
     g.restore(); NOREC = false;
@@ -683,16 +843,17 @@
   var NOISE, HOME, POSTERMODE = false, VIG = null;
   function stage(g) { g.fillStyle = BG; g.fillRect(0, 0, W, H); }
   function vignette(g) {
-    if (!VIG) { VIG = mk(BX1 - BX0, BY1 - BY0); var q = VIG.getContext('2d'), gr = q.createRadialGradient(420, 560, 300, 420, 560, 820); gr.addColorStop(0, 'rgba(6,3,18,0)'); gr.addColorStop(1, 'rgba(6,3,18,.42)'); q.fillStyle = gr; q.fillRect(0, 0, VIG.width, VIG.height); }
-    g.drawImage(VIG, BX0, BY0);
+    if (!VIG) { VIG = mk(W, H); var q = VIG.getContext('2d'), gr = q.createRadialGradient(510, 865, 420, 510, 865, 1150); gr.addColorStop(0, 'rgba(6,3,18,0)'); gr.addColorStop(1, 'rgba(6,3,18,.42)'); q.fillStyle = gr; q.fillRect(0, 0, VIG.width, VIG.height); }
+    g.drawImage(VIG, 0, 0);
   }
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0);
     stage(g);
     var C = cam(t);
-    g.save(); g.beginPath(); g.rect(BX0, BY0, BX1 - BX0, BY1 - BY0); g.clip();
+    /* the bench grain bleeds to the full frame (texture only: no shape or text outside the rail) */
+    if (LIVE2.bg) { lay(g, C, 1, function () { put(g, P.bench, 0, 0); }); benchMore(g, t); vignette(g); }
+    g.save(); if (LIVE2.clip) { g.beginPath(); g.rect(BX0, BY0, BX1 - BX0, BY1 - BY0); g.clip(); }
     world(g, t, C);
-    vignette(g);
     /* the GTA 6 sticker on the glass, top centre; it knocks on "GTA" */
     putW(g, P.pill, CX, 345, -.02, kn(t, at('hook', 'gta'), .08));
     /* the glass: Rockstar's words on torn strips (one place: Mount Kalaga), their source, our chips */
@@ -701,11 +862,12 @@
     chipAt(g, t, SRC, CX, 1398 - P.s1.sh - 34, T.srcIn, T.s1Out, { rot: -.01 });
     chipAt(g, t, SRC, CX, 1398 - P.s3.sh - 34, T.s3In + .35, T.s3Out, { rot: .01 });
     chipAt(g, t, 'IN ROCKSTAR’S WORDS', CX, 470, T.inw, T.inwOut, { px: 50, bg: CREAM, rot: -.015, from: -40 });
-    chipAt(g, t, 'ROCKSTAR: NO HEIGHT GIVEN', 560, 1062, T.hchip, T.hchipOut, { px: 44, bg: CREAM, rot: .015 });
-    chipAt(g, t, 'GTA 6 · NOV 19, 2026 · PS5 · XBOX SERIES X|S', CX, 1396, T.dateIn, HOME - .12, { bg: CREAM });
+    chipAt(g, t, 'ROCKSTAR’S SITE: NO HEIGHT GIVEN', 560, 1062, T.hchip, T.hchipOut, { px: 44, bg: CREAM, rot: .015 });
+    chipAt(g, t, 'GTA 6 · NOV 19, 2026 · PS5 · XBOX SERIES X|S', CX, 1396, T.dateIn, T.reopen - .3, { bg: CREAM });
+    kinetic(g, t);
     g.restore();
     if (!POSTERMODE && LIVE.text) captions(g, t);
-    if (LIVE.grain && NOISE) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
+    if (LIVE.grain && NOISE && LIVE2.bg) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
   }
   function TEXTS(t) {
     var o = [];
@@ -713,21 +875,21 @@
     Tx('pill', 'GTA 6', 0, DUR + 1);
     Tx('tagQ', 'MOUNTAIN?', 0, T.tagDown + .05); Tx('tagQ', 'MOUNTAIN?', T.tagUp + .2, DUR + 1);
     Tx('flag', 'MOUNT KALAGA', T.flag + .2, T.fold0);
-    Tx('rw', 'REAL WORLD', T.rw + .15, T.slB0);
-    Tx('rwTag', 'FLORIDA’S HIGHEST POINT BRITTON HILL', T.rwTag + .15, T.slB0);
-    Tx('usgs', 'SOURCE: USGS', T.usgs + .15, T.slB0);
-    Tx('stamp', '345 FT', T.stamp + .05, T.slB0);
     Tx('s1', P.s1.lines.join(' '), T.s1In + .15, T.s1Out + .05);
     Tx('s3', P.s3.lines.join(' '), T.s3In + .15, T.s3Out + .05);
     Tx('src', SRC, T.srcIn + .15, T.s1Out + .05); Tx('src', SRC, T.s3In + .5, T.s3Out + .05);
     Tx('inw', 'IN ROCKSTAR’S WORDS', T.inw + .15, T.inwOut + .05);
     Tx('ntab', 'N', T.ntab + .15, T.fold0);
     Tx('keep', 'KEEP OUT', T.cab2 + .2, T.cur0 + .3);
-    Tx('hchip', 'ROCKSTAR: NO HEIGHT GIVEN', T.hchip + .15, T.hchipOut + .05);
+    Tx('hchip', 'ROCKSTAR’S SITE: NO HEIGHT GIVEN', T.hchip + .15, T.hchipOut + .05);
     Tx('qtag', '?', T.qtag + .15, T.fold0);
     Tx('voteM', 'MOUNTAIN', T.voteM + .2, T.fold0);
     Tx('voteH', 'HILL', T.voteH + .2, T.fold0);
-    Tx('date', 'GTA 6 · NOV 19, 2026 · PS5 · XBOX SERIES X|S', T.dateIn + .15, HOME - .07);
+    Tx('kal', 'KALAGA', T.kal + .05, T.kalOut + .05);
+    Tx('t1', 'HUNTING', T.deer + .1, T.tagsOut + .05); Tx('t2', 'FISHING', T.fish + .1, T.tagsOut + .05); Tx('t3', 'OFF-ROAD', T.bike + .15, T.tagsOut + .05);
+    Tx('bw1', 'HILLBILLY MYSTICS', T.bw1 + .1, T.bwOut + .05); Tx('bw2', 'PARANOID RADICALS', T.bw2 + .1, T.bwOut + .05);
+    Tx('hq', 'HEIGHT?', T.qtag + .1, T.hOut + .05);
+    Tx('date', 'GTA 6 · NOV 19, 2026 · PS5 · XBOX SERIES X|S', T.dateIn + .15, T.reopen - .25);
     return o;
   }
   /* how long a text must stay up (render.mjs readcheck: letters / 15 + 1.5 s, at least 1.8 s), plus the fade margins */
@@ -736,28 +898,20 @@
   /* ---------- events: hits placed in real pauses of the voice (vo/vad.js); beats with no free pause stay silent ---------- */
   function initTimes() {
     HOME = DUR - .2;
-    T.reopen = DUR - .72;
-    /* hook: frame 0 already rising, a soft fold creak before the first word; the pop-up snaps up as "mountain" ends */
-    T.pop = after('hook') - .12;
-    G('pop', after('hook'), 'pop', .2, 1);
-    /* name: the question panel folds away on "Rockstar"; the flag stabs in as "Kalaga" ends (thock in the gap) */
-    T.tagDown = at('real', 'real') - .6;
+    T.reopen = DUR - .5;
+    /* hook: frame 0 is the page half up and rising, a soft fold creak at 0.0 under nothing; the pop-up snaps up on the
+       onset of "mountain" with a quiet pop under the word (the only mid-phrase hit) */
+    EV.push({ t: 0, type: 'creak', g: .55, id: 'creak0' });
+    T.pop = at('hook', 'mountain');
+    EV.push({ t: T.pop, type: 'pop', g: .7, id: 'pop' });
+    /* name: the flag stabs in as "Kalaga" ends (thock in the gap) */
     T.flag = at('name', 'kalaga') - .05;
     T.seat = G('stab', after('name'), 'stab', .2, 1);
-    /* real: slide right to the bench on "real"; the chips land once the camera has settled; the flag climbs on "tops out"
-       and stops low at the end of "feet"; the hero stamp in the written pause */
-    T.slR0 = at('real', 'real') - .05;
-    T.rw = T.slR0 + .86;
-    T.rwTag = Math.max(at('real', 'florida'), T.rw + .25);
-    T.climb0 = at('real', 'tops'); T.climb1 = T.climb0 + 1.6;
-    /* a tick per ruler mark the flag passes (quiet, under the words) */
-    for (var mk2 = 1; mk2 * 22 < LOWSTOP * RLEN; mk2++) { var uu = mk2 * 22 / (LOWSTOP * RLEN), lo = 0, hi = 1; for (var it = 0; it < 30; it++) { var mid = (lo + hi) / 2; if (eio(mid) < uu) lo = mid; else hi = mid; } EV.push({ t: T.climb0 + 1.6 * lo, type: 'tick', g: .28, id: 'rt' }); }
-    T.usgs = T.climb1 + .05;
-    T.stamp = G('stamp', Math.max(after('real'), lastw('real') + .2), 'stamp', .25, 1.2, { heavy: true });
-    /* ask: back to the book on "out"; a swish in the gap after "there?"; the magnifier sweeps on "In Rockstar's words" */
-    T.slB0 = Math.max(at('ask', 'out') - .1, T.stamp + need('345 FT') - .05);
+    /* ask: the question panel folds away on "So"; IN ROCKSTAR'S WORDS and the magnifier sweep while the line asks */
+    T.tagDown = start('ask') - .25;
+    T.slB0 = at('ask', 'out') - .1;
     T.creep0 = start('ask');
-    T.mag0 = T.slB0 + .75;
+    T.mag0 = T.slB0 + .2;
     T.inw = T.slB0 + .3; T.inwOut = T.inw + need('IN ROCKSTAR’S WORDS');
     /* landmark: the first strip slaps on as "words:" ends; the border pulls tight on "northern", snaps and the N tab flips in the pause */
     T.s1In = T.slB0 + .3;
@@ -791,15 +945,26 @@
     T.up0 = start('height') - .7;
     T.tape0 = at('height', 'never') - .05;
     T.hchip = at('height', 'gives');
-    T.qtag = G('qdrop', after('height'), 'tick', .35, 1);
-    /* end: the two vote panels pop up on their words, styled the same; a pop in the gap after "hill?"; everything folds flat
-       after "word." and the book re-opens into frame 0 */
-    T.voteM = T.voteH = G('vote', after('height') + .05, 'pop', .3, .9);
-    T.kM = at('end', 'mountain'); T.kH = at('end', 'hill');
-    T.fold0 = Math.min(at('end', 'one') + .1, T.reopen - .55);
-    T.hchipOut = Math.max(T.hchip + need('ROCKSTAR: NO HEIGHT GIVEN'), T.voteM - .1);
+    /* the hero hit: the ? stamps onto the blank tape in the written pause after "height." (poster frame) */
+    T.qtag = G('qdrop', after('height'), 'stamp', .35, .8, { heavy: true });
+    /* end: the two vote panels pop up together just before "So,", styled the same; the mountain stands on "mountain",
+       sinks on "hill", springs back on "One"; everything folds flat after "word." and the book re-opens into frame 0 */
+    T.voteM = T.voteH = G('vote', start('end') - .2, 'pop', .3, .9);
+    T.kM = at('end', 'mountain'); T.kH = at('end', 'hill'); T.kOne = at('end', 'one');
+    T.fold0 = Math.max(T.kOne + .3, T.reopen - .4);
+    T.hchipOut = Math.max(T.hchip + need('ROCKSTAR’S SITE: NO HEIGHT GIVEN'), T.voteM - .1);
     T.dateIn = Math.max(T.s3Out + .45, T.hchip + .2);
-    T.tagUp = DUR - .62;
+    T.tagUp = T.reopen;
+    /* more graphical (2026-11-04): kinetic words, tags, wipes, punches */
+    T.kal = at('name', 'kalaga'); T.kalOut = Math.max(T.s1In + .1, T.kal + 2.0);
+    T.tuck = start('backwoods') - .45; T.tagsOut = at('backwoods', 'hillbilly') - .3;
+    T.bw1 = at('backwoods', 'hillbilly'); T.bw2 = at('backwoods', 'paranoid');
+    T.bwOut = T.bw2 + 2.75; T.owl = T.cur0 + .5;
+    T.hOut = T.qtag + 2.15;
+    T.wipes = [start('ask') - .2, start('backwoods') - .1, start('height') - .3];
+    T.wipes.forEach(function (w0, i) { G('wipe' + i, w0 + .05, 'swish', .3, .7); });
+    /* punches only where the camera is not already pushed in (the map's corners would cross the rail under push x punch) */
+    T.punch = [[T.flag + .05, .02], [T.qtag, .03], [T.kM, .015], [T.kH, .015]];
     G('reopen', T.reopen + .05, 'creak', .2, .45);
     /* two pink highlights in the whole film, no more: the name and the missing height */
     STRESS = [['name', 'kalaga'], ['height', 'height']].map(function (p) { return at(p[0], p[1]); });
@@ -889,15 +1054,28 @@
   }
 
   var POSTER_T = 0;
-  window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: 0, SLUG: 'gta-kalaga', SHOTS: [], init: init, render: render, frame: frame, LIVE: LIVE, T: T, GT: GT };
+  window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: 0, SLUG: 'gta-kalaga', SHOTS: [], init: init, render: render, frame: frame, LIVE: LIVE, LIVE2: LIVE2, T: T, GT: GT };
   /* strip lengths are known only once the fonts load; the times that depend on them are set then */
-  var _bt = buildTextures; buildTextures = function () { _bt(); EV.length = 0; initTimes(); POSTER_T = Math.min(T.pop + .5, start('name') - .15); window.FILM.POSTER = POSTER_T;
-    window.FILM.SHOTS = [{ id: 'mountain', name: 'Mount Kalaga', t0: 0, t1: T.slR0 }, { id: 'real', name: 'Real world', t0: T.slR0, t1: T.slB0 + .4 }, { id: 'words', name: 'In Rockstar’s words', t0: T.slB0 + .4, t1: T.up0 }, { id: 'vote', name: 'Mountain or hill?', t0: T.up0, t1: DUR }]; };
+  var _bt = buildTextures; buildTextures = function () { _bt(); EV.length = 0; initTimes(); POSTER_T = Math.round(Math.min(T.qtag + .4, T.voteM - .05) * 30) / 30 + 1 / 60; window.FILM.POSTER = POSTER_T;
+    window.FILM.SHOTS = [{ id: 'mountain', name: 'Mount Kalaga', t0: 0, t1: T.slB0 + .4 }, { id: 'words', name: 'In Rockstar’s words', t0: T.slB0 + .4, t1: T.up0 }, { id: 'vote', name: 'Mountain or hill?', t0: T.up0, t1: DUR }]; };
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var o = {};
     for (var t = 0; t <= DUR + 1e-6; t += step || 1 / 15) { CURT = t; POSTERMODE = false; frame(ctx, t); }
     BOUNDS.forEach(function (b) { var r = o[b.text] || (o[b.text] = { text: b.text, from: b.t, to: b.t, x0: b.x0, x1: b.x1, y1: b.y1, n: 0 }); r.to = b.t; r.n++; r.x0 = Math.min(r.x0, b.x0); r.x1 = Math.max(r.x1, b.x1); r.y1 = Math.max(r.y1, b.y1); });
     BOUNDS = null; return Object.keys(o).map(function (k) { return o[k]; });
+  };
+  /* rail scan: every shape and glyph, with the bench bleed off and no safety clip, must stay inside x 90-930 and above
+     y 1450. Scans each rendered frame's sub-samples; returns the bad ones. */
+  window.RAIL_SCAN = function (fps, subs, from, to) {
+    fps = fps || 30; subs = subs || 3; var bad = [], n = Math.round(DUR * fps), span = .5 / fps;
+    LIVE2.bg = false; LIVE2.clip = false; var lg = LIVE.grain; LIVE.grain = false;
+    function dirty(x, y, w, h) { var d = ctx.getImageData(x, y, w, h).data, o = { c: 0, x0: 1e9, x1: -1, y0: 1e9, y1: -1 }; for (var i = 0; i < d.length; i += 4) if (Math.abs(d[i] - 0x0b) + Math.abs(d[i + 1] - 0x08) + Math.abs(d[i + 2] - 0x20) > 24) { var px = (i / 4) % w, py = Math.floor(i / 4 / w); o.c++; o.x0 = Math.min(o.x0, px); o.x1 = Math.max(o.x1, px); o.y0 = Math.min(o.y0, y + py); o.y1 = Math.max(o.y1, y + py); } return o; }
+    for (var i = (from || 0); i < Math.min(n, to || n); i++) for (var s = 0; s < subs; s++) {
+      var t = (i + .5) / fps - span / 2 + span * (s + .5) / subs; frame(ctx, clamp(t, 0, DUR));
+      var L0 = dirty(0, 0, 90, H), R0 = dirty(930, 0, 150, H), B0 = dirty(90, 1450, 840, H - 1450);
+      if (L0.c + R0.c + B0.c > 0) { bad.push({ f: i, t: +t.toFixed(3), left: L0.c && [L0.c, L0.x1, L0.y0, L0.y1], right: R0.c && [R0.c, R0.x0 + 930, R0.y0, R0.y1], bottom: B0.c && [B0.c, B0.y0, B0.x0 + 90, B0.x1 + 90] }); break; }
+    }
+    LIVE2.bg = true; LIVE2.clip = true; LIVE.grain = lg; return bad;
   };
   window.DUR = DUR; window.EV = EV; window.TEXTS = TEXTS; window.SCORE = SCORE; window.READY = false;
   window.render = function (t, s, sh, fps) { render(t, s, sh, fps); };
