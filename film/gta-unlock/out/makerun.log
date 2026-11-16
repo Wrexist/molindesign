@@ -1,0 +1,95 @@
+/home/user/molindesign/film/gta-unlock/vo/script.json: OK
+
+hook         0.20–  2.22  (slot to 2.47)  speed 1.00  2.97 w/s
+rule         2.62–  5.76  (slot to 5.91)  speed 1.00  2.87 w/s
+ask          6.06–  8.05  (slot to 8.31)  speed 1.00  3.52 w/s
+nz           8.46– 11.39  (slot to 11.69)  speed 1.00  3.07 w/s
+sweep       11.84– 14.53  (slot to 14.68)  speed 1.00  2.23 w/s
+london      14.83– 17.71  (slot to 17.86)  speed 1.00  2.78 w/s
+wait        18.01– 20.29  (slot to 20.69)  speed 1.00  3.07 w/s
+but         20.84– 23.37  (slot to 23.52)  speed 1.00  3.16 w/s
+la          23.67– 26.68  (slot to 27.98)  speed 1.00  2.99 w/s
+end         28.13– 30.70  (slot to 31.20)  speed 0.97  3.50 w/s
+wrote out/vo/vo.wav, vo.json, vo.srt and vo/vo.js
+
+LISTEN CHECK  (Whisper hears each line; fix word error > 10 % or pace outside 1.8 w/s to pace.max + 0.3; soft = words heard under 0.45 confidence, listen to those)
+ok    hook       wer 0.00  2.97 w/s  
+ok    rule       wer 0.00  2.87 w/s  
+ok    ask        wer 0.00  3.52 w/s  
+ok    nz         wer 0.00  3.07 w/s    (soft: a 0.39)
+ok    sweep      wer 0.00  2.23 w/s  
+ok    london     wer 0.00  2.78 w/s    (soft: p 0.41, Time. 0.18)
+ok    wait       wer 0.00  3.07 w/s    (soft: And, 0.42)
+ok    but        wer 0.00  3.16 w/s    (soft: Midnight. 0.45)
+ok    la         wer 0.00  2.99 w/s  
+ok    end        wer 0.00  3.50 w/s    (soft: City. 0.16)
+wrote out/mix.wav
+
+READCHECK  (need ≥ letters/15 + 1.5 s, and ≥ 1.8 s)
+ok    nz     19.29s / 2.17s  "NEW ZEALAND"
+ok    gta6   2.25s / 1.80s  "GTA 6"
+ok    gtart  28.33s / 2.50s  "GTA 6 RELEASE TIME"
+ok    rule   3.42s / 3.23s  "EACH PS STORE · ITS OWN MIDNIGHT"
+ok    psc    3.25s / 2.50s  "PLAYSTATION.COM"
+ok    nzps   2.88s / 2.70s  "NZ PS STORE · 11:00 UTC"
+ok    nyc    2.46s / 1.97s  "NEW YORK"
+ok    nyc6   2.46s / 1.90s  "6:00 AM"
+ok    nycd   2.46s / 2.23s  "WED NOV 18 · ET"
+ok    lon    2.83s / 2.23s  "NEW YORK TIME"
+ok    lon7   2.83s / 1.90s  "7:00 PM"
+ok    lond   2.83s / 2.23s  "WED NOV 18 · ET"
+ok    pairny 2.58s / 2.43s  "05:00 UTC · NOV 19"
+ok    pairnz 2.58s / 2.43s  "11:00 UTC · NOV 18"
+ok    st18   2.50s / 2.43s  "18 HOURS AFTER NZ"
+ok    usps   5.04s / 2.70s  "US PS STORE · 05:00 UTC"
+ok    ladate 3.46s / 2.90s  "WED NOV 18 · 9 PM PT · LISTED"
+ok    lacred 3.29s / 2.97s  "US PS STORE LISTING · NOV 16"
+ok    night  2.46s / 2.43s  "THE NIGHT BEFORE"
+ok    yours  2.17s / 2.10s  "YOUR CITY?"
+wrote gta-unlock/out/check/sheet.jpg
+wrote gta-unlock/out/poster.jpg
+frame 60/936  354 ms/frame
+frame 120/936  340 ms/frame
+frame 180/936  330 ms/frame
+frame 240/936  347 ms/frame
+frame 300/936  358 ms/frame
+frame 360/936  362 ms/frame
+frame 420/936  354 ms/frame
+frame 480/936  353 ms/frame
+frame 540/936  359 ms/frame
+frame 600/936  359 ms/frame
+frame 660/936  366 ms/frame
+frame 720/936  364 ms/frame
+frame 780/936  354 ms/frame
+frame 840/936  345 ms/frame
+frame 900/936  337 ms/frame
+wrote out/video.mp4
+wrote gta-unlock/out/gta-unlock.mp4
+
+CHECKS
+stream|codec_name=h264|width=1080|height=1920|r_frame_rate=30/1
+stream|codec_name=aac|r_frame_rate=0/0
+format|duration=31.200000
+integrated I:         -15.3 LUFS   true peak Peak:       -2.6 dBFS
+black spans ≥0.4 s: none
+duck -6 dB over 8 phrases; voice set +18.0 dB for a 26 dB speech-to-music ratio
+wrote /home/user/molindesign/film/gta-unlock/out/gta-unlock-vo.mp4
+integrated -14.0 LUFS   true peak -2.7 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "GTA 6 starts in New Zealand."
+ok    rule       wer 0.00  heard "On PlayStation, each store unlocks at its own midnight."
+ok    ask        wer 0.00  heard "So, how far ahead is New Zealand?"
+ok    nz         wer 0.00  heard "Midnight in Auckland is 6am in New York."
+ok    sweep      wer 0.00  heard "Two hours later, Sydney, then Tokyo."
+ok    london     wer 0.00  heard "London unlocks at 7 p .m. New York time."
+ok    wait       wer 0.00  heard "And New York, it waits 18 hours."
+ok    but        wer 0.00  heard "But the U .S. store lists New York's midnight."
+ok    la         wer 0.00  heard "So in LA that's 9pm, the night before."
+ok    end        wer 0.00  heard "Where does it start for you? Drop your city."
+gta-unlock-vo:  I: -14.0 LUFS  Peak: -2.7 dBFS 
+gta-unlock-voice-only:  I: -14.1 LUFS  Peak: -1.4 dBFS 
+/home/user/molindesign/film/gta-unlock/out/gta-unlock-vo.mp4: 31.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.53, 0-3 s 0.935, median 0.246, still frames 3.1 %
+OK    no frozen stretches, opening moves
+no black stretches
+exit 0

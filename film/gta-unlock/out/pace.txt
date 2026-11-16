@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-unlock/out/gta-unlock-vo.mp4: 31.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.512, 0-3 s 0.921, median 0.233, still frames 3.4 %
+OK    no frozen stretches, opening moves
