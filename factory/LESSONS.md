@@ -243,9 +243,9 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | unlimiteddata | Nov 12 18:00 | 35 s | 7.1 r1 + fixes | 55 (14.5 h), 58 (26 h), 58 (40 h) | – | 6 | money-adjacent "check yours" (plan label); read at 6 h and 24 h |
 | notprivate | Nov 13 18:00 | 34 s | 7.3 r1 + fixes | 8 (1 h), 27 (16 h), 30 (25 h), 35 (40 h) | – | 6 | browser threat-myth + "check your clock"; read at 6 h and 24 h |
 | darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h), 58 (15 h), 62 (30 h), 63 (40 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
-| overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | 10 (30 min), 18 (6 h), 23 (9 h), 43 (25 h) | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
-| phonelistening | Nov 17 00:00 | 35 s | 7.0 r1 → 7.5 r2 + polish | 98 (25 min), 411 (~6 h) | – | 5 | myth + FTC twist + "check your dot"; 7 PM ET slot; read at 6 h and 24 h |
-| 5gbattery | Nov 18 00:00 | 35 s | 7.3 r1 → 7.4 r2 + polish | – | – | 6 | myth + lab-meter twist + "check your 5G setting"; 7 PM ET slot; read at 6 h and 24 h |
+| overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | 10 (30 min), 18 (6 h), 23 (9 h), 43 (25 h), 50 (33 h) | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
+| phonelistening | Nov 17 00:00 | 35 s | 7.0 r1 → 7.5 r2 + polish | 98 (25 min), 411 (~6 h), 419 (~8 h) | – | 5 | myth + FTC twist + "check your dot"; 7 PM ET slot; read at 6 h and 24 h |
+| 5gbattery (4HgqAeZDr8k) | Nov 18 00:00 | 35 s | 7.3 r1 → 7.4 r2 + polish | – | – | 6 | myth + lab-meter twist + "check your 5G setting"; 7 PM ET slot; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -381,7 +381,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - r2 wow: a 1.00 → 1.12× punch-in on the torn-open empty box right after the tear, the moment the idea pays off.
 - Tooling: the Bash safety check stopped answering mid-run for the director (and briefly for the orchestrator). Retry after ~15 min via send_later; Read/Grep/Edit kept working.
 
-### 5gbattery (#34), jury r1 7.3 / Truth 7.5 → r2 7.4 / Truth 9.0 (post), r2 polish applied — scheduled Nov 17 19:00 ET
+### 5gbattery (#34), jury r1 7.3 / Truth 7.5 → r2 7.4 / Truth 9.0 (post), r2 polish applied — scheduled Nov 17 19:00 ET (4HgqAeZDr8k)
 - Truth (repeat of password r3): a number tape must never print while the picture says the opposite. The 5× tape printed 1.6 s before the needles swapped, so for that time the meter disagreed with its own label. Print each number on the frame the picture proves it: tape on the needle's settle, caption broken so "79%" lands with the slam.
 - Truth: scope means the right sub-type too. The 5× result was mmWave only, so "ONE PHONE · VERIZON · 2021" was still too broad. It became "mmWAVE 5G · ONE PHONE · VERIZON · 2021".
 - Truth: keep the source's hedges in credit lines as well as quotes. "SOME US CARRIERS MAY LIMIT IT", not "CARRIERS MAY LIMIT IT". A battery icon must not lose a notch under a quote that only says "might".
