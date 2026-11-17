@@ -1,0 +1,114 @@
+{
+ "about": "Why is it called Grand Theft Auto? (Delta). Grand theft is the more severe form of theft than petty theft (Cornell LII Wex, 'grand theft'). California Penal Code 487: 'Grand theft is theft committed in any of the following cases: ... (d) When the property taken is any of the following: (1) An automobile.' Shouse Law Group: 'The definition of grand theft auto is to take someone else's car ... It is prohibited by California Penal Code 487(d)(1).' Dave Jones (DMA Design founder), Gamasutra 2006: 'The original name we came up with was Race-n-Chase, and this was the design we pitched to BMG.' 'The publisher agreed to work with DMA, though the name was changed soon after, to Grand Theft Auto.' First release 1997. GTA VI: November 19, 2026 (rockstargames.com/VI). Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Grand Theft Auto",
+  "Race'n'Chase",
+  "California"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 31
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA is a real crime.",
+   "say": "G T A is a real crime.",
+   "pause": 0.6,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "mean",
+   "at": 2.39,
+   "text": "Grand theft auto means stealing a car.",
+   "pause": 0.35
+  },
+  {
+   "id": "grand",
+   "at": 4.96,
+   "text": "Grand theft is the serious kind of theft.",
+   "pause": 0.35
+  },
+  {
+   "id": "law",
+   "at": 7.91,
+   "text": "California's law spells it out: an automobile.",
+   "pause": 0.6
+  },
+  {
+   "id": "called",
+   "at": 11.25,
+   "text": "Lawyers call that grand theft auto.",
+   "pause": 0.4
+  },
+  {
+   "id": "but",
+   "at": 13.8,
+   "text": "But the game wasn't called that at first.",
+   "pause": 0.3
+  },
+  {
+   "id": "race",
+   "at": 16.3,
+   "text": "Its first name was Race'n'Chase.",
+   "say": "Its first name was Race and Chase.",
+   "pause": 0.6
+  },
+  {
+   "id": "pub",
+   "at": 19.04,
+   "text": "Then a publisher came on board.",
+   "pause": 0.3
+  },
+  {
+   "id": "soon",
+   "at": 21.44,
+   "text": "And soon after, the name changed.",
+   "pause": 0.6
+  },
+  {
+   "id": "ship",
+   "at": 24.2,
+   "text": "It came out in 1997 as Grand Theft Auto.",
+   "say": "It came out in nineteen ninety-seven as Grand Theft Auto.",
+   "pause": 1.4
+  },
+  {
+   "id": "gta6",
+   "at": 28.67,
+   "text": "GTA 6 still carries the charge.",
+   "say": "G T A six still carries the charge.",
+   "pause": 0.4
+  },
+  {
+   "id": "end",
+   "at": 31.74,
+   "text": "Better name: Race'n'Chase, or GTA?",
+   "say": "Better name: Race and Chase, or G T A?",
+   "pause": 0
+  }
+ ],
+ "dur": 34.6,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

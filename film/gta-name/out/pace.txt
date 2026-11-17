@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-name/out/gta-name-vo.mp4: 34.6 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.196, 0-3 s 0.348, median 0.132, still frames 26.2 %
+OK    no frozen stretches, opening moves

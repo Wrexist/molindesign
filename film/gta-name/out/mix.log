@@ -1,0 +1,17 @@
+duck -6 dB over 10 phrases; voice set +17.9 dB for a 31 dB speech-to-music ratio
+wrote /home/user/molindesign/film/gta-name/out/gta-name-vo.mp4
+integrated -14.0 LUFS   true peak -2.6 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "GTA is a real crime."
+ok    mean       wer 0.00  heard "Grand Theft Auto means stealing a car."
+ok    grand      wer 0.00  heard "Grand Theft is the serious kind of theft."
+ok    law        wer 0.00  heard "California's law spells it out, an automobile."
+ok    called     wer 0.00  heard "Lawyers call that Grand Theft Auto."
+ok    but        wer 0.00  heard "But the game wasn't called that at first."
+ok    race       wer 0.00  heard "Its first name was Race 'n 'Chase."
+ok    pub        wer 0.00  heard "Then, a publisher came on board."
+ok    soon       wer 0.00  heard "And soon after, the name changed."
+ok    ship       wer 0.00  heard "It came out in 1997 as Grand Theft Auto."
+ok    gta6       wer 0.00  heard "GTA 6 still carries the charge."
+ok    end        wer 0.00  heard "Better name Race 'n 'Chase or GTA."
