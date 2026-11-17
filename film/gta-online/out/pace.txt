@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-online/out/gta-online-vo.mp4: 38.8 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.741, 0-3 s 0.416, median 0.227, still frames 6.8 %
+OK    no frozen stretches, opening moves

@@ -1,0 +1,104 @@
+{
+ "about": "GTA Online (Delta, GTA history). Take-Two release Oct 29 2013 (SEC): GTA Online launched Oct 1 2013 on Xbox 360 and PS3, 'free with every copy of Grand Theft Auto V'. Rockstar Newswire, Sept 2013 (before launch) (VideoGamer, Sept 25 2013): 'working around the clock to buy and add more servers', 'the first few days even more temperamental than such things usually are'. NBC News, Oct 1 2013: GTA Online 'suffered from lags and complete outages'; Rockstar 'working around the clock to buy and add more servers'. VGC, June 16 2021: Rockstar shut the PS3 and Xbox 360 versions of GTA Online on December 16, 2021. Worthplaying, Nov 5 2026: a new GTA Online Heist Event that week. Strauss Zelnick, Take-Two CEO, earnings call (Insider Gaming Feb 4 2026): 'I have every reason to believe we'll continue to support GTA Online.' Derived: 2013 to 2026 = 13 years. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA Online",
+  "GTA 6",
+  "Rockstar",
+  "Take-Two",
+  "PS3",
+  "Xbox 360"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": -6,
+  "smr_db": 34
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA Online outlived its launch consoles.",
+   "say": "G T A Online outlived its launch consoles.",
+   "pause": 0.5
+  },
+  {
+   "id": "servers",
+   "at": 3.23,
+   "text": "Before launch, Rockstar was adding servers around the clock.",
+   "pause": 0.5
+  },
+  {
+   "id": "warn",
+   "at": 7.02,
+   "text": "It even warned the first days would be temperamental.",
+   "pause": 0.4
+  },
+  {
+   "id": "day1",
+   "at": 10.02,
+   "text": "October 1st, 2013, it went live on PS3 and Xbox 360.",
+   "say": "October first, twenty thirteen, it went live on P S three and Xbox three sixty.",
+   "pause": 0.5
+  },
+  {
+   "id": "day1b",
+   "at": 16.0,
+   "text": "Day one? Lags and complete outages.",
+   "pause": 0.7
+  },
+  {
+   "id": "cut",
+   "at": 19.58,
+   "text": "In 2021, Rockstar shut down the PS3 and Xbox 360 versions.",
+   "say": "In twenty twenty-one, Rockstar shut down the P S three and Xbox three sixty versions.",
+   "pause": 1.0
+  },
+  {
+   "id": "still1",
+   "at": 24.93,
+   "text": "GTA Online kept going.",
+   "say": "G T A Online kept going.",
+   "pause": 0.35
+  },
+  {
+   "id": "still",
+   "at": 27.45,
+   "text": "Thirteen years later, it's still running.",
+   "pause": 0.8
+  },
+  {
+   "id": "zel",
+   "at": 30.09,
+   "text": "Take-Two's boss has every reason to believe they'll keep supporting it.",
+   "pause": 1.4,
+   "say": "Take Two's boss has every reason to believe they'll keep supporting it."
+  },
+  {
+   "id": "end",
+   "at": 34.9,
+   "text": "Which lasts longer? GTA 6, or GTA Online?",
+   "say": "Which lasts longer? G T A six, or G T A Online?",
+   "pause": 0
+  }
+ ],
+ "dur": 38.83,
+ "tail": 0.5,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}
