@@ -20,11 +20,11 @@ Slug `gta-storylength` · researched 2026-11-16 (ET) · channel **Delta** (never
 | Searched | 1 | "how long is gta 5", "gta 5 story length", "how long to beat gta 5" are evergreen searches. |
 
 ## 1. One hard idea
-**GTA 5's story takes players about 32 hours on average; going for 100% takes almost 90, nearly three times as long.** One hero object: **the paper hour tower** (cream hour blocks stacking up a ruler marked in hours, one tower per play style).
+**GTA 5's story takes players about 32 hours on average; going for 100% takes almost 90, nearly three times as long.** One hero object per part (round 3): **a paper stopwatch with a 0-100 HOURS dial** (the hand paints the story in yellow and 100% in coral on one honest scale), **the 100% punch card** (10×10, each square 1% of the completion score) and **the pick-one box**.
 
 Main search phrase: `how long is GTA 5` (on frame 0 as `HOW LONG IS GTA 5?`; "GTA 5" spoken by ~1 s).
 
-DM-able moment: the `NEARLY 3×` frame: three story-length brackets stacked beside the 100% tower.
+DM-able moment: the `NEARLY 3×` frame: three 32 h story arcs end to end on the dial, ending at 96 just past the coral 89½ ring, `GTA 5` tape on the bezel.
 
 ## 2. Hook options
 1. **"How long is GTA 5's story? Guess."** Chosen: 6 words + "Guess.", a test anyone answers in 3 s, GTA spoken by ~1 s, and a question can't overclaim.
@@ -62,7 +62,7 @@ DM-able moment: the `NEARLY 3×` frame: three story-length brackets stacked besi
 
 Arc: `4 3 2 4 4 4 3 5`. Round 1's `why`, `leads` and `missions` (three leads, Rockstar's store text, 69 missions) are replaced by `why` and `rest`. Frame 0 caption `HOW LONG IS GTA 5?` (5 words).
 
-## 5. Shot ideas (one hero object per beat, fill y 300-1430, type ≥ 36 px, rail x 90-930)
+## 5. Shot ideas (round 2, replaced in round 3: see TREATMENT.md) (one hero object per beat, fill y 300-1430, type ≥ 36 px, rail x 90-930)
 Round 2: own set and palette (daytime street: teal-to-sand sky, sun, drifting clouds, two-layer skyline, kerb, asphalt road; yellow STORY tower, coral 100% tower), not gta-outsold's plum wall and kraft floor. **Native move: the hour tower**: paper hour blocks stack up a pencil ruler marked every 10 hours, on an honest scale.
 
 | Line | Hero object | Picture |
@@ -86,3 +86,16 @@ Round 2: own set and palette (daytime street: teal-to-sand sky, sun, drifting cl
 - 2026-11-17 (director, round 2 after jury r1 7.0 / Truth 8.0): fixes 1-9 applied. (1) Three-leads beat and Rockstar store quote cut; the why is now GTABase's checklist weights (re-read today: Story 55, Strangers and Freaks 10, Hobbies and Pastimes 10, Random Events 5, Miscellaneous 20); `NEARLY 3×` peels off 0.3 s before "Why?". (2) Clipboard header `100% CHECKLIST` over all five sections; 69 only inside `STORY MISSIONS · 69`; only the story row is ticked; a weight bar fills 55% and the rest fills row by row (unfilled part hatched). (3) Still stretches broken: push-in plus two marker underlines on the source tag (6.5-9.5), level line and bracket slams (14-15.5), checklist hatch, circle and push (19-20.2), mini towers and kicks at the end. (4) Ruler labels hide under tags and sit on cream chips over the palm. (5) Frame 0 `HOW LONG IS GTA 5?`; own set (daytime street, teal-sand sky, skyline, road; yellow STORY and coral 100% towers), hero framed lower-left, the street settles from 1.10 over 0-3.2 s. (6) End card: mini 32 h / 89½ h towers either side of dashed `GTA 6 · ? HOURS`, identical STORY / 100% tags kicking on their words. (7) 100% rise ticks gain 0.22. (8) `NEARLY 3×` on one line (PSYCHOPATH tag gone with the leads beat). (9) seo.md wording.
 - Voice: changed lines only re-synthesized (hook, main, why, rest, end). `end` became "...or 100 percent? Pick one." because Whisper wrote a line-final "percent" as "100%. percent." in the mix (the voice was right; a take re-roll passed solo but not in the mix). `why`/`rest`/`end` moved 0.3 s later for readcheck; the four non-story rows enter together on "The rest" and fill the bar on their own words. `duck.smr_db` 32 → 36: hits −8.8 to −14.3 dBFS against voice peaks −2.6 to −4.9.
 - Final checks: readcheck 25/25 ok; boundscheck nothing out of bounds; pacecheck OK (motion 0-1 s 0.35, 0-3 s 0.38, still frames 6.7 %, no frozen stretch); in-mix Whisper 8/8 wer 0.00; −14.1 LUFS, true peak −2.6 dBTP; no black stretches. Solo listen 8/8.
+- 2026-11-17 (director, round 3 remake after jury r2 6.9 / Truth 8.5, held for the template set and the GTA 6 outline): sources re-read today with curl: HowLongToBeat game/4064 still shows `32 Hours` (comp_main 115,417 s, 3,398 polled) and `89½ Hours` (comp_100 322,346 s, 982 polled); GTABase still lists Story Missions 55%, Strangers and Freaks 10%, 42 Hobbies and Pastimes 10%, any 14 Random Events 5%, 16 Miscellaneous 20% and "69 Storyline Missions". No fact changed, so the script stays; voice re-synthesized (out/vo was gone) with `dur` 30.3 → 29.8 (jury fix 4), solo listen 8/8, VAD regenerated.
+- Round 3 picture, all new (TREATMENT.md): top-down night desk (cobalt mat, mug steam, pencil, notebook), no tower, no sheet, no palm, no case strips. Stopwatch with a 0-100 HOURS dial: yellow story ring to 32, coral 100% ring to 89½, then 2× and 3× story arcs to 96 past a red 89½ line (honest 3.6° per hour); `GTA 5` tape on the bezel and the source tag taped on, so the poster names the game (fix 8). Source beat: tag at centre plus a jar `3,398 PLAYERS` filling with paper time slips. Why beat: 100% punch card, `SHARE OF THE 100% SCORE · GTABASE` sub-line (fix 7), 55 yellow squares, the other four rows dim on "The rest" and each lights and punches its squares on its own word (fix 3), a hole punch drops on each word. End: `GTA 6` plate, pencil fork, two identical buttons `STORY` / `OR` / `100%`; nothing has a height or a length (fix 2); buttons press on their words and pulse on "Pick one." (fix 4). The watch rolls off on "Why?" and rolls back in at the seam into frame 0. Every tag keeps ≥ 24 px padding and its right edge ≤ 920 (fix 9).
+- 2026-11-17 (jury r3, PASS 7.3): picture and sound fixes applied:
+  - no label while numbers roll; 55% slams on the 55th square
+  - stamp slams in the pause
+  - cleared poster dial
+  - faster blurred hand
+  - jar beside a bigger dial
+  - no "GTA 6:" caption under the plate
+  - accelerating punch, dim rows, notebook slide
+  - double click at the end
+
+  End lines are +0.8 s, dur 30.9 s. Details are in JURY-r3.md.

@@ -1,12 +1,12 @@
 # SEO and posting text: How long is GTA 5's story?
 
-Channel: **Delta** (YouTube @deltaisac) only. Upload `gta-storylength-vo.mp4` (voice + sound effects, no music). Altered content: No. Made for kids: No. Written 2026-11-16, revised 2026-11-17 after jury r1, for a US audience. Facts and sources: `BRIEF.md`. Evergreen: no launch countdown, safe to post before or after GTA 6's release.
+Channel: **Delta** (YouTube @deltaisac) only. Upload `gta-storylength-vo-upload.mp4` (the upload re-encode of `gta-storylength-vo.mp4`: voice + sound effects, no music). Altered content: No. Made for kids: No. Written 2026-11-16, revised 2026-11-17 after jury r1 and r2 (round 3: new stopwatch / punch-card set), for a US audience. Facts and sources: `BRIEF.md`. Evergreen: no launch countdown, safe to post before or after GTA 6's release.
 
 ## YouTube Shorts title
 How Long Is GTA 5's Story? ⏱️
 
 ## Cover text
-NEARLY 3×
+GTA 5: NEARLY 3×
 
 ## Description
 How long is GTA 5's story? Players average 32 hours for the main story on HowLongToBeat, from thousands of submitted play times. Going for 100% takes almost 90 hours (89 and a half), nearly three times as long.

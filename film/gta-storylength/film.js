@@ -1,12 +1,13 @@
-/* "How long is GTA 5's story? Guess.": Delta, pillar 2 (GTA 5 for everyone).
+/* "How long is GTA 5's story? Guess.": Delta, pillar 2 (GTA 5 for everyone). Round 3: a new set.
    A vertical film written in code, narrated first and cut to the voice: every visual beat is keyed to a word time from
    vo/vo.js (window.VO) with at(id, word). Pure function of t. Contract: window.FILM, DUR, render(t), READY, EV, TEXTS(t),
-   SCORE(ctx). HowLongToBeat players' averages for Grand Theft Auto V (howlongtobeat.com/game/4064, read 2026-11-16):
-   Main Story 32 Hours, Completionist 89½ Hours. Derived: 89.54 / 32.06 = 2.8, "nearly three times". Rockstar's store text:
-   "a young street hustler, a retired bank robber, and a terrifying psychopath". GTABase: the game's 100% checklist lists
-   69 story missions. Nothing about GTA 6's length. The set is a hand-cut paper floor; the hero is a tower of paper hour
-   blocks on an honest scale (native move: towers build block by block while the ruler rescales). Engine from
-   film/gta-outsold. No logos, key art, likenesses, footage or music. */
+   SCORE(ctx). HowLongToBeat players' averages for Grand Theft Auto V (howlongtobeat.com/game/4064, re-read 2026-11-17):
+   Main Story 32 Hours, Completionist 89½ Hours. Derived: 89.54 / 32.06 = 2.79, "nearly three times" (3 x 32 = 96 > 89½).
+   GTABase 100% guide (re-read 2026-11-17): Story Missions 55% (69 on the checklist), Strangers and Freaks 10%, Hobbies and
+   Pastimes 10%, Random Events 5%, Miscellaneous 20%. Nothing about GTA 6's length. The set is a top-down desk at night;
+   the heroes are a paper stopwatch with a 0-100 hour dial (native move: the hand paints the hours as rings), the 100%
+   punch card (each square = 1% of the completion score) and the pick-one box. Engine from film/gta-outsold.
+   No logos, key art, likenesses, footage or music. */
 (function () {
   'use strict';
   var W = 1080, H = 1920, VO = window.VO, DUR = VO.dur, CX = 510;
@@ -270,401 +271,454 @@
     wordsOf(pc, rec); pc.sw = w; pc.sh = h; return pc;
   }
   BODY.tear = .1; BODY.thock = .12; BODY.pop = .1; BODY.clank = .32; BODY.stamp = .18; BODY.swish = .26; BODY.skid = .18; BODY.buzz = .14; BODY.siren = .11; BODY.slap = .1; BODY.crawl = .15;
-  function calPiece(bind, lines, seed) {
-    var w = 330, h = 410, tp = jag(seed, w, 4);
-    return cardPiece(w, h, PADC, lines, { r: 6, sy: 14, path: function (g) { g.beginPath(); g.moveTo(-w / 2, -h / 2 + 8 + tp[0][1]); tp.forEach(function (q) { g.lineTo(-w / 2 + q[0], -h / 2 + 8 + q[1]); }); g.lineTo(w / 2, h / 2); g.lineTo(-w / 2, h / 2); g.closePath(); }, before: function (g) {
-      g.fillStyle = bind; g.fillRect(-w / 2, -h / 2, w, 34);
-      [-90, 0, 90].forEach(function (x) { g.fillStyle = INK2; g.beginPath(); g.arc(x, -h / 2 + 17, 7, 0, TAU); g.fill(); });
-      for (var i = 0; i < 7; i++) { g.fillStyle = 'rgba(29,18,51,.07)'; g.fillRect(-w / 2 + 24 + i * 42, h / 2 - 40, 32, 18); }
-    } });
-  }
 
   /* =====================================================================================================
-     THE SET: a hand-cut paper sales floor. A plum wall with a low paper sun and slow rays bleeds the full frame,
-     faint pencil lines mark every 100 million up the wall, a kraft floor runs under the towers. Every game is a
-     tower of plain paper cases (no art: a blank label strip on each spine) with its name on a cream plate in our
-     own type. No logos, no box art, no falling pieces, no blocks, no footage, no music.
+     THE SET (round 3): a top-down desk at night. A cobalt paper desk mat with a halftone light pool, a mug with
+     paper steam, a pencil, a notebook's spiral and a cable along the edges; it bleeds the frame and carries no
+     words. Heroes: a paper stopwatch whose dial is marked 0-100 HOURS (the hand paints the hours as rings), the
+     100% punch card (each square = 1% of the completion score), and the pick-one box. No logos, key art,
+     likenesses, footage or music.
      ===================================================================================================== */
-  var FLOOR = 1400, KM = 1, PADC = '#f4ead6', INK2 = '#2a1850', RED = '#e0283c';
-  var COLS = { st: ['#ffc83d', '#c9971f'], cp: ['#ff5a5f', '#c23a3f'] };
-  var SKY = '#ffd9a0', ASPH = '#34303d', YEL = '#ffc83d', CORAL = '#ff5a5f', LILAC = '#b9a3ff', BLUE = '#6fb7ff';
-  /* M in hours (HowLongToBeat players' averages: Main Story 32 h, Completionist 89½ h); N blocks (unlabelled units) */
-  var TW = { st: { M: 32, N: 8, seed: 3 }, cp: { M: 89.5, N: 22, seed: 11 } };
+  var COB = '#2546b4', COB2 = '#17307f', MINT = '#3fd3ad', MINT2 = '#1f9a7c', YEL = '#ffc83d', YEL2 = '#eea51c', YEL3 = '#ffdc70',
+      CORAL = '#ff5a6e', LILAC = '#b9a3ff', BLUE = '#7cc4ff', PADC = '#f6ecd8', INK2 = '#2a1850', RED = '#e0283c', DOME = '#ff4f5e', BOXC = '#cf9452';
+  var RD = 160, IN0 = 170, IN1 = 245, OU0 = 255, OU1 = 332, FACE = 360, BEZ = 400;
+  var P0 = { x: 510, y: 1030, s: 1 }, P1 = { x: 418, y: 880, s: .74 }, P3 = { x: 510, y: 1080, s: .86 };
+  var TAGL = [210, -345], TAGSRC = [418, 1258];
+  var SECT = [['STORY MISSIONS · 69', 55, YEL], ['STRANGERS & FREAKS', 10, TEAL], ['HOBBIES & PASTIMES', 10, LILAC], ['RANDOM EVENTS', 5, BLUE], ['MISCELLANEOUS', 20, ORG]];
+  var CAT0 = [0, 55, 65, 75, 80], CATN = [55, 10, 10, 5, 20];
+  var T = {}, LIVE2 = { bg: true, clip: true }, SPIN = 220;
 
-  function casePiece(c) {
-    return piece([0, 0, 240, 40], function (g) { rr(g, 0, 0, 240, 40, 4); }, c[0], { ps: 1.3, sx: 0, sy: 3, blur: 4, edge: 1.6, extra: function (g) {
-      g.fillStyle = c[1]; g.fillRect(0, 31, 240, 9);
-      g.fillStyle = 'rgba(255,255,255,.22)'; g.fillRect(0, 0, 240, 4);
-      g.fillStyle = 'rgba(251,240,234,.88)'; rr(g, 78, 10, 84, 15, 3); g.fill();
-      g.strokeStyle = 'rgba(29,18,51,.55)'; g.lineWidth = 2; g.beginPath(); g.arc(120, 17.5, 5.5, 0, TAU); g.stroke(); g.beginPath(); g.moveTo(120, 17.5); g.lineTo(120, 13.5); g.moveTo(120, 17.5); g.lineTo(123, 18.5); g.stroke();
-      g.fillStyle = 'rgba(29,18,51,.25)'; g.fillRect(14, 6, 3, 24); g.fillRect(223, 6, 3, 24);
-    } });
-  }
-  /* a plain case seen from the front: a name strip in our type, never box art */
-  function fanPiece(col, i) {
-    var w = 128, h = 176, rec = [], dark = col === '#f4ead6' || col === '#ffc83d' || col === '#a9bdd6' || col === '#c9b6ff';
-    var pc = piece([-w / 2, -h / 2, w / 2, h / 2], function (g) { rr(g, -w / 2, -h / 2, w, h, 7); }, col, { ps: 1.4, sx: 4, sy: 8, blur: 9, extra: function (g) {
-      g.fillStyle = 'rgba(29,18,51,.2)'; g.fillRect(-w / 2, -h / 2, 12, h);
-      g.fillStyle = dark ? INK2 : PADC; rr(g, -w / 2 + 18, -18, w - 30, 46, 4); g.fill();
-      cond(g, 'condensed'); font(g, 36, 900); ls(g, 1); g.fillStyle = dark ? CREAM : INK; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('TETRIS', 6, 6); var mm = g.measureText('TETRIS'); rec.push([6 - mm.width / 2, 6 - 20, 6 + mm.width / 2, 6 + 16, 'TETRIS']); unst(g);
-      g.fillStyle = 'rgba(29,18,51,.12)'; for (var k = 0; k < 3; k++) g.fillRect(-w / 2 + 26, 46 + k * 12, 60 + (i * 13 + k * 17) % 30, 5);
-      g.fillStyle = 'rgba(255,255,255,.2)'; g.fillRect(-w / 2 + 12, -h / 2, w - 12, 5);
-    } });
-    return wordsOf(pc, rec);
-  }
-  function plate(text, w, px, bg, fg, ring) { return cardPiece(w, 80, bg || CREAM, [[text, px || 48, fg || INK, 3]], { r: 8, ring: ring || 'rgba(29,18,51,.25)' }); }
+  function tq(t) { return (Math.floor(t * 30) + .5) / 30; }
+  function pol(r, h) { var a = h / 100 * TAU; return [r * Math.sin(a), -r * Math.cos(a)]; }
+  function e3o(k) { return 1 - Math.pow(1 - k, 3); }
+  function e3i(k) { return k * k * k; }
+  function flipK(t, a) { var d = Math.abs(t - a); return d >= .12 ? 1 : Math.max(.04, d / .12); }
 
   function buildTextures() { GRAIN = buildGrain(); buildSet(); }
   function buildSet() {
-    P.case = {}; Object.keys(COLS).forEach(function (k) { P.case[k] = casePiece(COLS[k]); });
-    P.pl = { st: plate('STORY', 200, 52), cp: plate('100%', 200, 52) };
-    P.cnt = cardPiece(330, 170, NEWS, [], { r: 8, ring: 'rgba(29,18,51,.25)' });
-    P.cnt2 = cardPiece(290, 170, NEWS, [], { r: 8, ring: 'rgba(29,18,51,.25)' });
-    P.src = cardPiece(400, 190, CREAM, [["PLAYERS' AVERAGE", 46, INK, -54], ['HOWLONGTOBEAT', 46, HOT, 2], ['3,398 PLAYERS', 42, INK2, 56]], { r: 8, ring: YEL });
-    P.stTag = cardPiece(300, 150, CREAM, [['STORY · 32 H', 44, INK, -32], ["PLAYERS' AVERAGE", 38, INK2, 24]], { r: 8, ring: YEL });
-    P.cpTag = cardPiece(300, 190, CREAM, [['100% · 89½ H', 44, INK, -52], ["PLAYERS' AVERAGE", 38, INK2, 4], ['HOWLONGTOBEAT', 38, HOT, 54]], { r: 8, ring: CORAL });
-    P.st3 = buildStamp(['NEARLY 3×'], 92, 310, HOT);
-    P.sheet = buildSheet();
-    P.chk = cardPiece(460, 92, INK2, [['100% CHECKLIST', 54, CREAM, 3]], { r: 8, ring: 'rgba(251,240,234,.5)' });
-    P.st55 = buildStamp(['STORY = 55%'], 76, 460, HOT);
-    P.base6 = piece([-120, -20, 120, 20], function (g) { rr(g, -120, -20, 240, 40, 5); }, PADC, { ps: 1.3, sx: 0, sy: 5, blur: 6, extra: function (g) { g.fillStyle = 'rgba(29,18,51,.15)'; g.fillRect(-120, 10, 240, 10); } });
-    P.pl6 = plate('GTA 6', 210, 56, HOT, CREAM, 'rgba(255,240,234,.9)');
-    P.yes = cardPiece(220, 110, CREAM, [['STORY', 62, INK, 4]], { r: 12, ring: INK2 });
-    P.no2 = cardPiece(220, 110, CREAM, [['100%', 62, INK, 4]], { r: 12, ring: INK2 });
-    var tp3 = jag(311, 1100, 10), bt3 = jag(312, 1100, 10);
-    P.sweepK = piece([0, -20, 1100, 1580], function (g) { g.beginPath(); g.moveTo(0, tp3[0][1]); tp3.forEach(function (p) { g.lineTo(p[0], p[1]); }); for (var i = bt3.length - 1; i >= 0; i--) g.lineTo(bt3[i][0], 1560 + bt3[i][1]); g.closePath(); }, KRAFT, { sx: 0, sy: 10, blur: 20, ps: .6, extra: function (g) { g.strokeStyle = 'rgba(60,30,10,.18)'; g.lineWidth = 3; for (var x = 30; x < 1100; x += 90) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x + 20, 1560); g.stroke(); } } });
-    P.wall = buildWall();
-  }
-  /* the checklist: a kraft clipboard with a cream sheet; header, weight bar and five rows are drawn live (GTABase weights) */
-  var CLW = 720, CLH = 800, SHY = 925;
-  var SECT = [['STORY MISSIONS · 69', 55, YEL], ['STRANGERS & FREAKS', 10, TEAL], ['HOBBIES & PASTIMES', 10, LILAC], ['RANDOM EVENTS', 5, BLUE], ['MISCELLANEOUS', 20, ORG]];
-  function buildSheet() {
-    return piece([-CLW / 2, -CLH / 2, CLW / 2, CLH / 2], function (g) { rr(g, -CLW / 2, -CLH / 2, CLW, CLH, 22); }, KRAFT, { sx: 6, sy: 14, blur: 18, extra: function (g) {
-      g.fillStyle = PADC; g.fillRect(-CLW / 2 + 30, -CLH / 2 + 60, CLW - 60, CLH - 90);
-      g.fillStyle = 'rgba(29,18,51,.06)'; for (var y = -CLH / 2 + 80; y < CLH / 2 - 30; y += 28) g.fillRect(-CLW / 2 + 30, y, CLW - 60, 2);
-      g.strokeStyle = 'rgba(29,18,51,.35)'; g.lineWidth = 3; rr(g, -300, -232, 600, 64, 8); g.stroke();
-    }, after: function (g) {
-      g.fillStyle = '#9aa1ad'; rr(g, -110, -CLH / 2 - 26, 220, 74, 14); g.fill(); g.fillStyle = '#c9ced6'; rr(g, -90, -CLH / 2 - 16, 180, 34, 10); g.fill();
-      g.fillStyle = '#5d6370'; g.beginPath(); g.arc(0, -CLH / 2 - 4, 9, 0, TAU); g.fill();
+    P.desk = buildDesk(); P.note = buildNote();
+    P.sw = buildWatch();
+    P.disc = piece([-RD, -RD, RD, RD], function (g) { g.beginPath(); g.arc(0, 0, RD, 0, TAU); }, PADC, { sx: 3, sy: 6, blur: 10, edge: false, extra: function (g) {
+      g.strokeStyle = INK; g.lineWidth = 7; g.beginPath(); g.arc(0, 0, RD - 4, 0, TAU); g.stroke();
+      g.strokeStyle = 'rgba(29,18,51,.18)'; g.lineWidth = 2; g.beginPath(); g.arc(0, 0, RD - 18, 0, TAU); g.stroke();
     } });
+    P.tag = cardPiece(380, 132, CREAM, [["PLAYERS' AVERAGE", 46, INK, -28], ['HOWLONGTOBEAT', 46, HOT, 30]], { r: 8, ring: YEL });
+    P.sticky = cardPiece(250, 200, '#ffe66b', [['YOUR GUESS?', 44, INK, -44], ['____ H', 72, INK2, 34]], { r: 3, sy: 10, before: function (g) { g.fillStyle = 'rgba(0,0,0,.06)'; g.fillRect(-125, -100, 250, 26); } });
+    var tj = jag(55, 190, 3);
+    P.tape5 = wordsOf(piece([-95, -36, 95, 36], function (g) { g.beginPath(); g.moveTo(-95, -32); g.lineTo(95, -32); for (var y = -32; y <= 32; y += 8) g.lineTo(95 + ((y * 7) % 5), y); g.lineTo(-95, 32); for (y = 32; y >= -32; y -= 8) g.lineTo(-95 - ((y * 5) % 4), y); g.closePath(); }, 'rgba(244,230,196,.97)', { sx: 2, sy: 4, blur: 6, extra: function (g) {
+      g.fillStyle = 'rgba(120,90,40,.08)'; for (var i = 0; i < 9; i++) g.fillRect(-95 + i * 22, -32, 2, 64);
+      cond(g); font(g, 54, 900); ls(g, 2); g.fillStyle = INK; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('GTA 5', 0, 3); unst(g);
+    } }), [[-62, -24, 62, 24, 'GTA 5']]);
+    P.st3 = buildStamp(['NEARLY 3×'], 136, 520, RED);
+    P.card = buildCard();
+    P.jarLbl = cardPiece(150, 124, CREAM, [['3,398', 56, INK, -22], ['PLAYERS', 42, INK2, 30]], { r: 6, ring: 'rgba(29,18,51,.3)' });
+    P.slip = ['#fbf0ea', '#ffe66b', '#bfe8ff', '#ffd0d8'].map(function (c, i) { return piece([-46, -29, 46, 29], function (g) { rr(g, -46, -29, 92, 58, 5); }, c, { ps: 1.2, sx: 2, sy: 4, blur: 5, edge: 1.4, extra: function (g) {
+      g.strokeStyle = INK2; g.lineWidth = 3.5; g.beginPath(); g.arc(-18, 0, 15, 0, TAU); g.stroke(); g.beginPath(); g.moveTo(-18, 0); g.lineTo(-18, -10); g.moveTo(-18, 0); g.lineTo(-10 + i, 4); g.stroke();
+      g.fillStyle = 'rgba(42,24,80,.55)'; rr(g, 4, -10, 26 + i * 4, 7, 3); g.fill(); rr(g, 4, 4, 16 + i * 3, 7, 3); g.fill();
+    } }); });
+    P.plate6 = cardPiece(300, 124, INK2, [['GTA 6', 84, CREAM, 4]], { r: 12, ring: 'rgba(251,240,234,.55)' });
+    P.box = buildBox();
+    P.plS = cardPiece(270, 110, CREAM, [['STORY', 72, INK, 4]], { r: 10, ring: INK2 });
+    P.plC = cardPiece(270, 110, CREAM, [['100%', 72, INK, 4]], { r: 10, ring: INK2 });
   }
-  /* a paper cloud */
-  function cloud(g, x, y, s) { g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = 'rgba(255,250,240,.92)'; g.beginPath(); g.ellipse(0, 0, 120, 34, 0, 0, TAU); g.ellipse(-50, -22, 56, 40, 0, 0, TAU); g.ellipse(36, -30, 64, 48, 0, 0, TAU); g.fill(); g.fillStyle = 'rgba(29,18,51,.08)'; g.fillRect(-120, 14, 240, 8); g.restore(); }
-  /* the static wall: plum paper, a halftone glow, the kraft floor; drawn once */
-  function buildWall() {
-    var c = mk(W, H), g = c.getContext('2d'), r = mulberry(19);
-    /* a hot afternoon sky: deep teal at the top to warm sand at the horizon */
-    var gr = g.createLinearGradient(0, 0, 0, FLOOR); gr.addColorStop(0, '#0f5c73'); gr.addColorStop(.5, '#3fa6a8'); gr.addColorStop(.85, '#f4c48a'); gr.addColorStop(1, SKY); g.fillStyle = gr; g.fillRect(0, 0, W, FLOOR);
-    /* a far paper skyline (plain blocks, no landmarks), two layers */
-    [[.55, '#2c6f7d', 7], [.8, '#24505d', 11]].forEach(function (L, li) {
-      var x = -20; while (x < W) { var w = 60 + r() * 110, h = 120 + r() * 260 * L[0]; g.fillStyle = L[1]; g.fillRect(x, FLOOR - h - li * 0, w, h); g.fillStyle = 'rgba(255,240,200,.18)'; for (var wy = FLOOR - h + 16; wy < FLOOR - 20; wy += 26) for (var wx = x + 10; wx < x + w - 12; wx += 22) if (r() < .5) g.fillRect(wx, wy, 8, 12); x += w + 4; }
-    });
-    /* road: asphalt with a kerb and dashed yellow centre line */
-    g.fillStyle = '#bdb2a0'; g.fillRect(0, FLOOR, W, 14); g.fillStyle = 'rgba(29,18,51,.3)'; g.fillRect(0, FLOOR + 14, W, 4);
-    g.fillStyle = ASPH; g.fillRect(0, FLOOR + 18, W, H - FLOOR);
-    for (var x2 = 20; x2 < W; x2 += 160) { g.fillStyle = YEL; g.fillRect(x2, FLOOR + 230, 90, 14); }
-    g.globalAlpha = .8; g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fillRect(0, 0, W, H); g.globalAlpha = 1;
+
+  /* the desk mat, drawn once: cobalt paper, a halftone pool, paper crumbs; props outside the rail carry no words */
+  function buildDesk() {
+    var c = mk(W, H), g = c.getContext('2d'), r = mulberry(19), x, y;
+    var gr = g.createLinearGradient(0, 0, W, H); gr.addColorStop(0, '#2a4fc0'); gr.addColorStop(1, COB2); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    /* halftone dots, bigger toward the lamp at the upper middle */
+    for (y = 10; y < H; y += 22) for (x = (y / 22 % 2) * 11; x < W; x += 22) {
+      var d = Math.hypot(x - 560, (y - 820) * .7), s = clamp(4.2 - d / 210, .6, 4.2);
+      g.fillStyle = 'rgba(160,190,255,.16)'; g.beginPath(); g.arc(x, y, s, 0, TAU); g.fill();
+    }
+    /* the pencil lying on the right edge */
+    g.save(); g.translate(1010, 760); g.rotate(1.28);
+    g.fillStyle = 'rgba(6,3,18,.35)'; g.fillRect(-190, -4, 380, 30);
+    g.fillStyle = YEL; g.fillRect(-180, -14, 330, 28); g.fillStyle = YEL2; g.fillRect(-180, 4, 330, 10);
+    g.fillStyle = '#f2c79a'; g.beginPath(); g.moveTo(150, -14); g.lineTo(200, 0); g.lineTo(150, 14); g.closePath(); g.fill();
+    g.fillStyle = INK; g.beginPath(); g.moveTo(186, -4); g.lineTo(200, 0); g.lineTo(186, 4); g.closePath(); g.fill();
+    g.fillStyle = '#c9ced6'; g.fillRect(-200, -14, 22, 28); g.fillStyle = '#ff8fa8'; rr(g, -232, -14, 34, 28, 8); g.fill();
+    g.restore();
+    /* the controller's cable coming in along the left edge (the controller is off the desk) */
+    g.strokeStyle = '#111327'; g.lineWidth = 10; g.lineCap = 'round'; g.beginPath(); g.moveTo(-20, 980); g.bezierCurveTo(70, 1050, -10, 1160, 60, 1240); g.bezierCurveTo(110, 1300, 20, 1380, 40, 1480); g.stroke();
+    g.strokeStyle = 'rgba(255,255,255,.12)'; g.lineWidth = 3; g.stroke();
+    /* paper crumbs and a coffee ring, all outside the rail */
+    g.strokeStyle = 'rgba(120,70,30,.35)'; g.lineWidth = 5; g.beginPath(); g.arc(1000, 320, 70, .3, 5.6); g.stroke();
+    for (var i = 0; i < 40; i++) { x = r() < .5 ? r() * 80 : 940 + r() * 140; y = 300 + r() * 1150; g.fillStyle = r() < .5 ? 'rgba(251,240,234,.5)' : 'rgba(255,200,61,.45)'; g.save(); g.translate(x, y); g.rotate(r() * 6); g.fillRect(-3, -2, 5 + r() * 6, 3 + r() * 4); g.restore(); }
+    g.globalAlpha = .7; g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fillRect(0, 0, W, H); g.globalAlpha = 1;
     return c;
   }
-  function palm(g, x, y, s, t, ph) {
-    g.save(); g.translate(x, y); g.scale(s, s); g.fillStyle = '#123c45';
-    g.beginPath(); g.moveTo(-14, 0); g.quadraticCurveTo(10, -260, 40, -520); g.lineTo(58, -516); g.quadraticCurveTo(30, -250, 14, 0); g.closePath(); g.fill();
-    g.translate(48, -520); g.rotate(.05 * osc(t, 4, ph));
-    for (var k = 0; k < 7; k++) { var a = -2.9 + k * .62; g.save(); g.rotate(a); g.beginPath(); g.moveTo(0, -8); g.quadraticCurveTo(110, -40, 220, 10); g.quadraticCurveTo(110, 0, 0, 8); g.closePath(); g.fill(); g.restore(); }
+  /* the notebook along the bottom edge (its own piece: it slides down on the card beat) */
+  function buildNote() {
+    var c = mk(W, 620), g = c.getContext('2d'), x, y;
+    g.translate(0, 40);
+    /* the notebook along the bottom edge: a cream page with spiral rings */
+    g.save(); g.translate(0, 0); g.rotate(-.04);
+    g.fillStyle = 'rgba(6,3,18,.35)'; g.fillRect(-20, 14, 1140, 520);
+    g.fillStyle = '#efe6d2'; g.fillRect(-20, 0, 1140, 520);
+    g.fillStyle = 'rgba(70,110,200,.25)'; for (y = 60; y < 520; y += 44) g.fillRect(-20, y, 1140, 2);
+    g.fillStyle = 'rgba(224,40,60,.35)'; g.fillRect(120, 0, 3, 520);
+    for (x = 40; x < 1080; x += 58) { g.strokeStyle = '#9aa1ad'; g.lineWidth = 7; g.beginPath(); g.ellipse(x, 2, 12, 26, 0, Math.PI * .1, Math.PI * 1.1); g.stroke(); }
+    g.restore();
+    return c;
+  }
+  /* the stopwatch body: mint bezel, crown, side button, cream face with an hour tick every 5 h (0-100 h dial) */
+  function buildWatch() {
+    function path(g) {
+      g.beginPath(); g.arc(0, 0, BEZ, 0, TAU);
+      g.moveTo(-26, -440); g.lineTo(26, -440); g.lineTo(26, -396); g.lineTo(-26, -396); g.closePath();
+      g.roundRect(-78, -486, 156, 52, 14);
+      g.save(); var a = -.7; g.moveTo(Math.sin(a) * 392 - Math.cos(a) * 24, -Math.cos(a) * 392 - Math.sin(a) * 24);
+      [[-24, 0], [24, 0], [24, 40], [-24, 40]].forEach(function (p) { var px = p[0], py = -392 - p[1]; g.lineTo(Math.cos(a) * px - Math.sin(a) * py, Math.sin(a) * px + Math.cos(a) * py); }); g.closePath(); g.restore();
+    }
+    return piece([-BEZ - 10, -490, BEZ + 10, BEZ + 10], path, MINT, { sx: 9, sy: 16, blur: 20, extra: function (g) {
+      /* bezel shading: a lighter rim top-left, darker bottom-right */
+      var sg = g.createLinearGradient(-BEZ, -BEZ, BEZ, BEZ); sg.addColorStop(0, 'rgba(255,255,255,.22)'); sg.addColorStop(.55, 'rgba(255,255,255,0)'); sg.addColorStop(1, 'rgba(0,40,30,.25)'); g.fillStyle = sg; g.fillRect(-BEZ - 10, -490, 2 * BEZ + 20, 2 * BEZ + 500);
+      g.fillStyle = MINT2; for (var k = -3; k <= 3; k++) g.fillRect(k * 20 - 4, -484, 8, 48);
+      g.save(); g.shadowColor = 'rgba(0,30,20,.45)'; g.shadowBlur = 14; g.shadowOffsetY = 5; g.fillStyle = PADC; g.beginPath(); g.arc(0, 0, FACE, 0, TAU); g.fill(); g.restore();
+      g.strokeStyle = 'rgba(29,18,51,.14)'; g.lineWidth = 2; g.beginPath(); g.arc(0, 0, OU1 + 2, 0, TAU); g.stroke(); g.beginPath(); g.arc(0, 0, IN0 - 2, 0, TAU); g.stroke();
+      for (var i = 0; i < 40; i++) {
+        var maj = i % 10 === 0, mid = i % 2 === 0, a = i / 40 * TAU, r0 = maj ? 334 : mid ? 340 : 347, r1 = 356;
+        g.strokeStyle = INK; g.lineWidth = maj ? 7 : mid ? 4 : 2.5; g.lineCap = 'round';
+        g.beginPath(); g.moveTo(Math.sin(a) * r0, -Math.cos(a) * r0); g.lineTo(Math.sin(a) * r1, -Math.cos(a) * r1); g.stroke();
+      }
+      g.strokeStyle = 'rgba(0,40,30,.35)'; g.lineWidth = 4; g.beginPath(); g.arc(0, 0, FACE + 2, 0, TAU); g.stroke();
+    } });
+  }
+  /* the punch card: cream card, notched corner, perforated edge (the header, cells and rows are drawn live) */
+  function buildCard() {
+    function path(g) { g.beginPath(); g.moveTo(-400 + 64, -450); g.lineTo(400, -450); g.lineTo(400, 450); g.lineTo(-400, 450); g.lineTo(-400, -450 + 64); g.closePath(); }
+    return piece([-400, -450, 400, 450], path, PADC, { sx: 8, sy: 16, blur: 20, extra: function (g) {
+      g.fillStyle = MINT; g.fillRect(-400, -450, 800, 16);
+      g.fillStyle = 'rgba(29,18,51,.05)'; for (var y = -320; y < 440; y += 48) g.fillRect(-400, y, 800, 1);
+      g.fillStyle = COB2; for (var y2 = -410; y2 < 440; y2 += 30) { g.beginPath(); g.arc(388, y2, 4, 0, TAU); g.fill(); }
+      g.strokeStyle = 'rgba(29,18,51,.25)'; g.lineWidth = 2; g.beginPath(); g.moveTo(-380, 180); g.lineTo(380, 180); g.stroke();
+    } });
+  }
+  /* the pick-one box: kraft box with a lighter top lip, screws and a little speaker grille */
+  function buildBox() {
+    return piece([-390, -24, 390, 335], function (g) { rr(g, -390, -24, 780, 359, 18); }, BOXC, { sx: 8, sy: 16, blur: 20, extra: function (g) {
+      g.fillStyle = '#e6bb7f'; g.fillRect(-390, -24, 780, 56); g.fillStyle = 'rgba(60,30,10,.25)'; g.fillRect(-390, 30, 780, 6);
+      g.strokeStyle = 'rgba(60,30,10,.14)'; g.lineWidth = 3; for (var x = -360; x < 390; x += 46) { g.beginPath(); g.moveTo(x, 40); g.lineTo(x + 14, 335); g.stroke(); }
+      [[-360, 70], [360, 70], [-360, 305], [360, 305]].forEach(function (p) { g.fillStyle = '#9aa1ad'; g.beginPath(); g.arc(p[0], p[1], 11, 0, TAU); g.fill(); g.strokeStyle = '#5d6370'; g.lineWidth = 3; g.beginPath(); g.moveTo(p[0] - 6, p[1] - 6); g.lineTo(p[0] + 6, p[1] + 6); g.stroke(); });
+      g.fillStyle = 'rgba(60,30,10,.4)'; for (var i = 0; i < 5; i++) for (var j = 0; j < 2; j++) { g.beginPath(); g.arc(-48 + i * 24, 290 + j * 22, 5, 0, TAU); g.fill(); }
+    } });
+  }
+
+  /* ---------- the world: desk, the lamp's light pool, mug steam, drifting dust; periodic so the loop is seamless ---------- */
+  function world(g, t) {
+    g.drawImage(P.desk, 0, 0);
+    var dn = 120 * eio(seg(t, T.roll, T.roll + .6)) * (1 - eio(seg(t, T.clO, T.clO + .6)));
+    g.drawImage(P.note, 0, 1480 + dn);
+    var lx = 540 + 60 * osc(t, 1, .4), ly = 860 + 40 * osc(t, 1, 1.9);
+    var lg = g.createRadialGradient(lx, ly, 60, lx, ly, 760); lg.addColorStop(0, 'rgba(255,236,190,.16)'); lg.addColorStop(1, 'rgba(255,236,190,0)'); g.fillStyle = lg; g.fillRect(0, 0, W, H);
+    /* the mug in the top-left corner, seen from above, with paper steam curls */
+    g.save(); g.translate(40, 200);
+    g.fillStyle = 'rgba(6,3,18,.35)'; g.beginPath(); g.arc(10, 14, 128, 0, TAU); g.fill();
+    g.fillStyle = '#f4ead6'; g.beginPath(); g.arc(0, 0, 124, 0, TAU); g.fill(); g.fillStyle = '#5a3418'; g.beginPath(); g.arc(0, 0, 96, 0, TAU); g.fill();
+    g.fillStyle = 'rgba(255,255,255,.18)'; g.beginPath(); g.ellipse(-30, -34, 40, 16, -.6, 0, TAU); g.fill();
+    g.strokeStyle = '#f4ead6'; g.lineWidth = 26; g.beginPath(); g.arc(150, 30, 46, -1.2, 1.4); g.stroke();
+    for (var k = 0; k < 3; k++) { var ph = (t / DUR * 9 + k / 3) % 1; g.save(); g.globalAlpha = .5 * Math.sin(Math.PI * ph); g.strokeStyle = '#fbf0ea'; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath();
+      for (var s2 = 0; s2 <= 12; s2++) { var yy = -10 - s2 * 9 - ph * 90, xx = 20 * Math.sin(s2 * .7 + ph * 6 + k * 2) + (k - 1) * 34; if (s2) g.lineTo(xx, yy); else g.moveTo(xx, yy); } g.stroke(); g.restore(); }
+    g.restore();
+    /* dust in the lamp light */
+    for (var i = 0; i < 16; i++) { var dx = (hash(i * 3.1) * W + 40 * osc(t, 2 + i % 3, i)) % W, dy = 300 + hash(i * 7.7) * 1100 + 30 * osc(t, 3 + i % 2, i * 2); g.fillStyle = 'rgba(251,240,234,' + (.2 + .2 * hash(i)).toFixed(2) + ')'; g.beginPath(); g.arc(dx, dy, 2 + 2 * hash(i * 5), 0, TAU); g.fill(); }
+  }
+
+  /* =====================================================================================================
+     THE STOPWATCH
+     ===================================================================================================== */
+  function stT(t) { return t >= T.seamC ? t - DUR : t; }
+  function jit(st, a) { return st < a ? 0 : .35 * Math.sin((st - a) * 6.3) * (1 - Math.exp(-(st - a) * 3)); }
+  function holdH(st) { var u = st - T.g0 - 1; return (SPIN * T.g0 + SPIN / 2) % 100 + 2.5 * Math.sin(u * 9) * Math.exp(-u * 2); }
+  /* hand position in hours (0-100 around the dial): spins on the hook, slows on "Guess.", rewinds, paints 32, rewinds, paints 89½ */
+  function handH(st) {
+    if (st < T.g0) return SPIN * st;
+    if (st < T.g0 + 1) { var u = st - T.g0; return SPIN * T.g0 + SPIN * (u - u * u / 2); }
+    if (st < T.rw0) return holdH(st);
+    if (st < T.sw0) return lerp(holdH(T.rw0), 0, eio(seg(st, T.rw0, T.rw0 + .32)));
+    if (st < T.h100) return 32 * eio(seg(st, T.sw0, T.sw1)) + jit(st, T.sw1);
+    if (st < T.s20) return lerp(32 + jit(T.h100, T.sw1), 0, eio(seg(st, T.h100, T.h100 + .3)));
+    return 89.5 * eio(seg(st, T.s20, T.s21)) + jit(st, T.s21);
+  }
+  function swPose(t) {
+    var st = stT(t);
+    if (t >= T.seamC) { var k = e3o(seg(t, T.seamC, DUR)), xs = lerp(1580, P0.x, k); return { x: xs, y: P0.y, s: 1, rot: (xs - P0.x) / BEZ + .012 * osc(t, 9), ka: 0, moving: k < 1 }; }
+    var ka = eio(seg(t, T.toSrc, T.toSrc + .55)) * (1 - eio(seg(t, T.fromSrc, T.fromSrc + .5)));
+    var kb = eio(seg(t, T.toP3, T.toP3 + .45));
+    var x = lerp(lerp(P0.x, P1.x, ka), P3.x, kb), y = lerp(lerp(P0.y, P1.y, ka), P3.y, kb), s = lerp(lerp(P0.s, P1.s, ka), P3.s, kb);
+    var kr = seg(t, T.roll, T.roll + .85), dx = -1250 * kr * kr;
+    var rot = dx / (BEZ * s) + .012 * osc(t, 9) + sw(st, T.gta, .05, 9, 3) + sw(st, T.cL1, .03, 9, 3) + sw(st, T.c2L, .03, 9, 3) + sw(st, T.p5, .025, 9, 3);
+    return { x: x + dx, y: y + 10 * bump(t, T.lurch, .5) * -2, s: s, rot: rot, ka: ka, moving: (ka > .001 && ka < .999) || (kb > .001 && kb < .999) || kr > 0 };
+  }
+  function ring(g, r0, r1, h0, h1, col) {
+    if (h1 - h0 < .05) return;
+    var a0 = -Math.PI / 2 + h0 / 100 * TAU, a1 = -Math.PI / 2 + h1 / 100 * TAU;
+    g.beginPath(); g.arc(0, 0, r1, a0, a1); g.arc(0, 0, r0, a1, a0, true); g.closePath();
+    g.fillStyle = col; g.fill();
+    g.save(); g.clip(); g.globalAlpha = .55; g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fillRect(-r1, -r1, 2 * r1, 2 * r1); g.restore();
+    g.strokeStyle = 'rgba(29,18,51,.6)'; g.lineWidth = 3; g.stroke();
+  }
+  function lchip(g, text, x, y, px, a, s, o) {
+    if (a <= 0) return; o = o || {};
+    chip(g, text, x, y, { px: px, a: a, s: s, bg: o.bg || INK2, fg: o.fg || CREAM, line: 'rgba(251,240,234,.55)', rot: o.rot || 0 });
+  }
+  function drawWatch(g, t) {
+    var st = stT(t), p = swPose(t); if (p.x < -500) return;
+    var nr = NOREC; NOREC = nr || p.moving;
+    g.save(); g.translate(p.x, p.y); g.rotate(p.rot); g.scale(p.s, p.s);
+    put(g, P.sw, 0, 0);
+    var s = p.s, chipPx = 38 / s, chipVis = clamp((s - .76) / .08, 0, 1);
+    /* hour numerals on the bezel, inked in on "Just" */
+    var na = st >= 0 ? fin(st, T.num, .3) : 0;
+    if (na > 0) [['25 H', 25], ['50 H', 50], ['75 H', 75]].forEach(function (L) { var q = pol(380, L[1]); txt(g, L[0], q[0], q[1] + 2, { px: Math.min(60, 38 / s), col: INK, align: 'center', a: na, ls: 1 }); });
+    /* the rings: yellow story on the inner ring (then two more 32 h arcs for "three times"), coral 100% on the outer ring */
+    if (st >= T.sw0) {
+      var hs = st < T.sw1 ? Math.min(32, handH(st)) : 32;
+      ring(g, IN0, IN1, 0, hs, YEL);
+      if (st >= T.b2) ring(g, IN0, IN1, 32, 32 + 32 * eio(seg(st, T.b2, T.b2 + .3)), YEL3);
+      if (st >= T.b3) ring(g, IN0, IN1, 64, 64 + 32 * eio(seg(st, T.b3, T.b3 + .3)), YEL2);
+    }
+    if (st >= T.s20) ring(g, OU0, OU1, 0, st < T.s21 ? Math.min(89.5, handH(st)) : 89.5, CORAL);
+    /* the 89½ line across both rings, on "times": the third story arc ends past it */
+    if (st >= T.mk) {
+      var mk = eio(seg(st, T.mk, T.mk + .3)), q0 = pol(150, 89.5), q1 = pol(150 + 215 * mk, 89.5);
+      g.save(); g.strokeStyle = RED; g.lineWidth = 7; g.setLineDash([16, 10]); g.lineCap = 'round'; g.beginPath(); g.moveTo(q0[0], q0[1]); g.lineTo(q1[0], q1[1]); g.stroke(); g.restore();
+    }
+    /* the spinning hand leaves a blur fan, and each 5 h tick it passes flashes */
+    var hv = st < T.g0 ? SPIN : st < T.g0 + 1 ? SPIN * (1 - (st - T.g0)) : 0;
+    if (hv > 20) {
+      var h0 = handH(st), span = hv * .06;
+      for (var b = 1; b <= 7; b++) { g.save(); g.rotate((h0 - span * b / 7) / 100 * TAU); g.globalAlpha *= .22 * (1 - b / 8); g.fillStyle = INK; rr(g, -7, -354, 14, 200, 6); g.fill(); g.restore(); }
+      for (var tk2 = 0; tk2 < 20; tk2++) { var dh = ((h0 - tk2 * 5) % 100 + 100) % 100; if (dh > span * 1.6) continue; var qq = pol(346, tk2 * 5); g.fillStyle = 'rgba(255,79,163,' + (.9 * (1 - dh / (span * 1.6))).toFixed(2) + ')'; g.beginPath(); g.arc(qq[0], qq[1], 11, 0, TAU); g.fill(); }
+    }
+    /* the hand: an outer pointer that paints as it goes */
+    g.save(); g.rotate(handH(st) / 100 * TAU);
+    g.save(); g.shadowColor = 'rgba(6,3,18,.4)'; g.shadowBlur = 8; g.shadowOffsetX = 4; g.shadowOffsetY = 6;
+    g.fillStyle = INK; rr(g, -7, -354, 14, 200, 6); g.fill();
+    g.fillStyle = RED; g.beginPath(); g.moveTo(-16, -312); g.lineTo(0, -364); g.lineTo(16, -312); g.closePath(); g.fill(); g.restore();
+    g.restore();
+    /* the window: ? on the hook, then STORY / 100% with a counter that rolls in whole hours and lands with its unit */
+    put(g, P.disc, 0, 0);
+    var fk = flipK(st, T.p5) * flipK(st, T.h100), labA = clamp((s - .7) / .05, 0, 1);
+    g.save(); g.scale(1, fk);
+    if (st < T.p5) {
+      var qs = kn(st, T.gta, .1) * kn(st, T.g0, .18) * (1 + .03 * Math.sin(st * 9));
+      g.save(); g.scale(qs, qs); g.rotate(-.05 + .05 * Math.sin(st * 4)); stk(g, '?', 0, 4, 230, { col: HOT, lw: 12 }); g.restore();
+    } else {
+      var hund = st >= T.h100, land = hund ? st >= T.c2L : st >= T.cL1, ta = hund ? T.c2L : T.cL1, roll = !land && (hund ? st >= T.s20 : st >= T.sw0), v = null;
+      if (land) v = hund ? '89½' : '32'; else if (roll) v = String(Math.floor(clamp(handH(st), 0, hund ? 89 : 32) + 1e-6));
+      if (labA > 0 && !roll) txt(g, hund ? '100%' : 'STORY', 0, land ? -86 : 2, { px: land ? 52 : 76, col: hund ? CORAL : YEL2, align: 'center', a: labA, ls: 2 });
+      var ks = land ? kn(st, ta, .14) : 1, nrr = NOREC; NOREC = NOREC || !land;
+      if (v !== null) { g.save(); g.translate(0, -4); g.scale(ks, ks); txt(g, v, 0, 0, { px: 116, col: land ? INK : '#8a7f9c', align: 'center' }); g.restore(); }
+      NOREC = nrr;
+      if (land) txt(g, 'HOURS', 0, 82, { px: 58, col: INK2, align: 'center', ls: 3, a: fin(st, ta, .1) });
+    }
+    g.restore();
+    if (st >= T.cL1 && st < T.h100 + .5 && fk > .9) { var u0 = st - T.cL1; if (u0 < .4) KIT.impact(g, 0, 0, u0, 1.15, YEL); }
+    if (st >= T.c2L && st - T.c2L < .4) KIT.impact(g, 0, 0, st - T.c2L, 1.15, CORAL);
+    /* ring chips: what each arc is (hidden while the dial is small) */
+    var q = pol(207, 16), aS = fin(st, T.cL1 + .15, .15) * chipVis * (1 - seg(st, T.b2 - .2, T.b2));
+    lchip(g, 'STORY · 32 H', q[0], q[1], chipPx, aS, kn(st, T.cL1 + .15, .12));
+    q = pol(207, 48); lchip(g, '2×', q[0], q[1], 52 / s, fin(st, T.b2 + .22, .12), kn(st, T.b2 + .22, .14));
+    q = pol(207, 80); lchip(g, '3×', q[0], q[1], 52 / s, fin(st, T.b3 + .22, .12), kn(st, T.b3 + .22, .14), { bg: RED });
+    /* the overshoot, circled in the pause: three story lengths end past the 100% line */
+    if (st >= T.scr) { q = pol(250, 92.8); KIT.scribble(g, q[0], q[1], 64, 56, eio(seg(st, T.scr, T.scr + .45)), HOT, 9, 3); }
+    /* the GTA 5 tape on the bezel, slapped on at "Just" */
+    if (st >= T.tape) { var tk = eo(seg(st, T.tape, T.tape + .12)), nrt = NOREC; NOREC = NOREC || tk < 1; g.save(); g.globalAlpha *= chipVis; putW(g, P.tape5, -222, 322, -.22, lerp(1.5, 1, tk) * kn(st, T.tape + .12, .06)); g.restore(); NOREC = nrt; }
+    /* the guess sticky with a pencil writing nothing in it */
+    if (st >= T.gs && st < T.gsO + .45) {
+      var gk = eo(seg(st, T.gs, T.gs + .14)), go = eio(seg(st, T.gsO, T.gsO + .4)), nrs = NOREC; NOREC = NOREC || gk < 1 || go > 0;
+      g.save(); g.globalAlpha *= fin(st, T.gs, .05); g.translate(-200 - go * 700, -220 - go * 300); g.rotate(-.09 - go * .8); var ss = lerp(1.35, 1, gk) * kn(st, T.gsPop, .06); g.scale(ss, ss);
+      putW(g, P.sticky, 0, 0);
+      var pu = st - T.gs, px = 30 + 40 * Math.sin(pu * 7), py = 50 + 6 * Math.sin(pu * 19);
+      g.save(); g.translate(px, py); g.rotate(-.9 + .08 * Math.sin(pu * 13));
+      g.fillStyle = 'rgba(6,3,18,.3)'; g.fillRect(6, -6, 170, 26); g.fillStyle = YEL; g.fillRect(0, -12, 150, 24); g.fillStyle = YEL2; g.fillRect(0, 2, 150, 10);
+      g.fillStyle = '#f2c79a'; g.beginPath(); g.moveTo(0, -12); g.lineTo(-36, 0); g.lineTo(0, 12); g.closePath(); g.fill(); g.fillStyle = INK; g.beginPath(); g.moveTo(-26, -4); g.lineTo(-36, 0); g.lineTo(-26, 4); g.closePath(); g.fill();
+      g.fillStyle = '#ff8fa8'; rr(g, 150, -12, 28, 24, 7); g.fill(); g.restore();
+      g.restore(); NOREC = nrs;
+    }
+    g.restore(); NOREC = nr;
+    return p;
+  }
+  /* the source tag: taped on the bezel when 32 lands, drops to the middle for the source line, goes back to the bezel */
+  function drawTag(g, t, p) {
+    var st = stT(t); if (st < T.cL1 || t > T.roll + 1) return;
+    var c = Math.cos(p.rot), sn = Math.sin(p.rot), ax = p.x + p.s * (c * TAGL[0] - sn * TAGL[1]), ay = p.y + p.s * (sn * TAGL[0] + c * TAGL[1]);
+    var x = lerp(ax, TAGSRC[0], p.ka), y = lerp(ay, TAGSRC[1], p.ka), s = lerp(p.s, 1, p.ka), rot = lerp(p.rot + .05, -.02, p.ka);
+    var ik = eo(seg(st, T.cL1 + .08, T.cL1 + .22)); s *= kn(st, T.mark, .04); y -= (1 - ik) * 140;
+    var nr = NOREC; NOREC = nr || p.moving || ik < 1;
+    g.save(); g.globalAlpha *= fin(st, T.cL1 + .08, .06); g.translate(x, y); g.rotate(rot); g.scale(s, s);
+    putW(g, P.tag, 0, 0);
+    tape(g, -120, -66, 70, 24, -.2); tape(g, 120, -66, 70, 24, .2);
+    if (st >= T.mark && p.ka > .9) KIT.marker(g, -150, 58, 300, 9, seg(st, T.mark, T.mark + .35), HOT);
+    g.restore(); NOREC = nr;
+  }
+  /* the jar: paper time slips from thousands of players fly in from both sides; the pile rises */
+  function drawJar(g, t) {
+    if (t < T.jar - .02 || t > T.jarO + .6) return;
+    var jk = cd(t, T.jar, 12), jo = e3i(seg(t, T.jarO, T.jarO + .45)), dy = (1 - jk) * 520 + jo * 700, nr = NOREC; NOREC = nr || jk < .995 || jo > 0;
+    /* slips in flight */
+    T.slips.forEach(function (sl, i) {
+      var u = seg(t, sl.t, sl.t + .8); if (u <= 0 || u >= 1 || sl.t > T.jarO) return;
+      var x = lerp(sl.x0, sl.x1, u), y = lerp(sl.y0, sl.y1 + dy, u) - 160 * 4 * u * (1 - u), r0 = sl.r + sl.side * u * 4;
+      g.save(); g.translate(x, y); g.rotate(r0); g.scale(1, Math.abs(Math.cos(u * 5 + i)) * .7 + .3); put(g, P.slip[i % 4], 0, 0); g.restore();
+    });
+    g.save(); g.translate(0, dy);
+    /* the pile inside the glass, clipped to the jar (x 722-910, y 990-1420) */
+    var lvl = 30 + 300 * seg(t, T.jar + .7, T.jarO);
+    g.save(); g.beginPath(); rr(g, 752, 1000, 156, 418, 30); g.clip();
+    for (var i = 0; i < 60; i++) { var row = Math.floor(i / 3), col = i % 3, py = 1404 - row * 22 - 6 * hash(i); if (1420 - py > lvl + 10) break; g.save(); g.translate(780 + col * 48 + 10 * hash(i * 2), py); g.rotate((hash(i * 3) - .5) * 1.2); g.scale(.75, .75); put(g, P.slip[i % 4], 0, 0); g.restore(); }
+    g.restore();
+    g.save(); rr(g, 750, 996, 160, 424, 32); g.fillStyle = 'rgba(200,230,255,.2)'; g.fill(); g.lineWidth = 7; g.strokeStyle = 'rgba(251,240,234,.85)'; g.stroke();
+    g.fillStyle = 'rgba(255,255,255,.35)'; rr(g, 766, 1024, 12, 300, 6); g.fill();
+    g.fillStyle = '#c9ced6'; rr(g, 756, 976, 148, 26, 8); g.fill(); g.strokeStyle = '#7d8492'; g.lineWidth = 3; g.stroke(); g.restore();
+    var kl = kn(t, T.thou, .06);
+    putW(g, P.jarLbl, 830, 1180, -.02, kl);
+    if (t >= T.thou) KIT.marker(g, 760, 1212, 140, 8, seg(t, T.thou, T.thou + .3), YEL);
+    g.restore(); NOREC = nr;
+  }
+  function stamp3(g, t) {
+    if (t < T.st3 - .02 || t > T.off + .4) return;
+    var k = eo(seg(t, T.st3, T.st3 + .2)), sl = eo(seg(t, T.slam, T.slam + .1)), ko = eio(seg(t, T.off, T.off + .3));
+    var sc = lerp(1.07, 1, sl) * kn(t, T.slam + .09, .04), lift = 16 * (1 - sl);
+    var nr = NOREC; NOREC = nr || k < 1 || ko > 0 || sl < 1;
+    g.save(); g.globalAlpha *= fin(t, T.st3, .08);
+    if (sl < 1) { g.save(); g.globalAlpha *= .3 * (1 - sl); g.fillStyle = '#06030f'; g.beginPath(); g.ellipse(520, 650, 270, 70, 0, 0, TAU); g.fill(); g.restore(); }
+    g.translate(510 - ko * 900, 628 - lift - ko * 160); g.rotate(-.04 - .03 * (1 - sl) - ko * .6 + .1 * (1 - k)); g.scale(sc, sc); putW(g, P.st3, 0, 0); g.restore();
+    NOREC = nr;
+    if (t >= T.slam && t < T.slam + .45) KIT.impact(g, 510, 628, t - T.slam, .75, HOT);
+  }
+
+  /* =====================================================================================================
+     THE 100% PUNCH CARD: 10 x 10 squares, each 1% of the completion score (GTABase weights)
+     ===================================================================================================== */
+  var CARD = [510, 970], PITCH = 48, CELL = 42, GX0 = -362, GY0 = -300;
+  function catOf(c) { return c < 55 ? 0 : c < 65 ? 1 : c < 75 ? 2 : c < 80 ? 3 : 4; }
+  function cellT(c) { var k = catOf(c); return k === 0 ? T.rk[0] + (T.fillL - .14 - T.rk[0]) * Math.sqrt(c / 54) : T.rk[k] + (c - CAT0[k]) * .3 / CATN[k]; }
+  function drawCard(g, t) {
+    if (t < T.cl - .02 || t > T.clO + .6) return;
+    var ck = cd(t, T.cl, 10), co = e3i(seg(t, T.clO, T.clO + .45)), push = 1 + .028 * eio(seg(t, T.rest0, T.clO)) * (1 - co);
+    var nr = NOREC; NOREC = nr || ck < .995 || co > 0;
+    g.save(); g.translate(CARD[0] + (1 - ck) * 980 - co * 1100, CARD[1] - co * 300); g.rotate(.14 * (1 - ck) - .4 * co + .004 * osc(t, 5, 1)); var kk = push * kn(t, T.full, .012) * kn(t, T.p55, .015); g.scale(kk, kk);
+    put(g, P.card, 0, 0);
+    if (t >= T.chkU) KIT.marker(g, -190, -372, 380, 12, seg(t, T.chkU, T.chkU + .3), YEL);
+    txt(g, '100% CHECKLIST', 0, -393, { px: 62, col: INK, align: 'center', ls: 2 });
+    txt(g, 'SHARE OF THE 100% SCORE · GTABASE', 0, -340, { px: 36, col: INK2, align: 'center', ls: 1 });
+    /* the squares: empty ones hatch while "the rest" is listed; each fills on its own word with a punched hole */
+    var hatch = t >= T.rest0 ? .25 + .2 * Math.sin(t * 8) : 0;
+    for (var c = 0; c < 100; c++) {
+      var x = GX0 + (c % 10) * PITCH, y = GY0 + Math.floor(c / 10) * PITCH, k = eo(seg(t, cellT(c), cellT(c) + .14));
+      if (k < 1) {
+        rr(g, x, y, CELL, CELL, 6); g.fillStyle = 'rgba(29,18,51,.06)'; g.fill(); g.strokeStyle = 'rgba(29,18,51,.32)'; g.lineWidth = 2; g.stroke();
+        g.strokeStyle = 'rgba(29,18,51,.22)'; g.beginPath(); g.arc(x + CELL / 2, y + CELL / 2, 6, 0, TAU); g.stroke();
+        if (hatch > 0 && catOf(c) > 0) { g.save(); rr(g, x, y, CELL, CELL, 6); g.clip(); g.globalAlpha *= hatch; g.strokeStyle = INK2; g.lineWidth = 4; var hs = (t * 50 + c * 3) % 14; for (var hx = -CELL + hs; hx < CELL; hx += 14) { g.beginPath(); g.moveTo(x + hx, y + CELL); g.lineTo(x + hx + CELL, y); g.stroke(); } g.restore(); }
+      }
+      if (k > 0) {
+        g.save(); g.translate(x + CELL / 2, y + CELL / 2); var sc = lerp(1.5, 1, k); g.scale(sc, sc); g.globalAlpha *= clamp(k * 2, 0, 1);
+        rr(g, -CELL / 2, -CELL / 2, CELL, CELL, 6); g.fillStyle = SECT[catOf(c)][2]; g.fill(); g.strokeStyle = INK; g.lineWidth = 2.5; g.stroke();
+        g.fillStyle = COB2; g.beginPath(); g.arc(0, 0, 7, 0, TAU); g.fill(); g.restore();
+      }
+    }
+    /* the rows: the story row on "story"; the other four enter dim on "The rest" and light up on their own words */
+    SECT.forEach(function (S, i) {
+      var tin = i === 0 ? T.row0 : T.dim; if (t < tin) return;
+      var y = 222 + i * 46, a = fin(t, tin, .15), lit = i === 0 ? 1 : seg(t, T.rk[i], T.rk[i] + .12), rk = cd(t, tin, 15), nrr = NOREC; NOREC = NOREC || rk < .99;
+      g.save(); g.translate((1 - rk) * -50, y); var pk = i === 0 ? kn(t, T.row0, .08) : kn(t, T.rk[i], .1); g.scale(pk, pk);
+      rr(g, -362, -17, 34, 34, 5); g.globalAlpha *= a; g.fillStyle = lit > 0 ? S[2] : 'rgba(29,18,51,.1)'; g.fill(); g.strokeStyle = INK; g.lineWidth = 2.5; g.stroke();
+      txt(g, S[0], -312, 1, { px: 38, col: INK, a: .42 + .58 * lit });
+      txt(g, S[1] + '%', 362, 1, { px: 38, col: i === 0 ? RED : INK2, align: 'right', a: .42 + .58 * lit });
+      g.restore(); NOREC = nrr;
+    });
+    /* the right column: the story's share, big */
+    if (t >= T.fillL) {
+      var ra = fin(t, T.fillL, .1), land = t >= T.fillL, v = 55;
+      txt(g, 'STORY', 255, -252, { px: 52, col: YEL2, align: 'center', a: ra, ls: 2 });
+      var nrv = NOREC; NOREC = NOREC || !land;
+      if (t >= T.fill) { g.save(); g.translate(255, -150); var vs = land ? kn(t, T.fillL, .12) : 1; g.scale(vs, vs); txt(g, v + '%', 0, 0, { px: 132, col: land ? RED : '#8a7f9c', align: 'center', a: ra }); g.restore(); }
+      NOREC = nrv;
+      txt(g, 'OF 100%', 255, -60, { px: 40, col: INK2, align: 'center', a: fin(t, T.fillL, .15), ls: 2 });
+      if (t >= T.p55) KIT.scribble(g, 255, -150, 120, 84, eio(seg(t, T.p55, T.p55 + .45)), HOT, 9, 5);
+    }
+    /* the hole punch: the lever drops on each section's word and chads fall out */
+    drawPunch(g, t, 255, 70);
+    g.restore(); NOREC = nr;
+  }
+  function drawPunch(g, t, x, y) {
+    var pr = 0, last = -1;
+    T.rk.forEach(function (tk, i) { var b = bump(t, tk - .02, .3); if (b > pr) pr = b; if (t >= tk) last = i; });
+    g.save(); g.translate(x, y);
+    g.fillStyle = 'rgba(6,3,18,.25)'; rr(g, -100, 48, 210, 44, 10); g.fill();
+    g.fillStyle = INK2; rr(g, -105, 40, 210, 44, 10); g.fill();
+    g.fillStyle = '#c9ced6'; rr(g, 40, -34, 44, 80, 8); g.fill(); g.fillStyle = '#9aa1ad'; rr(g, 40, 20, 44, 26, 6); g.fill();
+    g.save(); g.translate(62, -28); g.rotate(-.32 + .3 * pr);
+    g.fillStyle = 'rgba(6,3,18,.25)'; rr(g, -186, -10, 200, 30, 12); g.fill();
+    g.fillStyle = RED; rr(g, -190, -18, 206, 30, 12); g.fill(); g.fillStyle = 'rgba(255,255,255,.25)'; rr(g, -180, -16, 180, 8, 4); g.fill();
+    g.fillStyle = '#5d6370'; g.beginPath(); g.arc(0, -3, 9, 0, TAU); g.fill();
+    g.restore();
+    /* chads */
+    T.rk.forEach(function (tk, i) {
+      var u = t - tk - .12; if (u < 0 || u > .9) return;
+      for (var j = 0; j < 4; j++) { var cx = 62 + (hash(i * 9 + j) - .5) * 40 + u * 30 * (j - 1.5), cy = 70 + 520 * u * u + 40 * u; if (cy > 240) continue; g.fillStyle = SECT[i][2]; g.beginPath(); g.arc(cx, cy, 6, 0, TAU); g.fill(); g.strokeStyle = INK; g.lineWidth = 1.5; g.stroke(); }
+    });
     g.restore();
   }
 
   /* =====================================================================================================
-     TIME AND STATE
+     THE PICK-ONE BOX: GTA 6 on a plate, a pencil fork to two identical buttons (no length, no outline)
      ===================================================================================================== */
-  var T = {}, LIVE2 = { bg: true, clip: true };
-  function tq(t) { return (Math.floor(t * 30) + .5) / 30; }
-  function stepv(t, v0, L) { var v = v0; for (var i = 0; i < L.length; i++) { var s = L[i]; if (t < s[0]) break; v = lerp(v, s[1], eio(seg(t, s[0], s[0] + (s[2] || .5)))); } return v; }
-  function zoomAt(t) { return stepv(t, lerp(12.6, 12, eio(seg(t, 0, 2.6))), T.ZK); }
-  function txAt(id, t) { var x0 = T.X0[id]; if (id === 'st') x0 = lerp(205, 240, eio(seg(t, 0, 1.1))); else if (id === 'cp') x0 = lerp(690, 650, eio(seg(t, .1, 1.6))); return stepv(t, x0, T.XK[id] || []); }
-  function twAt(id, t) { return stepv(t, T.W0[id], T.WK[id] || []); }
-  function topY(id, t) { return FLOOR - TW[id].M * KM * zoomAt(t); }
-  function fmt(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
-  /* the frame-0 tower is mid-build: half its blocks on frame 0, all of them by 0.9 s */
-  function stgrow(t) { return clamp(.5 + .5 * Math.pow(clamp(t / .9, 0, 1), 1.4), 0, 1); }
-
-  /* ---------- the world: wall, sun, rays, palms, height lines; it bleeds the frame (no words outside the rail) ---------- */
-  /* boxes that ruler numbers must never sit under (tags, counters, the stamp) */
-  function blockers(t) {
-    var B = [], stx = txAt('st', t), stt = topY('st', t);
-    if (t >= T.src && t < T.srcO + .45) B.push([stx + 10 - 210, 1185 - 100, stx + 10 + 210, 1185 + 100]);
-    if (t >= T.cnt0 && t < T.cntO + .45) B.push([stx - 175, stt - 190, stx + 175, stt - 10]);
-    if (t >= T.stTag && t < T.off + .45) { var ty = Math.max(stt - 110, 1250); B.push([stx - 22 - 160, ty - 85, stx - 22 + 160, ty + 85]); }
-    if (t >= T.st3 && t < T.off + .45) B.push([90, ST3Y - 90, 500, ST3Y + 90]);
-    return B;
-  }
-  var ST3Y = 600;
-  function world(g, t) {
-    g.drawImage(P.wall, 0, 0);
-    /* the sun high on the left and drifting paper clouds (periodic, so the loop is seamless) */
-    g.save(); g.beginPath(); g.rect(0, 0, W, FLOOR); g.clip();
-    var sg = g.createRadialGradient(250, 300, 30, 250, 300, 260); sg.addColorStop(0, 'rgba(255,236,170,.9)'); sg.addColorStop(.45, 'rgba(255,214,120,.45)'); sg.addColorStop(1, 'rgba(255,214,120,0)');
-    g.fillStyle = sg; g.beginPath(); g.arc(250, 300, 260, 0, TAU); g.fill(); g.fillStyle = 'rgba(255,240,190,.95)'; g.beginPath(); g.arc(250, 300, 70, 0, TAU); g.fill();
-    for (var k = 0; k < 4; k++) { var cxp = ((k * 330 + 1400 * t / DUR) % 1500) - 210; cloud(g, cxp, 470 + (k % 2) * 170 + 20 * Math.sin(k * 2), .8 + .25 * (k % 3) / 2); }
-    g.restore();
-    palm(g, -40, FLOOR + 10, 1.25, t, 0); palm(g, 1120, FLOOR + 10, -1.25, t, 2);
-    /* pencil height lines every 10 hours; they slide as the chart rescales; a number never sits under a tag */
-    var ra = seg(t, T.ruler, T.ruler + .4) * (1 - seg(t, T.off, T.off + .4));
-    if (ra > 0) {
-      var Z = zoomAt(t), Bk = blockers(t);
-      for (var m = 10; m <= 90; m += 10) {
-        var y = FLOOR - m * KM * Z; if (y < 520) break;
-        g.save(); g.globalAlpha = .55 * ra; g.strokeStyle = 'rgba(29,18,51,.55)'; g.lineWidth = 2; g.setLineDash([14, 12]); g.beginPath(); g.moveTo(96, y); g.lineTo(924, y); g.stroke(); g.restore();
-        var hid = Bk.some(function (b) { return b[0] < 175 && b[2] > 95 && b[1] < y - 2 && b[3] > y - 46; });
-        if (!hid) {
-          g.save(); g.globalAlpha = .82 * ra; g.fillStyle = '#fbf3df'; rr(g, 92, y - 46, 88, 42, 6); g.fill(); g.restore();
-          txt(g, m + ' H', 100, y - 24, { px: 36, col: INK2, a: ra, wt: 800 });
-        }
-      }
-    }
-  }
-
-  /* ---------- a tower: cases stacked from the floor; the newest one drops in ---------- */
-  function drawStack(g, id, x, w, gk, t, o) {
-    o = o || {}; var D = TW[id], Z = zoomAt(t), Ht = D.M * KM * Z, ch = Ht / D.N, full = clamp(gk, 0, 1) * D.N, n = Math.floor(full + 1e-6), fr = full - n;
-    if (!o.noShadow) { g.save(); g.globalAlpha *= .4; g.fillStyle = '#0b0418'; g.beginPath(); g.ellipse(x + 10, FLOOR + 6, w * .62, 14, 0, 0, TAU); g.fill(); g.restore(); }
-    for (var i = 0; i < D.N; i++) {
-      if (i > n || (i === n && fr <= .001)) break;
-      var drop = 0, a = 1;
-      if (i === n) { var k = eo(fr); drop = (1 - k) * 150; a = clamp(fr * 5, 0, 1); }
-      var lvl = (i + 1) / D.N, jx = (hash(i * 7.3 + D.seed) - .5) * 12 + (o.sway || 0) * lvl * lvl, jr = (hash(i * 3.1 + D.seed) - .5) * .022;
-      var yb = FLOOR - i * ch - drop;
-      g.save(); g.globalAlpha *= a; put(g, P.case[id], x + jx - w / 2, yb - ch, jr, w / 240, ch / 40); g.restore();
-    }
-  }
-  function towerSway(t, a) { return sw(t, a, 16, 9, 3.5); }
-
-  /* the sheet over the second tower: cream paper, a big ?, it flutters; it rips in two on the reveal */
-  function sheetPath(g, x, w, top, t, lift) {
-    var L = x - w / 2 - 14, R = x + w / 2 + 14, fl = 6 * osc(t, 11, .3) + sw(t, T.flut, 14, 10, 3) + sw(t, T.tug, 18, 12, 4);
-    g.beginPath(); g.moveTo(L + fl * .3, FLOOR + 2 - lift);
-    g.lineTo(L + 6, top + 40); g.quadraticCurveTo(L + 10, top - 6, x - w * .2, top - 10); g.quadraticCurveTo(x, top - 22, x + w * .2, top - 10); g.quadraticCurveTo(R - 10, top - 6, R - 6, top + 40);
-    var cl = T.guess != null ? 110 * (eo(seg(t, T.guess, T.guess + .25)) - eio(seg(t, T.guess + 1.2, T.guess + 1.6))) : 0;
-    g.lineTo(R + fl * .3 + cl * .25, FLOOR + 2 - lift - cl);
-    for (var k = 1; k <= 8; k++) { var xx = R - (R - L) * k / 8; g.lineTo(xx + fl * .2, FLOOR + 2 - lift - cl * Math.max(0, 1 - k / 4) - 8 * Math.sin(k * 1.9 + t * 4) * (.4 + .6 * Math.abs(fl) / 14)); }
-    g.closePath();
-  }
-  function drawSheet(g, x, w, t, side, k) {
-    var Z = zoomAt(t), top = Math.max(500, FLOOR - TW.cp.M * KM * Z - 12), lift = T.tease != null ? 44 * bump(t, T.tease, .8) : 0;
-    g.save();
-    if (side) {
-      /* one half of the torn sheet, flying away */
-      var dx = side * 330 * eo(k), dy = -520 * k + 300 * k * k, rt = side * .7 * k;
-      g.globalAlpha *= 1 - seg(k, .45, 1); g.translate(x + dx, (top + FLOOR) / 2 + dy); g.rotate(rt); g.translate(-x, -(top + FLOOR) / 2);
-      g.beginPath(); var r = mulberry(77); g.moveTo(x, top - 40); for (var yy = top; yy < FLOOR + 20; yy += 34) g.lineTo(x + (r() - .5) * 30, yy); g.lineTo(x + side * 900, FLOOR + 40); g.lineTo(x + side * 900, top - 40); g.closePath(); g.clip();
-    }
-    g.save(); g.shadowColor = 'rgba(6,3,18,.5)'; g.shadowBlur = 16; g.shadowOffsetX = 6; g.shadowOffsetY = 10; sheetPath(g, x, w, top - lift, t, lift); g.fillStyle = PADC; g.fill(); g.restore();
-    g.save(); sheetPath(g, x, w, top - lift, t, lift); g.clip();
-    g.globalAlpha = .7; g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fillRect(x - w, top - 60, w * 2, FLOOR - top + 120); g.globalAlpha = 1;
-    /* drape folds */
-    for (var f = -2; f <= 2; f++) { var fx = x + f * w * .22 + 6 * osc(t, 7, f); var fg = g.createLinearGradient(fx - 22, 0, fx + 22, 0); fg.addColorStop(0, 'rgba(29,18,51,0)'); fg.addColorStop(.5, 'rgba(29,18,51,.12)'); fg.addColorStop(1, 'rgba(29,18,51,0)'); g.fillStyle = fg; g.fillRect(fx - 22, top + 30, 44, FLOOR - top); }
-    g.restore();
-    g.save(); sheetPath(g, x, w, top - lift, t, lift); g.strokeStyle = 'rgba(255,253,245,.9)'; g.lineWidth = 2.4; g.stroke(); g.restore();
-    /* the ?: pulses on "Guess." */
-    var qy = top - lift + Math.min(250, (FLOOR - top) * .3), qs = kn(t, T.guess, .16) * kn(t, T.tease, .1);
-    g.save(); g.translate(x, qy); g.rotate(-.06 + .04 * osc(t, 6, 1) + sw(t, T.guess, .1, 9, 3)); g.scale(qs, qs);
-    var nr = NOREC; NOREC = nr || !!side; stk(g, '?', 0, 0, 230, { col: HOT, lw: 12 }); NOREC = nr; g.restore();
+  function dome(g, x, y, press, tilt) {
+    g.save(); g.translate(x, y); g.rotate(tilt);
+    g.fillStyle = 'rgba(6,3,18,.35)'; g.beginPath(); g.ellipse(8, 14, 132, 34, 0, 0, TAU); g.fill();
+    g.fillStyle = INK2; g.beginPath(); g.ellipse(0, 6, 128, 32, 0, 0, TAU); g.fill();
+    g.fillStyle = '#5d6370'; g.beginPath(); g.ellipse(0, 0, 114, 26, 0, 0, TAU); g.fill();
+    var h = 92 * (1 - .4 * press);
+    g.fillStyle = DOME; g.beginPath(); g.ellipse(0, 0, 104, 24, 0, 0, Math.PI); g.ellipse(0, 0, 104, h, 0, Math.PI, TAU); g.closePath(); g.fill();
+    g.fillStyle = 'rgba(0,0,0,.18)'; g.beginPath(); g.ellipse(0, 0, 104, 24, 0, 0, Math.PI); g.closePath(); g.fill();
+    g.fillStyle = 'rgba(255,255,255,.4)'; g.beginPath(); g.ellipse(-36, -h * .55, 30, h * .2, -.4, 0, TAU); g.fill();
+    g.strokeStyle = INK; g.lineWidth = 4; g.beginPath(); g.ellipse(0, 0, 104, h, 0, Math.PI, TAU); g.stroke();
     g.restore();
   }
-  /* ---------- hanging tags: paper on two strings from above, swaying a little ---------- */
-  function hangTag(g, pc, x, y, tin, tout, t, o) {
-    o = o || {}; var od = o.od || .4; if (t < tin - .02 || t > tout + od + .05) return;
-    var k = cd(t, tin, o.w || 13), ko = eio(seg(t, tout, tout + od)), dy = -(1 - k) * 260 - ko * 900, sway = .025 * osc(t, 5, x * .01) + sw(t, tin + .12, .05, 8, 3) + (o.kick ? sw(t, o.kick, .06, 9, 3) : 0);
-    var nr = NOREC; NOREC = nr || k < .97 || ko > 0;
-    g.save(); g.globalAlpha *= fin(t, tin, .08); g.translate(x, y + dy); g.rotate(sway + (o.rot || 0));
-    var hw = pc.w / 2 - 50, hh = pc.h / 2 - 36;
-    putW(g, pc, 0, 0, 0, o.s || 1);
-    tape(g, -hw * .6, -pc.h / 2 + 38, 60, 22, -.25); tape(g, hw * .6, -pc.h / 2 + 38, 60, 22, .25);
-    g.restore(); NOREC = nr;
-  }
-  /* taped paper: settles onto a face, leaves by flying off */
-  function taped(g, pc, x, y, rot, tin, tout, t, o) {
-    o = o || {}; var od = o.od || .4; if (t < tin - .02 || t > tout + od + .05) return;
-    var k = cd(t, tin, o.w || 14), ko = eio(seg(t, tout, tout + od)), s = (o.s || 1) * (o.slam ? lerp(1.4, 1, eo(seg(t, tin, tin + .14))) * kn(t, tin + .12, .05) : 1) * (o.kick ? kn(t, o.kick, .08) : 1);
-    var nr = NOREC; NOREC = nr || k < .97 || ko > 0 || (o.slam && t < tin + .16);
-    g.save(); g.globalAlpha *= fin(t, tin, .06); g.translate(x + (o.dir || 1) * 1100 * ko + (1 - k) * (o.fromX || 0), y - 200 * ko + (1 - k) * (o.fromY == null ? -120 : o.fromY)); g.rotate(rot + (o.dir || 1) * .5 * ko + .2 * (1 - k)); g.scale(s, s);
-    putW(g, pc, 0, 0);
-    if (o.draw) o.draw(g, k, ko);
-    if (o.tape !== false) tape(g, 0, -pc.h / 2 + 34, 90, 26, .05);
-    g.restore(); NOREC = nr;
-  }
-  function counter(g, pc, x, y, v, landed, t, line2, ta, o) {
-    o = o || {};
-    putW(g, pc, x, y, o.rot || 0);
-    g.save(); g.translate(x, y); g.rotate(o.rot || 0);
-    var nr = NOREC; NOREC = nr || !landed;
-    if (landed && o.pre) txt(g, o.pre, 0, -44, { px: 40, col: INK2, align: 'center', ls: 3, a: fin(t, ta, .1) });
-    var s = landed ? kn(t, ta, .1) : 1; g.save(); g.translate(0, o.pre || line2 ? 14 : 0); g.scale(s, s);
-    txt(g, fmt(v) + (landed && o.plus ? '+' : ''), 0, line2 && !o.pre ? -16 : 0, { px: o.px || 76, col: landed ? INK : '#7a6a8f', align: 'center', ls: 1 });
+  function drawEnd(g, t) {
+    if (t < T.box - .02 || t > T.seamC + .5) return;
+    var bk = cd(t, T.box, 11), bo = e3i(seg(t, T.seamC, T.seamC + .4)), dy = (1 - bk) * 760 + bo * 900;
+    var rum = t > T.pick ? 7 * Math.sin((t - T.pick) * 55) * Math.exp(-(t - T.pick) * 4.5) : 0;
+    var nr = NOREC; NOREC = nr || bk < .995 || bo > 0;
+    /* the plate on two strings, swinging in on "GTA" */
+    var pk = cd(t, T.pl6, 11), py = 606 - (1 - pk) * 520 - bo * 800, prot = sw(t, T.pl6 + .1, .08, 6, 2.2) + .02 * osc(t, 7) + sw(t, T.pick, .04, 9, 3);
+    g.save(); g.translate(510, py); g.rotate(prot);
+    g.strokeStyle = 'rgba(251,240,234,.8)'; g.lineWidth = 3; g.beginPath(); g.moveTo(-110, -56); g.lineTo(-150, -420); g.moveTo(110, -56); g.lineTo(150, -420); g.stroke();
+    putW(g, P.plate6, 0, 0, 0, kn(t, T.pl6k, .1));
     g.restore();
-    if (landed && line2) txt(g, line2, 0, 48, { px: 40, col: INK2, align: 'center', ls: 3, a: fin(t, ta, .1) });
-    NOREC = nr; g.restore();
-  }
-
-
-  /* ---------- an hour counter: rolls in whole hours (grey, no unit), lands on the page's own value with its unit ---------- */
-  function hourCounter(g, pc, x, y, shown, landed, t, ta) {
-    putW(g, pc, x, y, 0);
-    g.save(); g.translate(x, y);
-    var nr = NOREC; NOREC = nr || !landed;
-    var s = landed ? kn(t, ta, .1) : 1; g.save(); g.translate(0, -12); g.scale(s, s);
-    txt(g, shown, 0, 0, { px: 96, col: landed ? INK : '#7a6a8f', align: 'center', ls: 1 });
+    /* the pencil fork: the trunk, then one branch per option, drawn on its words */
+    g.save(); g.translate(0, bo * 900);
+    var tk = eio(seg(t, T.pl6 + .3, T.pl6 + .65));
+    if (tk > 0) { g.strokeStyle = CREAM; g.lineWidth = 11; g.lineCap = 'round'; g.setLineDash([22, 16]); g.lineDashOffset = -t * 40; g.beginPath(); g.moveTo(510, 680); g.lineTo(510, 680 + 120 * tk); g.stroke(); g.setLineDash([]); }
+    KIT.arrow(g, 510, 805, 318, 958, eio(seg(t, T.ks, T.ks + .45)), CREAM, 11, -.22);
+    KIT.arrow(g, 510, 805, 702, 958, eio(seg(t, T.kp, T.kp + .45)), CREAM, 11, .22);
     g.restore();
-    if (landed) txt(g, 'HOURS', 0, 58, { px: 44, col: INK2, align: 'center', ls: 4, a: fin(t, ta, .1) });
-    NOREC = nr; g.restore();
+    /* the box and its two identical buttons */
+    var bx = 510 + rum, by = 1090 + dy;
+    put(g, P.box, bx, by);
+    var dbl = Math.max(bump(t, T.dbl - .02, .14), bump(t, T.dbl2 - .02, .14)), pl = Math.max(bump(t, T.ksP, .32), .6 * bump(t, T.pick, .4), .6 * bump(t, T.pick2, .4), dbl), pr2 = Math.max(bump(t, T.kpP, .32), .6 * bump(t, T.pick, .4), .6 * bump(t, T.pick2, .4), dbl);
+    dome(g, bx - 210, by + 2, pl, -.07 * bump(t, T.pick, .5) + .015 * osc(t, 8));
+    dome(g, bx + 210, by + 2, pr2, .07 * bump(t, T.pick, .5) - .015 * osc(t, 8));
+    putW(g, P.plS, bx - 210, by + 172, -.02, kn(t, T.ks, .1) * kn(t, T.pick, .05));
+    putW(g, P.plC, bx + 210, by + 172, .02, kn(t, T.kp, .1) * kn(t, T.pick, .05));
+    stk(g, 'OR', bx, by + 172, 58, { col: CREAM });
+    NOREC = nr;
   }
-  function dropIn(t, a, out) { return { k: cd(t, a, 13), o: eio(seg(t, out, out + .45)) }; }
 
   /* ---------- the prop layer (screen space, clipped to the rail) ---------- */
   function props(g, t) {
-    var Z = zoomAt(t), offk = eio(seg(t, T.off, T.off + .55)) * (1 - eio(seg(t, T.back, T.back + .6))), endk = t >= T.back;
-    var stx = txAt('st', t) - 1000 * offk, stw = twAt('st', t), stt = topY('st', t), cpx = txAt('cp', t) + 1000 * offk * (endk ? 1 : -1), cpw = twAt('cp', t), cpt = topY('cp', t);
-    var nrOff = NOREC; NOREC = nrOff || offk > 0;
-    if (offk < 1) {
-      /* the story tower: built on frame 0, block by block */
-      drawStack(g, 'st', stx, stw, stgrow(t), t, { sway: towerSway(t, T.cntL) + towerSway(t, T.rv + .3) * .5 + towerSway(t, T.yes + .1) });
-      if (!endk) putW(g, P.pl.st, stx, FLOOR - 52, 0, kn(t, T.p5, .12) * kn(t, T.pk5, .08));
-      /* the 100% tower: under the sheet until "100 percent?", then it rises block by block */
-      if (t >= T.rip - .02) {
-        drawStack(g, 'cp', cpx, cpw, endk ? 1 : Math.pow(seg(t, T.rip + .05, T.cpL), 1.2), t, { sway: towerSway(t, T.cpL) + towerSway(t, T.snap) * .6 + towerSway(t, T.no + .1) });
-        if (!endk) putW(g, P.pl.cp, cpx, FLOOR - 52, 0, kn(t, T.rip + .1, .1));
-      }
-      if (t < T.rip + .6) {
-        if (t < T.rip) drawSheet(g, cpx, cpw, t);
-        else { var rk = seg(t, T.rip, T.rip + .6); drawSheet(g, cpx, cpw, t, -1, rk); drawSheet(g, cpx, cpw, t, 1, rk); }
-      }
-    }
-    NOREC = nrOff;
-    /* the story counter rests on top of the tower and rolls to 32; HOURS prints only once it lands */
-    if (t >= T.cnt0 - .02 && t < T.cntO + .5) {
-      var d1 = dropIn(t, T.cnt0, T.cntO), l1 = t >= T.cntL, v1 = Math.floor(32 * eio(seg(t, T.roll0, T.cntL)));
-      var nr = NOREC; NOREC = nr || d1.k < .97 || d1.o > 0;
-      g.save(); g.globalAlpha *= fin(t, T.cnt0, .06) * (1 - d1.o); g.translate(0, -(1 - d1.k) * 300 - d1.o * 400);
-      hourCounter(g, P.cnt, stx, stt - 100, l1 ? '32' : String(v1), l1, t, T.cntL);
-      g.restore(); NOREC = nr;
-      if (l1) KIT.impact(g, stx, stt - 100, t - T.cntL, 1.1, CREAM);
-    }
-    /* whose number: players' average, HowLongToBeat, how many players (underlined as each is said) */
-    taped(g, P.src, stx + 10, 1185, .03, T.src, T.srcO, t, { fromX: -200, dir: -1, kick: T.thou });
-    if (t >= T.mark && t < T.srcO) { g.save(); g.translate(stx + 10 - 150, 1185 + 26); g.rotate(.03); KIT.marker(g, 0, 0, 300, 12, seg(t, T.mark, T.mark + .3), HOT); g.restore(); }
-    if (t >= T.thou && t < T.srcO) { g.save(); g.translate(stx + 10 - 130, 1185 + 78); g.rotate(.03); KIT.marker(g, 0, 0, 260, 10, seg(t, T.thou, T.thou + .3), YEL); g.restore(); }
-    /* from the reveal on, each tower keeps its own number and owner on a tag */
-    hangTag(g, P.stTag, stx - 22, Math.max(stt - 110, 1250), T.stTag, T.off, t, { kick: T.cpL });
-    /* 100%: the counter drops on the rising tower and lands on 89½ */
-    if (t >= T.c2 - .02 && t < T.off + .5) {
-      var d2 = dropIn(t, T.c2, T.off), l2 = t >= T.c2L, v2 = Math.floor(89 * eio(seg(t, T.roll2, T.c2L)));
-      var nr2 = NOREC; NOREC = nr2 || d2.k < .97 || d2.o > 0;
-      g.save(); g.globalAlpha *= fin(t, T.c2, .06) * (1 - d2.o); g.translate(0, -(1 - d2.k) * 300 - d2.o * 400);
-      hourCounter(g, P.cnt2, Math.min(cpx, 775), Math.max(cpt, 700) + 140, l2 ? '89½' : String(v2), l2, t, T.c2L);
-      g.restore(); NOREC = nr2;
-      if (l2) KIT.impact(g, Math.min(cpx, 775), Math.max(cpt, 700) + 140, t - T.c2L, 1.1, CREAM);
-    }
-    taped(g, P.cpTag, cpx + 5, 1180, -.03, T.cpTag, T.off, t, { fromY: 60, dir: 1 });
-    /* nearly three times: three story-sized brackets stack up beside the 100% tower (3 x 32 = 96 h, just over 89½) */
-    if (t >= T.b1 - .02 && t < T.off + .5) {
-      var bx = cpx - cpw / 2 - 62, ho = 1 - eio(seg(t, T.off, T.off + .3));
-      var nrB = NOREC; NOREC = nrB || ho < 1;
-      g.save(); g.globalAlpha *= ho;
-      [T.b1, T.b2, T.b3].forEach(function (tb, i) {
-        var bk = eo(seg(t, tb, tb + .3)); if (bk <= 0) return;
-        var y0 = FLOOR - i * 32 * Z, y1 = FLOOR - (i + 1) * 32 * Z, ym = lerp(y0, y1, bk), sn = i === 2 ? kn(t, T.snap, .06) : 1;
-        g.lineCap = 'round'; g.lineJoin = 'round';
-        [[INK, 20], [HOT, 11]].forEach(function (s) { g.strokeStyle = s[0]; g.lineWidth = s[1]; g.beginPath(); g.moveTo(bx + 24, y0 - 6); g.lineTo(bx, y0 - 6); g.lineTo(bx, ym + 6); if (bk >= 1) g.lineTo(bx + 24, y1 + 6); g.stroke(); g.beginPath(); g.moveTo(bx, (y0 + y1) / 2); g.lineTo(bx - 20 * sn, (y0 + y1) / 2); g.stroke(); });
-        var nr3 = NOREC; NOREC = nr3 || bk < 1;
-        slam(g, (i + 1) + '×', bx - 70, (y0 + y1) / 2, 64, t - tb - .05, { col: i === 2 ? HOT : CREAM, rot: -.04 });
-        NOREC = nr3;
-      });
-      /* the 96 h line starts with the first bracket and creeps up with each one */
-      var lvl = 32 * (eo(seg(t, T.b1, T.b1 + .3)) + eo(seg(t, T.b2, T.b2 + .3)) + eo(seg(t, T.b3, T.b3 + .3)));
-      g.save(); g.strokeStyle = 'rgba(29,18,51,.75)'; g.lineWidth = 4; g.setLineDash([14, 10]); g.lineDashOffset = -t * 40; g.beginPath(); g.moveTo(bx - 4, FLOOR - lvl * Z); g.lineTo(cpx + cpw / 2, FLOOR - lvl * Z); g.stroke(); g.restore();
-      g.restore(); NOREC = nrB;
-    }
-    taped(g, P.st3, 300, ST3Y, -.06, T.st3, T.off - .3, t, { slam: true, tape: false, dir: -1, od: .3 });
-    if (t >= T.st3 && t < T.st3 + .5) KIT.impact(g, 300, ST3Y, t - T.st3, 1.3, HOT);
-    /* the checklist: five sections drawn to GTABase's weights; only the story is ticked */
-    if (t >= T.cl - .02 && t < T.clO + .5) {
-      var ck = cd(t, T.cl, 12), co = eio(seg(t, T.clO, T.clO + .45)), nr5 = NOREC; NOREC = nr5 || ck < .97 || co > 0;
-      g.save(); g.globalAlpha *= fin(t, T.cl, .06); g.translate(510 + 1100 * co, SHY - (1 - ck) * 700 - 150 * co); g.rotate(-.015 + .25 * (1 - ck) + .4 * co + .006 * osc(t, 4, 1)); var ks = kn(t, T.st55, .02) * (1 + .035 * eio(seg(t, T.circ - .3, T.st55))); g.scale(ks, ks);
-      put(g, P.sheet, 0, 0);
-      putW(g, P.chk, 0, -CLH / 2 + 110, 0);
-      /* the weight bar: 600 px = 100 % */
-      var bx0 = -300;
-      /* the unfilled 45 %: marching pencil hatching until the other rows paint over it */
-      if (t >= T.fill + .3) {
-        g.save(); g.beginPath(); g.rect(30, -228, 268, 56); g.clip(); g.globalAlpha *= .55 * fin(t, T.fill + .3, .2);
-        g.strokeStyle = INK2; g.lineWidth = 6; var hs = (t * 60) % 28;
-        for (var hx = 30 - 80 + hs; hx < 310; hx += 28) { g.beginPath(); g.moveTo(hx, -172); g.lineTo(hx + 56, -228); g.stroke(); }
-        g.restore();
-      }
-      SECT.forEach(function (S, i) {
-        var tin = T.row[i], k2 = i === 0 ? eio(seg(t, T.fill, T.fill + .45)) : eo(seg(t, T.rk[i], T.rk[i] + .25)), w = 6 * S[1];
-        if (k2 > 0) { g.fillStyle = S[2]; rr(g, bx0 + 2, -230, Math.max(0, w * k2 - 4), 60, 6); g.fill(); if (i === 0 && k2 >= 1) txt(g, '55%', bx0 + w / 2, -200, { px: 44, col: INK, align: 'center' }); }
-        if (i === 0 && t >= T.circ) KIT.scribble(g, bx0 + w / 2, -200, 120, 48, eio(seg(t, T.circ, T.circ + .9)), HOT, 8, 3);
-        bx0 += w;
-        if (t < tin) return;
-        var rk2 = cd(t, tin, 15), y = -105 + i * 94, nr7 = NOREC; NOREC = NOREC || rk2 < .97;
-        g.save(); g.globalAlpha *= fin(t, tin, .08); g.translate((1 - rk2) * -60, y); if (i > 0) { var kk = kn(t, T.rk[i], .06); g.scale(kk, kk); }
-        g.fillStyle = S[2]; rr(g, -300, -22, 44, 44, 6); g.fill(); g.strokeStyle = INK; g.lineWidth = 3; g.stroke();
-        if (i === 0 && t >= T.tick) { var tk = seg(t, T.tick, T.tick + .2); g.strokeStyle = INK; g.lineWidth = 7; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(-292, 0); g.lineTo(-282, 12 * Math.min(1, tk * 2)); if (tk > .5) g.lineTo(-282 + 22 * (tk - .5) * 2, 12 - 30 * (tk - .5) * 2); g.stroke(); }
-        txt(g, S[0], -240, 2, { px: 42, col: INK, align: 'left' });
-        txt(g, S[1] + '%', 300, 2, { px: 46, col: i === 0 ? HOT : INK2, align: 'right' });
-        g.restore(); NOREC = nr7;
-      });
-      txt(g, 'SOURCE: GTABASE 100% GUIDE', 0, CLH / 2 - 70, { px: 36, col: INK2, align: 'center', a: fin(t, T.cl + .3, .2) });
-      g.restore(); NOREC = nr5;
-    }
-    taped(g, P.st55, 560, 1372, -.05, T.st55, T.clO, t, { slam: true, tape: false, dir: 1 });
-    if (t >= T.st55 && t < T.st55 + .5) KIT.impact(g, 560, 1372, t - T.st55, 1.2, HOT);
-    /* end: the two towers come back as small ones beside GTA 6's empty spot; two identical answers on top */
-    if (t >= T.pl6 - .02 && t < T.seamC + .1) {
-      var pk = cd(t, T.pl6, 14), px6 = 510;
-      g.save(); g.globalAlpha *= fin(t, T.pl6, .06); g.translate(0, (1 - pk) * -220);
-      g.save(); g.globalAlpha *= .35; g.fillStyle = '#0b0418'; g.beginPath(); g.ellipse(px6 + 8, FLOOR + 6, 150, 14, 0, 0, TAU); g.fill(); g.restore();
-      put(g, P.base6, px6, FLOOR - 20);
-      g.save(); g.strokeStyle = 'rgba(29,18,51,.7)'; g.lineWidth = 5; g.setLineDash([14, 12]); g.lineDashOffset = t * 30; rr(g, px6 - 125, 700, 250, FLOOR - 42 - 700, 10); g.stroke(); g.restore();
-      txt(g, '? HOURS', px6, 1020, { px: 68, col: INK, align: 'center', a: fin(t, T.pl6 + .3, .2) });
-      var nr6 = NOREC; NOREC = nr6 || pk < .97; putW(g, P.pl6, px6, FLOOR - 92, 0, kn(t, T.pl6k, .1)); NOREC = nr6;
-      g.restore();
-    }
-    if (endk) {
-      taped(g, P.yes, stx, Math.min(stt - 80, 1060), .02 * osc(t, 9, 0), T.yes, T.seamC, t, { slam: true, tape: false, dir: -1, kick: T.ks });
-      taped(g, P.no2, cpx, Math.max(cpt - 80, 560), .02 * osc(t, 9, 2), T.no, T.seamC, t, { slam: true, tape: false, dir: 1, kick: T.kp });
-    }
+    drawCard(g, t);
+    drawEnd(g, t);
+    var p = drawWatch(g, t);
+    if (p) drawTag(g, t, p);
+    drawJar(g, t);
+    stamp3(g, t);
   }
-  function towerSway(t, a) { return sw(t, a, 14, 9, 3.5); }
-  /* ---------- the prop layer (screen space, clipped to the rail) ---------- */
-  function pieceIn(g, pc, x, y, rot, s, tin, tout, t, o) {
-    o = o || {}; if (t < tin - .02 || t > tout + (o.od || .4)) return;
-    var k = o.slam ? eo(seg(t, tin, tin + .14)) : cd(t, tin, o.w || 13), ko = eio(seg(t, tout, tout + (o.od || .4)));
-    var dx = (o.dir || -1) * 1100 * ko, dy = (o.dy == null ? -140 : o.dy) * ko;
-    var fx = o.fromX == null ? 0 : o.fromX, fy = o.fromY == null ? -60 : o.fromY;
-    var sc = s * (o.slam ? lerp(1.5, 1, k) * kn(t, tin + .12, .05) : 1);
-    var nr = NOREC; NOREC = nr || k < .995 || ko > 0;
-    g.save(); g.globalAlpha *= fin(t, tin, .06); g.translate(x + dx + (1 - k) * fx, y + dy + (1 - k) * fy); g.rotate(rot + (o.dir || -1) * .5 * ko + (o.slam ? .08 * (1 - k) : 0)); g.scale(sc, sc);
-    putW(g, pc, 0, 0);
-    g.restore(); NOREC = nr;
-  }
-  function stripAt(g, pc, x, y, rot, tin, tout, t, o) {
-    o = o || {}; if (t < tin - .02 || t > tout + .4) return;
-    var k = cd(t, tin, 15), ko = eio(seg(t, tout, tout + (o.dur || .38)));
-    var dx = (o.dir || -1) * 1200 * ko, dy = -120 * ko, rr0 = rot + (o.dir || -1) * .5 * ko;
-    var nr = NOREC; NOREC = nr || k < .97 || ko > 0;
-    g.save(); g.globalAlpha *= fin(t, tin, .06); g.translate(x + dx + (1 - k) * (o.from || 0), y + dy + (1 - k) * 40); g.rotate(rr0);
-    putW(g, pc, -pc.sw / 2, -pc.sh / 2, 0, 1);
-    NOREC = nr; g.restore();
-  }
-  function credit(g, text, x, y, tin, tout, t, o) {
-    o = o || {}; if (t < tin - .02 || t > tout + .3) return;
-    var k = cd(t, tin, 15), nr = NOREC; NOREC = nr || k < .97 || t > tout;
-    chip(g, text, x, y + (1 - k) * 30, { px: o.px || 38, bg: o.bg || INK2, fg: o.fg || CREAM, a: fin(t, tin, .08) * (1 - seg(t, tout, tout + .25)), rot: o.rot || 0, line: 'rgba(251,240,234,.5)' });
-    NOREC = nr;
-  }
-  /* ---------- captions: paper tape in the upper third, phrase by phrase; the hook card is frame 0 and the last frame ---------- */
+
   var GLUE = { the: 1, a: 1, an: 1, your: 1, its: 1, of: 1, at: 1, to: 1, and: 1, in: 1, with: 1, on: 1, by: 1, so: 1, for: 1, own: 1, how: 1, that: 1, if: 1, you: 1, no: 1, or: 1, it: 1, was: 1, will: 1, most: 1 };
   var CAPS = (function () {
     var outc = [];
@@ -683,7 +737,7 @@
     var card0 = null, ci = -1;
     if (t >= T.loopCap) { card0 = CAPS[0]; ci = -1; }
     else CAPS.forEach(function (c, i) { if (t >= c.s) { card0 = c; ci = i; } });
-    if (!card0) return;
+    if (!card0 || card0.skip) return;
     var nx = ci >= 0 ? CAPS[ci + 1] : null, ns = nx ? nx.s : T.loopCap, end = ci === 0 ? ns : Math.min(card0.t1 + .55, ns);
     if (ci >= 0 && t >= end) return;
     var k = ci === -1 ? cd(t, T.loopCap, 16) : (ci === 0 ? 1 : cd(t, card0.s, 16));
@@ -717,119 +771,95 @@
     g.restore(); unst(g); ls(g, 0);
   }
 
+
   var NOISE, POSTERMODE = false, VIG = null;
   function stage(g) { g.fillStyle = BG; g.fillRect(0, 0, W, H); }
   function vignette(g) {
-    if (!VIG) { VIG = mk(W, H); var q = VIG.getContext('2d'), gr = q.createRadialGradient(510, 900, 520, 510, 920, 1300); gr.addColorStop(0, 'rgba(6,3,18,0)'); gr.addColorStop(1, 'rgba(6,3,18,.6)'); q.fillStyle = gr; q.fillRect(0, 0, W, H); }
+    if (!VIG) { VIG = mk(W, H); var q = VIG.getContext('2d'), gr = q.createRadialGradient(510, 960, 520, 510, 960, 1300); gr.addColorStop(0, 'rgba(6,3,18,0)'); gr.addColorStop(1, 'rgba(6,3,18,.55)'); q.fillStyle = gr; q.fillRect(0, 0, W, H); }
     g.drawImage(VIG, 0, 0);
   }
-  function sweep(g, t, tm, pc, sp) {
-    sp = sp || .27; var k = seg(t, tm - sp, tm + sp); if (k <= 0 || k >= 1) return;
-    var y = lerp(1980, -2150, eio(k));
-    g.save(); g.translate(-10, y); g.rotate(-.03); g.scale(1, 1.32); put(g, pc || P.sweep, 0, 0); g.restore();
-  }
   function railClip(g) { g.beginPath(); if (LIVE2.clip) g.rect(BX0, 0, BX1 - BX0, BY1); else g.rect(-500, -500, 2080, BY1 + 500); g.clip(); }
-  /* the loop: from the seam on, the picture is the hook's run-up (t - DUR), so the last frame leads into frame 0 */
-  function sceneT(t) { return t >= T.seamC ? t - DUR : t; }
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0);
     stage(g);
-    var st = sceneT(t);
-    /* a slow push onto the source tag while the voice names it, released on the reveal */
-    var cs = 1 + .06 * eio(seg(st, T.push, T.push + 1.8)) * (1 - eio(seg(st, T.rv - .2, T.rv + .3)));
-    /* opening settle: the street (not the props) eases out from 1.10 over the hook, so frame 0 already moves */
-    var ws = 1 + .10 * (1 - eio(seg(st, 0, 3.2)));
-    g.save(); g.translate(100, 1150); g.scale(cs, cs); g.translate(-100, -1150);
-    g.translate(540, 1300); g.scale(ws, ws); g.translate(-540, -1300);
-    if (LIVE2.bg) world(g, st);
-    g.restore();
-    if (LIVE2.bg) vignette(g);
-    g.save(); railClip(g); g.translate(100, 1150); g.scale(cs, cs); g.translate(-100, -1150); props(g, st); g.restore();
+    var st = stT(t);
+    /* the desk settles from a 1.12 push over the hook, and pushes in again under the seam, so frame 0 already moves */
+    var ws = st < 0 ? 1 + .12 * e3i(seg(t, T.seamC, DUR)) : 1 + .12 * (1 - e3o(seg(st, 0, 3)));
+    if (LIVE2.bg) { g.save(); g.translate(540, 1000); g.rotate((ws - 1) * -.3); g.scale(ws, ws); g.translate(-540, -1000); world(g, t); g.restore(); vignette(g); }
+    g.save(); railClip(g); props(g, t); g.restore();
     if (!POSTERMODE && LIVE.text) captions(g, t);
-    g.save(); sweep(g, t, T.seamC, P.sweepK, .17); g.restore();
     if (LIVE.grain && NOISE && LIVE2.bg) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
   }
   function TEXTS(t) {
-    var o = [];
-    function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
-    var st = sceneT(t);
-    if (st < T.rip) Tx('q', '?', -9, T.rip);
-    Tx('p5', 'STORY', -1, T.off);
-    Tx('cnt', '32 HOURS', T.cntL + .05, T.cntO);
-    Tx('s1', "PLAYERS' AVERAGE", T.src + .2, T.srcO); Tx('s2', 'HOWLONGTOBEAT', T.src + .2, T.srcO); Tx('s3', '3,398 PLAYERS', T.src + .2, T.srcO);
-    Tx('stt', 'STORY · 32 H', T.stTag + .25, T.off);
-    Tx('pcp', '100%', T.rip + .2, T.off);
-    Tx('c2', '89½ HOURS', T.c2L + .05, T.off);
-    Tx('cpt1', '100% · 89½ H', T.cpTag + .2, T.off); Tx('cpt2', "PLAYERS' AVERAGE", T.cpTag + .2, T.off);
-    Tx('x3', '3×', T.b3 + .1, T.off);
-    Tx('st3', 'NEARLY 3×', T.st3 + .16, T.off - .3);
-    Tx('chk', '100% CHECKLIST', T.cl + .3, T.clO);
-    SECT.forEach(function (S, i) { Tx('r' + i, S[0] + ' ' + S[1] + '%', T.row[i] + .2, T.clO); });
-    Tx('src2', 'SOURCE: GTABASE 100% GUIDE', T.cl + .5, T.clO);
-    Tx('st55', 'STORY = 55%', T.st55 + .16, T.clO);
-    Tx('p6', 'GTA 6', T.pl6 + .2, T.seamC); Tx('h6', '? HOURS', T.pl6 + .5, T.seamC);
-    Tx('yes', 'STORY', T.yes + .14, T.seamC); Tx('no', '100%', T.no + .14, T.seamC);
+    var o = [], st = stT(t), p = swPose(t), big = p.s > .84 && !p.moving;
+    function Tx(id, text, a, b, ok) { if (t >= a && t < b && ok !== false) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
+    if (st < T.p5) o.push({ id: 'q', text: '?', x0: 0, y0: 0, x1: 0, y1: 0 });
+    Tx('gs', 'YOUR GUESS?', T.gs + .15, T.gsO);
+    Tx('gta5', 'GTA 5', T.tape + .15, T.roll, p.s > .78);
+    Tx('n25', '25 H', T.num + .3, T.roll); Tx('n50', '50 H', T.num + .3, T.roll); Tx('n75', '75 H', T.num + .3, T.roll);
+    Tx('sto', 'STORY', T.p5 + .12, T.sw0); Tx('sto', 'STORY', T.cL1 + .1, T.h100 - .12, p.s > .72);
+    Tx('c32', '32 HOURS', T.cL1 + .1, T.h100 - .12);
+    Tx('chS', 'STORY · 32 H', T.cL1 + .3, T.b2 - .2, big);
+    Tx('tag1', "PLAYERS' AVERAGE", T.cL1 + .3, T.roll); Tx('tag2', 'HOWLONGTOBEAT', T.cL1 + .3, T.roll);
+    Tx('jar', '3,398 PLAYERS', T.jar + .3, T.jarO);
+    Tx('l100', '100%', T.h100 + .12, T.s20); Tx('l100', '100%', T.c2L, T.roll);
+    Tx('c89', '89½ HOURS', T.c2L + .1, T.roll);
+    Tx('x2', '2×', T.b2 + .35, T.roll); Tx('x3', '3×', T.b3 + .3, T.roll);
+    Tx('st3', 'NEARLY 3×', T.st3 + .2, T.off);
+    Tx('hd', '100% CHECKLIST', T.cl + .45, T.clO); Tx('sub', 'SHARE OF THE 100% SCORE · GTABASE', T.cl + .45, T.clO);
+    SECT.forEach(function (S, i) { var a = i === 0 ? T.row0 : T.dim; Tx('r' + i, S[0], a + .2, T.clO); Tx('p' + i, S[1] + '%', a + .2, T.clO); });
+    Tx('c55', 'STORY 55%', T.fillL + .1, T.clO); Tx('of', 'OF 100%', T.fillL + .15, T.clO);
+    Tx('g6', 'GTA 6', T.pl6 + .25, T.seamC); Tx('bS', 'STORY', T.box + .35, T.seamC); Tx('or', 'OR', T.box + .35, T.seamC); Tx('bC', '100%', T.box + .35, T.seamC);
     return o;
   }
 
   /* ---------- times and sound events, all from the voice ---------- */
   function initTimes() {
     T.seamC = DUR - .45; T.loopCap = DUR - .15;
-    function F(id, t, type, gain) { GT[id] = t; EV.push({ t: t, type: type, g: gain == null ? 1 : gain, id: id }); return t; }
-    function ticks(id, N, k0, tOf, gain) { for (var i = k0; i <= N; i++) F(id + i, tOf(i / N), 'tick', gain); }
-    /* hook: the story stack builds small under the towering covered 100% tower; the plate kicks on "GTA"; the ? pulses on "Guess." */
-    T.p5 = at('hook', 'gta') - .05; T.guess = at('hook', 'guess') - .03;
-    ticks('b_', TW.st.N, Math.ceil(TW.st.N * .5) + 1, function (p) { return .9 * Math.pow((p - .5) / .5, 1 / 1.4); }, .6);
-    T.flut = G('flut', after('hook'), 'swish', .4, 1.1);
-    /* main: "Just the story?" pushes in on the story stack; the hour lines draw in; the counter rolls and lands in the pause */
-    T.pk5 = at('main', 'story') - .1; T.ruler = start('main') + .1;
-    T.cnt0 = at('main', 'average') - .2; T.roll0 = at('main', '32');
-    T.cntL = G('cntL', after('main'), 'thock', .45, 2.2);
-    /* src: whose number it is, taped on the story tower; the camera leans in; HOWLONGTOBEAT and 3,398 underlined as said */
-    T.src = start('src') - .05; G('srcS', T.src + .1, 'pin', .3, 1);
-    T.mark = at('src', 'howlongtobeat'); T.push = T.mark - .1; T.thou = at('src', 'thousands');
-    /* hundred: the sheet hops on "But"; it rips after "percent?"; the 100% tower rises; its counter lands in the pause */
-    T.tease = at('hundred', 'but') + .02; T.tug = at('hundred', '100');
-    T.rip = G('rip', wend('hundred', 'percent') + .04, 'tear', .3, 2.2);
-    T.rv = T.rip - .1; T.srcO = T.rv; T.cntO = T.rv; T.stTag = T.rv + .5;
-    T.cpL = wend('hundred', 'hours') - .1;
-    ticks('cp', TW.cp.N, 1, function (p) { return T.rip + .05 + (T.cpL - T.rip - .05) * Math.pow(p, 1 / 1.2); }, .22);
-    T.c2 = T.rip + .2; T.roll2 = at('hundred', '90') - .15;
+    /* hook: the hand spins; the watch kicks on "GTA"; "Guess." slows the hand; the guess sticky lands in the pause */
+    T.gta = at('hook', 'gta'); T.g0 = at('hook', 'guess');
+    T.gs = T.g0; T.gsPop = G('gsP', after('hook'), 'pop', .35, 1.2);
+    /* main: numerals and the GTA 5 tape on "Just"; STORY on "story?" and the hand rewinds; the sweep paints 32 on "average 32" */
+    T.num = at('main', 'just'); T.tape = T.gta; T.p5 = at('main', 'story');
+    T.rw0 = wend('main', 'story') - .05;
+    T.sw0 = at('main', 'average'); T.sw1 = wend('main', '32');
+    T.gsO = T.sw1 - .05;
+    T.cL1 = G('cL1', after('main'), 'thock', .45, 2.2);
+    /* src: the dial shrinks up, the tag drops to the middle, the jar fills with players' slips */
+    T.toSrc = G('toSrcS', T.cL1 + .42, 'swish', .3, 1) - .05;
+    T.jar = T.toSrc + .25; T.mark = at('src', 'howlongtobeat'); T.thou = at('src', 'thousands');
+    T.lurch = after('src') - .05;
+    G('jarR', after('src'), 'riffle', .35, 1);
+    T.fromSrc = G('fromS', after('src') + .3, 'swish', .35, 1) - .05; T.jarO = T.fromSrc - .05;
+    T.slips = []; (function () { var r = mulberry(5), tt = T.jar + .2, i = 0; while (tt < T.jarO - .2) { var side = i % 2 ? 1 : -1; T.slips.push({ t: tt, side: side, x0: side < 0 ? 760 + 140 * r() : 905, y0: side < 0 ? 560 : 600 + 300 * r(), x1: 770 + 90 * r(), y1: 985, r: (r() - .5) * 2 }); tt += tt > T.thou - .1 ? .07 : .14; i++; } })();
+    /* hundred: STORY flips to 100% on "100" and the hand rewinds; the sweep paints 89½ by "ninety"; it lands in the pause */
+    T.h100 = at('hundred', '100'); T.s20 = T.h100 + .4; T.s21 = wend('hundred', '90');
     T.c2L = G('c2L', after('hundred'), 'thock', .45, 2.2);
-    T.cpTag = T.c2L + .35; G('cpTS', T.cpTag + .1, 'pin', .3, .8);
-    /* times: three story-sized brackets climb beside the 100% tower; NEARLY 3x lands on "three"; the snap in the pause */
-    T.b1 = at('times', 'nearly') - .05; T.b2 = at('times', 'three') - .05; T.b3 = at('times', 'times') - .02;
-    T.st3 = T.b1 + .12;
-    T.snap = G('snap', after('times'), 'snap', .4, 2);
-    /* why: the stamp peels before the caption turns; the towers truck off; the checklist drops on "The story" */
-    T.off = start('why') - .15; G('offS', T.off, 'swish', .3, 1.2);
-    T.cl = at('why', 'the') - .15;
-    /* the other four rows slide in together on "The rest" (so each stays up long enough to read); each one's weight fills the bar on its own word */
-    var r0 = start('rest') + .02;
-    T.row = [at('why', 'story') - .05, r0, r0 + .14, r0 + .28, r0 + .42];
-    T.rk = [T.fill, at('rest', 'strangers') - .05, at('rest', 'hobbies') - .05, at('rest', 'random') - .05, at('rest', 'more') - .05];
-    T.tick = at('why', 'story') + .25; T.fill = at('why', '55') - .05; T.circ = wend('why', 'percent') + .05;
-    T.st55 = G('st55', after('why'), 'stamp', .4, 2);
-    G('rowS', after('rest'), 'pin', .4, 1);
-    /* end: the checklist leaves; the towers come back small beside GTA 6's empty spot; STORY and 100% identical */
-    T.clO = start('end') - .15; G('clOS', T.clO, 'swish', .3, 1.2);
-    T.back = T.clO + .05; T.pl6 = T.back + .2; T.pl6k = at('end', '6');
-    T.yes = T.back + .45; T.no = T.yes + .08;
-    T.ks = at('end', 'story'); T.kp = at('end', '100');
-    G('tapY', T.yes + .1, 'slap', .3, .5);
-    G('kS', wend('end', 'first') + .02, 'pin', .3, .6);
-    G('seam', T.seamC - .12, 'swish', .3, 1.8);
-    T.br = 1e9;
-    /* layouts: zoom (px per hour) and each tower's x / width */
-    T.ZK = [[T.pk5, 20, .7], [T.rv, 8.8, .6], [T.back, 7.6, .5]];
-    T.X0 = { st: 230, cp: 650 };
-    T.W0 = { st: 220, cp: 360 };
-    T.XK = { st: [[T.pk5, 300, .7], [T.back, 215, .01]], cp: [[T.pk5, 730, .7], [T.rv, 770, .5], [T.back, 805, .01]] };
-    T.WK = { st: [[T.pk5, 280, .7], [T.rv, 220, .55], [T.back, 170, .01]], cp: [[T.pk5, 300, .7], [T.rv, 240, .55], [T.back, 170, .01]] };
+    /* times: the dial eases back; second and third 32 h arcs on "Nearly" and "three"; NEARLY 3x with the third; the 89½ line on "times" */
+    T.b2 = at('times', 'nearly'); T.b3 = at('times', 'three'); T.toP3 = T.b2 - .32; T.st3 = T.b3 + .1; T.mk = at('times', 'times');
+    T.slam = G('slam', after('times'), 'thock', .4, 2.2); T.scr = T.slam + .3;
+    /* why: the stamp peels before "Why?"; the watch rolls off as the card slides in */
+    T.roll = G('rollS', start('why') - .34, 'swish', .45, 1.2) - .05;
+    T.off = start('why') - .24;
+    T.cl = T.roll + .1; T.chkU = at('why', 'checklist');
+    T.row0 = at('why', 'story') - .05; T.dim = T.row0 + .1; T.fill = at('why', 'story'); T.fillL = wend('why', '55');
+    T.p55 = G('p55', after('why'), 'thock', .45, 2);
+    T.rest0 = at('rest', 'rest') - .05;
+    T.rk = [T.fill, at('rest', 'strangers') - .03, at('rest', 'hobbies') - .03, at('rest', 'random') - .03, at('rest', 'more') - .03];
+    T.full = G('fullP', after('rest'), 'snap', .4, 1.3);
+    /* end: the card flies off; the box rises; GTA 6 swings in; the fork draws and each button presses on its word; both pulse on "Pick one." */
+    T.clO = G('clOS', T.full + .2, 'swish', .3, 1.2) - .05;
+    T.box = T.clO + .1; T.pl6 = Math.max(at('end', 'gta') - .05, T.clO + .45); T.pl6k = at('end', '6');
+    T.ks = at('end', 'story') - .05; T.ksP = at('end', 'first'); T.kp = at('end', '100') - .05; T.kpP = at('end', '100') + .35;
+    T.pick = at('end', 'pick'); T.pick2 = at('end', 'one');
+    T.dbl = G('dbl', after('end'), 'click', .3, 1.4); T.dbl2 = G('dbl2', T.dbl + .13, 'click', .3, 1.1);
+    CAPS.forEach(function (c) { c.skip = c.id === 'end' && c.words.length <= 2; });
+    G('seam', T.seamC + .05, 'swish', .3, 1.8);
     STRESS = [['hook', 'guess'], ['main', '32'], ['hundred', '100'], ['hundred', '90'], ['times', 'three'], ['why', '55'], ['end', 'first']].map(function (p) { return at(p[0], p[1]); });
     CAPS[0].s = -1;
     EV.sort(function (a, b) { return a.t - b.t; });
   }
+
   function render(t, samples, shutter, fps) {
     t = clamp(t, 0, DUR); samples = samples || 1;
     if (samples === 1) { POSTERMODE = t === window.FILM.POSTER; frame(ctx, t); POSTERMODE = false; return; }
@@ -916,8 +946,8 @@
   }
 
   window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: 0, SLUG: 'gta-storylength', SHOTS: [], init: init, render: render, frame: frame, LIVE: LIVE, LIVE2: LIVE2, T: T, GT: GT };
-  var _bt = buildTextures; buildTextures = function () { _bt(); EV.length = 0; initTimes(); window.FILM.POSTER = Math.round((T.snap + .3) * 30) / 30 + 1 / 60;
-    window.FILM.SHOTS = [{ id: 'hook', name: 'How long?', t0: 0, t1: start('hundred') }, { id: 'hundred', name: '100 percent', t0: start('hundred'), t1: start('why') }, { id: 'why', name: 'The checklist', t0: start('why'), t1: start('end') }, { id: 'end', name: 'GTA 6?', t0: start('end'), t1: DUR }]; };
+  var _bt = buildTextures; buildTextures = function () { _bt(); EV.length = 0; initTimes(); window.FILM.POSTER = Math.round((T.scr + .75) * 30) / 30 + 1 / 60;
+    window.FILM.SHOTS = [{ id: 'hook', name: 'How long?', t0: 0, t1: start('src') }, { id: 'src', name: 'Whose number', t0: start('src'), t1: start('hundred') }, { id: 'hundred', name: '100 percent', t0: start('hundred'), t1: start('why') }, { id: 'why', name: 'The punch card', t0: start('why'), t1: start('end') }, { id: 'end', name: 'Pick one', t0: start('end'), t1: DUR }]; };
 
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var o = {};

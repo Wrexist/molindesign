@@ -23,7 +23,7 @@
   "duck": {
     "db": -6,
     "score_db": 0,
-    "smr_db": 36
+    "smr_db": 40
   },
   "lines": [
     {
@@ -63,26 +63,26 @@
     },
     {
       "id": "why",
-      "at": 16.7,
+      "at": 17.5,
       "text": "Why? The story is only 55 percent of the checklist.",
       "say": "Why? The story is only fifty-five percent of the checklist.",
       "pause": 0.7
     },
     {
       "id": "rest",
-      "at": 20.7,
+      "at": 21.5,
       "text": "The rest: strangers and freaks, hobbies, random events, and more.",
       "pause": 0.7
     },
     {
       "id": "end",
-      "at": 25.2,
+      "at": 26.0,
       "text": "GTA 6: story first, or 100 percent? Pick one.",
       "say": "G T A six: story first, or one hundred percent? Pick one.",
       "pause": 0
     }
   ],
-  "dur": 30.3,
+  "dur": 30.9,
   "tail": 0.7,
   "fit": {
     "min": 0.88,
