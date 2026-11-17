@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-firsts/out/gta-firsts-vo.mp4: 39.1 s, 1 hard cuts (0.3/10 s), motion 0-1 s 1.324, 0-3 s 0.604, median 0.192, still frames 8.7 %
+OK    no frozen stretches, opening moves
