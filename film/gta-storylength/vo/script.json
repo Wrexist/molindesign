@@ -1,0 +1,91 @@
+{
+  "about": "GTA story length (Delta, pillar 2). HowLongToBeat, Grand Theft Auto V (howlongtobeat.com/game/4064, read 2026-11-16/17): players' averages Main Story 32 Hours (3,398 polled), Completionist 89½ Hours (982 polled). Derived: 89.54 / 32.06 = 2.8, 'nearly three times'. GTABase 100% guide (read 2026-11-17): Story Missions 55% (69 on the checklist), Strangers and Freaks 10%, Hobbies and Pastimes 10%, Random Events 5%, Miscellaneous 20%. No claim about GTA 6's length. Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.0,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 5",
+    "GTA 6",
+    "HowLongToBeat",
+    "Rockstar"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 36
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "How long is GTA 5? Guess.",
+      "say": "How long is G T A five? Guess.",
+      "pause": 0.6,
+      "tail_fade": 0.25
+    },
+    {
+      "id": "main",
+      "at": 2.9,
+      "text": "Just the story? Players average 32 hours.",
+      "say": "Just the story? Players average thirty-two hours.",
+      "pause": 0.6
+    },
+    {
+      "id": "src",
+      "at": 6.6,
+      "text": "That's the HowLongToBeat average, from thousands of players.",
+      "say": "That's the How Long To Beat average, from thousands of players.",
+      "pause": 0.4
+    },
+    {
+      "id": "hundred",
+      "at": 10.4,
+      "text": "But 100 percent? Almost 90 hours.",
+      "say": "But one hundred percent? Almost ninety hours.",
+      "pause": 0.6
+    },
+    {
+      "id": "times",
+      "at": 13.9,
+      "text": "Nearly three times the story.",
+      "pause": 0.9
+    },
+    {
+      "id": "why",
+      "at": 16.7,
+      "text": "Why? The story is only 55 percent of the checklist.",
+      "say": "Why? The story is only fifty-five percent of the checklist.",
+      "pause": 0.7
+    },
+    {
+      "id": "rest",
+      "at": 20.7,
+      "text": "The rest: strangers and freaks, hobbies, random events, and more.",
+      "pause": 0.7
+    },
+    {
+      "id": "end",
+      "at": 25.2,
+      "text": "GTA 6: story first, or 100 percent? Pick one.",
+      "say": "G T A six: story first, or one hundred percent? Pick one.",
+      "pause": 0
+    }
+  ],
+  "dur": 30.3,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.88,
+    "max": 1.1
+  }
+}
