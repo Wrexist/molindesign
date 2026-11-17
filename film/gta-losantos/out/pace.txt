@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-losantos/out/gta-losantos-vo.mp4: 39.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.708, 0-3 s 0.875, median 0.573, still frames 0.3 %
+OK    no frozen stretches, opening moves
