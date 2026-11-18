@@ -188,7 +188,7 @@
     var m = mk(4, 4).getContext('2d'); cond(m, 'condensed'); font(m, px, 800); ls(m, 0);
     var words = text.split(' '), lines = [''], maxw = w - 70;
     words.forEach(function (wd) { var L = lines.length - 1, tryL = lines[L] ? lines[L] + ' ' + wd : wd; if (m.measureText(tryL).width > maxw && lines[L]) lines.push(wd); else lines[L] = tryL; });
-    var lh = px * 1.2, h = lines.length * lh + 64, top = jag(seed, w, 5), bot = jag(seed + 9, w, 5);
+    var lh = px * 1.2, h = lines.length * lh + 64 + (o.credit ? 52 : 0), top = jag(seed, w, 5), bot = jag(seed + 9, w, 5);
     function path(g) { g.beginPath(); g.moveTo(0, top[0][1]); top.forEach(function (p) { g.lineTo(p[0], p[1]); }); for (var i = bot.length - 1; i >= 0; i--) g.lineTo(bot[i][0], h + bot[i][1]); g.closePath(); }
     var rec = [];
     var pc = piece([0, -10, w, h + 10], path, NEWS, { sx: 6, sy: 12, blur: 16, extra: function (g) {
@@ -197,6 +197,7 @@
       cond(g, 'condensed'); font(g, px, 800); ls(g, 0); g.fillStyle = INK; g.textBaseline = 'middle'; g.textAlign = 'left';
       lines.forEach(function (L, i) { var y = 32 + lh * (i + .5); g.fillText(L, 36, y); var mm = g.measureText(L); rec.push([36, y - px * .62, 36 + mm.width, y + px * .3, L]); });
       unst(g);
+      if (o.credit) { g.fillStyle = 'rgba(22,32,58,.35)'; g.fillRect(36, 32 + lh * lines.length + 6, w - 72, 2); ptxt(g, rec, o.credit, 36, 32 + lh * lines.length + 34, 38, '#4a5674', { align: 'left', ls: 2, max: w - 72 }); }
     }, edgeCol: 'rgba(255,253,245,.95)', edge: 2 });
     /* store word boxes relative to the canvas draw rect */
     pc.words = rec.map(function (r0) { return [r0[0] - pc.x0, r0[1] - pc.y0, r0[2] - pc.x0, r0[3] - pc.y0, r0[4]]; });
@@ -455,7 +456,7 @@
       rr(g, -150, -85, 300, 170, 4); g.fillStyle = '#16122a'; g.fill(); g.save(); g.setLineDash([14, 10]); rr(g, -136, -72, 272, 144, 4); stroke(g, 'rgba(251,245,230,.55)', 3); g.restore();
       ptxt(g, rec, 'LOADING SCREEN', 0, -24, 40, CRM, { ls: 2 }); ptxt(g, rec, 'ART NOT SHOWN', 0, 30, 40, '#f2b84b', { ls: 2 });
     }, edgeCol: 'rgba(242,184,75,.9)', edge: 4 }); return wordsOf(pc, rec); })();
-    D.cited = chipPiece([['+ 2 LOADING SCREENS SHE CITED', 42, INK, 2]], 640, '#f2b84b', INK, { lh: 50, pad: 22 });
+    D.cited = chipPiece([['SHE ALSO CITED:', 46, INK, 3]], 420, '#f2b84b', INK, { lh: 52, pad: 22 });
     /* law: the green statute book and its first page */
     var rb = [];
     D.bookBase = piece([-320, -380, 320, 380], rectP(640, 760, 10), GRN2, { sy: 16, blur: 22, sc: 'rgba(0,6,0,.55)', extra: function (g) {
@@ -479,7 +480,10 @@
       g.fillStyle = 'rgba(255,255,255,.06)'; g.fillRect(-250, -380, 40, 760);
     }, edgeCol: 'rgba(226,189,92,.5)' });
     wordsOf(D.bookCover, rb);
-    D.y1903 = datePiece('ENACTED', '1903', 300, GRN);
+    D.y1903 = datePiece('ENACTED', '1903', 256, GRN);
+    /* the court's own words on the 1903 law: a wide strip under the book (law beat), a narrow one beside it (twist) */
+    D.uni = buildStrip('“…DIGITAL TECHNOLOGY WAS UNINVENTED.”', 780, 56, 81, { credit: 'NY COURT OF APPEALS · 2018' });
+    D.uni2 = buildStrip('“…DIGITAL TECHNOLOGY WAS UNINVENTED.”', 450, 50, 83);
     D.consent = (function () { var rec = []; var pc = piece([-370, -50, 370, 50], rectP(740, 100, 3), RED2, { sy: 8, blur: 10, extra: function (g) { ptxt(g, rec, 'WITHOUT WRITTEN CONSENT', 0, 3, 60, CRM, { ls: 3, max: 690 }); } }); return wordsOf(pc, rec); })();
     D.sue = (function () { var rec = []; var pc = piece([-300, -95, 300, 95], rectP(600, 190, 6), CRM, { sy: 12, blur: 16, extra: function (g) {
       g.fillStyle = '#3b6fb6'; g.fillRect(-300, -95, 600, 30);
@@ -518,22 +522,8 @@
     D.generic = buildStrip('“…A GENERIC … ‘TWENTY SOMETHING’ WOMAN…”', 760, 56, 71);
     D.coa = chipPiece([['NY COURT OF APPEALS · 2018', 40, CRM, 2]], 540, '#3b4566', CRM, { lh: 50, pad: 22 });
     /* vote: the stamp */
-    D.dismissed = stampPiece([['DISMISSED', 150], ['AFFIRMED 6-0 · 2018', 54]], OXI, 700);
-    /* twist / payoff: the re-created ruling page, the gilt frame */
-    var rr0 = [];
-    D.ruling = piece([-360, -220, 360, 220], rectP(720, 440, 4), CRM, { sy: 12, blur: 18, extra: function (g) {
-      ptxt(g, rr0, 'LOHAN v. TAKE-TWO', -110, -164, 60, INK, { ls: 3, max: 440 });
-      ptxt(g, rr0, 'COURT OF APPEALS', 0, -108, 40, '#33405f', { ls: 3, max: 660 });
-      g.fillStyle = 'rgba(22,32,58,.4)'; g.fillRect(-300, -82, 600, 3);
-      ptxt(g, rr0, '“…AN AVATAR …', 0, -30, 66, INK, { ls: 2 });
-      ptxt(g, rr0, 'MAY CONSTITUTE', 0, 42, 66, INK, { ls: 2 });
-      cond(g, 'condensed'); font(g, 66, 900); ls(g, 2); var wa = g.measureText('A ‘PORTRAIT’').width, wb = g.measureText('…”').width; unst(g);
-      ptxt(g, rr0, 'A ‘PORTRAIT’', -(wa + wb) / 2, 114, 66, INK, { ls: 2, align: 'left' });
-      ptxt(g, rr0, '…”', -(wa + wb) / 2 + wa, 114, 66, INK, { ls: 2, align: 'left' });
-    } });
-    D.rulingBox = {}; rr0.forEach(function (b) { D.rulingBox[b[4]] = b.slice(0, 4); });
-    wordsOf(D.ruling, rr0);
-    D.rec2 = chipPiece([['RE-CREATED', 38, CRM, 3]], 250, '#3b4566', CRM, { lh: 46, pad: 24 });
+    D.dismissed = stampPiece([['DISMISSED', 140], ['AFFIRMED 6-0', 92]], OXI, 700);
+    /* payoff: the gilt frame of nameless pixel tiles, the condition in big type, the court's credit */
     var rg = [];
     D.gilt = piece([-380, -230, 380, 230], function (g) { g.beginPath(); g.rect(-380, -230, 760, 460); g.rect(306, -180, -612, 270); }, BRASS, { sy: 16, blur: 22, sc: 'rgba(10,6,0,.55)', extra: function (g) {
       g.fillStyle = BRASS2; g.fillRect(-380, -230, 760, 22); g.fillRect(-380, -230, 22, 460);
@@ -543,17 +533,11 @@
       [[-350, -206], [350, -206], [-350, 212], [350, 212]].forEach(function (p) { g.beginPath(); g.arc(p[0], p[1], 20, 0, TAU); g.fillStyle = BRASS2; g.fill(); stroke(g, '#8a6118', 4); });
       /* the brass plate on the bottom rail */
       rr(g, -300, 102, 600, 114, 6); g.fillStyle = '#f6dc92'; g.fill(); stroke(g, '#8a6118', 3);
-      ptxt(g, rg, 'CAN BE A “PORTRAIT”', 0, 136, 46, INK, { ls: 2, max: 560 });
-      ptxt(g, rg, 'IF RECOGNIZABLE · NEW YORK LAW', 0, 186, 38, '#5a3d10', { ls: 2, max: 560 });
+      ptxt(g, rg, 'A GAME CHARACTER', 0, 160, 58, INK, { ls: 3, max: 560 });
     }, edgeCol: 'rgba(255,240,190,.8)' });
     wordsOf(D.gilt, rg);
-    /* gta6: the calendar pad */
-    D.calBack = piece([-300, -330, 300, 330], rectP(600, 660, 8), '#3a3550', { sy: 14, blur: 20, extra: function (g) { g.fillStyle = RED2; g.fillRect(-300, -330, 600, 70); [-180, -60, 60, 180].forEach(function (x) { g.beginPath(); g.arc(x, -295, 12, 0, TAU); g.fillStyle = '#2a1416'; g.fill(); }); } });
-    D.calPage = (function () { var rec = []; var pc = piece([-280, -270, 280, 270], rectP(560, 540, 4), CRM, { sy: 4, blur: 6, sc: 'rgba(0,0,0,.25)', extra: function (g) {
-      ptxt(g, rec, 'NOVEMBER', 0, -190, 76, RED2, { ls: 6 }); ptxt(g, rec, '19', 0, 20, 330, INK, { ls: 2 }); ptxt(g, rec, '2026', 0, 210, 76, INK, { ls: 8 });
-    } }); return wordsOf(pc, rec); })();
-    D.gta6 = chipPiece([['GTA 6', 92, CRM, 3]], 290, PINK, CRM, { lh: 92, pad: 28 });
-    D.rsurl = chipPiece([['ROCKSTAR GAMES', 44, CRM, 2]], 470, INK, CRM, { lh: 54, pad: 22 });
+    D.cond = chipPiece([['IN NEW YORK', 64, '#ff7aae', 5], ['IF IT’S RECOGNIZABLY YOU', 84, CRM, 2]], 800, INK, CRM, { lh: 86, pad: 34, ring: 'rgba(251,245,230,.35)' });
+    D.coa3 = chipPiece([['NY COURT OF APPEALS · 2018', 44, CRM, 2]], 600, '#3b4566', CRM, { lh: 52, pad: 22 });
     D.pile = buildPile();
     D.desk = buildDesk();
   }
@@ -563,12 +547,12 @@
     function ruled(w, h, col, line, margin) { return function (g) { g.fillStyle = line; for (var y = -h / 2 + 50; y < h / 2; y += 34) g.fillRect(-w / 2, y, w, 2); if (margin) { g.fillStyle = margin; g.fillRect(-w / 2 + 64, -h / 2, 3, h); } }; }
     function bars(w, seed, col) { return function (g) { var r = mulberry(seed); g.fillStyle = col; for (var i = 0; i < 6; i++) { var y = -110 + i * 34, L = 120 + r() * (w - 260); g.fillRect(-w / 2 + 90, y, L, 12); } }; }
     var P = [];
-    P.push({ key: 'aly', x: 330, top: 1488, rot: -.06, pc: piece([-320, -210, 320, 210], rectP(640, 420, 4), CRM, { sy: -6, blur: 14, sc: 'rgba(4,8,22,.5)', extra: function (g) { ruled(640, 420, CRM, 'rgba(60,110,200,.14)', 'rgba(220,60,70,.4)')(g); bars(640, 3, 'rgba(22,32,58,.18)')(g); } }) });
-    P.push({ key: 'book', x: 770, top: 1520, rot: .055, pc: piece([-290, -200, 290, 200], rectP(580, 400, 6), '#2a2340', { sy: -6, blur: 14, extra: function (g) { g.fillStyle = '#231d36'; for (var y = -200; y < 200; y += 44) for (var x = -290 + ((y / 44) & 1) * 50; x < 290; x += 100) { rr(g, x + 4, y + 4, 92, 36, 3); g.fill(); } } }) });
-    P.push({ key: 'court', x: 560, top: 1470, rot: -.025, pc: piece([-270, -200, 270, 200], rectP(540, 400, 10), GRN, { sy: -6, blur: 14, sc: 'rgba(0,6,0,.5)', extra: function (g) { g.fillStyle = GRN2; g.fillRect(-270, -200, 60, 400); g.fillStyle = GOLD; [-170, -130].forEach(function (y) { g.fillRect(-266, y, 52, 6); }); g.strokeStyle = GOLD; g.lineWidth = 3; g.strokeRect(-180, -170, 420, 340); } }) });
-    P.push({ key: 'nc', x: 290, top: 1540, rot: .07, pc: piece([-280, -190, 280, 190], rectP(560, 380, 6), SKY, { sy: -6, blur: 14, extra: function (g) { var r = mulberry(5); g.fillStyle = 'rgba(251,245,230,.5)'; for (var i = 0; i < 18; i++) { g.beginPath(); g.arc(-270 + r() * 540, -180 + r() * 200, 1.5 + r() * 2.5, 0, TAU); g.fill(); } g.fillStyle = STONE; g.beginPath(); g.moveTo(-200, -40); g.lineTo(0, -120); g.lineTo(200, -40); g.closePath(); g.fill(); for (var c = 0; c < 5; c++) g.fillRect(-180 + c * 85, -30, 40, 220); } }) });
-    P.push({ key: 'f2', x: 800, top: 1505, rot: -.08, pc: piece([-220, -150, 220, 150], rectP(440, 300, 8), CRM, { sy: -6, blur: 14, extra: function (g) { g.fillStyle = 'rgba(22,32,58,.16)'; g.fillRect(-160, -90, 320, 30); g.fillStyle = 'rgba(255,61,139,.35)'; g.fillRect(-120, -30, 90, 18); } }) });
-    P.push({ key: 'cal', x: 520, top: 1560, rot: .035, pc: piece([-230, -190, 230, 190], rectP(460, 380, 4), BRASS, { sy: -6, blur: 14, sc: 'rgba(10,6,0,.5)', extra: function (g) { g.fillStyle = BRASS2; g.fillRect(-230, -190, 460, 20); g.strokeStyle = '#8a6118'; g.lineWidth = 4; g.strokeRect(-200, -160, 400, 320); g.fillStyle = '#16122a'; g.fillRect(-170, -130, 340, 260); } }) });
+    function plain(w, h, col) { return piece([-w / 2, -h / 2, w / 2, h / 2], rectP(w, h, 5), col, { sy: -4, blur: 10, sc: 'rgba(4,8,22,.4)' }); }
+    P.push({ key: 'aly', x: 330, top: 1812, rot: -.03, pc: plain(600, 300, '#cfc6b2') });
+    P.push({ key: 'book', x: 770, top: 1828, rot: .03, pc: plain(560, 300, '#3a3550') });
+    P.push({ key: 'court', x: 560, top: 1800, rot: -.015, pc: plain(520, 300, '#3f6a4c') });
+    P.push({ key: 'nc', x: 290, top: 1834, rot: .035, pc: plain(540, 300, '#33456c') });
+    P.push({ key: 'f2', x: 800, top: 1818, rot: -.04, pc: plain(440, 300, '#d8cfbb') });
     return P;
   }
   function buildDesk() {
@@ -673,8 +657,8 @@
     var R = 150;
     g.save(); g.translate(x, y);
     g.save(); g.translate(14, 22); g.globalAlpha *= .3; g.beginPath(); g.arc(0, 0, R + 18, 0, TAU); g.fillStyle = '#000'; g.fill(); g.restore();
-    g.save(); g.rotate(1.5708); rr(g, R + 6, -22, 230, 44, 18); g.fillStyle = WOOD; g.fill(); g.fillStyle = BRASS; g.fillRect(R + 6, -24, 30, 48); g.restore();
-    g.save(); g.beginPath(); g.arc(0, 0, R, 0, TAU); g.clip(); g.fillStyle = '#fffdf3'; g.fillRect(-R, -R, 2 * R, 2 * R); inner(g); g.fillStyle = 'rgba(200,230,255,.12)'; g.fillRect(-R, -R, 2 * R, 2 * R);
+    g.save(); g.rotate(.35); rr(g, R + 6, -22, 230, 44, 18); g.fillStyle = WOOD; g.fill(); g.fillStyle = BRASS; g.fillRect(R + 6, -24, 30, 48); g.restore();
+    g.save(); g.beginPath(); g.arc(0, 0, R, 0, TAU); g.clip(); inner(g); g.fillStyle = 'rgba(200,230,255,.10)'; g.fillRect(-R, -R, 2 * R, 2 * R);
     g.beginPath(); g.ellipse(-60, -70, 50, 22, -.6, 0, TAU); g.fillStyle = 'rgba(255,255,255,.35)'; g.fill(); g.restore();
     g.beginPath(); g.arc(0, 0, R + 9, 0, TAU); g.strokeStyle = BRASS; g.lineWidth = 20; g.stroke();
     g.beginPath(); g.arc(0, 0, R + 9, -2.6, -1.2); g.strokeStyle = BRASS2; g.lineWidth = 7; g.stroke();
@@ -709,10 +693,10 @@
      THE PROP LAYER (screen space, clipped to the rail). Beats in story order; later pieces land on top.
      ===================================================================================================== */
   var FLASH = [[300, 700, 1], [740, 690, .95], [290, 1050, .95], [740, 1040, 1], [520, 650, .92], [340, 1180, .92], [700, 1170, .95], [295, 870, .95], [735, 870, .92]];
-  var AX = 525, NX = 470, BKX = 570, CALX = 560, GX = 510, GY = 700, RY = 1185;
+  var AX = 525, NX = 470, NY = 990, BKX = 636, BKY = 960, BKS = .84, GX = 510, GY = 800, GS = 1;
   /* the hook gavel: hovers above the folder's top edge, strikes the block that rides on the cover (never over the label) */
   function gavHook(u) {
-    var A0 = -.9, A1 = .95, x, y, a;
+    var A0 = -1.35, A1 = .95, x, y, a;
     if (u < A0) return null;
     var k = eio(seg(u, A0, A1)); x = 790; y = lerp(-320, 470, k); a = lerp(-2.45, -2.1, k);
     if (u > A1) y += 10 * Math.sin((u - A1) * 4.2);
@@ -726,28 +710,38 @@
   /* the court gavel: comes down right of the columns, handle up and to the right, clear of the court's name */
   function gavCourt(t) {
     var g0 = T.gav2;
-    if (t < g0 - .75 || t > T.nc + .5) return null;
+    if (t < g0 - .75 || t > T.cto + .5) return null;
     var k = eio(seg(t, g0 - .75, g0 - .2)), x = 820, y = lerp(-300, 975, k), a = lerp(-1.1, -1.0, k);
     if (t > g0 - .12) { var st = seg(t, g0 - .12, g0); st *= st; x = lerp(820, 806, st); y = lerp(975, 1062, st); a = lerp(-1.0, -1.45, st); }
     if (t > g0) { var rb = eo(seg(t, g0, g0 + .4)); x = lerp(806, 816, rb); y = lerp(1062, 990, rb); a = lerp(-1.45, -1.15, rb); }
-    y -= 1700 * eio(seg(t, T.nc, T.nc + .45));
+    y -= 1700 * eio(seg(t, T.cto, T.cto + .42));
     return [x, y, a];
   }
   function folderBody(g, sheet, t, extra) { put(g, D.fBack, 0, 0); putW(g, sheet, 0, 20, .004); if (extra) extra(g); }
   function coverBody(g) { putW(g, D.fCover, 0, 0); put(g, D.block, 290, -330); }
-  /* the card's 32 tiles (8 x 4): where each starts on the card and where it lands in the gilt window */
-  function tileSrc(i) { return [-340 + (i % 8) * 85, -150 + Math.floor(i / 8) * 75]; }
-  function tileDst(i) { return [-306 + (i % 8 + .5) * 76.5, -180 + (Math.floor(i / 8) + .5) * 67.5]; }
-  function drawTile(g, i, x, y, rot, s, lift) {
-    var pc = D.nameBig, sx = tileSrc(i);
-    g.save(); g.translate(x, y); g.rotate(rot); g.scale(s, s);
-    if (lift > 0) { g.fillStyle = 'rgba(2,4,14,' + (.3 * lift).toFixed(3) + ')'; g.fillRect(-42.5 + 8 * lift, -37.5 + 14 * lift, 85, 75); }
-    g.drawImage(pc.c, (sx[0] - pc.x0) * PS, (sx[1] - pc.y0) * PS, 85 * PS, 75 * PS, -42.5, -37.5, 85, 75);
-    g.strokeStyle = 'rgba(255,247,228,.7)'; g.lineWidth = 1.6; g.strokeRect(-42.5, -37.5, 85, 75);
-    g.restore();
+  /* the gilt frame's window: 8 x 4 nameless pixel tiles in plain colours (no figure, no name); they flip in as the
+     voice says "a game character", and during the hold one tile at a time re-flips so the frame never sits still */
+  var TILEC = ['#8e2457', '#24457f', '#226b5c', '#4f3a85', '#8f4622', '#2d3550'];
+  var GLYPH = { Y: ['101', '101', '111', '010', '010'], O: ['111', '101', '101', '101', '111'], U: ['101', '101', '101', '101', '111'], '?': ['111', '001', '011', '000', '010'] };
+  var TX = 19, TY = 7, TW = 612 / TX, TH = 270 / TY;
+  function youPix(i, j) {
+    if (j < 1 || j > 5 || i < 2 || i > 16) return false;
+    var c = i - 2, L = Math.floor(c / 4), cc = c % 4; if (cc === 3) return false;
+    return GLYPH['YOU?'[L]][j - 1][cc] === '1';
   }
-  function tileTimes(i) { var c = i % 8, r = Math.floor(i / 8); return T.shred + .1 + .03 * c + .04 * r + .1 * hash(i + 3); }
-  function gScale(t) { return 1 + .1 * eio(seg(t, T.punch, T.punch + .35)); }
+  function rowTime(j) { return j < 2 ? T.peel - .5 : lerp(T.row2, T.youT - .2, (j - 2) / (TY - 3)); }
+  function frameTiles(q, t) {
+    q.fillStyle = '#121a33'; q.fillRect(-306, -180, 612, 270);
+    for (var j = 0; j < TY; j++) for (var i = 0; i < TX; i++) {
+      var ti = rowTime(j) + .012 * i, k = eo(seg(t, ti, ti + .16));
+      if (k <= 0) continue;
+      var idx = j * TX + i, you = youPix(i, j), c = you ? '#fbf5e6' : TILEC[Math.floor(hash(idx * 3 + 1) * TILEC.length)];
+      q.save(); q.translate(-306 + (i + .5) * TW, -180 + (j + .5) * TH); q.scale(1, k);
+      q.fillStyle = c; q.fillRect(-TW / 2 + 1.5, -TH / 2 + 1.5, TW - 3, TH - 3);
+      if (!you) { q.fillStyle = 'rgba(255,255,255,.12)'; q.fillRect(-TW / 2 + 1.5, -TH / 2 + 1.5, TW - 3, 5); }
+      q.restore();
+    }
+  }
   /* the evidence pile at the foot of the desk */
   function pile(g, t) {
     var P = D.pile, n = P.length;
@@ -756,7 +750,7 @@
       var tout = lerp(T.f3 + .25, T.seamL - .55, (n - 1 - i) / Math.max(1, n - 1)), ki = eo(seg(t, tin, tin + .4)), ko = eio(seg(t, tout, tout + .4));
       if (ko >= 1) return;
       var y = p.top + p.pc.h / 2 - 36 + 520 * (1 - ki) + 560 * ko;
-      put(g, p.pc, p.x, y, p.rot + .05 * (1 - ki));
+      g.save(); g.globalAlpha *= .6; put(g, p.pc, p.x, y, p.rot + .03 * (1 - ki)); g.restore();
     });
   }
 
@@ -779,21 +773,19 @@
       putW(q, D.rec1, 210, -372, .03);
     });
     slapOn(g, D.jul, 270, 612, -.05, T.jul, T.aly, t);
-    slapOn(g, D.claim, 755, 612, .04, T.claim, T.aly, t, { tape: true });
-    /* ---- lacey: the alley, the name card, the flashes, two empty frames ---- */
-    drop(g, AX, 1030, .01, T.aly, T.book, t, function (q) { put(q, D.alley, 0, 0); });
-    if (t > T.fl0 - .1 && t < T.book + .1) {
+    slapOn(g, D.claim, 755, 586, .04, T.claim, T.aly, t, { tape: true });
+    /* ---- lacey: the alley, the name card, the flashes, two empty frames; all gone before "Her weapon?" ---- */
+    drop(g, AX - 6, 1030, .01, T.aly, T.alyOut, t, function (q) { put(q, D.alley, 0, 0); });
+    if (t > T.fl0 - .1 && t < T.alyOut + .1) {
       FLASH.forEach(function (f, i) { for (var j = 0; j < 3; j++) flash(g, f[0], f[1], t - (T.fl0 + i * .19 + j * 1.1), f[2]); });
       [[310, 760, 1.15], [720, 800, 1.15], [525, 1185, 1.05]].forEach(function (f, i) { flash(g, f[0], f[1], t - (T.pap + i * .06), f[2]); });
     }
-    slapOn(g, D.name, AX, 860, -.025, T.lj, T.book, t);
-    var tilt = .02 - .075 * eo(seg(t, T.pap, T.pap + .2)) + sw(t, T.pap + .2, .012, 18, 6);
-    stripOn(g, D.actress, AX, 1062, tilt, T.act, T.book, t);
-    slapOn(g, D.cited, AX, 1168, .012, T.cit, T.book, t);
-    slapOn(g, D.lsFrame, 340, 1312, -.04, T.frm1, T.book, t);
-    slapOn(g, D.lsFrame, 745, 1312, .035, T.frm2, T.book, t);
-    /* ---- law: the green book thuds down; 1903; the cover lifts off to § 51 ---- */
-    drop(g, BKX, 1040, -.012, T.book, T.court, t, function (q) {
+    slapOn(g, D.name, AX, 830, -.02 + sw(t, T.pap + .05, .02, 16, 5), T.lj, T.alyOut, t);
+    slapOn(g, D.cited, AX, 1030, .01, T.cit, T.alyOut, t);
+    slapOn(g, D.lsFrame, 340, 1196, -.035, T.frm1, T.alyOut, t);
+    slapOn(g, D.lsFrame, 745, 1196, .03, T.frm2, T.alyOut, t);
+    /* ---- law (off-centre): the green book thuds down on the right before "Her"; 1903 on the left; the court's words under it ---- */
+    drop(g, BKX, BKY, -.012, T.book, T.court, t, function (q) {
       put(q, D.bookBase, 0, 0); putW(q, D.page51, 0, 4);
       var W4 = ['NAME', 'PORTRAIT', 'PICTURE', 'VOICE'];
       W4.forEach(function (w, i) {
@@ -803,16 +795,17 @@
         if (i === 1) hilite(q, -160, -40, 160, 34, eo(seg(t, T.w4[1] + .05, T.w4[1] + .35)));
         txt(q, w, 0, 0, { px: 76, col: INK, align: 'center', ls: 4, a: fin(t, ti, .05) }); q.restore(); NOREC = nr;
       });
-      if (t >= T.sell) txt(q, 'FOR ADVERTISING OR TRADE', 0, 84, { px: 40, col: '#5a4a2a', align: 'center', ls: 2, a: fin(t, T.sell, .15) });
+      if (t >= T.sell) txt(q, 'FOR ADVERTISING OR TRADE', 0, 84, { px: 46, col: '#5a4a2a', align: 'center', ls: 2, a: fin(t, T.sell, .15) });
       if (t < T.cov2) putW(q, D.bookCover, 0, 0);
-    }, { fall: 1450, ospin: 0 });
-    if (t >= T.book && t < T.book + .5) [[-1, BKX - 180], [1, BKX + 180]].forEach(function (d) { var u = t - T.book, kk = eo(seg(u, 0, .45)); g.save(); g.globalAlpha *= .55 * (1 - seg(u, .15, .5)); g.fillStyle = '#efe4cf'; for (var j = 0; j < 3; j++) { g.beginPath(); g.ellipse(d[1] + d[0] * (10 + 30 * kk) + j * 18 * d[0], 1400 - j * 26 - 30 * kk, 26 + 40 * kk, 14 + 16 * kk, 0, 0, TAU); g.fill(); } g.restore(); });
-    if (t >= T.cov2 && t < T.court) lift(g, BKX, 1040, -.012, T.cov2, t, function (q) { putW(q, D.bookCover, 0, 0); }, { dx: 0, r: .03 });
-    slapOn(g, D.y1903, 300, 610, -.05, T.y1903, T.court, t);
-    if (t >= T.cons - .02 && t < T.court + .45) drop(g, 530, 1205, -.035, T.cons, T.court, t, function (q) { putW(q, D.consent, 0, 0); }, { fd: .16, fall: 260, spin: -.05 });
-    drop(g, BKX - 20, 1330, -.03, T.sue, T.court, t, function (q) { putW(q, D.sue, 0, 0); }, { fd: .26 });
+    }, { fall: 1450, ospin: 0, s: BKS });
+    if (t >= T.book && t < T.book + .5) [[-1, BKX - 130], [1, BKX + 130]].forEach(function (d) { var u = t - T.book, kk = eo(seg(u, 0, .45)); g.save(); g.globalAlpha *= .55 * (1 - seg(u, .15, .5)); g.fillStyle = '#efe4cf'; for (var j = 0; j < 3; j++) { g.beginPath(); g.ellipse(d[1] + d[0] * (10 + 30 * kk) + j * 18 * d[0], BKY + 320 - j * 26 - 30 * kk, 26 + 40 * kk, 14 + 16 * kk, 0, 0, TAU); g.fill(); } g.restore(); });
+    if (t >= T.cov2 && t < T.court) lift(g, BKX, BKY, -.012, T.cov2, t, function (q) { q.scale(BKS, BKS); putW(q, D.bookCover, 0, 0); }, { dx: 0, r: .03 });
+    slapOn(g, D.y1903, 232, 760, -.04, T.y1903, T.court, t);
+    stripOn(g, D.uni, 510, 1300, -.01, T.uni, T.cons - .02, t);
+    if (t >= T.cons - .02 && t < T.court + .45) drop(g, 530, 1185, -.035, T.cons, T.court, t, function (q) { putW(q, D.consent, 0, 0); }, { fd: .16, fall: 260, spin: -.05 });
+    drop(g, 400, 1336, -.03, T.sue, T.court, t, function (q) { putW(q, D.sue, 0, 0); }, { fd: .26 });
     /* ---- y2018: a real layout change - the night sky fills the whole stage, the courthouse rises; seven chairs; the gavel ---- */
-    drop(g, FX, 1010, 0, T.court, T.nc, t, function (q) {
+    drop(g, FX, 1010, 0, T.court, T.cto, t, function (q) {
       put(q, D.sky, 0, -145);
       q.save(); q.beginPath(); q.rect(-440, -730, 880, 892); q.clip();
       for (var i = 0; i < 6; i++) { var kc = eo(seg(t, T.cols + i * .07, T.cols + i * .07 + .32)); put(q, D.col, -300 + i * 120, 0 + (1 - kc) * 340); }
@@ -821,34 +814,37 @@
       var kp = seg(t, T.ped - .26, T.ped); if (kp > 0) { var nr = NOREC; NOREC = nr || kp < 1; putW(q, D.ped, 0, -235 - (1 - kp * kp) * 900); NOREC = nr; }
       put(q, D.block, 290, 150);
       for (var c = 0; c < 7; c++) chair(q, -360 + c * 120, 280, c !== 5, eo(seg(t, T.ch + c * .07, T.ch + c * .07 + .2)));
-      if (t >= T.np) { var kn2 = eo(seg(t, T.np, T.np + .14)); q.save(); q.globalAlpha *= fin(t, T.np, .05); q.translate(240, 372); q.scale(lerp(1.3, 1, kn2), lerp(1.3, 1, kn2)); var nr3 = NOREC; NOREC = nr3 || kn2 < 1; putW(q, D.nopart, 0, 0); NOREC = nr3; q.restore(); }
-    }, { fall: 1650 });
-    slapOn(g, D.mar, 270, 600, -.05, T.mar, T.nc, t);
+      if (t >= T.np) { var kn2 = eo(seg(t, T.np, T.np + .14)); q.save(); q.globalAlpha *= fin(t, T.np, .05); q.translate(240, 384); q.scale(lerp(1.3, 1, kn2), lerp(1.3, 1, kn2)); var nr3 = NOREC; NOREC = nr3 || kn2 < 1; putW(q, D.nopart, 0, 0); NOREC = nr3; q.restore(); }
+    }, { fall: 1650, od: .3 });
+    slapOn(g, D.mar, 270, 578, -.05, T.mar, T.cto, t);
     var gc = gavCourt(t); if (gc) gavel(g, gc[0], gc[1], gc[2]);
-    /* ---- nother + generic: the name card under the magnifier; the court's words ---- */
-    drop(g, NX, 950, -.02, T.nc, T.f2, t, function (q) { putW(q, D.nameBig, 0, 0); });
-    stripOn(g, D.generic, 510, 666, -.015, T.gen, T.f2, t);
-    if (t >= T.gen + .05) slapOn(g, D.coa, 650, 815, .03, T.gen + .25, T.f2, t);
-    slapOn(g, D.notrec, NX + 20, 1250, .015, T.nr, T.f2, t);
+    /* ---- nother + generic: the name card under the magnifier; the court's words above it, its credit under them ---- */
+    drop(g, NX, NY, -.02, T.cto + .45, T.f2, t, function (q) { putW(q, D.nameBig, 0, 0); }, { fd: .25 });
+    stripOn(g, D.generic, 510, 642, -.012, T.gen, T.f2, t);
+    if (t >= T.gen + .05) slapOn(g, D.coa, 630, 790, .02, T.gen + .2, T.f2, t);
+    slapOn(g, D.notrec, NX + 20, 1278, .015, T.nr, T.f2, t);
     if (t >= T.nc && t < T.magO + .5) {
-      var mk2 = eio(seg(t, T.nc + .05, T.mag1)), mx = lerp(NX - 195, NX + 195, mk2), my = 960 - 60 * Math.sin(mk2 * Math.PI), mo = eio(seg(t, T.magO, T.magO + .45));
+      var mk2 = eio(seg(t, T.nc + .05, T.mag1)), mx = lerp(NX - 190, NX + 90, mk2), my = NY - 30 - 40 * Math.sin(mk2 * Math.PI), mo = eio(seg(t, T.magO, T.magO + .45));
       var ein = eo(seg(t, T.nc - .05, T.nc + .3));
       my += (1 - ein) * -900 - 1700 * mo;
       var nr4 = NOREC; NOREC = true;
-      magnifier(g, mx, my, function (q) { q.scale(1.45, 1.45); q.translate(NX - mx, 950 - my); q.rotate(-.02); put(q, D.nameBig, 0, 0); });
+      magnifier(g, mx, my, function (q) { q.translate(NX - mx, NY - my); q.rotate(-.02); q.filter = 'blur(5px)'; put(q, D.nameBig, 0, 0); q.filter = 'none'; });
       NOREC = nr4;
     }
-    /* ---- vote: the folder comes back; 6 tallies, 0, a tick in LOST; the cover drops; the stamp ---- */
-    drop(g, FX, FY, .008, T.f2, T.cal, t, function (q) {
+    /* ---- payoff frame: already lying under the folder, so the peel reveals it (no empty desk) ---- */
+    if (t >= T.peel - .3 && t < T.f3 + .4) {
+      var kth = kn(t, T.thk, .03);
+      g.save(); g.translate(GX, GY); g.rotate(-.008); g.scale(GS * kth, GS * kth); frameTiles(g, t); putW(g, D.gilt, 0, 0); g.restore();
+    }
+    /* ---- vote: the folder comes back; a big 6 - 0, a tick in LOST; the cover drops; the stamp; then the folder peels up ---- */
+    drop(g, FX, FY, .008, T.f2, T.peel, t, function (q) {
       folderBody(q, D.verdict, t, function (q2) {
         q2.save(); q2.translate(0, 20);
-        q2.strokeStyle = INK; q2.lineWidth = 13; q2.lineCap = 'round';
-        for (var i = 0; i < 6; i++) {
-          var kt = eo(seg(t, T.tal[i], T.tal[i] + .1)); if (kt <= 0) continue;
-          var a0 = i === 4 ? [-142, 300] : [i < 4 ? -110 + i * 34 : 50, 222], a1 = i === 4 ? [30, 222] : [a0[0] + 6, 304];
-          q2.beginPath(); q2.moveTo(a0[0], a0[1]); q2.lineTo(lerp(a0[0], a1[0], kt), lerp(a0[1], a1[1], kt)); q2.stroke();
-        }
-        if (t >= T.zero) { var kz = eo(seg(t, T.zero, T.zero + .22)); q2.save(); q2.lineWidth = 13; q2.beginPath(); q2.moveTo(96, 262); q2.lineTo(lerp(96, 140, Math.min(1, kz * 3)), 262); q2.stroke(); if (kz > .3) { q2.beginPath(); q2.ellipse(210, 262, 32, 44, 0, -Math.PI / 2, -Math.PI / 2 + TAU * (kz - .3) / .7); q2.stroke(); } q2.restore(); }
+        [['6', -120, T.tal[0] - .1], ['–', 0, T.zero], ['0', 120, T.zero + .08]].forEach(function (n) {
+          if (t < n[2]) return; var kz = eo(seg(t, n[2], n[2] + .14)), sc = lerp(1.5, 1, kz);
+          var nr = NOREC; NOREC = nr || kz < 1;
+          q2.save(); q2.translate(n[1], 268); q2.rotate(-.03); q2.scale(sc, sc); txt(q2, n[0], 0, 0, { px: 140, col: INK, align: 'center', ls: 0, a: fin(t, n[2], .05) }); q2.restore(); NOREC = nr;
+        });
         tickMark(q2, -188, 80, eo(seg(t, T.tick, T.tick + .22)), OXI);
         q2.restore();
         if (t >= T.close - .3) drop(q2, 0, 5, 0, T.close, null, t, function (q3) {
@@ -856,52 +852,16 @@
           if (t >= T.stamp) { var ks = 1 + .02 * (1 - eo(seg(t, T.stamp, T.stamp + .2))); q3.save(); q3.globalCompositeOperation = 'multiply'; q3.translate(0, 236); q3.rotate(-.07); q3.scale(ks * .95, ks * .95); putW(q3, D.dismissed, 0, 0); q3.restore(); }
         }, { fd: .24, fall: 1300, knock: false });
       });
-    });
+    }, { od: .38, ospin: .05, ox: -30 });
     stampTool(g, 510, FY + 236 - 46, -.07, T.stamp, t);
-    /* ---- twist: the LACEY JONAS card lands with an empty gilt frame; on "same" it is cut into tiles that fly into the frame ---- */
-    /* the thunk: the framed portrait is set down hard (a short lift, then the knock) and a glare runs across its glass */
-    var S = gScale(t), kth = kn(t, T.thk, .035), setY = -22 * Math.sin(Math.PI * seg(t, T.thk - .3, T.thk)) * (t < T.thk ? 1 : 0);
-    drop(g, GX, GY + setY, -.008, T.shred - .02, T.cal, t, function (q) {
-      q.scale(.96 * S * kth, .96 * S * kth);
-      q.fillStyle = '#121a33'; q.fillRect(-306, -180, 612, 270);
-      q.strokeStyle = 'rgba(251,245,230,.07)'; q.lineWidth = 2; for (var gx = 1; gx < 8; gx++) { q.beginPath(); q.moveTo(-306 + gx * 76.5, -180); q.lineTo(-306 + gx * 76.5, 90); q.stroke(); } for (var gy = 1; gy < 4; gy++) { q.beginPath(); q.moveTo(-306, -180 + gy * 67.5); q.lineTo(306, -180 + gy * 67.5); q.stroke(); }
-      for (var i = 0; i < 32; i++) { var land = tileTimes(i) + .55; if (t < land) continue; var d = tileDst(i), kl = kn(t, land, .06); drawTile(q, i, d[0], d[1], 0, .9 * kl, 0); }
-      var gl = seg(t, T.thk, T.thk + .45);
-      if (gl > 0 && gl < 1) { q.save(); q.beginPath(); q.rect(-306, -180, 612, 270); q.clip(); q.globalCompositeOperation = 'screen'; var gx0 = lerp(-520, 520, eio(gl)); q.fillStyle = 'rgba(255,248,225,.45)'; q.beginPath(); q.moveTo(gx0 - 60, -190); q.lineTo(gx0 + 40, -190); q.lineTo(gx0 - 60, 100); q.lineTo(gx0 - 160, 100); q.closePath(); q.fill(); q.restore(); }
-      putW(q, D.gilt, 0, 0);
-    }, { fall: 1500 });
-    /* the card, then its tiles in flight (on top of everything) */
-    if (t < T.shred) drop(g, FX, GY - 45, 0, T.tw0, null, t, function (q) { putW(q, D.nameBig, 0, 0); }, { fd: .26 });
-    else if (t < T.cal + .5) {
-      var ko3 = eio(seg(t, T.cal, T.cal + .42));
-      for (var i3 = 0; i3 < 32; i3++) {
-        var src = tileSrc(i3), p0 = [FX + src[0] + 42.5, GY - 45 + src[1] + 37.5], dst = tileDst(i3);
-        if (i3 === D.gtaTile) {
-          var hv = [818, 900 + 8 * Math.sin((t - T.shred) * 5)], kf = eio(seg(t, T.shred + .1, T.shred + .6)), ks2 = seg(t, T.thk - .14, T.thk); ks2 *= ks2;
-          if (t >= T.thk) continue;
-          var Sg = .96 * gScale(t), pd = [GX + dst[0] * Sg, GY + dst[1] * Sg];
-          var hx = lerp(p0[0], hv[0], kf), hy = lerp(p0[1], hv[1], kf) - 90 * Math.sin(Math.PI * kf);
-          drawTile(g, i3, lerp(hx, pd[0], ks2), lerp(hy, pd[1], ks2) - 1700 * ko3, (.25 * Math.sin((t - T.shred) * 3)) * (1 - ks2), lerp(1.12, .9 * Sg, ks2), 1 - ks2);
-          continue;
-        }
-        var ts = tileTimes(i3), u = seg(t, ts, ts + .55); if (u >= 1) continue;
-        var kk = eio(u), p1 = [GX + .96 * dst[0], GY + .96 * dst[1]], h = hash(i3 + 11), cx = lerp(p0[0], p1[0], .5) + (h - .5) * 420, cy = Math.min(p0[1], p1[1]) - 200 - 200 * hash(i3 + 5);
-        var x = (1 - kk) * (1 - kk) * p0[0] + 2 * (1 - kk) * kk * cx + kk * kk * p1[0], y = (1 - kk) * (1 - kk) * p0[1] + 2 * (1 - kk) * kk * cy + kk * kk * p1[1];
-        var nr5 = NOREC; NOREC = true; drawTile(g, i3, x, y, (h - .5) * 1.4 * Math.sin(Math.PI * kk), lerp(1, .864, kk) + .1 * Math.sin(Math.PI * kk), Math.sin(Math.PI * kk)); NOREC = nr5;
-      }
+    /* ---- twist: the green 1903 book comes back onto the folder's top half, the court's words on the 1903 law beside it ---- */
+    drop(g, 288, 800, -.03, T.tb, T.tbOut, t, function (q) { put(q, D.bookBase, 0, 0); putW(q, D.bookCover, 0, 0); }, { fall: 1400, s: .55, ospin: -.05 });
+    stripOn(g, D.uni2, 694, 800, .012, T.tb + .16, T.tbOut, t);
+    /* ---- payoff: condition plate and the court's credit (the frame itself lies under the folder, drawn earlier) ---- */
+    if (t < T.f3 + .4) {
+      slapOn(g, D.cond, 510, 1166, -.012, T.cond, null, t);
+      slapOn(g, D.coa3, 520, 1356, .012, T.coaP, null, t);
     }
-    /* the re-created ruling page lands over the stamp once the stamp has had its reading time */
-    drop(g, FX, RY, .012, T.page, T.cal, t, function (q) {
-      putW(q, D.ruling, 0, 0);
-      var b1 = D.rulingBox['MAY CONSTITUTE'], b2 = D.rulingBox['A ‘PORTRAIT’'];
-      hilite(q, b1[0] - 8, b1[1] + 2, b1[2] + 8, b1[3] + 2, eo(seg(t, T.hl2, T.hl2 + .4)));
-      hilite(q, b2[0] - 8, b2[1] + 2, b2[2] + 8, b2[3] + 2, eo(seg(t, T.hl3, T.hl3 + .35)));
-      putW(q, D.rec2, 236, -238, .03);
-    });
-    /* ---- gta6: a fresh calendar page slams down: NOVEMBER 19 2026; its chips only after it lands ---- */
-    drop(g, CALX, 1080, -.012, T.cal, T.f3, t, function (q) { put(q, D.calBack, 0, 0); putW(q, D.calPage, 0, 40); }, { fd: .26 });
-    slapOn(g, D.gta6, 345, 800, -.06, T.g6, T.f3, t);
-    slapOn(g, D.rsurl, CALX + 60, 1388, .015, T.url, T.f3, t);
     /* ---- end: FAIR RULING? YES / NO, equal; the pencil waits between the boxes, off the headline ---- */
     drop(g, FX, FY, 0, T.f3, null, t, function (q) { folderBody(q, D.endSheet, t); });
     if (t >= T.f3 + .2 && t < T.seamL) {
@@ -909,18 +869,16 @@
       pencil(g, 872, 1090 + 14 * Math.sin((t - T.f3) * 4.2) - (1 - pe2) * 600 - 1700 * pu2, -Math.PI / 2);
     }
     drop(g, FX, FY + 5, 0, T.seamL, null, t, coverBody, { knock: false, spin: 0, fd: .3 });
-    if (t > DUR - 1.2) { var gp2 = gavHook(t - DUR); if (gp2) gavel(g, gp2[0], gp2[1], gp2[2]); }
+    if (t > DUR - 1.5) { var gp2 = gavHook(t - DUR); if (gp2) gavel(g, gp2[0], gp2[1], gp2[2]); }
   }
   function coverBody2(g) { putW(g, D.fCover, 0, 0); }
 
   /* ---------- captions: cream label tape in the upper third, phrase by phrase ---------- */
   var GLUE = { the: 1, a: 1, an: 1, your: 1, its: 1, of: 1, at: 1, to: 1, and: 1, in: 1, with: 1, on: 1, by: 1, so: 1, for: 1, own: 1, how: 1, that: 1, if: 1, you: 1, no: 1, or: 1, it: 1, was: 1, will: 1, most: 1, his: 1, is: 1, her: 1, new: 1, from: 1, as: 1, can: 1 };
-  var NYT = [];
   var CAPS = (function () {
     var outc = [];
     VO.lines.forEach(function (l) {
       var cur = [], ws = l.words;
-      if (l.id === 'payoff') { var lw0 = ws[ws.length - 1], e = lw0.t1; ws = ws.slice(0, -1).concat([{ w: lw0.w.replace(/\.$/, ','), t0: lw0.t0, t1: lw0.t1, split: 1 }, { w: 'in', t0: e + .04, t1: e + .1 }, { w: 'New', t0: e + .1, t1: e + .2 }, { w: 'York.', t0: e + .2, t1: e + .32 }]); NYT = [e + .1, e + .2]; }
       ws.forEach(function (w, i) { cur.push(w); if ((w.split || /[.?!:]["”]?$/.test(w.w)) && !/^N\.Y\.$/.test(w.w) && i < ws.length - 1) { cur.id = l.id; outc.push(cur); cur = []; } });
       if (cur.length) { cur.id = l.id; outc.push(cur); }
     });
@@ -991,32 +949,34 @@
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     function cover(a, b) { Tx('cv1', 'LOHAN', a, b); Tx('cv2', 'VS. GTA 5', a, b); }
-    cover(0, T.lift + .1); cover(T.close, T.tw0); cover(T.seamL - .02, DUR + 1);
+    cover(0, T.lift + .1); cover(T.close, T.peel); cover(T.seamL - .02, DUR + 1);
     function verd(a, b) { Tx('vd1', 'LOHAN VS. GTA 5', a, b); Tx('vd2', 'THE VERDICT:', a, b); Tx('vd3', 'WON', a, b); Tx('vd4', 'LOST', a, b); }
     verd(T.lift + .15, T.cmp); verd(T.f2, T.close - .1);
     Tx('cp1', 'COMPLAINT', T.cmp, T.aly); Tx('cp2', 'LOHAN v. TAKE-TWO', T.cmp, T.aly); Tx('cp3', 'AND ROCKSTAR GAMES', T.cmp, T.aly);
     Tx('cp4', 'CLAIM: A GTA 5', T.cmp, T.aly); Tx('cp5', 'CHARACTER IS HER', T.cmp, T.aly); Tx('cp6', '“LOOK-A-LIKE”', T.cmp, T.aly);
     Tx('cp7', 'FILED · MANHATTAN', T.cmp, T.aly); Tx('cp8', 'JUL 2 2014', T.cmp, T.aly); Tx('rc1', 'RE-CREATED', T.cmp, T.aly);
     Tx('jul', 'JULY 2014', T.jul + .1, T.aly); Tx('clm', 'HER CLAIM', T.claim + .1, T.aly);
-    Tx('lj1', 'LACEY JONAS', T.lj + .1, T.book); Tx('lj2', 'GTA 5 CHARACTER', T.lj + .1, T.book); Tx('act', '“ACTRESS SLASH SINGER”', T.act + .05, T.book);
-    Tx('cit', '+ 2 LOADING SCREENS SHE CITED', T.cit + .1, T.book);
-    Tx('ls1', 'LOADING SCREEN', T.frm1 + .1, T.book); Tx('ls2', 'ART NOT SHOWN', T.frm1 + .1, T.book);
-    Tx('bk1', 'N.Y.', T.book, T.cov2); Tx('bk2', 'CIVIL RIGHTS', T.book, T.cov2); Tx('bk3', 'LAW', T.book, T.cov2); Tx('bk4', '§ 51', T.book, T.cov2);
+    Tx('lj1', 'LACEY JONAS', T.lj + .1, T.alyOut); Tx('lj2', 'GTA 5 CHARACTER', T.lj + .1, T.alyOut); 
+    Tx('cit', 'SHE ALSO CITED:', T.cit + .1, T.alyOut);
+    Tx('ls1', 'LOADING SCREEN', T.frm1 + .1, T.alyOut); Tx('ls2', 'ART NOT SHOWN', T.frm1 + .1, T.alyOut);
+    function book(a, b) { Tx('bk1', 'N.Y.', a, b); Tx('bk2', 'CIVIL RIGHTS', a, b); Tx('bk3', 'LAW', a, b); Tx('bk4', '§ 51', a, b); }
+    book(T.book, T.cov2); book(T.tb, T.tbOut);
     Tx('y03', 'ENACTED 1903', T.y1903 + .1, T.court);
+    Tx('uni', '“…DIGITAL TECHNOLOGY WAS UNINVENTED.”', T.uni + .05, T.cons); Tx('uni', '“…DIGITAL TECHNOLOGY WAS UNINVENTED.”', T.tb + .2, T.tbOut);
+    Tx('coa2', 'NY COURT OF APPEALS · 2018', T.uni + .05, T.cons);
     Tx('pg1', 'CIVIL RIGHTS LAW § 51', T.cov2 + .2, T.court);
     ['NAME', 'PORTRAIT', 'PICTURE', 'VOICE'].forEach(function (w, i) { Tx('w' + i, w, T.w4[i] + .1, T.court); });
     Tx('adv', 'FOR ADVERTISING OR TRADE', T.sell + .1, T.court); Tx('cns', 'WITHOUT WRITTEN CONSENT', T.cons + .05, T.court); Tx('sue', 'YOU CAN SUE', T.sue, T.court);
-    Tx('mar', 'MARCH 29 2018', T.mar + .1, T.nc);
-    Tx('coa1', 'NY COURT OF APPEALS', T.ped, T.nc); Tx('np', 'TOOK NO PART', T.np + .1, T.nc);
-    Tx('nb1', 'LACEY JONAS', T.nc, T.f2); Tx('nb2', 'GTA 5 CHARACTER', T.nc, T.f2);
-    Tx('gen', '“…A GENERIC … ‘TWENTY SOMETHING’ WOMAN…”', T.gen + .05, T.f2); Tx('coa2', 'NY COURT OF APPEALS · 2018', T.gen + .35, T.f2);
+    Tx('mar', 'MARCH 29 2018', T.mar + .1, T.cto);
+    Tx('coa1', 'NY COURT OF APPEALS', T.ped, T.cto); Tx('np', 'TOOK NO PART', T.np + .1, T.cto);
+    Tx('nb1', 'LACEY JONAS', T.cto + .45, T.f2); Tx('nb2', 'GTA 5 CHARACTER', T.cto + .45, T.f2);
+    Tx('gen', '“…A GENERIC … ‘TWENTY SOMETHING’ WOMAN…”', T.gen + .05, T.f2); Tx('coa2', 'NY COURT OF APPEALS · 2018', T.gen + .3, T.f2);
     Tx('nr1', 'THE COURT:', T.nr + .1, T.f2); Tx('nr2', '“NOT RECOGNIZABLE”', T.nr + .1, T.f2);
-        Tx('dis', 'DISMISSED', T.stamp + .05, T.fOut); Tx('aff', 'AFFIRMED 6-0 · 2018', T.stamp + .05, T.fOut);
-    Tx('rl1', 'LOHAN v. TAKE-TWO', T.page, T.cal); Tx('rl2', 'COURT OF APPEALS', T.page, T.cal); Tx('rc2', 'RE-CREATED', T.page, T.cal);
-    Tx('rq1', '“…AN AVATAR …', T.page, T.cal); Tx('rq2', 'MAY CONSTITUTE', T.page, T.cal); Tx('rq3', 'A ‘PORTRAIT’…”', T.page, T.cal);
-    Tx('pl1', 'CAN BE A “PORTRAIT”', T.shred, T.cal); Tx('pl2', 'IF RECOGNIZABLE · NEW YORK LAW', T.shred, T.cal);
-    Tx('cl1', 'NOVEMBER', T.cal, T.f3); Tx('cl2', '19', T.cal, T.f3); Tx('cl3', '2026', T.cal, T.f3);
-    Tx('g6', 'GTA 6', T.g6 + .1, T.f3); Tx('url', 'ROCKSTAR GAMES', T.url + .1, T.f3);
+    Tx('six', '6 – 0', T.tal[0] - .05, T.close);
+    Tx('dis', 'DISMISSED', T.stamp + .05, T.peel); Tx('aff', 'AFFIRMED 6-0', T.stamp + .05, T.peel);
+    Tx('gil', 'A GAME CHARACTER', T.peel + .2, T.f3); Tx('you', 'YOU?', T.youT, T.f3);
+    Tx('cny', 'IN NEW YORK', T.cond + .1, T.f3); Tx('cif', 'IF IT’S RECOGNIZABLY YOU', T.cond + .1, T.f3);
+    Tx('coa2', 'NY COURT OF APPEALS · 2018', T.coaP + .1, T.f3);
     Tx('en1', 'FAIR RULING?', T.f3, T.seamL - .1); Tx('en2', 'YOUR VOTE:', T.f3, T.seamL - .1); Tx('en3', 'YES', T.f3, T.seamL - .1); Tx('en4', 'NO', T.f3, T.seamL - .1);
     return o;
   }
@@ -1032,18 +992,20 @@
     T.cmp = G('cmp', start('y2014') - .14, 'thock', .35, 1);
     T.jul = at('y2014', '2014') - .02; T.claim = at('y2014', 'called'); T.hl1 = at('y2014', 'lookalike');
     T.aly = G('aly', start('lacey') - .1, 'thock', .35, 1);
-    T.lj = at('lacey', 'lacey') + .04; T.act = wend('lacey', 'jonas') - .1; T.frm1 = T.lj + .35; T.frm2 = T.frm1 + .14; T.cit = T.frm1 + .24; T.fl0 = at('lacey', 'hiding'); T.pap = at('lacey', 'paparazzi');
-    G('shut', after('lacey'), 'click', .3, 1);
-    T.book = G('book', wend('law', 'weapon') + .2, 'thock', .3, 1.3, { m: .1 });
+    T.lj = at('lacey', 'lacey') + .04; T.frm1 = T.lj + .2; T.frm2 = T.frm1 + .12; T.cit = T.frm1 + .1; T.fl0 = at('lacey', 'hiding'); T.pap = at('lacey', 'paparazzi');
+    /* the book lands in the pause before "Her weapon?", so that caption never sits on the Lacey card */
+    T.book = G('book', start('law') - .2, 'thock', .3, 1.3, { m: .1 });
+    T.alyOut = T.book - .25;
+    T.uni = at('law', 'new');
     T.y1903 = G('y1903', after('law'), 'slap', .35, 1);
     T.cov2 = at('rule', 'use') - .05;
     T.w4 = [at('rule', 'someones'), at('rule', 'portrait'), at('rule', 'portrait') + .14, at('rule', 'portrait') + .28];
     T.sell = at('rule', 'sell'); T.cons = at('rule', 'without') - .04;
     T.sue = G('sue', at('rule2', 'they') - .12, 'slap', .35, 1);
     T.mar = G('mar', start('y2018') - .3, 'slap', .3, 1);
-    T.court = wend('y2018', '2018') + .08; T.cols = at('y2018', 'new') - .05; T.ped = T.court + .12; T.ch = at('y2018', 'decides'); T.np = T.court + .45;
+    T.court = start('y2018') + .02; T.cols = at('y2018', 'new') - .05; T.ped = T.court + .12; T.ch = at('y2018', 'decides'); T.np = T.court + .45;
     T.gav2 = G('gav2', after('y2018') + .02, 'gavel', .35, 1.1);
-    T.nc = at('nother', 'wasnt') - .02; T.gen = T.nc + .14; T.nr = at('nother', 'recognizable') + .1;
+    T.nc = at('nother', 'wasnt') - .02; T.cto = T.nc - .68; T.gen = at('generic', 'just') - .02; T.nr = at('nother', 'recognizable') + .1;
     T.mag1 = wend('nother', 'her'); T.magO = start('generic') + .2;
     G('genp', after('nother') + .02, 'pin', .3, .9);
     T.f2 = G('f2', start('vote') - .12, 'thock', .35, 1.1);
@@ -1051,18 +1013,21 @@
     T.zero = at('vote', 'zero'); T.tick = at('vote', 'lost');
     T.close = wend('vote', 'lost') + .1;
     T.stamp = G('stamp', T.close + .26, 'stamp', .35, 1.7);
-    /* twist: the stamped folder leaves; the name card and an empty gilt frame land in the pause; on "same" the card is cut into tiles */
-    T.fOut = T.stamp + .05 + 2.56;
-    T.tw0 = G('tw0', start('twist') - .1, 'thock', .3, 1.1);
-    T.shred = at('twist', 'same'); T.page = T.fOut; T.hl2 = T.page + .25; T.hl3 = at('payoff', 'count');
-    T.punch = at('payoff', 'count');
+    /* twist: the DISMISSED folder holds clean (>= 1.2 s); on "same" the green 1903 book comes back onto its top half;
+       the folder peels up in the pause after "says:" (its stamp read for its full readcheck time) */
+    T.tb = at('twist', 'ruling') - .05;
+    T.peel = Math.max(T.stamp + 2.3, lastw('twist') + .02);
+    T.tbOut = T.peel - .1;
+    G('peel', after('twist') - .02, 'click', .3, .9);
+    /* payoff: the gilt frame lands in the same pause; its tiles flip on "a game character"; the condition slams on "game" */
+    T.row2 = at('payoff', 'game'); T.youT = at('payoff', 'your') - .15;
+    T.coaP = wend('payoff', 'york') + .02;
+    T.cond = at('payoff', 'game') - .05;
     T.thk = G('thk', after('payoff') - .02, 'thunk', .3, 1);
-    T.cal = G('cal', start('gta6') - .06, 'thock', .35, 1);
-    T.g6 = Math.max(at('gta6', 'gta') + .02, T.cal + .1); T.url = T.cal + .12;
     T.f3 = G('f3', start('end') - .45, 'thock', .35, 1.1);
     T.seamL = DUR - .1; T.capEnd = DUR - .45;
     G('seam', T.seamL, 'thock', .25, .9);
-    STRESS = [['hook', 'sued'], ['ask', 'guess'], ['y2014', 'lookalike'], ['lacey', 'paparazzi'], ['law', '1903'], ['rule', 'portrait'], ['rule2', 'sue'], ['y2018', 'top'], ['nother', 'recognizable'], ['generic', 'generic'], ['vote', 'lost'], ['twist', 'same'], ['payoff', 'portrait'], ['gta6', '19'], ['end', 'fair']].map(function (p) { return at(p[0], p[1]); }).concat(NYT);
+    STRESS = [['hook', 'sued'], ['ask', 'guess'], ['y2014', 'lookalike'], ['lacey', 'paparazzi'], ['law', '1903'], ['rule', 'portrait'], ['rule2', 'sue'], ['y2018', 'top'], ['nother', 'recognizable'], ['generic', 'generic'], ['vote', 'lost'], ['twist', 'same'], ['payoff', 'york'], ['payoff', 'portrait'], ['end', 'fair']].map(function (p) { return at(p[0], p[1]); });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
 
@@ -1105,7 +1070,7 @@
     function thunk(t, g) { thump(t, .55 * g, 150); boom(t, .25 * g, 110, 55, .16); band(t, t + .05, 2600, 1300, .2 * g, .02 * g, 1.2); tick(t, 1.1 * g, 1800); }
     function patter(t, g) { for (var j = 0; j < 3; j++) { tick(t + j * .035, (1 - j * .2) * g, 2600); thump(t + j * .035, .08 * g, 520); } }
     var LEVEL = { gavel: 1, stamp: 1, click: 4, thock: 5, slap: 3, pin: 4, tick: 6, thunk: 4, patter: 4 };
-    var TRIM = window.SFX_TRIM || { aly: 7, sue: 7.7, f3: 7, shut: 5, book: 6, tap1: 4.8, cmp: 1, mar: 1.6, thk: -7 };
+    var TRIM = window.SFX_TRIM || { aly: 7, sue: 7.7, f3: 2.5, book: 1.5, tap1: 4.8, cmp: 1, mar: 1.6, thk: -7, gav2: -2.5, stamp: -1.2, gav1: -3.5, peel: 4 };
     var TYPE_DB = window.SFX_TYPE_DB || { gavel: -10, stamp: -12, click: -12, thock: -18, slap: -14, pin: -14, tick: -18, thunk: -14, patter: -16 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1) * Math.pow(10, ((TRIM[e.id] || 0) + (TYPE_DB[e.type] || 0)) / 20);
@@ -1144,7 +1109,7 @@
 
   window.FILM = { bare: function () { ctx.setTransform(1, 0, 0, 1, 0, 0); stage(ctx); }, W: W, H: H, DUR: DUR, POSTER: 0, SLUG: 'gta-lawsuit', SHOTS: [], init: init, render: render, frame: frame, LIVE: LIVE, LIVE2: LIVE2, T: T, GT: GT };
   var _bt = buildTextures; buildTextures = function () { _bt(); EV.length = 0; initTimes(); window.FILM.POSTER = Math.round((T.stamp + .4) * 30) / 30 + 1 / 60;
-    window.FILM.SHOTS = [{ id: 'hook', name: 'Sued', t0: 0, t1: start('y2014') }, { id: 'y2014', name: 'Her claim', t0: start('y2014'), t1: start('law') }, { id: 'law', name: '1903 law', t0: start('law'), t1: start('y2018') }, { id: 'y2018', name: 'The court', t0: start('y2018'), t1: start('vote') }, { id: 'vote', name: '6-0', t0: start('vote'), t1: start('twist') }, { id: 'twist', name: 'Portrait', t0: start('twist'), t1: start('gta6') }, { id: 'end', name: 'Fair?', t0: start('gta6'), t1: DUR }]; };
+    window.FILM.SHOTS = [{ id: 'hook', name: 'Sued', t0: 0, t1: start('y2014') }, { id: 'y2014', name: 'Her claim', t0: start('y2014'), t1: start('law') }, { id: 'law', name: '1903 law', t0: start('law'), t1: start('y2018') }, { id: 'y2018', name: 'The court', t0: start('y2018'), t1: start('vote') }, { id: 'vote', name: '6-0', t0: start('vote'), t1: start('twist') }, { id: 'twist', name: 'Portrait', t0: start('twist'), t1: start('end') }, { id: 'end', name: 'Fair?', t0: start('end'), t1: DUR }]; };
 
   window.BOUNDS_RUN = function (step) {
     BOUNDS = []; var o = {};
