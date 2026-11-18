@@ -22,3 +22,5 @@ Sources: Rockstar's [video policy](https://support.rockstargames.com/articles/20
 
 ## Jury checklist (added to the video-jury's scoring)
 Fail the video ("don't post") if any of these is true: it contains footage we do not own that is longer than 5 s unannotated; a rumor is stated as fact; a leak or ending is shown; music from a trailer or radio is audible; a number has no source in BRIEF.md.
+
+Hook rule (Isac 2026-11-18): frame 0 shows the question or the number in 5 words or fewer, readable with the sound off, and the answer or payoff is on screen by 2.0 s. Look at frames 0.0, 1.0 and 2.0 s. If either part fails, cap Hook at 6 and list the fix first.
