@@ -11,6 +11,8 @@ Skills label what was read from source versus inferred (and add reduced-motion f
 
 **Start here:** `site-kickoff` (one sentence → approved brief → `tools/new-site.sh`), `immersive-site-playbook` (architecture, tokens, checklists), then `premium-micro-details` as the final polish pass and `site-verification-loop` before every PR.
 
+**PRs merge themselves (Isac, 2026-11-18: "Just make it auto approve").** Every session and scheduled run (Delta, video factory, sites, skills) opens its PR as a normal PR, never a draft, and merges it itself (merge method `merge`) as soon as it is conflict-free and no check has failed; neutral and skipped checks count as green. Held or unfinished work merges too, since backlog.csv records its status. On a conflict, merge `origin/main` into your branch, keep both sides' rows in CSV logs, push and merge. Leave a PR open only when a check fails and you can't fix it in the run, and say so in your summary. Never ask Isac to merge, approve or say "go".
+
 ## New website workflow (plan → build → verify → review → remember)
 Adapted from ECC (github.com/affaan-m/ECC): the plan comes before the code, checks run the same way every time, and a context that didn't write the change reviews it.
 1. **Plan.** Write `<slug>/BRIEF.md` with `site-kickoff`: the one hard idea, a motion personality, sections in story order, and only the skills that have a job on this page (one line each saying what). Get it approved before building past the starter.

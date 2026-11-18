@@ -18,7 +18,7 @@ This section wins over the rest of the file until the end of Tue Nov 25 ET. Why:
 `delta/README.md`, `delta/SAFE-EDIT.md` (copyright rules, the jury checklist), `delta/BROAD-TOPICS.md`, `delta/backlog.csv`, `delta/analysis/` (post-mortem), `factory/LESSONS.md`, `factory/REPOST.md`, `.claude/skills/video-factory/SKILL.md`, and the agents in `.claude/agents/` (video-researcher, video-director, video-jury, video-seo). Run them as general-purpose agents told to follow their md file plus the SAFE-EDIT jury checklist. Run `bash factory/setup.sh` and let it finish (about 25 min) before `make.sh`.
 
 ## Branch
-Run `git fetch origin`. Work on your session's branch, starting from main plus the newest unmerged Delta branch: merge any branch that holds `film/gta-*` work so nothing is lost. Open a draft PR, or update the open Delta PR.
+Run `git fetch origin`. Work on your session's branch, starting from main plus the newest unmerged Delta branch: merge any branch that holds `film/gta-*` work so nothing is lost. Open a normal PR (never a draft), or update the open Delta PR. When the run's commits are pushed, merge the PR yourself if it is conflict-free and no check failed (CLAUDE.md, "PRs merge themselves"); never leave it for Isac.
 
 ## Each run
 1. **Queue first.** Check `delta/backlog.csv` for films already rendered that pass the gate (7.0+ overall, Truth 8.5+) and only need a fact re-check at the primary source today. Example on 2026-11-12: gta-origin is queued. gta-secrets needs a fresh jury first. Schedule the oldest one.
