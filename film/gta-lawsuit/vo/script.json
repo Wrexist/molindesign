@@ -1,5 +1,5 @@
 {
- "about": "Lohan v Take-Two Interactive Software (Delta, pillar 7, pop culture). NY Court of Appeals, 2018 NY Slip Op 02208, decided March 29 2018, opinion by Judge Fahey, five judges concurring, Judge Wilson took no part (Reuters: 6-0). Held: an avatar may constitute a 'portrait' under Civil Rights Law 50-51 (enacted 1903), but the Lacey Jonas character and the two loading-screen images are 'not recognizable as plaintiff' ('a generic artistic depiction of a \"twenty something\" woman'), so the amended complaint was properly dismissed. Suit filed July 2 2014 in Manhattan (AP). Gravano v Take-Two (2018 NY Slip Op 02207) decided the same day, same result (on screen only). GTA 6 date: rockstargames.com/VI, November 19, 2026. Voice is date-proof for a Nov 18 post: no today/tomorrow. Sources in BRIEF.md.",
+ "about": "Lohan v Take-Two Interactive Software (Delta, pillar 7, pop culture). NY Court of Appeals, 2018 NY Slip Op 02208, decided March 29 2018, opinion by Judge Fahey, five judges concurring, Judge Wilson took no part (Reuters: 6-0). Held: an avatar may constitute a 'portrait' under Civil Rights Law 50-51 (enacted 1903), but the Lacey Jonas character and the two loading-screen images are 'not recognizable as plaintiff' ('a generic artistic depiction of a \"twenty something\" woman'), so the amended complaint was properly dismissed. Suit filed July 2 2014 in Manhattan (AP). Gravano v Take-Two (2018 NY Slip Op 02207) decided the same day, same result (on screen only). No GTA 6 date line (remake 2026-11-18: posts after the Nov 19 launch); the voice says nothing date-dependent. Sources in BRIEF.md.",
  "engine": "ming",
  "ming": {
   "voice": "US_James",
@@ -13,7 +13,6 @@
  "names": [
   "GTA",
   "GTA 5",
-  "GTA 6",
   "Lindsay Lohan",
   "Lohan",
   "Lacey Jonas",
@@ -63,7 +62,7 @@
   },
   {
    "id": "law",
-   "at": 12.21,
+   "at": 12.37,
    "text": "Her weapon? A New York law from 1903.",
    "say": "Her weapon? A New York law from nineteen oh three.",
    "pause": 0.6,
@@ -71,20 +70,20 @@
   },
   {
    "id": "rule",
-   "at": 15.5,
+   "at": 15.66,
    "text": "Use someone's portrait to sell, without consent?",
    "pause": 0.3,
    "speed": 1.05
   },
   {
    "id": "rule2",
-   "at": 18.32,
+   "at": 18.48,
    "text": "They can sue.",
-   "pause": 0.5
+   "pause": 1.1
   },
   {
    "id": "y2018",
-   "at": 19.68,
+   "at": 20.44,
    "text": "2018. New York's top court decides.",
    "say": "Twenty eighteen. New York's top court decides.",
    "pause": 0.6,
@@ -92,53 +91,45 @@
   },
   {
    "id": "nother",
-   "at": 22.79,
+   "at": 23.55,
    "text": "Lacey wasn't recognizable as her.",
    "pause": 0.3,
    "speed": 1.1
   },
   {
    "id": "generic",
-   "at": 25.11,
+   "at": 25.87,
    "text": "Just a generic twenty-something woman.",
    "pause": 0.35,
    "speed": 1.1
   },
   {
    "id": "vote",
-   "at": 27.48,
+   "at": 28.24,
    "text": "Six votes to zero. She lost.",
-   "pause": 0.8,
+   "pause": 0.9,
    "speed": 1.05
   },
   {
    "id": "twist",
-   "at": 30.36,
+   "at": 31.23,
    "text": "But the same ruling says:",
-   "pause": 0.2
+   "pause": 0.5
   },
   {
    "id": "payoff",
-   "at": 31.94,
-   "text": "a game character can count as your portrait.",
-   "pause": 0.7
-  },
-  {
-   "id": "gta6",
-   "at": 34.93,
-   "text": "GTA 6 lands November 19.",
-   "say": "G T A six lands November nineteenth.",
-   "pause": 0.6,
-   "speed": 1.1
+   "at": 33.1,
+   "text": "In New York, a game character can count as your portrait.",
+   "pause": 1.3
   },
   {
    "id": "end",
-   "at": 37.85,
+   "at": 37.54,
    "text": "Fair ruling? Yes or no?",
    "pause": 0
   }
  ],
- "dur": 39.9,
+ "dur": 39.66,
  "tail": 0.55,
  "fit": {
   "min": 0.88,
