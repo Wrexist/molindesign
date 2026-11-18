@@ -9,6 +9,7 @@ post had it missing, every served post had it set; checked 2026-11-03).
   python3 factory/stats.py            # markdown table to stdout
   python3 factory/stats.py --csv      # csv to stdout
   python3 factory/stats.py --only incognito,voiceclone
+  python3 factory/stats.py --channel UCZXuxrznrR3EfHH5q17xSSA   # every Short on a channel (Delta), posts.csv not needed
 """
 import csv, json, os, re, subprocess, sys, urllib.request
 from datetime import datetime, timezone
@@ -45,7 +46,37 @@ def tiktok(vid):
         return {"views": "?", "likes": "", "comments": "", "served": f"error: {e.__class__.__name__}"}
 
 
+def channel_shorts(channel_id):
+    """Every Short on a YouTube channel, newest first: list from the /shorts tab, exact counts per video."""
+    cmd = ["yt-dlp", "--impersonate", "chrome", "--flat-playlist", "--print", "%(id)s|%(title)s",
+           f"https://www.youtube.com/channel/{channel_id}/shorts"]
+    out = subprocess.run(cmd, capture_output=True, text=True, timeout=300).stdout.strip().splitlines()
+    rows = []
+    for line in out:
+        vid, _, title = line.partition("|")
+        d = subprocess.run(["yt-dlp", "--impersonate", "chrome", "--skip-download", "--ignore-no-formats-error",
+                            "--extractor-args", "youtube:player_client=web_embedded",
+                            "--print", "%(upload_date)s|%(duration)s",
+                            f"https://www.youtube.com/watch?v={vid}"], capture_output=True, text=True, timeout=90).stdout.strip().splitlines()
+        date, _, dur = (d[-1] if d else "|").partition("|")
+        rows.append({"id": vid, "title": title, "date": date, "length_s": dur, **youtube(vid)})
+    return rows
+
+
 def main():
+    if "--channel" in sys.argv:
+        rows = channel_shorts(sys.argv[sys.argv.index("--channel") + 1])
+        now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        print(f"Stats read {now}, {len(rows)} Shorts\n")
+        print("| Posted | Title | Length | Views | Likes | Comments | Like % |")
+        print("|---|---|---|---|---|---|---|")
+        for r in sorted(rows, key=lambda r: r["date"]):
+            try:
+                lk = f"{100 * int(r['likes']) / int(r['views']):.1f}"
+            except (ValueError, ZeroDivisionError):
+                lk = ""
+            print(f"| {r['date']} | {r['title'].replace('|', '/')} | {r['length_s']} s | {r['views']} | {r['likes']} | {r['comments']} | {lk} |")
+        return
     only = None
     if "--only" in sys.argv:
         only = set(sys.argv[sys.argv.index("--only") + 1].split(","))

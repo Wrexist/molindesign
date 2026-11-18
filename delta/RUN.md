@@ -4,6 +4,16 @@ The scheduled task "Delta GTA daily run" fires 3 times a day (08:17, 14:17, 20:1
 
 **Volume (Isac 2026-11-12: "pump more videos a day out on Delta with GTA content, use GTA media"):** up to **3 fresh Shorts a day** at 13:00, 19:00 and 23:00 ET, plus **1 filler** at 09:00 ET (a remix of an older Delta Short, `factory/REPOST.md`). Each run makes or schedules one fresh Short. The first run of the ET day also does the filler.
 
+## Launch week, Nov 18–25 2026 (Isac 2026-11-18: "Do it")
+This section wins over the rest of the file until the end of Tue Nov 25 ET. Why: the 2026-11-18 progress check (Claude Doc "Delta channel: progress and growth plan") found remix fillers get the fewest views (records-r1: 166) and seven Shorts in a row stopped at about 1,200 views, which points at the first 1–2 seconds.
+- **No fillers.** Skip step 3. The 09:00 ET slot is free for a fresh Short. Still at most 4 posts a day, at least 4 h apart.
+- **News first.** At the start of each run, check for a new **official** launch number or fact: Take-Two or Rockstar press releases and Newswire, Take-Two investor posts, review aggregates (Metacritic, OpenCritic), official player or sales counts, YouTube's own GTA VI posts. If one landed since the last Delta Short and no Delta Short covers it, make that the run's Short, ahead of the queue and backlog. Unconfirmed reports (leakers, "sources say") are not news: skip them or label them as a rumor.
+  - Speed over polish: aim to queue it for the next free slot. 20–30 s, one simple set, the number as the hero.
+  - The gate doesn't change: fresh jury, 7.0+ and Truth 8.5+, with the number's primary source in BRIEF.md.
+  - Title: the number and GTA 6 up front (for example "GTA 6 Sold X in 24 Hours"). Write the pinned question about the number.
+- **Frame-0 hook (every Short).** Frame 0 shows the question or the number in 5 words or fewer, big and readable with the sound off. The answer or payoff is on screen by 2.0 s. Length is 20–30 s. The jury checks this (SAFE-EDIT jury checklist) and caps Hook at 6 if it fails.
+- **After launch:** a queued or backlog film whose script says the game isn't out yet needs a hook remix or a fact re-check before it posts.
+
 ## Read first
 `delta/README.md`, `delta/SAFE-EDIT.md` (copyright rules, the jury checklist), `delta/BROAD-TOPICS.md`, `delta/backlog.csv`, `delta/analysis/` (post-mortem), `factory/LESSONS.md`, `factory/REPOST.md`, `.claude/skills/video-factory/SKILL.md`, and the agents in `.claude/agents/` (video-researcher, video-director, video-jury, video-seo). Run them as general-purpose agents told to follow their md file plus the SAFE-EDIT jury checklist. Run `bash factory/setup.sh` and let it finish (about 25 min) before `make.sh`.
 
@@ -51,7 +61,7 @@ Run `git fetch origin`. Work on your session's branch, starting from main plus t
    - `python3 factory/repost.py snapshot gta-<slug>`.
    - The memory note `delta-gta6-channel.md`, kept under 2.8 KB.
    - Commit with the attribution lines, push, update the PR.
-8. **Weekly** (first run on a Sunday): one wide long video (3–6 min, chapter cards).
+8. **Weekly** (first run on a Sunday): one wide long video (3–6 min, chapter cards), and a stats read: `python3 factory/stats.py --channel UCZXuxrznrR3EfHH5q17xSSA` gives views, likes and comments for every Delta Short. Add a dated table to `delta/analysis/STATS.md`, and add one line to the memory note on what rose or fell and why you think so.
 
 ## Rules
 - English (US), with sourced facts.
