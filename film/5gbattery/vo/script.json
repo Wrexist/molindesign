@@ -1,0 +1,101 @@
+{
+  "about": "Is 5G draining your battery? Factory #34, backlog row 40, slug 5gbattery. One hard idea: 5G can cost more battery than LTE, but only when it is barely used; in a 2021 University of Minnesota/Michigan power-meter study (Narayanan et al., SIGCOMM 2021; Galaxy S20 Ultra on Verizon) 5G was up to 79% less energy-efficient than 4G at low throughput and up to 5x more efficient at high throughput, which is why iPhone's 5G Auto (Smart Data mode) and Pixel's Adaptive connectivity drop to LTE when 5G won't help. Check: is yours on 5G Auto? Sources read 2026-11-17, see BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "iPhone",
+    "Pixel",
+    "LTE",
+    "Apple"
+  ],
+  "pronounce": {},
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 24.5
+  },
+  "dur": 35.01,
+  "tail": 0.15,
+  "lines": [
+    {
+      "id": "hook",
+      "text": "Yes, 5G can drain your battery.",
+      "say": "Yes, five G can drain your battery.",
+      "pause": 0.6,
+      "at": 0.2
+    },
+    {
+      "id": "ask",
+      "text": "Should you turn it off?",
+      "pause": 0.4,
+      "at": 2.67
+    },
+    {
+      "id": "test",
+      "text": "In 2021, researchers wired 5G phones to power meters.",
+      "say": "In twenty twenty-one, researchers wired five G phones to power meters.",
+      "pause": 0.4,
+      "at": 3.94
+    },
+    {
+      "id": "slow",
+      "text": "At slow speeds, 5G was up to 79% less efficient.",
+      "say": "At slow speeds, five G was up to seventy-nine percent less efficient.",
+      "pause": 0.9,
+      "at": 8.09
+    },
+    {
+      "id": "twist",
+      "text": "But at full speed, it was up to five times more efficient.",
+      "pause": 0.8,
+      "at": 12.58
+    },
+    {
+      "id": "barely",
+      "text": "So 5G costs extra when you barely use it.",
+      "say": "So five G costs extra when you barely use it.",
+      "pause": 1.2,
+      "tail_fade": 0.15,
+      "at": 16.15
+    },
+    {
+      "id": "auto",
+      "text": "On iPhone, 5G Auto drops to LTE when 5G won't help.",
+      "say": "On iPhone, five G Auto drops to L T E when five G won't help.",
+      "pause": 0.6,
+      "at": 20.06
+    },
+    {
+      "id": "pixel",
+      "text": "On Pixel, Adaptive connectivity does the same.",
+      "pause": 0.4,
+      "at": 24.71
+    },
+    {
+      "id": "on",
+      "text": "5G On always picks 5G. Apple says that might cost battery.",
+      "say": "Five G On always picks five G. Apple says that might cost battery.",
+      "pause": 0.5,
+      "at": 27.76
+    },
+    {
+      "id": "end",
+      "text": "Is yours on 5G Auto? Yes or no.",
+      "say": "Is yours on five G Auto? Yes, or no?",
+      "pause": 0,
+      "tail_fade": 0.15,
+      "at": 31.89
+    }
+  ]
+}

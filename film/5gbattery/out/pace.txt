@@ -1,0 +1,2 @@
+/home/user/molindesign/film/5gbattery/out/5gbattery-vo.mp4: 35.0 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.568, 0-3 s 0.847, median 0.126, still frames 10.0 %
+OK    no frozen stretches, opening moves
