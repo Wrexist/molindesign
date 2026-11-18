@@ -1,0 +1,116 @@
+{
+ "about": "GTA budget (Delta, pillar 1 numbers and money). The Scotsman reported in Sept 2013 that GTA V's combined development and marketing budget was about GBP 170 million (about $265M; conversions vary, Guinness prints $276M); a press report, not a Rockstar figure. Guinness World Records lists GTA V for Largest budget for a videogame (9 Sept 2013). Take-Two press release Sept 20 2013 (SEC 8-K Ex. 99.1): worldwide retail sales of more than $1 billion during its first three days on sale (company estimates). Take-Two Investor Presentation Nov 2026: GTA V reached $1 billion in retail sales faster than any entertainment release in history; GTA VI November 19, 2026. Derived: over $1B / about $265M = nearly 4x (3.77). Take-Two has not published a GTA 6 budget. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 5",
+  "GTA 6",
+  "Take-Two",
+  "Rockstar",
+  "Guinness",
+  "Scottish"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 22
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "What did GTA 5 cost?",
+   "say": "What did G T A five cost?",
+   "pause": 0.5,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "paper",
+   "at": 2.6,
+   "text": "About 265 million dollars, a Scottish newspaper reported.",
+   "say": "About two hundred sixty-five million dollars, a Scottish newspaper reported.",
+   "pause": 0.6
+  },
+  {
+   "id": "both",
+   "at": 6.82,
+   "text": "That's making it and marketing it, together.",
+   "pause": 0.25
+  },
+  {
+   "id": "guin",
+   "at": 8.98,
+   "text": "Guinness listed it as a record budget.",
+   "pause": 0.4
+  },
+  {
+   "id": "dip",
+   "at": 11.76,
+   "text": "But that's a press report, not Rockstar's number.",
+   "pause": 0.5
+  },
+  {
+   "id": "launch",
+   "at": 14.83,
+   "text": "Then it launched.",
+   "pause": 0.2
+  },
+  {
+   "id": "billion",
+   "at": 16.17,
+   "text": "In three days: over one billion dollars in sales.",
+   "pause": 0.7
+  },
+  {
+   "id": "four",
+   "at": 19.78,
+   "text": "Almost four times the reported cost.",
+   "pause": 0.25
+  },
+  {
+   "id": "fast",
+   "at": 22.22,
+   "text": "Take-Two says nothing in entertainment got there faster.",
+   "pause": 0.25
+  },
+  {
+   "id": "gta6",
+   "at": 25.5,
+   "text": "GTA 6's budget? Take-Two hasn't given a number.",
+   "say": "G T A six's budget? Take-Two hasn't given a number.",
+   "pause": 0.45
+  },
+  {
+   "id": "date",
+   "at": 29.35,
+   "text": "GTA 6: November 19.",
+   "say": "G T A six: November nineteenth.",
+   "pause": 0.25
+  },
+  {
+   "id": "end",
+   "at": 31.6,
+   "text": "Did GTA 6 cost over a billion? Yes or no?",
+   "say": "Did G T A six cost over a billion? Yes or no?",
+   "pause": 0
+  }
+ ],
+ "dur": 35.2,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

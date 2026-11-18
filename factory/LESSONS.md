@@ -389,3 +389,11 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Past tense on a future event is false until it happens: "GTA 6 took thirteen years" posted before Nov 19 cost Truth; write pre-launch hooks in the present ("is a 13-year wait") (gta-longestwait r2).
 - A reveal shown before its question gives it away: both NOV 19 pages up before "Sound familiar?" answered it; show the first page, fly in the second on the question, stamp after (gta-longestwait r2).
 - The paper waiting room (wall clock, calendar-pad towers, kraft floor) read as hand-made to both juries and replaced the synthwave backdrop; what they docked was the identical centred composition on every beat and SFX at -23 to -31 dBFS (duck.smr_db 42 is too high for Delta; 22 got hits to -10) (gta-longestwait).
+
+### Delta batch of 6 (2026-11-17): budget, firsts, losantos passed; storylength, name, online held
+- Juries now dock a full point per repeated LESSONS mistake, and round-2 fixes often create new ones. The three repeats that sank three films: a camera push-in (1.3×) that carries props past the x 90–930 rail (pixel-scan every frame of a push; cap the scale), a quote strip or reveal up before the line that asks for it, and a hero hit placed inside a spoken word.
+- Run pacecheck on the posted upload re-encode, not only the master: gta-name's master passed and the upload froze 1.3 s.
+- A new set per film is now expected. Reusing the covered "?" tower, palm or case towers failed gta-storylength even after a rebuild.
+- Ming swallows a possessive after a spelled number ("G T A five's"); say "the GTA 5 city" and keep the possessive only in the caption.
+- Run Ming voice jobs one at a time on the 15 GB box: `flock /tmp/claude-0/ming.lock <cmd>` with no timeout. Parallel jobs got killed for memory.
+- `vo/vad.js` has no shared writer yet; makers used a scratch vad.py (40 dB / 10 ms rule). Worth adding to film/tools.

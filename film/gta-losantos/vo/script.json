@@ -1,0 +1,134 @@
+{
+ "about": "GTA 5's Los Santos is based on Los Angeles (Delta, pillar 5, real-world crossover). Rockstar North: GTA V is set in 'a re-imagined, present day Southern California', in 'the city of Los Santos'. Aaron Garbut (Rockstar North art director) to BuzzFeed, Aug 13 2013: 'We have a world that incorporates all of Los Angeles'; 'We've shot over 250,000 images and hours of video.' Edge (GamesRadar+, Sept 21 2015): 'Hollywood and its signage transmogrify into Vinewood'; 'Del Perro pier (a lovingly rendered homage to Santa Monica's pier)'; 'Santos' means 'Saints', a play against the 'Angels' of Los Angeles; 'The city isn't an exact recreation of Los Angeles'. Garbut to Edge, Jan 2 2014: real cities are 'a starting point'. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 5",
+  "Rockstar",
+  "Los Santos",
+  "Los Angeles",
+  "Vinewood",
+  "Hollywood",
+  "Santa Monica",
+  "Del Perro",
+  "L.A.",
+  "pier",
+  "Del Perro Pier"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Is the GTA 5 city real?",
+   "say": "Is the G T A five city real?",
+   "pause": 0.6,
+   "take": 0
+  },
+  {
+   "id": "socal",
+   "text": "Rockstar sets it in a re-imagined Southern California.",
+   "pause": 1.2,
+   "at": 2.85
+  },
+  {
+   "id": "la",
+   "text": "Its art director says it takes in all of L.A.",
+   "say": "Its art director says it takes in all of L A.",
+   "pause": 0.4,
+   "at": 7.01
+  },
+  {
+   "id": "photos",
+   "text": "His team shot over 250,000 images.",
+   "say": "His team shot over two hundred fifty thousand images.",
+   "pause": 1.0,
+   "at": 10.55
+  },
+  {
+   "id": "sign",
+   "text": "The Hollywood sign?",
+   "pause": 0.45,
+   "at": 14.64
+  },
+  {
+   "id": "sign2",
+   "text": "Now it says Vinewood.",
+   "pause": 0.7,
+   "at": 16.11,
+   "say": "Now it says Vine wood."
+  },
+  {
+   "id": "pier",
+   "text": "Santa Monica's pier?",
+   "pause": 0.45,
+   "at": 18.88
+  },
+  {
+   "id": "pier2",
+   "text": "That's Del Perro Pier.",
+   "pause": 0.7,
+   "at": 20.83
+  },
+  {
+   "id": "name",
+   "text": "Even the name: Santos means saints.",
+   "pause": 0.35,
+   "at": 23.17
+  },
+  {
+   "id": "name2",
+   "text": "And Angeles means angels.",
+   "pause": 0.4,
+   "at": 26.4,
+   "take": 0
+  },
+  {
+   "id": "copy",
+   "text": "But it's not a copy.",
+   "pause": 1.2,
+   "at": 28.41
+  },
+  {
+   "id": "start",
+   "text": "Rockstar's art director calls the real city a starting point.",
+   "pause": 0.6,
+   "at": 31.04
+  },
+  {
+   "id": "end",
+   "text": "Vinewood sign or Del Perro Pier?",
+   "say": "Vine wood sign or Del Perro Pier?",
+   "pause": 0.8,
+   "at": 34.64
+  },
+  {
+   "id": "end2",
+   "text": "Which would you visit first?",
+   "pause": 0,
+   "at": 37.53
+  }
+ ],
+ "dur": 39.32,
+ "tail": 0.4,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

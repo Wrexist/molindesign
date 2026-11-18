@@ -1,0 +1,117 @@
+{
+ "about": "GTA firsts (Delta, pillar 3: GTA history). Rockstar Games press release, Oct 13 2011 (Business Wire): Grand Theft Auto III 'was originally released in October 2001 for the PlayStation 2. It was the first three-dimensional, open-world Grand Theft Auto title'. The Strong National Museum of Play, World Video Game Hall of Fame page (inducted 2016): GTA III 'wasn't the first 3-D sandbox game to allow players to freely interact with an open virtual world, or even the first game in its juggernaut franchise. But the 2001 game was the first of its kind to achieve massive mainstream popularity and widespread critical acclaim'; its play 'became a model for many other open-world games that followed'. Time Extension, Nov 28 2022: the first Grand Theft Auto came out on PC on November 28th, 1997. TechRadar (Ben Gilbert, Oct 22 2021): GTA III switched from 'the top-down perspective' of its predecessors into a 3D vantage. GTA VI: November 19, 2026 (rockstargames.com/VI). Derived: 2001 to 2026 = 25 years. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 3",
+  "GTA 6",
+  "Rockstar"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 26
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "text": "GTA 3 didn't invent open worlds.",
+   "say": "G T A three didn't invent open worlds.",
+   "pause": 0.25,
+   "at": 0.2
+  },
+  {
+   "id": "why",
+   "text": "So why does GTA 3 get the credit?",
+   "pause": 0.25,
+   "at": 2.87,
+   "say": "So why does G T A three get the credit?"
+  },
+  {
+   "id": "gta1",
+   "text": "The first GTA came out in 1997.",
+   "say": "The first G T A came out in nineteen ninety-seven.",
+   "pause": 0.25,
+   "at": 5.55
+  },
+  {
+   "id": "above",
+   "text": "You saw the city from straight above.",
+   "pause": 0.25,
+   "at": 8.84
+  },
+  {
+   "id": "gta3",
+   "text": "Then in 2001, GTA 3 went 3D.",
+   "say": "Then in two thousand one, G T A three went three D.",
+   "pause": 0.8,
+   "at": 11.09
+  },
+  {
+   "id": "rock",
+   "text": "Rockstar calls it the first 3D, open-world GTA.",
+   "say": "Rockstar calls it the first three D open world G T A.",
+   "pause": 1.25,
+   "at": 15.81
+  },
+  {
+   "id": "but",
+   "text": "But it wasn't the first 3D open world.",
+   "say": "But it wasn't the first three D open world.",
+   "pause": 1.45,
+   "at": 20.11
+  },
+  {
+   "id": "real",
+   "text": "The real first? Massive mainstream popularity.",
+   "pause": 1.0,
+   "at": 24.09
+  },
+  {
+   "id": "hof",
+   "text": "The video game Hall of Fame says so.",
+   "pause": 0.35,
+   "at": 27.91,
+   "take": 1
+  },
+  {
+   "id": "model",
+   "text": "It became a model for later open worlds.",
+   "pause": 0.35,
+   "at": 30.29
+  },
+  {
+   "id": "gta6",
+   "text": "25 years later: GTA 6.",
+   "say": "Twenty-five years later: G T A six.",
+   "pause": 0.25,
+   "at": 32.93
+  },
+  {
+   "id": "end",
+   "text": "Bigger leap: GTA 3, or GTA 6?",
+   "say": "Bigger leap: G T A three or G T A six?",
+   "pause": 0,
+   "at": 35.67,
+   "take": 1
+  }
+ ],
+ "dur": 39.13,
+ "tail": 0.5,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}
