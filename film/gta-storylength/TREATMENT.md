@@ -1,31 +1,38 @@
-# Treatment: "How Long Is GTA 5's Story?" (Delta, gta-storylength)
+# Treatment: "How Long Is GTA 5's Story?" (Delta, gta-storylength, round 3 remake)
 
-One hard idea: **players average 32 hours for GTA 5's story and almost 90 for 100% (HowLongToBeat), nearly three times as long.** One hero object: **the paper hour tower**, a stack of cream-and-teal hour blocks (a tiny clock on each label, no numbers on the blocks) standing on a kraft floor in front of a pencil ruler marked every 10 hours. Hero sounds: the counter thunk, the sheet rip, the bracket snap and the stamps.
+One hard idea: **players average 32 hours for GTA 5's story and almost 90 for 100% (HowLongToBeat), nearly three times as long; the story is only 55% of the 100% checklist (GTABase).**
 
-Round 2 (jury r1): a new set so the opening can't be mistaken for gta-outsold: a daytime street (teal-to-sand sky, sun and drifting paper clouds, a two-layer paper skyline, kerb and an asphalt road with yellow dashes), yellow STORY tower and coral 100% tower (no plum wall, no kraft floor, no low sun), and the hero framed lower-left with a slow push-in from frame 0. The "why" is now one sourced cause: the 100% checklist's weights.
+Round 3 throws the whole round-2 set away (jury r2: the covered `?` tower, the palm, the case towers and the warm horizon read as gta-outsold's template). New set, new heroes, new palette:
+- **Set:** a top-down desk at night: a cobalt paper desk mat with a halftone light pool, a mug with paper steam in the corner, a pencil, notebook spirals and a cable along the bottom edge. Everything bleeds the frame; nothing outside the rail carries text.
+- **Hero A (0-16.5 s): the paper stopwatch.** Mint bezel, cream face, its dial marked 0-100 HOURS (honest scale: 3.6° per hour). The hand paints the hours as coloured rings: the story in yellow on the inner ring, 100% in coral on the outer ring, so 32 and 89½ sit on one dial. "Nearly three times" lays two more 32-hour yellow arcs after the first: the third ends at 96 h, just past the coral 89½ line.
+- **Hero B (16.5-25 s): the 100% punch card.** A 10×10 card where each square is 1% of the completion score (GTABase weights), punched colour by colour: 55 yellow squares for the story missions, then 10 / 10 / 5 / 20. Header `100% CHECKLIST`, sub-line `SHARE OF THE 100% SCORE · GTABASE` (jury r2 fix 7: the 55% is a score weight, not hours).
+- **Hero C (25-29.4 s): the pick-one box.** Two identical red arcade buttons on a kraft box, plates `STORY` and `OR` and `100%`, a `GTA 6` plate hanging above, a pencil fork from the plate to each button. No dial, no outline, no height: nothing implies a GTA 6 length (jury r2 fix 2).
 
 ## Benchmarks
 | | Learn | Don't take |
 |---|---|---|
-| film/gta-outsold (7.8 / Truth 9.0) | The paper engine, the covered tower on frame 0, honest scale, counters that roll in whole units and print their unit only on landing, tags taped to the thing they describe, owners at ≥ 36 px, a tick per block, hits in written pauses, identical end tags. | Seven labels in one frame (r2 fix 7): here at most five text objects per beat; and a bar chart all film long: the middle third changes layout once, to the checklist sheet. Its plum/kraft set and centred framing (jury r1 fix 5). |
-| film/gta-longestwait (held) | Paper towers read as hand-made. | The identical centred composition every beat. |
+| film/gta-outsold (7.8 / Truth 9.0) | Paper pieces with baked shadows, counters that roll in whole units and print their unit only on landing, owners at ≥ 36 px, hits in written pauses, identical end tags. | Its set and composition: towers, covered `?`, plum wall, case strips, centred stack. Here: a round dial, a grid card and a button box, three different shapes. |
+| film/darkmode (7.4) | A gauge whose needle agrees with the voice on the word, and a summary drawing on the hero hold. | A locked layout for 20 s: here the layout changes five times (big dial, small dial + jar, big dial, card, box). |
 
 ## Three structures
-1. **Two hour towers, then the why (chosen).** Story tower vs covered 100% tower; the reveal; three brackets prove "nearly 3×"; then the cause as one new prop (the 100% checklist with its five weighted sections, the story row only 55% of the bar).
-2. A stopwatch running through a day/night calendar. Rejected: a clock face invites a "real time" reading of hours of play.
-3. A progress bar with 100% at the end. Rejected: looks like a UI template (LESSONS gta-pc).
+1. **One dial, then the card, then the choice (chosen).** The stopwatch makes the time comparison on one honest scale (a circle has no "tower" cliché and shows 3 × 32 vs 89½ as arcs end to end); the card answers why with its own weights; the box asks the question.
+2. A wall calendar filling with nights. Rejected: needs an assumed hours-per-night, a new unsourced number.
+3. A progress bar pushed by a controller. Rejected: UI-template look (LESSONS gta-pc).
 
 ## Native move
-Hour blocks stack into towers on one honest scale; the ruler rescales from 20 px per hour to 8.8 px per hour when the 100% tower is revealed, so the story tower visibly shrinks next to it.
+**The hand paints the hours.** The stopwatch hand sweeps and leaves its colour behind on the ring; the same dial carries story, 100% and the 3× proof. The stopwatch rolls off like a wheel on "Why?" and rolls back in at the seam into frame 0.
+
+## Frame 0 (no title card)
+The stopwatch fills the frame (800 px, mint on cobalt), hand already spinning fast, a pink `?` in its window, caption `HOW LONG IS GTA 5?` (5 words). The desk is settling from a 1.12 push. Dial numerals, the `GTA 5` tape and every tag arrive after frame 0.
 
 ## Line → picture
-| Line | Hero object | Picture | Sound |
+| Line | Hero | Picture | Sound (pauses only) |
 |---|---|---|---|
-| hook | story tower + covered tower | Frame 0: caption `HOW LONG IS GTA 5'S STORY?` (6 words), story tower half built and gliding in, sheet with a pink `?`. | block ticks; flutter |
-| main | counter | Hour lines draw in; counter drops onto the tower, rolls whole hours, lands `32 HOURS`. | thunk |
-| src | source tag | `PLAYERS' AVERAGE / HOWLONGTOBEAT / 3,398 PLAYERS` taped on the story tower; HOWLONGTOBEAT underlined. | pin |
-| hundred | 100% tower | Sheet hops on "But", rips after "percent?"; the ruler rescales; the 100% tower rises block by block; counter lands `89½ HOURS`; tags `STORY · 32 H` and `100% · 89½ H · PLAYERS' AVERAGE · HOWLONGTOBEAT`. | rip; ticks; thunk; pin |
-| times | three brackets | Three 32 h brackets climb beside the 100% tower on "Nearly / three / times", labelled 1× 2× 3×; dashed 96 h line just over the tower top; `NEARLY 3×` stamp. Poster. | snap; stamp |
-| why | checklist sheet | Towers and brackets truck off on "Why?"; a clipboard drops with header `100% CHECKLIST`; the `STORY MISSIONS · 69` row pops and ticks on "story"; a weight bar fills only the story's 55% on "55 percent"; `STORY = 55%` stamp. | swish; stamp |
-| rest | the other rows | `STRANGERS & FREAKS 10%`, `HOBBIES & PASTIMES 10%`, `RANDOM EVENTS 5%`, `MISCELLANEOUS 20%` pop on their words, each with its own colour swatch, unticked; `SOURCE: GTABASE 100% GUIDE`. | pops; pin |
-| end | GTA 6 empty spot | Mini 32 h STORY and 89½ h 100% towers return either side of an empty dashed outline on a `GTA 6` base with `? HOURS`; identical `STORY` and `100%` tags kick on "story first" and "100 percent"; sweep back to frame 0. | two taps; swish |
+| hook | stopwatch | Hand spinning; on "GTA" the stopwatch kicks; on "Guess." the hand slows and the `?` pulses; a `YOUR GUESS? ___ H` sticky with a pencil lands in the pause. | pop |
+| main | stopwatch | "Just": `25 H / 50 H / 75 H` ink on the bezel, `GTA 5` tape slaps on; "story?": window flips to `STORY`, hand rewinds to 0; "average 32": hand sweeps and paints the yellow ring, the window rolls whole hours; lands `32 HOURS` in the pause; tag `PLAYERS' AVERAGE / HOWLONGTOBEAT` tapes on; ring chip `STORY · 32 H`. | thock |
+| src | tag + jar | Stopwatch shrinks up; the tag drops to centre, HOWLONGTOBEAT underlined as said; a glass jar `3,398 PLAYERS` fills with paper time slips flying in from both sides, faster on "thousands". | swish, riffle |
+| hundred | stopwatch | Back to full size; "100": window flips to `100%`, hand rewinds, then paints the coral outer ring to 89½ on "ninety"; lands `89½ HOURS` in the pause; chip `100% · 89½ H`. | swish, thock |
+| times | stopwatch | Dial eases back; "Nearly": second 32 h arc (`2×`), "three": third arc (`3×`) ends at 96 past the coral 89½ line, `NEARLY 3×` stamp; "times": coral 89½ marker; the pause circles the overshoot. Poster. | thock |
+| why | punch card | Stamp peels; stopwatch rolls off left as the card slides in; "story": `STORY MISSIONS · 69` row; "55": 55 squares punch yellow, right column rolls to `55%`; pause: `55%` circled. | swish, thock |
+| rest | punch card | "The rest": four dim rows; each lights on its word and punches its squares (10 / 10 / 5 / 20) with the hole punch; slow push; card full. | pop |
+| end | pick-one box | Card flies off; box rises; `GTA 6` plate swings in; fork draws to the left button on "story first", to the right on "100 percent"; each button presses on its word; "Pick one.": both pulse and the box rumbles; box drops, stopwatch rolls back in to frame 0. | swish |

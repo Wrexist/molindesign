@@ -409,3 +409,8 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Ming swallows a possessive after a spelled number ("G T A five's"); say "the GTA 5 city" and keep the possessive only in the caption.
 - Run Ming voice jobs one at a time on the 15 GB box: `flock /tmp/claude-0/ming.lock <cmd>` with no timeout. Parallel jobs got killed for memory.
 - `vo/vad.js` has no shared writer yet; makers used a scratch vad.py (40 dB / 10 ms rule). Worth adding to film/tools.
+
+### Delta run 2026-11-17: gta-lawsuit held, gta-storylength remake passed
+- Court-case films: the picture must not put a person's or character's card inside the frame of a holding the court denied for them. gta-lawsuit r2 framed "LACEY JONAS" under "CAN BE A 'PORTRAIT'" while the court held she was not recognizable as Lohan (Truth 7.5). Show a general holding on a nameless prop and print its condition big.
+- Never roll a dated calendar or counter with labels attached (GTA 6 / ROCKSTAR chips over 2019-2025 rolling years cost gta-lawsuit r1 a Truth point; a STORY 32% roll on the way to 55% nearly cost the storylength remake). Slam the final value instead.
+- A held film with a sound script can pass after a full new set: gta-storylength went 6.9 → 7.3 with a stopwatch / punch card / button box and the same voice.
