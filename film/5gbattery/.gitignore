@@ -20,3 +20,5 @@ out/setup.log
 out/*.mp4
 out/mix.log
 out/rechain.log
+out/heard.*.js
+out/script.r*.json

@@ -32,7 +32,7 @@ Spawn the `video-director` agent with the slug. It records the voice, builds `fi
 Spawn a **fresh** `video-jury` agent with the slug (never the director; it must not have seen the making). Then:
 - **post**: go on.
 - **fix then post**: send the report to the director (continue the same director agent with SendMessage if you can, otherwise a new one with the report), re-render, run the jury once more with a new agent. Post after round 2 if it reaches 7.0 with Truth ≥ 8.5 and the topic scored 4/6 or more on the packaging score (Isac, 2026-11-03, the same bar as Delta: views follow the topic, not the last few jury points; factory/PERFORMANCE.md). Even on "post", apply the jury's fixes before upload.
-- **don't post**, or still under 7.0 (or Truth under 8.5) after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR as a draft, and tell Isac what blocked it.
+- **don't post**, or still under 7.0 (or Truth under 8.5) after round 2: stop. Update the Drive doc with the jury report, mark the row `wip` in the report, open the PR (normal, not a draft) and merge it as in step 7, and tell Isac what blocked it.
 
 ## 5. Packaging → `video-seo`
 Spawn the `video-seo` agent with the slug and the final jury report. It writes `film/<slug>/seo.json` and `seo.md`. Check the caption ≤ 150 chars for the TikTok title field (the full caption goes in `description`), 4–6 hashtags, and no AI tag anywhere (no #ai, no "AI voice" line, YouTube Altered content No; see `video-seo` rules).
@@ -55,7 +55,7 @@ Skip the filler if no source is ready or the PC is unreachable; a fresh video al
 
 ## 7. Record and hand over
 - Re-create the Drive doc's content as a new doc version: Drive can't edit content in place, so `create_file` a new `Factory #<n> · <topic>` doc with the full pack (hook, script, sources from BRIEF.md, jury score and verdict, caption, hashtags, keywords, post time, sound ideas, Higgsfield video URLs, PR link) and `trash_file` the claim doc from step 1.
-- Repo: set the row's Status in `factory/backlog.csv` to `done` (or `wip`), add `film/<slug>/` (mp4s stay git-ignored: they live on Higgsfield, in Drive's doc links and in `/mnt/project-files/factory/<slug>/` when that exists), commit "Factory #<n>: <topic>" and push your branch, open a PR titled `Factory #<n>: <topic>` with the jury score, the caption and the poster path.
+- Repo: set the row's Status in `factory/backlog.csv` to `done` (or `wip`), add `film/<slug>/` (mp4s stay git-ignored: they live on Higgsfield, in Drive's doc links and in `/mnt/project-files/factory/<slug>/` when that exists), commit "Factory #<n>: <topic>" and push your branch, open a PR titled `Factory #<n>: <topic>` with the jury score, the caption and the poster path (never a draft), then merge it yourself once it is conflict-free and no check failed (CLAUDE.md, "PRs merge themselves"). Next run starts the branch again from the latest main.
 - Report to Isac in ≤ 8 lines: the topic and hook, the jury score, the Drive doc link, the PR link, the best post time (ET and Stockholm), the sound ideas, and that the TikTok form is waiting for his tap (or the connect link).
 
 ## 8. Learn

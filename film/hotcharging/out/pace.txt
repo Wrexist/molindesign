@@ -1,0 +1,2 @@
+/home/user/molindesign/film/hotcharging/out/hotcharging-vo.mp4: 33.6 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.616, 0-3 s 0.931, median 0.129, still frames 6.0 %
+OK    no frozen stretches, opening moves
