@@ -1,0 +1,90 @@
+{
+ "title": "Why does my phone get hot when charging",
+ "caption": "Why does your phone get hot when charging? A battery warms up as it charges, so warm is normal.\nToo hot, and the phone slows or pauses its own charging. An iPhone might stop at 80% until it cools.\nIs yours warm right now? Yes or no?",
+ "hashtags": [
+  "#techexplained",
+  "#batterylife",
+  "#phonecharging",
+  "#iphonetips",
+  "#phonetips"
+ ],
+ "keywords": [
+  "phone hot when charging",
+  "why does my phone get hot when charging",
+  "is it normal for phone to get hot while charging",
+  "iphone stuck at 80 while charging",
+  "phone stops charging at 80",
+  "phone overheating while charging",
+  "why does my phone get hot when charging wirelessly",
+  "pixel battery diagnostics"
+ ],
+ "cover_text": "Warm or hot?",
+ "cover_time": 0.0,
+ "pinned_comment": "Honest version: the 80% hold is an iPhone thing, and Apple says software only \"might\" limit charging above 80 percent \"if the battery gets too warm\". Warm while charging is normal. Too hot to hold? Unplug it and let it cool. Is yours warm right now? Yes or no?",
+ "pinned_backups": [
+  {
+   "if": "So my charger is fine?",
+   "reply": "If it's an iPhone sitting at 80% while warm, that's the phone's software, not the charger: Apple says \"Your iPhone will charge again when the temperature drops.\" If it won't charge at all, Apple's page says to check the cable and adapter \"for signs of damage\" and to try a different outlet."
+  },
+  {
+   "if": "Mine stops at 80% and it's not hot.",
+   "reply": "Then it's probably not heat. Apple's own page lists Optimized Battery Charging (it waits until you need the phone to finish past 80%) and, on iPhone 15 models and later, a Charge Limit you can set. Either one can be why it stops at 80%."
+  },
+  {
+   "if": "Does fast charging ruin the battery?",
+   "reply": "None of the Apple, Google or Samsung pages we used say that, so the video doesn't claim it. What Apple does say: iPhone \"gradually reduces the charging current as the battery approaches full charge\" to limit heat."
+  },
+  {
+   "if": "I don't see Battery diagnostics on my Pixel.",
+   "reply": "Google says it's \"Available on Pixel 6a and later\" (one of its pages says Pixel 6 and later; we went with the stricter one). Look under Settings › Battery › Battery diagnostics."
+  },
+  {
+   "if": "My Samsung gets really hot charging.",
+   "reply": "Samsung's advice: \"Disconnect the charger, and close any running apps until the device cools down.\" It also says to charge \"on a hard, flat surface\". If it keeps happening, contact Samsung support."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 19:00 ET (EST) Wed Nov 18, 2026 = 00:00 UTC Thu Nov 19. Evening is when the phone goes on the charger and people feel it warm in their hand, and our best performers went out at 7 PM ET. python3 factory/repost.py check hotcharging --platform youtube --at \"2026-11-19 00:00\" passed on 2026-11-18 (R1 no hotcharging post within 7 days; R6 0 posts on Nov 18 ET). Pick the time from YouTube Studio's dropdown and check the saved UTC time. TikTok: on hold.",
+ "post_time_stockholm": "01:00 Thu Nov 19 (Sweden CET, US EST, 6 h apart).",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold and a trending-sound pick goes stale in days (same call as 5gbattery, phonelistening, overnightcharge, darkmode). When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick a calm instrumental at 5-10 % under out/hotcharging-voice-only.mp4. YouTube Shorts goes out with the film's own mix (no music in this film).",
+ "youtube_title": "Why Does My Phone Get Hot When Charging? 🤔",
+ "youtube_title_alternatives": [
+  "Why Your Phone Gets Hot When Charging 🤔",
+  "Your Phone Slows Charging When It's Hot 😮"
+ ],
+ "youtube_title_check": "Google US suggestions checked Nov 18, 2026 (suggestqueries, gl=us, hl=en): \"why does my phone get hot\" completes to \"why does my phone get hot when charging\" 2nd (after the phrase itself), and that phrase is its own top completion; YouTube (ds=yt) gives the same 2nd. \"why is my phone hot\" completes to \"why is my phone hot when charging\" 2nd on Google. Title is the orchestrator's search-led pick, word for word the top query in Title Case, with 🤔 (never 🔥; the brief's 🔥 was dropped). 8 words, over the spec's 7, accepted because it matches the query exactly; the 7-word \"Why Your Phone Gets Hot When Charging 🤔\" is the A/B alternative.",
+ "youtube_description": "Why does your phone get hot when charging? A battery warms up as it charges, so a warm phone on the charger is normal. Wireless charging and gaming while it charges make it warmer. If it gets too hot, the phone protects its own battery by slowing or pausing the charge, and an iPhone might stop at 80% until it cools down. That stop is the phone's software, not a broken charger.\n\nApple, \"Charge and maintain your iPhone battery\": \"A battery warms up as it charges, which can reduce its lifespan. To reduce the effect of heat and prevent overheating, iPhone gradually reduces the charging current as the battery approaches full charge.\"\n\nApple, \"If your iPhone or iPod touch won't charge\" (section \"If your device stopped charging at 80 percent\"): \"Your iPhone might get slightly warmer while it charges. To extend the lifespan of your battery, if the battery gets too warm, software might limit charging above 80 percent. Your iPhone will charge again when the temperature drops.\" Scope: the 80% number is iPhone-only, and only \"if the battery gets too warm\".\n\nApple, \"If your iPhone or iPad gets too hot or too cold\": \"You might notice that your device feels warmer when you: … Wirelessly charge your device … Use graphics-intensive or processor-intensive apps, games, or features, including camera apps … These conditions are normal.\" And, when it's too hot: \"Charging, including wireless charging, slows or stops\".\n\nCheck yours on iPhone. Apple, \"About iPhone charge speeds\": \"You can see if charging was on hold on your iPhone by opening Settings and tapping Battery.\" Path: Settings › Battery.\n\nCheck yours on Pixel. Google Pixel Phone Help, \"Check & understand your Pixel’s temperature\": \"Important: Available on Pixel 6a and later.\" Path: Settings › Battery › Battery diagnostics. \"Device temperature diagnostics shows the current estimated device temperature and one of four temperature states of your device\" (Cold, Normal, Warm, Elevated). Scope: Pixel 6a and later; the temperature is Google's estimate.\n\nGoogle, \"Help keep your Pixel phone from feeling too warm or hot\": \"If your phone feels warm, you shouldn’t be too concerned.\" When it's too hot, \"Your phone may: … Reduce charging speeds.\" And: \"If your phone is too hot, disconnect it from its power source if it's plugged in, move it to a cooler place, and do not use it until it has cooled down.\"\n\nSamsung, \"Keep your Galaxy device at its normal operating temperature\": \"While they may feel warm under certain conditions, like charging, this does not affect the device's lifespan or performance.\" When a Galaxy overheats, \"…charging may pause…\".\n\nFine print: The 80% hold is Apple's, for iPhone, and Apple says software \"might\" do it \"if the battery gets too warm\"; Pixel and Galaxy pages say charging may slow or pause, with no number. Heat isn't the only reason an iPhone stops at 80%: Optimized Battery Charging can also hold it at 80% until you need it, and iPhone 15 models and later can have a Charge Limit set. The 32–95°F ranges on Apple's and Samsung's pages are air (ambient) temperatures, not the phone's own temperature. The screens and the chart are drawn and re-created by hand; no real interface or logo is shown. Not affiliated with Apple, Google or Samsung.\n\nSources:\n- Apple Support, \"Charge and maintain your iPhone battery\" (105105, published Apr 8, 2025), read Nov 18, 2026: https://support.apple.com/en-us/105105\n- Apple Support, \"If your iPhone or iPod touch won't charge\" (HT201569, published Nov 11, 2026), read Nov 18, 2026: https://support.apple.com/en-us/ht201569\n- Apple Support, \"If your iPhone or iPad gets too hot or too cold\" (118431, published May 14, 2026), read Nov 18, 2026: https://support.apple.com/en-us/118431\n- Apple Support, \"About iPhone charge speeds\" (120619, published Mar 16, 2026), read Nov 18, 2026: https://support.apple.com/en-us/120619\n- Google Pixel Phone Help, \"Check & understand your Pixel’s temperature\" (15679416), read Nov 18, 2026: https://support.google.com/pixelphone/answer/15679416?hl=en\n- Google Pixel Phone Help, \"Help keep your Pixel phone from feeling too warm or hot\" (3333708), read Nov 18, 2026: https://support.google.com/pixelphone/answer/3333708?hl=en\n- Samsung US Support, \"Keep your Galaxy device at its normal operating temperature\" (ANS10002887), read Nov 18, 2026: https://www.samsung.com/us/support/answer/ANS10002887/\n\nHow tech works, part 18.\n\n#techexplained #batterylife #phonecharging",
+ "youtube_tags": [
+  "why does my phone get hot when charging",
+  "why is my phone hot when charging",
+  "phone hot while charging",
+  "is it normal for phone to get hot while charging",
+  "why does my iphone get hot when charging",
+  "phone overheating while charging",
+  "iphone stuck at 80 percent",
+  "phone stuck at 80 charging",
+  "iphone stops at 80 charging",
+  "charging on hold iphone",
+  "pixel battery diagnostics",
+  "samsung phone hot when charging",
+  "phone battery tips",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 18",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no AI hashtag. YouTube Altered content: No (hand-made cut-paper bench, pipe and tap, chalk chart labelled OUR DRAWING · APPLE, generic re-created settings screens tagged RE-CREATED; no real person's voice, no realistic footage, no real phone UI or logo). The fine print's re-created/not-affiliated notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator when TikTok resumes.",
+ "packaging_score": {
+  "score": 6,
+  "of": 6,
+  "mine": "1: the phone on the viewer's own charger tonight; they can touch it.",
+  "myth_threat": "1: breaks \"warm on the charger means something's wrong\" and \"stuck at 80% means a broken charger\" (iPhone, if the battery gets too warm).",
+  "frame0_test": "1: frame 0 is a phone on a cable with a heat strip and WARM OR HOT?; the viewer touches their own phone in the first second.",
+  "takeaway": "1: iPhone Settings › Battery shows if charging was on hold; Pixel 6a and later Settings › Battery › Battery diagnostics; too hot to hold, unplug and let it cool.",
+  "title": "1: \"Why Does My Phone Get Hot When Charging? 🤔\": the exact top query, thing in word 4, consequence verb \"Get Hot\", Title Case, one emoji.",
+  "searched": "1: \"why does my phone get hot when charging\", \"phone hot while charging\" and \"iphone stuck at 80\" are Google US and YouTube suggestions (checked Nov 18, 2026)."
+ },
+ "youtube_description_chars": 4439,
+ "youtube_tags_chars": 434
+}
