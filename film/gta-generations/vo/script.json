@@ -1,0 +1,117 @@
+{
+ "about": "GTA generations (Delta, pillar 3 GTA history). Take-Two press release Sept 18 2013 (SEC 8-K ex99.1): GTA V 'Launched on September 17 for the PlayStation 3 ... and the Xbox 360'. Sony release Nov 15 2013: PS4 launched in the US and Canada that day. Take-Two product tables (SEC): GTA V Xbox One, PS4 November 18, 2014 (Oct 29 2014 and Feb 3 2015 releases); PC planned January 27, 2015 (Oct 29 2014 table), then March 24, 2015 (Feb 3 2015 table), then April 14, 2015 (May 2015 release table) = two date moves. Take-Two Q4 FY22 release (May 16 2022): 'On March 15th, Rockstar Games launched Grand Theft Auto V digitally on PlayStation 5 and Xbox Series X|S'. GTA VI: Take-Two Q2 FY27 release (Nov 9 2026) lineup 'Grand Theft Auto VI PS5, Xbox Series X|S November 19, 2026'; rockstargames.com/VI 'Coming November 19, 2026', PlayStation 5, Xbox Series X|S. Pre-launch as of 2026-11-17. No PC claim for GTA 6 beyond 'Rockstar has announced PS5 and Xbox Series X|S'. No 'one of few games' claim. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 5",
+  "GTA 6",
+  "PS3",
+  "PS4",
+  "PS5",
+  "Xbox 360",
+  "Xbox One",
+  "Xbox Series X and S",
+  "Rockstar"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "dur": 39.2,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 5 came before the PS4.",
+   "say": "G T A five came before the P S four.",
+   "pause": 0.6,
+   "tail_fade": 0.25
+  },
+  {
+   "id": "when",
+   "at": 3.11,
+   "text": "September 2013, on PS3 and Xbox 360.",
+   "say": "September twenty thirteen, on P S three and Xbox three sixty.",
+   "pause": 0.4
+  },
+  {
+   "id": "q",
+   "at": 7.23,
+   "text": "So how many generations is it on?",
+   "pause": 0.4
+  },
+  {
+   "id": "gen2",
+   "at": 9.7,
+   "text": "November 2014: PS4 and Xbox One.",
+   "say": "November twenty fourteen, P S four and Xbox One.",
+   "pause": 0.5
+  },
+  {
+   "id": "pc",
+   "at": 13.16,
+   "text": "PC players? It kept slipping. Then April 2015.",
+   "say": "P C players? It kept slipping. Then April twenty fifteen.",
+   "pause": 0.6
+  },
+  {
+   "id": "gen3",
+   "at": 17.68,
+   "text": "Then March 2022: PS5 and Xbox Series X and S.",
+   "say": "Then March twenty twenty-two, P S five and Xbox Series X and S.",
+   "pause": 0.5
+  },
+  {
+   "id": "three",
+   "at": 22.9,
+   "text": "Three console generations. One game.",
+   "pause": 0.7
+  },
+  {
+   "id": "but",
+   "at": 25.73,
+   "text": "But GTA 6 starts on just one.",
+   "say": "But G T A six starts on just one.",
+   "pause": 0.4
+  },
+  {
+   "id": "plat",
+   "at": 28.3,
+   "text": "Rockstar has announced PS5 and Xbox Series X and S.",
+   "say": "Rockstar has announced P S five and Xbox Series X and S.",
+   "pause": 0.4
+  },
+  {
+   "id": "date",
+   "at": 32.08,
+   "text": "GTA 6: November 19, 2026.",
+   "say": "G T A six. November nineteenth, twenty twenty-six.",
+   "pause": 0.5
+  },
+  {
+   "id": "end",
+   "at": 35.99,
+   "text": "Which one did you first play GTA 5 on?",
+   "say": "Which one did you first play G T A five on?",
+   "pause": 0
+  }
+ ]
+}
