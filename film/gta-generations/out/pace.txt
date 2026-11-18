@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-generations/out/gta-generations-vo.mp4: 39.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.463, 0-3 s 0.392, median 0.196, still frames 9.3 %
+/home/user/molindesign/film/gta-generations/out/gta-generations-vo.mp4: 39.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.343, 0-3 s 0.407, median 0.224, still frames 8.0 %
 OK    no frozen stretches, opening moves

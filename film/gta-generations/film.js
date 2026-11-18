@@ -264,14 +264,14 @@
   var SL = { x: 206, w: 320, h: 120 };                          /* console slab: front face, left x */
   var C5 = { x: 546, w: 150, h: 220 }, C6 = { x: 704, w: 150, h: 220 };
   var SLAB = [
-    { front: '#2b2c33', top: '#41434d', n1: 'PS3', n2: 'XBOX 360' },
+    { front: '#232429', top: '#4a4c57', n1: 'PS3', n2: 'XBOX 360' },
     { front: '#1d2333', top: '#2d3549', n1: 'PS4', n2: 'XBOX ONE' },
-    { front: '#454c5c', top: '#7d8596', n1: 'PS5', n2: 'XBOX SERIES X|S' }];
+    { front: '#aeb4bf', top: '#dfe3ea', n1: 'PS5', n2: 'XBOX SERIES X|S' }];
 
   /* ---------- the camera: scale s and pan cx; the bottom shelf never drops under y 1428 ---------- */
   var CAM = { s: 1, cx: 510, cy: 950 };
   function camAt(t) {
-    var s = stepv(t, 1.36, T.CS) * (1 + .006 * osc(t, 3, .7)), cx = stepv(t, 450, T.CX);
+    var s = stepv(t, 1.2, T.CS) * (1 + .006 * osc(t, 3, .7)), cx = stepv(t, 510, T.CX);
     return { s: s, cx: cx, cy: 1410 - (1428 - 950) / s - stepv(t, 0, T.CYO) };
   }
   function toCam(g) { g.translate(510, 950); g.scale(CAM.s, CAM.s); g.translate(-CAM.cx, -CAM.cy); }
@@ -324,16 +324,24 @@
   function slabPiece(i) {
     var S = SLAB[i], w = SL.w, h = SL.h;
     return piece([0, -20, w + 4, h], function (g) {
-      g.beginPath(); g.moveTo(12, -18); g.lineTo(w - 6, -18); g.lineTo(w, 0); g.lineTo(w, h - 10); g.quadraticCurveTo(w, h, w - 10, h); g.lineTo(10, h); g.quadraticCurveTo(0, h, 0, h - 10); g.lineTo(0, 0); g.closePath();
+      g.beginPath(); if (i === 0) { g.moveTo(0, 10); g.quadraticCurveTo(w / 2, -30, w, 10); } else if (i === 1) { g.moveTo(6, -18); g.lineTo(w - 2, -18); g.lineTo(w, 0); } else { g.moveTo(12, -18); g.lineTo(w - 6, -18); g.lineTo(w, 0); }
+      g.lineTo(w, h - 10); g.quadraticCurveTo(w, h, w - 10, h); g.lineTo(10, h); g.quadraticCurveTo(0, h, 0, h - 10); g.lineTo(0, 0); g.closePath();
     }, S.front, { ps: 1.5, edge: 1.6, edgeCol: 'rgba(255,255,255,.22)', sy: 6, blur: 10, extra: function (g) {
       /* top face, a sheen on the front, the disc slot and a vent groove */
-      g.fillStyle = S.top; g.beginPath(); g.moveTo(12, -18); g.lineTo(w - 6, -18); g.lineTo(w, 0); g.lineTo(0, 0); g.closePath(); g.fill();
-      var sh = g.createLinearGradient(0, 0, 0, h); sh.addColorStop(0, 'rgba(255,255,255,.12)'); sh.addColorStop(.3, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(0,0,0,.25)'); g.fillStyle = sh; g.fillRect(0, 0, w, h);
+      g.fillStyle = S.top; g.beginPath(); if (i === 0) { g.moveTo(0, 10); g.quadraticCurveTo(w / 2, -30, w, 10); g.lineTo(w, 14); g.quadraticCurveTo(w / 2, -12, 0, 14); } else { g.moveTo(12, -18); g.lineTo(w - 6, -18); g.lineTo(w, 0); g.lineTo(0, 0); } g.closePath(); g.fill();
+      var sh = g.createLinearGradient(0, 0, 0, h);
+      /* each generation its own finish: 2013 glossy and curved, 2014 flat matte, 2022 pale with a dark band */
+      if (i === 0) { sh.addColorStop(0, 'rgba(255,255,255,.34)'); sh.addColorStop(.18, 'rgba(255,255,255,.06)'); sh.addColorStop(.5, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(0,0,0,.4)'); }
+      else if (i === 1) { sh.addColorStop(0, 'rgba(255,255,255,.04)'); sh.addColorStop(1, 'rgba(0,0,0,.18)'); }
+      else { sh.addColorStop(0, 'rgba(255,255,255,.25)'); sh.addColorStop(.4, 'rgba(255,255,255,0)'); sh.addColorStop(1, 'rgba(0,0,0,.22)'); }
+      g.fillStyle = sh; g.fillRect(0, 0, w, h);
+      if (i === 0) { g.strokeStyle = 'rgba(255,255,255,.45)'; g.lineWidth = 2; g.beginPath(); g.moveTo(14, 4); g.quadraticCurveTo(w / 2, -2, w - 8, 4); g.stroke(); }
+      if (i === 2) { g.fillStyle = '#1b1e25'; g.fillRect(w * .5 - 14, 0, 28, h); }
       g.fillStyle = 'rgba(0,0,0,.7)'; rr(g, 246, 36, 60, 7, 3); g.fill();
       g.strokeStyle = 'rgba(0,0,0,.4)'; g.lineWidth = 2;
       if (i === 0) { g.beginPath(); g.moveTo(0, 60); g.lineTo(w, 60); g.stroke(); }
       if (i === 1) { g.beginPath(); g.moveTo(232, 0); g.lineTo(262, h); g.stroke(); }
-      if (i === 2) { g.fillStyle = 'rgba(0,0,0,.25)'; g.fillRect(0, h - 22, w, 22); }
+      if (i === 2) { g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(0, h - 22, w, 22); }
       for (var v = 0; v < 7; v++) { g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(40 + v * 34, -12, 22, 4); }
     } });
   }
@@ -407,7 +415,7 @@
     P.tX = cardPiece(310, 74, CREAM, [['XBOX SERIES X|S', 46, INK, 3]], { r: 8, ring: TEAL });
     P.ra = cardPiece(400, 56, INK2, [['ROCKSTAR · ANNOUNCED', 38, CREAM, 2]], { r: 6, ring: 'rgba(246,234,216,.5)' });
     P.c6d = cardPiece(318, 140, CREAM, [['NOV 19, 2026', 62, INK, -22], ['ROCKSTAR', 40, RED, 38]], { r: 8, ring: CORAL });
-    P.v = ['PS3 / 360', 'PS4 / ONE', 'PS5 / SERIES', 'PC'].map(function (s, i) { var w = i === 3 ? 108 : 290; return cardPiece(w, 96, CREAM, [[s, 54, INK, 3, null, i === 3 ? 10 : 10]], { r: 10, ring: INK2, after: function (g) { g.fillStyle = BG; g.beginPath(); g.arc(-w / 2 + 20, 0, 8, 0, TAU); g.fill(); } }); });
+    P.v = ['PS3 / 360', 'PS4 / ONE', 'PS5 / SERIES', 'PC'].map(function (s) { var m = mk(4, 4).getContext('2d'); cond(m); font(m, 54, 900); ls(m, 1); var tw = m.measureText(s).width; unst(m); var w = Math.ceil(tw + 44 + 20); return cardPiece(w, 96, CREAM, [[s, 54, INK, 3, null, 12]], { r: 10, ring: INK2, after: function (g) { g.fillStyle = BG; g.beginPath(); g.arc(-w / 2 + 22, 0, 8, 0, TAU); g.fill(); } }); });
   }
 
   /* ---------- drawing helpers ---------- */
@@ -453,7 +461,7 @@
   /* ---------- the hero: where the GTA 5 case is ---------- */
   function caseAt(t) {
     var x = C5.x + C5.w / 2, yb = FLOOR[0], rot = 0, sc = 1;
-    if (t < .6) yb -= 260 * (1 - cd(t, -.45, 5.5));
+    if (t < .6) x += 150 * (1 - cd(t, -.45, 5.5));
     [[T.hop1L, T.hop1, 0, 1], [T.hop2L, T.hop2, 1, 2]].forEach(function (h) {
       if (t >= h[0]) { var u = seg(t, h[0], h[1]); yb = lerp(FLOOR[h[2]], FLOOR[h[3]], eio(u)) - 90 * Math.sin(Math.PI * u); rot = -.14 * Math.sin(Math.PI * u); sc = kn(t, h[1], .06); }
     });
@@ -519,7 +527,8 @@
   /* ---------- the shelf layer: slabs, discs, ghosts, the cases (world space) ---------- */
   function slabX(i, t) { var tin = i === 0 ? -9 : T.slabIn[i]; return SL.x + 760 * (1 - cd(t, tin, 9)); }
   function shelves(g, t) {
-    var i, lights = [0, 1, 2].map(function (j) { return seg(t, T.L[j], T.L[j] + .18); });
+    var i, lights = [0, 1, 2].map(function (j) { return seg(t, T.L[j], T.L[j] + .18) * (1 - offK(t, j)); });
+    hookLight(g, t);
     /* strip lights under each board (bottom, mid, top) for "three console generations" */
     lights.forEach(function (lk, j) {
       if (lk <= 0) return; var yt = j === 2 ? BK.top + 30 : FLOOR[j + 1] + BOARD;
@@ -532,34 +541,40 @@
       chalk(g, SL.x, FLOOR[j] - SL.h, SL.w, SL.h, k, aS);
       chalk(g, C5.x, FLOOR[j] - C5.h, C5.w, C5.h, seg(t, T.chalk[j] + .3, T.chalk[j] + 1.0), aC);
     });
-    /* GTA 6's spot on the top shelf */
-    chalk(g, C6.x, FLOOR[2] - C6.h, C6.w, C6.h, seg(t, T.out6, T.out6 + .7), 1 - seg(t, T.land6 - .05, T.land6 + .1), 'rgba(255,107,74,.95)');
+    /* GTA 6 is planted on the top shelf at frame 0, under its own small spot; it lifts out as the story starts */
+    var p6 = 1 - seg(t, T.lift6, T.lift6 + .3);
+    if (p6 > 0) { var sp6 = g.createRadialGradient(C6.x + 75, FLOOR[2] - 60, 10, C6.x + 75, FLOOR[2] - 60, 230); sp6.addColorStop(0, 'rgba(255,170,130,' + (.34 * p6).toFixed(3) + ')'); sp6.addColorStop(1, 'rgba(255,170,130,0)'); g.fillStyle = sp6; g.fillRect(C6.x - 160, BK.top + 30, 470, FLOOR[2] - BK.top - 30);
+      g.fillStyle = 'rgba(255,190,150,' + (.22 * p6).toFixed(3) + ')'; g.beginPath(); g.ellipse(C6.x + 75, FLOOR[2] - 2, 110, 10, 0, 0, TAU); g.fill(); }
+    /* the 2013 disc, half into the PS3-era slab's top slot from frame 0 (the game is being played); it drops home on "Xbox 360" */
+    var dk = eio(seg(t, T.disc0, T.disc0 + .3));
+    if (dk < 1) { g.save(); g.beginPath(); g.rect(SL.x, BK.top, SL.w, FLOOR[0] - SL.h - 4 - BK.top); g.clip(); disc(g, SL.x + 240, FLOOR[0] - SL.h - 6 + 64 * dk, 48, 1, 1); g.restore(); }
     /* slabs, their LEDs and a glow on the back panel when they are on */
     for (i = 0; i < 3; i++) {
       if (i > 0 && t < T.slabIn[i] - .02) continue;
-      var x = slabX(i, t), yb = FLOOR[i], on = t >= T.on[i] ? seg(t, T.on[i], T.on[i] + .2) : 0;
-      if (i === 0) on *= t >= T.chirp0 ? 1 : .55;
+      var x = slabX(i, t), yb = FLOOR[i], on = i === 0 ? 1 : (t >= T.on[i] ? seg(t, T.on[i], T.on[i] + .2) : 0);
+      if (i < 2) on *= 1 - offK(t, i);
       if (on > 0) { var bg = g.createRadialGradient(x + 160, yb - 60, 10, x + 160, yb - 60, 330); bg.addColorStop(0, 'rgba(125,255,176,' + (.12 * on).toFixed(3) + ')'); bg.addColorStop(1, 'rgba(125,255,176,0)'); g.fillStyle = bg; g.fillRect(Math.max(IN0, x - 200), yb - 300, Math.min(IN1, x + 520) - Math.max(IN0, x - 200), 300); }
       put(g, P.slab[i], x, yb - SL.h);
       if (t >= T.lab[i] - .02 && sy(yb) < 1440) {
         var lk = eo(seg(t, T.lab[i], T.lab[i] + .14)), ls0 = lerp(1.4, 1, lk) * kn(t, T.lab[i] + .12, .05), nr = NOREC; NOREC = nr || lk < 1;
-        var hideK = i === 2 ? 1 - seg(t, T.tg1 - .1, T.tg1 + .1) * (1 - seg(t, T.undim, T.undim + .25)) : 1; if (hideK < 1) NOREC = true;
-        g.save(); g.globalAlpha *= fin(t, T.lab[i], .05) * hideK; g.translate(x + (i === 2 ? 8 + 143 : 16 + 110), yb - SL.h + 58); g.rotate(-.015 + .05 * (1 - lk)); g.scale(ls0, ls0); putW(g, P.lab[i], 0, 0); g.restore(); NOREC = nr;
+        var hideK = (i === 2 ? 1 - seg(t, T.tg1 - .1, T.tg1 + .1) * (1 - seg(t, T.undim, T.undim + .25)) : 1) * (1 - seg(t, T.v[i] - .1, T.v[i] + .1)); if (hideK < 1) NOREC = true;
+        var big = 1 + .25 * bigK(t);
+        g.save(); g.globalAlpha *= fin(t, T.lab[i], .05) * hideK; g.translate(x + (i === 2 ? 8 + 143 : 16 + 110), yb - SL.h + 58 - 6 * (big - 1) / .25); g.rotate(-.015 + .05 * (1 - lk)); g.scale(ls0 * big, ls0 * big); putW(g, P.lab[i], 0, 0); g.restore(); NOREC = nr;
       }
-      led(g, x + 306, yb - 24, on, t, i * 1.7, bump(t, T.first + i * .15, .35));
+      led(g, x + 306, yb - 24, on, t, i * 1.7, Math.max(bump(t, T.first + i * .15, .35), i === 0 ? bump(t, T.disc0 + .28, .45) : 0));
     }
     /* ghosts: where the case stood before each hop */
     [[T.hop1L, 0], [T.hop2L, 1]].forEach(function (h) {
-      if (t < h[0] + .1) return; var lit = seg(t, T.L[h[1]], T.L[h[1]] + .15) * (1 - seg(t, T.dim, T.dim + .4));
+      if (t < h[0] + .1) return; var lit = seg(t, T.L[h[1]], T.L[h[1]] + .15) * (1 - offK(t, h[1]));
       chalk(g, C5.x, FLOOR[h[1]] - C5.h, C5.w, C5.h, 1, .45 * seg(t, h[0] + .1, h[0] + .4) * (1 - lit), 'rgba(246,234,216,.6)');
-      if (lit > 0) { g.save(); g.globalAlpha *= lit; g.shadowColor = 'rgba(255,107,74,1)'; g.shadowBlur = 26 * (1 + .6 * bump(t, T.L[h[1]], .5)); g.strokeStyle = CORAL; g.lineWidth = 7; rr(g, C5.x, FLOOR[h[1]] - C5.h, C5.w, C5.h, 9); g.stroke(); g.fillStyle = 'rgba(255,107,74,.12)'; g.fill(); g.restore(); }
+      /* lit: the clean patch the case left in the dust on the back panel and the board (something stood here) */
+      if (lit > 0) { var fb = 1 + .5 * bump(t, T.L[h[1]], .5); g.save(); g.globalAlpha *= lit;
+        g.fillStyle = 'rgba(110,68,40,.42)'; rr(g, C5.x, FLOOR[h[1]] - C5.h, C5.w, C5.h, 6); g.fill();
+        g.globalAlpha *= .5; g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fill(); g.globalAlpha /= .5;
+        g.fillStyle = 'rgba(255,214,160,' + (.16 * fb).toFixed(3) + ')'; g.fill();
+        g.fillStyle = 'rgba(176,120,78,.9)'; g.fillRect(C5.x - 4, FLOOR[h[1]] - 3, C5.w + 8, 6);
+        g.strokeStyle = 'rgba(30,16,8,.55)'; g.lineWidth = 2; g.setLineDash([3, 5]); rr(g, C5.x, FLOOR[h[1]] - C5.h, C5.w, C5.h, 6); g.stroke(); g.restore(); }
     });
-    /* the 2013 disc: peeks out of the case, then slides into the bottom slab's slot */
-    if (t >= T.disc0 && t < T.disc0 + .9) {
-      var d1 = eio(seg(t, T.disc0, T.disc0 + .3)), d2 = eio(seg(t, T.disc0 + .3, T.disc0 + .85));
-      var dx = lerp(lerp(611, 600, d1), SL.x + 276, d2), dy = lerp(lerp(1300, 1176, d1), FLOOR[0] - SL.h + 40, d2);
-      disc(g, dx, dy, 54 * lerp(1, .62, d2), lerp(1, .14, d2), 1 - seg(t, T.disc0 + .78, T.disc0 + .86));
-    }
     /* the 2022 copy: a disc rises out of the case, flips into a download arrow, a bar fills: digital */
     if (t >= T.disc3 && t < T.pull3 + .4) {
       var a3 = 1 - seg(t, T.pull3, T.pull3 + .35), p = eio(seg(t, T.disc3, T.disc3 + .5)), ax = lerp(621, 236, p), ay = lerp(FLOOR[2] - 120, FLOOR[2] + 13, p) - 70 * Math.sin(Math.PI * p), bs = lerp(1, .5, p);
@@ -579,6 +594,12 @@
     /* the GTA 5 case, and GTA 6 dropping onto the top shelf */
     var c = caseAt(t), glow = Math.max(bump(t, T.glow, 1.6) * .9, seg(t, T.L[2], T.L[2] + .15) * (1 - seg(t, T.dim, T.dim + .4)) * .8);
     drawCase(g, P.c5, c.x, c.yb, c.rot, c.sc, glow);
+    if (t < T.lift6 + .4) {
+      var q6 = seg(t, T.lift6, T.lift6 + .36), nq = NOREC; NOREC = nq || q6 > 0;
+      g.save(); g.globalAlpha *= 1 - seg(t, T.lift6 + .2, T.lift6 + .36);
+      drawCase(g, P.c6, C6.x + C6.w / 2, lerp(FLOOR[2], FLOOR[2] - 470, q6 * q6), -.05 * q6, 1, .32 * (1 - q6));
+      g.restore(); NOREC = nq;
+    }
     if (t >= T.land6 - .4) {
       var u6 = seg(t, T.land6 - .36, T.land6), y6 = lerp(FLOOR[2] - 470, FLOOR[2], u6 * u6), nr6 = NOREC; NOREC = nr6 || u6 < 1;
       drawCase(g, P.c6, C6.x + C6.w / 2, y6, .05 * (1 - u6), kn(t, T.land6, .06), .7 * bump(t, T.date6, 1.4));
@@ -586,10 +607,32 @@
     }
   }
   /* the lower two shelves go dark for "just one" */
+  /* "just one": the bottom compartment's light clicks off, then the middle one's, 0.25 s apart; back on for the vote */
+  function offK(t, j) { if (j > 1) return 0; var a = j === 0 ? T.off0 : T.off1; return seg(t, a, a + .05) * (1 - seg(t, T.undim, T.undim + .5)); }
   function dimLower(g, t) {
-    var k = seg(t, T.dim, T.dim + .5) * (1 - seg(t, T.undim, T.undim + .5)); if (k <= 0) return;
-    g.fillStyle = 'rgba(5,8,13,' + (.74 * k).toFixed(3) + ')'; g.fillRect(IN0 - 2, FLOOR[2] + BOARD, IN1 - IN0 + 4, FLOOR[0] + BOARD - FLOOR[2] - BOARD + 10);
+    [0, 1].forEach(function (j) { var k = offK(t, j); if (k <= 0) return;
+      g.fillStyle = 'rgba(5,8,13,' + (.74 * k).toFixed(3) + ')'; g.fillRect(IN0 - 2, FLOOR[j + 1] + BOARD, IN1 - IN0 + 4, FLOOR[j] - FLOOR[j + 1] + (j === 0 ? 10 : 0)); });
+    /* the hook: the PS4 shelf sits unlit while the PS3-era shelf plays */
+    var hk = hookK(t) * (1 - seg(t, T.boxO - .3, T.boxO + .2));
+    if (hk > 0) { g.fillStyle = 'rgba(5,8,13,' + (.4 * hk).toFixed(3) + ')'; g.fillRect(IN0 - 2, FLOOR[2] + BOARD, IN1 - IN0 + 4, FLOOR[1] - FLOOR[2] - BOARD); }
   }
+  /* 1 through the hook and "when" (and the loop's run-up), fading as the camera pulls back on "So how many" */
+  function hookK(t) { return 1 - seg(t, T.pullQ, T.pullQ + .9); }
+  /* playing GTA 5 on the bottom shelf: the compartment brighter, a spot pool on the case, a flickering screen spill */
+  function hookLight(g, t) {
+    var k = hookK(t); if (k <= 0) return;
+    var yt = FLOOR[1] + BOARD, yb = FLOOR[0];
+    g.save(); g.beginPath(); g.rect(IN0, yt, IN1 - IN0, yb - yt); g.clip();
+    var ex = g.createLinearGradient(0, yt, 0, yb); ex.addColorStop(0, 'rgba(255,214,160,' + (.2 * k).toFixed(3) + ')'); ex.addColorStop(1, 'rgba(255,214,160,' + (.07 * k).toFixed(3) + ')'); g.fillStyle = ex; g.fillRect(IN0, yt, IN1 - IN0, yb - yt);
+    var cx5 = C5.x + C5.w / 2, sp = g.createRadialGradient(cx5, yb - 80, 10, cx5, yb - 80, 260); sp.addColorStop(0, 'rgba(255,226,170,' + (.42 * k).toFixed(3) + ')'); sp.addColorStop(1, 'rgba(255,226,170,0)'); g.fillStyle = sp; g.fillRect(IN0, yt, IN1 - IN0, yb - yt);
+    var fl = .7 + .18 * osc(t, 53, .4) + .12 * osc(t, 97, 1.9) * osc(t, 31, .2);
+    var tv = g.createRadialGradient(IN1 + 40, yb - 40, 20, IN1 + 40, yb - 40, 640); tv.addColorStop(0, 'rgba(150,200,255,' + (.36 * k * fl).toFixed(3) + ')'); tv.addColorStop(.5, 'rgba(255,190,140,' + (.12 * k * fl).toFixed(3) + ')'); tv.addColorStop(1, 'rgba(150,200,255,0)'); g.fillStyle = tv; g.fillRect(IN0, yt, IN1 - IN0, yb - yt);
+    g.restore();
+    /* the spill on the board in front */
+    g.fillStyle = 'rgba(255,220,170,' + (.22 * k * fl).toFixed(3) + ')'; g.beginPath(); g.ellipse(cx5 - 60, yb + 6, 300, 12, 0, 0, TAU); g.fill();
+  }
+  /* the slab labels grow in the two wide shots ("how many generations", "three console generations") */
+  function bigK(t) { return Math.max(seg(t, T.pullQ, T.pullQ + .6) * (1 - seg(t, start('gen2') - .3, start('gen2') + .2)), seg(t, T.pull3, T.pull3 + .6) * (1 - seg(t, T.off0 - .2, T.off0))); }
   /* the desk props: monitor and the wall calendar with its static date slips */
   function desk(g, t) {
     if (t < T.panA - .1 || t > T.panB + .6) return;
@@ -618,10 +661,12 @@
   function cards(g, t) {
     /* hook: the sealed PS4 box glides onto the mid shelf; its shipping label and GTA 5's date land in the pause */
     var bx = 300 + 260 * (1 - cd(t, -.6, 3.5)) + 1100 * eio(seg(t, T.boxO, T.boxO + .45));
-    if (t < T.boxO + .5) { var nb = NOREC; NOREC = nb || t > T.boxO; put(g, P.box, bx, FLOOR[1] - 200 + 0, 0); card(g, P.cB, bx + 150, FLOOR[1] - 62, -.02, T.cB, 1e9, t, { slam: true }); NOREC = nb; }
+    if (t < T.boxO + .5) { var nb = NOREC; NOREC = nb || t > T.boxO; put(g, P.box, bx, FLOOR[1] - 200 + 0, 0);
+      var bd = .3 * hookK(t) * (1 - seg(t, T.cB - .1, T.cB + .1)); if (bd > 0) { g.fillStyle = 'rgba(5,8,13,' + bd.toFixed(3) + ')'; g.fillRect(bx, FLOOR[1] - 200, 300, 200); }
+      card(g, P.cB, bx + 150, FLOOR[1] - 62, -.02, T.cB, 1e9, t, { slam: true }); NOREC = nb; }
     card(g, P.cA, 380, 1214, -.03, T.cA, T.cAO, t, { slam: true, tape: true, dir: -1 });
     card(g, P.c2, 380, 894, -.025, T.c2, T.panA - .05, t, { slam: true, tape: true, dir: -1, od: .3 });
-    card(g, P.c3, 370, 590, .02, T.c3, T.pull3, t, { slam: true, tape: true, dir: -1 });
+    card(g, P.c3, 380, 586, .02, T.c3, T.pull3, t, { slam: true, tape: true, dir: -1, s: .85 });
     /* the hero stamp on the full bookcase */
 
     /* GTA 6's platforms: two tags swing down on strings from the top shelf, and the owner */
@@ -665,7 +710,7 @@
   })();
   var STRESS;
   function stressed(w) { for (var i = 0; i < STRESS.length; i++) if (Math.abs(STRESS[i] - w.t0) < .02) return true; return false; }
-  var CAPY = 400;
+  var CAPY = 400, CAPY_HOOK = 330;
   function capWord(w) { return w.w.toUpperCase().replace(/\.$/, ''); }
   function captions(g, t) {
     t = tq(t);
@@ -689,7 +734,7 @@
     lay2(); fixLines();
     function widest() { return Math.max.apply(null, lw) - gap; }
     while ((lines.length > 2 || widest() > maxw) && cpx > 56) { cpx -= 4; font(g, cpx, 900); ws = up.map(function (u) { return g.measureText(u).width; }); gap = cpx * .26; lay2(); fixLines(); }
-    var lh = cpx * 1.32, y0 = CAPY - (lines.length - 1) * lh / 2 + cpx * .36;
+    var lh = cpx * 1.32, y0 = (card0.id === 'hook' ? CAPY_HOOK : CAPY) - (lines.length - 1) * lh / 2 + cpx * .36;
     lines.forEach(function (ln, li) {
       var tw = lw[li] - gap, x = CXc - tw / 2, y = y0 + li * lh + (1 - k) * 30, seed = Math.round(card0.t0 * 100) + li * 7;
       var r = mulberry(seed), x0 = x - 22, x1 = x + tw + 22, yt = y - cpx * .86, yb = y + cpx * .24, rot = (r() - .5) * .025;
@@ -750,7 +795,7 @@
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     Tx('cA', 'SEP 17, 2013', T.cA + .16, T.cAO); Tx('cA2', 'GTA 5 · TAKE-TWO', T.cA + .16, T.cAO);
     Tx('box', 'PS4', T.box + .55, T.boxO); Tx('cB', 'NOV 15, 2013', T.cB + .16, T.boxO); Tx('cB2', 'PS4 · SONY (US)', T.cB + .16, T.boxO);
-    SLAB.forEach(function (S, i) { var e = i === 2 ? T.tg1 - .1 : T.dim; Tx('l' + i + 'a', S.n1, T.lab[i] + .14, e); Tx('l' + i + 'b', S.n2, T.lab[i] + .14, e); if (i === 2) { Tx('l2a', S.n1, T.undim + .25, 99); Tx('l2b', S.n2, T.undim + .25, 99); } });
+    SLAB.forEach(function (S, i) { var e = i === 2 ? T.tg1 - .1 : (i === 0 ? T.off0 : T.off1); Tx('l' + i + 'a', S.n1, T.lab[i] + .14, e); Tx('l' + i + 'b', S.n2, T.lab[i] + .14, e); });
     Tx('c2', 'NOV 18, 2014', T.c2 + .16, T.panA); Tx('c22', 'TAKE-TWO', T.c2 + .16, T.panA);
     Tx('mon', 'PC', T.panA + .5, T.panB); Tx('mon2', 'NOT A CONSOLE GENERATION', T.panA + .5, T.panB); Tx('calH', 'GTA 5 · PC VERSION', T.panA + .5, T.panB);
     Tx('jan', 'JAN 27, 2015', Math.max(T.jan + .16, T.panA + .5), T.panB); Tx('mar', 'MAR 24, 2015', T.mar + .16, T.panB); Tx('apr', 'APR 14, 2015', T.apr + .16, T.panB); Tx('tt', 'TAKE-TWO', T.tt + .2, T.panB);
@@ -774,7 +819,7 @@
     T.lab = []; T.on = []; T.slabIn = [-9, 0, 0]; T.chalk = [0, 0, 0];
     T.lab[0] = at('when', 'ps3') - .05; T.on[0] = T.lab[0] + .1;
     T.boxO = at('when', 'xbox') + .02; T.cAO = T.boxO;
-    T.disc0 = at('when', 'xbox') - .1;
+    T.disc0 = at('when', 'xbox') - .05; T.lift6 = start('when') - .5;
     T.chirp0 = G('chirp0', after('when'), 'chirp', .3, 1.4);
     /* q: pull back to the whole bookcase; chalk outlines on the two empty shelves; the PS4-era slab slides into its outline in the pause */
     T.chalk[1] = at('q', 'how') - .05; T.chalk[2] = at('q', 'generations');
@@ -806,7 +851,9 @@
     T.st = G('st', start('three') - .2, 'stamp', .3, 2.2, { m: .03 }); T.bounce = G('bounce', after('three'), 'hop', .3, 1.0);
     /* but: GTA 6's spot is chalked on the top shelf; the lower shelves go dark on "just one"; the stamp peels; GTA 6 drops in the pause */
     T.out6 = at('but', 'gta') - .05; T.dim = at('but', 'just') - .05;
-    T.land6 = G('land6', after('but') + .05, 'hop', .3, 1.8); T.stO = Math.max(T.st + .16 + 2.75, start('but') - .2);
+    /* GTA 6 drops back onto the top shelf on its own name; the lower lights click off in the pause, each with a relay tick */
+    T.land6 = wend('but', '6') - .25;
+    T.off0 = G('off0', wend('but', 'one') + .22, 'relay', .2, 1, { m: .04 }); T.off1 = G('off1', T.off0 + .25, 'relay', .12, .8, { m: .04 }); T.stO = Math.max(T.st + .16 + 2.75, start('but') - .2);
     /* plat: the owner, then the two platform tags swing down on their names */
     T.ra = at('plat', 'announced') - .12; T.tg1 = at('plat', 'ps5') - .05; T.tg2 = at('plat', 'xbox') - .05;
     G('tgS', wend('plat', 's') + .2, 'pin', .35, 3, { m: .04 });
@@ -818,9 +865,10 @@
     T.undim = start('end') - .3; T.first = at('end', 'first') - .05;
     G('seam', T.seamC - .14, 'door', .3, 12);
     /* camera keys: [time, value, duration] */
-    T.CS = [[0, 1.45, 2.6], [start('when') - .1, 1.53, 3.2], [start('q') - .1, 1.0, 1.0], [T.slabIn[1] - .1, 1.08, 1.0], [T.panA, 1.0, .5], [T.panB, 1.08, .45], [T.pull3, 1.0, .8], [start('but'), 1.06, 2.0], [start('plat') - .3, 1.25, 1.1], [at('date', '2026') - .05, 1.28, 1.4], [start('end') - .3, 1.0, 1.2]];
-    T.CYO = [[start('plat') - .3, 262, 1.1], [start('end') - .3, 0, 1.2]];
-    T.CX = [[start('when') - .1, 470, 3.2], [start('q') - .1, 510, 1.0], [T.panA, 1610, .5], [T.panB, 510, .45], [start('plat') - .3, 530, 1.1], [start('end') - .3, 610, 1.2]];
+    T.pullQ = lastw('when') + .1;
+    T.CS = [[0, 1.23, 2.6], [start('when') - .1, 1.53, 2.4], [T.pullQ, 1.15, 1.0], [T.slabIn[1] - .1, 1.2, 1.0], [T.panA, 1.0, .5], [T.panB, 1.08, .45], [T.pull3, 1.15, .8], [start('but'), 1.2, 2.0], [start('plat') - .3, 1.25, 1.1], [T.dc - .3, 1.1, 1.3], [at('date', '2026'), 1.06, 1.2], [start('end') - .3, 1.0, 1.2]];
+    T.CYO = [[T.panB, 30, .45], [T.pull3, 0, .8], [start('plat') - .3, 262, 1.1], [T.dc - .3, 140, 1.3], [at('date', '2026'), 110, 1.2], [start('end') - .3, 0, 1.2]];
+    T.CX = [[0, 548, 2.9], [start('when') - .1, 470, 2.4], [T.pullQ, 510, 1.0], [T.panA, 1610, .5], [T.panB, 510, .45], [start('plat') - .3, 530, 1.1], [start('end') - .3, 610, 1.2]];
     STRESS = [['hook', 'before'], ['when', '2013'], ['q', 'generations'], ['gen2', '2014'], ['pc', 'slipping'], ['gen3', '2022'], ['three', 'three'], ['but', 'one'], ['plat', 'announced'], ['date', 'november'], ['end', 'first']].map(function (p) { return at(p[0], p[1]); });
     CAPS[0].s = -1; CAPS[0].words = CAPS[0].words.filter(function (w) { return norm(w.w) !== 'came'; });
     CAPS.forEach(function (c) { if (c.id === 'but') { var L = c.words[c.words.length - 1]; L.w = L.w.replace(/\.$/, ''); c.words.push({ w: 'generation.', t0: L.t0, t1: L.t1 }); } });
@@ -838,7 +886,7 @@
     ctx.globalAlpha = 1; ctx.drawImage(acc, 0, 0);
   }
   /* ---------- sound: room foley written into the pauses; no music (Isac adds a platform sound) ---------- */
-  BODY.slam = .3; BODY.click = .08; BODY.pin = .1; BODY.snap = .14; BODY.tick = .04; BODY.hop = .16; BODY.chirp = .2; BODY.blip = .24; BODY.scrawl = .28; BODY.door = .3; BODY.thock = .12; BODY.stamp = .18; BODY.swish = .26;
+  BODY.slam = .3; BODY.click = .08; BODY.pin = .1; BODY.snap = .14; BODY.tick = .04; BODY.hop = .16; BODY.chirp = .2; BODY.blip = .24; BODY.scrawl = .28; BODY.door = .3; BODY.relay = .05; BODY.thock = .12; BODY.stamp = .18; BODY.swish = .26;
   function SCORE(ac) {
     var sr = ac.sampleRate, rnd = mulberry(7);
     var master = ac.createGain(); master.gain.value = .8;
@@ -868,10 +916,12 @@
     /* a marker circling a date */
     function scrawl(t, g) { band(t, t + .28, 2600, 4200, .05 * g, .03 * g, 3, .2); tick(t, .5 * g, 3000); }
     /* the cabinet door: a wooden slide and a soft stop */
+    /* a relay: a dry click with a small body */
+    function relay(t, g) { tick(t, 1.3 * g, 1700); thump(t, .18 * g, 340); }
     function doorS(t, g) { band(t, t + .3, 300, 1400, .1 * g, .03 * g, .8, -.3, 'lowpass'); thump(t + .26, .3 * g, 160); }
-    var LEVEL = { stamp: 1, slam: 1, swish: 22, thock: 5, pin: 4, hop: 3, chirp: 6, blip: 6, scrawl: 10, door: 6 };
+    var LEVEL = { stamp: 1, slam: 1, swish: 22, thock: 5, pin: 4, hop: 3, chirp: 6, blip: 6, scrawl: 10, door: 6, relay: 4 };
     var TRIM = window.SFX_TRIM || {};
-    var TYPE_DB = window.SFX_TYPE_DB || { stamp: -20, slam: -16, swish: -17.5, thock: -21, pin: -21, hop: -16, chirp: -12, blip: -12, scrawl: -16, door: -16 };
+    var TYPE_DB = window.SFX_TYPE_DB || { stamp: -20, slam: -16, swish: -17.5, thock: -21, pin: -21, hop: -16, chirp: -12, blip: -12, scrawl: -16, door: -16, relay: -21 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1) * Math.pow(10, ((TRIM[e.id] || 0) + (TYPE_DB[e.type] || 0)) / 20);
       if (e.type === 'stamp') stamp(e.t, g);
@@ -884,6 +934,7 @@
       else if (e.type === 'blip') blip(e.t, g);
       else if (e.type === 'scrawl') scrawl(e.t, g);
       else if (e.type === 'door') doorS(e.t, g);
+      else if (e.type === 'relay') relay(e.t, g);
     });
     /* no music: Isac adds a trending sound on the platform; the film ships voice + sound effects */
     var MUSIC = false;
