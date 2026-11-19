@@ -1,0 +1,117 @@
+{
+ "about": "GTA 6 scored 99 on Metacritic (PS5 page: Metascore 99, Universal acclaim; JSON-LD reviewCount 156, hero block 150; Xbox Series X 99 from 14), tying The Legend of Zelda: Ocarina of Time (1998, N64, Metascore 99 from 22 critics) at the top of Metacritic's all-time game list. All-time list (read 2026-11-19 07:20 UTC): GTA VI 99, Ocarina of Time 99, SoulCalibur 98, Super Mario Galaxy 2 98, GTA IV 98, Super Mario Galaxy 97, GTA V 97. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "GTA 4",
+  "GTA 5",
+  "Metacritic",
+  "Zelda",
+  "Ocarina of Time",
+  "GTAs"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6 scored 99.",
+   "say": "G T A six scored ninety-nine.",
+   "pause": 0.55,
+   "speed": 1.1
+  },
+  {
+   "id": "tie",
+   "at": 2.59,
+   "text": "That ties the best Metacritic score ever.",
+   "pause": 0.35,
+   "speed": 1.1
+  },
+  {
+   "id": "alone",
+   "at": 4.98,
+   "text": "But it's not alone. One other game has 99.",
+   "say": "But it's not alone. One other game has ninety-nine.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "oot",
+   "at": 8.05,
+   "text": "Zelda: Ocarina of Time, from 1998.",
+   "say": "Zelda, Ocarina of Time. From nineteen ninety-eight.",
+   "pause": 0.6,
+   "speed": 1.1
+  },
+  {
+   "id": "crit",
+   "at": 11.14,
+   "text": "Its 99 came from 22 critics.",
+   "say": "Its ninety-nine came from twenty-two critics.",
+   "pause": 0.35,
+   "speed": 1.1
+  },
+  {
+   "id": "gta",
+   "at": 13.81,
+   "text": "GTA 6 got it from about 150.",
+   "say": "G T A six got it from about a hundred and fifty.",
+   "pause": 0.7,
+   "speed": 1.1
+  },
+  {
+   "id": "list",
+   "at": 17.16,
+   "text": "And the all-time top seven?",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "gtas",
+   "at": 18.89,
+   "text": "GTA 4 at 98. GTA 5 at 97.",
+   "say": "G T A four at ninety-eight. G T A five at ninety-seven.",
+   "pause": 0.35,
+   "speed": 1.1
+  },
+  {
+   "id": "three",
+   "at": 23.01,
+   "text": "Three GTA games in the top seven.",
+   "say": "Three G T A games in the top seven.",
+   "pause": 0.7,
+   "speed": 1.1
+  },
+  {
+   "id": "end",
+   "at": 25.87,
+   "text": "Does GTA 6 deserve the 99? Yes or no?",
+   "say": "Does G T A six deserve the ninety-nine? Yes or no?",
+   "pause": 0,
+   "speed": 1.1
+  }
+ ],
+ "dur": 29.17,
+ "tail": 0.55,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}
