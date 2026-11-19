@@ -245,7 +245,8 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | darkmode | Nov 14 18:00 | 35 s | 7.0 r1 → 7.4 r2 + polish | 4 (25 min), 56 (12 h), 58 (15 h), 62 (30 h), 63 (40 h) | – | 6 | phone-myth + lights-off "check your screen" test; read at 6 h and 24 h |
 | overnightcharge | Nov 16 00:00 | 35 s | 6.9 r1 → 7.3 r2 + polish | 10 (30 min), 18 (6 h), 23 (9 h), 43 (25 h), 50 (33 h), 57 (48 h), 59 (~57 h) | – | 6 | phone-myth + "check your setting"; 7 PM ET slot like coldbattery/airplanemode; read at 6 h and 24 h |
 | phonelistening | Nov 17 00:00 | 35 s | 7.0 r1 → 7.5 r2 + polish | 98 (25 min), 411 (~6 h), 419 (~8 h), 420 (~24 h), 420 (~32 h) | – | 5 | myth + FTC twist + "check your dot"; 7 PM ET slot; read at 6 h and 24 h |
-| 5gbattery (4HgqAeZDr8k) | Nov 18 00:00 | 35 s | 7.3 r1 → 7.4 r2 + polish | 3 (35 min), 18 (~6 h), 30 (~8 h) | – | 6 | myth + lab-meter twist + "check your 5G setting"; 7 PM ET slot; read at 6 h and 24 h |
+| 5gbattery (4HgqAeZDr8k) | Nov 18 00:00 | 35 s | 7.3 r1 → 7.4 r2 + polish | 3 (35 min), 18 (~6 h), 30 (~8 h), 35 (~25 h) | – | 6 | myth + lab-meter twist + "check your 5G setting"; 7 PM ET slot; read at 6 h and 24 h |
+| hotcharging (HuNgKnkM_ss) | Nov 19 00:00 | 34 s | 7.06 r1 → 7.4 r2 + polish | 3 (30 min) | – | 5 | warm-is-normal myth + "your phone did that" twist + "check yours"; 7 PM ET slot; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -391,6 +392,16 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Craft (repeat): with the bench at y 1150 the lower third went empty for 3 s. An empty dashed slot that the tape later prints into fills it and builds anticipation.
 - Wow: the 5G status tile (the film's thread since frame 0) rides the coral chart line from SLOW through the crossing to FAST.
 - Tooling: the container restarted mid-fix and the resumed director was lost. A fresh director told "some fixes may be half-applied, read film.js first" picked it up cleanly. Save fix lists to a file so they survive.
+
+### hotcharging (#35), jury r1 7.06 / Truth 8.5 → r2 7.4 / Truth 9.0 (post), r2 polish applied — scheduled Nov 18 19:00 ET (HuNgKnkM_ss)
+- Frame 0 must say the topic on sight: a phone icon with an empty battery and one lit cell said nothing about heat. Three amber cells plus heat curls already rising at t=0 fixed it. Never let the safe-area clip cut the hero shape flat (airplanemode repeat): CLIP_RUN on t=1/60 and the last frame too.
+- The native move has to be seen. The tap turn first played under the slate wipe; the turn now lands on the knock, the slate waits until after it, and a punch-in (1.06 camera + wheel lift) makes it the wow beat.
+- Truth: a re-created screen shows only what the quote explains. Four Pixel menu rows (Cold/Normal/Warm/Elevated) implied a list the real feature doesn't have; one empty STATE slot plus "4 POSSIBLE STATES" chips, with Google's "…one of four temperature states…" beside it, is honest.
+- Truth: don't stack a cut quote next to a reassuring chip (WARM = NORMAL beside Apple's line cut before "…which can reduce its lifespan"). Peel the chip first.
+- Truth: a number scoped by condition stays chained to it: 80% only ever appeared inside the "iPHONE · IF THE BATTERY GETS TOO WARM" plate. Fine print names the other 80% causes (Optimized Charging, Charge Limit).
+- Craft: no empty dashed placeholder slots right before a slam (reads as a missing element); the #34 slot trick works only when the slot is up for 1 s or more and something prints into it.
+- Sound: in this mix a hit in silence lands as loud as the voice, so the 3 dB gate caps hits in gaps (~.05 gain). The gate's --write-heard shifts placements after each remix; gate the final render with the heard.js it was actually built with.
+- Git: a merged factory branch can't be force-pushed here. Merge the old tip, keep main's side on conflicts, and push.
 
 ### More graphical (Isac 2026-11-04: "make video more graphical, add more content and graphics")
 - Something new every 1-2 s: loop-periodic paper life (birds, drifting clouds, sun rays, twinkles, river shimmer, falling leaves, a critter); no empty sky, and the bench gets colour glows + halftone (texture only, no shapes).
