@@ -1,0 +1,106 @@
+{
+ "about": "Can a public USB charger steal your data (juice jacking). Factory #36, backlog row 41, slug juicejacking. One hard idea: the FBI (Denver field office, one X post, April 6, 2023) warned about juice jacking but the post names no case (researchers have shown it in labs, ChoiceJacking, USENIX Security 2025; FCC page disabled by its owner 2026-11-19, so the FCC is not cited); phones ask before data moves (iPhone 'Trust This Computer?', Android's File Transfer choice), so at a public port never tap Trust or Allow, or use your own wall plug. Sources read 2026-11-19, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "iPhone",
+  "Android",
+  "FBI"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24.5
+ },
+ "dur": 34.07,
+ "tail": 0.15,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Airport chargers probably aren't hacking you.",
+   "pause": 0.7,
+   "at": 0.2
+  },
+  {
+   "id": "ask",
+   "text": "So, is juice jacking real?",
+   "pause": 0.55,
+   "at": 3.02
+  },
+  {
+   "id": "warn",
+   "text": "In 2023, the FBI warned about it.",
+   "say": "In twenty twenty-three, the F B I warned about it.",
+   "pause": 0.5,
+   "at": 5.04
+  },
+  {
+   "id": "fear",
+   "text": "The FBI said bad actors use USB ports to plant malware.",
+   "say": "The F B I said bad actors use U S B ports to plant malware.",
+   "pause": 0.8,
+   "at": 8.19
+  },
+  {
+   "id": "twist",
+   "text": "But the FBI post named no case.",
+   "pause": 0.65,
+   "at": 12.15,
+   "say": "But the F B I post named no case."
+  },
+  {
+   "id": "lab",
+   "text": "Researchers have pulled it off, in labs.",
+   "pause": 0.8,
+   "at": 14.79
+  },
+  {
+   "id": "asks",
+   "text": "And your phone asks before it shares data.",
+   "pause": 0.5,
+   "at": 17.35,
+   "speed": 0.971
+  },
+  {
+   "id": "os",
+   "text": "iPhone shows Trust This Computer? Android waits for File Transfer.",
+   "say": "iPhone shows: Trust This Computer? Android waits for File Transfer.",
+   "pause": 0.8,
+   "at": 19.84
+  },
+  {
+   "id": "never",
+   "text": "At a public port, never tap Trust or Allow.",
+   "say": "At a public port, never tap Trust, or Allow.",
+   "pause": 0.9,
+   "at": 24.56,
+   "speed": 0.996
+  },
+  {
+   "id": "wall",
+   "text": "Or skip the port. Use your own wall plug.",
+   "pause": 0.7,
+   "at": 27.69
+  },
+  {
+   "id": "end",
+   "text": "Ever tapped Trust on a public port? Yes or no.",
+   "say": "Ever tapped Trust on a public port? Yes, or no?",
+   "pause": 0,
+   "tail_fade": 0.15,
+   "at": 30.65
+  }
+ ]
+}

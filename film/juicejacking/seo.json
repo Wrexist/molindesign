@@ -1,0 +1,92 @@
+{
+ "title": "Is juice jacking real",
+ "caption": "Is juice jacking real? The FBI warned about public USB chargers, but its post named no case.\nResearchers did pull it off in a lab, and your phone asks before it shares data.\nEver tapped Trust on a public port? Yes or no?",
+ "hashtags": [
+  "#techexplained",
+  "#juicejacking",
+  "#phonesecurity",
+  "#traveltips",
+  "#iphonetips"
+ ],
+ "keywords": [
+  "juice jacking",
+  "is juice jacking real",
+  "is it safe to charge phone at airport",
+  "airport charging stations safe",
+  "juice jacking iphone",
+  "trust this computer iphone",
+  "public usb charger",
+  "fbi charging station warning"
+ ],
+ "cover_text": "Trust this computer?",
+ "cover_time": 0.0,
+ "pinned_comment": "Honest version: lab attacks exist (in 2025, TU Graz researchers built a charger that got past the prompt on phones from 8 vendors), and the FBI post named no case. So a public charger probably isn't hacking you, but at a public port, never tap Trust or Allow. Ever tapped Trust on a public port? Yes or no?",
+ "pinned_backups": [
+  {
+   "if": "So it's fake?",
+   "reply": "No. Researchers at TU Graz made it work in a lab in 2025, with \"a custom cheap malicious charger design\". What the FBI post didn't do is name a real case. So: probably not happening to you, but never tap Trust or Allow on a public port."
+  },
+  {
+   "if": "I already tapped Trust at an airport.",
+   "reply": "Apple's own reset: Settings › General › Transfer or Reset iPhone › Reset › Reset Location & Privacy. Apple says it resets \"the computers you've chosen to trust\". Next time tap Don't Trust; charging still works."
+  },
+  {
+   "if": "Does Don't Trust stop charging?",
+   "reply": "No. Don't Trust blocks the data, not the power. Google's Pixel page says the same for its USB Protection: \"Charging through USB continues to function even with a locked screen.\""
+  },
+  {
+   "if": "What about USB data blockers?",
+   "reply": "None of the sources we used test them, so the video doesn't recommend one. The FBI's own advice: \"Carry your own charger and USB cord and use an electrical outlet instead.\""
+  },
+  {
+   "if": "My Samsung doesn't show File Transfer.",
+   "reply": "Google says \"Some of these steps only work on Android 14 and up\", and menus vary by maker. Leave it on charging only at a public port; don't pick File Transfer."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 19:00 ET (EST) Thu Nov 19, 2026 = 00:00 UTC Fri Nov 20. Evening is when people plan trips and our best performers went out at 7 PM ET; it also lands a week before Thanksgiving (Nov 26), when airport charging is on travelers' minds. python3 factory/repost.py check juicejacking --channel tech --at \"2026-11-20 00:00\" passed on 2026-11-19 (R1 no juicejacking post within 7 days on tech/youtube; R6 0 posts on Nov 19 ET). Pick the time from YouTube Studio's dropdown and check the saved UTC time. TikTok: on hold.",
+ "post_time_stockholm": "01:00 Fri Nov 20 (Sweden CET, US EST, 6 h apart).",
+ "sounds": [],
+ "sound_note": "Not checked this pass: TikTok is on hold and a trending-sound pick goes stale in days (same call as hotcharging, 5gbattery, phonelistening). When TikTok resumes, run Higgsfield tiktok_music_trending (US, 7DAY) on the post day and pick a calm instrumental at 5-10 % under out/juicejacking-voice-only.mp4. YouTube Shorts goes out with the film's own mix (no music in this film).",
+ "youtube_title": "Juice Jacking: Is It Safe to Charge at the Airport? 🤔",
+ "youtube_title_alternatives": [
+  "Airport Chargers Probably Aren't Hacking You 🤔",
+  "Is Juice Jacking Real? The FBI Post Named No Case 😮"
+ ],
+ "youtube_title_check": "Google US suggestions checked Nov 19, 2026 (suggestqueries, gl=us, hl=en): \"is it safe to charge phone at airport\" is its own top completion, and \"is it safe to charge your phone at\" completes to \"…the airport\" first; \"juice jacking\" completes to juice jacking usb / airport / iphone (Google) and juice jacking explained / iphone / airport (YouTube, ds=yt); \"airport charging\" gives \"airport charging stations safe\" 2nd. The title leads with the named search term and then asks the airport question in Title Case. It is a question, so it claims neither \"safe\" nor \"impossible\"; the film answers \"probably\". 10 words, over the spec's 7, accepted (like hotcharging) because it carries both searched phrases; the brief's 7-word \"Airport Chargers Probably Aren't Hacking You 🤔\" is the A/B alternative.",
+ "youtube_description": "Is it safe to charge your phone at the airport? Juice jacking, a public USB charger that steals your data or plants malware, has been pulled off by researchers in a lab. But the FBI post that warned travelers about it named no case. Your phone also asks before a USB port gets your data: an iPhone shows \"Trust This Computer?\", and Android waits until you choose File Transfer. So a public charger probably isn't hacking you, but at a public port never tap Trust or Allow. Or skip the port and use your own wall plug.\n\nFBI Denver on X, April 6, 2023: \"Avoid using free charging stations in airports, hotels or shopping centers. Bad actors have figured out ways to use public USB ports to introduce malware and monitoring software onto devices. Carry your own charger and USB cord and use an electrical outlet instead.\" The post names no case, place, date or victim. It is one post from the FBI's Denver field office. The video says \"plant\"; the FBI's word is \"introduce\".\n\nApple, \"About the 'Trust This Computer' alert message on your iPhone, iPad, or iPod touch\": \"When you connect your iPhone, iPad, or iPod touch to a computer or other device for the first time, an alert message asks whether you trust the computer…\" \"Trusted computers can sync with your device and access your device's photos, videos, contacts, and other content.\" \"If you don't want to trust the computer or other connected device, tap Don't Trust on your device.\" To undo a Trust, Apple's reset: Settings › General › Transfer or Reset iPhone › Reset › Reset Location & Privacy.\n\nGoogle, Android Help, \"Transfer files between your computer & Android device\": \"On your device, tap the \"Charging this device via USB\" notification. Under \"Use USB for,\" select File Transfer.\" And: \"Important: Some of these steps only work on Android 14 and up.\" Scope: Android 14 and up; menus vary by phone maker.\n\nGoogle, Android Help, \"Protect your Android device from USB threats with Advanced Protection Mode\": \"When you connect a USB device, you may receive notifications that’ll prompt you to unlock your screen and allow data transfer through USB.\" \"Charging through USB continues to function even with a locked screen.\" \"This feature is available on Pixel 6 and later devices.\" Scope: Pixel 6 and later, with Advanced Protection's USB Protection on; Google also lists \"No protection when the device is unlocked\".\n\nDraschbacher, Maar, Oberhuber and Mangard (Graz University of Technology), \"ChoiceJacking: Compromising Mobile Devices through Malicious Chargers like a Decade ago\", USENIX Security 2025: \"…mobile OSs introduced user prompts for confirming data connections from a USB host to a mobile device.\" Their lab attack, built on \"a custom cheap malicious charger design\", is \"…the first to bypass existing JuiceJacking mitigations\" and gained access to user files \"…on all tested devices from 8 vendors including the top 6 by market share.\" \"All but one (including Google, Samsung, Xiaomi, and Apple) acknowledged our attacks and are in the process of integrating mitigations.\"\n\nFine print: The FBI post names no confirmed real-world case, but that doesn't mean juice jacking is impossible; the 2025 lab result shows a charger can fake the tap, and phone makers are still adding fixes. This video doesn't say any phone or OS version is fully protected. The iPhone alert, the Android screen and the FBI post are drawn and re-created by hand; no real interface, post or logo is shown. Not affiliated with Apple, Google, the FBI, TU Graz, USENIX or anyone else.\n\nSources:\n- FBI Denver on X, post of Apr 6, 2023, read Nov 19, 2026: https://x.com/FBIDenver/status/1643947117650538498\n- Apple Support, \"About the 'Trust This Computer' alert message on your iPhone, iPad, or iPod touch\" (109054, published Dec 4, 2025), read Nov 19, 2026: https://support.apple.com/en-us/109054\n- Google Android Help, \"Transfer files between your computer & Android device\" (9064445), read Nov 19, 2026: https://support.google.com/android/answer/9064445?hl=en\n- Google Android Help, \"Protect your Android device from USB threats with Advanced Protection Mode\" (16778864), read Nov 19, 2026: https://support.google.com/android/answer/16778864?hl=en\n- Draschbacher et al., \"ChoiceJacking\", USENIX Security 2025, read Nov 19, 2026: https://www.usenix.org/conference/usenixsecurity25/presentation/draschbacher\n\nHow tech works, part 19.\n\n#techexplained #juicejacking #phonesecurity",
+ "youtube_tags": [
+  "juice jacking",
+  "is juice jacking real",
+  "juice jacking explained",
+  "juice jacking airport",
+  "juice jacking iphone",
+  "juice jacking usb",
+  "is it safe to charge phone at airport",
+  "is it safe to charge your phone at the airport",
+  "airport charging stations safe",
+  "public phone charging station",
+  "public usb charger",
+  "trust this computer iphone",
+  "fbi charging station warning",
+  "choicejacking",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 19",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no AI hashtag. YouTube Altered content: No (hand-made cut-paper kiosk, cable and gate, generic re-created prompts and post tagged RE-CREATED; no real person's voice, no realistic footage, no real UI or logo). The fine print's re-created/not-affiliated notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator when TikTok resumes.",
+ "fcc_note": "FCC page disabled by its owner (checked in a browser 2026-11-19): the FCC is not quoted, cited or named anywhere in this packaging.",
+ "packaging_score": {
+  "score": 6,
+  "of": 6,
+  "mine": "1: the phone the viewer plugs into an airport or hotel USB port, a week before Thanksgiving travel.",
+  "myth_threat": "1: breaks \"public USB chargers steal your data\" while keeping the lab result honest.",
+  "frame0_test": "1: frame 0 is a phone on a kiosk cable with TRUST THIS COMPUTER? and two blank buttons; the viewer decides whether they'd tap.",
+  "takeaway": "1: at a public port never tap Trust or Allow; or use your own wall plug (the FBI's own advice).",
+  "title": "1: \"Juice Jacking: Is It Safe to Charge at the Airport? 🤔\": the named term in words 1-2, the top searched question after it, one emoji, no safety claim.",
+  "searched": "1: \"juice jacking\" (+ airport / iphone / explained) and \"is it safe to charge phone at airport\" are Google US and YouTube suggestions (checked Nov 19, 2026)."
+ },
+ "youtube_description_chars": 4421,
+ "youtube_tags_chars": 385
+}
