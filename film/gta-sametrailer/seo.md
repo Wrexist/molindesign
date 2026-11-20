@@ -3,9 +3,9 @@
 Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-sametrailer-vo.mp4` (voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Facts and sources: `BRIEF.md`.
 
 ## YouTube Shorts title
-GTA 6's First Trailer Is GTA 5's, 12 Years Later 🤯
+GTA 5 vs GTA 6: The Same Trailer? 🤯
 
-Alternates (A/B or repost): "GTA 5 vs GTA 6: The Same Trailer? 🤯" · "Rockstar Made the Same GTA Trailer Twice"
+Alternate (A/B or repost): "GTA 6's First Trailer vs GTA 5's, 12 Years Apart"
 
 ## Cover text
 SAME TRAILER?
