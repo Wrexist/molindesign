@@ -63,14 +63,14 @@ Timing chained at Ming ~3.4 spoken tokens/s (speed 1.1) + 0.25 s room + written 
 | hook | 0.2 | Don't copy these GTA 6 settings. ("… G T A six …") | 4 |
 | q | 3.0 | Four viral tips. Which hold up? | 3 |
 | blur | 5.17 | One: motion blur to zero. | 3 |
-| fps | 6.99 | But GTA 6 runs at 30 fps. ("… thirty F P S.") | **2 (dip)** |
+| fps | 6.99 | But GTA 6 targets 30 frames a second. ("… thirty frames a second."; "targets" after jury r2, the source's word) | **2 (dip)** |
 | choppy | 10.57 | Zero is sharp, but can judder at 30. One PC Gamer editor picked one. ("… at thirty. One P C Gamer …"; re-voiced after jury r1) | 3 |
 | fx | 14.26 | Two: effects sliders down to two. Your call. | 3 |
 | hdr | 17.06 | Three: copying HDR numbers. Don't. ("… H D R …") | 4 |
 | tv | 19.52 | Max brightness should match your TV. ("… T V.") | 4 |
 | br | 22.03 | Four: Brightness Reduction on. It ships off. | 4 |
 | off | 24.44 | Leave it off unless bright light bothers you. | 4 |
-| end | 27.24 | One survives. Did you copy the rest? | 5 |
+| end | 27.24 | Only one is safe to copy. Did you copy the rest? (after jury r2; "Your call." dropped from `fx` to pay for it, the KEEP · YOUR CALL stamp says it) | 5 |
 
 Arc: `4 3 3 2 3 3 4 4 4 4 5`. The dip is the 30 fps line: the viewer's "zero blur = sharper" guess meets the game's frame rate. It climbs through the two FIX/SKIP verdicts and pays off on the scorecard. Loop: "Did you copy the rest?" → "Don't copy these GTA 6 settings." Turn words: "But" ~7 s, "Zero can" ~10.6 s, "Don't." ~18.5 s, "It ships off" ~23.5 s, "One survives" ~27.2 s.
 
@@ -105,3 +105,4 @@ Keep a change every ≤ 1.2 s (LESSONS gta-pc): knob slams, stamp drops, note pe
 ## Log
 - 2026-11-20: brief and script by the researcher (video-researcher.md). No render, no voice.
 - 2026-11-20 (director, after jury r1 7.0 / Truth 8.0): blur verdict FIX → TEST · 0 VS 1; `choppy` re-voiced ("Zero is sharp, but can judder at 30. One PC Gamer editor picked one.") with a GAMERBOLT: 0 CAN LOOK JUDDERY chip on "judder" and the Ridley quote + STANDARD PS5 only on "One PC Gamer editor"; "Your call." restored to `fx`; the TV card no longer prints any TV's max (TV A · BRIGHT HDR vs TV B · ENTRY HDR, the copied 600 overshoots TV B), ILLUSTRATION tag on the TVs.
+- 2026-11-20 (director, after jury r2 7.3 / Truth 8.5, pass): `fps` says "targets"; `end` says "Only one is safe to copy"; tip-1 stamp TEST · 0 OR 1; OUR VERDICTS (44 px) printed inside the 1 OF 4 SURVIVES plate; blur close-up shows one read at a time (GAMERBOLT: 0 CAN JUDDER, then the Ridley quote with HIS PICK ON A STANDARD PS5, NOT A JUDDER FIX); TV card: two equal sets, cream bars to their own MAX, the copied 600 punches through ENTRY HDR TV's line (CLIPS), chip GAMERBOLT: MATCH YOUR TV'S MAX under the caption.

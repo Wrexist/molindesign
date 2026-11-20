@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-settings/out/gta-settings-vo.mp4: 29.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.442, 0-3 s 0.679, median 0.611, still frames 0.1 %
+/home/user/molindesign/film/gta-settings/out/gta-settings-vo.mp4: 29.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.789, 0-3 s 1.171, median 0.628, still frames 0.1 %
 OK    no frozen stretches, opening moves
