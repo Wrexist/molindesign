@@ -1,0 +1,25 @@
+{
+ "about": "GTA 6 stash house where everyone is already dead: a player's launch-day loot video (TikTok @schlayerr, posted 2026-11-19) shows a red building in South Vice-Dale County near the start of the map; break open the door, the people inside are already dead, loot a Type-9 SMG, a Duke 556 assault rifle, stash bags filled with product, a safe with cash and a card he sold for $6,000; about $17,200 total, he says, without killing anyone. Commentary mode (SAFE-EDIT rule 10): three muted creator clips, facecam and captions cropped out, each annotated, credit in the description only. Delta.",
+ "engine": "ming",
+ "ming": {"voice": "US_James", "seed": 7},
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {"max": 3.6},
+ "names": ["GTA", "SMG"],
+ "pronounce": {},
+ "chain": {"room": 0.25},
+ "duck": {"db": -6, "score_db": 0, "smr_db": 32},
+ "dur": 29.0,
+ "fit": {"min": 0.8, "max": 1.1},
+ "lines": [
+  {"id": "hook", "at": 0.2, "text": "In GTA 6, there's a stash house where everyone's already dead.", "say": "In G T A six, there's a stash house where everyone's already dead.", "speed": 1.08},
+  {"id": "where", "at": 3.7, "text": "It sits close to where the game starts.", "speed": 1.04},
+  {"id": "door", "at": 6.2, "text": "Break open the door, and the crew inside is already down.", "speed": 1.06},
+  {"id": "nofight", "at": 9.6, "text": "No fight. You just loot.", "speed": 1.0},
+  {"id": "guns", "at": 11.6, "text": "An SMG, an assault rifle, and stash bags.", "say": "An S M G, an assault rifle, and stash bags.", "speed": 1.06},
+  {"id": "room", "at": 14.6, "text": "The back room has even more to bag.", "speed": 1.04},
+  {"id": "safe", "at": 17.4, "text": "Then a safe with cash, and a card he sold for six grand.", "speed": 1.06},
+  {"id": "total", "at": 21.0, "text": "His total: about seventeen thousand dollars, without firing a shot.", "speed": 1.08},
+  {"id": "end", "at": 25.0, "text": "So who hit this place before you got there?", "speed": 1.02}
+ ]
+}
