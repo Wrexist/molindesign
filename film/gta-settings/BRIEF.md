@@ -11,7 +11,7 @@ Slug `gta-settings` · researched 2026-11-20 (day 2 after launch) · channel **D
 - **Effects sliders:** we say only the names (the three sliders), their place (Display, Visual Effects) and that they sit at 5 by default (playday "1-5, 5 default" for Player Status and Hit; TheTechBasket's launch-day screenshot shows all three at 5; the TikTok's "before" also shows 5). **Awareness default rests on the screenshot only**, so the on-screen card prints "5 → 2" as the viral tip's numbers, not a DEFAULT tag. **We do not say what each slider does**: no source describes the effect. "Your call" = taste, our verdict KEEP.
 - **HDR:** the in-game HDR Calibration exists with Max Brightness, Black Levels and Paper White (Gamerbolt; the TikTok's screenshot; playday lists "HDR Calibration"). Gamerbolt: "Maximum Brightness: This should correspond to your television's actual HDR capabilities." That is also how HDR peak brightness works on any game. TheTechBasket says no launch-day source listed an in-game HDR screen; outweighed by the screenshot plus Gamerbolt, but the card avoids drawing Rockstar's calibration image (no logo).
 - **Brightness Reduction:** On/Off, **Off by default** (playday, gamer.org; the TikTok's "before" shows Off). What it does is **not documented anywhere we found**. gamer.org: it "may help players who find intense lighting effects uncomfortable"; Beebom's own two tables disagree (Off in one, On in the other). So the voice gives **our pick**, labeled OUR PICK on screen: "Leave it off unless bright light bothers you." Never say it "darkens", "ruins" or "doesn't work".
-- **"One survives"** is our scorecard, not a fact: KEEP (effects), FIX (blur → try 1), FIX (HDR → your TV), SKIP (Brightness Reduction). The scorecard card carries `OUR VERDICTS`.
+- **"One survives"** is our scorecard, not a fact: KEEP (effects), TEST (blur: 0 vs 1, both defensible: Gamerbolt picks 0 for clarity and warns it can look juddery at 30; PC Gamer's Ridley picked 1 on the standard PS5 and rejects the judder argument for himself), FIX (HDR → your TV), SKIP (Brightness Reduction). Only the effects tip is safe to copy as is. The scorecard card carries `OUR VERDICTS`. (Changed after jury r1: the earlier FIX · TRY 1 misread both sources.)
 
 ## 0. Packaging score (PERFORMANCE §7): 5/6
 | Mark | | Why |
@@ -64,7 +64,7 @@ Timing chained at Ming ~3.4 spoken tokens/s (speed 1.1) + 0.25 s room + written 
 | q | 3.0 | Four viral tips. Which hold up? | 3 |
 | blur | 5.17 | One: motion blur to zero. | 3 |
 | fps | 6.99 | But GTA 6 runs at 30 fps. ("… thirty F P S.") | **2 (dip)** |
-| choppy | 10.57 | Zero can look choppy. A PC Gamer editor picked one. ("A P C Gamer …") | 3 |
+| choppy | 10.57 | Zero is sharp, but can judder at 30. One PC Gamer editor picked one. ("… at thirty. One P C Gamer …"; re-voiced after jury r1) | 3 |
 | fx | 14.26 | Two: effects sliders down to two. Your call. | 3 |
 | hdr | 17.06 | Three: copying HDR numbers. Don't. ("… H D R …") | 4 |
 | tv | 19.52 | Max brightness should match your TV. ("… T V.") | 4 |
@@ -104,3 +104,4 @@ Keep a change every ≤ 1.2 s (LESSONS gta-pc): knob slams, stamp drops, note pe
 
 ## Log
 - 2026-11-20: brief and script by the researcher (video-researcher.md). No render, no voice.
+- 2026-11-20 (director, after jury r1 7.0 / Truth 8.0): blur verdict FIX → TEST · 0 VS 1; `choppy` re-voiced ("Zero is sharp, but can judder at 30. One PC Gamer editor picked one.") with a GAMERBOLT: 0 CAN LOOK JUDDERY chip on "judder" and the Ridley quote + STANDARD PS5 only on "One PC Gamer editor"; "Your call." restored to `fx`; the TV card no longer prints any TV's max (TV A · BRIGHT HDR vs TV B · ENTRY HDR, the copied 600 overshoots TV B), ILLUSTRATION tag on the TVs.

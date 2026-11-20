@@ -1,5 +1,5 @@
 {
- "about": "GTA 6 settings, fact-checked (Delta). A viral TikTok (@wasted.clips_, 2026-11-19, topic only, no footage) gives four Display tips: Motion Blur Strength 0; Player Status / Hit / Awareness Effects Intensity 5 to 2; HDR Calibration numbers (Max Brightness 600, Black Levels 50, Paper White 50); Brightness Reduction ON. Our verdicts: blur - GTA 6 targets 30 fps on consoles (Rockstar via PC Gamer 2026-11-10), default 3 of max 10 and a PC Gamer hardware editor picked 1 (PC Gamer 2026-11-19); effects - taste, keep; HDR - Max Brightness should match your TV (Gamerbolt), never copy numbers; Brightness Reduction - Off by default (playday.one, gamer.org), comfort option, our pick: leave off. Own drawn menu only, tagged OUR DRAWING. Sources in BRIEF.md.",
+ "about": "GTA 6 settings, fact-checked (Delta). A viral TikTok (@wasted.clips_, 2026-11-19, topic only, no footage) gives four Display tips: Motion Blur Strength 0; Player Status / Hit / Awareness Effects Intensity 5 to 2; HDR Calibration numbers (Max Brightness 600, Black Levels 50, Paper White 50); Brightness Reduction ON. Our verdicts: blur - GTA 6 targets 30 fps on consoles (Rockstar via PC Gamer 2026-11-10), default 3 of max 10; 0 is sharp but can judder at 30 fps (Gamerbolt), a PC Gamer hardware editor picked 1 on the standard PS5 (PC Gamer 2026-11-19), verdict TEST 0 vs 1; effects - taste, keep; HDR - Max Brightness should match your TV (Gamerbolt), never copy numbers; Brightness Reduction - Off by default (playday.one, gamer.org), comfort option, our pick: leave off. Own drawn menu only, tagged OUR DRAWING. Sources in BRIEF.md.",
  "engine": "ming",
  "ming": {
   "voice": "US_James",
@@ -24,7 +24,7 @@
   "db": -6,
   "score_db": 0
  },
- "dur": 29.13,
+ "dur": 29.3,
  "tail": 0.9,
  "fit": {
   "min": 0.88,
@@ -40,67 +40,66 @@
   },
   {
    "id": "q",
-   "at": 2.59,
+   "at": 2.39,
    "text": "Four viral tips.",
    "pause": 0.2
   },
   {
    "id": "blur",
-   "at": 3.78,
+   "at": 3.58,
    "text": "One: motion blur to zero.",
    "pause": 0.1
   },
   {
    "id": "fps",
-   "at": 5.78,
+   "at": 5.58,
    "text": "But GTA 6 runs at 30 frames a second.",
    "say": "But G T A six runs at thirty frames a second.",
    "pause": 0.15
   },
   {
    "id": "choppy",
-   "at": 8.8,
-   "text": "Zero can look choppy. A PC Gamer editor picked one.",
-   "say": "Zero can look choppy. A P C Gamer editor picked one.",
-   "pause": 0.3
+   "at": 8.3,
+   "text": "Zero is sharp, but can judder at 30. One PC Gamer editor picked one.",
+   "say": "Zero is sharp, but can judder at thirty. One P C Gamer editor picked one.",
+   "pause": 0.9
   },
   {
    "id": "fx",
-   "at": 12.69,
-   "text": "Two: effects sliders down to two.",
+   "at": 13.21,
+   "text": "Two: effects sliders down to two. Your call.",
    "pause": 0.3,
-   "take": 1,
-   "say": "Two: effect sliders down to two."
+   "say": "Two: effect sliders down to two. Your call."
   },
   {
    "id": "hdr",
-   "at": 15.44,
+   "at": 16.36,
    "text": "Three: copying HDR numbers. Don't.",
    "say": "Three: copying H D R numbers. Don't.",
    "pause": 0.12
   },
   {
    "id": "tv",
-   "at": 18.76,
+   "at": 19.3,
    "text": "Max brightness should match your TV.",
    "say": "Max brightness should match your T V.",
    "pause": 0.3
   },
   {
    "id": "br",
-   "at": 20.97,
+   "at": 21.37,
    "text": "Four: Brightness Reduction on. It ships off.",
    "pause": 0.1
   },
   {
    "id": "off",
-   "at": 23.51,
+   "at": 23.9,
    "text": "Leave it off unless bright light bothers you.",
    "pause": 0.3
   },
   {
    "id": "end",
-   "at": 26.28,
+   "at": 26.42,
    "text": "One survives. Did you copy the rest?",
    "pause": 0
   }

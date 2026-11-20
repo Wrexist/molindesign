@@ -36,11 +36,11 @@ A deep plum cut-paper wall lit by a TV-glow wash whose colour shifts with each t
 | hook "Don't copy these GTA 6 settings." | Frame 0: the sheet (four unlabeled slider/toggle rows, stamp slots covered with masking tape "?"), red tape DON'T COPY THESE SETTINGS, GTA 6 pill swinging; row 1's knob is already sliding. By 2.0 s the counter 1 OF 4 SURVIVES slams under the rows. |
 | q "Four viral tips." | The red tape rips off; each row gets VIRAL TIP n and a sticky note with the tip's value (0 · 5→2 · 600 · 50 · 50 · ON), one per beat. |
 | blur | Dive into row 1: MOTION BLUR STRENGTH, 0-10, DEFAULT tick at 3; knob ratchets 3 → 0 on "zero". |
-| fps | Slider rises to a strip; paper flipbook riffles a drawn car; 30 FPS slams; chip ROCKSTAR: TARGETING 30 FPS ON CONSOLES. |
-| choppy | Two panels: 0 = hard separate car frames, 1 = one soft trail (ILLUSTRATION); knob 0 → 1 on "one"; quote strip "…FEELS THE CLEANEST OVERALL" · JACOB RIDLEY, PC GAMER · STANDARD PS5; stamp FIX · TRY 1. |
+| fps | The blur card shrinks to a strip at the top; a full-width paper flipbook drops in and riffles 14 pages in 0.5 s before "But"; 30 FPS slams on "30"; chip ROCKSTAR: TARGETING 30 FPS ON CONSOLES on the flipbook. |
+| choppy | Two panels: 0 = hard separate car frames (pulses on "sharp"), 1 = one soft trail (ILLUSTRATION); GAMERBOLT: 0 CAN LOOK JUDDERY slaps on "judder" where the Rockstar chip was; quote strip "…FEELS THE CLEANEST…" · JACOB RIDLEY · PC GAMER plus a STANDARD PS5 tag on "One PC Gamer editor"; BLUR 1 rings on "one"; stamp TEST · 0 VS 1. |
 | fx | Three stacked sliders PLAYER STATUS / HIT / AWARENESS slam 5 → 2 together; stamp KEEP · YOUR CALL. |
 | hdr | HDR CALIBRATION card (MAX BRIGHTNESS, BLACK LEVELS, PAPER WHITE) with the copied note 600 · 50 · 50; the note rips off on "Don't". |
-| tv | Two TVs (ILLUSTRATION): HIS TV with its own peak line at the 600 note; YOUR TV's peak line elsewhere, arrow SET TO YOUR TV; stamp FIX · MATCH YOUR TV. |
+| tv | Two drawn TVs (ILLUSTRATION), no numbers on either: TV A · BRIGHT HDR (small, high) and TV B · ENTRY HDR (780 px, low), each with its own MAX line; PER GAMERBOLT HDR GUIDE under the caption; the copied VIRAL TIP 600 note prints on "brightness", slides onto TV B on "match", lands above its MAX line and flashes coral; stamp FIX · MATCH YOUR TV. |
 | br | Giant toggle BRIGHTNESS REDUCTION at OFF, DEFAULT tag; the viral ON note slaps on. On "ships off" the DEFAULT: OFF tag is highlighted. |
 | off | The note peels off; sun icon ONLY IF BRIGHT LIGHT BOTHERS YOU; stamp SKIP · OUR PICK. |
 | end | Sheet returns: FIX · KEEP · FIX · SKIP land one by one, the KEEP row lifts; 1 OF 4 SURVIVES · OUR VERDICTS. Covers and the red tape drop back on for the loop. |

@@ -396,12 +396,13 @@
   /* a cream menu card with a plum header band, title and the OUR DRAWING tag */
   function menuCard(w, h, title, o) {
     o = o || {}; var rec = [];
-    var pc = piece([-w / 2, -h / 2, w / 2, h / 2], rectP(w, h, 18), CRM, { sy: 14, sx: 6, blur: 20, sc: 'rgba(8,2,14,.6)', extra: function (g) {
+    var pc = piece([-w / 2, -h / 2 - 60, w / 2, h / 2 + 60], rectP(w, h, 18), CRM, { sy: 14, sx: 6, blur: 20, sc: 'rgba(8,2,14,.6)', after: function (g) {
+      tagIn(g, rec, 'OUR DRAWING', w / 2 - 24, o.foot ? h / 2 + 4 : -h / 2 - 22, { align: 'right' });
+    }, extra: function (g) {
       g.fillStyle = PLUM; g.fillRect(-w / 2, -h / 2, w, o.hb || 96);
       /* a gear cut from the band colour */
       if (o.gear !== false) gear(g, -w / 2 + 56, -h / 2 + (o.hb || 96) / 2, 26, CRM);
-      if (title) ptxt(g, rec, title, -w / 2 + (o.gear === false ? 34 : 96), -h / 2 + (o.hb || 96) / 2 + 2, o.tpx || 56, CRM, { align: 'left', ls: 1, max: w - 96 - 300 });
-      tagIn(g, rec, 'OUR DRAWING', w / 2 - 24, -h / 2 + (o.hb || 96) / 2, { align: 'right' });
+      if (title) ptxt(g, rec, title, -w / 2 + (o.gear === false ? 34 : 96), -h / 2 + (o.hb || 96) / 2 + 2, o.tpx || 56, CRM, { align: 'left', ls: 1, max: w - 96 - 40 });
       if (o.body) o.body(g, rec);
     } });
     return wordsOf(pc, rec);
@@ -493,18 +494,18 @@
   }
 
   /* ---------- the scorecard sheet (frame 0, the q beat, the end, the seam) ---------- */
-  var SW = 790, SH = 1040, SY = 905, ROWY = [-280, -95, 90, 275], SLOTX = 270;
+  var SW = 790, SH = 1040, SY = 872, ROWY = [-305, -125, 55, 235], SLOTX = 240, AMBER = '#b8650f';
   var ROWS = [
-    { tip: 'TIP 1', name: 'MOTION BLUR', verdict: 'FIX', sub: 'TRY 1', vcol: CORALD },
+    { tip: 'TIP 1', name: 'MOTION BLUR', verdict: 'TEST', sub: '0 VS 1', vcol: AMBER },
     { tip: 'TIP 2', name: 'EFFECTS SLIDERS', verdict: 'KEEP', sub: 'YOUR CALL', vcol: TEALD },
-    { tip: 'TIP 3', name: 'HDR NUMBERS', verdict: 'FIX', sub: 'MATCH YOUR TV', vcol: CORALD },
+    { tip: 'TIP 3', name: 'HDR NUMBERS', verdict: 'FIX', sub: 'YOUR TV', vcol: CORALD },
     { tip: 'TIP 4', name: 'BRIGHTNESS REDUCTION', verdict: 'SKIP', sub: 'OUR PICK', vcol: CORALD }
   ];
   function buildSheet() {
-    D.sheet = menuCard(SW, SH, null, { tpx: 54, body: function (g) {
+    D.sheet = menuCard(SW, SH, null, { tpx: 54, foot: true, body: function (g) {
       ROWY.forEach(function (y, i) { if (i) { g.fillStyle = 'rgba(90,74,106,.35)'; g.fillRect(-SW / 2 + 30, y - 92, SW - 60, 3); }
-        rr(g, SLOTX - 105, y - 68, 210, 136, 10); g.setLineDash([12, 9]); g.strokeStyle = 'rgba(90,74,106,.5)'; g.lineWidth = 3; g.stroke(); g.setLineDash([]); });
-      g.fillStyle = 'rgba(90,74,106,.35)'; g.fillRect(-SW / 2 + 30, ROWY[3] + 98, SW - 60, 3);
+        rr(g, SLOTX - 130, y - 68, 260, 136, 10); g.setLineDash([12, 9]); g.strokeStyle = 'rgba(90,74,106,.5)'; g.lineWidth = 3; g.stroke(); g.setLineDash([]); });
+      g.fillStyle = 'rgba(90,74,106,.35)'; g.fillRect(-SW / 2 + 30, ROWY[3] + 96, SW - 60, 3);
     } });
     D.masks = ROWY.map(function (y, i) { return maskPiece(220, 120, 80 + i * 5); });
     D.notes = [
@@ -513,7 +514,7 @@
       notePiece([['VIRAL TIP', 36, LAB], ['600', 70], ['50 · 50', 50]], 190, 196),
       notePiece([['VIRAL TIP', 36, LAB], ['ON', 92]], 190, 170)
     ];
-    D.sStamps = ROWS.map(function (r) { return stampPiece([[r.verdict, 70], [r.sub, 36]], r.vcol, r.sub.length > 10 ? 250 : 206); });
+    D.sStamps = ROWS.map(function (r) { return stampPiece([[r.verdict, 70], [r.sub, 38]], r.vcol, 260); });
     var rec = [];
     D.plate = piece([-350, -62, 350, 62], rectP(700, 124, 12), CRM, { sy: 10, blur: 14, sc: 'rgba(8,2,14,.55)', extra: function (g) {
       rr(g, -340, -52, 680, 104, 8); stroke(g, CORALD, 6);
@@ -523,41 +524,47 @@
     D.verd = chipPiece([['OUR VERDICTS', 40, CRM, 2]], 300, PLUM, CRM, { lh: 48, pad: 16 });
   }
   /* row labels and widgets, live (sheet-local coordinates) */
-  function sheetRows(g, t, st) {
-    ROWY.forEach(function (y, i) {
+  function rowLabel(g, t, st, i) {
+    var y = ROWY[i];
       var lk = st.labels ? st.labels[i] : 0, wy = y + (lk > 0 ? 34 : 0) * eo(lk);
       if (lk > 0) {
         g.save(); g.globalAlpha *= clamp(lk * 3, 0, 1);
         ptxt(g, null, ROWS[i].tip, -SW / 2 + 40, y - 46, 40, CORAL, { align: 'left', ls: 2 });
-        ptxt(g, null, ROWS[i].name, -SW / 2 + 40 + tw(ROWS[i].tip, 40) + 18, y - 46, 44, INK, { align: 'left', ls: 1, max: 300 });
+        ptxt(g, null, ROWS[i].name, -SW / 2 + 40 + tw(ROWS[i].tip, 40) + 18, y - 46, 44, INK, { align: 'left', ls: 1, max: 236 });
         g.restore();
       }
       var x0 = -SW / 2 + 44, x1 = 120;
+      if (st.end >= 1) return;
+      g.save(); g.globalAlpha *= 1 - (st.end || 0);
       if (i === 0) { var v = st.v0 == null ? 3 : st.v0; trackDraw(g, x0, x1, wy, 20, 11, { fill: lerp(x0 + 10, x1 - 10, v / 10) }); knob(g, lerp(x0 + 10, x1 - 10, v / 10), wy, 28); }
       if (i === 1) { var v1 = st.v1 == null ? 5 : st.v1; for (var j = 0; j < 3; j++) { var yy = wy - 26 + j * 30; trackDraw(g, x0, x1, yy, 10, 5, { tick: 0, fill: lerp(x0 + 5, x1 - 5, (v1 - 1) / 4) }); knob(g, lerp(x0 + 5, x1 - 5, (v1 - 1) / 4), yy, 13); } }
       if (i === 2) { var hv = [.72, .5, .5]; for (var j2 = 0; j2 < 3; j2++) { var y2 = wy - 26 + j2 * 30, hx = lerp(x0 + 5, x1 - 5, hv[j2] + .08 * osc(t, 3 + j2, j2)); trackDraw(g, x0, x1, y2, 10, 2, { tick: 0, fill: hx, fcol: '#7a5cff' }); knob(g, hx, y2, 13); } }
       if (i === 3) toggleDraw(g, x0 + 110, wy, 200, 76, st.on == null ? 0 : st.on, { labels: false });
-    });
+      g.restore();
   }
   /* the whole sheet in sheet-local coordinates; st: labels[], notes[], masks[], stamps[], tape, plate, hiKeep */
   function sheetBody(g, t, st) {
     putW(g, D.sheet, 0, 0);
-    if (st.hiKeep > 0) hilite(g, -SW / 2 + 30, ROWY[1] - 88, lerp(-SW / 2 + 30, SW / 2 - 30, st.hiKeep), ROWY[1] + 86, 1);
-    sheetRows(g, t, st);
     ROWY.forEach(function (y, i) {
+      g.save();
+      if (i === 1 && st.lift > 0) { g.translate(0, y); g.scale(1 + .08 * st.lift, 1 + .08 * st.lift); g.translate(0, -y); g.save(); g.shadowColor = 'rgba(8,2,14,' + (.45 * st.lift).toFixed(3) + ')'; g.shadowBlur = 30; g.shadowOffsetY = 14; rr(g, -SW / 2 + 22, y - 90, SW - 44, 182, 12); g.fillStyle = CRM; g.fill(); g.restore(); }
+      if (i === 1 && st.hiKeep > 0) hilite(g, -SW / 2 + 30, y - 86, lerp(-SW / 2 + 30, SW / 2 - 30, st.hiKeep), y + 84, 1);
+      rowLabel(g, t, st, i);
+      var nX = lerp(70, -236, st.end || 0), nY = lerp(40, 44, st.end || 0), nS = lerp(.78, .7, st.end || 0);
       var sk = st.stamps ? st.stamps[i] : -1;
       if (sk >= 0) { var k = eo(clamp(sk / .14, 0, 1)), s = lerp(1.4, 1, k), nr = NOREC; NOREC = nr || k < 1; g.save(); g.globalAlpha *= clamp(sk / .05, 0, 1); g.translate(SLOTX, y); g.rotate(-.06 * (1 + (1 - k) * 2)); g.scale(s, s); putW(g, D.sStamps[i], 0, 0); g.restore(); NOREC = nr; }
       var mk0 = st.masks ? st.masks[i] : 1;
       if (mk0 > 0) { var off = 1 - mk0, nr2 = NOREC; NOREC = nr2 || off > 0; g.save(); g.translate(SLOTX - 60 * eio(off), y - 1300 * eio(off) * eio(off)); g.rotate(.04 * (i % 2 ? -1 : 1) - .3 * off); put(g, D.masks[i], 0, 0); g.restore(); NOREC = nr2; }
       var nk = st.notes ? st.notes[i] : 0;
-      if (nk > 0) { var kk = eo(clamp(nk / .14, 0, 1)), s2 = lerp(1.35, 1, kk), nr3 = NOREC; NOREC = nr3 || kk < 1; g.save(); g.globalAlpha *= clamp(nk / .05, 0, 1); g.translate(70, y + 40); g.rotate((i % 2 ? .07 : -.06) * (1 + (1 - kk) * 2)); g.scale(s2 * .78, s2 * .78); putW(g, D.notes[i], 0, 0); g.restore(); NOREC = nr3; }
+      if (nk > 0) { var kk = eo(clamp(nk / .14, 0, 1)), s2 = lerp(1.35, 1, kk), nr3 = NOREC; NOREC = nr3 || kk < 1 || (st.end > 0 && st.end < 1); g.save(); g.globalAlpha *= clamp(nk / .05, 0, 1); g.translate(nX, y + nY); g.rotate((i % 2 ? .07 : -.06) * (1 + (1 - kk) * 2)); g.scale(s2 * nS, s2 * nS); putW(g, D.notes[i], 0, 0); g.restore(); NOREC = nr3; }
+      g.restore();
     });
-    if (st.plate >= 0) { var pk = eo(clamp(st.plate / .3, 0, 1)), ps2 = kn(st.plateHit == null ? -1 : st.plateHit, 0, .05), nr4 = NOREC; NOREC = nr4 || pk < 1; g.save(); g.translate(900 * (1 - pk), SH / 2 - 78); g.rotate(-.015 + .12 * (1 - pk)); g.scale(ps2, ps2); putW(g, D.plate, 0, 0); g.restore(); NOREC = nr4; }
-    if (st.verd >= 0) { var vk = eo(clamp(st.verd / .14, 0, 1)), nr5 = NOREC; NOREC = nr5 || vk < 1; g.save(); g.globalAlpha *= clamp(st.verd / .05, 0, 1); g.translate(-225, SH / 2 - 160); g.rotate(-.04); g.scale(lerp(1.3, 1, vk), lerp(1.3, 1, vk)); putW(g, D.verd, 0, 0); g.restore(); NOREC = nr5; }
+    if (st.plate >= 0) { var pk = eo(clamp(st.plate / .3, 0, 1)), ps2 = kn(st.plateHit == null ? -1 : st.plateHit, 0, .05), nr4 = NOREC; NOREC = nr4 || pk < 1; g.save(); g.translate(900 * (1 - pk), SH / 2 - 92); g.rotate(-.015 + .12 * (1 - pk)); g.scale(ps2, ps2); putW(g, D.plate, 0, 0); g.restore(); NOREC = nr4; }
+    if (st.verd >= 0) { var vk = eo(clamp(st.verd / .14, 0, 1)), nr5 = NOREC; NOREC = nr5 || vk < 1; g.save(); g.globalAlpha *= clamp(st.verd / .05, 0, 1); g.translate(-20, SH / 2 - 172); g.rotate(-.04); g.scale(lerp(1.3, 1, vk), lerp(1.3, 1, vk)); putW(g, D.verd, 0, 0); g.restore(); NOREC = nr5; }
     if (st.tape != null && st.tape < 1.4) {
       var tk = st.tape, ko = clamp(tk, 0, 1), nr6 = NOREC; NOREC = nr6 || ko > 0 || st.tapeIn < 1;
       var ti = st.tapeIn == null ? 1 : st.tapeIn, tsc = lerp(1.25, 1, eo(ti));
-      g.save(); g.globalAlpha *= clamp(ti * 4, 0, 1); g.translate(0 + 900 * eio(ko), -268 - 700 * eio(ko) * eio(ko)); g.rotate(-.055 + .5 * eio(ko)); g.scale(tsc, tsc); putW(g, D.tape, 0, 0); g.restore(); NOREC = nr6;
+      g.save(); g.globalAlpha *= clamp(ti * 4, 0, 1); g.translate(0 + 900 * eio(ko), -560 - 700 * eio(ko) * eio(ko)); g.rotate(-.055 + .5 * eio(ko)); g.scale(tsc, tsc); putW(g, D.tape, 0, 0); g.restore(); NOREC = nr6;
     }
   }
 
@@ -571,9 +578,11 @@
       rr(g, dx - 84, 186, 168, 52, 8); g.fillStyle = PLUM; g.fill(); mono(g, rec, 'DEFAULT', dx, 213, 36, CRM, { align: 'center', ls: 1 });
       mono(g, rec, 'MAX 10', BW / 2 - 40, 213, 36, LAB, { align: 'right', ls: 1 });
     } });
-    D.noteBlur = notePiece([['VIRAL TIP', 40, LAB], ['0', 110]], 220, 200);
-    D.fix1 = stampPiece([['FIX', 120], ['TRY 1', 64]], CORALD, 320);
-    D.fps30 = cardPiece(560, 230, PLUM, [['30 FPS', 170, NOTE, 6]], { r: 14, ring: 'rgba(255,216,74,.6)' });
+    D.noteBlur = notePiece([['VIRAL TIP', 36, LAB], ['0', 96]], 190, 170);
+    D.fix1 = stampPiece([['TEST', 116], ['0 VS 1', 64]], AMBER, 320);
+    D.fps30 = cardPiece(440, 200, PLUM, [['30 FPS', 134, NOTE, 6]], { r: 14, ring: 'rgba(255,216,74,.6)' });
+    D.gb = chipPiece([['GAMERBOLT:', 44, CRM, 1.5], ['0 CAN LOOK JUDDERY', 44, NOTE, 1.5]], 600, PLUM, CRM, { lh: 54, pad: 22 });
+    D.ps5 = chipPiece([['STANDARD PS5', 38, CRM, 2]], 330, PLUM, CRM, { lh: 46, pad: 14 });
     D.rock = chipPiece([['ROCKSTAR: TARGETING', 44, INK, 1.5], ['30 FPS ON CONSOLES', 44, INK, 1.5]], 560, CRM, INK, { lh: 54, pad: 22, ring: 'rgba(29,20,36,.25)' });
     D.quote = buildStrip('“…FEELS THE CLEANEST…”', 640, 64, 31, { credit: 'JACOB RIDLEY · PC GAMER' });
     D.strip = piece([-395, -55, 395, 55], rectP(790, 110, 14), CRM, { sy: 8, blur: 12, sc: 'rgba(8,2,14,.5)' });
@@ -588,13 +597,14 @@
     } });
     D.noteHdr = notePiece([['VIRAL TIP', 40, LAB], ['600', 104], ['50 · 50', 76]], 300, 330);
     D.fix2 = stampPiece([['FIX', 110], ['MATCH YOUR TV', 50]], CORALD, 380);
-    D.br = menuCard(BW, 520, 'BRIGHTNESS REDUCTION', { tpx: 52, body: function (g, rec) {
-      mono(g, rec, 'DEFAULT: OFF', -BW / 2 + 44, 190, 40, PLUM, { ls: 2 });
+    D.br = menuCard(BW, 250, 'BRIGHTNESS REDUCTION', { tpx: 52, body: function (g, rec) {
+      mono(g, rec, 'DEFAULT: OFF', -BW / 2 + 44, 62, 44, PLUM, { ls: 2 });
     } });
     D.noteBr = notePiece([['VIRAL TIP', 40, LAB], ['ON', 120]], 250, 220);
     D.skip = stampPiece([['SKIP', 120], ['OUR PICK', 56]], CORALD, 330);
     D.comfort = chipPiece([['ONLY IF BRIGHT', 46, INK, 1.5], ['LIGHT BOTHERS YOU', 46, INK, 1.5]], 430, CRM, INK, { lh: 56, pad: 22, ring: 'rgba(29,20,36,.25)' });
     D.src = chipPiece([['PER GAMERBOLT', 36, CRM, 1.5], ['HDR GUIDE', 36, CRM, 1.5]], 300, PLUM, CRM, { lh: 44, pad: 14 });
+    D.tvNote = notePiece([['VIRAL TIP', 36, LAB], ['600', 84]], 210, 170);
   }
   function buildBackdrop() {
     var c = mk(W, H), g = c.getContext('2d'), r = mulberry(23);
@@ -622,7 +632,7 @@
      THE PROP LAYER (screen space, clipped to the rail). Beats in story order.
      ===================================================================================================== */
   function sheetState(t) {
-    var st = { labels: [0, 0, 0, 0], notes: [0, 0, 0, 0], masks: [1, 1, 1, 1], stamps: [-1, -1, -1, -1], plate: t - T.plate, plateHit: t - T.plateHit, verd: -1, hiKeep: 0, v0: 3, v1: 5, on: 0, tape: (t - T.tapeOff) / .45, tapeIn: 1 };
+    var st = { labels: [0, 0, 0, 0], notes: [0, 0, 0, 0], masks: [1, 1, 1, 1], stamps: [-1, -1, -1, -1], plate: t - T.plate, plateHit: t - T.plateHit, verd: -1, hiKeep: 0, v0: 3, v1: 5, on: 0, tape: (t - T.tapeOff) / .45, tapeIn: 1, end: 0, lift: 0 };
     /* frame 0: the copying is already happening: blur ratchets to 0, the effects knobs to 2, the toggle flips ON */
     st.v0 = ratchet(t, .12, 3, 0, .07); st.v1 = ratchet(t, .42, 5, 2, .07); st.on = eo(seg(t, .78, .92));
     for (var i = 0; i < 4; i++) { st.labels[i] = clamp((t - T.tapeOff - .1 - i * .05) / .25, 0, 1); st.notes[i] = t - T.notes[i]; }
@@ -630,12 +640,15 @@
       st.tape = null; st.plate = t - T.endIn + 1; st.plateHit = null; st.v0 = 0; st.v1 = 2; st.on = 1;
       for (i = 0; i < 4; i++) { st.labels[i] = 1; st.notes[i] = 1; st.masks[i] = 1 - clamp((t - T.stamps[i] + .1) / .3, 0, 1); st.stamps[i] = t - T.stamps[i]; }
       st.verd = t - T.verd; st.hiKeep = eio(seg(t, T.hiKeep, T.hiKeep + .3));
+      /* the scorecard drops its sliders: each row reads TIP n NAME, the viral value, our stamp */
+      st.end = eio(seg(t, T.endIn + .05, T.endIn + .35));
+      st.lift = eio(seg(t, T.lift, T.lift + .16)) * (1 - eio(seg(t, T.lift + .6, T.lift + .8)));
     }
     return st;
   }
   function moving(t) {
     if (t < .12 || t > T.seamUp - .02) return true;
-    var A = [[T.stamps[0], .6], [T.plate, .32], [T.tapeOff, .45], [T.dive1, .47], [T.fpsIn, .47], [T.choppyIn, .47], [T.fxIn, .47], [T.hdrIn, .47], [T.tvIn, .55], [T.brIn, .47], [T.endIn - .45, .5], [T.rip, .5], [T.peel, .5]];
+    var A = [[T.stamps[0], .6], [T.plate, .32], [T.tapeOff, .45], [T.dive1, .47], [T.fpsIn, .47], [T.choppyIn, .7], [T.fxIn, .47], [T.hdrIn, .47], [T.tvIn, .55], [T.brIn, .47], [T.endIn - .45, .75], [T.rip, .75], [T.peel, .5], [T.blurSlam, .5], [T.tvMatch, .5], [T.gb, .2], [T.lift, .85]];
     for (var i = 0; i < A.length; i++) if (t >= A[i][0] - .34 && t < A[i][0] + A[i][1]) return true;
     return false;
   }
@@ -655,14 +668,15 @@
     if (t < T.dive1 + .45) pillAt(g, t, sweepX(t, T.dive1, -1), seamDrop(t));
 
     /* ---- 1. motion blur: the row lifts into a full-width slider card; the knob slams 3 -> 0 ---- */
-    if (t >= T.dive1 && t < T.fpsIn + .45) {
+    if (t >= T.dive1 && t < T.choppyIn + .45) {
       var gk = growK(t, T.dive1), cx = lerp(372, BX, gk), cy = lerp(SY + ROWY[0], BYc, gk), cs = lerp(.36, 1, gk);
       /* fps: it rises and shrinks to a strip at the top of the flipbook */
-      var up = 0, ex = sweepX(t, T.fpsIn, -1);
+      var up = eio(seg(t, T.fpsIn, T.fpsIn + .4)), ex = sweepX(t, T.choppyIn, -1);
+      cx = lerp(cx, 510, up); cy = lerp(cy, 688, up); cs = lerp(cs, .55, up);
       nr = NOREC; NOREC = nr || gk < 1 || (up > 0 && up < 1) || ex !== 0;
       g.save(); g.translate(cx + ex, cy); g.rotate(lerp(-.03, .004, gk) + sw(t, T.blurSlam, .01, 14, 4)); g.scale(cs * kn(t, T.blurSlam, .025), cs * kn(t, T.blurSlam, .025));
       putW(g, D.blur, 0, 0);
-      var v = ratchet(t, T.blurSlam, 3, 0, .06), x0 = -BW / 2 + 70, x1 = BW / 2 - 70, kx = lerp(x0, x1, v / 10);
+      var v = ratchet(t, T.blurSlam, 3, 0, .05), x0 = -BW / 2 + 70, x1 = BW / 2 - 70, kx = lerp(x0, x1, v / 10);
       trackDraw(g, x0 - 20, x1 + 20, 70, 34, 11, { fill: kx, tick: 0 });
       knob(g, kx, 70, 66);
       /* the big readout: the value it is set to */
@@ -671,35 +685,37 @@
       stk(g, String(rv), 0, 0, 170, { col: rv === 0 ? CORAL : CRM, ink: INK }); g.restore();
       g.restore(); NOREC = nr;
       /* the viral note on the card's corner */
-      slapOn(g, D.noteBlur, 232 + ex, 722, -.08, T.noteBlur, null, t, { tape: true });
+      slapOn(g, D.noteBlur, 205, 1300, -.08, T.noteBlur, T.fpsIn - .05, t, { tape: true, od: .3 });
     }
     /* ---- 2. 30 fps: a paper flipbook riffles a drawn car ---- */
-    if (t >= T.fpsIn - .3 && t < T.choppyIn + .45) {
-      var fy = 1080 + dropY(t, T.fpsIn + .15), fx2 = 510 + sweepX(t, T.choppyIn, 1);
-      nr = NOREC; NOREC = nr || fy !== 1080 || fx2 !== 510;
+    if (t >= T.fpsIn - .3 && t < T.choppyIn + .7) {
+      var fy = 1105 + dropY(t, T.fpsIn + .15), fx2 = 510 + sweepX(t, T.choppyIn, 1);
+      nr = NOREC; NOREC = nr || fy !== 1105 || fx2 !== 510;
       flipbook(g, fx2, fy, t); NOREC = nr;
-      slapOn(g, D.fps30, 510 + sweepX(t, T.choppyIn, 1), 700, .04, T.fps30, null, t);
+      slapOn(g, D.fps30, 700 + sweepX(t, T.choppyIn + .25, 1), 705, .04, T.fps30, null, t);
     }
     /* the Rockstar chip prints after "30" and rides up under the panels until the effects card */
-    if (t >= T.rock - .05 && t < T.fxIn + .45) {
-      var rcy = lerp(1352, 1112, eio(seg(t, T.choppyIn, T.choppyIn + .4)));
-      nr = NOREC; NOREC = nr || (rcy !== 1352 && rcy !== 1112);
-      slapOn(g, D.rock, 530 + sweepX(t, T.fxIn, -1), rcy, -.02, T.rock, null, t, { tape: true }); NOREC = nr;
+    if (t >= T.rock - .05 && t < T.gb + .45) {
+      var rcy = lerp(1318, 1104, eio(seg(t, T.choppyIn, T.choppyIn + .4)));
+      nr = NOREC; NOREC = nr || (rcy !== 1318 && rcy !== 1104);
+      slapOn(g, D.rock, 510, rcy, -.02, T.rock, T.gb - .1, t, { tape: true }); NOREC = nr;
     }
     /* ---- 3. choppy: two illustration panels, 0 (hard steps) and 1 (soft trail); the knob moves 0 -> 1 ---- */
     if (t >= T.choppyIn - .3 && t < T.fxIn + .45) {
       var ox = sweepX(t, T.fxIn, -1);
-      panel(g, 314 + ox, 760 + dropY(t, T.choppyIn + .1), 0, t);
-      panel(g, 706 + ox + 1150 * (1 - eo(seg(t, T.choppyIn, T.choppyIn + .4))), 760, 1, t);
-      slapOn(g, D.illus, 510 + ox, 1010, 0, T.choppyIn + .5, null, t);
-      stripOn(g, D.quote, 510 + ox, 1318, -.012, T.quote, null, t);
-      slapOn(g, D.fix1, 735 + ox, 905, -.09, T.fix1, null, t);
+      panel(g, 318 + ox, 760 + dropY(t, T.choppyIn + .1), 0, t);
+      panel(g, 698 + ox + 1150 * (1 - eo(seg(t, T.choppyIn, T.choppyIn + .4))), 760, 1, t);
+      slapOn(g, D.illus, 510 + ox, 1004, 0, T.choppyIn + .5, null, t);
+      slapOn(g, D.gb, 510 + ox, 1104, .015, T.gb, null, t, { tape: true });
+      stripOn(g, D.quote, 480 + ox, 1288, -.012, T.quote, null, t);
+      slapOn(g, D.ps5, 735 + ox, 1196, .05, T.quote + .25, null, t);
+      slapOn(g, D.fix1, 735 + ox, 880, -.09, T.fix1, null, t);
     }
     /* ---- 4. effects: three stacked sliders slam 5 -> 2 together ---- */
     if (t >= T.fxIn - .1 && t < T.hdrIn + .45) {
       var fk = eo(seg(t, T.fxIn, T.fxIn + .4)), fsx = sweepX(t, T.hdrIn, 1) * 0, fup = -1700 * eio(seg(t, T.hdrIn, T.hdrIn + .42)) * eio(seg(t, T.hdrIn, T.hdrIn + .42));
       nr = NOREC; NOREC = nr || fk < 1 || fup !== 0;
-      g.save(); g.translate(510 + fsx, 930 + fup); g.rotate(lerp(.12, -.018, fk)); var fs = lerp(.55, 1, fk) * kn(t, T.fxSlam, .006); g.scale(fs, fs);
+      g.save(); g.translate(510 + fsx, 930 + fup); g.rotate(lerp(.12, -.07, fk)); var fs = lerp(.55, .95, fk) * kn(t, T.fxSlam, .006); g.scale(fs, fs);
       putW(g, D.fx, 0, 0);
       var v3 = ratchet(t, T.fxSlam, 5, 2, .06);
       for (var i = 0; i < 3; i++) {
@@ -713,56 +729,79 @@
     }
     /* ---- 5. HDR: card left, the copied note right; the note rips off on "Don't" ---- */
     if (t >= T.hdrIn - .1 && t < T.tvIn + .45) {
-      var hx = 430 - 1150 * (1 - eo(seg(t, T.hdrIn, T.hdrIn + .4))) + sweepX(t, T.tvIn, -1);
+      if (t >= T.tvIn + .2 && t >= T.rip + .8) { /* gone */ } else {
+      var hx = 430 - 1150 * (1 - eo(seg(t, T.hdrIn, T.hdrIn + .4))) + sweepX(t, T.tvIn - .25, -1);
       nr = NOREC; NOREC = nr || hx !== 430;
       g.save(); g.translate(hx, 980); g.rotate(.018); putW(g, D.hdr, 0, 0);
       [.72, .45, .52].forEach(function (p, i) { var ty = -320 + 96 + 120 + i * 168, a0 = -284, a1 = 284, kx = lerp(a0 + 10, a1 - 10, p + .05 * osc(t, 4 + i, i)); trackDraw(g, a0, a1, ty, 22, 2, { tick: 0, fill: kx, fcol: '#7a5cff' }); knob(g, kx, ty, 36); });
       g.restore(); NOREC = nr;
       /* the note: slapped on, then ripped off up and right */
-      if (t >= T.noteHdr - .02 && t < T.rip + .5) {
-        var rk = eio(seg(t, T.rip, T.rip + .42)), nk = eo(seg(t, T.noteHdr, T.noteHdr + .14));
-        nr = NOREC; NOREC = nr || nk < 1 || rk > 0;
-        g.save(); g.globalAlpha *= fin(t, T.noteHdr, .05); g.translate(735 + 400 * rk + sweepX(t, T.tvIn, -1), 780 - 1300 * rk * rk); g.rotate(.09 + .9 * rk); var ns = lerp(1.4, 1, nk) * (1 + .06 * bump(t, T.rip - .12, .14)); g.scale(ns, ns); putW(g, D.noteHdr, 0, 0); g.restore(); NOREC = nr;
+      if (t >= T.noteHdr - .02 && t < T.rip + .8) {
+        var nk = eo(seg(t, T.noteHdr, T.noteHdr + .14)), tk = eo(seg(t, T.rip, T.rip + .25)), fk2 = seg(t, T.rip + .12, T.rip + .7);
+        nr = NOREC; NOREC = nr || nk < 1 || tk > 0;
+        [-1, 1].forEach(function (sd) {
+          g.save(); g.globalAlpha *= fin(t, T.noteHdr, .05);
+          g.translate(712 + sd * 26 * tk + (sd < 0 ? 180 : 330) * fk2, 780 + 900 * fk2 * fk2 + (sd < 0 ? 0 : -30) * tk); g.rotate(.09 + sd * .2 * tk + (sd < 0 ? .7 : 1.2) * fk2);
+          var ns = lerp(1.4, 1, nk) * (1 + .06 * bump(t, T.rip - .12, .14)); g.scale(ns, ns);
+          var J = jag(140, 330, 9); g.beginPath();
+          if (sd < 0) { g.moveTo(-200, -200); J.forEach(function (q) { g.lineTo(q[1], -165 + q[0]); }); g.lineTo(-200, 200); }
+          else { g.moveTo(200, -200); J.forEach(function (q) { g.lineTo(q[1], -165 + q[0]); }); g.lineTo(200, 200); }
+          g.closePath(); g.clip(); putW(g, D.noteHdr, 0, 0); g.restore();
+        });
+        NOREC = nr;
       }
-      /* a torn corner stays behind */
-      if (t >= T.rip + .05) { g.save(); g.translate(645 + sweepX(t, T.tvIn, -1), 640); g.rotate(.2); g.fillStyle = NOTE; g.beginPath(); g.moveTo(-30, -8); g.lineTo(40, -14); g.lineTo(18, 22); g.lineTo(-8, 14); g.closePath(); g.fill(); g.restore(); }
     }
-    /* ---- 6. the DM frame: two TVs, each with its own max ---- */
+    }
+    /* ---- 6. the DM frame: two TVs, each with its own max; the copied 600 overshoots the entry-level TV ---- */
     if (t >= T.tvIn - .35 && t < T.brIn + .45) {
       var tox = sweepX(t, T.brIn, 1);
-      tv(g, 600 + tox, 790 + dropY(t, T.tvIn + .05), 1, t, 'his');
-      tv(g, 312 + tox - 1150 * (1 - eo(seg(t, T.tvIn + .12, T.tvIn + .52))), 1120, .72, t, 'yours');
-      slapOn(g, D.src, 752 + tox, 1170, .04, T.src, null, t);
-      slapOn(g, D.fix2, 640 + tox, 1300, -.06, T.fix2, null, t);
+      var ay = 655 + dropY(t, T.tvIn + .05), bxo = -1150 * (1 - eo(seg(t, T.tvIn + .1, T.tvIn + .5)));
+      nr = NOREC; NOREC = nr || ay !== 655 || bxo !== 0 || tox !== 0;
+      tv(g, 330 + tox, ay, 440, 260, .86, 'TV A · BRIGHT HDR', t, 0);
+      tv(g, 510 + tox + bxo, 1110, 780, 430, .42, 'TV B · ENTRY HDR', t, 1); NOREC = nr;
+      slapOn(g, D.src, 760 + tox, 615, .04, T.src, null, t);
+      /* the copied note: printed on "brightness", slid onto TV B on "match", lands above its max line and flashes */
+      if (t >= T.tvNote - .02) {
+        var mk = eio(seg(t, T.tvMatch, T.tvMatch + .32)), nk3 = eo(seg(t, T.tvNote, T.tvNote + .14));
+        var nx3 = lerp(760, 360, mk) + tox, ny3 = lerp(790, 1110 - 215 * .5 + 215 * .84 - 236, mk);
+        nr = NOREC; NOREC = nr || nk3 < 1 || (mk > 0 && mk < 1) || tox !== 0;
+        g.save(); g.globalAlpha *= fin(t, T.tvNote, .05); g.translate(nx3, ny3); g.rotate(lerp(.06, -.04, mk)); var s3 = lerp(1.4, 1, nk3) * kn(t, T.tvMatch + .32, .05); g.scale(s3, s3);
+        putW(g, D.tvNote, 0, 0);
+        var fl = t > T.tvMatch + .32 ? Math.max(0, Math.sin((t - T.tvMatch - .32) * TAU * 3)) * (1 - seg(t, T.tvMatch + .8, T.tvMatch + 1.3)) : 0;
+        if (fl > 0 || t > T.tvMatch + .32) { g.strokeStyle = CORAL; g.lineWidth = 9; rr(g, -118, -98, 236, 196, 10); g.globalAlpha *= .35 + .65 * fl; g.stroke(); }
+        g.restore(); NOREC = nr;
+      }
+      slapOn(g, D.fix2, 700 + tox, 1268, -.06, T.fix2, null, t);
     }
     /* ---- 7/8. Brightness Reduction: a giant toggle stays OFF; the ON note slaps on, then peels off ---- */
     if (t >= T.brIn - .35 && t < T.endIn) {
-      var bx = sweepX(t, T.endIn - .32, -1), by = 1060 + dropY(t, T.brIn + .05);
-      nr = NOREC; NOREC = nr || by !== 1060 || bx !== 0;
+      var bx = sweepX(t, T.endIn - .32, -1), dyb = dropY(t, T.brIn + .05), by = 690 + dyb;
+      nr = NOREC; NOREC = nr || dyb !== 0 || bx !== 0;
       g.save(); g.translate(510 + bx, by); g.rotate(-.012); putW(g, D.br, 0, 0);
-      toggleDraw(g, -60, 40, 400, 180, 0, { lpx: 60 });
       /* "It ships off": the DEFAULT: OFF line gets a highlighter swipe */
-      hilite(g, -BW / 2 + 36, 190 - 30, -BW / 2 + 36 + 300, 190 + 26, eio(seg(t, T.ships, T.ships + .22)));
-      g.restore(); NOREC = nr;
+      hilite(g, -BW / 2 + 36, 62 - 30, -BW / 2 + 36 + 330, 62 + 28, eio(seg(t, T.ships, T.ships + .22)));
+      g.restore();
+      var tgy = 1215 + dropY(t, T.brIn + .15);
+      g.save(); g.translate(510 + bx, tgy); g.rotate(.01); toggleDraw(g, 0, 0, 720, 270, 0, { lpx: 96 }); g.restore(); NOREC = nr;
       if (t >= T.noteBr - .02 && t < T.peel + .5) {
         var pk = eio(seg(t, T.peel, T.peel + .45)), nk2 = eo(seg(t, T.noteBr, T.noteBr + .14));
         nr = NOREC; NOREC = nr || nk2 < 1 || pk > 0;
-        g.save(); g.globalAlpha *= fin(t, T.noteBr, .05); g.translate(450 + 420 * pk + bx, 1080 - 1300 * pk * pk); g.rotate(-.06 + .8 * pk); g.scale(lerp(1.4, 1, nk2), lerp(1.4, 1, nk2)); putW(g, D.noteBr, 0, 0); g.restore(); NOREC = nr;
+        g.save(); g.globalAlpha *= fin(t, T.noteBr, .05); g.translate(600 + 420 * pk + bx, 1170 - 1300 * pk * pk); g.rotate(-.06 + .8 * pk); g.scale(lerp(1.4, 1, nk2), lerp(1.4, 1, nk2)); putW(g, D.noteBr, 0, 0); g.restore(); NOREC = nr;
       }
       if (t >= T.sunIn - .4) {
-        var sy = 640 + dropY(t, T.sunIn) * .6; sun(g, 760 + bx, sy, 70, t);
-        slapOn(g, D.comfort, 390 + bx, 650, -.03, T.comfort, null, t, { tape: true });
+        var sy = 950 + dropY(t, T.sunIn) * .6; sun(g, 800 + bx, sy, 66, t);
+        slapOn(g, D.comfort, 360 + bx, 950, -.03, T.comfort, null, t, { tape: true });
       }
-      slapOn(g, D.skip, 690 + bx, 1290, -.08, T.skip, null, t);
+      slapOn(g, D.skip, 700 + bx, 1300, -.08, T.skip, null, t);
     }
     /* ---- the end: the sheet returns, the verdicts land; at the seam it lifts away and frame 0's sheet drops in ---- */
     if (t >= T.endIn - .35) {
-      var ey = dropY(t, T.endIn) - 1700 * Math.pow(eio(seg(t, T.seamUp, T.seamUp + .42)), 2);
-      if (t < T.seamUp + .45) {
+      var ey = dropY(t, T.endIn) - 1700 * Math.pow(eio(seg(t, T.seamUp, T.seamUp + .2)), 2);
+      if (t < T.seamUp + .22) {
         nr = NOREC; NOREC = nr || ey !== 0;
         g.save(); g.translate(510, SY + ey); g.rotate(-.006); var ke = kn(t, T.endIn, .02); g.scale(ke, ke); sheetBody(g, t, sheetState(t)); g.restore(); NOREC = nr;
       }
-      if (t >= DUR - .6) {
+      if (t >= DUR - .45) {
         nr = NOREC; NOREC = true;
         g.save(); g.translate(510, SY + seamDrop(t)); g.rotate(-.006); sheetBody(g, t, sheetState(t - DUR)); g.restore();
         pillAt(g, t - DUR, 0, seamDrop(t)); NOREC = nr;
@@ -771,11 +810,11 @@
   }
   /* the frame-0 sheet falls in from above at the seam and lands just after frame 0 */
   function seamLand() { return -.14; }
-  function seamDrop(t) { var u = t < 2 ? t : t - DUR; if (u < -.6 || u > seamLand()) return 0; var k = seg(u, -.6, seamLand()); return -(1 - k) * (1 - k) * 1500; }
+  function seamDrop(t) { var u = t < 2 ? t : t - DUR; if (u < -.45 || u > seamLand()) return 0; var k = seg(u, -.45, seamLand()); return -(1 - k) * (1 - k) * 1500; }
   function pillAt(g, t, dx, dy) {
     var k = eio(seg(t, T.tapeOff, T.tapeOff + .4)); if (k >= 1) return;
     var nr = NOREC; NOREC = nr || k > 0 || dx !== 0 || dy !== 0;
-    g.save(); g.translate(-500 * k, -900 * k * k); pill(g, 250 + dx, 433 + dy, t); g.restore(); NOREC = nr;
+    g.save(); g.translate(-500 * k, -900 * k * k); pill(g, 225 + dx, 168 + dy, t); g.restore(); NOREC = nr;
   }
   function pill(g, x, y, t) {
     var a = -.12 + sw(t + .6, 0, .1, 6, 1.1) + .03 * osc(t, 7, .5);
@@ -785,17 +824,17 @@
     ptxt(g, null, 'GTA 6', 0, 3, 76, CRM, { ls: 2 }); g.restore();
   }
   function flipbook(g, x, y, t) {
-    var w = 720, h = 470;
+    var w = 780, h = 540;
     g.save(); g.translate(x, y); g.rotate(-.015);
     /* page edges under the top page */
     for (var i = 4; i >= 1; i--) { rr(g, -w / 2 + i * 5, -h / 2 + i * 7, w, h, 10); g.fillStyle = i % 2 ? '#efe6d2' : '#e2d7bf'; g.fill(); }
     g.save(); g.shadowColor = 'rgba(8,2,14,.5)'; g.shadowBlur = 18; g.shadowOffsetY = 10; rr(g, -w / 2, -h / 2, w, h, 10); g.fillStyle = CRM; g.fill(); g.restore();
     /* the road and the car, one position per page: pages turn 12 times a second */
     g.fillStyle = 'rgba(90,74,106,.25)'; g.fillRect(-w / 2 + 30, 120, w - 60, 6);
-    var pg = Math.floor(t * 12), u = (pg % 14) / 13; car(g, lerp(-w / 2 + 130, w / 2 - 130, u), 82, 1.2, PINKG);
+    var ph = t * 12 + 16 * clamp(t - T.riffle, 0, .5), pg = Math.floor(ph), u = (pg % 14) / 13; car(g, lerp(-w / 2 + 140, w / 2 - 140, u), 60, 1.45, PINKG);
     mono(g, null, 'PAGE ' + (pg % 14 + 1) + ' / 14', -w / 2 + 34, -h / 2 + 46, 36, LAB, { ls: 1 });
     /* the page turning over at the bottom-right corner */
-    var c = (t * 12) % 1, cs = 150 * (1 - c);
+    var c = ph % 1, cs = 170 * (1 - c);
     if (cs > 8) { g.beginPath(); g.moveTo(w / 2 - cs, h / 2); g.lineTo(w / 2, h / 2 - cs); g.lineTo(w / 2 - cs * .8, h / 2 - cs * .8); g.closePath(); g.fillStyle = '#e9dfc8'; g.fill(); g.strokeStyle = 'rgba(29,20,36,.2)'; g.lineWidth = 2; g.stroke(); }
     /* spiral rings */
     for (var r = 0; r < 9; r++) { var rx = -w / 2 + 60 + r * (w - 120) / 8; g.beginPath(); g.ellipse(rx, -h / 2 - 2, 12, 24, 0, 0, TAU); g.strokeStyle = '#9a93a6'; g.lineWidth = 6; g.stroke(); }
@@ -816,40 +855,26 @@
     else { var cxm = lerp(-110, 110, eio(cyc)); for (var j = 5; j >= 1; j--) car(g, cxm - j * 14, 110, .85, '#e0287a', .1); car(g, cxm, 110, .85, PINKG); }
     g.restore();
   }
-  function tv(g, x, y, s, t, who) {
-    var w = 560 * s, h = 360 * s;
+  function tv(g, x, y, w, h, peak, label, t, idx) {
     g.save(); g.translate(x, y);
-    g.fillStyle = '#3a3346'; g.fillRect(-w * .06, h / 2, w * .12, 40 * s); rr(g, -w * .25, h / 2 + 36 * s, w * .5, 16 * s, 6); g.fill();
-    g.save(); g.shadowColor = 'rgba(8,2,14,.55)'; g.shadowBlur = 18; g.shadowOffsetY = 10; rr(g, -w / 2, -h / 2, w, h, 16 * s); g.fillStyle = '#16121c'; g.fill(); g.restore();
-    var sw0 = w - 34 * s, sh0 = h - 34 * s; rr(g, -sw0 / 2, -sh0 / 2, sw0, sh0, 8 * s); g.fillStyle = '#1d2a4a'; g.fill();
-    /* the brightness column: its own peak line (where this TV tops out) */
-    var peak = who === 'his' ? .86 : .5, colx = -sw0 / 2 + 70 * s, colw = 80 * s, top = sh0 / 2 - 24 * s, bot = -sh0 / 2 + 24 * s;
-    var ky = lerp(top, bot, peak), fk = eo(seg(t, T.tvIn + .3 + (who === 'his' ? 0 : .15), T.tvIn + .8 + (who === 'his' ? 0 : .15)));
+    g.fillStyle = '#3a3346'; g.fillRect(-w * .05, h / 2, w * .1, 34); rr(g, -w * .22, h / 2 + 30, w * .44, 16, 6); g.fill();
+    g.save(); g.shadowColor = 'rgba(8,2,14,.55)'; g.shadowBlur = 18; g.shadowOffsetY = 10; rr(g, -w / 2, -h / 2, w, h, 18); g.fillStyle = '#16121c'; g.fill(); g.restore();
+    var sw0 = w - 36, sh0 = h - 36; rr(g, -sw0 / 2, -sh0 / 2, sw0, sh0, 8); g.fillStyle = idx ? '#1b2440' : '#1d2a4a'; g.fill();
+    /* the brightness column rises to this set's own peak */
+    var colx = -sw0 / 2 + (idx ? 120 : 70), colw = idx ? 120 : 80, top = sh0 / 2 - 24, bot = -sh0 / 2 + 24;
+    var ky = lerp(top, bot, peak), fk = eo(seg(t, T.tvIn + .3 + idx * .15, T.tvIn + .8 + idx * .15));
     var gr = g.createLinearGradient(0, top, 0, bot); gr.addColorStop(0, '#5a6db0'); gr.addColorStop(1, '#fff3c4');
     rr(g, colx - colw / 2, lerp(top, ky, fk), colw, top - lerp(top, ky, fk), 6); g.fillStyle = gr; g.fill();
-    g.setLineDash([10, 8]); g.strokeStyle = CRM; g.lineWidth = 4; g.beginPath(); g.moveTo(colx - colw / 2 - 10, ky); g.lineTo(sw0 / 2 - 20 * s, ky); g.stroke(); g.setLineDash([]);
-    ptxt(g, null, 'ITS MAX', colx + colw / 2 + 20 * s, ky - 28 * s, Math.max(36, 40 * s), CRM, { align: 'left', ls: 1 });
-    /* the copied 600 note: fits his max; on yours it sits above your max until "match" pulls it down */
-    var nk = t - T.tvNote - (who === 'his' ? 0 : .14);
-    if (nk >= 0) {
-      var hiY = lerp(top, bot, .86) + 36 * s, mk2 = who === 'his' ? 1 : eio(seg(t, T.tvFix0, T.tvFix0 + .4));
-      var ny = who === 'his' ? ky + 36 * s : lerp(hiY, ky + 36 * s, mk2), nx = sw0 / 2 - 110 * s, kk = eo(clamp(nk / .14, 0, 1)), nr = NOREC; NOREC = nr || kk < 1 || (mk2 > 0 && mk2 < 1);
-      g.save(); g.translate(nx, ny); g.rotate(who === 'his' ? .04 : -.05); g.scale(lerp(1.4, 1, kk) * s, lerp(1.4, 1, kk) * s);
-      rr(g, -84, -42, 168, 84, 6); g.fillStyle = NOTE; g.fill();
-      var lab = who === 'his' || mk2 < .98 ? '600' : 'YOURS';
-      ptxt(g, null, lab, 0, 4, lab === '600' ? 64 : 50, INK, { ls: 0 });
-      if (who !== 'his' && mk2 < .5) { g.strokeStyle = CORAL; g.lineWidth = 7; rr(g, -92, -50, 184, 100, 8); g.stroke(); }
-      g.restore(); NOREC = nr;
-    }
-    /* the label under each TV */
-    var lx0 = who === 'his' ? 150 : 0; rr(g, lx0 - 150, h / 2 + 64 * s, 300, 64, 8); g.fillStyle = who === 'his' ? CRM : NOTE; g.fill();
-    ptxt(g, null, who === 'his' ? 'HIS TV' : 'YOUR TV', lx0, h / 2 + 64 * s + 34, 52, INK, { ls: 2 });
+    g.setLineDash([12, 9]); g.strokeStyle = CRM; g.lineWidth = 5; g.beginPath(); g.moveTo(colx - colw / 2 - 10, ky); g.lineTo(colx + colw / 2 + (idx ? 150 : 110), ky); g.stroke(); g.setLineDash([]);
+    ptxt(g, null, 'MAX', colx + colw / 2 + 20, ky + (idx ? 34 : 30), idx ? 44 : 36, CRM, { align: 'left', ls: 2 });
+    mono(g, null, label, sw0 / 2 - 18, idx ? -sh0 / 2 + 40 : sh0 / 2 - 30, idx ? 40 : 36, CRM, { align: 'right', ls: 1 });
+    if (idx) tagIn(g, null, 'ILLUSTRATION', sw0 / 2 - 18, -h / 2 - 2, { align: 'right', bg: PLUM });
     g.restore();
   }
 
   /* ---------- captions: cream label tape in the upper third, 2-4 word cards at 96 px (the hook's words are the frame-0 props) ---------- */
   /* word counts per card, per line: each card ends on a strong word */
-  var CHUNK = { q: [3], blur: [3, 2], fps: [3, 3, 3], choppy: [4, 4, 2], fx: [3, 3], hdr: [4, 1], tv: [2, 4], br: [4, 3], off: [3, 3, 2], end: [2, 3, 2] };
+  var CHUNK = { q: [3], blur: [3, 2], fps: [3, 3, 3], choppy: [3, 3, 2, 4, 2], fx: [3, 3, 2], hdr: [4, 1], tv: [2, 4], br: [4, 3], off: [3, 3, 2], end: [2, 3, 2] };
   var CAPS = (function () {
     var outc = [];
     VO.lines.forEach(function (l) {
@@ -878,7 +903,7 @@
     lay2();
     function widest() { return Math.max.apply(null, lw) - gap; }
     while ((lines.length > 2 || widest() > maxw) && cpx > 96) { cpx -= 2; font(g, cpx, 900); ws = up.map(function (u) { return g.measureText(u).width; }); gap = cpx * .26; lay2(); }
-    var lh = cpx * 1.18, y0 = CAPY - (lines.length - 1) * lh / 2 + cpx * .36;
+    var cy0 = card0.id === 'q' || card0.id === 'end' ? 290 : CAPY, lh = cpx * 1.18, y0 = cy0 - (lines.length - 1) * lh / 2 + cpx * .36;
     lines.forEach(function (ln, li) {
       var tw0 = lw[li] - gap, x = CXc - tw0 / 2, y = y0 + li * lh + (1 - k) * 30, seed = Math.round(card0.t0 * 100) + li * 7;
       var r = mulberry(seed), x0 = x - 22, x1 = x + tw0 + 22, yt = y - cpx * .86, yb = y + cpx * .2, rot = (r() - .5) * .025;
@@ -903,9 +928,9 @@
   function railClip(g) { g.beginPath(); if (LIVE2.clip) g.rect(BX0, 0, BX1 - BX0, BY1); else g.rect(-500, -500, 2080, BY1 + 500); g.clip(); }
   /* a slow push on each held close-up (never on the full-width sheet), relaxed under every move */
   function push(t) {
-    var p = 1, H0 = [[T.dive1 + .45, T.fpsIn], [T.fxIn + .4, T.hdrIn], [T.tvIn + .5, T.brIn], [T.brIn + .3, T.endIn - .45]];
+    var p = 1, H0 = [[T.dive1 + .45, T.fpsIn], [T.fxIn + .4, T.hdrIn], [T.brIn + .3, T.endIn - .45]];
     H0.forEach(function (h) { if (t >= h[0] && t < h[1] + .4) p = 1 + .028 * eio(seg(t, h[0], h[1])) * (1 - eio(seg(t, h[1], h[1] + .4))); });
-    return p;
+    return p * kn(t, T.blurSlam + .15, .075);
   }
   /* the TV glow on the wall: its colour follows the tip */
   var GLOW = [[0, [255, 120, 170]]];
@@ -931,7 +956,7 @@
   function TEXTS(t) {
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
-    var S0 = T.dive1, E0 = T.endIn + .1, E1 = T.seamUp + .1, F0 = DUR - .25;
+    var S0 = T.dive1, E0 = T.endIn + .1, E1 = T.seamUp + .1, F0 = DUR - .4;
     Tx('tape', "DON'T COPY THESE SETTINGS", 0, T.tapeOff + .1); Tx('tape', "DON'T COPY THESE SETTINGS", F0, DUR + 1);
     Tx('pill', 'GTA 6', 0, T.tapeOff + .1); Tx('pill', 'GTA 6', F0, DUR + 1);
     Tx('od', 'OUR DRAWING', 0, S0 + .1);
@@ -940,25 +965,28 @@
       Tx('lab' + i, r.name, T.tapeOff + .3, S0 + .1); Tx('lab' + i, r.name, E0, E1 + .15);
       Tx('v' + i, r.verdict + ' ' + r.sub, T.stamps[i] + .12, E1 + .1);
     });
-    Tx('n0', 'VIRAL TIP 0', T.notes[0] + .1, S0 + .1); Tx('n0', 'VIRAL TIP 0', T.noteBlur + .1, T.fpsIn + .1); Tx('n0', 'VIRAL TIP 0', E0, E1);
+    Tx('n0', 'VIRAL TIP 0', T.notes[0] + .1, S0 + .1); Tx('n0', 'VIRAL TIP 0', T.noteBlur + .1, T.fpsIn); Tx('n0', 'VIRAL TIP 0', E0, E1);
     Tx('n1', 'VIRAL TIP 5 TO 2', T.notes[1] + .1, S0 + .1); Tx('n1', 'VIRAL TIP 5 TO 2', T.noteFx + .1, T.hdrIn + .1); Tx('n1', 'VIRAL TIP 5 TO 2', E0, E1);
     Tx('n2', 'VIRAL TIP 600 50 50', T.notes[2] + .1, S0 + .1); Tx('n2', 'VIRAL TIP 600 50 50', T.noteHdr + .1, T.rip + .1); Tx('n2', 'VIRAL TIP 600 50 50', E0, E1);
     Tx('n3', 'VIRAL TIP ON', T.notes[3] + .1, S0 + .1); Tx('n3', 'VIRAL TIP ON', T.noteBr + .1, T.peel + .1); Tx('n3', 'VIRAL TIP ON', E0, E1);
-    Tx('blurT', 'MOTION BLUR STRENGTH', T.dive1 + .25, T.fpsIn + .1);
-    Tx('def', 'DEFAULT 3 · MAX 10', T.dive1 + .25, T.fpsIn + .1);
-    Tx('fps', '30 FPS', T.fps30 + .1, T.choppyIn + .15);
-    Tx('rock', 'ROCKSTAR: TARGETING 30 FPS ON CONSOLES', T.rock + .1, T.fxIn + .1);
+    Tx('blurT', 'MOTION BLUR STRENGTH', T.dive1 + .25, T.choppyIn + .1);
+    Tx('def', 'DEFAULT 3 · MAX 10', T.dive1 + .25, T.choppyIn + .1);
+    Tx('fps', '30 FPS', T.fps30 + .08, T.choppyIn + .42);
+    Tx('rock1', 'ROCKSTAR: TARGETING', T.rock + .1, T.gb); Tx('rock2', '30 FPS ON CONSOLES', T.rock + .1, T.gb);
+    Tx('gb1', 'GAMERBOLT:', T.gb + .1, T.fxIn + .1); Tx('gb2', '0 CAN LOOK JUDDERY', T.gb + .1, T.fxIn + .1);
+    Tx('ps5', 'STANDARD PS5', T.quote + .35, T.fxIn + .1);
     Tx('ill', 'ILLUSTRATION', T.fpsIn + .3, T.fxIn + .1);
     Tx('pan', 'BLUR 0 BLUR 1', T.choppyIn + .4, T.fxIn + .1);
     Tx('q1', 'FEELS THE CLEANEST', T.quote + .1, T.fxIn + .15); Tx('q2', 'JACOB RIDLEY · PC GAMER', T.quote + .1, T.fxIn + .15);
-    Tx('v0', 'FIX TRY 1', T.fix1 + .15, T.fxIn + .1);
+    Tx('v0', 'TEST 0 VS 1', T.fix1 + .15, T.fxIn + .1);
     Tx('fxT', 'VISUAL EFFECTS', T.fxIn + .3, T.hdrIn + .1); ['PLAYER STATUS', 'HIT', 'AWARENESS'].forEach(function (n, i) { Tx('fxN' + i, n, T.fxIn + .3, T.hdrIn + .1); });
     Tx('v1', 'KEEP YOUR CALL', T.keep + .1, T.hdrIn + .15);
     Tx('hdrT', 'HDR CALIBRATION', T.hdrIn + .3, T.tvIn + .1); ['MAX BRIGHTNESS', 'BLACK LEVELS', 'PAPER WHITE'].forEach(function (n, i) { Tx('hdrN' + i, n, T.hdrIn + .3, T.tvIn + .1); });
-    ['HIS TV', 'YOUR TV', 'ITS MAX'].forEach(function (n, i) { Tx('tv' + i, n, T.tvIn + .5, T.brIn + .1); }); Tx('src1', 'PER GAMERBOLT', T.src + .1, T.brIn + .1); Tx('src2', 'HDR GUIDE', T.src + .1, T.brIn + .1);
+    ['TV A · BRIGHT HDR', 'TV B · ENTRY HDR', 'MAX'].forEach(function (n, i) { Tx('tv' + i, n, T.tvIn + .5, T.brIn + .1); }); Tx('till', 'ILLUSTRATION', T.tvIn + .5, T.brIn + .1);
+    Tx('tvn', 'VIRAL TIP 600', T.tvNote + .1, T.brIn + .1); Tx('src1', 'PER GAMERBOLT', T.src + .1, T.brIn + .1); Tx('src2', 'HDR GUIDE', T.src + .1, T.brIn + .1);
     Tx('v2', 'FIX MATCH YOUR TV', T.fix2 + .15, T.brIn + .1);
     Tx('brT', 'BRIGHTNESS REDUCTION', T.brIn + .3, T.endIn - .2); Tx('brD', 'DEFAULT: OFF', T.brIn + .3, T.endIn - .2);
-    Tx('cf1', 'ONLY IF BRIGHT', T.comfort + .1, T.endIn - .2); Tx('cf2', 'LIGHT BOTHERS YOU', T.comfort + .1, T.endIn - .2);
+    Tx('cf1', 'ONLY IF BRIGHT', T.comfort + .1, T.endIn - .1); Tx('cf2', 'LIGHT BOTHERS YOU', T.comfort + .1, T.endIn - .1);
     Tx('v3', 'SKIP OUR PICK', T.skip + .15, T.endIn - .2);
     Tx('verd', 'OUR VERDICTS', T.verd + .12, E1 + .15);
     return o;
@@ -973,39 +1001,41 @@
     G('n3s', T.notes[3], 'slap', .15, .8);
     T.dive1 = G('dive1', start('blur') - .22, 'swish', .2, 1);
     T.noteBlur = at('blur', 'motion') - .1;
-        T.blurSlam = Math.min(G('rb', wend('blur', 'zero') + .1, 'tick', .45, 1.2), wend('blur', 'zero') + .3);
-    T.fpsIn = G('fpsIn', at('fps', 'runs') - .25, 'swish', .2, .9);
-    T.fps30 = at('fps', '30') - .16; G('fps30', T.fps30, 'stamp', .1, 1);
-    T.rock = at('fps', '30') + .4;
+    /* the slam starts on "to" and ratchets 3 -> 0 in three notches, landing on the onset of "zero" (ticks are dry clicks above the voice band) */
+    T.blurSlam = at('blur', 'to'); EV.push({ t: T.blurSlam, type: 'tick', g: .9, id: 'rb' });
+    /* the flipbook drops in the pause before "But" and riffles 14 pages in 0.5 s */
+    T.fpsIn = start('fps') - .32; T.riffle = T.fpsIn + .14; EV.push({ t: T.riffle - .02, type: 'riffle', g: 1, id: 'riffle' });
+    T.fps30 = at('fps', '30') - .24; G('fps30', T.fps30, 'stamp', .1, 1);
+    T.rock = at('fps', 'runs');
     T.choppyIn = G('choppyIn', start('choppy') + .02, 'swish', .2, .9);
-    T.knob1 = at('choppy', 'one'); T.choppyHit = at('choppy', 'choppy');
-    T.quote = at('choppy', 'a') - .26;
+    T.knob1 = at('choppy', 'one', 1); T.choppyHit = at('choppy', 'sharp');
+    T.gb = at('choppy', 'judder') - .05; T.quote = at('choppy', 'one') - .3;
     T.fix1 = G('fix1', after('choppy'), 'stamp', .25, 1.2);
-    T.fxIn = start('fx') - .3; /* silent: a swish here masked "Two" in the mix (heard "Act 2") */
+    T.fxIn = start('fx') - .2; /* silent: a swish here masked "Two" in the mix (heard "Act 2") */
     T.noteFx = at('fx', 'sliders');
         T.fxSlam = Math.min(G('rf', wend('fx', 'two', 1) + .1, 'tick', .45, 1.2), wend('fx', 'two', 1) + .3);
-    T.keep = G('keep', after('fx') + .28, 'stamp', .25, 1.2);
+    T.keep = G('keep', after('fx'), 'stamp', .25, 1.2);
     T.hdrIn = G('hdrIn', start('hdr') + .06, 'swish', .2, .9);
     T.noteHdr = at('hdr', 'hdr'); G('nHdr', T.noteHdr, 'slap', .1, .9);
     T.rip = G('rip', at('hdr', "don't") - .2, 'tear', .2, 1.3);
-    T.tvIn = G('tvIn', start('tv') - .35, 'swish', .2, .9);
-    T.tvNote = at('tv', 'brightness'); T.tvFix0 = at('tv', 'match');
+    T.tvIn = start('tv') - .1;
+    T.tvNote = at('tv', 'brightness'); T.tvMatch = at('tv', 'match');
     T.src = at('tv', 'brightness');
     T.fix2 = G('fix2', after('tv'), 'stamp', .25, 1.2);
     T.brIn = G('brIn', at('br', 'brightness') + .06, 'swish', .2, .9);
     T.noteBr = at('br', 'on') - .02; G('nBr', T.noteBr, 'slap', .25, 1);
     T.ships = at('br', 'ships');
     T.peel = G('peel', start('off') - .2, 'tear', .2, 1);
-    T.sunIn = T.peel; T.comfort = T.peel;
+    T.sunIn = T.peel - .1; T.comfort = T.peel - .1;
     T.skip = G('skip', at('off', 'unless') - .05, 'stamp', .25, 1.2);
     T.endIn = G('endIn', start('end') - .05, 'slap', .25, 1);
     T.stamps = [0, 1, 2, 3].map(function (j) { return at('end', 'one') + .1 + j * .11; });
-    T.verd = T.endIn - .05;
+    T.verd = T.endIn - .05; T.lift = at('end', 'one') + .25;
     T.hiKeep = G('hiKeep', wend('end', 'survives') + .18, 'thock', .25, 1);
-    T.seamUp = DUR - .85; G('seamUp', T.seamUp, 'swish', .2, .8);
+    T.seamUp = DUR - .45; G('seamUp', T.seamUp, 'swish', .2, .8);
     G('seamLand', DUR - .14, 'slap', .3, .9);
     T.capEnd = T.seamUp;
-    STRESS = [['q', 'four'], ['blur', 'zero'], ['fps', '30'], ['choppy', 'choppy'], ['choppy', 'one'], ['fx', 'two', 1], ['hdr', "don't"], ['tv', 'match'], ['br', 'off'], ['off', 'off'], ['end', 'one']].map(function (p) { return at(p[0], p[1], p[2]); });
+    STRESS = [['q', 'four'], ['blur', 'zero'], ['fps', '30'], ['choppy', 'sharp'], ['choppy', 'judder'], ['choppy', 'one', 1], ['fx', 'two', 1], ['fx', 'call'], ['hdr', "don't"], ['tv', 'match'], ['br', 'off'], ['off', 'off'], ['end', 'one']].map(function (p) { return at(p[0], p[1], p[2]); });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
 
@@ -1044,9 +1074,11 @@
     /* one notch of the slider's ratchet: a dry plastic click */
     function rtick(t, g) { for (var j = 0; j < 3; j++) { tick(t + j * .05, 1.3 * g, 2800); thump(t + j * .05, .1 * g, 900); } }
     function swish(t, g) { nband(t, t + .2, 900, 3600, .2 * g, .03 * g, .8); }
-    var LEVEL = { tick: 3, stamp: 1, thock: 5, slap: 3, tear: 3, swish: 3 };
+    /* a flipbook riffle: fourteen paper flicks in 0.22 s, high and dry */
+    function riffle(t, g) { for (var j = 0; j < 14; j++) tick(t + j * .016 + rnd() * .004, (.45 + rnd() * .4) * g, 3000 + rnd() * 2500); nband(t, t + .22, 2400, 5200, .08 * g, .02 * g, 1.2, 0, 'highpass'); }
+    var LEVEL = { tick: 3, stamp: 1, thock: 5, slap: 3, tear: 3, swish: 3, riffle: 3 };
     var TRIM = window.SFX_TRIM || {};
-    var TYPE_DB = window.SFX_TYPE_DB || { tick: -16, stamp: -12, thock: -16, slap: -14, tear: -14, swish: -16 };
+    var TYPE_DB = window.SFX_TYPE_DB || { tick: -16, stamp: -12, thock: -16, slap: -14, tear: -14, swish: -16, riffle: -16 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1) * Math.pow(10, ((TRIM[e.id] || 0) + (TYPE_DB[e.type] || 0)) / 20);
       if (e.type === 'stamp') stamp(e.t, g);
@@ -1055,6 +1087,7 @@
       else if (e.type === 'tear') tear(e.t, g);
       else if (e.type === 'swish') swish(e.t, g);
       else if (e.type === 'tick') rtick(e.t, g);
+      else if (e.type === 'riffle') riffle(e.t, g);
     });
     /* no music: Isac adds a platform sound; the film ships voice + sound effects */
     var MUSIC = false;
