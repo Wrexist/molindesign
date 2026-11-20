@@ -25,7 +25,7 @@
   "score_db": 0,
   "smr_db": 24
  },
- "dur": 30.5,
+ "dur": 21.8,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -33,66 +33,57 @@
  "lines": [
   {
    "id": "hook",
-   "at": 0.2,
-   "text": "GTA 6's first trailer mirrors GTA 5's.",
-   "say": "G T A six's first trailer mirrors G T A five's.",
+   "at": 0.15,
+   "text": "Same trailer? Twelve years apart.",
+   "say": "Same trailer? Twelve years apart.",
    "speed": 1.05
   },
   {
    "id": "sun",
-   "at": 3.2,
-   "text": "Both open on a sunset.",
-   "speed": 1.0
+   "at": 2.25,
+   "text": "Both open on a sunset."
   },
   {
    "id": "beach",
-   "at": 5.05,
-   "text": "Then the beach crowd.",
-   "speed": 1.0
+   "at": 3.95,
+   "text": "Then a beach crowd."
   },
   {
    "id": "pres",
-   "at": 6.85,
-   "text": "Then Rockstar Games Presents over the skyline.",
-   "speed": 1.08
+   "at": 5.4,
+   "text": "Rockstar Games Presents, over the skyline."
   },
   {
    "id": "water",
-   "at": 10.05,
-   "text": "Someone tearing across the water.",
-   "speed": 1.05
+   "at": 8.15,
+   "text": "Someone tearing across the water."
   },
   {
    "id": "cops",
-   "at": 12.55,
-   "text": "Trouble with the cops.",
-   "speed": 1.0
+   "at": 10.3,
+   "text": "Trouble with the cops."
   },
   {
    "id": "sign",
-   "at": 14.6,
-   "text": "And a giant sign. Vinewood. Vice.",
-   "speed": 0.98
+   "at": 11.75,
+   "text": "And a giant sign. Vinewood."
   },
   {
-   "id": "years",
-   "at": 18.2,
-   "text": "Twelve years apart: November 2011, December 2023.",
-   "say": "Twelve years apart: November twenty eleven, December twenty twenty-three.",
-   "speed": 1.08
+   "id": "vice",
+   "at": 13.85,
+   "text": "Vice!",
+   "say": "Vice!"
   },
   {
    "id": "views",
-   "at": 22.3,
-   "text": "The new one hit over 90 million views in a day.",
-   "say": "The new one hit over ninety million views in a day.",
-   "speed": 1.06
+   "at": 14.92,
+   "text": "Trailer one drew over 93 million views in a day.",
+   "say": "Trailer one drew over ninety-three million views in a day."
   },
   {
    "id": "end",
-   "at": 25.5,
-   "text": "Same formula, or coincidence? Which trailer wins?",
-   "speed": 1.0
+   "at": 18.55,
+   "text": "Same formula, or coincidence? Which one wins?"
   }
  ]
 }
