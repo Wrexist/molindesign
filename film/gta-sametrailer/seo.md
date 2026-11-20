@@ -13,7 +13,7 @@ SAME TRAILER?
 ## Description
 GTA 5 vs GTA 6, first trailer against first trailer.
 
-GTA 5's first trailer (November 2011) and GTA 6's Trailer 1 (December 2023) hit the same six beats: a sunset, "Rockstar Games Presents" over the skyline, the beach, someone tearing across the water, trouble with the cops, and a giant city sign (Vinewood, then Vice).
+GTA 5's first trailer (November 2011) and GTA 6's Trailer 1 (December 2023) hit the same six beats: a sunset, the beach, "Rockstar Games Presents" over the skyline, someone tearing across the water, trouble with the cops, and a giant city sign (Vinewood, then Vice).
 
 Twelve years apart. The new one drew over 93 million views in its first 24 hours on YouTube.
 

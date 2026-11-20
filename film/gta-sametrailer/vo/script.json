@@ -23,9 +23,9 @@
  "duck": {
   "db": -6,
   "score_db": 0,
-  "smr_db": 32
+  "smr_db": 24
  },
- "dur": 30.0,
+ "dur": 30.5,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -45,16 +45,16 @@
    "speed": 1.0
   },
   {
-   "id": "pres",
-   "at": 5.05,
-   "text": "Both put Rockstar Games Presents over the skyline.",
-   "speed": 1.08
-  },
-  {
    "id": "beach",
-   "at": 8.05,
+   "at": 5.05,
    "text": "Then the beach crowd.",
    "speed": 1.0
+  },
+  {
+   "id": "pres",
+   "at": 6.85,
+   "text": "Then Rockstar Games Presents over the skyline.",
+   "speed": 1.08
   },
   {
    "id": "water",
