@@ -1,0 +1,61 @@
+{
+ "film": "gta-lootrun",
+ "sources": {
+  "diez": {
+   "key": "tiktok-7710193743843921185",
+   "url": "https://www.tiktok.com/@diez.gg/video/7710193743843921185?_r=1&_t=ZN-9BZ84SSlIfP",
+   "title": "INSANE LOOT RUN ON GTA6, TO GET 100K IN CASH 💰 #gta6 #gta6loot #gta6c...",
+   "uploader": "diez.gg",
+   "verdict": "CREATOR",
+   "checked": "TikTok post 2026-11-20, the day after GTA 6 launched: continuous third-person gameplay with the GTA VI HUD (minimap, cash counter, Leonida swamp, airboat); no real-world footage or AI artifacts seen. No watermark, logo or channel tag burned in; the facecam (0-15 s) and word captions are cropped out with --crop.",
+   "credit": "@diez.gg"
+  }
+ },
+ "clips": {
+  "boat": {
+   "src": "diez",
+   "in": 11.5,
+   "out": 14.0,
+   "fps": 30,
+   "frames": 75,
+   "w": 1080,
+   "crop": "1080:1110:0:810"
+  },
+  "keypad": {
+   "src": "diez",
+   "in": 35.4,
+   "out": 37.9,
+   "fps": 30,
+   "frames": 75,
+   "w": 1080,
+   "crop": "1080:1110:0:810"
+  },
+  "airboat": {
+   "src": "diez",
+   "in": 56.0,
+   "out": 58.5,
+   "fps": 30,
+   "frames": 75,
+   "w": 1080,
+   "crop": "1080:1110:0:810"
+  },
+  "bag": {
+   "src": "diez",
+   "in": 51.0,
+   "out": 53.0,
+   "fps": 30,
+   "frames": 60,
+   "w": 1080,
+   "crop": "1080:1110:0:810"
+  },
+  "smg": {
+   "src": "diez",
+   "in": 53.6,
+   "out": 55.6,
+   "fps": 30,
+   "frames": 60,
+   "w": 1080,
+   "crop": "1080:1110:0:810"
+  }
+ }
+}
