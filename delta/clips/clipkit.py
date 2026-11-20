@@ -30,6 +30,8 @@ FILM = ROOT / 'film'
 MAX_USE = 4.9          # SAFE-EDIT rule 3: each excerpt under 5 s
 MAX_SHARE = 0.5        # SAFE-EDIT rule 7: footage at most about half of the runtime
 MAX_RUN = 5.0          # back-to-back clips count as one unbroken stretch
+MAX_CREATOR_USE = 4.9  # SAFE-EDIT rule 10: a creator clip is under 5 s on screen
+MAX_CREATOR_SHARE = 0.34  # rule 10: creator clips at most a third of the runtime
 OVERLAP = 0.25         # the same source range in two films counts as reuse above this many seconds
 
 
@@ -70,6 +72,9 @@ def key_for(info, path=None):
     if path:
         return 'own-' + re.sub(r'[^a-z0-9]+', '-', Path(path).stem.lower()).strip('-')[:40]
     ext = re.sub(r'[^a-z0-9]+', '', (info.get('extractor_key') or 'web').lower())
+    if ext == 'generic':  # direct file URLs (e.g. Rockstar's CDN .../v4/<id>/flv/en-us-720p.mp4) all share the id "en-us-720p"
+        path = re.sub(r'^https?://[^/]+/', '', info.get('webpage_url') or info.get('url') or '')
+        return 'generic-' + re.sub(r'[^a-z0-9]+', '-', path.lower()).strip('-')[-60:]
     return f"{ext}-{re.sub(r'[^A-Za-z0-9_-]+', '', str(info.get('id')))}"
 
 
@@ -185,14 +190,21 @@ def cmd_cut(a):
     if not prov_p.exists():
         sys.exit(f'no source {a.source} in {cache_root()}: run clipkit.py fetch first')
     prov = json.loads(prov_p.read_text())
-    if prov['verdict'] not in ('OFFICIAL', 'OWN'):
-        sys.exit(f"refused: {a.source} is {prov['verdict']} ({prov['why']}). Only official Rockstar video or Isac's own capture can be cut.")
+    if prov['verdict'] not in ('OFFICIAL', 'OWN') and not a.commentary:
+        sys.exit(f"refused: {a.source} is {prov['verdict']} ({prov['why']}). Only official Rockstar video or Isac's own capture can be cut,\n"
+                 f"unless you cut it in commentary mode (--commentary --credit '@handle', SAFE-EDIT rule 10).")
+    if a.commentary and prov['verdict'] == 'THIRD_PARTY':
+        if not (a.credit or '').startswith('@'):
+            sys.exit("commentary mode needs --credit '@handle' (the creator's handle, listed in the video description; not shown on screen)")
+        if not a.checked:
+            sys.exit('commentary mode needs --checked "<why this is real game footage, or that the film calls it a fake>" (rule 10: no AI fakes passed off as real)')
     if not (FILM / a.film).is_dir():
         sys.exit(f'no film/{a.film}: scaffold the film first')
     man = load_manifest(a.film)
     alias = a.alias or a.source
     man['sources'][alias] = {'key': prov['key'], 'url': prov['url'], 'title': prov['title'], 'uploader': prov['uploader'],
-                             'verdict': prov['verdict'], 'credit': a.credit or man['sources'].get(alias, {}).get('credit') or
+                             'verdict': 'CREATOR' if a.commentary and prov['verdict'] == 'THIRD_PARTY' else prov['verdict'],
+                             'checked': a.checked, 'credit': a.credit or man['sources'].get(alias, {}).get('credit') or
                              ('Own capture' if prov['verdict'] == 'OWN' else 'Rockstar Games')}
     for spec in a.clip:
         name, t_in, t_out = parse_range(spec)
@@ -260,9 +272,11 @@ def cmd_lint(a):
     used = json.loads(used_p.read_text())
     dur, uses = used['DUR'], used['uses']
     for alias, s in man['sources'].items():
-        if s.get('verdict') not in ('OFFICIAL', 'OWN'):
-            fails.append(f'source {alias} is {s.get("verdict")}: only official Rockstar video or own capture')
-    official_spans = []
+        if s.get('verdict') not in ('OFFICIAL', 'OWN', 'CREATOR'):
+            fails.append(f'source {alias} is {s.get("verdict")}: only official Rockstar video, own capture or a credited creator clip (rule 10)')
+        if s.get('verdict') == 'CREATOR' and not str(s.get('credit', '')).startswith('@'):
+            fails.append(f'creator source {alias} has no @handle credit (rule 10)')
+    official_spans, creator_spans = [], []
     for u in uses:
         c = man['clips'].get(u['clip'])
         if not c:
@@ -276,8 +290,13 @@ def cmd_lint(a):
         span = c['out'] - c['in']
         if u.get('srcTo', 0) > span + 1 / 30 + 1e-6:
             fails.append(f'{u["clip"]} at {u["t0"]:.2f} s plays to {u["srcTo"]:.2f} s but the cut is {span:.2f} s long')
-        if man['sources'][c['src']].get('verdict') == 'OFFICIAL':
+        v = man['sources'][c['src']].get('verdict')
+        if v == 'OFFICIAL':
             official_spans.append((u['t0'], u['t1']))
+        if v == 'CREATOR':
+            creator_spans.append((u['t0'], u['t1']))
+            if d > MAX_CREATOR_USE:
+                fails.append(f'{u["clip"]} (creator clip) at {u["t0"]:.2f} s is on screen {d:.2f} s (max {MAX_CREATOR_USE})')
     for t0, t1 in merged([(u['t0'], u['t1']) for u in uses]):
         if t1 - t0 > MAX_RUN:
             fails.append(f'footage runs unbroken {t0:.2f}-{t1:.2f} s ({t1 - t0:.2f} s): put our own graphics between clips')
@@ -286,6 +305,12 @@ def cmd_lint(a):
         fails.append(f'Rockstar footage is {share:.0%} of the runtime (max {MAX_SHARE:.0%})')
     elif share > 0.4:
         warns.append(f'Rockstar footage is {share:.0%} of the runtime: close to the {MAX_SHARE:.0%} cap')
+    cshare = sum(t1 - t0 for t0, t1 in merged(creator_spans, 0)) / dur if dur else 0
+    if cshare > MAX_CREATOR_SHARE:
+        fails.append(f'creator clips are {cshare:.0%} of the runtime (max {MAX_CREATOR_SHARE:.0%}, rule 10)')
+    allshare = sum(t1 - t0 for t0, t1 in merged(official_spans + creator_spans, 0)) / dur if dur else 0
+    if allshare > MAX_SHARE:
+        fails.append(f'all footage not ours is {allshare:.0%} of the runtime (max {MAX_SHARE:.0%})')
     for name in man['clips']:
         if not any(u['clip'] == name for u in uses):
             warns.append(f'clip {name} is cut but never shown')
@@ -318,7 +343,7 @@ def main():
     f = sub.add_parser('fetch'); f.add_argument('src'); f.add_argument('--own', action='store_true')
     c = sub.add_parser('cut'); c.add_argument('source'); c.add_argument('--film', required=True)
     c.add_argument('--clip', action='append', required=True); c.add_argument('--as', dest='alias')
-    c.add_argument('--credit'); c.add_argument('--w', type=int, default=1280)
+    c.add_argument('--credit'); c.add_argument('--commentary', action='store_true'); c.add_argument('--checked'); c.add_argument('--w', type=int, default=1280)
     r = sub.add_parser('restore'); r.add_argument('film')
     l = sub.add_parser('lint'); l.add_argument('film'); l.add_argument('--used')
     a = p.parse_args()

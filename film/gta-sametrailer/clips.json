@@ -1,0 +1,133 @@
+{
+ "film": "gta-sametrailer",
+ "sources": {
+  "v": {
+   "key": "generic-v4-s6c5c8co-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/s6c5c8co/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA V Trailer (2011)"
+  },
+  "vi": {
+   "key": "twitter-1731998653743517697",
+   "url": "https://x.com/RockstarGames/status/1732149328779571313",
+   "title": "Rockstar Games - Hello @X, watch Grand Theft Auto VI Trailer 1",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Trailer 1 (2023)"
+  }
+ },
+ "clips": {
+  "vsun": {
+   "src": "v",
+   "in": 6.4,
+   "out": 9.0,
+   "fps": 30,
+   "frames": 78,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "vpier": {
+   "src": "v",
+   "in": 9.1,
+   "out": 11.55,
+   "fps": 30,
+   "frames": 74,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "vpres": {
+   "src": "v",
+   "in": 12.0,
+   "out": 15.6,
+   "fps": 30,
+   "frames": 108,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "vski": {
+   "src": "v",
+   "in": 18.75,
+   "out": 19.85,
+   "fps": 30,
+   "frames": 33,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "vcops": {
+   "src": "v",
+   "in": 64.4,
+   "out": 65.95,
+   "fps": 30,
+   "frames": 47,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "vsign": {
+   "src": "v",
+   "in": 69.47,
+   "out": 70.6,
+   "fps": 30,
+   "frames": 34,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "ssun": {
+   "src": "vi",
+   "in": 2.68,
+   "out": 4.95,
+   "fps": 30,
+   "frames": 69,
+   "w": 1280,
+   "crop": null
+  },
+  "sbeach": {
+   "src": "vi",
+   "in": 11.6,
+   "out": 14.3,
+   "fps": 30,
+   "frames": 81,
+   "w": 1280,
+   "crop": null
+  },
+  "spres": {
+   "src": "vi",
+   "in": 14.6,
+   "out": 16.9,
+   "fps": 30,
+   "frames": 69,
+   "w": 1280,
+   "crop": null
+  },
+  "sboat": {
+   "src": "vi",
+   "in": 23.27,
+   "out": 24.78,
+   "fps": 30,
+   "frames": 46,
+   "w": 1280,
+   "crop": null
+  },
+  "scops": {
+   "src": "vi",
+   "in": 48.62,
+   "out": 49.84,
+   "fps": 30,
+   "frames": 37,
+   "w": 1280,
+   "crop": null
+  },
+  "ssign": {
+   "src": "vi",
+   "in": 39.8,
+   "out": 41.28,
+   "fps": 30,
+   "frames": 44,
+   "w": 1280,
+   "crop": null
+  }
+ }
+}

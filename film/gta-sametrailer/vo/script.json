@@ -1,0 +1,98 @@
+{
+ "about": "GTA 5's first trailer (Rockstar Games, 'Trailer', November 2, 2011, rockstargames.com/videos/s6c5c8co) and GTA 6's Trailer 1 (Rockstar Games, posted December 4, 2023 ET) side by side. Both open on a sunset, then a beach crowd, then ROCKSTAR GAMES PRESENTS over the skyline, then a vehicle across the water (same order in both); both also show the cops and a giant city sign (VINEWOOD / VICE), in a different order. Twelve years apart; Trailer 1 drew over 93 million YouTube views in 24 hours (YouTube Official Blog).",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.6
+ },
+ "names": [
+  "GTA",
+  "Rockstar",
+  "Vinewood",
+  "Vice"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24
+ },
+ "dur": 30.5,
+ "fit": {
+  "min": 0.8,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6's first trailer mirrors GTA 5's.",
+   "say": "G T A six's first trailer mirrors G T A five's.",
+   "speed": 1.05
+  },
+  {
+   "id": "sun",
+   "at": 3.2,
+   "text": "Both open on a sunset.",
+   "speed": 1.0
+  },
+  {
+   "id": "beach",
+   "at": 5.05,
+   "text": "Then the beach crowd.",
+   "speed": 1.0
+  },
+  {
+   "id": "pres",
+   "at": 6.85,
+   "text": "Then Rockstar Games Presents over the skyline.",
+   "speed": 1.08
+  },
+  {
+   "id": "water",
+   "at": 10.05,
+   "text": "Someone tearing across the water.",
+   "speed": 1.05
+  },
+  {
+   "id": "cops",
+   "at": 12.55,
+   "text": "Trouble with the cops.",
+   "speed": 1.0
+  },
+  {
+   "id": "sign",
+   "at": 14.6,
+   "text": "And a giant sign. Vinewood. Vice.",
+   "speed": 0.98
+  },
+  {
+   "id": "years",
+   "at": 18.2,
+   "text": "Twelve years apart: November 2011, December 2023.",
+   "say": "Twelve years apart: November twenty eleven, December twenty twenty-three.",
+   "speed": 1.08
+  },
+  {
+   "id": "views",
+   "at": 22.3,
+   "text": "The new one hit over 90 million views in a day.",
+   "say": "The new one hit over ninety million views in a day.",
+   "speed": 1.06
+  },
+  {
+   "id": "end",
+   "at": 25.5,
+   "text": "Same formula, or coincidence? Which trailer wins?",
+   "speed": 1.0
+  }
+ ]
+}

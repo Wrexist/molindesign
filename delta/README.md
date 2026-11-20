@@ -12,6 +12,8 @@ Re-uploading or lightly editing other people's footage risks Content ID claims, 
 ## Files
 | File | What |
 |---|---|
+| `LAUNCH-PLAN.md` | Launch growth plan: categories and formats, cadence, series, hooks, Shorts vs long-form; PC footage library at D:\GTA6-Library |
+| `VIDEO-PLAN.md` | **Video plan (2026-11-20):** what GTA 6 content is getting views on YouTube in launch week (real view counts), formats ranked for Delta, a 40-video slate (A: official footage now, B: needs captures, C: long-form), calendar, dependencies |
 | `RUN.md` | What each scheduled Delta run does (3 fresh Shorts + 1 filler a day since 2026-11-12) |
 | `SAFE-EDIT.md` | The rules every video must pass, and the jury checklist addition |
 | `backlog.csv` | Topic queue, calendar order, status |
