@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-eastereggs/out/gta-eastereggs-vo.mp4: 32.8 s, 8 hard cuts (2.4/10 s), motion 0-1 s 0.933, 0-3 s 1.683, median 0.576, still frames 0.5 %
+OK    no frozen stretches, opening moves

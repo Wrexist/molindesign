@@ -1,0 +1,114 @@
+{
+ "about": "Top 5 GTA 6 Easter eggs, our countdown and our real-world context: Michael's GTA 5 boat at Jason's place (GPS still shows Los Santos), a jet-ski dog that rescues you at sea, a copy of Brian's green car from The Fast and the Furious (2001) with a HAD YOU plate, Trinity Apartments (Trinity was Dexter's season-4 villain, 2009), and a literal Easter egg in a nest on Vice City's tallest tower; Atari coined the term in 1980, and the last line loops into the hook. Commentary mode (SAFE-EDIT rule 10): five muted @blockay TikTok clips (posted 2026-11-20), his facecam, labels and captions cropped out, credit in the description only. Delta.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.6
+ },
+ "names": [
+  "GTA",
+  "GPS",
+  "Atari",
+  "Dexter",
+  "Trinity",
+  "Vice City",
+  "Los Santos",
+  "Brian"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 22
+ },
+ "dur": 32.84,
+ "fit": {
+  "min": 0.8,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.15,
+   "text": "GTA 6 hides an actual egg.",
+   "say": "G T A six hides an actual egg.",
+   "speed": 1.06
+  },
+  {
+   "id": "boat",
+   "at": 2.5,
+   "text": "Five: Michael's boat from GTA 5 is at Jason's place.",
+   "say": "Five. Michael's boat from G T A five is at Jason's place.",
+   "speed": 1.06
+  },
+  {
+   "id": "gps",
+   "at": 6.5,
+   "text": "Its GPS still thinks it's in Los Santos.",
+   "say": "Its G P S still thinks it's in Los Santos.",
+   "speed": 1.04
+  },
+  {
+   "id": "dog",
+   "at": 9.5,
+   "text": "Four: stranded at sea? A dog on a jet ski picks you up.",
+   "say": "Four. Stranded at sea? A dog on a jet ski picks you up.",
+   "speed": 1.04
+  },
+  {
+   "id": "car",
+   "at": 13.49,
+   "text": "Three: a copy of Brian's Fast and Furious car.",
+   "say": "Three. A copy of Brian's Fast and Furious car.",
+   "speed": 1.08
+  },
+  {
+   "id": "plate",
+   "at": 16.63,
+   "text": "The plate says HAD YOU.",
+   "say": "The plate says had you.",
+   "speed": 1.0
+  },
+  {
+   "id": "trinity",
+   "at": 18.41,
+   "text": "Two: Trinity Apartments. Trinity was Dexter's villain in 2009.",
+   "say": "Two. Trinity Apartments. Trinity was Dexter's villain in two thousand nine.",
+   "speed": 1.06
+  },
+  {
+   "id": "tower",
+   "at": 23.0,
+   "text": "One: the tallest tower in Vice City.",
+   "speed": 1.04
+  },
+  {
+   "id": "nest",
+   "at": 25.79,
+   "text": "Up top, in a nest: an actual Easter egg.",
+   "speed": 1.02
+  },
+  {
+   "id": "atari",
+   "at": 28.7,
+   "text": "Atari named them in 1980.",
+   "say": "Atari named them in nineteen eighty.",
+   "speed": 1.04
+  },
+  {
+   "id": "loop",
+   "at": 30.65,
+   "text": "46 years later…",
+   "say": "Forty-six years later",
+   "speed": 0.98
+  }
+ ]
+}
