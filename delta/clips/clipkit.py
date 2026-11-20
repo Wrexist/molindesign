@@ -121,7 +121,7 @@ def cmd_fetch(a):
         if local.exists():
             shutil.copyfile(local, video)
         else:
-            subprocess.run(['yt-dlp', '-q', '--no-playlist', '-f', 'bv*[height<=1080]+ba/b[height<=1080]/b',
+            subprocess.run(['yt-dlp', '-q', '--no-playlist', '-f', 'bv*[height<=1080]+ba/b[height<=1080]/b',  # TikTok: may land 540p; fetch 1080p by format id with yt-dlp -F if needed
                             '--merge-output-format', 'mp4', '-o', str(video), src], check=True)
     verdict, why = judge(info, a.own)
     dur = info.get('duration') or float(sh(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(video)]).stdout)
@@ -212,8 +212,15 @@ def cmd_cut(a):
             sys.exit(f'{name}: OUT must be after IN')
         if t_out - t_in > 6:
             sys.exit(f'{name}: {t_out - t_in:.2f} s cut; keep cuts under 6 s (a use on screen must stay under {MAX_USE} s)')
-        lb = letterbox(src_dir / 'src.mp4', t_in, t_out)
-        crop = ':'.join(lb) if lb and (int(lb[1]) < (prov.get('height') or 10**6) - 8 or int(lb[0]) < (prov.get('width') or 10**6) - 8) else None
+        if a.crop:
+            # manual crop W:H:X:Y in source pixels (ffmpeg order), e.g. to cut a creator's facecam or burned-in captions
+            # out of frame (SAFE-EDIT rule 10). Never use it to cut away a watermark, logo or channel tag: skip that clip.
+            if not re.fullmatch(r'\d+:\d+:\d+:\d+', a.crop):
+                sys.exit('--crop takes W:H:X:Y in source pixels, e.g. 1080:1110:0:810')
+            crop = a.crop
+        else:
+            lb = letterbox(src_dir / 'src.mp4', t_in, t_out)
+            crop = ':'.join(lb) if lb and (int(lb[1]) < (prov.get('height') or 10**6) - 8 or int(lb[0]) < (prov.get('width') or 10**6) - 8) else None
         n = extract(src_dir / 'src.mp4', a.film, name, t_in, t_out, a.w, 30, crop)
         man['clips'][name] = {'src': alias, 'in': round(t_in, 3), 'out': round(t_out, 3), 'fps': 30, 'frames': n, 'w': a.w, 'crop': crop}
         print(f'cut {name}: {alias} {t_in:.2f}-{t_out:.2f} s -> film/{a.film}/clips/{name}/ ({n} frames, muted{", letterbox cropped " + crop if crop else ""})')
@@ -343,7 +350,7 @@ def main():
     f = sub.add_parser('fetch'); f.add_argument('src'); f.add_argument('--own', action='store_true')
     c = sub.add_parser('cut'); c.add_argument('source'); c.add_argument('--film', required=True)
     c.add_argument('--clip', action='append', required=True); c.add_argument('--as', dest='alias')
-    c.add_argument('--credit'); c.add_argument('--commentary', action='store_true'); c.add_argument('--checked'); c.add_argument('--w', type=int, default=1280)
+    c.add_argument('--credit'); c.add_argument('--commentary', action='store_true'); c.add_argument('--checked'); c.add_argument('--crop', help='W:H:X:Y manual crop in source pixels (cut out a facecam or burned-in captions; never a watermark)'); c.add_argument('--w', type=int, default=1280)
     r = sub.add_parser('restore'); r.add_argument('film')
     l = sub.add_parser('lint'); l.add_argument('film'); l.add_argument('--used')
     a = p.parse_args()

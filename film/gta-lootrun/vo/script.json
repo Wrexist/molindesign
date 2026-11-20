@@ -1,0 +1,25 @@
+{
+ "about": "GTA 6 loot as an escape room: a player's early-game loot run (TikTok @diez.gg, posted 2026-11-20, the day after launch) shows one cash bag behind a chain of four locks: reach a compound by boat, turn the power on, find the PC password in the bedroom, the PC gives the safe code, the safe holds another code that opens a shed by the water with a cash bag (10-30K, he says) and a rare SMG; the bag is sold to Brian. Commentary mode (SAFE-EDIT rule 10): three muted creator clips, facecam and captions cropped out, each annotated, credit in the description only. Delta.",
+ "engine": "ming",
+ "ming": {"voice": "US_James", "seed": 7},
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {"max": 3.6},
+ "names": ["GTA", "SMG", "Brian"],
+ "pronounce": {},
+ "chain": {"room": 0.25},
+ "duck": {"db": -6, "score_db": 0, "smr_db": 32},
+ "dur": 29.0,
+ "fit": {"min": 0.8, "max": 1.1},
+ "lines": [
+  {"id": "hook", "at": 0.2, "text": "In GTA 6, one cash bag sits behind four locks.", "say": "In G T A six, one cash bag sits behind four locks.", "speed": 1.06},
+  {"id": "found", "at": 3.4, "text": "A player found the chain a day after launch.", "speed": 1.06},
+  {"id": "lock1", "at": 6.0, "text": "Boat out to a compound. Lock one: turn the power on.", "speed": 1.08},
+  {"id": "lock2", "at": 9.7, "text": "Lock two: the PC password is hidden in the bedroom.", "say": "Lock two: the P C password is hidden in the bedroom.", "speed": 1.08},
+  {"id": "lock3", "at": 12.8, "text": "Lock three: the PC gives you the safe code.", "say": "Lock three: the P C gives you the safe code.", "speed": 1.06},
+  {"id": "twist", "at": 15.6, "text": "Inside the safe? Barely any cash. Just another code.", "speed": 1.06},
+  {"id": "lock4", "at": 18.7, "text": "Lock four opens a shed by the water: a bag worth ten to thirty grand, he says.", "speed": 1.1},
+  {"id": "smg", "at": 22.7, "text": "Plus a rare SMG. Then you sell the bag.", "say": "Plus a rare S M G. Then you sell the bag.", "speed": 1.04},
+  {"id": "end", "at": 25.3, "text": "GTA 6 loot is an escape room now. Could you solve it?", "say": "G T A six loot is an escape room now. Could you solve it?", "speed": 1.04}
+ ]
+}
