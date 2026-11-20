@@ -334,7 +334,7 @@ def cmd_lint(a):
                 ov = min(i1, oc['out']) - max(i0, oc['in'])
                 if key == okey and ov > OVERLAP:
                     fails.append(f'clip {n} reuses {ov:.2f} s of {okey} already used by film/{of} ({on} {oc["in"]}-{oc["out"]})')
-    print(f'clips: {len(uses)} uses, footage {share:.0%} of {dur:.1f} s')
+    print(f'clips: {len(uses)} uses of {dur:.1f} s: Rockstar footage {share:.0%}, creator clips {cshare:.0%}, all footage {allshare:.0%}')
     for w in warns:
         print('WARN ', w)
     for f in fails:
