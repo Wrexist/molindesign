@@ -1,0 +1,125 @@
+{
+ "about": "Does turning off Wi-Fi and Bluetooth save battery. Factory #37, backlog row 42, slug wifibattery. One hard idea: Apple says Wi-Fi and Bluetooth 'are designed to draw minimal power from the battery when they aren't connected' and tells you to keep them on; on iPhone the Control Center Wi-Fi button doesn't even turn Wi-Fi off (it disconnects, Wi-Fi stays available for AirDrop and Location, auto-join returns by 5 a.m.); Apple says Wi-Fi uses less battery than cellular; Google's one exception: turn off Bluetooth to stretch a dying battery. Check yours in Settings › Battery. Sources read 2026-11-20, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "iPhone",
+  "Wi-Fi",
+  "Bluetooth",
+  "AirDrop",
+  "Google",
+  "Apple"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.15
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24.5
+ },
+ "dur": 38.01,
+ "tail": 0.15,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Turning off Wi-Fi barely saves battery.",
+   "pause": 0.7,
+   "at": 0.2,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "ask",
+   "text": "So what does that Wi-Fi button do?",
+   "pause": 0.45,
+   "at": 2.72,
+   "say": "So, what does that Wi-Fi button do?",
+   "speed": 0.955,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "apple",
+   "text": "Apple says Wi-Fi and Bluetooth draw minimal power when not connected.",
+   "pause": 0.45,
+   "at": 4.93,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "keep",
+   "text": "Apple's advice? Keep them both on.",
+   "pause": 0.55,
+   "at": 8.72,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "dip",
+   "text": "But you tap the button off anyway.",
+   "pause": 0.65,
+   "at": 11.07,
+   "say": "But you tap the button off, anyway.",
+   "speed": 0.92,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "twist",
+   "text": "On iPhone, that button doesn't turn Wi-Fi off.",
+   "pause": 0.65,
+   "at": 13.24,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "avail",
+   "text": "It just disconnects. Wi-Fi stays available for AirDrop.",
+   "pause": 0.6,
+   "at": 16.39,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "fiveam",
+   "text": "And auto-join comes back by 5 in the morning.",
+   "say": "And auto-join comes back by five in the morning.",
+   "pause": 1.3,
+   "at": 19.99,
+   "speed": 0.92,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "cell",
+   "text": "Apple even says Wi-Fi uses less battery than cellular.",
+   "pause": 1.2,
+   "at": 23.57,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "bt",
+   "text": "Battery nearly dead? Google says turn Bluetooth off.",
+   "pause": 1.2,
+   "at": 27.33,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "check",
+   "text": "Check yours: Settings, Battery, not the toggles.",
+   "pause": 1.3,
+   "at": 31.47,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "end",
+   "text": "Still switching Wi-Fi off? Yes or no.",
+   "say": "Still switching Wi-Fi off? Yes, or no?",
+   "pause": 0,
+   "at": 35.37,
+   "tail_fade": 0.15
+  }
+ ]
+}
