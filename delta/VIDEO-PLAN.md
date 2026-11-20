@@ -55,25 +55,35 @@ Pulled from YouTube search (sorted by views, uploaded this week) for "gta 6", "g
 
 **Market facts (for news Shorts)**: launch-day streaming peak about 7.9M concurrent viewers across platforms, 3.2M on YouTube (Streams Charts); Trailer 2 191M and Launch Trailer 84M YouTube views. Sales: **no official number yet**. Sensor Tower *estimates* about 19.1M copies / $1.84B by launch morning and 24.5M / $2.36B in 24 h. Take-Two has only said "far above expectations". An official number is expected soon: that is a news Short the moment it lands (RUN.md launch-week rule).
 
+## 0. No-capture mode (Isac 2026-11-20: "I don't have GTA 6 yet myself")
+Until Isac owns the game there are **no own captures**. Every video below is built from two footage sources plus our graphics and voice:
+1. **Rockstar's official video**: GTA VI Trailers 1–2, the Launch Trailer, *An Extended Look* (26:48, unused by any Delta film), official screenshots (D:\GTA6-Library), and the old GTA V trailers on rockstargames.com for comparisons. SAFE-EDIT rule 7 (trailer mode).
+2. **Other creators' gameplay in commentary mode** (SAFE-EDIT rule 10): each clip under 5 s and muted, at most a third of the runtime, clean only (no facecam, watermark or channel tag), our voice makes a point about each clip, @handle credit in the description. These clips stand in for the captures the B-list needed.
+
+**Getting creator clips:** YouTube downloads fail from the cloud (429) and the PC has no yt-dlp, so clips come from **X, Instagram and TikTok links** (`clipkit.py fetch` handles those; it worked on both reels Isac sent). Isac or a run drops links into the topic; every one is checked for facecam, watermark and fakes before cutting. A run that can't find 3 clean clips for a topic skips it.
+
+Sections 3–5 and 7 are re-ranked for this mode. When Isac gets the game, the capture plan (4B as written on Nov 20, in git history) comes back on top.
+
 ## 2. What it means for Delta
-1. **Footage is the format now.** Pre-launch, explainers were enough. This week 9 of the top 10 Shorts show the game itself (moments, tests, catalogs, comparisons). Our pure-graphics Shorts will stay stuck near the ~1.2k ceiling. **Isac's own capture is the #1 lever**, then Rockstar's official video, then creator clips in commentary mode (rule 10).
+1. **Footage is the format now.** Pre-launch, explainers were enough. This week 9 of the top 10 Shorts show the game itself (moments, tests, catalogs, comparisons). Our pure-graphics Shorts will stay stuck near the ~1.2k ceiling. **Isac's own capture would be the #1 lever, but he doesn't own the game yet** (Nov 20), so for now: Rockstar's official video first, creator gameplay clips in commentary mode (rule 10) second, both carried by our voice and graphics.
 2. **Comparison beats detail lists.** The biggest Short this week is a GTA 5 vs GTA 6 comparison (5.1M). "N details you missed" Shorts are saturated: most sit at 0.3k–50k. One detail, one payoff, shown, beats a list.
 3. **GTA 5 nostalgia travels.** "Michael will be the last person in Los Santos" (1.9M) and the comparison Shorts ride on 13 years of GTA 5. Delta's own best Shorts were GTA 5 history (13years 1,251; "GTA 5 Cost More" 900). We already know this audience.
-4. **"Every X" catalogs and "Tested" work** (Every Plane 1M, Crash Physics 717k). Both need capture, both are series by nature.
+4. **"Every X" catalogs and "Tested" work** (Every Plane 1M, Crash Physics 717k). Both are series by nature. Tested needs the game; "It has X" can run on creator clips plus official screenshots.
 5. **Long-form money is in tips and "before you buy"** (gameranx 5.3M, jayvee 1.0M, GameSpot 722k, MrDalekJD 699k, money guides 150k–680k). These are search videos: they keep earning for weeks. Delta's first long-form should be a search video, not a recap.
 6. **Speed matters.** Most winners are under 24 h old. A Short about something new in the game is worth most in its first 48 h after launch.
 
 ## 3. Formats, ranked for Delta (what we can make, times what is getting views)
-| # | Format | Evidence | Footage | Delta can start |
+| # | Format | Evidence | Footage (no-capture mode) | Delta can start |
 |---|---|---|---|---|
-| 1 | **GTA 5 vs GTA 6, same thing side by side** | 5.1M, 42k, Trailer vs Gameplay 469k | Rockstar trailers (both games, rockstargames.com) now; own capture later | **Today** (test video below) |
-| 2 | **"Is this real?" / fake check** of viral clips | Fakes are everywhere (two of two links Isac sent on 2026-11-20 were not real GTA 6) | creator clip (rule 10) + official/own proof | Today |
-| 3 | **Tested** (one claim, tested in-game: fall height, top speed, police response) | Crash Physics 717k, Tallest Tower 65k in 3 h | own capture | When captures land |
-| 4 | **Every X** (every plane, every safehouse, every Ultimate Edition car) | Every Plane 1.0M | own capture; Ultimate Edition from official screenshots now | Partly today |
-| 5 | **One detail, one payoff** ("You can buy groceries") | 63k–464k for the strong ones | own capture | When captures land |
-| 6 | **News number** (official sales, players, records) | RUN.md launch rule; our gta-99 | own graphics | The day Take-Two posts |
-| 7 | **Moments with our commentary** (funny, physics) | 1.5M, 842k, 560k | own capture or creator clips (rule 10) | Captures |
-| 8 | **Long-form search videos** (tips, money, before you buy, map) | 0.7M–5.3M | own capture + graphics | First by Sun Nov 23 |
+| 1 | **GTA 5 vs GTA 6, same thing side by side** | 5.1M, 42k, Trailer vs Gameplay 469k | GTA V trailers (rockstargames.com) vs GTA VI trailers / Extended Look; GTA 6 gameplay side from creator clips | **Today** (A1 rebuild, A2) |
+| 2 | **Trailer vs Reality** (a trailer shot vs the same place in real gameplay) | Trailer vs Gameplay 469k | official trailer + creator gameplay clip | Today, once 3 clean clips are found |
+| 3 | **"Is this real?" / fake check** of viral clips | two of two links Isac sent on 2026-11-20 were not real GTA 6 | the viral clip (rule 10, only if clean) + official proof | Today |
+| 4 | **Moments, ranked with our call** (funniest NPC, best crash, wildest chase) | 1.5M, 842k, 560k | creator clips, ≤ 5 s each, ≤ 1/3 runtime, between our own score cards | Today |
+| 5 | **"It has X", shown** (jail time, groceries) | Jail Time 551k, Groceries 63k | one official fact + creator clip as proof | Today |
+| 6 | **News number** (official sales, players, records) | RUN.md launch rule; gta-99 | own graphics | The day Take-Two posts |
+| 7 | **Extended Look deep dives** (one thing from the 26-min official video) | the only long official video; no Delta film has used it | official | Today |
+| 8 | **Long-form** | 0.7M–5.3M for tips/money/before-you-buy | official-only long videos now (section 4C); tips/money wait for captures | Sun Nov 23 |
+| — | Tested, Every X catalogs, Detail of the Day | 717k, 1.0M | need the game: **parked until Isac owns it** | Later |
 
 ## 4. The slate (first 40 videos)
 Status column for runs: pick the top `todo` whose footage exists. Shorts are 20–30 s, frame-0 hook ≤5 words, answer by 2.0 s (RUN.md).
@@ -81,7 +91,7 @@ Status column for runs: pick the top `todo` whose footage exists. Shorts are 20�
 ### A. Ready now (official footage + our graphics; no capture needed)
 | # | Slug | Hook (frame 0) | Title | Source |
 |---|---|---|---|---|
-| A1 | gta-sametrailer | SAME TRAILER? | GTA 6's First Trailer Is GTA 5's, 12 Years Later 🤯 | GTA V Trailer (Nov 2 2011) + GTA VI Trailer 1, rockstargames.com — **the test video, built today** |
+| A1 | gta-sametrailer | SAME TRAILER? | GTA 5 vs GTA 6: The Same Trailer? 🤯 | GTA V Trailer (Nov 2 2011) + GTA VI Trailer 1, rockstargames.com — **the test video, built today** |
 | A2 | gta-sameshot-t2 | SAME SHOT. 2013 vs 2026 | GTA 5 vs GTA 6: The Same Shots, 13 Years Apart | GTA V Official Trailer (2013) + Gameplay Video (2013) vs Trailer 2 / Launch Trailer |
 | A3 | gta-extended-5 | 5 THINGS IN THE EXTENDED LOOK | 5 Things Only the GTA 6 Extended Look Showed | GTA VI "An Extended Look" (26:48, rockstargames.com/videos/rk721912): not used by any Delta film yet |
 | A4 | gta-every-ultimate | EVERY ULTIMATE EDITION CAR | Every Car You Get With GTA 6 Ultimate Edition | 51 official Ultimate Edition screenshots in D:\GTA6-Library; replaces held gta-editions |
@@ -92,30 +102,30 @@ Status column for runs: pick the top `todo` whose footage exists. Shorts are 20�
 | A9 | gta-michael | WHERE IS MICHAEL? | What Happened to the GTA 5 Crew? | GTA V character trailers (rockstargames.com: Michael, Franklin, Trevor) + facts only, no story claims |
 | A10 | gta-console-compare | PS5 vs PS5 PRO vs XBOX | GTA 6 on Every Console, in 25 Seconds | Rockstar's official specs/statements only; if none, skip |
 
-### B. Needs Isac's capture (60–90 min of play a day, files into `D:\GTA6-Library\04-my-captures\_inbox`)
+### B. Creator-clip formats (rule 10; replaces the capture list while Isac doesn't own the game)
+Each needs 3–6 clean clips (no facecam, no watermark), each under 5 s, total ≤ 1/3 of the runtime; our voice says something about every clip.
 | # | Series | First episodes |
 |---|---|---|
-| B1–B5 | **Tested** | Tallest jump that survives · Fastest car on the Vice City causeway · How fast do cops come at 1, 3, 5 stars · Can you swim to Keys? · How long a phone battery lasts |
-| B6–B10 | **Every X** | Every plane · Every safehouse · Every boat · Every gun store item · Every radio station name (names only, no audio) |
-| B11–B15 | **Trailer vs Reality** | Each trailer shot found in the game: the beach, the causeway, the VICE sign, the swamp, the nightclub |
-| B16–B20 | **Detail of the Day** (#1, #2 …) | One detail, freeze, circle, payoff: groceries, weight/food, phones/social feed, NPC reactions, weather |
-| B21–B24 | **GTA 5 vs GTA 6, in-game** | Same thing in both games: police, swimming, gas stations, ragdoll |
-| B25–B27 | **Moments + our call** | Funniest NPC reaction this week (own or rule-10 clips, voiced, ranked) |
+| B1–B5 | **Trailer vs Reality** | the VICE sign, the beach, the causeway, the swamp, the nightclub: trailer shot (official) next to the same place in gameplay (creator clip) |
+| B6–B9 | **GTA 5 vs GTA 6, in-game** | police response, swimming, gas stations, ragdoll: GTA V side from Rockstar's GTA V Gameplay Video (2013), GTA 6 side from creator clips |
+| B10–B13 | **Moments, ranked** | funniest NPC reaction, best crash, wildest chase, best fail of the week: 3–4 clips, our score card on each |
+| B14–B17 | **"It has X", shown** | jail time, groceries, phone/social feed, weather: one official fact + one clip as proof |
+| B18–B20 | **Fake check** | each viral "GTA 6" clip that isn't real (AI, real-world footage, other games), shown beside the proof |
+| — | **Parked until Isac owns the game** | Tested series, Every X catalogs, Detail of the Day, tips/money long-forms |
 
-### C. Long-form (16:9), 2 a week from Sun Nov 23
+### C. Long-form (16:9), 1 a week (Sundays) from Nov 23 while there are no captures
 | # | Title | Length | Built from |
 |---|---|---|---|
-| L1 (Sun Nov 23) | GTA 6: 15 Things I Wish I Knew Before Playing | 12–15 min | Captures + our graphics; search-led (beats "13 Things I Wish I Knew" 722k, "Five Things First" 1.0M) |
-| L2 (Wed Nov 26) | Every Way to Make Money in GTA 6, Ranked | 12–15 min | Captures; money guides do 150k–680k |
-| L3 (Sun Nov 30) | GTA 5 vs GTA 6: 25 Side-by-Side Comparisons | 12–18 min | A1/A2 + B21–24 grown into a long video |
-| L4 (Wed Dec 3) | Every Trailer Shot, Found in the Real Game | 10–15 min | B11–15 |
-| L5 (Sun Dec 7) | GTA 6 Launch Month in Numbers | 8–10 min | Official numbers only |
+| L1 (Sun Nov 23) | GTA 5 vs GTA 6: Every Trailer, Side by Side | 8–12 min | Official only: GTA V's 2011/2013 trailers vs GTA VI Trailers 1–2, Launch, Extended Look; grows A1/A2 |
+| L2 (Sun Nov 30) | GTA 6 Launch Week in Numbers | 8–10 min | Official numbers + Streams Charts; our graphics |
+| L3 (Sun Dec 7) | Everything in GTA 6's 26-Minute Extended Look | 10–15 min | Official only (rk721912) |
+| — | 15 Things I Wish I Knew · Every Way to Make Money · Every Trailer Shot Found in the Game | 12–15 min | **Parked until Isac owns the game.** Built from creator clips they would be reused content at long-form scale |
 Every long-form gets 3–5 Shorts cut from it that link to it (related video).
 
 ## 5. Calendar
-- **Now – Nov 25 (launch week, RUN.md):** 4 Shorts a day, 09/13/19/23 ET. Mix per day: 1 news or official-footage (A-list), 2 capture (B-list, as soon as captures exist; until then A-list), 1 comparison.
-- **Nov 26 – Dec 31:** 3 Shorts a day + 2 long-form a week. Weekly stats read (RUN.md step 8): drop the weakest format from section 3, give its slots to the strongest.
-- **Series cadence:** Detail of the Day daily; Tested 3×/week; Every X 2×/week; GTA 5 vs 6 2×/week.
+- **Now – Nov 25 (launch week, RUN.md):** 4 Shorts a day, 09/13/19/23 ET. Mix per day: 1 news or official-footage (A-list), 2 creator-clip (B-list; A-list when no clean clips), 1 comparison.
+- **Nov 26 – Dec 31:** 3 Shorts a day + 1 long-form a week (2 once captures exist). Weekly stats read (RUN.md step 8): drop the weakest format from section 3, give its slots to the strongest.
+- **Series cadence (no-capture mode):** Trailer vs Reality 3×/week; GTA 5 vs 6 2×/week; Moments ranked 2×/week; fake check when one goes viral.
 
 ## 6. Packaging rules learned this week
 - Titles that win: "GTA 6" first or second word, one concrete promise ("Every Plane", "Before You Buy", "Things I Wish I Knew", "vs"), at most one emoji. Avoid "INSANE details" lists: saturated.
@@ -123,7 +133,7 @@ Every long-form gets 3–5 Shorts cut from it that link to it (related video).
 - End on a binary question for the pinned comment ("Which trailer wins?").
 
 ## 7. Dependencies (in order of impact)
-1. **Captures.** Nothing in section 4B or the long-forms moves without them. 60–90 min of play a day, any capture, dropped in `_inbox`.
+1. **Clean creator-clip links.** Isac doesn't own the game yet (Nov 20), so the B-list runs on X/Instagram/TikTok links (no facecam, no watermark). Drop links in the topic; YouTube links can't be fetched from the cloud. When Isac gets the game, captures go back to #1.
 2. **PC autopost.** Disabled since Nov 17 with an expired Claude login: five finished Shorts are waiting in the queue. Fix: on the PC run `claude`, `/login`, re-enable "Delta autopost" (LAUNCH-PLAN.md).
 3. **YouTube phone verification** on Delta, so pinned comments work.
 
