@@ -1,0 +1,123 @@
+{
+ "about": "Every main GTA hero (Delta, pillar 3 GTA history, 'Every X' catalog). Scope: the main console GTA games since GTA III (2001): III, Vice City, San Andreas, IV, V, VI (spin-offs, handhelds, episodes, GTA 1/2/London left out; scope chip on screen). Claude is unnamed and silent in GTA III; the name came officially with San Andreas (2004) per Wikipedia. Tommy Vercetti and Carl 'CJ' Johnson: Rockstar Store (Trilogy page). Niko Bellic, Liberty City: rockstargames.com/games/IV. Michael, Franklin, Trevor: Rockstar's own post 'Grand Theft Auto V Trailers: Michael. Franklin. Trevor.' (PlayStation Blog, R*Q, Apr 30 2013); Los Santos: Rockstar Store GTA V page. GTA VI: rockstargames.com/VI 'Vice City, USA. Jason and Lucia...', 'the state of Leonida', 'Jason and Lucia's story', 'Grand Theft Auto VI: Out Now · November 19, 2026'. 24 years = Vice City Oct 29 2002 to GTA VI Nov 19 2026 (our math, 24.06 y). First release years per Wikipedia/Take-Two. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Rockstar",
+  "Liberty City",
+  "Vice City",
+  "San Andreas",
+  "Los Santos",
+  "Claude",
+  "Tommy Vercetti",
+  "Carl Johnson",
+  "CJ",
+  "Niko Bellic",
+  "Michael",
+  "Franklin",
+  "Trevor",
+  "Jason",
+  "Lucia"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "dur": 30.0,
+ "tail": 0.7,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "Every main GTA hero. Name them.",
+   "say": "Every main G T A hero. Name them.",
+   "pause": 0.15
+  },
+  {
+   "id": "claude",
+   "at": 2.6,
+   "text": "2001, Liberty City. Claude. Silent.",
+   "say": "Two thousand one, Liberty City. Claude. Silent.",
+   "pause": 0.2
+  },
+  {
+   "id": "tommy",
+   "at": 5.89,
+   "text": "2002, Vice City. Tommy Vercetti.",
+   "say": "Two thousand two, Vice City. Tommy Vercetti.",
+   "pause": 0.2
+  },
+  {
+   "id": "cj",
+   "at": 8.48,
+   "text": "2004, San Andreas. CJ.",
+   "say": "Two thousand four, San Andreas. C J.",
+   "pause": 0.15
+  },
+  {
+   "id": "niko",
+   "at": 11.37,
+   "text": "2008, Liberty City again. Niko Bellic.",
+   "say": "Two thousand eight, Liberty City again. Niko Bellic.",
+   "pause": 0.2
+  },
+  {
+   "id": "five",
+   "at": 14.41,
+   "text": "2013, Los Santos. One hero wasn't enough.",
+   "say": "Twenty thirteen, Los Santos. One hero wasn't enough.",
+   "pause": 0.1
+  },
+  {
+   "id": "three",
+   "at": 17.8,
+   "text": "Michael, Franklin and Trevor.",
+   "pause": 0.25
+  },
+  {
+   "id": "q",
+   "at": 19.93,
+   "text": "And GTA 6?",
+   "say": "And G T A six?",
+   "pause": 0.2
+  },
+  {
+   "id": "back",
+   "at": 21.72,
+   "text": "Back to Vice City. 24 years after Tommy.",
+   "say": "Back to Vice City. Twenty-four years after Tommy.",
+   "pause": 0.35
+  },
+  {
+   "id": "two",
+   "at": 24.74,
+   "text": "Now it's two: Jason and Lucia.",
+   "pause": 0.3
+  },
+  {
+   "id": "end",
+   "at": 27.07,
+   "text": "Best GTA hero? Drop the number.",
+   "say": "Best G T A hero? Drop the number.",
+   "pause": 0
+  }
+ ]
+}
