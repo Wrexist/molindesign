@@ -1,10 +1,41 @@
 {
  "_note": "Accounts whose videos clipkit.py treats as official Rockstar footage. Match is on account ids (yt-dlp uploader_id / channel_id), never on display names. Add an account only after checking it is Rockstar's own (verified badge, linked from rockstargames.com).",
  "accounts": [
-  { "name": "Rockstar Games", "site": "twitter", "ids": ["RockstarGames"] },
-  { "name": "Rockstar Games", "site": "youtube", "ids": ["@RockstarGames", "UCmDTrq0LNgPodDOFZiSbsww"] },
-  { "name": "Rockstar Games", "site": "instagram", "ids": ["rockstargames"] },
-  { "name": "Rockstar Games", "site": "tiktok", "ids": ["rockstargames"] }
+  {
+   "name": "Rockstar Games",
+   "site": "twitter",
+   "ids": [
+    "RockstarGames"
+   ]
+  },
+  {
+   "name": "Rockstar Games",
+   "site": "youtube",
+   "ids": [
+    "@RockstarGames",
+    "UCmDTrq0LNgPodDOFZiSbsww"
+   ]
+  },
+  {
+   "name": "Rockstar Games",
+   "site": "instagram",
+   "ids": [
+    "rockstargames"
+   ]
+  },
+  {
+   "name": "Rockstar Games",
+   "site": "tiktok",
+   "ids": [
+    "rockstargames"
+   ]
+  }
  ],
- "domains": ["rockstargames.com", "media-rockstargames.com"]
+ "domains": [
+  "rockstargames.com",
+  "media-rockstargames.com",
+  "videos-rockstargames-com.akamaized.net",
+  "media-rockstargames-com.akamaized.net"
+ ],
+ "_cdn_note": "The two akamaized hosts are Rockstar's own CDN: rockstargames.com/videos/<id> pages play https://videos-rockstargames-com.akamaized.net/v4/<id>/flv/en-us-<720p|1080p>.mp4 (checked 2026-11-20)."
 }

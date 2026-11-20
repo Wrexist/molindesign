@@ -13,9 +13,11 @@ Sources: Rockstar's [video policy](https://support.rockstargames.com/articles/20
 8. **Own gameplay capture after launch (Nov 19)** is the main source from then on. Rockstar's video policy explicitly allows uploading gameplay, but frames it as non-commercial (no money made *through the footage*). A monetized channel earns from the commentary and edit, not the footage, so keep our own voice and graphics on every video (rules 1-2) and never post raw, uncommented gameplay. Rockstar removes leaks, endings, edited story compilations and isolated cinematics.
 9. Spoiler videos (after launch): own capture, "SPOILERS" in the title and the first second, no unbroken story cutscenes, no ending, no edited cutscene compilations.
 
+10. **Creator clips, commentary mode (Isac 2026-11-20, decision card "Commentary mode (short, credited)").** Another creator's GTA 6 clip may be used as footage only like this: each use under 5 s, muted, credited by @handle in the video description (Isac 2026-11-20: not on screen; `CLIP.credit` skips creator clips), our voice making a point about that exact clip (reaction, test, "is this real?", ranking), creator clips at most a third of the runtime and all non-own footage at most half. **Pick clean clips only (Isac 2026-11-20):** no facecam or creator visible, no watermark, logo or channel tag burned in. A clip with a watermark is skipped; never crop, blur or cover a watermark to hide where it came from. Never AI fakes or real-world footage passed off as GTA 6: a suspected fake may only appear in a film that calls it fake. Tooling: `clipkit.py cut <key> --commentary --credit "@handle" --checked "<why it is real game footage and clean>"`, and `clipkit.py lint` enforces the caps. Remove the clip at once if the creator objects or a claim lands.
+
 ## Never
 - Leaked footage or builds, however obtained.
-- Other creators' clips, even credited. Credit the finder in words and show it with our own capture or graphics.
+- Other creators' clips outside rule 10 (not credited in the description, over 5 s, uncommented, watermarked, facecam, or more than a third of a video).
 - In-game TV shows and comedy sets; mod menus, cheats or money exploits; unauthorized mods.
 - Rockstar logo or key art used as our channel branding.
 - The same video reuploaded, or the same clip across many videos.

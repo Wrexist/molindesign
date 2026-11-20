@@ -84,6 +84,7 @@
 
   function credit(g, u, x, y, font) {
     if (!u) return;
+    if (MAN.sources[MAN.clips[u.clip].src].verdict === 'CREATOR') return; // creator clips: credit in the description only (SAFE-EDIT rule 10)
     var src = MAN.sources[MAN.clips[u.clip].src], txt = 'CLIP · ' + String(src.credit || 'Rockstar Games').toUpperCase();
     g.save(); g.font = font || '700 30px "Geist Mono", monospace'; g.textBaseline = 'alphabetic';
     var tw = g.measureText(txt).width;
