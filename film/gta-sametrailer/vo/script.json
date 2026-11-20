@@ -25,7 +25,7 @@
   "score_db": 0,
   "smr_db": 24
  },
- "dur": 21.8,
+ "dur": 22.5,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -46,7 +46,7 @@
   {
    "id": "beach",
    "at": 3.95,
-   "text": "Then a beach crowd."
+   "text": "Then the beach."
   },
   {
    "id": "pres",
@@ -76,13 +76,13 @@
   },
   {
    "id": "views",
-   "at": 14.92,
+   "at": 15.62,
    "text": "Trailer one drew over 93 million views in a day.",
    "say": "Trailer one drew over ninety-three million views in a day."
   },
   {
    "id": "end",
-   "at": 18.55,
+   "at": 19.05,
    "text": "Same formula, or coincidence? Which one wins?"
   }
  ]

@@ -13,7 +13,7 @@
   var W = 1080, H = 1920, VO = window.VO, K = window.KIT, CLIP = window.CLIP;
   var BG = '#0b0820', CREAM = '#fbf0ea', HOT = '#ff4fa3', TEAL = '#19d3c5', ORG = '#ff8a3d', INK = '#1d1233', YEL = '#ffd23f';
   var TAU = Math.PI * 2;
-  var X0 = 110, X1 = 910, MID = 510, CW = 800, CH = 500, TOPY = 230, BOTY = 880, BANDY = 805, LOWY = 1380;
+  var X0 = 90, X1 = 930, MID = 510, PW = 1080, CH = 608, TOPY = 130, BOTY = 858, BANDY = 798, LOWY = 1380;   // v4: full-width plates
   var SLIDE = 170;          // opening/loop slide distance, px
 
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
@@ -66,19 +66,21 @@
     T.vice = start('vice');
     /* pair spans: footage [a, b); between pairs an own typographic card [b, next a) */
     var spans = [
-      [0, at('sun', 'sunset') + .22],
+      [0, at('sun', 'sunset') + .1],
       [start('beach') + .1, lastw('beach') + .45],
-      [start('pres') + .15, lastw('pres') - .2],
+      [start('pres') + .15, lastw('pres') - .45],
       [start('water') + .1, lastw('water') + .03],
       [start('cops') + .1, lastw('cops') + .48],
-      [at('sign', 'vinewood') - .2, T.vice + .6]
+      [at('sign', 'vinewood') - .2, T.vice + 1.25]
     ];
     PAIRS.forEach(function (p, i) {
       var a = spans[i][0], b = spans[i][1], d = b - a;
       function u(name, top) {
         var o = OPT[name] || {}, from = o.from || 0;
-        return CLIP.use(name, a, b, { from: from, speed: Math.min(1, (CUTLEN[name] - from) / d * .98),
-          zoom: i === 0 ? [1.0, 1.45] : i === 5 ? [1.02, 1.32] : [1.04, 1.18],
+        /* the sign pair freezes .2 s after "Vice" and holds VINEWOOD over VICE still for ~1 s */
+        var fz = i === 5 ? T.vice + .2 - a : null;
+        return CLIP.use(name, a, b, { from: from, freeze: fz, speed: Math.min(1, (CUTLEN[name] - from) / (fz || d) * .98),
+          zoom: i === 0 ? [1.0, 1.3] : i === 5 ? [1.0, 1.0] : [1.04, 1.16],
           focus: o.focus || (i === 0 ? (top ? [.62, .4] : [.4, .55]) : [.5, .5]),
           note: (top ? 'GTA 5 card: ' : 'GTA 6 card: ') + NOTE[p.id] });
       }
@@ -96,7 +98,7 @@
     U.ls = CLIP.use('ssun', T.loop, DUR, { from: 0, freeze: 0, zoom: [1, 1], focus: [.4, .55], note: 'loop seam: the frame-0 GTA 6 sunset returns under SAME TRAILER?' });
     ev(T.loop - .05, 'whoosh', .9);
     T.twelve = at('hook', 'twelve');
-    T.views = T.after; T.n93 = at('views', '93'); T.day = at('views', 'day'); T.drew = T.views + .15;
+    T.views = T.after; T.n93 = at('views', '93'); T.day = at('views', 'day'); T.drew = T.views + .1;
     T.end = start('end') - .15; T.formula = at('end', 'formula'); T.coin = at('end', 'coincidence'); T.which = at('end', 'which'); T.wins = at('end', 'wins');
     ev(.02, 'whoosh', .8); ev(.3, 'slam', .8); ev(T.twelve, 'pop', .7);
     ev(T.views, 'whoosh', .8); ev(T.drew, 'ratchet', .7, { t1: T.n93 + .05 }); ev(T.n93 + .05, 'slam', .9); ev(T.day, 'pop', .8);
@@ -113,7 +115,7 @@
       var cur = [];
       l.words.forEach(function (w, i) {
         cur.push({ w: w.w.replace(/[.,:!]$/, '').toUpperCase(), t0: w.t0, t1: w.t1, hot: !!HOTW[norm(w.w)] });
-        if (cur.length === 3 || /[.?!,:]$/.test(w.w) || i === l.words.length - 1) { CHUNKS.push(cur); cur = []; }
+        if (cur.length === 4 || /[.?!,:]$/.test(w.w) || i === l.words.length - 1) { CHUNKS.push(cur); cur = []; }
       });
     });
     CHUNKS.forEach(function (c, i) { c.t0 = c[0].t0 - .05; c.t1 = CHUNKS[i + 1] ? Math.min(CHUNKS[i + 1][0].t0 - .05, c[c.length - 1].t1 + .6) : DUR; });
@@ -122,7 +124,7 @@
     for (var i = 0; i < CHUNKS.length; i++) {
       var c = CHUNKS[i]; if (t < c.t0 || t >= c.t1) continue;
       var px = 56, gap = px * .55, ws = c.map(function (w) { return K.measure(g, w.w, px, { wide: false }) * 1.1; });
-      var tw = ws.reduce(function (a, b) { return a + b; }, 0) + gap * (c.length - 1), s = Math.min(1, (X1 - X0 - 20) / tw), x = -tw / 2;
+      var tw = ws.reduce(function (a, b) { return a + b; }, 0) + gap * (c.length - 1), s = Math.min(1, (X1 - X0 - 280) / tw), x = -tw / 2;
       g.save(); g.translate(MID, y); g.scale(s, s);
       c.forEach(function (w, j) { K.caption(g, [w], x + ws[j] / 2, 0, px, t, { wide: false }); x += ws[j] + gap; });
       g.restore(); return;
@@ -148,27 +150,27 @@
     return d * SLIDE * (1 - eio(seg(t, 0, .9)));
   }
   function slot(g, t, y, u, year, game, col, pairIdx, inPair, top) {
-    var pk = pairIdx === 5 && inPair ? 1 + .03 * eo(seg(t, T.vice, T.vice + .2)) - .03 * seg(t, T.vice + .2, T.after) : 1;
-    var sh = pairIdx === 5 && inPair ? 7 * Math.exp(-(t - T.vice) * 9) * Math.sin((t - T.vice) * 70) * (t > T.vice ? 1 : 0) : 0;
+    var sh = pairIdx === 5 && inPair && t > T.vice ? 9 * Math.exp(-(t - T.vice) * 9) * Math.sin((t - T.vice) * 70) : 0;
     g.save(); g.translate(slideX(t, top) + sh, 0);
-    g.translate(MID, y + CH / 2); g.scale(pk, pk); g.translate(-MID, -(y + CH / 2));
-    card(g, X0, y, CW, CH, CREAM, 30);
-    g.save(); rr(g, X0 + 8, y + 8, CW - 16, CH - 16, 24); g.clip();
-    if (inPair) CLIP.draw(g, t, X0 + 8, y + 8, CW - 16, CH - 16, u);
+    g.save(); g.beginPath(); g.rect(0, y, PW, CH); g.clip();
+    if (inPair) CLIP.draw(g, t, 0, y, PW, CH, u);
     else typeCard(g, t, y, pairIdx, top);
+    /* a soft shade under the chips so they read on any shot */
+    var gr = g.createLinearGradient(0, y, 0, y + 130); gr.addColorStop(0, 'rgba(11,8,32,.55)'); gr.addColorStop(1, 'rgba(11,8,32,0)'); g.fillStyle = gr; g.fillRect(0, y, PW, 130);
     g.restore();
-    /* chips in a row along the top-left (the bodycam timestamp at the top right stays clear) */
-    var x = X0 + 24, w = K.chip(g, year, x, y + 50, 34, { bg: col, col: col === HOT ? CREAM : INK });
-    g.save(); g.globalAlpha *= chromeA(t); x += w + 12; w = K.chip(g, game, x, y + 50, 34, { bg: INK, col: CREAM });
-    if (t >= 1.0 || t >= T.loop) { var p = PAIRS[pairIdx]; K.chip(g, p.label, x + w + 12, y + 50, 34, { bg: p.col, col: INK }); }
+    g.fillStyle = INK; g.fillRect(0, top ? y + CH - 4 : y, PW, 4);
+    /* chips along the top-left inside the rail (the bodycam's BODY 3 stamp at the top right stays clear) */
+    var x = X0, w = K.chip(g, year, x, y + 56, 44, { bg: col, col: col === HOT ? CREAM : INK });
+    g.save(); g.globalAlpha *= chromeA(t); x += w + 12; w = K.chip(g, game, x, y + 56, 44, { bg: INK, col: CREAM });
+    if (t >= 1.0) { var p = PAIRS[pairIdx]; K.chip(g, p.label, x + w + 12, y + 56, 34, { bg: p.col, col: INK }); }
     g.restore();
-    if (inPair) CLIP.credit(g, u, X0 + 26, y + CH - 24, '700 22px "Geist Mono", monospace');
+    if (inPair) CLIP.credit(g, u, X0, y + CH - 26, '700 22px "Geist Mono", monospace');
     g.restore();
   }
   /* own card between pairs: the number on top, the word below (never the same words twice); the sign pair previews its two words */
   function typeCard(g, t, y, i, top) {
     var p = PAIRS[i], cx = MID, cy = y + CH / 2 + 8, k = cd(t, PAIRS[i - 1] ? PAIRS[i - 1].b : 0, 14);
-    g.fillStyle = top ? '#241a46' : '#2d1d50'; g.fillRect(X0, y, CW, CH);
+    g.fillStyle = top ? '#241a46' : '#2d1d50'; g.fillRect(0, y, PW, CH);
     g.save(); g.translate(cx + (top ? -1 : 1) * 40 * (1 - k), cy); g.rotate((top ? -.03 : .03) + Math.sin(t * 2.2) * .01);
     var s = lerp(.8, 1, k) * (1 + .015 * Math.sin(t * 4)); g.scale(s, s);
     if (p.id === 'sign') K.sticker(g, top ? 'VINEWOOD?' : 'VICE?', 0, 0, top ? 92 : 140, { col: CREAM, ink: INK });
@@ -224,7 +226,7 @@
     K.chip(g, 'GTA 6 · TRAILER 1 · DEC 2023', MID, 560, 32, { align: 'center', bg: CREAM, col: INK });
     /* ring that fills as the counter climbs */
     var prog = eio(seg(t, T.drew, T.n93 + .05));
-    g.save(); g.translate(MID, cy); g.scale(lerp(.6, 1, k), lerp(.6, 1, k));
+    g.save(); g.translate(MID, cy); var br = 1 + .03 * Math.sin(t * 5) * seg(t, T.n93, T.n93 + .3); g.scale(lerp(.6, 1, k) * br, lerp(.6, 1, k) * br);
     g.lineWidth = 34; g.lineCap = 'round'; g.strokeStyle = 'rgba(251,240,234,.12)'; g.beginPath(); g.arc(0, 0, 250, 0, TAU); g.stroke();
     g.strokeStyle = YEL; g.beginPath(); g.arc(0, 0, 250, -Math.PI / 2, -Math.PI / 2 + TAU * prog); g.stroke();
     g.restore();
@@ -250,10 +252,10 @@
       K.sticker(g, sub, 0, 52, 34, { col: ink, lw: 0, shadow: false, wide: false });
       g.restore();
     }
-    side('GTA 5', 'TRAILER · 2011', 780, T.formula, YEL, INK, -1);
-    var vs = cd(t, T.formula + .2, 12);
+    side('GTA 5', 'TRAILER · 2011', 780, T.end + .05, YEL, INK, -1);
+    var vs = cd(t, T.end + .3, 12);
     if (vs > 0) { g.save(); g.translate(MID, 925); g.scale(vs, vs); g.rotate(Math.sin(t * 4) * .06); K.sticker(g, 'VS', 0, 0, 64, { col: HOT, ink: INK }); g.restore(); }
-    side('GTA 6', 'TRAILER 1 · 2023', 1070, T.formula + .15, HOT, CREAM, 1);
+    side('GTA 6', 'TRAILER 1 · 2023', 1070, T.end + .15, HOT, CREAM, 1);
     captions(g, t, LOWY);
   }
 
@@ -266,7 +268,6 @@
     slot(g, t, BOTY, loop ? U.ls : p.us, '2023', 'GTA 6', HOT, i, s.inPair, false);
     if (loop || t < start('sun') + .15) hook(g, t);
     else if (!stamp(g, t)) captions(g, t, BANDY);
-    if (!loop) ticks(g, t);
   }
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1;
@@ -275,11 +276,8 @@
     else if (t < T.end) beatViews(g, t);
     else if (t < T.loop) beatEnd(g, t);
     else pairsView(g, t, true);
-    K.flash(g, W, H, t - T.after, .3);
-    var ca = t < T.after ? chromeA(t) : (t >= T.loop ? 0 : 1);
-    g.save(); g.globalAlpha = ca; K.chip(g, 'GTA 6', X0, 150, 40, { bg: HOT, col: CREAM });
-    if (t < T.after) K.chip(g, 'MATCHES ' + nHits(t) + '/6', X1, 150, 36, { align: 'right', bg: nHits(t) === 6 ? HOT : CREAM, col: nHits(t) === 6 ? CREAM : INK });
-    g.restore();
+    /* match counter in the band, right edge; 6/6 turns pink */
+    if (t < T.after) { g.save(); g.globalAlpha = seg(t, start('sun') + .15, start('sun') + .4); var n = nHits(t); K.chip(g, n + '/6', X1, BANDY, 36, { align: 'right', bg: n === 6 ? HOT : CREAM, col: n === 6 ? CREAM : INK }); g.restore(); }
   }
   function render(t, samples, shutter, fps) {
     t = clamp(t, 0, DUR); samples = samples || 1;
@@ -293,17 +291,16 @@
   function TEXTS(t) {
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
-    Tx('pill', 'GTA 6', T.twelve + .2, T.loop);
-    Tx('hook', 'SAME TRAILER?', 0, start('sun') + .15);
+        Tx('hook', 'SAME TRAILER?', 0, start('sun') + .15);
     Tx('y11', '2011', 0, T.after);
     Tx('y23', '2023', 0, T.after);
     /* the card label chip (SUNSET, BEACH …) shows from the card before its footage until the footage ends */
     PAIRS.forEach(function (p, i) { Tx('lab-' + p.id, p.label, i ? PAIRS[i - 1].b + .05 : 1.05, p.b); });
-    Tx('count', 'MATCHES n/6', T.twelve + .2, T.after);
+    Tx('count', 'n/6', start('sun') + .3, T.after);
     Tx('tag', 'GTA 6 · TRAILER 1 · DEC 2023', T.views + .05, T.end);
     Tx('views', 'IN 24 HOURS', T.n93 + .05, T.end);
     Tx('formula', 'SAME FORMULA?', T.end + .1, T.loop);
-    Tx('sides', 'GTA 5 VS GTA 6', T.formula + .3, T.loop);
+    Tx('sides', 'GTA 5 VS GTA 6', T.end + .3, T.loop);
     return o;
   }
 
@@ -317,7 +314,7 @@
       Object.keys(m.clips).forEach(function (n) { CUTLEN[n] = m.clips[n].out - m.clips[n].in; });
     })].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0“”’·✓'); }))).then(function () {
       buildChunks(); initTimes();
-      window.FILM.POSTER = T.vice + .5;   // VINEWOOD over VICE at 6/6
+      window.FILM.POSTER = T.vice + .7;   // VINEWOOD over VICE at 6/6
       window.FILM.SHOTS = [{ id: 'pairs', name: 'Six matches', t0: 0, t1: T.after }, { id: 'views', name: '93 million', t0: T.after, t1: T.end }, { id: 'vote', name: 'Which wins?', t0: T.end, t1: T.loop }, { id: 'loop', name: 'Loop', t0: T.loop, t1: DUR }];
       window.READY = true;
     });
