@@ -8,7 +8,8 @@ GTA 6 loot works like an escape room: one cash bag sits behind a chain of four l
 ## 2. Source and footage (SAFE-EDIT rule 10, commentary mode)
 - Source: TikTok by **@diez.gg**, "INSANE LOOT RUN ON GTA6, TO GET 100K IN CASH", posted 2026-11-20, 62 s, 1080x1920 (`clipkit.py fetch`, key `tiktok-7710193743843921185`, verdict THIRD_PARTY → cut with `--commentary`).
 - Clean check: no watermark, logo or channel tag burned in. The creator's facecam (top third, 0–15 s) and his word captions (y 680–795) are **cropped out** with `--crop 1080:1110:0:810` (Isac 2026-11-20: "just remove or block the facecam"). Real game footage: continuous third-person play with the GTA VI HUD, Leonida water and swamp; nothing real-world or AI-looking seen on the contact sheets.
-- Clips (each 2.5 s, muted, annotated): `boat` 11.5–14.0 (boat out to the compound), `keypad` 35.4–37.9 (ENTER CODE → keypad → safe opens), `airboat` 56.0–58.5 (leaving through the swamp). Total 7.5 s of about 29 s = 26 % (cap: a third).
+- Clips cut (muted, each annotated; `airboat` 56.0–58.5 is cut but not used): `boat` 11.5–14.0, `keypad` 35.4–37.9 (ENTER CODE → keypad → safe opens), `bag` 51.0–53.0 (the bag on his shoulder), `smg` 53.6–55.6 (CRABSHACK VF5 SMG pickup label).
+- Uses in the film (r2, as shipped to jury r2): boat 2.07 s, keypad ×2 (1.81 s frozen before any digit + 1.50 s safe opening), bag 1.19 s, smg 1.97 s = about 8.5 s of 34.1 s, 25 % (cap: a third). r3 adds a darkened, blurred boat still behind the frame-0 bag (1.6 s, plus 0.45 s at the loop seam); `out/clips-used.json` holds the exact totals.
 - Credit: description only ("Gameplay clips: @diez.gg on TikTok, used for commentary."), never on screen.
 
 ## 3. Facts
@@ -32,3 +33,5 @@ Gameplay clips: @diez.gg on TikTok, used for commentary. Made with our own graph
 
 ## Log
 - 2026-11-20: brief, script and clips by the thread session.
+- 2026-11-20: jury r1 6.8 (FAIL, Truth 8.5) → r2: full-bleed clips, bag + SMG clips, stake on screen by 2 s, 96 px phrase captions, our take line (puzzle box), truth wording (posted, he says), bigger props, end question card.
+- 2026-11-20: jury r2 7.0 PASS (Truth 8.5) → r3: blurred game still behind the frame-0 bag; "found" line and calendar cut (chip POSTED A DAY AFTER LAUNCH on the boat clip); SMG ring and bag circle track their targets, lock counter steps off every clip; 3 LOCKS, 1 SAFE (voice: "Three locks for one safe"); shed snaps in on a door hit with a water slosh before it; SOLVE IT? card about 2.1 s; twist reworded to his "a little bit of cash" at speed 1.0. Fix 4 (full relayout) skipped by the coordinator.

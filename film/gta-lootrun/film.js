@@ -2,9 +2,10 @@
    behind a chain of four locks (power -> PC password -> safe code -> shed code), from a player's loot run posted the
    day after launch. Hero object: our own duffel bag wrapped in a chain with four padlocks; it opens one lock per lock
    line, rides a rail under each beat, and comes back up and re-locks for the loop.
-   Footage (r2): five short muted creator uses, full-bleed 1080 x 1110 (the crop's own size, y 330-1440), each under
-   5 s and annotated: boat, keypad (frozen before any digit, then a cut to the safe swinging open, so no code is ever
-   shown), the bag on his shoulder, and the SMG pickup label. Credit lives in the description only (CLIP.credit skips
+   Footage (r3): short muted creator uses, full-bleed, each under 5 s and annotated: a darkened, blurred boat still
+   behind the frame-0 bag (and again in the last 0.45 s so the loop matches), the boat (POSTED A DAY AFTER LAUNCH),
+   keypad (frozen before any digit, then a cut to the safe swinging open, so no code is ever shown), the bag on his
+   shoulder (circle follows it), and the SMG pickup label (ring tracks it). The lock counter steps off every clip. Credit lives in the description only (CLIP.credit skips
    creator clips). Everything else is our flat drawing. Pure function of t, keyed to the voice with at(id, word).
    Rail x 90-930, glyphs above y 1450. Contract: window.FILM, DUR, render(t), READY, EV, TEXTS(t), SCORE(ctx), BOUNDS_RUN. */
 (function () {
@@ -47,10 +48,10 @@
   function initTimes() {
     EV.length = 0; CLIP.reset();
     T.money0 = 1.3;                              // the stake on screen by 2.0 s: $10K-$30K, he says
-    T.found = start('found') - .15;              // bag shrinks onto the rail; calendar
-    T.flip = at('found', 'posted');
+    T.bg1 = 1.4;                                 // the darkened, blurred boat still behind the frame-0 bag ends
     T.boat0 = start('lock1') - .12;              // clip: boat out to the compound
-    T.boat1 = wend('lock1', 'one') + .05;           // own: the breaker
+    T.boat1 = wend('lock1', 'one') + .05;        // own: the breaker
+    T.posted1 = T.boat0 + 3.15;                  // POSTED A DAY AFTER LAUNCH chip (replaces the cut "found" beat)
     T.power = at('lock1', 'power');
     T.open1 = lastw('lock1') + .04;
     T.l2 = start('lock2') - .12;                 // own: PC login, then the bedroom wall
@@ -64,9 +65,10 @@
     T.k1 = T.puzzle - .05;                       // clip: the safe swings open (digits never shown)
     T.open3 = T.k1 + .15;
     T.tw = start('twist') - .1;                  // own: the safe, a tiny stack, a sticky note
-    T.barely = at('twist', 'barely');
+    T.barely = at('twist', 'little');
     T.another = at('twist', 'another');
-    T.l4 = start('lock4') + .04;                 // own: the shed by the water
+    T.slosh = lastw('twist') + .02;              // water slosh under the breath before lock four
+    T.l4 = start('lock4') - .02;                 // own: the shed snaps in on a door hit
     T.open4 = at('lock4', 'shed');
     T.b0 = start('bagl') - .12;                  // clip: the bag on his shoulder
     T.b1 = at('bagl', 'ten') - .05;              // own: the bag slides out of the shed, the stake
@@ -76,19 +78,20 @@
     T.end = start('end') - .12;                  // own: the bag comes back up, all four open
     T.escape = at('end', 'escape');
     T.loot = at('end', 'loot');
-    T.q = start('end') + .85;
-    T.reclose = lastw('end') + .45;              // locks snap shut again: the last frame is frame 0
+    T.q = at('end', 'escape') - .12;             // SOLVE IT? card: about 2.1 s, down from 3 s
+    T.reclose = lastw('end') + .4;               // locks snap shut again: the last frame is frame 0
     T.open = [T.open1, T.open2, T.open3, T.open4];
 
     /* clip uses: each under 5 s and annotated; clipkit.py lint holds this to SAFE-EDIT rule 10 */
-    U.boat = CLIP.use('boat', T.boat0, T.boat1, { speed: Math.min(1, 2.4 / (T.boat1 - T.boat0)), zoom: [1.02, 1.12], focus: [.5, .6], note: 'full bleed, circle on the boat, label BY BOAT' });
-    U.key = CLIP.use('keypad', T.k0, T.k1, { speed: 1, freeze: T.kfrz, zoom: [1.02, 1.1], focus: [.5, .42], note: 'freeze before any digit, circle on the keypad, CODE: HIDDEN, our opinion THREE STEPS FOR ONE SAFE' });
+    U.hookbg = CLIP.use('boat', 0, T.bg1, { from: 1.9, speed: .3, zoom: [1.1, 1.16], focus: [.5, .4], note: 'frame-0 backdrop: darkened 50 %, blurred 6 px, behind the drawn bag so frame 0 reads as GTA 6 gameplay with the sound off' });
+    U.endbg = CLIP.use('boat', DUR - .45, DUR, { from: 1.9 - .45 * .3, speed: .3, zoom: [1.09, 1.1], focus: [.5, .4], note: 'the same darkened backdrop fades back in under the re-locked bag so the last frame matches frame 0' });
+    U.boat = CLIP.use('boat', T.boat0, T.boat1, { speed: Math.min(1, 2.4 / (T.boat1 - T.boat0)), zoom: [1.02, 1.12], focus: [.5, .6], note: 'full bleed, circle on the boat, chip POSTED A DAY AFTER LAUNCH' });
+    U.key = CLIP.use('keypad', T.k0, T.k1, { speed: 1, freeze: T.kfrz, zoom: [1.02, 1.1], focus: [.5, .42], note: 'freeze before any digit, circle on the keypad, CODE: HIDDEN, our opinion 3 LOCKS, 1 SAFE' });
     U.safe = CLIP.use('keypad', T.k1, T.tw, { from: 2.07, speed: .42 / (T.tw - T.k1), zoom: [1.12, 1.26], focus: [.32, .5], note: 'the safe swings open, brightened; PUZZLE BOX slam; lock 3 opens' });
-    U.bag = CLIP.use('bag', T.b0, T.b1, { from: 1.2, speed: Math.min(1, .76 / (T.b1 - T.b0)), zoom: [1.04, 1.12], focus: [.45, .75], note: 'circle on the bag on his shoulder, label THE BAG' });
-    U.smg = CLIP.use('smg', T.s0, T.end, { speed: Math.min(1, 1.05 / (T.end - T.s0)), zoom: [1.0, 1.08], focus: [.35, .9], note: 'circle on the HUD pickup label, RARE SMG · HE SAYS card' });
+    U.bag = CLIP.use('bag', T.b0, T.b1, { from: 1.43, speed: Math.min(1, .44 / (T.b1 - T.b0)), zoom: [1.02, 1.08], focus: [.4, .8], note: 'only the frames where the bag is in shot; the THE BAG circle follows it' });
+    U.smg = CLIP.use('smg', T.s0, T.end, { speed: Math.min(1, 1.05 / (T.end - T.s0)), zoom: [1.0, 1.04], focus: [.4, .95], note: 'circle tracks the CRABSHACK VF5 SMG pickup label, RARE SMG · HE SAYS card' });
 
     ev(.25, 'tick', .5); ev(.42, 'tick', .4); ev(T.money0, 'slam', .7); ev(lastw('hook') + .05, 'thud', .6);
-    ev(T.found, 'whoosh', .6); ev(T.flip, 'scratch', .5);
     ev(T.boat0, 'swish', .6); ev(T.boat0 + .45, 'zip', .4);
     ev(T.boat1, 'swish', .6); ev(T.power + .25, 'thud', .7);
     ev(T.l2, 'swish', .6);
@@ -97,7 +100,7 @@
     ev(T.l3, 'swish', .6); for (var b = 0; b < 4; b++) ev(T.sc + b * .12, 'key', .4);
     ev(T.k0, 'swish', .6); ev(T.k0 + T.kfrz, 'shutter', .6); ev(T.k1, 'squeak', .5);
     ev(T.tw, 'swish', .6); ev(T.barely + .05, 'squeak', .5); ev(T.another + .05, 'pop', .6);
-    ev(T.l4, 'swish', .6); ev(T.open4 + .1, 'squeak', .5);
+    ev(T.slosh, 'slosh', .9); ev(T.l4, 'slam', .75); ev(T.l4 + .03, 'thud', .5); ev(T.open4 + .1, 'squeak', .5);
     ev(T.b0, 'swish', .6); ev(T.b1, 'whoosh', .5); ev(T.ten + .1, 'thud', .6);
     ev(T.s0, 'swish', .6); ev(T.smg, 'pop', .6);
     ev(T.end - .3, 'whoosh', .6); ev(T.escape, 'sparkle', .6); ev(T.q, 'pop', .6);
@@ -110,7 +113,7 @@
   var CHUNKS = [], CPX = 96;
   var WEAK = { a: 1, an: 1, the: 1, is: 1, to: 1, in: 1, by: 1, you: 1, of: 1, for: 1, this: 1, and: 1, could: 1 };
   function buildChunks(g) {
-    var HOTW = { locks: 1, bag: 1, power: 1, password: 1, bedroom: 1, safe: 1, code: 1, barely: 1, shed: 1, thirty: 1, smg: 1, escape: 1, puzzle: 1, posted: 1, one: 1, two: 1, three: 1, four: 1 };
+    var HOTW = { locks: 1, bag: 1, power: 1, password: 1, bedroom: 1, safe: 1, code: 1, little: 1, cash: 1, shed: 1, thirty: 1, smg: 1, escape: 1, puzzle: 1, one: 1, two: 1, three: 1, four: 1 };
     var GAP = CPX * .3;
     function wd(w) { return K.measure(g, w.w, CPX, { wide: false }); }
     function width(c) { return c.reduce(function (a, w) { return a + wd(w); }, 0) + GAP * (c.length - 1); }
@@ -251,12 +254,17 @@
   /* poses: big (hook), rail (under each beat), end (bag big, free); the rail ducks away under two clips */
   var BIG = { x: MID, y: 900, s: 1.2 }, RAIL = { x: MID, y: 1318, s: .62 }, ENDP = { x: MID, y: 1040, s: 1.02 };
   function mixp(a, b, k) { return { x: lerp(a.x, b.x, k), y: lerp(a.y, b.y, k), s: lerp(a.s, b.s, k) }; }
+  /* the lock counter steps off the footage: it fades out for every clip use so it never covers the subject */
+  function clipA(t) {
+    var a = 1;
+    [[T.boat0, T.boat1], [T.k0, T.tw]].forEach(function (c) { var k = Math.min(seg(t, c[0] - .05, c[0] + .12), 1 - seg(t, c[1] - .05, c[1] + .2)); a = Math.min(a, 1 - eio(clamp(k, 0, 1))); });
+    return a;
+  }
   function pose(t) {
-    if (t < T.found) return BIG;
+    if (t < T.boat0) return BIG;
     if (t < T.end - .3) {
-      var p = mixp(BIG, RAIL, eio(seg(t, T.found, T.found + .7)));
-      var hide = seg(t, T.b0, T.b0 + .25);
-      p.a = 1 - eio(hide);
+      var p = mixp(BIG, RAIL, eio(seg(t, T.boat0, T.boat0 + .1)));
+      p.a = t >= T.b0 - .05 ? 1 - eio(seg(t, T.b0 - .05, T.b0 + .12)) : clipA(t);
       return p;
     }
     var q = mixp(RAIL, ENDP, eio(seg(t, T.end - .3, T.end + .35)));
@@ -277,7 +285,7 @@
     g.restore();
     g.restore();
     for (var j = 0; j < 4; j++) {
-      var u = t - T.open[j]; if (u <= 0 || u > 1.4 || t > T.end - .3 || p.y > 1400) continue;
+      var u = t - T.open[j]; if (u <= 0 || u > 1.4 || t > T.end - .3 || p.y > 1400 || (p.a != null && p.a < .5)) continue;
       g.save(); g.globalAlpha = 1 - seg(u, 1.1, 1.4); stamp(g, 'OPEN', p.x + LX[j] * p.s, p.y - 40, 34, u, TEAL, -.1); g.restore();
     }
   }
@@ -297,29 +305,19 @@
   }
 
   /* ---------- beats ---------- */
+  /* frame 0: a darkened, blurred still of the game behind the drawn bag, so the sound-off scroller sees GTA 6 */
+  function gameBg(g, t, u, a) {
+    if (a <= 0) return;
+    g.save(); g.globalAlpha *= a; g.beginPath(); g.rect(0, 380, W, 800); g.clip();
+    g.filter = 'blur(6px) brightness(.5)'; CLIP.draw(g, t, -20, 360, W + 40, 840, u); g.filter = 'none';
+    g.restore();
+  }
   function beatHook(g, t) {
+    gameBg(g, t, U.hookbg, lerp(.5, 1, eo(seg(t, 0, .3))) * (1 - eio(seg(t, T.bg1 - .4, T.bg1))));
     hero(g, t);
-    var o = T.found - .05, a = 1 - seg(t, o - .2, o);
+    var o = T.boat0 - .05, a = 1 - seg(t, o - .2, o);
     g.save(); g.globalAlpha = a; hookText(g, t, t + 1); g.restore();
     moneyStamp(g, t, t - T.money0, 1225, a);
-  }
-  function calendar(g) {
-    return function () {
-      var t = CURT2, flip = seg(t, T.flip - .15, T.flip + .15), day = flip < .5 ? '19' : '20', sy = Math.abs(Math.cos(flip * Math.PI));
-      g.rotate(osc(t, 6) * .02);
-      card(g, -250, -250, 500, 480, CREAM, 30);
-      g.fillStyle = HOT; rr(g, -250, -250, 500, 120, 30); g.fill(); g.fillRect(-250, -170, 500, 40); g.lineWidth = 6; g.strokeStyle = INK; g.beginPath(); g.moveTo(-250, -130); g.lineTo(250, -130); g.stroke();
-      K.sticker(g, 'NOV', 0, -190, 64, { col: CREAM, wide: false });
-      for (var r = -1; r <= 1; r += 2) { g.fillStyle = INK; g.beginPath(); g.arc(r * 150, -250, 16, 0, TAU); g.fill(); }
-      g.save(); g.translate(0, 30); g.scale(1, Math.max(.02, sy)); K.sticker(g, day, 0, 0, 190, { col: INK, lw: 0, shadow: false, wide: false }); g.restore();
-      K.chip(g, flip < .5 ? 'LAUNCH DAY' : 'POSTED', 0, 180, 40, { align: 'center', bg: flip < .5 ? INK : TEAL, col: flip < .5 ? CREAM : INK });
-    };
-  }
-  var CURT2 = 0;
-  function beatFound(g, t) {
-    CURT2 = t; stage(g, t, T.found + .3, T.boat0, 1.3, calendar(g));
-    hero(g, t);
-    chipTop(g, 'GTA 6 · LAUNCHED NOV 19', YEL, INK, seg(t, T.found + .2, T.found + .4));
   }
   /* full-bleed footage: the cut's own 1080 x 1110 frame, y 330-1440 */
   function footage(g, t, u) {
@@ -335,9 +333,16 @@
     CLIP.credit(g, u, X0 + 10, FY + FH - 40);   // draws nothing for a creator clip: credit is in the description
     g.restore();
   }
-  function circleOn(g, t, u, nx, ny, rx, ry, col, seed, d0) {
+  /* a point that follows something in the footage: key-framed in the cut's own seconds */
+  function track(u, t, keys) {
+    var src = u.from + Math.max(0, t - u.t0) * u.speed;
+    if (src <= keys[0][0]) return [keys[0][1], keys[0][2]];
+    for (var i = 1; i < keys.length; i++) if (src <= keys[i][0]) { var k = seg(src, keys[i - 1][0], keys[i][0]); return [lerp(keys[i - 1][1], keys[i][1], k), lerp(keys[i - 1][2], keys[i][2], k)]; }
+    var l = keys[keys.length - 1]; return [l[1], l[2]];
+  }
+  function circleOn(g, t, u, nx, ny, rx, ry, col, seed, d0, below) {
     var p = CLIP.toScreen(u, t, nx, ny, FX, FY, FW, FH);
-    g.save(); g.beginPath(); g.rect(FX, FY, FW, FH); g.clip();
+    g.save(); g.beginPath(); g.rect(FX, FY, FW, FH + (below || 0)); g.clip();
     var a0 = u.t0 + (d0 == null ? .25 : d0); K.scribble(g, p[0], p[1], rx, ry, eo(seg(t, a0, a0 + .5)), col, 12, seed);
     g.restore();
   }
@@ -345,7 +350,6 @@
   function beatBoat(g, t) {
     footage(g, t, U.boat);
     circleOn(g, t, U.boat, .5, .64, 270, 330, YEL, 3);
-    clipChip(g, 'BY BOAT');
     hero(g, t);
   }
   function beatPower(g, t) {
@@ -362,7 +366,7 @@
       g.fillStyle = on > .5 ? YEL : '#555a6e'; g.beginPath(); g.arc(150, -170, 28, 0, TAU); g.fill(); g.lineWidth = 5; g.strokeStyle = INK; g.stroke();
     });
     if (t > T.power + .1) stamp(g, 'POWER ON', MID, 1090, 72, t - T.power - .1, YEL, -.08);
-    chipTop(g, 'MAIN BUILDING · OUR DRAWING', CREAM, INK, k);
+    chipTop(g, 'MAIN BUILDING · OUR DRAWING', CREAM, INK, k * seg(t, T.posted1, T.posted1 + .2));
     hero(g, t);
   }
   function monitorBody(g) {
@@ -424,7 +428,7 @@
     clipChip(g, 'CODE: HIDDEN', HOT, CREAM);
     if (u === U.safe) K.chip(g, 'SAFE: OPEN', X1, FY + 70, 40, { align: 'right', bg: TEAL, col: INK });
     /* our take */
-    K.slam(g, '3 STEPS, 1 SAFE', MID, 1110, 84, t - T.k0 - .1, { col: CREAM, wide: false, from: 1.3 });
+    K.slam(g, '3 LOCKS, 1 SAFE', MID, 1110, 84, t - T.k0 - .1, { col: CREAM, wide: false, from: 1.3 });
     if (t > T.puzzle + .1) K.slam(g, 'PUZZLE BOX', MID, 960, 112, t - at('take', 'puzzle'), { col: YEL, wide: false, rot: -.06, from: 1.3 });
     hero(g, t);
   }
@@ -449,7 +453,7 @@
       if (dw > 60) { g.fillStyle = INK; g.beginPath(); g.arc(dw * .7, -30, 46 * dw / 460, 0, TAU); g.fill(); }
       g.restore();
     });
-    if (t > T.barely - .1) K.slam(g, 'BARELY ANY CASH', MID, 1150, 76, t - T.barely + .1, { col: CREAM, wide: false, from: 1.3 });
+    if (t > T.barely - .1) K.slam(g, 'A LITTLE CASH', MID, 1150, 84, t - T.barely + .1, { col: CREAM, wide: false, from: 1.3 });
     chipTop(g, 'INSIDE THE SAFE · OUR DRAWING', CREAM, INK, k);
     hero(g, t);
   }
@@ -467,13 +471,16 @@
   }
   function beatL4(g, t) {
     var door = eio(seg(t, T.open4, T.open4 + .45));
-    var k = stage(g, t, T.l4, T.b0, 1.25, function () { shedDraw(g, t, door, -1); });
+    /* no fade: the shed snaps in at full opacity on the door hit, scale .9 -> 1 over six frames */
+    var snap = lerp(.9, 1, eo(seg(t, T.l4, T.l4 + .2))), push = lerp(1, 1.12, eio(seg(t, T.l4, T.b0))), k = 1;
+    g.save(); g.translate(MID, STY); g.scale(1.25 * snap * push, 1.25 * snap * push); shedDraw(g, t, door, -1); g.restore();
     chipTop(g, 'A SHED BY THE WATER · OUR DRAWING', CREAM, INK, k);
     hero(g, t);
   }
   function beatBag(g, t) {
     footage(g, t, U.bag);
-    circleOn(g, t, U.bag, .4, .84, 240, 200, YEL, 9, .4);
+    var bp = track(U.bag, t, [[1.43, .24, .8], [1.57, .36, .85], [1.9, .35, .85]]);
+    circleOn(g, t, U.bag, bp[0], bp[1], 220, 190, YEL, 9, .15);
     clipChip(g, 'THE BAG');
     hero(g, t);
   }
@@ -499,11 +506,13 @@
   }
   function beatSmg(g, t) {
     footage(g, t, U.smg);
-    circleOn(g, t, U.smg, .3, .93, 300, 70, YEL, 13, .2);
+    var lp = track(U.smg, t, [[0, .34, .964], [.4, .36, .964], [.6, .41, .964], [.8, .5, .964], [.93, .58, .964], [1.03, .64, .964], [1.1, .7, .964]]);
+    circleOn(g, t, U.smg, lp[0], lp[1], 215, 58, YEL, 13, .15, 60);
     smgCard(g, t);
     hero(g, t);
   }
   function beatEnd(g, t) {
+    gameBg(g, t, U.endbg, t >= U.endbg.t0 ? .5 * eio(seg(t, U.endbg.t0, DUR)) : 0);
     hero(g, t);
     if (t < T.q + .1) smgCard(g, t);
     var ea = 1 - seg(t, T.reclose - .1, T.reclose + .1);
@@ -512,9 +521,8 @@
       if (t > T.loot) K.slam(g, 'ESCAPE ROOM', MID, 300, 96, t - T.loot, { col: YEL, wide: false, rot: -.05, from: 1.25 });
       if (t > T.q) {
         var k = cd(t, T.q, 14); g.save(); g.translate(MID, 570); g.scale(k, k); g.rotate(-.02);
-        card(g, -380, -150, 760, 300, HOT, 34);
-        K.sticker(g, 'COULD YOU', 0, -62, 110, { col: CREAM, wide: false });
-        K.sticker(g, 'SOLVE IT?', 0, 68, 110, { col: YEL, wide: false });
+        card(g, -370, -110, 740, 220, HOT, 34);
+        K.sticker(g, 'SOLVE IT?', 0, 6, 120, { col: YEL, wide: false });
         g.restore();
       }
       g.restore();
@@ -529,8 +537,7 @@
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.filter = 'none';
     backdrop(g, t);
-    if (t < T.found) beatHook(g, t);
-    else if (t < T.boat0) beatFound(g, t);
+    if (t < T.boat0) beatHook(g, t);
     else if (t < T.boat1) beatBoat(g, t);
     else if (t < T.l2) beatPower(g, t);
     else if (t < T.l3) beatL2(g, t);
@@ -543,6 +550,7 @@
     else if (t < T.end) beatSmg(g, t);
     else beatEnd(g, t);
     [T.boat0, T.k0, T.b0, T.s0].forEach(function (c) { K.flash(g, W, H, t - c, .25); });
+    if (t >= T.boat0 && t < T.posted1) { g.save(); g.globalAlpha = eo(seg(t, T.boat0 + .05, T.boat0 + .2)) * (1 - seg(t, T.posted1 - .15, T.posted1)); clipChip(g, 'POSTED A DAY AFTER LAUNCH'); g.restore(); }
     pill(g);
     captions(g, t);
   }
@@ -559,19 +567,18 @@
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     Tx('pill', 'GTA 6', 0, DUR + 1);
-    Tx('hook', '4 LOCKS. 1 BAG.', 0, T.found - .2);
-    Tx('money', '$10K–$30K · HE SAYS', T.money0 + .12, T.found - .2);
+    Tx('hook', '4 LOCKS. 1 BAG.', 0, T.boat0 - .2);
+    Tx('money', '$10K–$30K · HE SAYS', T.money0 + .12, T.boat0 - .2);
     Tx('money', '$10K–$30K · HE SAYS', T.ten + .12, T.s0);
-    Tx('cal', 'POSTED', T.flip + .1, T.boat0);
-    Tx('boat', 'BY BOAT', T.boat0, T.boat1);
+    Tx('posted', 'POSTED A DAY AFTER LAUNCH', T.boat0 + .12, T.posted1 - .08);
     Tx('pass', 'BLURRED', T.pc + .13, T.l3);
     Tx('sc', 'SAFE CODE', T.l3 + .15, T.k0);
     Tx('code', 'CODE: HIDDEN', T.k0, T.tw);
-    Tx('take', '3 STEPS, 1 SAFE', T.k0 + .15, T.tw);
-    Tx('barely', 'BARELY ANY CASH', T.barely - .07, T.l4);
+    Tx('take', '3 LOCKS, 1 SAFE', T.k0 + .15, T.tw);
+    Tx('little', 'A LITTLE CASH', T.barely - .07, T.l4);
     Tx('smg', 'RARE SMG · HE SAYS', T.s0 + .35, T.q - .05);
     Tx('escape', 'ESCAPE ROOM', T.loot + .1, T.reclose + .05);
-    Tx('solve', 'COULD YOU SOLVE IT?', T.q + .1, T.reclose + .05);
+    Tx('solve', 'SOLVE IT?', T.q + .06, T.reclose + .1);
     return o;
   }
 
@@ -591,7 +598,20 @@
     };
   }
 
-  function SCORE(ac) { K.score(ac, EV, DUR); }
+  /* the kit's SFX plus one of ours: a water slosh (low-passed noise in three swells) under the breath before the shed */
+  function SCORE(ac) {
+    K.score(ac, EV, DUR);
+    var sr = ac.sampleRate, nb = ac.createBuffer(1, sr, sr), nd = nb.getChannelData(0);
+    for (var i = 0; i < nd.length; i++) nd[i] = hash(i * .37 + 5) * 2 - 1;
+    EV.forEach(function (e) {
+      if (e.type !== 'slosh') return;
+      var t = e.t, d = .6, n = ac.createBufferSource(), lp = ac.createBiquadFilter(), o = ac.createGain();
+      n.buffer = nb; n.loop = true; lp.type = 'lowpass'; lp.Q.value = 2.2; n.connect(lp); lp.connect(o); o.connect(ac.destination);
+      lp.frequency.setValueAtTime(380, t); o.gain.setValueAtTime(0, t);
+      for (var k = 0; k < 3; k++) { var a = t + k * .19; o.gain.linearRampToValueAtTime(.16 * (e.g || 1) * (1 - k * .25), a + .07); lp.frequency.linearRampToValueAtTime(900 - k * 150, a + .07); o.gain.linearRampToValueAtTime(.03, a + .18); lp.frequency.linearRampToValueAtTime(320, a + .18); }
+      o.gain.linearRampToValueAtTime(0, t + d); n.start(t); n.stop(t + d + .05);
+    });
+  }
   function mk(w, h) { var c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
   function init(canvas) {
     canvas.width = W; canvas.height = H; ctx = canvas.getContext('2d'); watch(ctx);

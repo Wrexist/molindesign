@@ -1,5 +1,5 @@
 {
- "about": "GTA 6 loot as an escape room: a player's early-game loot run (TikTok @diez.gg, posted 2026-11-20, the day after launch) shows one cash bag behind a chain of four locks: reach a compound by boat, turn the power on, find the PC password in the bedroom, the PC gives the safe code, the safe holds another code that opens a shed by the water with a cash bag (10-30K, he says) and a rare SMG; the bag is sold to Brian. Commentary mode (SAFE-EDIT rule 10): three muted creator clips, facecam and captions cropped out, each annotated, credit in the description only. Delta.",
+ "about": "GTA 6 loot as an escape room: a player's early-game loot run (TikTok @diez.gg, posted 2026-11-20, the day after launch) shows one cash bag behind a chain of four locks: reach a compound by boat, turn the power on, find the PC password in the bedroom, the PC gives the safe code, the safe holds another code that opens a shed by the water with a cash bag (10-30K, he says) and a rare SMG; the bag is sold to Brian. Commentary mode (SAFE-EDIT rule 10): muted creator clips (boat, keypad x2, bag, smg), facecam and captions cropped out, each annotated, credit in the description only. Delta.",
  "engine": "ming",
  "ming": {
   "voice": "US_James",
@@ -24,7 +24,7 @@
   "score_db": 0,
   "smr_db": 32
  },
- "dur": 34.1,
+ "dur": 32.0,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -38,65 +38,59 @@
    "speed": 1.1
   },
   {
-   "id": "found",
-   "at": 3.79,
-   "text": "A player posted the chain, a day after launch.",
-   "speed": 1.06
-  },
-  {
    "id": "lock1",
-   "at": 6.39,
+   "at": 3.79,
    "text": "Boat out to a compound. Lock one: turn the power on.",
    "speed": 1.1
   },
   {
    "id": "lock2",
-   "at": 9.65,
+   "at": 7.05,
    "text": "Lock two: the PC password is hidden in the bedroom.",
    "say": "Lock two: the P C password is hidden in the bedroom.",
    "speed": 1.1
   },
   {
    "id": "lock3",
-   "at": 12.88,
+   "at": 10.28,
    "text": "Lock three: the PC gives you the safe code.",
    "say": "Lock three: the P C gives you the safe code.",
    "speed": 1.1
   },
   {
    "id": "take",
-   "at": 15.7,
-   "text": "Three steps for one safe. Rockstar built a puzzle box.",
+   "at": 13.1,
+   "text": "Three locks for one safe. Rockstar built a puzzle box.",
    "speed": 1.1
   },
   {
    "id": "twist",
-   "at": 18.99,
-   "text": "Inside the safe? Barely any cash. Just another code.",
-   "speed": 1.1
+   "at": 16.63,
+   "text": "Inside the safe? A little bit of cash. And another code.",
+   "speed": 1.0
   },
   {
    "id": "lock4",
-   "at": 22.38,
+   "at": 20.3,
    "text": "Lock four: a shed by the water.",
    "speed": 1.06
   },
   {
    "id": "bagl",
-   "at": 24.66,
+   "at": 22.6,
    "text": "Inside, a bag worth ten to thirty grand, he says.",
    "speed": 1.08
   },
   {
    "id": "smg",
-   "at": 27.74,
+   "at": 25.7,
    "text": "Plus a rare SMG, he says.",
    "say": "Plus a rare S M G, he says.",
    "speed": 1.06
   },
   {
    "id": "end",
-   "at": 29.71,
+   "at": 27.67,
    "text": "This GTA 6 loot is an escape room. Could you solve it?",
    "say": "This G T A six loot is an escape room. Could you solve it?",
    "speed": 1.04

@@ -25,3 +25,6 @@
 - Our take over the keypad clip: "Three steps for one safe. Rockstar built a puzzle box." (3 STEPS, 1 SAFE / PUZZLE BOX).
 - Truth: "posted" (calendar POSTED), RARE SMG · HE SAYS, "This GTA 6 loot is an escape room."
 - Props ×1.2–1.4 with a 1.0→1.12 push; PC prints SAFE CODE: ▮▮▮▮ before the keypad; safe-open footage +18 % brightness; bag slides ~260 px out of the shed; question card COULD YOU SOLVE IT? at 110 px for 3 s; lock4 split into two lines.
+
+## r3 (after jury r2, 7.0 PASS)
+Frame 0 gets a darkened, blurred boat still behind the bag so it reads as GTA 6 with the sound off; the "found" line and calendar are cut (a POSTED A DAY AFTER LAUNCH chip rides the boat clip instead), bringing the film from 34.1 s to 32.0 s. Annotations now track their targets (bag circle and SMG ring key-framed in the cut's seconds) and the lock counter fades off every clip. "3 LOCKS, 1 SAFE" in voice and slam; the shed snaps in on a door hit after a water slosh; the end card is just SOLVE IT? for about 2.1 s.
