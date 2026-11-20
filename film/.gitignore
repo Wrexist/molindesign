@@ -5,3 +5,4 @@ out/check/
 out/events.json
 out/render.log
 out/vo/
+*/out/make*.log

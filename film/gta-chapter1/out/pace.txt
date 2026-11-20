@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-chapter1/out/gta-chapter1-vo.mp4: 23.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.465, 0-3 s 0.519, median 0.443, still frames 3.0 %
+OK    no frozen stretches, opening moves

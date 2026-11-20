@@ -1,0 +1,70 @@
+{
+ "film": "gta-eastereggs",
+ "sources": {
+  "blockay": {
+   "key": "tiktok-7710081070519176479",
+   "url": "https://www.tiktok.com/@blockay/video/7710081070519176479?_r=1&_t=ZN-9BZEyWXPQ1e",
+   "title": "Top 5 Coolest GTA 6 Easter Eggs🔥 #gta6 #gta #gtaonline #gtavi #gaming...",
+   "uploader": "blockay",
+   "verdict": "CREATOR",
+   "checked": "TikTok post by @blockay 2026-11-20 (day after launch): continuous GTA 6 gameplay (Trinity Apartments sign, the green Eclipse with HAD YOU plate, boat GPS, jet-ski dog, EASTER EGG HUD pickup in a tower nest); no real-world footage or AI artifacts seen on the contact sheets. No watermark, logo or channel tag burned in; his facecam (0-2.9 s, not used), #N title labels and word captions are cropped out of every clip with --crop.",
+   "credit": "@blockay"
+  }
+ },
+ "clips": {
+  "trinity": {
+   "src": "blockay",
+   "in": 6.3,
+   "out": 7.62,
+   "fps": 30,
+   "frames": 40,
+   "w": 1280,
+   "crop": "1080:1150:0:0"
+  },
+  "plate": {
+   "src": "blockay",
+   "in": 60.15,
+   "out": 61.95,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1080:560:0:1290"
+  },
+  "gps": {
+   "src": "blockay",
+   "in": 32.0,
+   "out": 33.12,
+   "fps": 30,
+   "frames": 34,
+   "w": 1280,
+   "crop": "720:330:360:1095"
+  },
+  "dog": {
+   "src": "blockay",
+   "in": 35.1,
+   "out": 37.08,
+   "fps": 30,
+   "frames": 59,
+   "w": 1280,
+   "crop": "1080:650:0:520"
+  },
+  "egg": {
+   "src": "blockay",
+   "in": 49.75,
+   "out": 52.25,
+   "fps": 30,
+   "frames": 75,
+   "w": 1280,
+   "crop": "1080:560:0:610"
+  },
+  "car": {
+   "src": "blockay",
+   "in": 6.3,
+   "out": 7.62,
+   "fps": 30,
+   "frames": 40,
+   "w": 1280,
+   "crop": "1080:560:0:590"
+  }
+ }
+}
