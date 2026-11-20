@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-sametrailer/out/gta-sametrailer-vo.mp4: 22.5 s, 5 hard cuts (2.2/10 s), motion 0-1 s 1.145, 0-3 s 0.656, median 0.497, still frames 4.1 %
+/home/user/molindesign/film/gta-sametrailer/out/gta-sametrailer-vo.mp4: 21.2 s, 9 hard cuts (4.2/10 s), motion 0-1 s 0.697, 0-3 s 0.654, median 0.362, still frames 6.6 %
 OK    no frozen stretches, opening moves

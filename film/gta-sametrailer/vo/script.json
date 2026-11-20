@@ -25,7 +25,7 @@
   "score_db": 0,
   "smr_db": 24
  },
- "dur": 22.5,
+ "dur": 21.2,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -76,13 +76,13 @@
   },
   {
    "id": "views",
-   "at": 15.62,
+   "at": 15.0,
    "text": "Trailer one drew over 93 million views in a day.",
    "say": "Trailer one drew over ninety-three million views in a day."
   },
   {
    "id": "end",
-   "at": 19.05,
+   "at": 18.4,
    "text": "Same formula, or coincidence? Which one wins?"
   }
  ]
