@@ -63,7 +63,7 @@ Game-side facts rest on his narration (transcript.txt, faster-whisper) and the f
 | 6 | The building is called Trinity Apartments, with a triquetra (trinity knot) logo. | trinity | trinity clip 6.30–7.62 s; narration 2.9–7.3 s |
 | 7 | Trinity: the "Trinity Killer" (Arthur Mitchell, John Lithgow) is the villain of Dexter season 4, aired Sept 27 – Dec 13, 2009; the show is set in Miami (Vice City's real-world model). We say "villain", not "killer". | trinity | https://en.wikipedia.org/wiki/Dexter_season_4 |
 | 8 | Climbing the tallest tower in Vice City takes "over five minutes" (his claim; not voiced); at the top a literal Easter egg; throw it and you get a cutscene. | tower, nest | narration 44.4–52.4 s; egg clip 49.75–52.25 s (HUD "EASTER EGG" on pickup at ~48.7 s) |
-| 9 | Atari's Adventure (released March 1980) hid a room reading "Created by Warren Robinett"; Atari "dubbed such hidden features 'Easter eggs'" (Steve Wright: "like Easter eggs for players to find"). | atari | https://en.wikipedia.org/wiki/Adventure_(1980_video_game) ; atari.com's own post (https://atari.com/blogs/atari/so-let-s-talk-about-that-easter-egg) returned 403 from the container |
+| 9 | Atari's Adventure (released March 1980) hid a room reading "Created by Warren Robinett"; Atari "dubbed such hidden features 'Easter eggs'" (Steve Wright: "like Easter eggs for players to find"). | atari | https://en.wikipedia.org/wiki/Adventure_(1980_video_game) ; atari.com's own post (https://atari.com/blogs/atari/so-let-s-talk-about-that-easter-egg) returned 403 from the container ; https://en.wikipedia.org/wiki/Easter_egg_(media) (the term "coined around 1980" by Atari's Steve Wright, so the narration says "around 1980") |
 | 10 | 2026 − 1980 = 46 ("Forty-six years later…"). | loop | arithmetic |
 | 11 | Posted 2026-11-20, a day after the Nov 19 launch. | (description) | TikTok upload date (provenance.json) |
 
@@ -82,7 +82,7 @@ Not claimed: that Dexter himself is in the game or that the apartment is "his" (
 | trinity | 20.4 | Two: Trinity Apartments. Trinity was Dexter's villain in 2009. | 3 |
 | tower | 24.2 | One: the tallest tower in Vice City. | 2 (the dip: a five-minute climb, nothing yet) |
 | nest | 26.7 | Up top, in a nest: an actual Easter egg. | 5 |
-| atari | 29.8 | Atari named them in 1980. | 4 |
+| atari | 29.8 | Atari named them around 1980. | 4 |
 | loop | 31.9 | Forty-six years later… | 5 → loops into "GTA 6 hid an actual egg." |
 
 Row: **4 3 3 4 4 3 4 3 2 5 4 5**. ~33.7 s estimated (99 words, ~3.0 w/s). Launch-week RUN.md says 20–30 s; the coordinator asked ~30–35 s for a 5-item list. If the director needs to cut, drop line `five` and put GTA 6 EASTER EGGS on screen under the hook instead.
@@ -117,3 +117,4 @@ Gameplay clips: @blockay on TikTok, used for commentary. Made with our own graph
 
 ## Log
 - 2026-11-20: brief, script and clips by the video-researcher (5 clips cut and frame-checked).
+- 2026-11-20 jury r1 (7.1, Truth 8.5): real green car clip replaces the drawn coupé; Atari line hedged to "around 1980" per Wikipedia "Easter egg (media)"; HE SAYS on the 2013 card and on TALLEST; boat redrawn as a yacht on a trailer.

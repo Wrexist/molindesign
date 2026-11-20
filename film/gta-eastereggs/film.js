@@ -48,15 +48,16 @@
   function silAfter(t) { for (var i = 0; i < VAD.length; i++) if (VAD[i][1] > t + .05) return VAD[i]; throw new Error('no silence after ' + t); }
   function initTimes() {
     EV.length = 0; CLIP.reset();
-    T.tease0 = .95;                               // the real egg (thrown off the tower) takes the frame: payoff by 1.2 s
+    T.tease0 = 1.0;                               // the real egg (thrown off the tower) takes the frame: payoff by 1.2 s
     T.search = 1.55;                              // TOP 5 EASTER EGGS chip: the search phrase on screen
     T.i5 = silAfter(lastw('hook') - .3)[0] + .02; T.boat = at('boat', 'boat'); T.jason = at('boat', 'jasons');
     T.g0 = start('gps');                          // clip: the boat's GPS screen, on "Its GPS"
     T.still = at('gps', 'still');
     T.i4 = silAfter(lastw('gps') - .3)[0] + .02;  T.q4 = silAfter(wend('dog', 'four') - .1)[0] + .03;
-    T.d0 = silAfter(wend('dog', 'sea') - .2)[0] + .02;   // clip: the dog on a jet ski, from the pause after "sea?"
+    T.d0 = at('dog', 'dog') - .1;                 // clip: the dog on a jet ski, on "dog"
     T.i3 = silAfter(lastw('dog') - .3)[0] + .02;  T.d1 = T.i3;
     T.brian = at('car', 'brians'); T.drive = silAfter(wend('car', 'three') - .1)[0] + .03;
+    T.c0 = Math.min(T.brian - .12, T.i3 + 1.0);                        // clip: the real green car at Trinity Apartments
     T.p0 = silAfter(lastw('car') - .3)[0] + .02;  // clip: the plate, exposure lifted
     T.had = at('plate', 'had');
     T.i2 = silAfter(lastw('plate') - .3)[0] + .02;
@@ -65,9 +66,9 @@
     T.dex = at('trinity', 'dexters');
     T.i1 = silAfter(lastw('trinity') - .3)[0] + .02; T.tall = at('tower', 'tallest');
     T.top = silAfter(lastw('tower') - .3)[0] + .02;          // own: the camera reaches the top, a drawn nest
-    T.ne0 = silAfter(wend('nest', 'nest') - .1)[0] + .02;    // clip: the last of the nest shot, then the egg in his hand
+    T.ne0 = at('nest', 'nest') - .06;            // clip: the nest on the tower top, then the egg in his hand
     T.egg = at('nest', 'egg');
-    T.ne1 = silAfter(lastw('nest') - .3)[0] + .02;
+    T.ne1 = silAfter(lastw('nest') - .3)[0] + .02; T.eggHit = T.ne1 + .01;
     T.at0 = T.ne1; T.atari = at('atari', 'atari');
     T.lp0 = start('loop') - .1; T.y26 = silAfter(lastw('atari') - .3)[0] + .05;
     T.back = DUR - .45;                           // the drawn egg and the hook come back: the last frame is frame 0
@@ -75,19 +76,22 @@
 
     /* clip uses: each under 5 s and annotated; clipkit.py lint holds this to SAFE-EDIT rule 10 (creator share <= 1/3) */
     U.tease = CLIP.use('egg', T.tease0, T.i5, { from: 1.83, speed: Math.min(1, .62 / (T.i5 - T.tease0)), zoom: [1.0, 1.1], focus: [.44, .5], note: 'hook payoff: the real egg in his hand, thrown off the tower; a circle follows the egg' });
-    U.tease.band = [430, 900];
-    U.gps = CLIP.use('gps', T.g0, T.i4, { speed: .62, freeze: 1.7, zoom: [1.1, 1.45], focus: [.27, .36], note: 'push to the boat GPS screen, freeze, ring on the screen, chips IN HIS CLIP and LOS SANTOS' });
-    U.gps.band = [BY, 700];
+    U.tease.band = [430, 990];
+    T.g1 = T.g0 + 1.45;
+    U.gps = CLIP.use('gps', T.g0, T.g1, { speed: .7, freeze: 1.2, zoom: [1.1, 1.45], focus: [.27, .36], note: 'push to the boat GPS screen, freeze, ring on the screen, chips IN HIS CLIP and LOS SANTOS' });
+    U.gps.band = [BY, 1028];
     U.dog = CLIP.use('dog', T.d0, T.d1, { speed: Math.min(1, 1.62 / (T.d1 - T.d0)), zoom: [1.02, 1.12], focus: [.55, .5], note: 'whole band, circle follows the dog in the life vest' });
     U.dog.band = [BY, 1048];
-    U.plate = CLIP.use('plate', T.p0, T.i2, { speed: Math.min(1, 1.7 / (T.i2 - T.p0)), zoom: [1.75, 2.0], focus: [.5, .29], note: 'night shot brightened, push to the plate, box on HAD YOU, chip LOOK-ALIKE' });
-    U.plate.band = [BY, 760];
+    U.car = CLIP.use('car', T.c0, T.p0, { speed: Math.min(1, 1.3 / (T.p0 - T.c0)), zoom: [1.25, 1.4], focus: [.72, .92], note: 'the real green car with the blue stripe outside Trinity Apartments; circle on the car, chip LOOK-ALIKE, 2001 card' });
+    U.car.band = [BY, 1028];
+    U.plate = CLIP.use('plate', T.p0, T.i2, { speed: Math.min(1, 1.7 / (T.i2 - T.p0)), zoom: [1.55, 1.7], focus: [.5, .32], note: 'night shot brightened, push to the plate, box on HAD YOU, chip LOOK-ALIKE' });
+    U.plate.band = [BY, 1028];
     U.tri = CLIP.use('trinity', T.tc0, T.t1, { speed: Math.min(1, 1.3 / (T.t1 - T.tc0)), zoom: [1.0, 1.06], focus: [.45, .35], note: 'whole band, circle tracks the triquetra logo, chip TRINITY APARTMENTS' });
     U.tri.band = [BY, 1048];
-    var nf = 1.13;                                  // from the cut to the sky: the egg rises into his hand on "Easter", then holds
-    U.nest = CLIP.use('egg', T.ne0, T.ne1, { from: nf, speed: 1, freeze: 1.93 - nf, zoom: [1.0, 1.08], focus: [.5, .78], note: 'the egg rises into his hand at the tower top and holds; a circle follows the egg, stamp EASTER EGG' });
+    var nf = Math.max(.3, 1.6 - (at('nest', 'easter') - T.ne0));   // the nest first, then the egg rises into his hand on "Easter" and holds
+    U.nest = CLIP.use('egg', T.ne0, T.ne1, { from: nf, speed: 1, freeze: 1.93 - nf, zoom: [1.0, 1.08], focus: [.5, .78], note: 'the nest at the tower top (circled on "nest"), then the egg rises into his hand and holds; a circle follows the egg, stamp EASTER EGG' });
     U.nest.noFx = true;
-    U.nest.band = [BY, 1048];
+    U.nest.band = [BY, 1028];
 
     /* sound: every hit is short and sits in a silence of the voice track (vo/vad.js) */
     ev(.02, 'tick', .45);
@@ -96,12 +100,11 @@
     ev(T.g0 - .12, 'zip', .5);
     ev(T.q4, 'pop', .5);                                       // the "?" over the stranded swimmer
     ev(T.d0 + .02, 'swish', .5);
-    ev(T.drive, 'zip', .55);
+    ev(T.drive, 'pop', .5);
     ev(T.p0 + .02, 'swish', .5);
     ev(T.tc0 + .01, 'pop', .5);
     ev(T.top + .03, 'whoosh', .45);
-    ev(T.ne0 + .02, 'pop', .5);
-    ev(T.at0 + .03, 'pop', .6);
+    ev(T.eggHit, 'sparkle', .7);
     ev(T.y26, 'slam', .5);
     ev(T.back - .3, 'whoosh', .45); ev(T.back + .12, 'thud', .5);
     EV.sort(function (a, b) { return a.t - b.t; });
@@ -117,7 +120,8 @@
     function width(c) { return c.reduce(function (a, w) { return a + wd(w); }, 0) + GAP * (c.length - 1); }
     VO.lines.forEach(function (l) {
       if (l.id === 'hook') return;                // frame 0 carries its own four words
-      var ws = l.words.map(function (w) { return { w: w.w.replace(/[,:]$/, '').replace(/…$/, '…').toUpperCase(), raw: w.w, t0: w.t0, t1: w.t1, hot: !!HOTW[norm(w.w)] || (l.id === 'plate' && /^(had|you)/i.test(w.w)) }; });
+      var lw = l.words; if (/^(five|four|three|two|one)$/.test(norm(lw[0].w)) && l.id !== 'hook') lw = lw.slice(1);
+      var ws = lw.map(function (w) { return { w: w.w.replace(/[,:]$/, '').replace(/…$/, '…').toUpperCase(), raw: w.w, t0: w.t0, t1: w.t1, hot: !!HOTW[norm(w.w)] || (l.id === 'plate' && /^(had|you)/i.test(w.w)) }; });
       var phrases = [], cur = [];
       ws.forEach(function (w) { cur.push(w); if (/[.?!,:]$/.test(w.raw)) { phrases.push(cur); cur = []; } });
       if (cur.length) phrases.push(cur);
@@ -194,7 +198,7 @@
     K.sticker(g, 'GTA 6', X0 + 116, PILLY + 2, 64, { col: CREAM, wide: false, lw: 0, shadow: false });
     g.restore();
     var a = seg(t, T.search, T.search + .2) * (1 - seg(t, T.back - .3, T.back - .1));
-    if (a > 0) { g.save(); g.globalAlpha *= a; K.chip(g, 'TOP 5 EASTER EGGS', X1, PILLY, 34, { align: 'right', bg: CREAM, col: INK }); g.restore(); }
+    if (a > 0) { g.save(); g.globalAlpha *= a; K.chip(g, 'EASTER EGGS', X1, PILLY, 44, { align: 'right', bg: CREAM, col: INK }); g.restore(); }
   }
 
   /* ---------- the countdown tile: slams in from a new corner each item ---------- */
@@ -329,6 +333,49 @@
     rr(g, -30, -100, 46, 34, 6); g.fillStyle = TEAL; g.fill(); g.lineWidth = 4; g.stroke();
     g.restore();
   }
+  function yacht(g, t, x, y, s, spin) {
+    g.save(); g.translate(x, y); g.scale(s, s);
+    g.lineJoin = 'round'; g.lineWidth = 8; g.strokeStyle = INK;
+    /* trailer: frame, hitch, two axles */
+    g.fillStyle = '#4a4560'; rr(g, -330, 70, 640, 26, 8); g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(-330, 83); g.lineTo(-430, 83); g.stroke(); g.beginPath(); g.arc(-440, 83, 12, 0, TAU); g.fillStyle = INK; g.fill();
+    [80, 210].forEach(function (wx) {
+      g.save(); g.translate(wx, 120); g.beginPath(); g.arc(0, 0, 44, 0, TAU); g.fillStyle = INK; g.fill();
+      g.beginPath(); g.arc(0, 0, 20, 0, TAU); g.fillStyle = '#c9cbd6'; g.fill(); g.rotate(spin || 0); g.strokeStyle = INK; g.lineWidth = 6; for (var k = 0; k < 4; k++) { g.rotate(TAU / 4); g.beginPath(); g.moveTo(0, 0); g.lineTo(18, 0); g.stroke(); } g.restore();
+    });
+    g.lineWidth = 8; g.strokeStyle = INK;
+    /* hull */
+    g.beginPath(); g.moveTo(-360, -60); g.lineTo(380, -80); g.quadraticCurveTo(360, 40, 250, 66); g.lineTo(-300, 66); g.quadraticCurveTo(-350, 20, -360, -60); g.closePath(); g.fillStyle = CREAM; g.fill(); g.stroke();
+    g.fillStyle = '#16314f'; g.beginPath(); g.moveTo(-340, 8); g.lineTo(350, -6); g.lineTo(335, 22); g.lineTo(-330, 34); g.closePath(); g.fill();
+    /* cabin with a window band and a flybridge */
+    g.beginPath(); g.moveTo(-230, -62); g.lineTo(180, -74); g.lineTo(120, -170); g.lineTo(-190, -164); g.closePath(); g.fillStyle = '#f4efe6'; g.fill(); g.stroke();
+    g.fillStyle = '#16314f'; g.beginPath(); g.moveTo(-200, -100); g.lineTo(150, -108); g.lineTo(128, -142); g.lineTo(-180, -138); g.closePath(); g.fill();
+    g.beginPath(); g.moveTo(-120, -166); g.lineTo(60, -170); g.lineTo(40, -220); g.lineTo(-100, -218); g.closePath(); g.fillStyle = CREAM; g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(-30, -220); g.lineTo(-30, -270); g.stroke();
+    rr(g, 0, -214, 40, 26, 5); g.fillStyle = TEAL; g.fill(); g.lineWidth = 4; g.stroke();
+    g.restore();
+  }
+  function signPost(g, t, x, y) {
+    g.save(); g.translate(x, y); g.lineWidth = 6; g.strokeStyle = INK;
+    g.fillStyle = '#6e4a2a'; rr(g, -11, -210, 22, 210, 6); g.fill(); g.stroke();
+    g.translate(0, -250); g.rotate(-.04 + Math.sin(t * 1.7) * .02);
+    rr(g, -170, -54, 340, 108, 14); g.fillStyle = PAPER; g.fill(); g.stroke();
+    K.sticker(g, "JASON'S PLACE", 0, 4, 40, { col: INK, wide: false, lw: 0, shadow: false });
+    g.restore();
+  }
+  function gpsCard(g, t, x, y, k) {
+    if (k <= 0) return;
+    g.save(); g.translate(x, y); g.scale(lerp(.85, 1, k), lerp(.85, 1, k)); g.globalAlpha *= k;
+    shadowCard(g, -330, -210, 660, 420, '#2a2f3e', 30);
+    rr(g, -290, -170, 580, 340, 14); g.fillStyle = '#5f7fa8'; g.fill();
+    g.save(); rr(g, -290, -170, 580, 340, 14); g.clip();
+    g.fillStyle = '#c9d6a6'; g.beginPath(); g.moveTo(-290, -170); g.lineTo(120, -170); g.quadraticCurveTo(40, -60, 90, 10); g.quadraticCurveTo(0, 90, -60, 170); g.lineTo(-290, 170); g.closePath(); g.fill();
+    g.strokeStyle = 'rgba(29,18,51,.35)'; g.lineWidth = 4; for (var r = 0; r < 5; r++) { g.beginPath(); g.moveTo(-280, -140 + r * 70); g.lineTo(60 - r * 30, -150 + r * 75); g.stroke(); }
+    var py = Math.sin(t * 5) * 6;
+    g.fillStyle = HOT; g.beginPath(); g.arc(150, 40 + py, 18, 0, TAU); g.fill(); g.lineWidth = 5; g.strokeStyle = INK; g.stroke();
+    g.restore();
+    g.restore();
+  }
   function dock(g, t, x, y) {
     g.save(); g.translate(x, y);
     g.fillStyle = '#9a6a3f'; g.strokeStyle = INK; g.lineWidth = 6;
@@ -446,28 +493,32 @@
     g.save(); g.globalAlpha *= a; hookText(g, t, t + 1, lerp(330, 200, r), lerp(1, .74, r)); g.restore();
   }
   function beatBoat(g, t) {
-    /* #5: our boat glides in to a dock with JASON'S PLACE; 2013 card; the GPS clip takes the top from "GPS" */
+    /* #5: our drawing of GTA 5's boat on its trailer rolls in to JASON'S PLACE; 2013 card (HE SAYS); then the GPS clip */
     var inK = eio(seg(t, T.i5, T.boat + .5));
     if (t < T.g0) {
       g.save(); g.translate(0, (1 - cd(t, T.i5, 10)) * 300);
-      water(g, t, 900, 1440, SEA, SEA2);
-      dock(g, t, 560, 940);
-      boat(g, t, lerp(1250, 450, inK), 960 + Math.sin(t * 2.4) * 6, 1.05);
-      chipAt(g, 'HE SAYS', 721, 600, HOT, CREAM, seg(t, T.boat + .1, T.boat + .25), 'center');
+      water(g, t, 760, 1000, SEA, SEA2);
+      g.fillStyle = '#3a3550'; g.fillRect(0, 1000, W, 440); g.fillStyle = INK; g.fillRect(0, 1000, W, 10);
+      g.fillStyle = 'rgba(255,255,255,.25)'; for (var m = 0; m < 6; m++) g.fillRect(((m * 220 - t * 60) % 1320 + 1320) % 1320 - 120, 1300, 110, 10);
+      signPost(g, t, 700, 1010);
+      yacht(g, t, lerp(1400, 470, inK), 1040 + Math.sin(t * 9) * 2 * (1 - inK), .95, (1 - inK) * t * 12);
       g.restore();
-    } else {
+      dated(g, t, T.boat + .15, 315, 1250, '2013', ['GTA 5 · MICHAEL', 'AND HIS BOAT'], .05);
+      chipAt(g, 'HE SAYS', 315, 1405, HOT, CREAM, seg(t, T.boat + .3, T.boat + .45), 'center');
+      chipAt(g, 'OUR DRAWING', X1, 1380, INK, CREAM, seg(t, T.i5 + .35, T.i5 + .5), 'right');
+    } else if (t < T.g1) {
       footage(g, t, U.gps);
-      var p = circleOn(g, t, U.gps, .26, .33, 300, 210, YEL, 6, T.g0 + .3);
+      circleOn(g, t, U.gps, .26, .33, 330, 240, YEL, 6, T.g0 + .3);
+    } else {
+      /* our drawing of the screen: the map he shows, the pin out at sea */
+      g.save(); g.translate(MID, 760); g.scale(1.3, 1.3); gpsCard(g, t, 0, 0, cd(t, T.g1, 14)); g.restore();
+      yacht(g, t, 560 + Math.sin(t * 2) * 20, 1280, .6, t * 3);
+      chipAt(g, 'OUR DRAWING', MID, 1060, INK, CREAM, seg(t, T.g1 + .1, T.g1 + .25), 'center');
+    }
+    if (t >= T.g0) {
       chipAt(g, 'IN HIS CLIP', X0, BY + 70, HOT, CREAM, seg(t, T.g0, T.g0 + .1));
       chipAt(g, 'LOS SANTOS', X0, BY + 165, YEL, INK, seg(t, T.g0 + .15, T.g0 + .3));
-      /* below the clip: our boat, its dash screen joined to the ring by a dotted line */
-      water(g, t, 1180, 1440, SEA, SEA2);
-      boat(g, t, 290, 1210, .62);
-      var bx = 290 - 7 * .62, by = 1210 - 83 * .62;
-      g.save(); g.setLineDash([14, 14]); g.lineDashOffset = -t * 60; g.strokeStyle = YEL; g.lineWidth = 6; g.globalAlpha *= seg(t, T.g0 + .4, T.g0 + .7);
-      g.beginPath(); g.moveTo(bx, by - 16); g.lineTo(Math.max(160, p[0] - 120), U.gps.band[0] + U.gps.band[1] - 8); g.stroke(); g.restore();
     }
-    dated(g, t, T.boat + .15, t < T.g0 ? 315 : 700, t < T.g0 ? 1290 : 1300, '2013', ['GTA 5 · MICHAEL', 'AND HIS BOAT'], .05, 1 - seg(t, T.i4 - .2, T.i4));
     tile(g, t, 0);
   }
   function beatDog(g, t) {
@@ -481,7 +532,7 @@
     } else {
       footage(g, t, U.dog);
       var d = track(U.dog, t, [[0, .53, .45], [.33, .54, .55], [.67, .55, .56], [1.0, .56, .5], [1.33, .57, .5], [1.67, .59, .62]]);
-      circleOn(g, t, U.dog, d[0], d[1], 150, 130, YEL, 8, T.d0 + .2);
+      circleOn(g, t, U.dog, d[0], d[1], 150, 130, YEL, 8, T.d0 + .15);
     }
     tile(g, t, 1);
   }
@@ -490,28 +541,34 @@
     g.fillStyle = YEL; for (var m = 0; m < 6; m++) g.fillRect(((m * 220 - mv) % 1320 + 1320) % 1320 - 120, y + 62, 110, 10); g.restore();
   }
   function beatCar(g, t) {
-    /* #3: our green look-alike drives in on a road low in the frame; 2001 card top right; LOOK-ALIKE chip */
-    var k = eo(seg(t, T.i3 + .1, T.i3 + 1.1));
-    var cx = lerp(-420, 520, k), spin = (t - T.i3) * 14 * (1 - k * .8);
-    road(g, t, 1250, t * 300 * (1 - k) + k * 300 * (T.brian + .25));
-    if (k < .98) { g.save(); g.globalAlpha *= 1 - k; g.strokeStyle = CREAM; g.lineWidth = 8; g.lineCap = 'round'; for (var s = 0; s < 4; s++) { g.beginPath(); g.moveTo(cx - 380 - s * 30, 1090 + s * 40); g.lineTo(cx - 560 - s * 30, 1090 + s * 40); g.stroke(); } g.restore(); }
-    car(g, t, cx, 1190 + Math.sin(t * 9) * 2, 1.05, spin);
-    chipAt(g, 'LOOK-ALIKE', 520, 960, CREAM, INK, seg(t, T.brian + .1, T.brian + .25), 'center');
-    dated(g, t, T.i3 + .45, 680, 620, '2001', ['THE FAST AND', 'THE FURIOUS'], .04);
+    /* #3: the 2001 card first, then the real green car outside Trinity Apartments, LOOK-ALIKE on it */
+    if (t < T.c0) {
+      g.save(); g.translate(MID, 860); g.scale(1.45, 1.45); g.rotate(Math.sin(t * 2.2) * .03); g.translate(-MID, -860);
+      dated(g, t, T.i3 + .1, MID, 860, '2001', ['THE FAST AND', 'THE FURIOUS'], .03);
+      g.restore();
+    } else {
+      footage(g, t, U.car);
+      var c = track(U.car, t, [[0, .76, .9], [.66, .78, .9], [1.3, .86, .9]]);
+      circleOn(g, t, U.car, c[0], c[1], 300, 150, YEL, 15, T.c0 + .15);
+      chipAt(g, 'LOOK-ALIKE', X1, BY + 70, CREAM, INK, seg(t, T.c0 + .1, T.c0 + .25), 'right');
+      dated(g, t, T.c0 - 10, 315, 600, '2001', ['THE FAST AND', 'THE FURIOUS'], -.04);
+    }
     tile(g, t, 2);
   }
   function beatPlate(g, t) {
-    footage(g, t, U.plate, 'brightness(1.9) contrast(1.15) saturate(1.1)');
-    var p = CLIP.toScreen(U.plate, t, .5, .275, 0, BY, W, 760);
-    var bk = eo(seg(t, T.p0 + .25, T.p0 + .6)), hit = knock(t, T.had, 1, 26, 7);
-    g.save(); g.beginPath(); g.rect(0, BY, W, 760); g.clip();
-    g.strokeStyle = YEL; g.lineWidth = 12 + 10 * Math.abs(hit); g.lineJoin = 'round'; var bw = 330 * bk * (1 + .08 * hit), bh = 180 * bk * (1 + .08 * hit);
-    if (bk > 0) { rr(g, p[0] - bw / 2, p[1] - bh / 2, bw, bh, 18); g.stroke(); }
+    /* the night shot, lifted: a brightened pass, then the plate boxed where it really is */
+    footage(g, t, U.plate, 'brightness(2.5) contrast(1.05) saturate(1.15)');
+    var pc = track(U.plate, t, [[0, .514, .27], [.9, .505, .262], [1.8, .5, .3]]);
+    var a = CLIP.toScreen(U.plate, t, pc[0] - .085, pc[1] - .055, 0, BY, W, 1028), b = CLIP.toScreen(U.plate, t, pc[0] + .085, pc[1] + .055, 0, BY, W, 1028);
+    var bk = eo(seg(t, T.p0 + .25, T.p0 + .6)), hit = knock(t, T.had, 1, 26, 7), cx = (a[0] + b[0]) / 2, cy = (a[1] + b[1]) / 2;
+    var bw = (b[0] - a[0] + 30) * bk * (1 + .06 * hit), bh = (b[1] - a[1] + 30) * bk * (1 + .06 * hit);
+    g.save(); g.beginPath(); g.rect(0, BY, W, 1028); g.clip();
+    g.strokeStyle = YEL; g.lineWidth = 12 + 8 * Math.abs(hit); g.lineJoin = 'round';
+    if (bk > 0) { rr(g, cx - bw / 2, cy - bh / 2, bw, bh, 18); g.stroke(); }
     g.restore();
-    chipAt(g, 'LOOK-ALIKE', X0, BY + 70, CREAM, INK, 1);
-    /* below the clip: our car from behind? no: the 2001 card stays, and the plate's words land as a stamp after the line */
-    dated(g, t, T.p0 - .3, 330, 1300, '2001', ['THE FAST AND', 'THE FURIOUS'], -.04);
-    stamp(g, 'HAD YOU', 712, 1300, 70, t - at('plate', 'had') + .02, YEL, -.1);
+    chipAt(g, 'LOOK-ALIKE', X1, BY + 70, CREAM, INK, 1, 'right');
+    dated(g, t, T.p0 - .3, 315, 1250, '2001', ['THE FAST AND', 'THE FURIOUS'], -.04);
+    stamp(g, 'HAD YOU', 712, 1290, 70, t - at('plate', 'had') + .02, YEL, -.1);
   }
   function beatTrinity(g, t) {
     var chipA = seg(t, at('trinity', 'trinity') - .05, at('trinity', 'trinity') + .1);
@@ -542,8 +599,8 @@
     tower(g, t, 680, 1440 + (1 - rise) * 900, 1300, climb);
     g.restore();
     g.restore();
-    if (t > T.tall + .2) {
-      var ck = cd(t, T.tall + .2, 14);
+    if (t > T.tall - .12) {
+      var ck = cd(t, T.tall - .12, 14);
       g.save(); g.translate(300, 1250 + (1 - ck) * 120); g.rotate(-.05); g.globalAlpha *= ck;
       shadowCard(g, -200, -110, 400, 220, PAPER, 22);
       K.sticker(g, '5+ MIN', 0, -34, 92, { col: INK, wide: false, lw: 0, shadow: false });
@@ -553,17 +610,18 @@
       g.strokeStyle = INK; g.lineWidth = 5; g.beginPath(); g.arc(150, -78, 26, 0, TAU); g.stroke(); g.beginPath(); g.moveTo(150, -78); g.lineTo(150 + Math.sin(a) * 20, -78 - Math.cos(a) * 20); g.stroke();
       g.restore();
     }
+    chipAt(g, 'TALLEST · HE SAYS', X1, 1020, HOT, CREAM, seg(t, T.tall - .05, T.tall + .1), 'right');
     tile(g, t, 4);
   }
   function beatNest(g, t) {
     footage(g, t, U.nest);
     var s = srcAt(U.nest, t);
-    if (s < 1.12) circleOn(g, t, U.nest, .74, .82, 170, 110, YEL, 12, T.ne0 + .15);
+    if (s < 1.12) circleOn(g, t, U.nest, .6, .9, 190, 120, YEL, 12, T.ne0 + .08);
     else {
       var e = track(U.nest, t, [[1.13, .42, 1.0], [1.5, .42, .97], [1.67, .43, .92], [1.87, .44, .83], [1.93, .43, .7]]);
-      circleOn(g, t, U.nest, e[0], e[1], 150, 140, YEL, 14, T.ne0 + .5);
+      circleOn(g, t, U.nest, e[0], e[1], 150, 140, YEL, 14, T.ne0 + (1.45 - U.nest.from));
     }
-    stamp(g, 'EASTER EGG', MID, 640, 84, t - at('nest', 'easter') + .02, YEL, -.08);
+    stamp(g, 'EASTER EGG', MID, 1290, 84, t - T.eggHit, YEL, -.08);
   }
   function beatAtari(g, t) {
     var k = seg(t, T.at0, T.lp0 + .4);
@@ -618,16 +676,18 @@
     /* stamps that repeat the caption word for word while it is spoken (HAD YOU, EASTER EGG) are punctuation, not reads */
     Tx('pill', 'GTA 6', 0, DUR + 1);
     Tx('hook', 'A REAL EASTER EGG?', 0, T.i5 - .05); Tx('hook', 'A REAL EASTER EGG?', T.back + .1, DUR + 1);
-    Tx('top5', 'TOP 5 EASTER EGGS', T.search + .1, T.back - .2);
+    Tx('top5', 'EASTER EGGS', T.search + .1, T.back - .2);
     Tx('y13', '2013 GTA 5 · MICHAEL AND HIS BOAT', T.boat + .25, T.i4 - .1);
-    Tx('says', 'HE SAYS', T.boat + .2, T.g0);
+    Tx('says', 'HE SAYS', T.boat + .4, T.g0);
     Tx('inclip', 'IN HIS CLIP', T.g0 + .1, T.i4);
     Tx('ls', 'LOS SANTOS', T.g0 + .25, T.i4);
-    Tx('y01', '2001 THE FAST AND THE FURIOUS', T.i3 + .55, T.i2);
-    Tx('look', 'LOOK-ALIKE', T.brian + .2, T.i2);
+    Tx('y01', '2001 THE FAST AND THE FURIOUS', T.i3 + .3, T.i2);
+    Tx('look', 'LOOK-ALIKE', T.c0 + .2, T.i2);
     Tx('triap', 'TRINITY APARTMENTS', at('trinity', 'trinity') + .05, T.i1 - .05);
     Tx('y09', '2009 DEXTER, SEASON 4', T.t1 + .1, T.i1);
-    Tx('climb', '5+ MIN CLIMB · HE SAYS', T.tall + .3, T.ne0);
+    Tx('climb', '5+ MIN CLIMB · HE SAYS', T.tall - .05, T.ne0);
+    Tx('tallhs', 'TALLEST · HE SAYS', T.tall + .05, T.ne0);
+    Tx('ourdraw', 'OUR DRAWING', T.i5 + .5, T.g0);
     Tx('y80', '1980 ATARI · ADVENTURE', T.at0 + .15, T.back - .15);
     Tx('named', 'ATARI NAMED THEM', T.atari + .2, T.back - .15);
     Tx('y26', '2026', T.y26 + .06, T.back - .1);

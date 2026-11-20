@@ -29,7 +29,7 @@
   "score_db": 0,
   "smr_db": 22
  },
- "dur": 32.84,
+ "dur": 33.5,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -99,13 +99,13 @@
   {
    "id": "atari",
    "at": 28.7,
-   "text": "Atari named them in 1980.",
-   "say": "Atari named them in nineteen eighty.",
+   "text": "Atari named them around 1980.",
+   "say": "Atari named them around nineteen eighty.",
    "speed": 1.04
   },
   {
    "id": "loop",
-   "at": 30.65,
+   "at": 31.3,
    "text": "46 years later…",
    "say": "Forty-six years later",
    "speed": 0.98

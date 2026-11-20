@@ -1,0 +1,72 @@
+wrote out/clips-used.json (7 uses)
+clips: 7 uses of 33.5 s: Rockstar footage 0%, creator clips 33%, all footage 33%
+clip lint ok
+wrote out/mix.wav
+
+READCHECK  (need ≥ letters/15 + 1.5 s, and ≥ 1.8 s)
+ok    pill   33.50s / 1.80s  "GTA 6"
+ok    hook   2.54s / 2.50s  "A REAL EASTER EGG?"
+ok    top5   31.21s / 2.17s  "EASTER EGGS"
+ok    ourdraw 3.75s / 2.17s  "OUR DRAWING"
+ok    y13    5.13s / 3.23s  "2013 GTA 5 · MICHAEL AND HIS BOAT"
+ok    says   2.50s / 1.90s  "HE SAYS"
+ok    inclip 2.42s / 2.10s  "IN HIS CLIP"
+ok    ls     2.29s / 2.10s  "LOS SANTOS"
+ok    y01    4.50s / 3.10s  "2001 THE FAST AND THE FURIOUS"
+ok    look   3.58s / 2.17s  "LOOK-ALIKE"
+ok    triap  3.29s / 2.63s  "TRINITY APARTMENTS"
+ok    y09    2.71s / 2.70s  "2009 DEXTER, SEASON 4"
+ok    climb  2.71s / 2.63s  "5+ MIN CLIMB · HE SAYS"
+ok    tallhs 2.63s / 2.43s  "TALLEST · HE SAYS"
+ok    y80    4.38s / 2.77s  "1980 ATARI · ADVENTURE"
+ok    named  4.00s / 2.43s  "ATARI NAMED THEM"
+ok    y26    2.29s / 1.80s  "2026"
+wrote gta-eastereggs/out/check/sheet.jpg
+wrote gta-eastereggs/out/poster.jpg
+frame 60/1005  114 ms/frame
+frame 120/1005  102 ms/frame
+frame 180/1005  96 ms/frame
+frame 240/1005  100 ms/frame
+frame 300/1005  95 ms/frame
+frame 360/1005  95 ms/frame
+frame 420/1005  95 ms/frame
+frame 480/1005  97 ms/frame
+frame 540/1005  108 ms/frame
+frame 600/1005  106 ms/frame
+frame 660/1005  106 ms/frame
+frame 720/1005  105 ms/frame
+frame 780/1005  105 ms/frame
+frame 840/1005  105 ms/frame
+frame 900/1005  103 ms/frame
+frame 960/1005  102 ms/frame
+wrote out/video.mp4
+wrote gta-eastereggs/out/gta-eastereggs.mp4
+
+CHECKS
+stream|codec_name=h264|width=1080|height=1920|r_frame_rate=30/1
+stream|codec_name=aac|r_frame_rate=0/0
+format|duration=33.500000
+integrated I:         -16.7 LUFS   true peak Peak:       -2.8 dBFS
+black spans ≥0.4 s: none
+duck -6 dB over 5 phrases; voice set +18.4 dB for a 22 dB speech-to-music ratio
+wrote /home/user/molindesign/film/gta-eastereggs/out/gta-eastereggs-vo.mp4
+integrated -14.0 LUFS   true peak -2.6 dBTP
+
+IN-CONTEXT CHECK  (each line heard through the finished mix)
+ok    hook       wer 0.00  heard "GTA 6 hides an actual egg."
+ok    boat       wer 0.00  heard "5. Michael's boat from GTA V is at Jason's place."
+ok    gps        wer 0.00  heard "Its GPS still thinks it's in Los Santos."
+ok    dog        wer 0.00  heard "4. Stranded at C. A dog on a jet ski picks you up."
+ok    car        wer 0.00  heard "3. A copy of Brian's Fast and Furious car."
+ok    plate      wer 0.00  heard "The plate says, had you..."
+ok    trinity    wer 0.00  heard "2. Trinity Apartments. Trinity was Dexter's villain in 2009."
+ok    tower      wer 0.00  heard "1. The tallest tower in Vice City."
+ok    nest       wer 0.00  heard "Up top in a nest, an actual Easter egg."
+ok    atari      wer 0.00  heard "Atari named them around 1980."
+ok    loop       wer 0.00  heard "46 years later"
+gta-eastereggs-vo:  I: -14.0 LUFS  Peak: -2.6 dBFS 
+gta-eastereggs-voice-only:  I: -14.4 LUFS  Peak: -1.4 dBFS 
+/home/user/molindesign/film/gta-eastereggs/out/gta-eastereggs-vo.mp4: 33.5 s, 8 hard cuts (2.4/10 s), motion 0-1 s 0.744, 0-3 s 1.59, median 0.708, still frames 1.3 %
+OK    no frozen stretches, opening moves
+no black stretches
+EXIT 0
