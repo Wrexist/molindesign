@@ -1,0 +1,110 @@
+{
+ "about": "GTA 6's launch peaked at 7.91 million concurrent livestream viewers across tracked platforms (Streams Charts: 7,915,475 PV in its Nov 19 2026 day-one recap; 7,914,273 and 'preliminary' in its Nov 18 2026 article), more than 4.5 times the previous game-launch record, Valorant's closed beta (2020, 1,737,267). Separate platform peaks: Twitch 3,313,371, YouTube 3,216,408, Kick 1,498,752 (peaks may have occurred at different times, so they do not add up to 7.91M). Twitch: the gaming category with the highest Peak Viewers in Twitch history, ahead of League of Legends (3.11M), a record among games, not all categories. Viewers, not players or sales. All read 2026-11-20. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Valorant",
+  "Twitch"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6. 7.9 million live viewers.",
+   "say": "G T A six. Seven point nine million live viewers.",
+   "pause": 0.55,
+   "speed": 1.1
+  },
+  {
+   "id": "once",
+   "at": 3.75,
+   "text": "All at the same time, on streams.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "ask",
+   "at": 6.15,
+   "text": "But how big is that?",
+   "pause": 0.3,
+   "speed": 1.1,
+   "say": "But, how big is that?"
+  },
+  {
+   "id": "old",
+   "at": 7.72,
+   "text": "Now, the old launch record? Valorant's closed beta.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "val",
+   "at": 10.65,
+   "text": "1.7 million, back in 2020.",
+   "say": "One point seven million. Back in twenty twenty.",
+   "pause": 0.4,
+   "speed": 1.1
+  },
+  {
+   "id": "times",
+   "at": 13.45,
+   "text": "GTA 6 is more than four and a half times that.",
+   "say": "G T A six is more than four and a half times that.",
+   "pause": 0.7,
+   "speed": 1.1
+  },
+  {
+   "id": "buy",
+   "at": 17.75,
+   "text": "Watching isn't buying, though.",
+   "pause": 0.35,
+   "speed": 1.1
+  },
+  {
+   "id": "twitch",
+   "at": 19.6,
+   "text": "Still, Twitch alone peaked at 3.3 million.",
+   "say": "Still, Twitch alone peaked at three point three million.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "hist",
+   "at": 22.6,
+   "text": "The biggest game in Twitch history.",
+   "pause": 0.6,
+   "speed": 1.1
+  },
+  {
+   "id": "end",
+   "at": 25.0,
+   "text": "Did you watch a stream, or play it yourself?",
+   "pause": 0,
+   "speed": 1.1
+  }
+ ],
+ "dur": 27.75,
+ "tail": 0.55,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}
