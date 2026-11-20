@@ -247,6 +247,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | phonelistening | Nov 17 00:00 | 35 s | 7.0 r1 → 7.5 r2 + polish | 98 (25 min), 411 (~6 h), 419 (~8 h), 420 (~24 h), 420 (~32 h) | – | 5 | myth + FTC twist + "check your dot"; 7 PM ET slot; read at 6 h and 24 h |
 | 5gbattery (4HgqAeZDr8k) | Nov 18 00:00 | 35 s | 7.3 r1 → 7.4 r2 + polish | 3 (35 min), 18 (~6 h), 30 (~8 h), 35 (~25 h) | – | 6 | myth + lab-meter twist + "check your 5G setting"; 7 PM ET slot; read at 6 h and 24 h |
 | hotcharging (HuNgKnkM_ss) | Nov 19 00:00 | 34 s | 7.06 r1 → 7.4 r2 + polish | 3 (30 min) | – | 5 | warm-is-normal myth + "your phone did that" twist + "check yours"; 7 PM ET slot; read at 6 h and 24 h |
+| juicejacking (7W8_b2eL6kc) | Nov 20 00:00 | 34 s | 7.0 r1 → 7.8 r2 + polish | – | – | 6 | myth vs record: "probably isn't hacking you" + FBI post named no case + "never tap Trust"; 7 PM ET slot; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -392,6 +393,14 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Craft (repeat): with the bench at y 1150 the lower third went empty for 3 s. An empty dashed slot that the tape later prints into fills it and builds anticipation.
 - Wow: the 5G status tile (the film's thread since frame 0) rides the coral chart line from SLOW through the crossing to FAST.
 - Tooling: the container restarted mid-fix and the resumed director was lost. A fresh director told "some fixes may be half-applied, read film.js first" picked it up cleanly. Save fix lists to a file so they survive.
+
+### juicejacking (#36), jury r1 7.0 / Truth 8.0 → r2 7.8 / Truth 9.0 (post), 7 of 8 r2 polish items applied — scheduled Nov 19 19:00 ET (7W8_b2eL6kc)
+- Sources die: the FCC's juice-jacking page was disabled by its owner on the day (403 from the container, confirmed disabled in a browser). Have a single-source fallback ready (FBI Denver post only) and scope the twist to what that one source says ("the FBI post named no case"). Never cite a page nobody can open.
+- Truth: the prompt lives on the phone, not the plug. Showing "Trust This Computer?" on the wall charger made the mechanism wrong; the prompt now appears only when the cable reaches a computer.
+- Truth/craft: never let the picture do what the voice says not to do. The finger filled the Trust button while the voice said "never tap Trust". The finger now hovers and pulls back, and Don't Trust lights.
+- No spoiler chips: a chip that gives the answer before the line lands kills the twist. Chips print on or after the word.
+- When a device does the tapping (the lab attack), draw a mechanical arm, not a human hand, and keep the 2025 TU Graz lab attack inside a LAB frame so it never reads as a real-world case.
+- Myth-vs-record topics score best with the jury (7.8, best since #14): a common fear, a primary source that says less than people think, and a concrete "check yours" action.
 
 ### hotcharging (#35), jury r1 7.06 / Truth 8.5 → r2 7.4 / Truth 9.0 (post), r2 polish applied — scheduled Nov 18 19:00 ET (HuNgKnkM_ss)
 - Frame 0 must say the topic on sight: a phone icon with an empty battery and one lit cell said nothing about heat. Three amber cells plus heat curls already rising at t=0 fixed it. Never let the safe-area clip cut the hero shape flat (airplanemode repeat): CLIP_RUN on t=1/60 and the last frame too.
