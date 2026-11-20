@@ -248,6 +248,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | 5gbattery (4HgqAeZDr8k) | Nov 18 00:00 | 35 s | 7.3 r1 → 7.4 r2 + polish | 3 (35 min), 18 (~6 h), 30 (~8 h), 35 (~25 h) | – | 6 | myth + lab-meter twist + "check your 5G setting"; 7 PM ET slot; read at 6 h and 24 h |
 | hotcharging (HuNgKnkM_ss) | Nov 19 00:00 | 34 s | 7.06 r1 → 7.4 r2 + polish | 3 (30 min) | – | 5 | warm-is-normal myth + "your phone did that" twist + "check yours"; 7 PM ET slot; read at 6 h and 24 h |
 | juicejacking (7W8_b2eL6kc) | Nov 20 00:00 | 34 s | 7.0 r1 → 7.8 r2 + polish | – | – | 6 | myth vs record: "probably isn't hacking you" + FBI post named no case + "never tap Trust"; 7 PM ET slot; read at 6 h and 24 h |
+| wifibattery (WJUwLbc8-MA) | Nov 20 18:00 | 38 s | 7.3 r1 → 7.6 r2 + polish | – | – | 6 | myth: "barely saves battery" + iPhone Control Center only disconnects + "Settings › Battery, not the toggles"; 1 PM ET slot; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -393,6 +394,15 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Craft (repeat): with the bench at y 1150 the lower third went empty for 3 s. An empty dashed slot that the tape later prints into fills it and builds anticipation.
 - Wow: the 5G status tile (the film's thread since frame 0) rides the coral chart line from SLOW through the crossing to FAST.
 - Tooling: the container restarted mid-fix and the resumed director was lost. A fresh director told "some fixes may be half-applied, read film.js first" picked it up cleanly. Save fix lists to a file so they survive.
+
+### wifibattery (#37), jury r1 7.3 / Truth 8.5 → r2 7.6 / Truth 9.0 (post), all 8 r2 polish items applied — scheduled Nov 20 13:00 ET (WJUwLbc8-MA)
+- Truth: the hook follows the source's strength. Apple says Wi-Fi and Bluetooth draw "minimal" power, not zero, so the backlog's "won't save your battery" became "barely saves battery". A hook that overclaims costs Truth before the jury even scores craft.
+- A finger that "reads along" a quote covers the scope words. Run the fingertip below the plate, or underline alone. A hand over text is a LESSONS repeat the label checks don't catch.
+- Voice gaps: keep every pause at 1.3 s or less, even when the picture moves through it. A 1.84 s silence after "morning" cost a Retention point although pacecheck passed.
+- No credit from one company on another company's prop: an Apple quote under a Pixel card is a Truth deduction. Peel the quote before the other brand's prop enters.
+- The check screen must not show what the voice says not to use. "Not the toggles" over a screen of toggles was swapped for the Battery page with Apple's own "No Mobile Coverage and Low Signal" row.
+- A hero shape under 700 px reads as stock. Frame 0 at 724 px plus a second element without words (touch rings) lifted Hook from 7.0 to 7.5.
+- A prop the film never explains (the moon) reads as filler; pay it off (dawn on "5 in the morning") or drop it.
 
 ### juicejacking (#36), jury r1 7.0 / Truth 8.0 → r2 7.8 / Truth 9.0 (post), 7 of 8 r2 polish items applied — scheduled Nov 19 19:00 ET (7W8_b2eL6kc)
 - Sources die: the FCC's juice-jacking page was disabled by its owner on the day (403 from the container, confirmed disabled in a browser). Have a single-source fallback ready (FBI Denver post only) and scope the twist to what that one source says ("the FBI post named no case"). Never cite a page nobody can open.
