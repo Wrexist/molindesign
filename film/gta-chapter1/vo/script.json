@@ -1,0 +1,99 @@
+{
+ "about": "GTA 6 Ultimate Edition, Chapter 1 warning (Delta). Rockstar's editions page and the PS/Xbox store pages list Jason's Safehouse Vehicles (an 'Army fatigue-tinged Dinka Enduro motorcycle or Crest Kayak') and the 'Ganado Retro Build' modkit for 'Jason's well-worn Vapid Ganado low-riding pickup', and say nothing about chapters (read 2026-11-20). VGC's guide (Jordan Middler, 2026-11-18): safehouse vehicles 'can only be accessed in Chapter 1'; Ganado Retro Build 'available only in Chapter 1, after the Just A Scratch mission'. Vice, Red Bull, outputlag agree. Jason's car is lost at the end of Chapter 1: Game Rant (Tom Bowen, 2026-11-20) and TheGamer (Sam Woods, 2026-11-20). 'Impounded' (the inspiration TikTok's word) is NOT supported for Jason's pickup and is not used. Inspiration: TikTok by @cnnstarr, topic only, no footage (burned-in logo). Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Ultimate Edition",
+  "Rockstar",
+  "Jason",
+  "VGC",
+  "Chapter 1",
+  "Chapter 2"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 33
+ },
+ "dur": 23.3,
+ "tail": 0.8,
+ "fit": {
+  "min": 0.9,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6 Ultimate Edition? Use these now.",
+   "say": "G T A six Ultimate Edition? Use these now.",
+   "pause": 0.3
+  },
+  {
+   "id": "items",
+   "at": 3.25,
+   "text": "An army green dirt bike and a kayak at Jason's house.",
+   "pause": 0.1
+  },
+  {
+   "id": "build",
+   "at": 6.85,
+   "text": "Plus retro mods for his pickup.",
+   "pause": 0.25
+  },
+  {
+   "id": "q",
+   "at": 8.75,
+   "text": "So why the rush?",
+   "pause": 0.2
+  },
+  {
+   "id": "catch",
+   "at": 10.25,
+   "text": "VGC says they're Chapter 1 only.",
+   "say": "V G C says they're chapter one only.",
+   "pause": 0.3
+  },
+  {
+   "id": "store",
+   "at": 12.65,
+   "text": "Rockstar's edition page doesn't say that.",
+   "pause": 0.9
+  },
+  {
+   "id": "pickup",
+   "at": 15.65,
+   "text": "And Jason's pickup goes when Chapter 1 ends.",
+   "say": "And Jason's pickup goes when chapter one ends.",
+   "pause": 0.3
+  },
+  {
+   "id": "do",
+   "at": 18.47,
+   "text": "Ride, paddle and build before Chapter 2.",
+   "say": "Ride, paddle and build before chapter two.",
+   "pause": 0.3
+  },
+  {
+   "id": "end",
+   "at": 21.4,
+   "text": "Still in Chapter 1?",
+   "say": "Still in chapter one?",
+   "pause": 0
+  }
+ ],
+ "gap": 0.05
+}

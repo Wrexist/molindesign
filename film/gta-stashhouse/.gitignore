@@ -1,0 +1,20 @@
+out/frames/
+out/video.mp4
+out/mix.wav
+out/check/
+out/events.json
+out/render.log
+out/vo/
+out/*.mp4
+out/mix.log
+out/jury/
+out/voice.log
+out/picture.log
+out/voice*.log
+out/*.mp4
+out/mix.log
+out/mixrun.log
+out/picrun.log
+out/clips-used.json
+# trailer frame: kept out of git like the clips (SAFE-EDIT rule 7); the cover lives in /mnt/project-files/factory/gta-leaks/
+out/poster.jpg

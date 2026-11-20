@@ -1,0 +1,43 @@
+{
+ "film": "gta-stashhouse",
+ "sources": {
+  "schlayer": {
+   "key": "tiktok-7710031457065930015",
+   "url": "https://www.tiktok.com/@schlayerr/video/7710031457065930015?_r=1&_t=ZN-9BZ9cHNmyko",
+   "title": "Best Early Game Loot Spot in GTA 6!! #gta #gta6 #schlayer #gamingonti...",
+   "uploader": "schlayerr",
+   "verdict": "CREATOR",
+   "checked": "TikTok post 2026-11-19/20 (launch day): continuous third-person gameplay with the GTA VI HUD prompts (PICK UP, LOOT, TYPE 9 SMG, DUKE 556), South Vice-Dale County map; no real-world footage or AI artifacts seen. No watermark or channel tag burned in (the GTA VI logo overlay at 4 s is avoided); facecam (top) and word captions cropped out with --crop.",
+   "credit": "@schlayerr"
+  }
+ },
+ "clips": {
+  "door": {
+   "src": "schlayer",
+   "in": 36.2,
+   "out": 38.7,
+   "fps": 30,
+   "frames": 75,
+   "w": 1080,
+   "crop": "1080:1240:0:680"
+  },
+  "bodies": {
+   "src": "schlayer",
+   "in": 44.0,
+   "out": 46.5,
+   "fps": 30,
+   "frames": 75,
+   "w": 1080,
+   "crop": "1080:1240:0:680"
+  },
+  "table": {
+   "src": "schlayer",
+   "in": 70.0,
+   "out": 72.5,
+   "fps": 30,
+   "frames": 75,
+   "w": 1080,
+   "crop": "1080:1240:0:680"
+  }
+ }
+}

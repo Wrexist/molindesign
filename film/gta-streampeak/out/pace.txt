@@ -1,0 +1,2 @@
+gta-streampeak-vo.mp4: 27.8 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.68, 0-3 s 0.753, median 0.639, still frames 0.8 %
+OK    no frozen stretches, opening moves
