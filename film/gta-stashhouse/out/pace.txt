@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-stashhouse/out/gta-stashhouse-vo.mp4: 28.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.61, 0-3 s 0.676, median 0.477, still frames 0.1 %
+/home/user/molindesign/film/gta-stashhouse/out/gta-stashhouse-vo.mp4: 28.4 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.628, 0-3 s 0.693, median 0.514, still frames 0.5 %
 OK    no frozen stretches, opening moves

@@ -51,7 +51,7 @@
     M.forEach(function (b) { if (b[0] > p) F.push([Math.max(0, p), b[0]]); p = Math.max(p, b[1]); });
     F.push([p, DUR + 9]); return F;
   }
-  var BODY = { whoosh: .3, swish: .26, pop: .12, thud: .16, slam: .2, shutter: .12, zip: .14, tick: .03, key: .03, ding: .3, scratch: .26, squeak: .18 };
+  var BODY = { whoosh: .3, swish: .26, pop: .1, thud: .16, slam: .2, shutter: .06, zip: .14, tick: .03, key: .03, ding: .3, scratch: .26, squeak: .18 };
   function nearGap(t, type) {
     var bd = BODY[type] || .12, best = null;
     free(.15).forEach(function (f) { var lo = f[0], hi = f[1] - bd; if (hi < lo) return; var c = clamp(t, lo, hi); if (best === null || Math.abs(c - t) < Math.abs(best - t)) best = c; });
@@ -68,64 +68,81 @@
   function initTimes() {
     EV.length = 0; CLIP.reset();
     T.stash = at('hook', 'stash'); T.house = at('hook', 'house'); T.dead = at('hook', 'dead');
-    T.wipe1 = T.dead + .37;                                             /* tape wipe: floor -> board */
+    T.wipe1 = start('where') - .32;                                     /* tape wipe: floor -> board */
     T.close = at('where', 'close'); T.starts = at('where', 'starts'); T.gameW = at('where', 'game');
-    T.door0 = start('door'); T.door1 = T.door0 + 2.5;                  /* exhibit A: the door (whole 2.5 s cut) */
+    T.door0 = start('door') - .15; T.door1 = T.door0 + 1.9;           /* exhibit A: the door, up to the BREAK OPEN prompt */
     T.prompt = T.door0 + 1.2;                                         /* BREAK OPEN shows 1.2-2.0 s into the cut */
     T.down = at('door', 'down');
-    T.bod0 = at('nofight', 'no') - .25; T.bod1 = T.bod0 + 2.4;        /* exhibit B: the whole cut (dark room, then the garage) */
+    T.bod0 = T.door1 + .35; T.bod1 = start('nofight') - .1;          /* exhibit B: the garage shot with the body on the floor (cut 1.68-2.5 s) */
     T.fight = at('nofight', 'fight'); T.loot = at('nofight', 'loot');
-    T.guns = T.bod1;
+    T.guns = T.bod1; T.stampsOut = at('guns', 'smg') - .2;
     T.items = [at('guns', 'smg'), at('guns', 'rifle'), at('guns', 'stash')];
-    T.tab0 = start('room') - .1; T.tab1 = T.tab0 + 2.32;              /* exhibit C: ends before a drug word shows in the HUD (frame 72, 2.4 s) */
+    T.tab0 = start('room') - .15; T.tab1 = T.tab0 + 2.1;              /* exhibit C: ends at cut 2.10 s, 9+ frames before a drug word shows in the HUD (frame 72) */
     T.more = at('room', 'more');
     T.safe0 = T.tab1; T.safeOpen = at('safe', 'safe'); T.cash = at('safe', 'cash'); T.card = at('safe', 'card'); T.six = at('safe', '$6000');
     T.tot0 = start('total') - .15; T.roll0 = at('total', 'about'); T.roll1 = at('total', '$17000') + .5; T.without = at('total', 'without');
-    T.shot = at('total', 'shot');
     T.wipe2 = start('end') - .05;                                      /* tape wipe: board -> floor */
     T.who = at('end', 'who'); T.q = at('end', 'before');
-    T.back = lastw('end') + .62;                                       /* the hook rebuilds for the loop */
+    T.back = lastw('end') + .4;                                        /* the hook rebuilds for the loop */
     /* where each tag pins: [time it flies to its slot] */
     T.pin = [T.items[1] - .05, T.items[2] - .05, T.tab0 - .02, T.tab1 - .34, T.card - .1, T.six + .75];
 
     /* clip uses: each under 5 s and annotated; clipkit.py lint holds this to SAFE-EDIT rules 3 and 10 */
     U.door = CLIP.use('door', T.door0, T.door1, { zoom: [1.02, 1.12], focus: [.42, .45], note: 'EXHIBIT A polaroid; pink circle on the BREAK OPEN prompt, BREAK OPEN chip' });
-    U.bod = CLIP.use('bodies', T.bod0, T.bod1, { zoom: [1.08, 1.16], focus: [.55, .5], note: 'EXHIBIT B polaroid (brightened); ALREADY DOWN / NO FIGHT / JUST LOOT stamps, pink circle on the LOOT prompt' });
+    U.bod = CLIP.use('bodies', T.bod0, T.bod1, { from: 1.68, speed: .8 / (T.bod1 - T.bod0), zoom: [1.04, 1.12], focus: [.45, .42], note: 'EXHIBIT B polaroid (brightened); pink circle on the body on the floor, ALREADY DOWN stamp on the polaroid stripps, pink circle on the LOOT prompt' });
     U.tab = CLIP.use('table', T.tab0, T.tab1, { zoom: [1.12, 1.22], focus: [.5, .32], note: 'EXHIBIT C polaroid; pink circle on the back-room table, MORE TO BAG chip' });
 
     /* sound: one hit per beat, only where the voice leaves room */
-    G(0, 'tick', .1, .8);
-    G(T.wipe1, 'zip', .35, .9); G(T.close + .1, 'thud', .35, .7);
-    G(T.door0, 'shutter', .3, .9); G(T.prompt + .1, 'pop', .35, .7);
-    G(T.door1, 'swish', .3, .7); G(T.bod0, 'shutter', .3, .9);
-    G(T.bod1, 'swish', .35, .7); G(T.items[0] - .1, 'thud', .4, .9);
-    G(T.tab0, 'shutter', .3, .9); G(T.tab1 + .1, 'thud', .4, .8);
-    G(T.tot0, 'pop', .3, .8);
-    G(T.wipe2 - .1, 'zip', .35, .9);
-    G(T.back + .1, 'slam', .35, .8); G(T.back + .5, 'zip', .4, .7);
+    G(0, 'tick', .1, .5);
+    G(T.wipe1 - .05, 'whoosh', .35, 1.5); G(T.wipe1, 'scratch', .35, 1.15); G(T.close + .1, 'thud', .35, .26);
+    G(T.door0, 'shutter', .3, .44); G(T.prompt + .1, 'pop', .35, .5);
+    G(T.door1, 'swish', .3, .8); G(T.bod0, 'shutter', .3, .44);
+    G(T.bod1, 'thud', .35, .26); G(start('nofight') - .15, 'slam', .3, .2);
+    G(T.tab0, 'shutter', .3, .44); G(T.tab1 + .1, 'thud', .4, .14);
+    G(T.tot0, 'pop', .3, .5);
+    G(T.wipe2 - .12, 'whoosh', .35, .85); G(T.wipe2, 'scratch', .35, .65);
+    G(T.who, 'thud', .5, .14);
+    G(T.back + .1, 'slam', .35, .1);
     EV.sort(function (a, b) { return a.t - b.t; });
   }
 
-  /* ---------- captions: the spoken words, up to 3 a card, at y 476 ---------- */
+  /* ---------- captions: phrase cards (2-4 words, 96 px) at a fixed centre in the upper third.
+     Each line splits into phrases by word count; a phrase marked 0 is skipped because the same words are big on screen. */
+  var PHRASES = {
+    hook: [[3, 1], [4, 1], [3, 0]], where: [[3, 1], [5, 1]], door: [[4, 1], [4, 1], [3, 1]], nofight: [[2, 0], [3, 0]],
+    guns: [[2, 0], [3, 0], [3, 0]], room: [[3, 1], [5, 1]], safe: [[5, 1], [5, 1], [3, 1]], total: [[2, 0], [2, 1], [4, 1]], end: [[5, 1], [4, 1]]
+  };
   var CHUNKS = [];
   function buildChunks() {
-    var HOTW = { dead: 1, already: 1, door: 1, down: 1, fight: 1, loot: 1, smg: 1, rifle: 1, safe: 1, cash: 1, '6000': 1, '17000': 1, shot: 1, who: 1 };
+    var HOTW = { dead: 1, door: 1, down: 1, fight: 1, loot: 1, smg: 1, rifle: 1, safe: 1, cash: 1, '6000': 1, '17000': 1, kill: 1, who: 1, start: 1, starts: 1, room: 1, bag: 1 };
     VO.lines.forEach(function (l) {
-      var cur = [];
-      l.words.forEach(function (w, i) {
-        cur.push({ w: w.w.replace(/[.,:]$/, '').toUpperCase(), t0: w.t0, t1: w.t1, hot: !!HOTW[norm(w.w)] });
-        if (cur.length === 3 || /[.?!,:]$/.test(w.w) || i === l.words.length - 1) { CHUNKS.push(cur); cur = []; }
+      var spec = PHRASES[l.id] || [[l.words.length, 1]], i = 0;
+      spec.forEach(function (ph, j) {
+        var n = j === spec.length - 1 ? l.words.length - i : ph[0], c = [];
+        for (var k = 0; k < n && i < l.words.length; k++, i++) { var w = l.words[i]; c.push({ w: w.w.replace(/[.,:]$/, '').toUpperCase(), t0: w.t0, t1: w.t1, hot: !!HOTW[norm(w.w)] }); }
+        if (c.length) { c.show = !!ph[1]; CHUNKS.push(c); }
       });
     });
-    CHUNKS.forEach(function (c, i) { c.t0 = c[0].t0 - .05; c.t1 = CHUNKS[i + 1] ? Math.min(CHUNKS[i + 1][0].t0 - .06, c[c.length - 1].t1 + .6) : Math.min(DUR, c[c.length - 1].t1 + .6); });
+    CHUNKS.forEach(function (c, i) { c.t0 = c[0].t0 - .06; var nx = CHUNKS[i + 1]; c.t1 = nx ? Math.min(nx[0].t0 - .08, c[c.length - 1].t1 + .5) : Math.min(DUR, c[c.length - 1].t1 + .5); });
   }
   function captions(g, t) {
     for (var i = 0; i < CHUNKS.length; i++) {
-      var c = CHUNKS[i]; if (t < c.t0 || t >= c.t1) continue;
-      var px = 60, gap = px * .5, ws = c.map(function (w) { return K.measure(g, w.w, px, { wide: false }) * 1.1; });
-      var tw = ws.reduce(function (a, b) { return a + b; }, 0) + gap * (c.length - 1), s = Math.min(1, (X1 - X0 - 40) / tw), x = -tw / 2;
-      g.save(); g.translate(MID, CAPY); g.scale(s, s);
-      c.forEach(function (w, j) { K.caption(g, [w], x + ws[j] / 2, 0, px, t, { wide: false }); x += ws[j] + gap; });
+      var c = CHUNKS[i]; if (!c.show || t < c.t0 || t >= c.t1) continue;
+      var px = 96, gap = px * .3, ws = c.map(function (w) { return K.measure(g, w.w, px, { wide: false }); });
+      /* wrap to at most two lines inside 800 px */
+      var lines = [[]], lw = [0];
+      c.forEach(function (w, j) { var L = lines.length - 1, add = (lines[L].length ? gap : 0) + ws[j]; if (lw[L] + add > 800 && lines[L].length && lines.length < 2) { lines.push([j]); lw.push(ws[j]); } else { lines[L].push(j); lw[L] += add; } });
+      var widest = Math.max.apply(null, lw), s = Math.min(1, 800 / widest), lh = px * 1.02, y0 = 420 - (lines.length - 1) * lh / 2;
+      var k = cd(t, c.t0, 22), sc = s * lerp(.86, 1, k), out = 1 - seg(t, c.t1 - .07, c.t1);
+      g.save(); g.globalAlpha *= out; g.translate(MID, 420); g.scale(sc, sc); g.translate(-MID, -420);
+      lines.forEach(function (L, li) {
+        var x = MID - lw[li] / 2;
+        L.forEach(function (j) {
+          var w = c[j], on = t >= w.t0 - .03 && t < w.t1 + .05;
+          K.sticker(g, w.w, x + ws[j] / 2, y0 + li * lh, px, { col: w.hot ? TAPE : (on ? '#ffffff' : CREAM), wide: false, lw: px * .16 });
+          x += ws[j] + gap;
+        });
+      });
       g.restore(); return;
     }
   }
@@ -244,7 +261,7 @@
   /* a manila evidence tag: 500 x 300 at s = 1; the label is ≥ 64 px so it stays ≥ 36 px at the board scale .56 */
   var ITEMS = [
     { icon: 'smg', text: 'TYPE 9 SMG', sub: 'ON THE FLOOR' },
-    { icon: 'rifle', text: 'DUKE 556', sub: 'ASSAULT RIFLE' },
+    { icon: 'rifle', text: 'ASSAULT RIFLE', sub: 'DUKE 556' },
     { icon: 'bag', text: 'STASH BAG', sub: 'FULL' },
     { icon: 'room', text: 'BACK ROOM', sub: 'MORE BAGS' },
     { icon: 'cash', text: 'CASH $378', sub: 'IN THE SAFE' },
@@ -304,7 +321,7 @@
     g.filter = 'none';
     g.restore();
     g.lineWidth = 3; g.strokeStyle = 'rgba(29,18,51,.35)'; g.strokeRect(r[0], r[1], r[2], r[3]);
-    if (Math.abs(dx) < 240 && dy > -560) label(g, name, MID, PY0 + PH - PBOT / 2 + 4, 50, INK, PW - 80);
+    if (name && Math.abs(dx) < 240 && dy > -560) label(g, name, MID, PY0 + PH - PBOT / 2 + 4, 50, INK, PW - 80);
     pin(g, MID, PY0 + 14, RED);
     g.restore();
     return { dx: dx, dy: dy, tin: tin, tout: tout };
@@ -357,13 +374,13 @@
     tape(g, -60, 640, 1140, 570, hookTapeK(t), t * 260 + 300);
     hookWords(g, t, t + 1, T.wipe1 - .15 < t ? t - (T.wipe1 - .15) : -1);
     /* the payoff by 1.9 s: the place, and why it matters */
-    var hk = cd(t, T.stash - .05, 13);
+    var hk = cd(t, T.stash - .3, 16);
     if (hk > 0) {
       var sw = Math.sin((t - T.stash) * 5) * .08 * Math.exp(-(t - T.stash) * 1.5);
       g.save(); g.translate(MID, 1215); g.rotate(sw); g.scale(hk, hk);
       tag(g, { icon: 'house', text: 'STASH HOUSE' }, 0, 0, .62, -.03, true); g.restore();
     }
-    if (t > T.house + .05) { var ck = cd(t, T.house + .05, 14); g.save(); g.translate(MID, 1385); g.scale(ck, ck); K.chip(g, 'JUST LOOT', 0, 0, 44, { align: 'center', bg: PINK, col: CREAM }); g.restore(); }
+    if (t > T.stash - .25) { var ck = cd(t, T.stash - .25, 18); g.save(); g.translate(MID, 1385); g.scale(ck, ck); K.chip(g, 'JUST LOOT', 0, 0, 44, { align: 'center', bg: PINK, col: CREAM }); g.restore(); }
   }
 
   /* ---------- where: our map sketch on the board ---------- */
@@ -398,14 +415,14 @@
     if (inF(y0 + h - 4)) K.chip(g, 'OUR SKETCH', x0 + w - 24, y0 + h - 44, 36, { align: 'right', bg: CREAM, col: INK });
     pin(g, MID, y0 + 10, TEAL);
     g.restore();
-    if (t > start('where')) slam(g, 'NEAR THE START', MID, 1345, 80, t - start('where'), { col: TAPE, wide: false, rot: -.03 });
+    if (t > T.wipe1 + .15) slam(g, 'NEAR THE START', MID, 1345, 80, t - (T.wipe1 + .15), { col: TAPE, wide: false, rot: -.03 });
   }
 
   /* ---------- exhibits ---------- */
   function beatDoor(g, t) {
     boardBG(g, t);
     if (t < T.door0 + .4) beatWhere(g, t, true);
-    polaroid(g, t, U.door, 'EXHIBIT A', 'right');
+    polaroid(g, t, U.door, '', 'right');
     breakChip(g, t);
     var u = t - T.prompt;
     if (u > 0 && t < T.door1 - .2) {
@@ -415,8 +432,7 @@
   }
   /* a pink note chip at the top of the board that outlasts its exhibit a little */
   function topChip(g, t, s, a, b) { if (t < a || t > b) return; var ck = cd(t, a, 16) * (1 - eio(seg(t, b - .15, b))); g.save(); g.translate(MID, 600); g.scale(ck, ck); K.chip(g, s, 0, 0, 44, { align: 'center', bg: PINK, col: CREAM }); g.restore(); }
-  function breakChip(g, t) { topChip(g, t, 'BREAK OPEN', T.door0 + .25, T.door1 + .4); }
-  function downStamp(g, t) { if (t < T.bod1 - .12) stamp(g, 'ALREADY DOWN', MID, 905, 82, t - T.down, PINK, -.1); }
+  function breakChip(g, t) { topChip(g, t, 'BREAK OPEN', T.door0 + .25, T.door1 + .72); }
   function beatDown(g, t) {
     boardBG(g, t);
     var k = cd(t, T.door1 - .05, 12);
@@ -426,21 +442,36 @@
     chalk(g, 10, -40, .5, 1, .1, 22);
     pin(g, 0, -316, RED);
     g.restore();
-    breakChip(g, t); downStamp(g, t);
+    breakChip(g, t);
   }
+  /* where the body on the floor is in the garage shot, keyed from the cut (frames 51 / 60 / 75) */
+  function bodyAt(t) { var f = 51 + (t - T.bod0) * 30 * U.bod.speed; return f < 60 ? [lerp(.5, .46, (f - 51) / 9), .41] : [lerp(.46, .36, clamp((f - 60) / 15, 0, 1)), lerp(.41, .38, clamp((f - 60) / 15, 0, 1))]; }
   function beatBodies(g, t) {
     boardBG(g, t);
-    polaroid(g, t, U.bod, 'EXHIBIT B', 'top', t - T.bod0 < 1.8 ? 1.75 : 1.15);
-    downStamp(g, t);
-    if (t > T.loot - .1 && t < T.bod0 + 1.75) { var p = onPhoto(U.bod, t, .72, .53); ring(g, p[0], p[1], 120, 70, eio(seg(t, T.loot - .1, T.loot + .25)), 5); }
-    if (t < T.bod1 - .12) stamp(g, 'NO FIGHT', MID, 1130, 96, t - (start('nofight') - .12), PINK, -.07);
-    if (t > T.loot && t < T.bod1 - .12) slam(g, 'JUST LOOT', MID, 1290, 92, t - T.loot, { col: TAPE, wide: false, rot: .03 });
+    polaroid(g, t, U.bod, '', 'top', 1.55);
+    breakChip(g, t);
+    var rk = eio(seg(t, T.bod0 + .3, T.bod0 + .65));
+    if (rk > 0 && t < T.bod1 - .15) { var b = bodyAt(t), p = onPhoto(U.bod, t, b[0], b[1]); ring(g, p[0], p[1], 120, 66, rk, 5); }
+    var tin = cd(t, T.bod0, 20);
+    if (t < T.bod1 - .12 && tin > .97) stamp(g, 'ALREADY DOWN', MID, PY0 + PH - PBOT / 2 + 2, 58, t - Math.max(T.down, T.bod0 + .25), PINK, -.03);
   }
+  /* after exhibit B: the three facts as stamps on the empty board, cleared before the first tag */
+  function boardStamps(g, t) {
+    var out = eio(seg(t, T.stampsOut, T.stampsOut + .2)); if (out >= 1) return;
+    g.save(); g.translate(MID, 860); g.scale(1 - out, 1 - out); g.translate(-MID, -860);
+    stamp(g, 'ALREADY DOWN', MID, lerp(PY0 + PH - PBOT / 2 + 2, 680, eio(seg(t, T.bod1, T.bod1 + .25))), lerp(58, 70, eio(seg(t, T.bod1, T.bod1 + .25))), 1, PINK, -.03);
+    stamp(g, 'NO FIGHT', MID, 850, 104, t - (start('nofight') - .15), PINK, -.07);
+    slam(g, 'JUST LOOT', MID, 1030, 100, t - T.loot, { col: TAPE, wide: false, rot: .03 });
+    g.restore();
+  }
+  /* the wrapped bricks on the table, keyed from the cut every 0.5 s (frames 1 / 16 / 31 / 46 / 63) */
+  var BRICK = [[0, .33, .5], [.5, .5, .45], [1, .5, .42], [1.5, .57, .41], [2.1, .62, .3]];
+  function brickAt(t) { var s2 = t - T.tab0; for (var i = 1; i < BRICK.length; i++) if (s2 <= BRICK[i][0]) { var k = (s2 - BRICK[i - 1][0]) / (BRICK[i][0] - BRICK[i - 1][0]); return [lerp(BRICK[i - 1][1], BRICK[i][1], k), lerp(BRICK[i - 1][2], BRICK[i][2], k)]; } return [BRICK[4][1], BRICK[4][2]]; }
   function beatTable(g, t) {
     boardTags(g, t, 'pinned');
-    polaroid(g, t, U.tab, 'EXHIBIT C', 'right');
-    topChip(g, t, 'MORE TO BAG', T.tab0 + .25, T.tab1 + .4);
-    if (t > T.tab0 + .35 && t < T.tab1 - .15) { var p = onPhoto(U.tab, t, .4, .38); ring(g, p[0], p[1], 210, 120, eio(seg(t, T.tab0 + .35, T.tab0 + .75)), 7); }
+    polaroid(g, t, U.tab, '', 'right');
+    topChip(g, t, 'MORE TO BAG', T.tab0 + .25, T.tab1 + .55);
+    if (t > T.tab0 + .35 && t < T.tab1 - .15) { var bk = brickAt(t), p = onPhoto(U.tab, t, bk[0], bk[1]); ring(g, p[0], p[1], 150, 90, eio(seg(t, T.tab0 + .35, T.tab0 + .75)), 7); }
   }
 
   /* ---------- the board beats: tags, safe, total ---------- */
@@ -474,15 +505,15 @@
     g.save(); g.globalAlpha *= k; g.setLineDash([14, 12]); g.lineDashOffset = -t * 20; g.lineWidth = 4; g.strokeStyle = 'rgba(234,208,154,.55)';
     SLOT.forEach(function (p) { rr(g, p[0] - 135, p[1] - 81, 270, 162, 10); g.stroke(); });
     g.setLineDash([]); g.restore();
-    if (t < T.tot0 && k > .985 && !(t > T.tab0 && t < T.tab1 + .45)) K.chip(g, 'JUST LOOT', MID, 600, 44, { align: 'center', bg: MANILA, col: INK });
   }
   function beatGuns(g, t) {
     boardBG(g, t); slots(g, t);
     boardTags(g, t);
+    boardStamps(g, t);
   }
   function beatSafe(g, t) {
     boardBG(g, t); slots(g, t);
-    topChip(g, t, 'MORE TO BAG', T.tab0 + .25, T.tab1 + .4);
+    topChip(g, t, 'MORE TO BAG', T.tab0 + .25, T.tab1 + .55);
     boardTags(g, t, 'pinned');
     var gone = eio(seg(t, T.six + .55, T.six + .85));
     var k = cd(t, T.safe0, 12), s = lerp(.7, 1, k) * (1 - gone), mv = eio(seg(t, T.safeOpen + .1, T.cash));
@@ -515,7 +546,7 @@
       label(g, '$?', MID, 815, 158, TAPE, 600, { lw: 20, shadow: true });
     }
     if (t > T.roll1 + .02) { var ck = cd(t, T.roll1 + .02, 14); g.save(); g.translate(MID, 950); g.scale(ck, ck); K.chip(g, 'HE SAYS', 0, 0, 40, { align: 'center', bg: PINK, col: CREAM }); g.restore(); }
-    stamp(g, 'NO SHOTS', MID, 1046, 62, t - (T.without - .2), CREAM, .04);
+    stamp(g, 'NO KILLS', MID, 1046, 62, t - (T.without - .3), CREAM, .04);
   }
 
   /* ---------- end: back on the floor; the question, then the hook rebuilds ---------- */
@@ -598,23 +629,19 @@
     Tx('pill', 'GTA 6', 0, DUR + 1);
     Tx('hook', 'EVERYONE’S ALREADY DEAD.', 0, T.wipe1 - .15); Tx('hook', 'EVERYONE’S ALREADY DEAD.', T.back + .3, DUR + 1);
     Tx('stash', 'STASH HOUSE', T.stash + .1, T.wipe1); Tx('stash', 'STASH HOUSE', T.wipe1 + .3, T.door0 + .1);
-    Tx('loot', 'JUST LOOT', T.house + .2, T.wipe1); Tx('loot', 'JUST LOOT', T.loot + .15, T.bod1 - .12);
-    Tx('loot', 'JUST LOOT', T.guns + .35, T.tab0); Tx('loot', 'JUST LOOT', T.tab1 + .5, T.tot0);
-    Tx('county', 'SOUTH VICE-DALE', T.wipe1 + .25, T.door0 + .1);
+    Tx('loot', 'JUST LOOT', T.stash, T.wipe1); Tx('loot', 'JUST LOOT', T.loot + .15, T.stampsOut);
+    Tx('county', 'SOUTH VICE-DALE', T.wipe1 + .22, T.door0 + .2);
     Tx('start', 'START', T.wipe1 + .35, T.door0 + .1);
-    Tx('near', 'NEAR THE START', start('where') + .1, T.door0 + .1);
-    Tx('exA', 'EXHIBIT A', T.door0 + .12, T.door1 - .1);
-    Tx('break', 'BREAK OPEN', T.door0 + .35, T.door1 + .25);
-    Tx('down', 'ALREADY DOWN', T.down + .1, T.bod1 - .12);
-    Tx('exB', 'EXHIBIT B', T.bod0 + .1, T.bod1);
-    Tx('nofight', 'NO FIGHT', start('nofight') - .02, T.bod1 - .12);
+    Tx('near', 'NEAR THE START', T.wipe1 + .25, T.door0 + .2);
+    Tx('break', 'BREAK OPEN', T.door0 + .35, T.door1 + .58);
+    Tx('down', 'ALREADY DOWN', Math.max(T.down, T.bod0 + .25) + .1, T.stampsOut);
+    Tx('nofight', 'NO FIGHT', start('nofight') - .06, T.stampsOut);
     ITEMS.forEach(function (it, i) { Tx('tag' + i, it.text, ENTRY[i] + .15, T.wipe2); });
-    Tx('exC', 'EXHIBIT C', T.tab0 + .12, T.tab1 - .1);
-    Tx('more', 'MORE TO BAG', T.tab0 + .35, T.tab1 + .25);
+    Tx('more', 'MORE TO BAG', T.tab0 + .35, T.tab1 + .42);
     Tx('his', 'HIS TOTAL', T.tot0 + .2, T.wipe2);
     Tx('total', '$17,200', T.roll1, T.wipe2);
     Tx('says', 'HE SAYS', T.roll1 + .1, T.wipe2);
-    Tx('shots', 'NO SHOTS', T.without - .1, T.wipe2);
+    Tx('shots', 'NO KILLS', T.without - .2, T.wipe2);
     Tx('q', 'WHO HIT IT FIRST?', T.wipe2 + .2, T.back - .05);
     return o;
   }
@@ -627,7 +654,7 @@
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 84px Archivo', '600 30px "Geist Mono"'];
     return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0’·$?'); }))).then(function () { return document.fonts.ready; }).then(function () {
       buildTextures(); buildChunks(); initTimes();
-      ENTRY = [T.guns + .03, T.items[1] - .05, T.items[2] - .05, T.tab1 - .36, T.cash - .02, T.card + .02];
+      ENTRY = [T.items[0] - .05, T.items[1] - .05, T.items[2] - .05, T.tab1 - .36, T.cash - .02, T.card + .02];
       /* the card's tag stays in the hero spot until its price is said, then pins */
       window.FILM.POSTER = T.roll1 + 1.2;
       window.FILM.SHOTS = [{ id: 'hook', name: 'Already dead', t0: 0, t1: T.door0 }, { id: 'ex', name: 'Exhibits', t0: T.door0, t1: T.safe0 }, { id: 'safe', name: 'The safe', t0: T.safe0, t1: T.tot0 }, { id: 'total', name: 'His total', t0: T.tot0, t1: T.wipe2 }, { id: 'end', name: 'Who?', t0: T.wipe2, t1: DUR }];
