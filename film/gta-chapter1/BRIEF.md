@@ -107,3 +107,4 @@ Keep a change every ≤ 1.2 s (LESSONS gta-pc): tag swings, door notches, note s
 
 ## Log
 - 2026-11-20: brief and script by the researcher (video-researcher.md). No render, no voice. Claim verdict: Chapter 1 limit confirmed by VGC + guides (not on Rockstar's pages); "impounded" unsupported, dropped.
+- 2026-11-20: director r1 rendered (22.8 s); jury r1 PASS 7.0 / Truth 8.5. r2 applies fixes 1–8: store line re-voiced "Rockstar's edition page doesn't say that.", listing held 3.3 s with a 0 MATCHES stamp, CHECKED NOV 20 and the PS/Xbox chip, 12 sound hits in voice gaps, tags by 0.95 s, side-view low pickup, door rising on "Still", VGC URL on the note; seo.md written.

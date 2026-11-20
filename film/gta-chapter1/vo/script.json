@@ -28,7 +28,7 @@
   "score_db": 0,
   "smr_db": 33
  },
- "dur": 22.75,
+ "dur": 23.3,
  "tail": 0.8,
  "fit": {
   "min": 0.9,
@@ -70,26 +70,26 @@
   {
    "id": "store",
    "at": 12.65,
-   "text": "Rockstar's own page doesn't say that.",
-   "pause": 0.35
+   "text": "Rockstar's edition page doesn't say that.",
+   "pause": 0.9
   },
   {
    "id": "pickup",
-   "at": 15.1,
+   "at": 15.65,
    "text": "And Jason's pickup goes when Chapter 1 ends.",
    "say": "And Jason's pickup goes when chapter one ends.",
    "pause": 0.3
   },
   {
    "id": "do",
-   "at": 17.92,
+   "at": 18.47,
    "text": "Ride, paddle and build before Chapter 2.",
    "say": "Ride, paddle and build before chapter two.",
    "pause": 0.3
   },
   {
    "id": "end",
-   "at": 20.85,
+   "at": 21.4,
    "text": "Still in Chapter 1?",
    "say": "Still in chapter one?",
    "pause": 0

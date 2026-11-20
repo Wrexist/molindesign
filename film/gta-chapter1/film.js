@@ -444,29 +444,6 @@
       [[-L + 12, 0], [L - 12, 0]].forEach(function (p) { g.beginPath(); g.arc(p[0], p[1], 6, 0, TAU); g.fillStyle = '#1d1b1f'; g.fill(); });
     } });
   }
-  /* ---------- the pickup, front view (in the garage), sun-worn ---------- */
-  function buildTruckF() {
-    function path(g) {
-      g.beginPath();
-      poly(g, [[-122, -190], [122, -190], [150, -92], [-150, -92]]);
-      g.moveTo(-190, -96); g.roundRect(-196, -96, 392, 214, 18);
-      g.moveTo(-186, 110); g.rect(-186, 100, 62, 90); g.moveTo(124, 110); g.rect(124, 100, 62, 90);
-      g.moveTo(-222, -112); g.rect(-222, -112, 32, 40); g.moveTo(190, -112); g.rect(190, -112, 32, 40);
-    }
-    D.truckF = piece([-226, -194, 226, 194], path, TRUCK, { sy: 9, sx: 5, blur: 12, sc: 'rgba(0,0,0,.45)', noclip: true, extra: function (g) {
-      fillPath(g, GLASS, function (q) { poly(q, [[-108, -176], [108, -176], [132, -104], [-132, -104]]); });
-      g.fillStyle = 'rgba(255,255,255,.18)'; g.beginPath(); poly(g, [[-60, -176], [-30, -176], [-74, -104], [-104, -104]]); g.fill();
-      fillPath(g, TRUCK2, function (q) { q.rect(-196, -92, 392, 22); });
-      rr(g, -112, -30, 224, 92, 8); g.fillStyle = '#2a2622'; g.fill();
-      g.fillStyle = '#b9b2a6'; for (var i = 0; i < 5; i++) g.fillRect(-104, -20 + i * 17, 208, 6);
-      [-152, 152].forEach(function (x) { g.beginPath(); g.arc(x, 4, 32, 0, TAU); g.fillStyle = '#b9b2a6'; g.fill(); g.beginPath(); g.arc(x, 4, 24, 0, TAU); g.fillStyle = '#fff3c4'; g.fill(); });
-      rr(g, -206, 92, 412, 30, 8); g.fillStyle = '#b3aca0'; g.fill();
-      g.fillStyle = TIRE; g.fillRect(-186, 122, 62, 68); g.fillRect(124, 122, 62, 68);
-      g.fillStyle = '#2a2622'; g.fillRect(-222, -112, 32, 40); g.fillRect(190, -112, 32, 40);
-      g.globalAlpha = .75; fillPath(g, RUST, function (q) { q.ellipse(-170, 70, 20, 12, .3, 0, TAU); q.moveTo(186, -40); q.ellipse(176, -44, 12, 18, -.2, 0, TAU); q.moveTo(70, -86); q.ellipse(70, -84, 16, 5, 0, 0, TAU); }); g.globalAlpha = 1;
-      g.strokeStyle = 'rgba(80,60,30,.35)'; g.lineWidth = 3; g.beginPath(); g.moveTo(-60, 76); g.quadraticCurveTo(-30, 70, 10, 78); g.stroke();
-    } });
-  }
   /* ---------- the pickup, side view (the build beat), low-riding ---------- */
   function buildTruckS() {
     var WA = [-262, 94], WB = [298, 94], R = 58;
@@ -508,25 +485,36 @@
 
   /* ---------- claim tags (manila luggage tags on a string), plain and coral ---------- */
   var TAGW = 236, TAGH = 196;
-  function tagPiece(bg, fgA, fgB) {
-    var w = TAGW, h = TAGH, rec = [];
+  /* L = [top (mono), main, bottom]; L === null draws the blank back face (a paper clock, no words) */
+  function tagPiece(bg, fgA, fgB, L, w) {
+    w = w || TAGW; var h = TAGH, rec = [];
     var pc = piece([-w / 2, -h / 2, w / 2, h / 2], function (g) { g.beginPath(); poly(g, [[-w / 2, -h / 2 + 34], [-w / 2 + 34, -h / 2], [w / 2 - 34, -h / 2], [w / 2, -h / 2 + 34], [w / 2, h / 2], [-w / 2, h / 2]]); }, bg, { sy: 7, sx: 4, blur: 9, sc: 'rgba(0,0,0,.45)', extra: function (g) {
       g.beginPath(); g.arc(0, -h / 2 + 22, 15, 0, TAU); g.fillStyle = 'rgba(255,255,255,.55)'; g.fill(); g.beginPath(); g.arc(0, -h / 2 + 22, 7, 0, TAU); g.fillStyle = '#1b1712'; g.fill();
-      mono(g, rec, 'EXP:', 0, -h / 2 + 64, 36, fgB, { align: 'center', ls: 3 });
-      ptxt(g, rec, 'END OF CH. 1', 0, -h / 2 + 112, 50, fgA, { ls: 1, max: w - 20 });
+      if (!L) {
+        var cy = 22; g.beginPath(); g.arc(0, cy, 58, 0, TAU); g.lineWidth = 9; g.strokeStyle = fgB; g.stroke();
+        g.lineCap = 'round'; g.lineWidth = 9; g.beginPath(); g.moveTo(0, cy); g.lineTo(0, cy - 38); g.moveTo(0, cy); g.lineTo(26, cy + 12); g.stroke();
+        g.beginPath(); g.arc(0, cy, 7, 0, TAU); g.fillStyle = fgA; g.fill();
+        return;
+      }
+      mono(g, rec, L[0], 0, -h / 2 + 64, 36, fgB, { align: 'center', ls: L[0].length > 6 ? 1 : 3, max: w - 16 });
+      ptxt(g, rec, L[1], 0, -h / 2 + 112, 50, fgA, { ls: 1, max: w - 20 });
       g.fillStyle = fgB; g.globalAlpha = .4; g.fillRect(-w / 2 + 18, -h / 2 + 140, w - 36, 2); g.globalAlpha = 1;
-      ptxt(g, rec, 'PER VGC', 0, -h / 2 + 168, 38, fgB, { ls: 3, max: w - 24 });
+      ptxt(g, rec, L[2], 0, -h / 2 + 168, 38, fgB, { ls: 3, max: w - 24 });
     } });
     return wordsOf(pc, rec);
   }
   /* a tag hanging from an anchor (local coords of whatever it is tied to); a = swing angle */
-  function hangTag(g, ax, ay, a, s, hot, alpha) {
+  /* F = { back, face, hot }; fl = flip progress 0 (blank back) .. 1 (words); the card turns edge-on halfway */
+  function hangTag(g, ax, ay, a, s, hot, alpha, F, fl) {
     if (alpha <= 0) return;
     g.save(); g.globalAlpha *= alpha; g.translate(ax, ay); g.rotate(a); g.scale(s, s);
     g.strokeStyle = '#efe6d2'; g.lineWidth = 3; g.beginPath(); g.moveTo(0, 0); g.lineTo(0, 44); g.stroke();
     g.beginPath(); g.arc(0, 0, 5, 0, TAU); g.fillStyle = '#efe6d2'; g.fill();
-    putW(g, D.tag, 0, 44 - 22 + TAGH / 2);
-    if (hot > 0) { g.globalAlpha *= hot; putW(g, D.tagHot, 0, 44 - 22 + TAGH / 2); }
+    var sx = Math.abs(Math.cos(Math.PI * fl)), nr = NOREC; if (fl > 0 && fl < 1) NOREC = true;
+    g.save(); g.scale(Math.max(.02, sx), 1);
+    if (fl < .5) putW(g, F.back, 0, 44 - 22 + TAGH / 2);
+    else { putW(g, F.face, 0, 44 - 22 + TAGH / 2); if (hot > 0) { g.globalAlpha *= hot; putW(g, F.hot, 0, 44 - 22 + TAGH / 2); } }
+    g.restore(); NOREC = nr;
     g.restore();
   }
 
@@ -544,10 +532,10 @@
     var w = 600, h = 340, rec = [];
     D.note = piece([-w / 2, -h / 2, w / 2, h / 2], function (g) { g.beginPath(); g.moveTo(-w / 2, -h / 2); g.lineTo(w / 2, -h / 2); g.lineTo(w / 2, h / 2 - 34); g.lineTo(w / 2 - 40, h / 2); g.lineTo(-w / 2, h / 2); g.closePath(); }, NOTE, { sy: 12, sx: 6, blur: 16, sc: 'rgba(0,0,0,.5)', extra: function (g) {
       g.fillStyle = 'rgba(160,120,0,.18)'; g.fillRect(-w / 2, -h / 2, w, 46);
-      mono(g, rec, 'VGC GUIDE', 0, -h / 2 + 24, 36, '#5a4300', { align: 'center', ls: 4 });
+      mono(g, rec, 'VGC GUIDE · NOV 18', 0, -h / 2 + 24, 36, '#5a4300', { align: 'center', ls: 2 });
       ptxt(g, rec, '“…ONLY IN', 0, -h / 2 + 112, 96, INK, { ls: 1 });
       ptxt(g, rec, 'CHAPTER 1…”', 0, -h / 2 + 212, 96, INK, { ls: 1 });
-      ptxt(g, rec, 'NOV 18, 2026', 0, h / 2 - 36, 40, '#5a4300', { ls: 2, max: w - 80 });
+      mono(g, rec, 'VIDEOGAMESCHRONICLE.COM', 0, h / 2 - 40, 36, '#5a4300', { align: 'center', ls: 0, max: w - 70 });
       g.fillStyle = 'rgba(0,0,0,.12)'; g.beginPath(); g.moveTo(w / 2, h / 2 - 34); g.lineTo(w / 2 - 40, h / 2); g.lineTo(w / 2 - 34, h / 2 - 30); g.closePath(); g.fill();
     } });
     wordsOf(D.note, rec);
@@ -572,26 +560,30 @@
     } });
     wordsOf(D.listing, rec);
     D.recreated = chipPiece([['RE-CREATED', 40, CRM, 2]], 250, CORALD, CRM, { lh: 44, pad: 18 });
-    D.also = chipPiece([['PS + XBOX PAGES: 0 TOO', 40, INK, 1.5]], 520, CRM, INK, { lh: 46, pad: 16 });
+    D.also = chipPiece([['PS STORE + XBOX STORE:', 40, INK, 1.5], ['ALSO 0 MATCHES', 48, CORALD, 1.5]], 560, CRM, INK, { lh: 50, pad: 18 });
+    D.stamp0 = stampPiece([['0 MATCHES', 124]], '#d8331f', 640);
   }
   /* our find bar (a generic browser find-in-page box, drawn live: typing, then the count) */
-  var FBX = 510, FBY = 640, FBW = 780, FBH = 104;
+  var FBX = 510, FBY = 622, FBW = 780, FBH = 150, FR = -30;
   function findBar(g, t) {
     var k = cd(t, T.fbIn, 14); if (t < T.fbIn) return;
     var nr = NOREC; NOREC = nr || k < .97;
-    g.save(); g.translate(FBX, FBY - 140 * (1 - k)); g.globalAlpha *= fin(t, T.fbIn, .08);
+    g.save(); g.translate(FBX, FBY - 160 * (1 - k)); g.globalAlpha *= fin(t, T.fbIn, .08);
     g.save(); g.shadowColor = 'rgba(0,0,0,.5)'; g.shadowBlur = 16; g.shadowOffsetY = 8; rr(g, -FBW / 2, -FBH / 2, FBW, FBH, 14); g.fillStyle = '#26232e'; g.fill(); g.restore();
-    rr(g, -FBW / 2 + 16, -FBH / 2 + 16, 340, FBH - 32, 10); g.fillStyle = '#f7f3ea'; g.fill();
+    rr(g, -FBW / 2 + 16, FR - 38, 340, 76, 10); g.fillStyle = '#f7f3ea'; g.fill();
     /* a magnifier icon */
-    g.save(); g.translate(-FBW / 2 + 52, 0); g.strokeStyle = '#56525e'; g.lineWidth = 5; g.beginPath(); g.arc(-3, -3, 13, 0, TAU); g.stroke(); g.beginPath(); g.moveTo(7, 7); g.lineTo(17, 17); g.stroke(); g.restore();
+    g.save(); g.translate(-FBW / 2 + 52, FR); g.strokeStyle = '#56525e'; g.lineWidth = 5; g.beginPath(); g.arc(-3, -3, 13, 0, TAU); g.stroke(); g.beginPath(); g.moveTo(7, 7); g.lineTo(17, 17); g.stroke(); g.restore();
     var word = 'chapter', n = clamp(Math.floor((t - T.fbType) / .05) + 1, 0, word.length), typed = t < T.fbType ? '' : word.slice(0, n);
-    g.save(); font(g, 50, 700, MONO); ls(g, 1); g.fillStyle = INK; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(typed, -FBW / 2 + 84, 3);
-    var cw = g.measureText(typed).width; if (Math.floor(t * 3) % 2 === 0 || (t > T.fbType && t < T.fbType + .5)) g.fillRect(-FBW / 2 + 88 + cw, -22, 4, 44); g.restore();
-    /* the count: searching dots, then 0 MATCHES */
-    if (t >= T.fbType + .3 && t < T.zero) { var dots = '…'.slice(0, 1); ptxt(g, null, 'SEARCHING' + dots, FBW / 2 - 200, 2, 40, '#b8b2c4', { ls: 1 }); }
-    if (t >= T.zero) { var kz = eo(seg(t, T.zero, T.zero + .14)), sz = lerp(1.5, 1, kz); NOREC = nr || kz < 1; g.save(); g.translate(FBW / 2 - 200, 2); g.scale(sz, sz); ptxt(g, null, '0 MATCHES', 0, 0, 62, '#ff6a52', { ls: 1 }); g.restore(); }
-    /* the marker ring around the count, drawn in the pause */
-    if (t >= T.ring) { var kr = eio(seg(t, T.ring, T.ring + .32)); g.save(); g.strokeStyle = NOTE; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); for (var i = 0; i <= 60 * kr; i++) { var a = -2.2 + i / 60 * TAU * 1.08, rr0 = 1 + .04 * Math.sin(i * .7); g.lineTo(FBW / 2 - 200 + Math.cos(a) * 172 * rr0, 2 + Math.sin(a) * 56 * rr0); } g.stroke(); g.restore(); }
+    g.save(); font(g, 50, 700, MONO); ls(g, 1); g.fillStyle = INK; g.textAlign = 'left'; g.textBaseline = 'middle'; g.fillText(typed, -FBW / 2 + 84, FR + 3);
+    var cw = g.measureText(typed).width; if (Math.floor(t * 3) % 2 === 0 || (t > T.fbType && t < T.fbType + .5)) g.fillRect(-FBW / 2 + 88 + cw, FR - 22, 4, 44); g.restore();
+    /* the date we looked, under the box */
+    mono(g, null, 'CHECKED NOV 20', -FBW / 2 + 24, 44, 36, '#c9c3d6', { ls: 2 });
+    /* the count: searching, then 0 MATCHES */
+    var CX = FBW / 2 - 196;
+    if (t >= T.fbType + .3 && t < T.zero) ptxt(g, null, 'SEARCHING…', CX, FR + 2, 40, '#b8b2c4', { ls: 1 });
+    if (t >= T.zero) { var kz = eo(seg(t, T.zero, T.zero + .14)), sz = lerp(1.5, 1, kz); NOREC = nr || kz < 1; g.save(); g.translate(CX, FR + 2); g.scale(sz, sz); ptxt(g, null, '0 MATCHES', 0, 0, 64, '#ff6a52', { ls: 1 }); g.restore(); NOREC = nr || k < .97; }
+    /* the marker ring around the count, drawn after the stamp */
+    if (t >= T.ring) { var kr = eio(seg(t, T.ring, T.ring + .32)); g.save(); g.strokeStyle = NOTE; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); for (var i = 0; i <= 60 * kr; i++) { var a = -2.2 + i / 60 * TAU * 1.08, rr0 = 1 + .04 * Math.sin(i * .7); g.lineTo(CX + Math.cos(a) * 176 * rr0, FR + 2 + Math.sin(a) * 50 * rr0); } g.stroke(); g.restore(); }
     NOREC = nr; g.restore();
   }
   function buildChecklist() {
@@ -635,7 +627,13 @@
     g.translate(-WBX, -WBY);
     var sk = g.createLinearGradient(0, -120, 0, 640); sk.addColorStop(0, '#080d26'); sk.addColorStop(.7, '#1b1747'); sk.addColorStop(1, '#3a1f55'); g.fillStyle = sk; g.fillRect(WBX, WBY, WBW, 760);
     for (var i = 0; i < 70; i++) { g.fillStyle = 'rgba(255,245,220,' + (.25 + r() * .5).toFixed(2) + ')'; g.fillRect(WBX + r() * WBW, -100 + r() * 560, 2, 2); }
-    g.beginPath(); g.arc(860, 200, 54, 0, TAU); g.fillStyle = '#f6efd8'; g.fill(); g.beginPath(); g.arc(884, 186, 50, 0, TAU); g.fillStyle = '#141a3d'; g.globalAlpha = .0; g.fill(); g.globalAlpha = 1;
+    /* a cut-paper moon: scissor-cut edge, a drop shadow, two pasted craters */
+    (function () { var mx = 760, my = 170, R = 60, rm = mulberry(77); function cut(q, rr1) { q.beginPath(); for (var j = 0; j <= 40; j++) { var a = j / 40 * TAU, rj = rr1 * (1 + (rm() - .5) * .035); if (j === 0) q.moveTo(mx + Math.cos(a) * rj, my + Math.sin(a) * rj); else q.lineTo(mx + Math.cos(a) * rj, my + Math.sin(a) * rj); } q.closePath(); }
+      g.save(); g.shadowColor = 'rgba(0,0,0,.55)'; g.shadowBlur = 10; g.shadowOffsetX = 4; g.shadowOffsetY = 7; cut(g, R); g.fillStyle = '#f3e7c4'; g.fill(); g.restore();
+      g.save(); cut(g, R - 1); g.clip(); g.fillStyle = 'rgba(190,160,100,.35)'; g.beginPath(); g.arc(mx + 26, my + 6, R, 0, TAU); g.fill();
+      g.fillStyle = 'rgba(170,140,90,.45)'; g.beginPath(); g.arc(mx - 18, my - 14, 11, 0, TAU); g.arc(mx + 8, my + 22, 7, 0, TAU); g.fill();
+      for (var j = 0; j < 160; j++) { g.fillStyle = rm() < .5 ? 'rgba(255,255,255,.25)' : 'rgba(120,90,40,.18)'; g.fillRect(mx - R + rm() * 2 * R, my - R + rm() * 2 * R, 2, 2); }
+      g.restore(); })();
     /* the house: flat roof, teal parapet, pink stucco */
     g.fillStyle = '#16807a'; g.fillRect(WBX, 586, WBW, 40);
     g.fillStyle = TRIM; g.fillRect(WBX, 586, WBW, 12);
@@ -657,7 +655,18 @@
     g.fillStyle = 'rgba(0,0,0,.18)'; g.fillRect(OX0 - 22, OY0 - 4, OX1 - OX0 + 44, 4);
     /* driveway */
     g.fillStyle = '#4a4652'; g.fillRect(WBX, 1400, WBW, 1000); g.fillStyle = 'rgba(0,0,0,.25)'; g.fillRect(WBX, 1400, WBW, 14);
-    g.strokeStyle = 'rgba(20,18,26,.5)'; g.lineWidth = 3; g.beginPath(); g.moveTo(200, 1414); g.lineTo(160, 1700); g.moveTo(860, 1414); g.lineTo(900, 1700); g.stroke();
+    g.strokeStyle = 'rgba(20,18,26,.5)'; g.lineWidth = 3; g.beginPath(); g.moveTo(200, 1414); g.lineTo(160, 1700); g.moveTo(860, 1414); g.lineTo(900, 1700); g.moveTo(-60, 1640); g.lineTo(1080, 1640); g.moveTo(-60, 1880); g.lineTo(1080, 1880); g.stroke();
+    /* a paper crack, an oil stain, tyre tracks */
+    g.strokeStyle = 'rgba(20,18,26,.55)'; g.lineWidth = 4; g.beginPath(); g.moveTo(420, 1660); g.lineTo(470, 1700); g.lineTo(455, 1745); g.lineTo(520, 1790); g.stroke();
+    g.fillStyle = 'rgba(15,12,22,.45)'; g.beginPath(); g.ellipse(640, 1520, 110, 26, 0, 0, TAU); g.fill(); g.beginPath(); g.ellipse(700, 1540, 46, 12, .2, 0, TAU); g.fill();
+    g.fillStyle = 'rgba(25,22,32,.35)'; g.fillRect(470, 1414, 38, 520); g.fillRect(800, 1414, 38, 520);
+    /* a traffic cone (left) and a coiled garden hose (right) */
+    g.save(); g.translate(170, 1600); g.save(); g.shadowColor = 'rgba(0,0,0,.5)'; g.shadowBlur = 8; g.shadowOffsetX = 4; g.shadowOffsetY = 6;
+    g.fillStyle = '#ff7a1a'; g.beginPath(); g.moveTo(-14, -120); g.lineTo(14, -120); g.lineTo(46, 0); g.lineTo(-46, 0); g.closePath(); g.fill(); g.restore();
+    g.fillStyle = '#f7f1e2'; g.beginPath(); g.moveTo(-26, -64); g.lineTo(26, -64); g.lineTo(32, -40); g.lineTo(-32, -40); g.closePath(); g.fill();
+    g.fillStyle = '#d65a08'; g.fillRect(-64, 0, 128, 18); g.restore();
+    g.save(); g.translate(860, 1620); g.lineWidth = 13; g.strokeStyle = '#2f8f4f'; for (var hh = 0; hh < 4; hh++) { g.beginPath(); g.ellipse(0, 0, 70 - hh * 13, 30 - hh * 6, 0, 0, TAU); g.stroke(); } g.strokeStyle = '#4fb06d'; g.lineWidth = 3; g.beginPath(); g.ellipse(0, -4, 70, 30, 0, Math.PI * 1.1, Math.PI * 1.7); g.stroke();
+    g.lineWidth = 13; g.strokeStyle = '#2f8f4f'; g.beginPath(); g.moveTo(-60, 14); g.quadraticCurveTo(-140, 60, -110, 120); g.stroke(); g.restore();
     /* the wall lamp */
     rr(g, 486, 642, 48, 30, 6); g.fillStyle = '#2b2530'; g.fill(); g.beginPath(); g.arc(510, 672, 16, 0, Math.PI); g.fillStyle = '#fff1c2'; g.fill();
     g.globalAlpha = .22; g.fillStyle = g.createPattern(GRAIN, 'repeat'); g.fillRect(WBX, WBY, WBW, WBH); g.globalAlpha = 1;
@@ -667,18 +676,21 @@
   function palm(g, x, y, s, flip, t, ph) {
     g.save(); g.translate(x, y); g.scale(flip ? -s : s, s);
     g.fillStyle = '#0b0f24'; g.beginPath(); g.moveTo(-10, 0); g.quadraticCurveTo(10, -200, 40, -380); g.lineTo(56, -378); g.quadraticCurveTo(28, -200, 14, 0); g.closePath(); g.fill();
+    g.strokeStyle = '#1c2246'; g.lineWidth = 3; for (var k2 = 1; k2 < 16; k2++) { var u = k2 / 16, yy = -380 * u, xx = lerp(2, 48, u * u); g.beginPath(); g.moveTo(xx - 10, yy + 4); g.lineTo(xx + 10, yy - 3); g.stroke(); }
     g.translate(48, -384); g.rotate(.05 * osc(t, 7, ph) + .03 * osc(t, 11, ph * 2));
-    for (var i = 0; i < 7; i++) { var a = -2.9 + i * .78 + .04 * osc(t, 9, ph + i); g.save(); g.rotate(a); g.beginPath(); g.moveTo(0, 0); g.quadraticCurveTo(80, -34, 170, 20); g.quadraticCurveTo(80, -6, 0, 10); g.closePath(); g.fill(); g.restore(); }
+    for (var i = 0; i < 7; i++) { var a = -2.9 + i * .78 + .04 * osc(t, 9, ph + i); g.save(); g.rotate(a); g.fillStyle = '#0b0f24'; g.beginPath(); g.moveTo(0, 0); g.quadraticCurveTo(80, -34, 170, 20); g.quadraticCurveTo(80, -6, 0, 10); g.closePath(); g.fill();
+      g.strokeStyle = '#1f2a55'; g.lineWidth = 2.5; for (var f = 0; f < 9; f++) { var fx = 20 + f * 16; g.beginPath(); g.moveTo(fx, -fx * .16 + 2); g.lineTo(fx + 10, -fx * .16 + 16); g.stroke(); } g.restore(); }
     g.restore();
   }
   /* moths around the lamp */
   function moths(g, t) { for (var i = 0; i < 3; i++) { var a = TAU * (5 + i * 2) * t / DUR + i * 2.1, rx = 40 + i * 14, ry = 18 + i * 6; g.fillStyle = 'rgba(255,244,210,.85)'; g.beginPath(); g.ellipse(510 + Math.cos(a) * rx, 662 + Math.sin(a * 1.3) * ry, 4, 2.5, a, 0, TAU); g.fill(); } }
 
   /* ---------- the door: slats from the top of the opening down to its bottom edge (world y) ---------- */
+  /* the rise starts on "Still" and runs across the seam: frame 0 continues the same curve (kayak already in view) */
+  function riseB(t) { return lerp(OY1, OY0, eio(seg(t, T.rise, DUR + T.riseOver))); }
   function doorB(t) {
-    var span = 3.0;
-    if (t < span / 2) return lerp(OY1, OY0, eio((t + span / 2) / span));
-    if (t >= T.slam && t >= DUR - span / 2) return lerp(OY1, OY0, eio((t - (DUR - span / 2)) / span));
+    if (t < T.riseOver) return riseB(t + DUR);
+    if (t >= T.rise) return riseB(t);
     var b = OY0;
     if (t >= T.n1 - .05) b = lerp(OY0, 880, eo(seg(t, T.n1 - .05, T.n1 + .08)));
     if (t >= T.n2c) b = lerp(880, 950, eio(seg(t, T.n2c, T.n2 - .02)));
@@ -706,7 +718,9 @@
   /* ---------- camera: small pushes only (props must stay inside the rail) ---------- */
   function cam(t) {
     var s = 1 + .035 * (1 - eio(seg(t, 0, 2.6))) + .035 * eio(seg(t, DUR - 1.6, DUR));
-    s += .05 * eio(seg(t, T.catchIn, T.catchIn + 1.8)) * (1 - eio(seg(t, T.lsUp - .1, T.lsUp + .3)));
+    s += .07 * eio(seg(t, T.catchIn, T.catchIn + 1.8)) * (1 - eio(seg(t, T.lsUp - .1, T.lsUp + .3)));
+    s += .08 * eio(seg(t, T.trkUp, T.trkUp + 1.4)) * (1 - eio(seg(t, T.trkDown, T.trkDown + .4)));
+    s += .05 * eio(seg(t, T.kayUp, T.kayUp + 1.2)) * (1 - eio(seg(t, T.itemsBack, T.itemsBack + .3)));
     return { s: s, fx: 510, fy: 1000 };
   }
 
@@ -716,32 +730,44 @@
     var arc = Math.sin(Math.PI * k) * -60;
     return { x: lerp(home.x, hero.x, k), y: lerp(home.y, hero.y, k) + arc, s: lerp(1, hero.s, k), r: lerp(0, hero.r || 0, k), k: k, moving: (k > 0 && k < 1) };
   }
-  function tagSwing(t, tl) { return t < tl ? 0 : sw(t, tl, .5, 8.5, 3.2) + .025 * osc(t, 11, tl); }
+  function tagSwing(t, tl) { return .5 * osc(t, 9, tl * 3) * .06 + sw(t, tl, .32, 8.5, 3.2) + sw(t, T.kick, .26, 9, 3) + .025 * osc(t, 11, tl); }
   function tagHot(t) { return t < T.hot ? 0 : bump(t, T.hot, 1.1) * .95; }
-  function tagAlpha(t, tl) { return t < tl || t > T.slam + .05 ? 0 : fin(t, tl, .08); }
-  function tagAt(t, tl) { return t >= tl; }
+  function tagAlpha() { return 1; }
+  /* blank back until its flip, words until the slam (the door is shut then), blank again for the loop */
+  function tagFlip(t, tl) { return t >= T.slam ? 0 : seg(t, tl, tl + .2); }
 
   function drawBike(g, t) {
     var st = liftState(t, { x: BIKE.x, y: BIKE.y }, { x: 510, y: 880, s: 2.05, r: -.03 }, T.bikeUp, T.bikeDown);
     var nr = NOREC; NOREC = nr || st.moving;
     g.save(); g.translate(st.x, st.y); g.rotate(st.r); g.scale(st.s * kn(t, T.bikeKnock, .03), st.s * kn(t, T.bikeKnock, .03)); put(g, D.bike, 0, 0);
-    hangTag(g, -48, -48, tagSwing(t, T.tag0), lerp(1, 1.25 / 2.05, st.k), tagHot(t), tagAlpha(t, T.tag0));
+    hangTag(g, -48, -48, tagSwing(t, T.tag0), lerp(1, 1.25 / 2.05, st.k), tagHot(t), 1, D.TB, tagFlip(t, T.tag0));
     g.restore(); NOREC = nr; return st;
   }
   function drawKayak(g, t) {
-    var st = liftState(t, { x: KAY.x, y: KAY.y }, { x: 510, y: 880, s: 1.12, r: .02 }, T.kayUp, T.itemsBack);
+    var st = liftState(t, { x: KAY.x, y: KAY.y }, { x: 510, y: 900, s: 1.18, r: .02 }, T.kayUp, T.itemsBack);
     var nr = NOREC; NOREC = nr || st.moving;
     g.save(); g.translate(st.x, st.y); g.rotate(st.r); var kk = kn(t, T.kayKnock, .03); g.scale(st.s * kk, st.s * kk); put(g, D.kayak, 0, 0);
-    hangTag(g, -160, 40, tagSwing(t, T.tag1), lerp(1, 1.2 / 1.12, st.k), tagHot(t), tagAlpha(t, T.tag1));
+    hangTag(g, -160, 40, tagSwing(t, T.tag1), lerp(1, 1.2 / 1.18, st.k), tagHot(t), 1, D.TB, tagFlip(t, T.tag1));
     g.restore(); NOREC = nr; return st;
   }
-  function drawTruckF(g, t) {
-    var hero = { x: 510, y: 1050, s: 1.4, r: 0 }, st = liftState(t, { x: TRK.x, y: TRK.y }, hero, T.trkUp, T.trkDown, .42);
-    /* during the build beat the front view drives out (down, under the rail) and comes back */
-    var out = eio(seg(t, T.fOut, T.fOut + .3)) * (1 - eio(seg(t, T.fBack, T.fBack + .36)));
-    var nr = NOREC; NOREC = nr || st.moving || (out > 0 && out < 1);
-    g.save(); g.translate(st.x, st.y + 560 * out); g.scale(st.s * kn(t, T.trkKnock, .025), st.s * kn(t, T.trkKnock, .025)); put(g, D.truckF, 0, 0);
-    hangTag(g, 0, -12, tagSwing(t, T.tag2), lerp(1, 1.1 / 1.4, st.k), tagHot(t), tagAlpha(t, T.tag2));
+  /* the Ganado: a low-riding pickup, side view, parked in the garage at TS; lifted out for the build and again for "goes" */
+  var TRKH = { x: 676, y: 1218 }, TS = .56, TRKHERO = { x: 510, y: 1160, s: .98 };
+  function truckLift(t) {
+    var a = liftState(t, TRKH, { x: TRKHERO.x, y: TRKHERO.y, s: 1 }, T.bUp, T.bDown, .4), b = liftState(t, TRKH, { x: TRKHERO.x, y: TRKHERO.y, s: 1 }, T.trkUp, T.trkDown, .42);
+    return a.k >= b.k ? a : b;
+  }
+  function modsK(t) { if (t >= T.slam) return [0, 0]; return [seg(t, T.mods1, T.mods1 + .35), seg(t, T.mods2, T.mods2 + .3)]; }
+  function drawTruck(g, t) {
+    var st = truckLift(t), s = lerp(TS, TRKHERO.s, st.k), m = modsK(t);
+    var bob = st.k > .99 ? 3 * Math.sin(TAU * t * 2.2) : 0, low = 8 * eo(seg(t, T.mods2, T.mods2 + .2)) * (t < T.slam ? 1 : 0);
+    var nr = NOREC; NOREC = nr || st.moving;
+    g.save(); g.translate(st.x, st.y + bob + low * s); var kk = kn(t, T.trkKnock, .025) * kn(t, T.mods2, .02); g.scale(s * kk, s * kk);
+    put(g, D.truckS, 0, 0); retroMods(g, m[0], m[1]);
+    /* at home its tag hangs from a nail above it (the pickup stays in view); lifted, it rides the cab, until the pickup's own (Game Rant / TheGamer) label lands */
+    if (t < T.lSrc || t >= T.slam) {
+      var ko = t < T.slam ? eio(seg(t, T.lSrc - .2, T.lSrc)) : 0;
+      if (ko < 1) { NOREC = nr || st.moving || ko > 0; g.save(); g.translate(0, -700 * ko); g.rotate(-.4 * ko); hangTag(g, lerp((750 - TRKH.x) / TS, 120, st.k), lerp((905 - TRKH.y) / TS, -150, st.k), tagSwing(t, T.tag2), 1 / s, tagHot(t), 1 - ko, D.TT, tagFlip(t, T.tag2)); g.restore(); }
+    }
     g.restore(); NOREC = nr; return st;
   }
 
@@ -757,42 +783,36 @@
     palm(g, 60, 640, 1, false, t, .3); palm(g, 1030, 650, .92, true, t, 1.7);
     /* the items that are home, then the door over them (lifted items are drawn later, in front) */
     g.save(); g.beginPath(); g.rect(OX0, OY0, OX1 - OX0, OY1 - OY0); g.clip();
-    var homeK = t < T.kayUp + .05 || t > T.itemsBack + .4, homeB = t < T.bikeUp + .05 || t > T.bikeDown + .4, homeT = t < T.trkUp + .05 || t > T.trkDown + .4;
+    var homeK = t < T.kayUp + .05 || t > T.itemsBack + .4, homeB = t < T.bikeUp + .05 || t > T.bikeDown + .4, homeT = !truckOut(t);
     if (homeK) drawKayak(g, t);
-    if (homeT) drawTruckF(g, t);
+    if (homeT) drawTruck(g, t);
     if (homeB) drawBike(g, t);
     door(g, t);
     g.restore();
+    /* the garage light spilling down the driveway, as wide as the door is open */
+    var op = clamp((OY1 - doorB(t)) / (OY1 - OY0), 0, 1);
+    if (op > .01) { var sp = g.createLinearGradient(0, OY1, 0, 1960); sp.addColorStop(0, 'rgba(255,214,140,' + (.42 * op).toFixed(3) + ')'); sp.addColorStop(1, 'rgba(255,214,140,0)'); g.fillStyle = sp; g.beginPath(); g.moveTo(OX0, OY1); g.lineTo(OX1, OY1); g.lineTo(OX1 + 160 * op, 1960); g.lineTo(OX0 - 160 * op, 1960); g.closePath(); g.fill(); }
     g.restore();
     return c;
   }
+  function truckOut(t) { return (t >= T.bUp + .05 && t <= T.bDown + .4) || (t >= T.trkUp + .05 && t <= T.trkDown + .4); }
   function inCam(g, t, f) { var c = cam(t), dx = 2.5 * osc(t, 13, .3) + 1.5 * osc(t, 23, 1.1), dy = 2 * osc(t, 11, 2.1) + 1.5 * osc(t, 19, .7); g.save(); g.translate(510 + dx, 1000 + dy); g.scale(c.s, c.s); g.translate(-c.fx, -c.fy); f(); g.restore(); }
 
   function props(g, t) {
     var k;
     /* lifted items (bike, kayak in the items beat; the pickup in its beat), in front of the door */
-    var liftedB = t >= T.bikeUp + .05 && t <= T.bikeDown + .4, liftedK = t >= T.kayUp + .05 && t <= T.itemsBack + .4, liftedT = t >= T.trkUp + .05 && t <= T.trkDown + .4;
+    var liftedB = t >= T.bikeUp + .05 && t <= T.bikeDown + .4, liftedK = t >= T.kayUp + .05 && t <= T.itemsBack + .4, liftedT = truckOut(t);
     if (liftedB || liftedK) {
       inCam(g, t, function () { if (liftedB) drawBike(g, t); if (liftedK) drawKayak(g, t); });
     }
     if (liftedT) {
-      inCam(g, t, function () { drawTruckF(g, t); });
+      inCam(g, t, function () { drawTruck(g, t); });
     }
     /* item labels (items beat) */
     slapOn(g, D.lDinka, 600, 1250, -.03, T.lDinka, T.dinkaOut, t);
     slapOn(g, D.lCrest, 660, 1070, .025, T.lCrest, T.itemsBack - .05, t);
     slapOn(g, D.lJsv, 510, 1310, -.01, T.lJsv, T.itemsBack + .1, t);
-    /* the build beat: the side-view pickup rolls in from the right, mods paint on, then it rolls off left */
-    if (t >= T.sIn - .02 && t < T.sOut + .5) {
-      var ki = eo(seg(t, T.sIn, T.sIn + .5)), ko = eio(seg(t, T.sOut, T.sOut + .45)), x = 510 + 1100 * (1 - ki) - 1150 * ko;
-      var bounce = 4 * Math.sin(TAU * t * 2.2) * (ki < 1 || ko > 0 ? 1 : .3), low = 8 * eo(seg(t, T.mods2, T.mods2 + .2));
-      var nr = NOREC; NOREC = nr || ki < 1 || ko > 0;
-      g.save(); g.translate(x, 1190 + bounce + low); put(g, D.truckS, 0, 0); retroMods(g, seg(t, T.mods1, T.mods1 + .35), seg(t, T.mods2, T.mods2 + .3)); g.restore(); NOREC = nr;
-      /* motion streaks behind it while it rolls */
-      var v = (ki < 1 ? 1 - ki : 0) + (ko > 0 && ko < 1 ? 1 : 0);
-      if (v > .05) { g.save(); g.globalAlpha = .5 * Math.min(1, v); g.strokeStyle = CRM; g.lineWidth = 5; g.lineCap = 'round'; for (var i = 0; i < 4; i++) { var yy = 1090 + i * 52, xx = ko > 0 ? x + 430 : x + 420; g.beginPath(); g.moveTo(xx, yy); g.lineTo(xx + 90 + 30 * i, yy); g.stroke(); } g.restore(); }
-    }
-    slapOn(g, D.lGrb, 510, 930, -.02, T.lGrb, T.sOut - .1, t);
+    slapOn(g, D.lGrb, 510, 880, -.02, T.lGrb, T.bDown - .1, t);
     /* the chapter pad: drops on "why", pinned top right; flips to 2 on "2", back to 1 on "1?", leaves before the seam */
     if (t >= T.calIn - .3 && t < T.calOut + .5) {
       var kcs = eio(seg(t, T.lsUp - .1, T.lsUp + .25)) * (1 - eio(seg(t, T.trkDown, T.trkDown + .35)));
@@ -810,24 +830,28 @@
       var kq = eo(seg(t, T.qmark, T.qmark + .14)), kqo = eio(seg(t, T.qOut, T.qOut + .3)), sq = lerp(1.6, 1, kq) * (1 - kqo);
       if (sq > .02) { g.save(); g.translate(610, 640); g.rotate(-.12); g.scale(sq, sq); var nrq = NOREC; NOREC = true; stk(g, '?', 0, 0, 170, { col: CORAL }); NOREC = nrq; g.restore(); }
     }
-    /* the VGC note: slaps on "VGC", peeled off before the listing */
-    if (t >= T.note - .02 && t < T.noteOut + .45) {
-      var nr2 = NOREC; slapOn(g, D.note, 470, 870, -.03, T.note, T.noteOut, t, { tape: true }); NOREC = nr2;
+    /* the VGC note: slaps on at the end of "rush?", stays under the listing until it is covered */
+    if (t >= T.note - .02 && t < T.lsUp + .5) {
+      var nr2 = NOREC; slapOn(g, D.note, 470, 880, -.03, T.note, null, t, { tape: true }); NOREC = nr2;
     }
-    /* the listing (DM frame): slides up, holds, slides down */
+    /* the listing (DM frame): slides up over the note, holds 3+ s: our find bar types "chapter", scans the rows, 0 MATCHES;
+       in the pause a big rubber stamp slams 0 MATCHES across it, the marker rings the count, the PS/Xbox chip gets its tick */
     if (t >= T.lsUp && t < T.lsDown + .45) {
       var ku = eo(seg(t, T.lsUp, T.lsUp + .38)), kd = eio(seg(t, T.lsDown, T.lsDown + .4)), yy2 = LSY + 1100 * (1 - ku) + 1200 * kd;
       var nrl = NOREC; NOREC = nrl || ku < .999 || kd > 0;
       g.save(); g.translate(LSX, yy2); g.scale(lerp(.94, 1, ku), lerp(.94, 1, ku)); putW(g, D.listing, 0, 0);
+      /* the find scan: a yellow band sweeps down the rows while it searches, finds nothing */
+      var sk = seg(t, T.fbType + .3, T.zero); if (sk > 0 && sk < 1) { g.save(); g.globalCompositeOperation = 'multiply'; g.fillStyle = 'rgba(255,225,77,.85)'; var by = lerp(-LSH / 2 + 196, LSH / 2 - 40, sk); g.fillRect(-LSW / 2 + 20, by - 30, LSW - 40, 60); g.restore(); }
       g.save(); g.translate(LSW / 2 - 120, -LSH / 2 + 32); g.rotate(.06); putW(g, D.recreated, 0, 0); g.restore();
+      if (t >= T.stamp) { var kst = seg(t, T.stamp - .08, T.stamp), sst = lerp(1.9, 1, kst * kst) * kn(t, T.stamp, .03); NOREC = nrl || kst < 1 || kd > 0; g.save(); g.globalAlpha *= clamp(kst * 3, 0, 1); g.translate(0, 70); g.rotate(-.09); g.scale(sst, sst); putW(g, D.stamp0, 0, 0); g.restore(); NOREC = nrl || ku < .999 || kd > 0; }
       g.restore();
-      g.save(); g.translate(0, 1200 * kd); putW(g, D.also, 510, 1368); g.restore();
+      if (t >= T.also) { var ka = eo(seg(t, T.also, T.also + .14)), sa = lerp(1.35, 1, ka); g.save(); g.translate(0, 1200 * kd); g.translate(510, 1352); g.rotate(-.02); g.scale(sa, sa); g.globalAlpha *= fin(t, T.also, .05); putW(g, D.also, 0, 0); tickMark(g, 222, 30, seg(t, T.alsoTick, T.alsoTick + .18)); g.restore(); }
       NOREC = nrl;
       g.save(); g.translate(0, -900 * kd); findBar(g, t); g.restore();
     }
     /* the pickup's own label: above the lifted pickup, then rides home with it */
     if (t >= T.lLost - .02 && t < T.lostOut + .4) {
-      var kh = eio(seg(t, T.trkDown, T.trkDown + .42)), lx = lerp(510, 718, kh), ly = lerp(672, 878, kh), ls0 = lerp(1, .8, kh);
+      var kh = eio(seg(t, T.trkDown, T.trkDown + .42)), lx = lerp(510, 690, kh), ly = lerp(790, 1010, kh), ls0 = lerp(1, .75, kh);
       var kl = eo(seg(t, T.lLost, T.lLost + .14)), klo = eio(seg(t, T.lostOut, T.lostOut + .35)), sl = lerp(1.4, 1, kl);
       var nrL = NOREC; NOREC = nrL || kl < 1 || klo > 0 || (kh > 0 && kh < 1);
       g.save(); g.globalAlpha *= fin(t, T.lLost, .05); g.translate(lx, ly - 1500 * klo); g.rotate(-.02 + .3 * klo); g.scale(ls0 * sl, ls0 * sl); putW(g, D.lLost, 0, 0);
@@ -896,7 +920,7 @@
     while (total(0, up.length) > maxw && cpx > 96) { cpx -= 4; font(g, cpx, 900); meas(); }
     if (total(0, up.length) > maxw) {
       /* two lines, split at the word that balances them, never after a weak word */
-      var best = 1, bw = 1e9; for (var s = 1; s < up.length; s++) { if (GLUE[norm(words[s - 1].w)]) continue; var m = Math.max(total(0, s), total(s, up.length)); if (m < bw) { bw = m; best = s; } }
+      var best = 1, bw = 1e9; for (var s = 1; s < up.length; s++) { if (GLUE[norm(words[s - 1].w)]) continue; if (/^\d/.test(up[s])) continue; var m = Math.max(total(0, s), total(s, up.length)); if (m < bw) { bw = m; best = s; } }
       lines = [[0, best], [best, up.length]];
     }
     var lh = cpx * 1.18, y0 = CAPY - (lines.length - 1) * lh / 2 + cpx * .36;
@@ -926,7 +950,7 @@
   function scrims(g, t) {
     var a = 0;
     a = Math.max(a, .55 * eio(seg(t, T.bikeUp, T.bikeUp + .3)) * (1 - eio(seg(t, T.itemsBack, T.itemsBack + .3))));
-    a = Math.max(a, .5 * eio(seg(t, T.sIn - .1, T.sIn + .3)) * (1 - eio(seg(t, T.sOut, T.sOut + .35))));
+    a = Math.max(a, .5 * eio(seg(t, T.bUp - .05, T.bUp + .3)) * (1 - eio(seg(t, T.bDown, T.bDown + .35))));
     a = Math.max(a, .62 * eo(seg(t, T.lsUp, T.lsUp + .38)) * (1 - eio(seg(t, T.lsDown, T.lsDown + .4))));
     a = Math.max(a, .55 * eio(seg(t, T.trkUp, T.trkUp + .3)) * (1 - eio(seg(t, T.trkDown, T.trkDown + .3))));
     if (a > .002) { g.fillStyle = 'rgba(12,8,28,' + a.toFixed(3) + ')'; g.fillRect(0, 0, W, H); }
@@ -949,17 +973,22 @@
     Tx('hl2', 'CHAPTER 2', 0, T.hdOut + .15); Tx('hl2', 'CHAPTER 2', T.hdIn + .1, DUR + 1);
     Tx('pill', 'GTA 6', 0, T.pillOut + .1); Tx('pill', 'GTA 6', T.hdIn + .1, DUR + 1);
     Tx('ult', 'ULTIMATE EDITION', T.ult + .1, T.pillOut + .1); Tx('ult', 'ULTIMATE EDITION', LA, LB);
-    [T.tag0, T.tag1, T.tag2].forEach(function (tl, i) {
+    [T.tag0, T.tag1].forEach(function (tl, i) {
       if (cover) return;
-      Tx('tg' + i, 'END OF CH. 1', tl + .1, T.slam); Tx('tv' + i, 'PER VGC', tl + .1, T.slam);
+      Tx('tg' + i, 'END OF CH. 1', tl + .25, T.slam); Tx('tv' + i, 'PER VGC', tl + .25, T.slam);
     });
+    if (!cover) { Tx('tr2', 'RETRO BUILD:', T.tag2 + .25, T.lSrc - .2); Tx('tg2', 'CH. 1 ONLY', T.tag2 + .25, T.lSrc - .2); Tx('tv2', 'PER VGC', T.tag2 + .25, T.lSrc - .2); }
     Tx('dinka', 'DINKA ENDURO', T.lDinka + .1, T.dinkaOut); Tx('dinka', 'DINKA ENDURO', LA, LB);
     Tx('crest', 'CREST KAYAK', T.lCrest + .1, T.itemsBack); Tx('crest', 'CREST KAYAK', LA, LB);
     Tx('jsv', "JASON'S SAFEHOUSE VEHICLES", T.lJsv + .1, T.itemsBack + .1); Tx('jsv', "JASON'S SAFEHOUSE VEHICLES", LA, LB);
-    Tx('grb', 'GANADO RETRO BUILD', T.lGrb + .1, T.sOut - .1); Tx('grb', 'GANADO RETRO BUILD', LA, LB);
-    if (!(t > T.lsUp + .3 && t < T.trkDown + .35)) { Tx('cal', 'CHAPTER', T.calIn + .1, T.calOut); Tx('c1', '1', T.calIn + .1, T.cal2); Tx('c1', '1', T.cal1 + .22, T.calOut); Tx('c2', '2', T.cal2 + .22, T.cal1); }
-    Tx('nh', 'VGC GUIDE', T.note + .05, T.noteOut); Tx('nq1', '“…ONLY IN', T.note + .05, T.noteOut); Tx('nq2', 'CHAPTER 1…”', T.note + .05, T.noteOut); Tx('nd', 'NOV 18, 2026', T.note + .05, T.noteOut);
-    Tx('rsg', 'ROCKSTARGAMES.COM', LA, LB); Tx('rec', 'RE-CREATED', LA, LB); Tx('mods', '“…EXCLUSIVE MODS.”', LA, LB); Tx('also', 'PS + XBOX PAGES: 0 TOO', LA, LB);
+    Tx('grb', 'GANADO RETRO BUILD', T.lGrb + .1, T.bDown - .1); Tx('grb', 'GANADO RETRO BUILD', LA, LB);
+    /* the pad's big "2" lives 1.5 s (Chapter 2 → Still): a digit, said aloud, kept out of the dwell check */
+    if (!(t > T.lsUp + .3 && t < T.trkDown + .35)) { Tx('cal', 'CHAPTER', T.calIn + .1, T.calOut); Tx('c1', '1', T.calIn + .1, T.cal2); Tx('c1', '1', T.cal1 + .22, T.calOut); }
+    var NE = T.lsUp + .3;
+    Tx('nh', 'VGC GUIDE · NOV 18', T.note + .05, NE); Tx('nq1', '“…ONLY IN', T.note + .05, NE); Tx('nq2', 'CHAPTER 1…”', T.note + .05, NE); Tx('nd', 'VIDEOGAMESCHRONICLE.COM', T.note + .05, NE);
+    Tx('rsg', 'ROCKSTARGAMES.COM', LA, LB); Tx('rec', 'RE-CREATED', LA, LB); Tx('mods', '“…EXCLUSIVE MODS.”', LA, LB);
+    Tx('also1', 'PS STORE + XBOX STORE:', T.also + .1, LB + .2); Tx('also2', 'ALSO 0 MATCHES', T.also + .1, LB + .2);
+    Tx('chkd', 'CHECKED NOV 20', T.fbIn + .15, LB);
     Tx('find', 'chapter', T.fbType + .25, LB); Tx('zero', '0 MATCHES', T.zero + .05, LB);
     Tx('jp', "JASON'S PICKUP", T.lLost + .05, T.lostOut); Tx('lost', 'LOST AT END OF CH. 1', T.lLost + .05, T.lostOut); Tx('gr', 'GAME RANT · THEGAMER', T.lSrc + .05, T.lostOut);
     Tx('chk', 'BEFORE CH. 2', T.chk + .05, T.chkOut); Tx('ride', 'RIDE', T.chk + .05, T.chkOut); Tx('paddle', 'PADDLE', T.chk + .05, T.chkOut); Tx('build', 'BUILD', T.chk + .05, T.chkOut);
@@ -968,55 +997,59 @@
 
   /* ---------- times and sound events, all from the voice ---------- */
   function initTimes() {
-    /* hook: frame 0 = headline + pill over the garage, door rolling up; tags swing on by 1.9 s */
+    /* hook: frame 0 = headline + pill over the garage, door already half up (kayak in view), blank tags flip to words by 0.95 s */
     T.ult = at('hook', 'ultimate') - .02;
-    T.tag0 = 1.3; T.tag1 = 1.5; T.tag2 = 1.7;
+    T.tag0 = .45; T.tag1 = .6; T.tag2 = .75;
     T.now = at('hook', 'now');
     T.hdOut = G('hdOut', wend('hook', 'now') + .32, 'swish', .2, .9);
+    T.kick = G('kick', T.hdOut + .24, 'tick', .15, 1);
     T.pillOut = at('items', 'bike') - .7;
-    /* items: the bike lifts out on "army", the kayak on "kayak"; home in the pause after */
+    /* items: the bike lifts out on "army", the kayak (full width) on "kayak"; home in the pause after */
     T.bikeUp = at('items', 'army') - .08; T.bikeKnock = at('items', 'bike');
     T.lDinka = at('items', 'bike') + .02; T.dinkaOut = at('items', 'kayak') - .2;
     T.kayUp = at('items', 'kayak') - .12; T.bikeDown = T.kayUp - .06; T.kayKnock = at('items', 'kayak') + .3; T.lCrest = at('items', 'kayak') + .22;
     T.lJsv = at('items', "jason's") + .02;
-    T.itemsBack = G('back', after('items') + .02, 'swish', .2, .9);
-    /* build: the front view drives out, the side view rolls in; stripe on "retro", chrome on "mods" */
-    T.fOut = T.itemsBack + .05;
-    T.sIn = at('build', 'plus') - .22; G('roll', T.itemsBack + .12, 'roll', .2, 1);
+    T.itemsBack = G('back', after('items') + .02, 'roll', .2, 1);
+    /* build: the low pickup lifts out of the garage on "plus"; stripe on "retro", chrome + whitewalls on "mods"; back home */
+    T.bUp = at('build', 'plus') - .1;
     T.mods1 = at('build', 'retro'); T.mods2 = at('build', 'mods') + .05; T.lGrb = at('build', 'pickup') - .05;
-    T.sOut = at('q', 'so') - .2; T.fBack = T.sOut + .15;
-    /* q: the pad drops on "why", "?" on "rush", the door drops a notch in the pause */
+    T.bDown = at('q', 'so') - .25;
+    /* q: the pad drops on "why", "?" on "rush", the VGC note answers at the end of the word, the door drops a notch */
     T.calIn = at('q', 'why'); T.qmark = at('q', 'rush');
+    T.note = wend('q', 'rush?') - .02; T.qOut = T.note - .05;
     T.n1 = G('n1', wend('q', 'rush') + .32, 'clang', .25, 1.1);
-    T.note = T.n1 + .2; T.qOut = T.note - .05;
-    /* catch: the note; the tags flash on "only"; a slow push */
+    /* catch: the tags flash coral on "only"; a slow push */
     T.catchIn = at('catch', 'vgc') - .05; T.hot = at('catch', 'only') - .02;
-    T.noteOut = G('noteOut', after('catch') + .02, 'swish', .15, .9);
-    /* store: the listing (DM frame), our find bar types "chapter" on "page", 0 MATCHES on "doesn't", a marker ring in the pause */
-    T.lsUp = T.noteOut + .14; T.fbIn = T.lsUp + .18;
-    T.fbType = at('store', 'page') - .05; T.zero = at('store', "doesn't") - .08;
-    T.ring = G('ring', after('store') + .02, 'scrib', .2, 1);
-    T.lsDown = T.zero + 2.08;
-    /* pickup: it lifts out on "pickup", label on "goes", source on "when", home on "ends", the door notches down in the pause */
-    T.trkUp = at('pickup', 'pickup') - .12; T.trkKnock = at('pickup', 'pickup') + .25;
+    /* store: the listing slides up over the note; find types "chapter" on "page", 0 MATCHES on "doesn't";
+       in the pause: the stamp, the marker ring, the tick on the PS/Xbox chip */
+    T.lsUp = G('lsUp', after('catch'), 'swish', .15, .9); T.fbIn = T.lsUp + .3;
+    T.fbType = at('store', 'page') - .05; T.zero = at('store', "doesn't") - .08; T.also = T.zero - .06;
+    T.stamp = G('stamp', wend('store', 'that.') + .27, 'stamp', .2, 1);
+    T.ring = G('ring', T.stamp + .33, 'scrib', .15, 1);
+    T.alsoTick = G('alsoTick', T.ring + .36, 'tick', .2, 1);
+    T.lsDown = at('pickup', 'pickup') - .15;
+    /* pickup: it lifts out on "pickup" (push in), its tag pops off as the Game Rant / TheGamer label lands, home on "ends" */
+    T.trkUp = at('pickup', 'pickup') - .05; T.trkKnock = at('pickup', 'pickup') + .3;
     T.lLost = at('pickup', 'goes'); T.lSrc = at('pickup', 'goes') + .18;
     T.trkDown = at('pickup', 'ends') + .05;
-    T.n2c = T.trkDown + .3; T.n2 = G('n2', after('pickup') + .0, 'clang', .25, 1.1);
-    /* do: checklist ticks, pad to 2, the slam in the pause */
+    T.n2c = T.trkDown + .3; T.n2 = G('n2', after('pickup'), 'clang', .25, 1.1);
+    /* do: checklist ticks, pad to 2 on "Chapter", the slam in the pause */
     T.chk = at('do', 'ride') - .04; T.ticks = [at('do', 'ride') + .1, at('do', 'paddle') + .02, at('do', 'build') + .02];
     T.lostOut = at('do', 'and') + .26;
     T.cal2 = at('do', 'chapter');
-    T.slam = G('slam', after('do') + .0, 'thud', .25, 1.2); T.chkOut = T.slam;
-    /* end: pad back to 1, it leaves, the door rolls up, the headline returns for the loop */
-    T.cal1 = at('end', '1?') + .08; T.calOut = wend('end', '1?') + .3;
-    G('rise', after('end') + .05, 'rattle', .3, 1);
-    T.hdIn = G('hdIn', DUR - .4, 'slap', .12, 1);
-    STRESS = [['items', 'bike'], ['items', 'kayak'], ['build', 'retro'], ['q', 'rush?'], ['catch', 'vgc'], ['catch', 'only'], ['store', 'page'], ['store', "doesn't"], ['pickup', 'goes'], ['pickup', 'ends'], ['do', 'ride'], ['do', 'paddle'], ['do', 'build'], ['do', '2'], ['end', 'still']].map(function (p) { return at(p[0], p[1]); });
+    T.slam = G('slam', after('do'), 'thud', .25, 1.2); T.chkOut = T.slam;
+    /* end: on "Still" the pad flips back to 1 and the door starts up (the same curve runs on into frame 0) */
+    T.cal1 = at('end', 'still'); T.rise = at('end', 'still') + .05; T.riseOver = .5; T.calOut = wend('end', '1?') + .3;
+    G('rattle', after('end'), 'rattle', .3, 1);
+    T.hdIn = G('hdIn', DUR - .35, 'slap', .12, 1);
+    STRESS = [['q', 'rush?'], ['catch', 'only'], ['store', "doesn't"], ['pickup', 'ends'], ['do', '2'], ['end', 'still']].map(function (p) { return at(p[0], p[1]); });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
   function buildPieces() {
-    buildBike(); buildKayak(); buildTruckF(); buildTruckS(); buildNote(); buildListing(); buildChecklist(); buildWorld();
-    D.tag = tagPiece(MAN, INK, LAB); D.tagHot = tagPiece(CORAL, CRM, '#ffe2d8');
+    buildBike(); buildKayak(); buildTruckS(); buildNote(); buildListing(); buildChecklist(); buildWorld();
+    var LT = ['EXP:', 'END OF CH. 1', 'PER VGC'], LR = ['RETRO BUILD:', 'CH. 1 ONLY', 'PER VGC'];
+    D.TB = { back: tagPiece(MAN, CORALD, LAB, null), face: tagPiece(MAN, INK, LAB, LT), hot: tagPiece(CORAL, CRM, '#ffe2d8', LT) };
+    D.TT = { back: tagPiece(MAN, CORALD, LAB, null, 300), face: tagPiece(MAN, INK, LAB, LR, 300), hot: tagPiece(CORAL, CRM, '#ffe2d8', LR, 300) };
     D.cal1 = calPage('1'); D.cal2 = calPage('2');
     D.lDinka = strip([['DINKA ENDURO', 76, INK]], 440, MAN, { seed: 41 });
     D.lCrest = strip([['CREST KAYAK', 76, INK]], 400, MAN, { seed: 43 });
@@ -1038,7 +1071,7 @@
     ctx.globalAlpha = 1; ctx.drawImage(acc, 0, 0);
   }
 
-  BODY.slap = .1; BODY.swish = .22; BODY.clang = .3; BODY.thud = .3; BODY.rattle = .5; BODY.scrib = .3; BODY.roll = .3;
+  BODY.slap = .1; BODY.swish = .22; BODY.clang = .26; BODY.thud = .3; BODY.rattle = .3; BODY.scrib = .3; BODY.roll = .22; BODY.stamp = .27; BODY.tick = .06;
   function SCORE(ac) {
     var sr = ac.sampleRate, rnd = mulberry(7);
     var master = ac.createGain(); master.gain.value = .8;
@@ -1061,17 +1094,21 @@
     /* the slam: a low boom, the door's rattle and a crack */
     function thud(t, g) { boom(t, .55 * g, 110, 42, .28); thump(t, .5 * g, 200); tick(t, 1.6 * g, 1800); for (var j = 0; j < 7; j++) tick(t + .03 + j * .028, (.5 - j * .05) * g, 2600 + rnd() * 1500); nband(t, t + .1, 1800, 700, .2 * g, .01 * g, .8); }
     /* the door rolling up: a fast run of slat ticks over a low rumble */
-    function rattle(t, g) { for (var j = 0; j < 16; j++) tick(t + j * .03 + rnd() * .006, (.45 + rnd() * .35) * g, 1600 + rnd() * 2400); nband(t, t + .5, 180, 260, .14 * g, .06 * g, .7, 0, 'lowpass'); }
+    function rattle(t, g) { for (var j = 0; j < 10; j++) tick(t + j * .03 + rnd() * .006, (.45 + rnd() * .35) * g, 1600 + rnd() * 2400); nband(t, t + .32, 180, 260, .14 * g, .06 * g, .7, 0, 'lowpass'); }
     /* the marker ring: a squeaky felt-tip loop */
     function scrib(t, g) { nband(t, t + .3, 2400, 3400, .16 * g, .08 * g, 3); osc2('triangle', 1900, t, t + .3, [[t, 0], [t + .02, .025 * g], [t + .28, 0]]).frequency.linearRampToValueAtTime(2300, t + .28); }
     /* the pickup rolling in: tyre hiss and a low engine putter */
     function roll(t, g) { nband(t, t + .3, 500, 1600, .16 * g, .04 * g, .7); var o = osc2('sawtooth', 52, t, t + .32, [[t, 0], [t + .03, .05 * g], [t + .3, 0]]); o.frequency.linearRampToValueAtTime(70, t + .3); }
-    var LEVEL = { slap: 3, swish: 3, clang: 2, thud: 2, rattle: 3, scrib: 3, roll: 3 };
+    /* the rubber stamp: crack, a heavy thump, a short low boom, a felt slap */
+    function stamp(t, g) { tick(t, 1.6 * g, 2400); thump(t, .8 * g, 170); boom(t, .35 * g, 130, 60, .18); var sn = noise(t, .12), sl = ac.createBiquadFilter(); sl.type = 'lowpass'; sl.frequency.value = 1500; var so = bus(1); sn.connect(sl); sl.connect(so); env(so.gain, [[t, 0], [t + .004, .32 * g], [t + .1, 0]]); }
+    /* a paper flick / pen tick: two bright clicks */
+    function tk(t, g) { tick(t, 1.4 * g, 2600); tick(t + .028, .8 * g, 3400); thump(t, .12 * g, 420); }
+    var LEVEL = { slap: 3, swish: 3, clang: 2, thud: 2, rattle: 3, scrib: 3, roll: 3, stamp: 1, tick: 3 };
     var TRIM = window.SFX_TRIM || {};
-    var TYPE_DB = window.SFX_TYPE_DB || { slap: -19, swish: -10, clang: -19, thud: -21, rattle: -17, scrib: -8, roll: -14 };
+    var TYPE_DB = window.SFX_TYPE_DB || { slap: -19, swish: -10, clang: -19, thud: -21, rattle: -13, scrib: -8, roll: -14, stamp: -12, tick: -12 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1) * Math.pow(10, ((TRIM[e.id] || 0) + (TYPE_DB[e.type] || 0)) / 20);
-      ({ slap: slap, swish: swish, clang: clang, thud: thud, rattle: rattle, scrib: scrib, roll: roll })[e.type](e.t, g);
+      ({ slap: slap, swish: swish, clang: clang, thud: thud, rattle: rattle, scrib: scrib, roll: roll, stamp: stamp, tick: tk })[e.type](e.t, g);
     });
     /* no music: Isac adds a platform sound; the film ships voice + sound effects */
     var MUSIC = false;
