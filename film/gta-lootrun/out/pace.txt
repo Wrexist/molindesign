@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-lootrun/out/gta-lootrun-vo.mp4: 30.8 s, 3 hard cuts (1.0/10 s), motion 0-1 s 0.614, 0-3 s 0.356, median 0.345, still frames 0.3 %
+/home/user/molindesign/film/gta-lootrun/out/gta-lootrun-vo.mp4: 34.1 s, 6 hard cuts (1.8/10 s), motion 0-1 s 0.564, 0-3 s 0.365, median 0.441, still frames 0.2 %
 OK    no frozen stretches, opening moves
