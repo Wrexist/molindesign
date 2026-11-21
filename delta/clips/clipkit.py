@@ -32,6 +32,7 @@ MAX_SHARE = 0.5        # SAFE-EDIT rule 7: footage at most about half of the run
 MAX_RUN = 5.0          # back-to-back clips count as one unbroken stretch
 MAX_CREATOR_USE = 4.9  # SAFE-EDIT rule 10: a creator clip is under 5 s on screen
 MAX_CREATOR_SHARE = 0.34  # rule 10: creator clips at most a third of the runtime
+MAX_ALL_WITH_PLATES = 0.85  # rule 11: real footage on screen incl. background plates, so some frames stay all ours
 OVERLAP = 0.25         # the same source range in two films counts as reuse above this many seconds
 
 
@@ -283,8 +284,21 @@ def cmd_lint(a):
             fails.append(f'source {alias} is {s.get("verdict")}: only official Rockstar video, own capture or a credited creator clip (rule 10)')
         if s.get('verdict') == 'CREATOR' and not str(s.get('credit', '')).startswith('@'):
             fails.append(f'creator source {alias} has no @handle credit (rule 10)')
-    official_spans, creator_spans = [], []
+    official_spans, creator_spans, plate_spans = [], [], []
     for u in uses:
+        if u.get('plate'):  # rule 11: background plate under our graphics
+            c = man['clips'].get(u['clip'])
+            if not c:
+                fails.append(f'use of unknown clip {u["clip"]}'); continue
+            d = u['t1'] - u['t0']
+            if man['sources'][c['src']].get('verdict') not in ('OFFICIAL', 'OWN'):
+                fails.append(f'plate {u["clip"]} at {u["t0"]:.2f} s is not official Rockstar video or own capture (rule 11: creator clips are never plates)')
+            if d > MAX_USE:
+                fails.append(f'plate {u["clip"]} at {u["t0"]:.2f} s is on screen {d:.2f} s (max {MAX_USE}): cut to another plate')
+            if u.get('srcTo', 0) > (c['out'] - c['in']) + 1 / 30 + 1e-6:
+                fails.append(f'plate {u["clip"]} at {u["t0"]:.2f} s plays past the end of its cut')
+            plate_spans.append((u['t0'], u['t1']))
+            continue
         c = man['clips'].get(u['clip'])
         if not c:
             fails.append(f'use of unknown clip {u["clip"]}')
@@ -304,7 +318,7 @@ def cmd_lint(a):
             creator_spans.append((u['t0'], u['t1']))
             if d > MAX_CREATOR_USE:
                 fails.append(f'{u["clip"]} (creator clip) at {u["t0"]:.2f} s is on screen {d:.2f} s (max {MAX_CREATOR_USE})')
-    for t0, t1 in merged([(u['t0'], u['t1']) for u in uses]):
+    for t0, t1 in merged([(u['t0'], u['t1']) for u in uses if not u.get('plate')]):
         if t1 - t0 > MAX_RUN:
             fails.append(f'footage runs unbroken {t0:.2f}-{t1:.2f} s ({t1 - t0:.2f} s): put our own graphics between clips')
     share = sum(t1 - t0 for t0, t1 in merged(official_spans, 0)) / dur if dur else 0
@@ -318,6 +332,15 @@ def cmd_lint(a):
     allshare = sum(t1 - t0 for t0, t1 in merged(official_spans + creator_spans, 0)) / dur if dur else 0
     if allshare > MAX_SHARE:
         fails.append(f'all footage not ours is {allshare:.0%} of the runtime (max {MAX_SHARE:.0%})')
+    withp = sum(t1 - t0 for t0, t1 in merged(official_spans + creator_spans + plate_spans, 0)) / dur if dur else 0
+    if withp > MAX_ALL_WITH_PLATES:
+        fails.append(f'real footage incl. background plates is {withp:.0%} of the runtime (max {MAX_ALL_WITH_PLATES:.0%}): keep some frames all ours')
+    pshare = sum(t1 - t0 for t0, t1 in merged(plate_spans, 0)) / dur if dur else 0
+    # the same plate range twice in one film reads as a loop
+    pl = sorted([(u['clip'], u['from'], u['srcTo']) for u in uses if u.get('plate')])
+    for (c1, a1, b1), (c2, a2, b2) in zip(pl, pl[1:]):
+        if c1 == c2 and min(b1, b2) - max(a1, a2) > OVERLAP:
+            fails.append(f'plate {c1} shows the same {min(b1, b2) - max(a1, a2):.2f} s twice: use a new range')
     for name in man['clips']:
         if not any(u['clip'] == name for u in uses):
             warns.append(f'clip {name} is cut but never shown')
@@ -334,7 +357,7 @@ def cmd_lint(a):
                 ov = min(i1, oc['out']) - max(i0, oc['in'])
                 if key == okey and ov > OVERLAP:
                     fails.append(f'clip {n} reuses {ov:.2f} s of {okey} already used by film/{of} ({on} {oc["in"]}-{oc["out"]})')
-    print(f'clips: {len(uses)} uses of {dur:.1f} s: Rockstar footage {share:.0%}, creator clips {cshare:.0%}, all footage {allshare:.0%}')
+    print(f'clips: {len(uses)} uses of {dur:.1f} s: Rockstar footage {share:.0%}, creator clips {cshare:.0%}, all footage {allshare:.0%}, background plates {pshare:.0%}, real footage on screen {withp:.0%}')
     for w in warns:
         print('WARN ', w)
     for f in fails:
