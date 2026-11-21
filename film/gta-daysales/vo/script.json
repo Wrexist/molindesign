@@ -1,0 +1,99 @@
+{
+ "about": "GTA 6 day one retail sales reached $3.79 billion (Take-Two/Rockstar press release Nov 20 2026: 'day one retail sales* reached $3.79 billion, setting a new record for entertainment across any medium, and becoming the biggest entertainment launch in history'; '*based on company estimates through end of day November 19th worldwide'). Comparison, same company and same measure: GTA V 'achieved first day sell-through of more than $800 million worldwide, excluding the upcoming launch in Japan and Brazil, according to Company estimates' (Take-Two, Sept 18 2013, SEC 8-K Ex 99.1), and 'worldwide retail sales of more than $1 billion during its first three days on sale' (Take-Two, Sept 20 2013, SEC 8-K Ex 99.1). Nominal dollars, not adjusted for inflation. All read 2026-11-21. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "GTA 5",
+  "Take-Two"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6. $3.79 billion. One day.",
+   "say": "G T A six. Three point seven nine billion. One day.",
+   "pause": 0.55,
+   "speed": 1.1
+  },
+  {
+   "id": "est",
+   "at": 4.05,
+   "text": "That's day one sales, by Take-Two's own estimate.",
+   "say": "That's day one sales, by Take Two's own estimate.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "ask",
+   "at": 6.95,
+   "text": "Is that a lot, even for GTA?",
+   "say": "Is that a lot, even for G T A?",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "old",
+   "at": 9.45,
+   "text": "In 2013, GTA 5 made over $800 million on day one.",
+   "say": "In twenty thirteen, G T A five made over eight hundred million on day one.",
+   "pause": 0.5,
+   "speed": 1.1
+  },
+  {
+   "id": "slow",
+   "at": 14.75,
+   "text": "But GTA 5 hit one billion in three days.",
+   "say": "But G T A five hit one billion in three days.",
+   "pause": 0.35,
+   "speed": 1.1
+  },
+  {
+   "id": "fast",
+   "at": 18.15,
+   "text": "GTA 6 passed three billion in a single day.",
+   "say": "G T A six passed three billion in a single day.",
+   "pause": 0.7,
+   "speed": 1.1
+  },
+  {
+   "id": "rec",
+   "at": 21.85,
+   "text": "The biggest entertainment launch in history, Take-Two says.",
+   "say": "The biggest entertainment launch in history, Take Two says.",
+   "pause": 0.4,
+   "speed": 1.1
+  },
+  {
+   "id": "end",
+   "at": 24.95,
+   "text": "Did you buy it on day one?",
+   "pause": 0,
+   "speed": 1.1,
+   "say": "Did you buy it, on day one?"
+  }
+ ],
+ "dur": 27.4,
+ "tail": 0.55,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}
