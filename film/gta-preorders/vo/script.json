@@ -35,14 +35,14 @@
   },
   {
    "id": "est",
-   "at": 4.15,
+   "at": 4.0,
    "text": "That's copies sold before release day.",
    "pause": 0.3,
    "speed": 1.1
   },
   {
    "id": "ask",
-   "at": 6.45,
+   "at": 6.3,
    "text": "So how fast did GTA 5 sell?",
    "say": "So how fast did G T A five sell?",
    "pause": 0.35,
@@ -50,7 +50,7 @@
   },
   {
    "id": "old",
-   "at": 9.35,
+   "at": 9.0,
    "text": "GTA 5 came out in 2013.",
    "say": "G T A five came out in twenty thirteen.",
    "pause": 0.5,
@@ -58,7 +58,7 @@
   },
   {
    "id": "slow",
-   "at": 12.45,
+   "at": 11.9,
    "text": "Within six weeks, it had shipped nearly 29 million.",
    "say": "Within six weeks, it had shipped nearly twenty nine million.",
    "pause": 0.4,
@@ -66,7 +66,7 @@
   },
   {
    "id": "fast",
-   "at": 15.95,
+   "at": 15.3,
    "text": "But GTA 6 beat that before day one.",
    "say": "But G T A six beat that before day one.",
    "pause": 0.7,
@@ -74,20 +74,20 @@
   },
   {
    "id": "rec",
-   "at": 19.35,
+   "at": 18.3,
    "text": "A record across all platforms, Rockstar says.",
    "pause": 0.4,
    "speed": 1.1
   },
   {
    "id": "end",
-   "at": 22.15,
+   "at": 21.05,
    "text": "Did you buy it before launch?",
    "pause": 0,
    "speed": 1.1
   }
  ],
- "dur": 24.6,
+ "dur": 23.3,
  "tail": 0.55,
  "fit": {
   "min": 0.88,
