@@ -1,0 +1,2 @@
+gta-busted-vo.mp4: 41.9 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.864, 0-3 s 0.648, median 0.476, still frames 9.6 %
+OK    no frozen stretches, opening moves

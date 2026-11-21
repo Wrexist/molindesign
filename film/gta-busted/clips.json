@@ -1,0 +1,133 @@
+{
+ "film": "gta-busted",
+ "sources": {
+  "extlook": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games"
+  },
+  "t1": {
+   "key": "twitter-1731998653743517697",
+   "url": "https://x.com/RockstarGames/status/1732149328779571313",
+   "title": "Rockstar Games - Hello @X, watch Grand Theft Auto VI Trailer 1",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games"
+  },
+  "launch": {
+   "key": "twitter-2110704990339678208",
+   "url": "https://x.com/RockstarGames/status/2110717537964953810",
+   "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games"
+  }
+ },
+ "clips": {
+  "p2cops": {
+   "src": "extlook",
+   "in": 1104.2,
+   "out": 1108.3,
+   "fps": 30,
+   "frames": 123,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p3rifle": {
+   "src": "extlook",
+   "in": 279.5,
+   "out": 283.0,
+   "fps": 30,
+   "frames": 105,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p5trunk": {
+   "src": "extlook",
+   "in": 1000.0,
+   "out": 1003.6,
+   "fps": 30,
+   "frames": 108,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p6walk": {
+   "src": "extlook",
+   "in": 488.0,
+   "out": 492.5,
+   "fps": 30,
+   "frames": 135,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p8bag": {
+   "src": "extlook",
+   "in": 1083.4,
+   "out": 1087.4,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p9drive": {
+   "src": "extlook",
+   "in": 514.5,
+   "out": 518.5,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p10truck": {
+   "src": "extlook",
+   "in": 569.0,
+   "out": 570.8,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p12sunset": {
+   "src": "extlook",
+   "in": 1570.0,
+   "out": 1572.7,
+   "fps": 30,
+   "frames": 81,
+   "w": 1280,
+   "crop": "1920:1062:0:0"
+  },
+  "p1jail": {
+   "src": "t1",
+   "in": 8.5,
+   "out": 10.8,
+   "fps": 30,
+   "frames": 69,
+   "w": 1280,
+   "crop": null
+  },
+  "p7chase": {
+   "src": "t1",
+   "in": 70.3,
+   "out": 72.7,
+   "fps": 30,
+   "frames": 72,
+   "w": 1280,
+   "crop": null
+  },
+  "p4swamp": {
+   "src": "launch",
+   "in": 27.2,
+   "out": 28.65,
+   "fps": 30,
+   "frames": 44,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  }
+ }
+}

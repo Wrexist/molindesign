@@ -26,7 +26,7 @@
   "score_db": 0,
   "smr_db": 33
  },
- "dur": 42.8,
+ "dur": 41.85,
  "tail": 0.8,
  "fit": {
   "min": 0.9,
@@ -43,7 +43,7 @@
   {
    "id": "stake",
    "at": 4.53,
-   "text": "Or they're gone for good.",
+   "text": "Or, they're gone for good.",
    "pause": 0.2
   },
   {
@@ -67,8 +67,8 @@
   {
    "id": "kept",
    "at": 15.06,
-   "text": "Bought ones wait at Ammu-Nation or in your trunk.",
-   "say": "Bought ones wait at Ammu Nation, or in your trunk.",
+   "text": "Bought guns wait at Ammu-Nation or in your trunk.",
+   "say": "Bought guns wait at Ammu Nation, or in your trunk.",
    "pause": 0.3
   },
   {
@@ -87,7 +87,7 @@
   {
    "id": "bags",
    "at": 25.54,
-   "text": "Three: get stash bags to a fence first.",
+   "text": "Three: get stash bags to the fence first.",
    "pause": 0.2
   },
   {
@@ -105,15 +105,16 @@
   {
    "id": "grand",
    "at": 35.67,
-   "text": "You can carry $20,000. The cops keep every dollar.",
-   "say": "You can carry twenty thousand dollars. The cops keep every dollar.",
+   "text": "You can carry $20,000. Guides say the cops keep all of it.",
+   "say": "You can carry twenty thousand dollars. Guides say the cops keep all of it.",
    "pause": 0.5
   },
   {
    "id": "end",
    "at": 40.0,
    "text": "How much are you carrying?",
-   "pause": 0
+   "pause": 0,
+   "take": 1
   }
  ],
  "gap": 0.05
