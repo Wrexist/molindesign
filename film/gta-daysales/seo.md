@@ -31,7 +31,7 @@ Sources:
 
 #GTA6 #GTAVI #GTA5 #GrandTheftAuto #Shorts
 
-Made with our own graphics. Not affiliated with Rockstar Games or Take-Two.
+Trailer clips: Rockstar Games (GTA VI Launch Trailer, GTA V Official Trailer), used for commentary. Not affiliated with Rockstar Games or Take-Two.
 
 ## Hashtags
 #GTA6 #GTAVI #GTA5 #GrandTheftAuto #Shorts (5; no #ai)
