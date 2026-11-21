@@ -40,3 +40,39 @@ Previous Delta number Short (gta-streampeak) scored r1 7.06 / Truth 8.5. This on
 - The caption strips are torn-paper labels with one highlighted word, the same caption system as every other Delta film. That is fine, but with no tape spill the film reads as "two icons plus captions".
 - Symmetric triple pendant lamps on every frame: decoration with no job.
 - The `PAST $3B` grunge rubber stamp is the house stamp from gta-99 and gta-streampeak. A third film in a row with the same stamp texture is starting to feel like a template.
+
+## Round 2 (footage remake)
+Fresh jury, 2026-11-21. Scored without reading earlier rounds. Video: `out/gta-daysales-vo.mp4` (27.4 s, 1080x1920). pacecheck OK (motion 0-1 s 1.03, 0-3 s 1.57, no frozen stretches, 0 hard cuts). -13.9 LUFS integrated, true peak -2.7 dBFS, no black frames. Whisper heard every line with WER 0.00.
+
+**Sources re-read today.** Take-Two IR page (fetched, 395 KB): "day one retail sales* reached $3.79 billion … biggest entertainment launch in history", footnote "*based on company estimates through end of day November 19th worldwide". SEC 8-K Ex 99.1, 18 Sept 2013: "$800 Million Worldwide During First Day" (excluding Japan and Brazil). SEC 8-K Ex 99.1, 20 Sept 2013: "more than $1 billion during its first three days on sale, according to Company estimates". All match the script and the screen labels.
+
+**SAFE-EDIT checklist.** Every clip is under 5 s, muted, and credited on screen (`CLIP · ROCKSTAR GAMES · …`). Footage is about 44 % of the runtime. No rumour, leak or ending, no trailer music, no logo or key-art frames, and every number is sourced. Clean.
+**Hook rule.** Frame 0 shows `GTA 6: $3.79 BILLION` (4 words) over the Launch Trailer stunt plane. The `IN ONE DAY` stamp and the `TAKE-TWO ESTIMATE` card are on screen by 2.0 s but not at 1.0 s. Passes, so no cap.
+
+| Criterion | Score | Why |
+|---|---|---|
+| Hook | 7.0 | It has a real GTA 6 shot, a 4-word number and pink smoke behind the type, and it moves (1.57). Against it: the slowed 0.54x footage is soft. The lamps hang over the video. The bottom 40 % of frame 0 (y 1270-1920) is bare wooden counter. The payoff stamp sits low at y ~1050, after 1.0 s. |
+| Retention | 7.0 | There is no frozen stretch, and the new beats (2013 at 8.7, 3 DAYS at 14.5, the pour at 18, the montage at 21.4) land every 3-5 s. But 3.3-8.7 s is 5.4 s of teal wall with a receipt printing. It is the longest stretch without footage, it falls right after the hook, and nothing new happens on screen in it apart from the ? at 7.5. |
+| Clarity | 6.5 | The idea is plain: 3.79B in one day against GTA 5's 1B in three. But 20-25 s stacks about 15 labels at once: 3 DAYS, DAY1/$800M+/DAY2/DAY3/TOTAL $1B+, $1B+, GTA 5, NOT TO SCALE, 1 DAY $3.79B TAKE-TWO ESTIMATE, the $3.79B display, GTA6, PAST $3B, the fine-print card, the quote plate and the clip credit. That is not one read at a time. $3.79B appears twice side by side. |
+| Truth | 9.0 | Every claim is attributed and matches the primary sources. "Over", "$800M+", "$1B+", "EXCL. JAPAN & BRAZIL", "2013 DOLLARS" and the quote marks are all present. Two small nits: "a single day" in the voice is tighter than the release's window ("through end of day Nov 19 worldwide"), which the screen card does show; and the bars are drawn NOT TO SCALE (labelled, so honest). |
+| Motion and design craft | 6.0 | The cut-paper register set is likeable and the roller-blind transitions are a good idea. Against it: the counter front y 1270-1430 is empty on the hook (0-1.5 s) and the end (25-26.6 s), a repeat of LESSONS "leave y 1000-1430 empty" (-1). The 21.4-24.9 montage is almost entirely covered by the collage, so four good clips read as noise. The lamps sit on top of the footage. The end register shows `DAY 1 SALES`, not the number. |
+| Voice and sound | 7.0 | The hook is in the first words, the pace is tight, there is no music, and Whisper is clean. Hits are there, but the blind swish in the 3.2 s gap peaks at -19 dBFS (LESSONS: Delta hits should reach about -10). The register ka-ching does not stand out. |
+| Loop and ending | 8.0 | The last frame is frame 0 (plane plus headline), and "…on day one?" runs into "GTA 6. $3.79 billion. One day." Strong. Docked because the end beat (25-26.6 s) is the plainest frame in the film. |
+| Shareability | 6.0 | The DM image was meant to be the receipt that pours off the counter. The tape is only about 1.3x the height of the GTA 5 receipt, tagged NOT TO SCALE, and piles neatly on the counter, so the frame argues against its own number. |
+
+**Overall 7.0** (56.5 / 8 = 7.06, not rounded up). **Truth 9.0. PASS the gate (7.0+, Truth 8.5+), but only just: fix then post.** That is below the last two Delta passes (7.1 and 7.2).
+
+### Fixes, ranked by impact
+1. **Wow: 18.0-21.4 s, the pour. Draw it to scale and drop NOT TO SCALE.** Use 1 px = $5M. The GTA 5 day-one receipt becomes 160 px, the GTA 5 three-day total ($1B+) 200 px, and the GTA 6 tape 758 px. Shoot it up from the counter (y 1270) to about y 510, past the caption, in 0.6 s with the ka-ching at -10 dBFS, then hold 0.7 s. Label the GTA 5 receipt `$1B+ · 3 DAYS` (a floor, so the ratio is honest at most). That is the frame people will send.
+2. **20.5-25 s, too many labels. Cut to five reads.** Remove the DAY1/DAY2/DAY3 lines once the `3 DAYS` chip is up. Remove the register's `$3.79B` display (the `1 DAY $3.79B` tag carries it). Remove `PAST $3B` (the voice already says it at 18.6). Shrink the fine-print card to 0 opacity once the quote plate lands, and put it back for the last 0.3 s, or keep it at 36 px and move it under the GTA 5 register only.
+3. **21.4-24.9 s, the hidden montage.** Lift the quote plate to y 200-420 and push the counter props down and smaller (0.8 scale) for these 3.5 s, so the car, bike, marina and balcony shots show at least 60 % of the wall. Otherwise drop the montage to two clips at 1.7 s each.
+4. **3.3-8.7 s, the dead middle.** Bring a GTA 6 clip back behind the `est` receipt print, for example 1.5 s of the car clip at 4.5-6.0 s behind a half-raised blind. Or punch the receipt 1.0 to 1.08 on "own estimate" at 5.9 s. Nothing more than 3 s should go by without footage or a new object.
+5. **0.0-1.5 s, frame 0.** Fill y 1270-1430. Bring the `IN ONE DAY` stamp in at 0.9 s (now about 1.5 s) and set it on the counter edge at y 1300, not over the beach. Hide the three lamps while the wall shows footage (they cut the skyline at y 60-110 on frame 0). Run the plane at 0.75x, not 0.54x, so it stays sharp.
+6. **25.0-26.6 s, end beat.** Keep footage behind the question, for example the balcony clip at 50 % behind the blind. Put `$3.79B` back on the register display (it now says `DAY 1 SALES`), as the brief planned. Bring the chips up to 48 px.
+7. **Sound.** Lift the blind swishes and the hook ka-ching to about -10 dBFS in voice gaps (now -19 at 3.2 s). Add a drawer slam at 18.6 s on "single day".
+8. **Voice wording (optional Truth polish).** Change "in a single day" (`fast`) to "on day one", so the voice matches the release's own term and the `DAY 1` labels. That needs a re-voice of one line, so it is not a blocker.
+
+### Generic or AI-made tells
+- The same three hanging lamps and centred register on every beat make it look like a template. The set never changes angle or scale.
+- Ransom-note tape captions on every line mirror the voice word for word. That works sound-off, but it is the house default, not a choice made for this film.
+- The footage reads as wallpaper behind a cardboard set, not as the subject. The best Delta frames are the ones where the game shot holds the wall alone (0-1.5 s, 27 s).

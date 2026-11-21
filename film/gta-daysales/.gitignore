@@ -15,3 +15,4 @@ out/*.mp4
 out/mix.log
 out/mixrun.log
 out/picrun.log
+out/clips-used.json
