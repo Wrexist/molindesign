@@ -40,3 +40,9 @@ The **flap slam**: every cell flips blank flaps for a third of a second, then la
 - Every number has its source and date on screen; the quote has its leading "…" because the sentence is cut.
 - GTA 5 plates are desaturated and labeled `FOOTAGE: GTA 5 (2013)`; every GTA 6 beat plays GTA 6 footage.
 - Plate swaps from the brief: P1 skyline 1545.2 is now used by gta-wildfinds, so the hook plays the mural street 1026.2-1029.7; P2 (store robbery: people cowering, a body at 711 s) replaced by the boat 1550.8-1552.4; P6 trimmed to the bike jump 48.3-50.0 (hidden cut at 48.2); P7 trimmed to the marina 4.4-6.2 (cuts at 4.33 and 6.27).
+
+## r3 changes (jury r2 7.1 / Truth 8.5)
+- Frame 0 word back to BEFORE LAUNCH; PRE-RELEASE is the small source-wording line under COPIES SOLD.
+- The "beat" is drawn: the GTA 6 row flips up over the GTA 5 row (rank swap, boards stay the same size, no ratio).
+- y 1000-1430 is never bare: Rockstar tag + calendar in the hook, week slots/pages during `slow`, the GTA 6 or GTA 5 row in the bottom slot, the stamp under the quote.
+- Quote in full with its leading ellipsis and source date; the plate under it at 0.45 dim; caption on.

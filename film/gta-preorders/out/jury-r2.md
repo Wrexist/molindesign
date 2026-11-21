@@ -1,0 +1,34 @@
+# Jury r2: gta-preorders (fresh eyes, did not read jury-r1)
+
+MP4 `out/gta-preorders-vo.mp4`, 1080x1920, 30 fps, 24.8 s. -14.0 LUFS, true peak -2.6 dBTP, no black frames, no silence over 0.4 s. pacecheck: 1 hard cut, motion 0-1 s 1.85, 0-3 s 2.44, still 0.1 %, OK. In-mix Whisper: all 8 lines heard with WER 0. clipkit lint: plates 83 %, real footage 83 % (85 % cap ok), no foreground footage. Kit clamps plate dim to at least 0.35, so the `keys: .3` setting renders at 0.35 (rule 11 floor).
+
+## Scores
+| Criterion | Score | Why |
+|---|---|---|
+| Hook | 7.0 | Frame 0 has `GTA 6 SOLD / 32.5M / PRE-RELEASE` (4 words plus the number), readable with the sound off, and "GTA 6" is the first spoken word. Rockstar tag on screen by 1.5 s, calendar at 2.0 s. Docked because "PRE-RELEASE" is trade jargon where the voice and brief say BEFORE LAUNCH. Frame 0 is also a stat card on a dim street with nothing surprising in it, and frame 0 (and the last frame) show a dark silhouette from another shot that pops to the mural street on frame 1. |
+| Retention | 7.0 | Something changes about every 1.2 s, with re-hooks at 6.6 (GTA 5 `?`), 9.3 (2013 page), 15.6 ("But") and 22.5 (question). Soft spots: 9.3-11.9, where the ink 2013 page only changes by a highlight on "2013", and 19.1-22.4, a single small quote card over a bright plate. |
+| Clarity | 7.0 | The one idea comes through. Too many reads at once: about 5 at 4.6 s (caption, COPIES SOLD, PRE-RELEASE, ROCKSTAR tag, DAY 0 / LAUNCH NOV 19) and 9 on the DM frame. Two day words fight each other (`DAY 0` calendar vs `0 DAYS` chip). `<29M` on the flaps reads as an arrow to a 14-year-old. |
+| Truth | 8.5 | 32.5M "pre-release" (Rockstar, Nov 20 2026), nearly 29M sold-in within six weeks (Take-Two, Oct 29 2013) and Sept 17 2013 all match BRIEF sources. Sold vs SHIPPED TO STORES is labelled on both rows. Both boards are the same size and no gap is shown, so no ratio is implied. Docked: the quote card says `"A NEW RECORD" — ROCKSTAR` with no ellipsis and without "across all platforms", which is broader than the source sentence and differs from the treatment's `"…A NEW RECORD…"`. The shipped tag is about 30 px cap height and the TAKE-TWO · OCT 29 2013 line about 22 px, under the brief's 40 px. The voice still says "beat that" across two different measures, carried only by that small tag. |
+| Motion and design craft | 6.0 | The split-flap boards, torn week pages and torn-paper captions are hand-built and clean. Right rail checked: 0 DAYS ends near x 918, NOT YET near x 900, stamp bottom about y 1415, all inside. **LESSONS repeat (-1): fill y 1000-1430 every second.** At 0-1.5 s and 12.2-15.5 s that band is bare plate (pavement and highway), with our graphics ending near y 1000 / 940. The quote beat leaves y 0-950 as raw plate with the "Welcome to The Keys" sign as the hero of the frame (rule 11 spirit). The caption bottom nearly touches the WK row (about 10 px) from 15.6 to 18.8 s. The DM frame is crammed. |
+| Voice and sound | 7.0 | Hook in the first words, clean Ming read, no music, sensible loudness, hits mixed into pauses (per the mix log). The quote beat has no caption while the voice runs, so sound-off viewers lose "across all platforms". The read is TTS-flat on "But GTA 6 beat that". |
+| Loop and ending | 7.5 | "Did you buy it before launch?" leads straight into "GTA 6. 32.5 million copies. Before launch." The board slam runs across the seam, and YES / NOT YET reads well. The one-frame plate pop at frame 0 to 1 dirties the seam. |
+| Shareability | 7.0 | "GTA 6 beat GTA 5's first six weeks before day one" is worth sending. The DM frame (GTA 5 weeks 1-6 vs 0 DAYS plus the stamp) is the image, but it is too busy to read as a screenshot. |
+
+**Overall 7.1** (57.0 / 8), Truth 8.5: **fix then post** → gate **PASS** (Overall ≥ 7.0 and Truth ≥ 8.5). Previous Delta factory film gta-daysales scored 7.2 / Truth 9.0, so this one is a little below it and Truth is right at the floor.
+
+## Fixes, ranked by impact
+1. **0.0-1.5 s and 12.2-15.5 s, empty y 1000-1430 (LESSONS repeat).** Only plate shows under the boards. Move the GTA 5 board down so its tag sits at y 1150-1250, or lay the WK 1-6 pages as a row at y 1080-1240 under the board. In the hook, raise the `ROCKSTAR · NOV 20 2026` tag to 48 px at y 1120 from 0.6 s.
+2. **19.1-22.4 s, quote beat.** The plate is the hero, there is no caption, and the quote is cut without an ellipsis. Set `"…A NEW RECORD ACROSS ALL PLATFORMS" — ROCKSTAR · NOV 20 2026` at 72 px or more, centred at y 560-1000. Raise that plate's dim to 0.45, run the normal caption, and push the card back up once the boards leave.
+3. **Wow: 15.6-16.4 s, the "beat" moment.** Right now the GTA 6 board just re-slams below GTA 5. On "beat", have the GTA 6 row physically flip up over the GTA 5 row: a 0.25 s board swap, a 1.06 camera punch and a clatter in the 0.7 s pause. The rank changes visibly and the boards stay the same size, so no ratio is implied. This is the screenshot moment and it should move.
+4. **17.7-18.8 s, DM frame overload (9 reads).** Hide the caption during the hold (the stamp says it), drop the `0 DAYS` chip (it duplicates BEFORE DAY ONE), and set the `NEARLY 29M · SHIPPED TO STORES` tag at 40 px cap or more with TAKE-TWO · OCT 29 2013 at 30 px. Keep the hold at 1.1 s or more.
+5. **Frame 0 and the last frame.** One frame of a dark silhouette from another shot, then frame 1 jumps to the mural street. Start the mural plate at 1026.25 or later so frame 0 is the mural, and freeze that same frame for the end.
+6. **Frame 0 word.** Swap `PRE-RELEASE` for `BEFORE LAUNCH` (the brief's own plan, plain English, matches the voice, still 4 words plus the number). Keep PRE-RELEASE as the small source-wording chip on the est beat.
+7. **12.2-18.8 s, `<29M` on the flaps.** Use `~29M` (or the flaps `29M` with a NEARLY flap in front). The `<` reads as an arrow, not "less than".
+8. **9.3-11.9 s, 2013 page on ink.** About 2.4 s with only a highlight change. Tear the SEPT 17 sheet off at 10.6 to reveal WK 1, or start `slow` 0.35 s earlier.
+9. **4.25-6.5 s, five reads.** Drop the duplicate `PRE-RELEASE` chip once COPIES SOLD lands, and dim the calendar to a single `DAY 0` until "release day" highlights it.
+10. **15.6-18.8 s, caption gap.** The caption sits about 10 px above the WK row. Give it 24 px or more.
+
+## Generic or AI-made look
+- The grunge red rubber stamp and torn-paper caption strips are now the Delta house formula. The treatment itself flagged "the same grunge stamp three films running", and it is here again.
+- The flap boards are flat. They have no cast shadow, hinge wobble or light falloff, so on a dim plate they read as UI widgets rather than objects.
+- The `FOOTAGE: GTA 6` shelf label and the empty pink-lipped shelf take up a 150 px band every frame and do nothing for the story.
