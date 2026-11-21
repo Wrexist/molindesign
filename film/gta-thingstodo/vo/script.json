@@ -1,0 +1,103 @@
+{
+ "about": "Nine things to do in GTA 6, each proved by a 1-2 s muted clip from Rockstar's own 'An Extended Look' (rk721912, 26:48), whose two-minute activity montage (1026-1143 s) starts right after the line 'Wanna take a look around?'. Our order, our pictogram grid that fills 1/9 to 9/9, ends on a BASE jump and asks which one first. Trailer mode (SAFE-EDIT rule 7), official footage only. Delta.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.6
+ },
+ "names": [
+  "GTA",
+  "Rockstar",
+  "Extended Look",
+  "BASE"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 22
+ },
+ "dur": 29.3,
+ "fit": {
+  "min": 0.8,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.15,
+   "text": "Nine things to do in GTA 6. Count along.",
+   "say": "Nine things to do in G T A six. Count along.",
+   "speed": 1.06
+  },
+  {
+   "id": "jetski",
+   "at": 3.0,
+   "text": "One: ride a jet ski.",
+   "speed": 1.1
+  },
+  {
+   "id": "race",
+   "at": 5.25,
+   "text": "Two: race on a track.",
+   "speed": 1.1
+  },
+  {
+   "id": "dirtbike",
+   "at": 7.38,
+   "text": "Three: dirt bike races.",
+   "speed": 1.1
+  },
+  {
+   "id": "airboat",
+   "at": 9.91,
+   "text": "Four: airboat the swamps.",
+   "speed": 1.1
+  },
+  {
+   "id": "kayak",
+   "at": 12.49,
+   "text": "Five: kayak in front of the skyline.",
+   "speed": 1.1
+  },
+  {
+   "id": "gym",
+   "at": 15.45,
+   "text": "Six: hit the gym.",
+   "speed": 1.1
+  },
+  {
+   "id": "hoops",
+   "at": 17.51,
+   "text": "Seven: shoot hoops.",
+   "speed": 1.1
+  },
+  {
+   "id": "dive",
+   "at": 19.57,
+   "text": "Eight: scuba dive.",
+   "speed": 1.1
+  },
+  {
+   "id": "base",
+   "at": 21.86,
+   "text": "Nine: BASE jump. Off a tower.",
+   "say": "Nine. Base jump. Off a tower.",
+   "speed": 1.04
+  },
+  {
+   "id": "end",
+   "at": 25.55,
+   "text": "All from Rockstar's own Extended Look. Which one are you doing first?",
+   "speed": 1.06
+  }
+ ]
+}
