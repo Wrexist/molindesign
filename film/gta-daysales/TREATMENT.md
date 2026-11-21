@@ -42,3 +42,9 @@ Footage is the Delta default now (delta/RUN.md, VIDEO-PLAN §2). The voice and e
 | slow 14.5-16.7 s | GTA V 2013 trailer, street chase with the helicopter, greyed and slowed | The slow grey stretch the jury called dead gets motion while it stays grey and quiet. |
 | rec 21.4-24.9 s | four Launch Trailer shots, hard cuts ~0.87 s each (Lucia in the convertible, the dirt-bike jump, the marina, the balcony) | The payoff over a fast run of the new game, behind the pour and the quote plate. |
 | end/loop 26.7-27.4 s | the blind goes up on the plane's first frame as the register sinks | Last frame = frame 0. |
+
+## Jury round 2 (2026-11-21): footage as the subject
+- The pour became two **to-scale receipts standing on the counter** (1 px = $5M from the counter top): GTA 5 `$1B+ · 3 DAYS` 200 px, GTA 6 758 px shooting up in 0.6 s with the ka-ching and a drawer slam. `NOT TO SCALE`, `PAST $3B`, the receipt pile and the day-by-day rows are gone.
+- The record line: quote plate lifted to y ≈210-480, counter props at 0.8, two launch-trailer clips of 1.65 s (dirt bike, Lucia in the convertible), so the game holds most of the wall.
+- New footage beats: the marina behind the `est` receipt (4.4-5.85 s) and Jason on the phone behind the end question; the end register shows `$3.79B` again.
+- Frame 0: the footage plate runs down over the counter front to y 1450; `IN ONE DAY` lands at ~1.0 s at y 1000; the lamps lift out of frame whenever the wall shows footage; plane at 0.75x, then the balcony shot under "One day."

@@ -7,7 +7,7 @@
    "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
-   "checked": "Rockstar Games' own X post of the GTA VI Launch Trailer (uploader_id RockstarGames, on delta/clips/OFFICIAL.json; provenance verdict OFFICIAL). Shots used: stunt plane over Vice beach, Jason & Lucia in the convertible, the marina aerial, the dirt-bike jump, the balcony at sunset. No logo/key-art frames, no title cards.",
+   "checked": "Rockstar Games' own X post of the GTA VI Launch Trailer (uploader_id RockstarGames, on delta/clips/OFFICIAL.json; provenance verdict OFFICIAL). Shots used: stunt plane over Vice beach, Jason & Lucia in the convertible, Jason on the phone at the marina, the marina aerial, the dirt-bike jump, the balcony at sunset. No logo/key-art frames, no title cards.",
    "credit": "Rockstar Games · Launch Trailer"
   },
   "v13": {
@@ -83,6 +83,15 @@
    "frames": 47,
    "w": 1280,
    "crop": "1280:576:0:72"
+  },
+  "phone": {
+   "src": "lt",
+   "in": 11.36,
+   "out": 13.38,
+   "fps": 30,
+   "frames": 61,
+   "w": 1920,
+   "crop": "1920:960:0:60"
   }
  }
 }
