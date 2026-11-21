@@ -418,7 +418,6 @@
       g.fillStyle = 'rgba(125,12,61,.35)'; g.fillRect(150, -470, 12, 122);
       rr(g, 34, -592, 272, 108, 10); g.fillStyle = '#0c1816'; g.fill();
       g.fillStyle = 'rgba(141,255,196,.08)'; for (var y = -588; y < -486; y += 6) g.fillRect(36, y, 268, 2);
-      ptxt(g, rec, '$3.79B', 170, -536, 96, MINT, { st: 'extra-condensed', ls: 2 });
       g.fillStyle = 'rgba(255,255,255,.08)'; g.beginPath(); g.moveTo(34, -592); g.lineTo(130, -592); g.lineTo(80, -484); g.lineTo(34, -484); g.closePath(); g.fill();
     } });
     wordsOf(D.pBody, rec);
@@ -432,6 +431,8 @@
       g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(-316, -40, 632, 8);
     } });
     D.n6 = cardPiece(230, 86, CRM, [['GTA 6', 66, PINK2, 4]], { r: 8 });
+    function pdisp(s0, px) { var r0 = []; var pc = piece([-136, -50, 136, 50], function (g) { g.beginPath(); g.rect(-136, -50, 272, 100); }, 'rgba(0,0,0,0)', { shadow: false, grain: 0, edge: false, extra: function (g) { ptxt(g, r0, s0, 0, 2, px, MINT, { st: 'extra-condensed', ls: 2 }); } }); return wordsOf(pc, r0); }
+    D.pdA = pdisp('DAY 1 SALES', 50); D.pdB = pdisp('$3.79B', 96);
 
     rec = [];
     D.gBody = piece([-272, -486, 272, -88], function (g) {
@@ -456,7 +457,7 @@
     } });
     wordsOf(D.gBody, rec);
     D.gDrw = piece([-272, -90, 272, 0], function (g) { rr(g, -272, -90, 544, 90, 8); }, function (g) { var gr = g.createLinearGradient(0, -90, 0, 0); gr.addColorStop(0, GREYF); gr.addColorStop(1, GREY2); return gr; }, { sy: 8, blur: 12, edge: 2.4, extra: function (g) { rr(g, -60, -56, 120, 22, 10); g.fillStyle = GREYD; g.fill(); } });
-    function disp(s) { var r0 = []; var pc = piece([-110, -40, 110, 40], function (g) { g.beginPath(); g.rect(-110, -40, 220, 80); }, 'rgba(0,0,0,0)', { shadow: false, grain: 0, edge: false, extra: function (g) { ptxt(g, r0, s, 0, 2, 74, AMBER, { st: 'extra-condensed', ls: 2 }); } }); return wordsOf(pc, r0); }
+    function disp(s) { var r0 = []; var pc = piece([-110, -40, 110, 40], function (g) { g.beginPath(); g.rect(-110, -40, 220, 80); }, 'rgba(0,0,0,0)', { shadow: false, grain: 0, edge: false, extra: function (g) { ptxt(g, r0, s, 0, 2, 56, AMBER, { st: 'extra-condensed', ls: 2 }); } }); return wordsOf(pc, r0); }
     D.g800 = disp('$800M+'); D.g1b = disp('$1B+');
   }
   /* a register drawn at (x, CTOP) in screen space with scale s. o: { drawer 0..1, plate a, tape fn(g) } */
@@ -466,6 +467,7 @@
     if (o.tape) o.tape(g, 'back');
     if (dr > 0) put(g, D.pGap, 0, -110 + 36 * dr);
     putW(g, D.pBody, 0, 0);
+    if (o.disp) { g.save(); g.globalAlpha *= o.da == null ? 1 : o.da; g.translate(170, -536); g.scale(o.dk || 1, o.dk || 1); putW(g, o.disp, 0, 0); g.restore(); }
     g.save(); g.translate(0, 30 * dr); g.scale(1 + .035 * dr, 1 + .035 * dr); put(g, D.pDrw, 0, 0);
     if (o.plate > 0) { g.globalAlpha *= o.plate; putW(g, D.n6, 170, -55); }
     g.restore();
@@ -486,14 +488,15 @@
     buildRegisters();
     D.oneday = buildStamp(['IN ONE DAY'], 104, 620, OXI);
     D.est0 = chipPiece([['TAKE-TWO ESTIMATE', 50, INK, 3], ['WORLDWIDE · THRU NOV 19, 2026', 36, '#3b3f5e', 2]], 600, CRM, INK, { lh: 54, pad: 22 });
-    D.q = cardPiece(230, 230, INK, [['?', 190, CRM, 6]], { ring: 'rgba(251,245,230,.35)' });
+    D.q = cardPiece(260, 260, INK, [['?', 214, CRM, 6]], { ring: 'rgba(251,245,230,.35)' });
     D.y2013 = datePiece('SEPT', '2013', 250, GREY2);
     D.fine5 = chipPiece([['TAKE-TWO ESTIMATE', 38, INK, 1, 'extra-condensed'], ['EXCL. JAPAN & BRAZIL', 38, '#3b3f5e', 1, 'extra-condensed'], ['2013 DOLLARS', 38, '#3b3f5e', 1, 'extra-condensed']], 360, CRM, INK, { lh: 44, pad: 20 });
     D.days3 = chipPiece([['3 DAYS', 60, CRM, 3]], 200, GREYD, CRM, { lh: 66, pad: 20, ring: 'rgba(255,255,255,.3)' });
     D.day1 = chipPiece([['1 DAY', 60, CRM, 3], ['$3.79B', 76, MINT, 2], ['TAKE-TWO', 36, CRM, 2], ['ESTIMATE', 36, CRM, 2]], 250, PINKD, CRM, { lh: 62, pad: 24, ring: 'rgba(255,220,235,.45)' });
-    D.past3 = buildStamp(['PAST $3B'], 110, 330, OXI);
+    D.past3 = buildStamp(['PAST $3B'], 110, 232, OXI);
+    D.nts = band('NOT TO SCALE', 250, 38, INK, CRM, 2);
     D.quote = chipPiece([['“BIGGEST ENTERTAINMENT', 66, CRM, 2], ['LAUNCH IN HISTORY”', 66, CRM, 2], ['— TAKE-TWO', 44, MUST, 3]], 800, INK, CRM, { lh: 78, pad: 36, ring: 'rgba(231,178,58,.55)' });
-    D.yes = band('DAY ONE', 300, 60, CRM, INK, 3); D.no = band('NOT YET', 300, 60, CRM, INK, 3);
+    D.yes = band('YES · DAY ONE', 350, 50, CRM, INK, 2); D.no = band('NOT YET', 350, 50, CRM, INK, 2);
   }
   function buildBackdrop() {
     var c = mk(W, H), g = c.getContext('2d'), r = mulberry(23);
@@ -520,7 +523,7 @@
   /* =====================================================================================================
      THE TAPE
      ===================================================================================================== */
-  var ROWS = [], GROWS = [];
+  var ROWS = [], GROWS = [], STUB = []; for (var si = 14; si < 400; si += 30) STUB.push({ s: si, bars: true, a: 30 + 60 * hash(si + 3), b: 20 + 24 * hash(si + 7) });
   /* hook and est (pink register, tape rising; past the cap it rolls back over a curl) */
   function rowsUp(g, Lt, cap, rows, sx, sy, tw, t, curlTop) {
     var vis = Math.min(Lt, cap), y0 = sy - vis;
@@ -605,9 +608,9 @@
   /* the pink register's place: centre 1.05 (hook, est, end) or right .58 (ask..rec) */
   var BIGS = 1.1, SMS = .62, SMX = 716, GX = 280, GS = .68;
   function pinkPose(t) {
-    var k = eio(seg(t, T.ask, T.ask + .5)), kb = eio(seg(t, T.endIn, T.endIn + .5));
-    var m = k * (1 - kb);
-    return { x: lerp(510, SMX, m), s: lerp(BIGS, SMS, m), m: m };
+    var k = eio(seg(t, T.ask, T.ask + .5)), k2 = eio(seg(t, T.gDrop - .5, T.gDrop - .1)), kb = eio(seg(t, T.endIn, T.endIn + .5));
+    var m = k * (1 - kb), mv = (k > 0 && k < 1) || (k2 > 0 && k2 < 1) || (kb > 0 && kb < 1);
+    return { x: lerp(510, lerp(676, SMX, k2), m), s: lerp(BIGS, lerp(.76, SMS, k2), m), m: mv ? .5 : 0 };
   }
   function drawerAt(t) { var d = 0; (T.drw || []).forEach(function (p) { var u = t - p[0]; if (u >= 0 && u < p[1] + .3) d = Math.max(d, u < .1 ? eo(u / .1) : 1 - eio(seg(u, p[1], p[1] + .3))); }); return d; }
 
@@ -617,7 +620,7 @@
   function lamps(g, t) {
     var nr = NOREC; NOREC = true;
     [[230, 150, 0], [510, 120, 1.7], [790, 160, 3.1]].forEach(function (L) {
-      var a = .05 * osc(t, 2, L[2]) + .02 * osc(t, 5, L[2] * 2);
+      var a = .028 * osc(t, 7, L[2]) + .012 * osc(t, 13, L[2] * 2);
       g.save(); g.translate(L[0], 0); g.rotate(a);
       g.fillStyle = '#1b1410'; g.fillRect(-2, 0, 4, L[1]);
       put(g, D.shade, 0, L[1]);
@@ -645,18 +648,24 @@
     if (t >= T.ask + .2 && t < T.gDrop + .05) {
       var ka = fin(t, T.ask + .25, .2) * (1 - seg(t, T.gDrop - .25, T.gDrop));
       g.save(); g.globalAlpha *= ka; g.setLineDash([16, 12]); g.strokeStyle = 'rgba(251,245,230,.75)'; g.lineWidth = 4;
-      g.beginPath(); g.rect(GX - 272 * GS, CTOP - 366 * GS, 544 * GS, 366 * GS); g.rect(GX - 262 * GS, CTOP - 486 * GS, 250 * GS, 112 * GS); g.stroke(); g.setLineDash([]); g.restore();
+      g.beginPath(); g.rect(GX - 272 * GS, CTOP - 366 * GS, 544 * GS, 366 * GS); g.rect(GX - 262 * GS, CTOP - 486 * GS, 250 * GS, 112 * GS); g.stroke(); g.setLineDash([]);
+      /* an empty GTA 5 receipt stub prints into the slot */
+      g.save(); g.translate(GX, CTOP); g.scale(GS, GS); g.fillStyle = 'rgba(251,245,230,.5)'; g.fillRect(G_SX - G_TW / 2 - 10, G_SY - 6, G_TW + 20, 12);
+      var nrs = NOREC; NOREC = true; rowsUp(g, 30 + 110 * eio(seg(t, T.ask + .7, T.ask + 1.5)) + 14 * Math.max(0, t - T.ask - 1.5), 900, STUB, G_SX, G_SY, G_TW, t); NOREC = nrs; g.restore();
+      g.restore();
     }
-    g.save(); var kq = kn(t, GT.q || 1e9, .06); g.translate(GX, CTOP - 400); g.scale(kq, kq); g.translate(-GX, -(CTOP - 400)); slapOn(g, D.q, GX, CTOP - 400, .04, T.q, T.gDrop - .3, t); g.restore();
+    g.save(); var kq = kn(t, GT.q || 1e9, .06); g.translate(GX, CTOP - 560); g.scale(kq, kq); g.translate(-GX, -(CTOP - 560)); slapOn(g, D.q, GX, CTOP - 560, .04, T.q, T.gDrop - .3, t); g.restore();
     stampOnP(g, D.y2013, 232, 720, -.04, T.y13, T.slowIn, t);
     /* ---- the pink register ---- */
     nr = NOREC; NOREC = nr || moving;
     var pr = pp;
     g.save();
     if (dim > 0) g.globalAlpha *= 1 - .45 * dim;
-    pinkReg(g, pr.x, pr.s, { drawer: drawerAt(t), plate: fin(t, T.ask + .4, .2) * (1 - seg(t, T.endIn, T.endIn + .2)), tape: function (q, layer) { pinkTape(q, t, layer); } });
+    var dsw = T.ask + .3, dB = t >= dsw && t < T.endIn + .35, fl = Math.sin(TAU * 5 * t / DUR + .7) > .994 ? .4 : 1;
+    pinkReg(g, pr.x, pr.s, { disp: dB ? D.pdB : D.pdA, dk: dB ? kn(t, dsw, .12) : kn(t, T.endIn + .35, .12), da: fl, drawer: drawerAt(t), plate: fin(t, T.ask + .4, .2) * (1 - seg(t, T.endIn, T.endIn + .2)), tape: function (q, layer) { pinkTape(q, t, layer); } });
     g.restore();
     NOREC = nr;
+    loops(g, t);
     /* the torn est receipt flies off (ask) */
     if (t >= T.tear && t < T.tear + .6) {
       var kt = eio(seg(t, T.tear, T.tear + .55)), Lf = pinkLt(T.tear - .001);
@@ -667,18 +676,19 @@
     }
     /* ---- hook: IN ONE DAY stamp; TAKE-TWO ESTIMATE chip (hook, est) ---- */
     stampOnP(g, D.oneday, 510, 1050, -.06, T.oneday, T.out1, t);
-    if (t < T.ask + .5) { slapOn(g, D.est0, 510, 1360, .01, T.est0, T.ask, t); if (t >= T.hl && t < T.ask) hilite(g, 296, 1314, 724, 1356, eo(seg(t, T.hl, T.hl + .35))); }
+    if (t < T.ask + .5) { slapOn(g, D.est0, 510, 1360, .01, T.est0, T.ask, t); if (t >= T.hl && t < T.ask) hilite(g, 290, 1314, 742, 1356, eo(seg(t, T.hl, T.hl + .35))); }
     /* ---- old: fine print under the grey register ---- */
     if (t < T.endIn + .5) slapOn(g, D.fine5, GX - 8, 1352, -.01, T.fine5, T.endIn, t);
-    slapOn(g, D.days3, 196, 664, -.05, T.days3, T.endIn, t);
+    slapOn(g, D.days3, 196, 664, -.05, T.days3, T.quote, t);
     /* ---- fast: the GTA 6 receipt chip; PAST $3B ---- */
     slapOn(g, D.day1, 790, 712, .03, T.day1, T.endIn, t);
-    stampOnP(g, D.past3, SMX, 1110, -.07, T.past3, T.endIn, t);
+    stampOnP(g, D.past3, 770, 1334, -.07, T.past3, T.endIn, t);
+    slapOn(g, D.nts, 548, 1200, -.06, T.nts, T.endIn, t);
     /* ---- rec: the quote plate ---- */
     slapOn(g, D.quote, 510, 452, -.012, T.quote, T.endIn - .05, t, { tape: true });
     /* ---- end: equal chips; they peel off before the loop ---- */
-    slapOn(g, D.yes, 330, 1368, -.02, T.vote, T.seamL, t);
-    slapOn(g, D.no, 690, 1368, .02, T.vote + .07, T.seamL, t);
+    slapOn(g, D.yes, 296, 1368, -.02, T.vote, T.seamL, t, { od: .24 });
+    slapOn(g, D.no, 724, 1368, .02, T.vote + .07, T.seamL, t, { od: .24 });
     /* ---- the hook type (frame 0; drops back for the loop) ---- */
     if (t < T.out1 + .6) { var ty = -700 * eio(seg(t, T.out1, T.out1 + .45)); hookType(g, ty, t > T.out1); }
     if (t >= DUR - .32) { k = seg(t, DUR - .3, DUR - .04); hookType(g, -700 * (1 - k * k), k < 1); }
@@ -688,19 +698,33 @@
     if (layer === 'back') return;
     if (t < T.pour) { rowsUp(g, pinkLt(t), t < T.tear ? capAt(t) : CAP0, ROWS, P_SX, P_SY, P_TW, t); return; }
     if (t < T.endIn + .6) {
-      /* the pour: Lp grows fast then keeps streaming; when the end comes it drops away */
-      var u = t - T.pour, Lp = 2600 * eo(seg(u, 0, 1.1)) + 380 * Math.max(0, u - .4), flow = 1400 * u, yA = -(CTOP - 640) / SMS, yE = (1440 - CTOP) / SMS + 60;
+      /* the pour: shoots up out of the slot, folds over the top, runs down the counter front (the loops are drawn in screen space) */
+      var u = t - T.pour, yA = -(CTOP - 640) / SMS, yE = (1336 - CTOP) / SMS;
+      var total = (P_SY - yA) + Math.PI * ARCH_R + (yE - yA), Lp = total * eo(seg(u, 0, .8)), flow = 1100 * Math.min(u, 1.1) + 60 * Math.max(0, u - 1.1);
       var drop = eio(seg(t, T.endIn, T.endIn + .45));
       g.save(); g.translate(0, 1400 * drop / SMS);
       pour(g, Lp, flow, yA, yE);
-      var reach = (P_SY - yA) + Math.PI * ARCH_R + (yE - yA) - 300;
-      var n = Math.min(9, Math.floor(Math.max(0, Lp - reach) / 260));
-      if (n > 0) pile(g, n, P_SX - 2 * ARCH_R, (1436 - CTOP) / SMS);
       g.restore();
       if (t >= T.endIn) rowsUp(g, pinkLt(t), CAP0, ROWS, P_SX, P_SY, P_TW, t);
       return;
     }
     rowsUp(g, pinkLt(t), CAP0, ROWS, P_SX, P_SY, P_TW, t);
+  }
+  var LOOPS = [[548, 1384], [594, 1378], [640, 1386], [686, 1380], [732, 1386], [778, 1379], [822, 1385], [858, 1380], [572, 1346], [652, 1342], [732, 1346], [810, 1342]];
+  function loops(g, t) {
+    if (t < T.pour + .5 || t > T.endIn + .6) return;
+    var drop = eio(seg(t, T.endIn, T.endIn + .45)), nr = NOREC; NOREC = true;
+    g.save(); g.translate(0, 900 * drop);
+    LOOPS.forEach(function (L, i) {
+      var tl = T.pour + .62 + i * .045; if (t < tl - .12) return; var k = cd(t, tl - .12, 18);
+      g.save(); g.translate(L[0], L[1] - 50 * (1 - k)); g.rotate((hash(i * 5 + 1) - .5) * .5); g.globalAlpha *= clamp(k * 3, 0, 1);
+      g.beginPath(); g.ellipse(0, 0, 50, 24, 0, 0, TAU); g.lineWidth = 28;
+      g.save(); g.translate(4, 6); g.strokeStyle = 'rgba(0,10,10,.28)'; g.stroke(); g.restore();
+      g.strokeStyle = i % 2 ? PAPERW : '#f1ebdc'; g.stroke();
+      g.setLineDash([8, 14]); g.lineWidth = 16; g.strokeStyle = 'rgba(43,43,58,.28)'; g.stroke(); g.setLineDash([]);
+      g.restore();
+    });
+    g.restore(); NOREC = nr;
   }
   function dimA(t) { return seg(t, T.slowIn, T.slowIn + .3) * (1 - seg(t, T.pour - .1, T.pour + .15)); }
   function stampOnP(g, pc, x, y, rot, tl, tout, t) { slapOn(g, pc, x, y, rot, tl, tout, t, { from: 1.6 }); }
@@ -798,7 +822,7 @@
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     Tx('big', 'GTA 6: $3.79 BILLION', 0, T.out1); Tx('big', 'GTA 6: $3.79 BILLION', DUR - .1, DUR + 1);
-    Tx('disp', '$3.79B', 0, T.ask); Tx('disp', '$3.79B', T.ask + .5, DUR + 1);
+    Tx('dispA', 'DAY 1 SALES', 0, T.ask + .3); Tx('dispA', 'DAY 1 SALES', T.endIn + .45, DUR + 1); Tx('dispB', '$3.79B', T.ask + .4, T.endIn + .35); Tx('nts', 'NOT TO SCALE', T.nts + .1, T.endIn);
     Tx('oneday', 'IN ONE DAY', T.oneday + .1, T.out1);
     Tx('est0a', 'TAKE-TWO ESTIMATE', T.est0 + .1, T.ask); Tx('est0b', 'WORLDWIDE · THRU NOV 19, 2026', T.est0 + .1, T.ask);
     ROWS.forEach(function (r0, i) { if (r0.text) Tx('row' + i, r0.text, r0.tp + .25, T.tear); });
@@ -813,7 +837,7 @@
     Tx('day1', '1 DAY $3.79B TAKE-TWO ESTIMATE', T.day1 + .1, T.endIn);
     Tx('past3', 'PAST $3B', T.past3 + .1, T.endIn);
     Tx('quote1', '“BIGGEST ENTERTAINMENT', T.quote + .1, T.endIn - .05); Tx('quote2', 'LAUNCH IN HISTORY”', T.quote + .1, T.endIn - .05); Tx('quote3', '— TAKE-TWO', T.quote + .1, T.endIn - .05);
-    Tx('yes', 'DAY ONE', T.vote + .1, T.seamL); Tx('no', 'NOT YET', T.vote + .17, T.seamL);
+    Tx('yes', 'YES · DAY ONE', T.vote + .1, T.seamL); Tx('no', 'NOT YET', T.vote + .17, T.seamL);
     return o;
   }
 
@@ -825,18 +849,18 @@
     G('key0', .1, 'tick', .12, .7, { m: .03 });
     T.oneday = G('oneday', wend('hook', '6') + .03, 'pin', .3, 1.3, { m: .03, dur: .09 }); T.oneday = Math.min(T.oneday, 1.1);
     T.est0 = at('hook', 'billion') + .05;
-    T.ching0 = G('ching0', lastw('hook') + .1, 'ching', .35, 1.2, { m: .1 });
-    T.drw = [[T.ching0, .45]];
+    T.ching0 = G('ching0', lastw('hook') + .1, 'pin', .35, .8, { m: .1 });
+    T.drw = [[T.oneday, 1.0]];
+    EV.push({ t: T.oneday, type: 'ching', g: 1.3, id: 'ching1' });
     T.out1 = G('out1', T.ching0 + .45, 'swish', .3, .9, { m: .05 });
     /* est: the receipt prints its header as the words land */
     T.p0 = at('est', 'day') - .06;
-    var pts = [[at('est', 'day') - .02, 'DAY ONE', 46], [at('est', 'sales') - .02, 'RETAIL', 46], [at('est', 'sales') + .14, 'SALES', 46], [at('est', 'by') + .1, '$3.79B', 62]];
+    var pts = [[at('est', 'day') - .02, 'DAY ONE', 48], [at('est', 'sales') - .02, 'RETAIL', 50], [at('est', 'sales') + .14, 'SALES', 50], [at('est', 'by') + .1, '$3.79B', 56]];
     ROWS.length = 0; FEED.length = 0;
     for (var s = 16; s < L0 + HOOKV * T.p0 - 4; s += 30) ROWS.push({ s: s, bars: true, a: 40 + 70 * hash(s), b: 26 + 26 * hash(s + 9) });
     var Lrun = L0 + HOOKV * T.p0;
     pts.forEach(function (p, i) {
-      if (i === 3) { FEED.push({ t: p[0] - .14, a: 22 }); Lrun += 22; ROWS.push({ s: Lrun - 11, rule: true }); }
-      var a = p[2] + 8; FEED.push({ t: p[0], a: a }); Lrun += a;
+      var a = p[2] + 6; FEED.push({ t: p[0], a: a }); Lrun += a;
       ROWS.push({ s: Lrun - a / 2, text: p[1], px: p[2], tp: p[0], col: i === 3 ? '#0b0b14' : PRINT });
     });
     T.hl = at('est', 'taketwos');
@@ -861,21 +885,24 @@
     gfeed(at('slow', 'hit') - .02, 34, '-', 0, .25); gfeed(at('slow', 'hit') + .08, 70, 'DAY 2', 56, .3);
     gfeed(at('slow', 'three') - .1, 34, '-', 0, .25); gfeed(at('slow', 'three'), 70, 'DAY 3', 56, .3);
     gfeed(at('slow', 'days') - .02, 76, 'TOTAL $1B+', 56, .3);
-    T.g1b = at('slow', 'days') - .02;
-    T.days3 = G('days3', after('slow') - .05, 'stamp', .35, 1.1, { m: .05 });
+    T.days3 = G('days3', after('slow') - .05, 'stamp', .35, 1.1, { m: .05 }); T.g1b = T.days3;
+    EV.push({ t: T.g800, type: 'slap', g: .9, id: 'g800' });
+    EV.push({ t: at('slow', 'hit') + .08, type: 'print', g: .7, dur: .14, id: 'pd2' }); EV.push({ t: at('slow', 'three'), type: 'print', g: .7, dur: .14, id: 'pd3' });
     /* fast: the pink tape pours, pre-rolled into the pause before the line, with the ka-ching and a drawer pop */
-    T.pour = G('pour', start('fast') - .3, 'ching', .35, 1.3, { m: .04 });
-    T.drw.push([T.pour, 1.4]);
-    G('pourw', T.pour + .05, 'pour', .4, .55, { dur: .9, m: .02 });
+    T.pour = G('pour', start('fast') - .25, 'tear', .35, 1, { m: .04 });
+    T.drw.push([T.pour, 1.0]);
+    EV.push({ t: T.pour + .04, type: 'pour', g: .6, dur: 1.15, id: 'chatter' });
+    T.nts = T.pour + 1.3;
     T.day1 = at('fast', 'single') - .02;
-    T.past3 = G('past3', after('fast') + .02, 'stamp', .35, 1.4, { m: .05 });
+    T.past3 = G('past3', after('fast') + .02, 'stamp', .35, 1.1, { m: .05 });
+    EV.push({ t: T.past3, type: 'ching', g: 1.1, id: 'ching6' });
     /* rec: the quote plate drops (captions off; the plate is the line) */
     T.quote = G('quote', start('rec') - .4, 'slap', .3, 1.2, { m: .04 }); T.quote = Math.min(T.quote, start('rec') - .3);
     /* end: everything drops away; the pink register returns to the frame-0 place; YES / NOT YET (equal) */
     T.endIn = G('endIn', after('rec') - .05, 'tear', .3, 1, { m: .04 });
     G('chips', wend('end', 'it') + .12, 'pin', .45, .9, { m: .03 });
-    T.vote = start('end') - .03;
-    T.seamL = DUR - .34; T.capEnd = DUR - .34;
+    T.vote = T.endIn + .03;
+    T.seamL = DUR - .31; T.capEnd = DUR - .34;
     G('seam', DUR - .06, 'thock', .25, .8);
     STRESS = [['est', 'day'], ['est', 'estimate'], ['ask', 'lot'], ['old', '2013'], ['old', '800'], ['slow', 'billion'], ['slow', 'three'], ['fast', 'three'], ['fast', 'single'], ['end', 'buy'], ['end', 'day']].map(function (p) { return at(p[0], p[1]); });
     EV.sort(function (a, b) { return a.t - b.t; });
