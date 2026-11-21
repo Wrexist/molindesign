@@ -1,0 +1,132 @@
+{
+ "about": "What to do if your phone says a tracker is following you. Factory #38, backlog row 44, slug trackeralert. One hard idea: iPhone ('AirTag Found Moving With You') and Android ('unknown tracker alert') warn you when a compatible tracker separated from its owner is seen moving with you; it may be something you borrowed; play a sound to find it; Apple and Google both say turning off Bluetooth (or Location Services, or Airplane Mode on Android) does not stop the tracker sharing its location; if you feel unsafe go to a safe public location and contact law enforcement; if it's safe, disable the tracker itself. Check yours: iPhone Settings › Notifications › Tracking Notifications; Android Settings › Safety & emergency › Unknown tracker alerts. Sources read 2026-11-21, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "iPhone",
+  "AirTag",
+  "AirPods",
+  "Android",
+  "Bluetooth",
+  "Apple",
+  "Google"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.15
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24.5
+ },
+ "dur": 34.14,
+ "tail": 0.15,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Your phone warns you about trackers.",
+   "pause": 0.6,
+   "at": 0.2,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "ask",
+   "text": "So what now?",
+   "pause": 0.4,
+   "at": 2.46,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "iphone",
+   "text": "On iPhone, it's AirTag Found Moving With You.",
+   "pause": 0.4,
+   "at": 3.84,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "android",
+   "text": "On Android, an unknown tracker alert.",
+   "pause": 0.6,
+   "at": 6.84,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "borrow",
+   "text": "It could be a backpack you borrowed.",
+   "pause": 0.5,
+   "at": 9.36,
+   "tail_fade": 0.3,
+   "speed": 0.95,
+   "take": 6,
+   "say": "It could be... a backpack you borrowed."
+  },
+  {
+   "id": "sound",
+   "text": "Tap the alert, then Play Sound.",
+   "pause": 0.55,
+   "at": 11.51,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "dip",
+   "text": "But your first move? Bluetooth off.",
+   "pause": 0.6,
+   "at": 13.83,
+   "tail_fade": 0.3,
+   "say": "But your first move? Bluetooth, off."
+  },
+  {
+   "id": "twist",
+   "text": "Apple and Google say that won't stop it.",
+   "pause": 1.3,
+   "at": 16.9,
+   "tail_fade": 0.3,
+   "speed": 0.919
+  },
+  {
+   "id": "unsafe",
+   "text": "Feel unsafe? Go to a safe public location.",
+   "pause": 0.35,
+   "at": 20.2,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "police",
+   "text": "And contact law enforcement.",
+   "pause": 0.6,
+   "at": 23.53,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "disable",
+   "text": "If it's safe, disable the tracker itself.",
+   "pause": 0.7,
+   "at": 25.31,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "check",
+   "text": "Check yours: Tracking Notifications, or Unknown tracker alerts.",
+   "pause": 0.7,
+   "at": 28.22,
+   "tail_fade": 0.35
+  },
+  {
+   "id": "end",
+   "text": "Is yours on? Yes or no.",
+   "pause": 0,
+   "at": 32.26,
+   "tail_fade": 0.15,
+   "say": "Is yours on? Yes, or no?"
+  }
+ ]
+}
