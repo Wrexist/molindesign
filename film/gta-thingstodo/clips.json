@@ -1,0 +1,106 @@
+{
+ "film": "gta-thingstodo",
+ "sources": {
+  "extlook": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": "Rockstar Games' own GTA VI 'An Extended Look' (rockstargames.com/videos/rk721912, served from Rockstar's CDN), gameplay montage 1026-1143 s right after the line 'Wanna take a look around?'. Gameplay HUD visible (minimap, lap counters). No third-party marks.",
+   "credit": "Rockstar Games"
+  }
+ },
+ "clips": {
+  "airboat": {
+   "src": "extlook",
+   "in": 1030.0,
+   "out": 1032.8,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "hoops": {
+   "src": "extlook",
+   "in": 1033.1,
+   "out": 1035.9,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "dive": {
+   "src": "extlook",
+   "in": 1036.1,
+   "out": 1038.6,
+   "fps": 30,
+   "frames": 75,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "gym": {
+   "src": "extlook",
+   "in": 1038.8,
+   "out": 1041.6,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:1070:0:0"
+  },
+  "jetski": {
+   "src": "extlook",
+   "in": 1045.05,
+   "out": 1046.85,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "kayak": {
+   "src": "extlook",
+   "in": 1049.0,
+   "out": 1050.95,
+   "fps": 30,
+   "frames": 59,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "race": {
+   "src": "extlook",
+   "in": 1062.0,
+   "out": 1064.8,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "dirtbike": {
+   "src": "extlook",
+   "in": 1114.9,
+   "out": 1117.8,
+   "fps": 30,
+   "frames": 87,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "basejump": {
+   "src": "extlook",
+   "in": 1128.2,
+   "out": 1133.9,
+   "fps": 30,
+   "frames": 171,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "chute": {
+   "src": "extlook",
+   "in": 1133.5,
+   "out": 1137.6,
+   "fps": 30,
+   "frames": 123,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  }
+ }
+}

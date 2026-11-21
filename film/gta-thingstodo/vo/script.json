@@ -1,0 +1,105 @@
+{
+ "about": "Nine things to do in GTA 6, each proved by a 1-2 s muted clip from Rockstar's own 'An Extended Look' (rk721912, 26:48), whose two-minute activity montage (1026-1143 s) starts right after the line 'Wanna take a look around?'. Our order, our pictogram grid that fills 1/9 to 9/9, ends on a BASE jump and asks which one first. Trailer mode (SAFE-EDIT rule 7), official footage only. Delta.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.6
+ },
+ "names": [
+  "GTA",
+  "Rockstar",
+  "Extended Look",
+  "BASE"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 22
+ },
+ "dur": 30.25,
+ "fit": {
+  "min": 0.8,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.15,
+   "text": "Nine things to do in GTA 6. Count along.",
+   "say": "Nine things to do in G T A six. Count along.",
+   "speed": 1.06
+  },
+  {
+   "id": "airboat",
+   "at": 3.45,
+   "text": "One: airboat the swamps.",
+   "speed": 1.04
+  },
+  {
+   "id": "hoops",
+   "at": 5.87,
+   "text": "Two: shoot hoops.",
+   "speed": 1.04
+  },
+  {
+   "id": "dive",
+   "at": 8.08,
+   "text": "Three: scuba dive.",
+   "speed": 1.08,
+   "take": 1
+  },
+  {
+   "id": "gym",
+   "at": 10.26,
+   "text": "Four: hit the gym.",
+   "speed": 1.04
+  },
+  {
+   "id": "jetski",
+   "at": 12.24,
+   "text": "Five: ride a jet ski.",
+   "speed": 1.04
+  },
+  {
+   "id": "kayak",
+   "at": 14.54,
+   "text": "Six: kayak in front of the skyline.",
+   "speed": 1.04,
+   "take": 0
+  },
+  {
+   "id": "race",
+   "at": 17.58,
+   "text": "Seven: race on a track.",
+   "speed": 1.04
+  },
+  {
+   "id": "dirtbike",
+   "at": 20.0,
+   "text": "Eight: dirt bike races.",
+   "speed": 1.04
+  },
+  {
+   "id": "base",
+   "at": 22.71,
+   "text": "Nine: BASE jump off a tower.",
+   "say": "Nine. Base jump off a tower.",
+   "speed": 1.04
+  },
+  {
+   "id": "end",
+   "at": 25.75,
+   "text": "All from Rockstar's own Extended Look. Which one are you doing first?",
+   "speed": 1.06
+  }
+ ]
+}
