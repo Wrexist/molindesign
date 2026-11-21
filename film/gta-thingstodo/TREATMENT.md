@@ -19,7 +19,7 @@ Frame 0: the BASE-jump freefall over the city, full width and 1080 px tall, alre
 | Line | Picture |
 |---|---|
 | hook "Nine things to do in GTA 6. Count along." | freefall plate + 9 THINGS TO DO, 0/9; plate shrinks into slot 9; the empty grid; COUNT ALONG ripple across the slots |
-| airboat "One: airboat the swamps." | slot 1 lights, airboat clip grows out of it, circle on the fan boat, AIRBOAT chip; flips to the fan-cage pictogram, tick, 1/9 |
+| (r2 order: jet ski, race, dirt bike, airboat, kayak, gym, hoops, scuba, BASE) airboat "Four: airboat the swamps." | slot 1 lights, airboat clip grows out of it, circle on the fan boat, AIRBOAT chip; flips to the fan-cage pictogram, tick, 1/9 |
 | hoops "Two: shoot hoops." | slot 2, hoops clip, circle follows the hoop under the stilt house; hoop + ball pictogram, 2/9 |
 | dive "Three: scuba dive." | slot 3, dive clip brightened, circle on the diver in the cave arch; diver + bubbles, 3/9 |
 | gym "Four: hit the gym." | slot 4, gym clip top-down, circle on the bar; barbell, 4/9 |
