@@ -477,6 +477,7 @@
   }
   var B6 = { trim: PINK, col: FLAP, ev0: { chars: ['3', '2', '.', '5', 'M'] }, ev: [] };
   var B5 = { trim: GREY, col: FLAPG, ev0: { chars: [' ', ' ', ' ', ' '] }, ev: [] };
+  var GREYP = 1;
 
   /* ---------- the tear-off desk calendar ---------- */
   function calPiece(w, h, top, big, foot, band, bigpx) {
@@ -505,27 +506,36 @@
     D.copies = chipPiece([['COPIES SOLD', 72, INK, 3]], 520, CRM, INK, { lh: 80, pad: 26, ring: 'rgba(194,24,91,.55)' });
     D.prerel = band('PRE-RELEASE', 330, 48, PINKD, CRM, 3);
     D.q = cardPiece(170, 170, PINK, [['?', 150, CRM, 6]], { ring: 'rgba(255,255,255,.4)' });
-    D.c5 = band('GTA 5 · 2013', 300, 50, GREYD, CRM, 3);
-    D.c6 = band('GTA 6 · 2026', 300, 50, PINK2, CRM, 3);
-    D.ship = chipPiece([['SHIPPED TO STORES · TAKE-TWO · OCT 29 2013', 40, INK, 1]], 820, CRM, INK, { lh: 48, pad: 16 });
+    D.c5 = band('GTA 5', 190, 56, GREYD, CRM, 3);
+    D.c6 = band('GTA 6 · SOLD', 290, 52, PINK2, CRM, 2);
+    D.zero = chipPiece([['0 DAYS', 56, CRM, 3]], 250, RED2, CRM, { lh: 64, pad: 20, ring: 'rgba(255,255,255,.4)' });
+    D.ship = chipPiece([['NEARLY 29M · SHIPPED TO STORES', 38, INK, 1], ['TAKE-TWO · OCT 29 2013', 32, '#3b3f5e', 1]], 640, CRM, INK, { lh: 40, pad: 12 });
     D.sold = chipPiece([['SOLD BEFORE LAUNCH · ROCKSTAR · NOV 20 2026', 40, CRM, 1]], 820, PINKD, CRM, { lh: 48, pad: 16 });
-    D.dayzero = band('DAY 0', 200, 54, RED2, CRM, 4);
-    D.stamp = buildStamp(['BEFORE DAY ONE'], 70, 470, OXI);
-    D.quote = chipPiece([['“…A NEW RECORD', 70, CRM, 2], ['ACROSS ALL PLATFORMS.”', 70, CRM, 2], ['— ROCKSTAR', 46, MUST, 3]], 800, INK, CRM, { lh: 82, pad: 40, ring: 'rgba(231,178,58,.55)' });
-    D.yes = band('YES', 330, 58, CRM, INK, 3); D.no = band('NOT YET', 330, 58, CRM, INK, 3);
+    D.stamp = buildStamp(['BEFORE DAY ONE'], 100, 700, OXI);
+    D.quote = chipPiece([['“A NEW RECORD”', 100, CRM, 2], ['— ROCKSTAR', 52, MUST, 3]], 760, INK, CRM, { lh: 100, pad: 44, ring: 'rgba(231,178,58,.55)' });
+    D.yes = band('YES', 360, 84, CRM, INK, 4); D.no = band('NOT YET', 360, 84, CRM, INK, 4);
+    D.wk = []; for (var wi = 0; wi < 6; wi++) D.wk.push(cardPiece(88, 104, CRM, [['WK', 32, '#3b3f5e', -22], [String(wi + 1), 52, INK, 22]], { r: 4, before: function (g) { g.fillStyle = GREY2; g.fillRect(-44, -52, 88, 14); } }));
     D.f5 = band('FOOTAGE: GTA 5 (2013)', 420, 36, 'rgba(0,0,0,0)', GREYF, 3);
     D.f6 = band('FOOTAGE: GTA 6', 300, 36, 'rgba(0,0,0,0)', '#ffb3d1', 3);
   }
   function buildTextures() { GRAIN = buildGrain(); buildPieces(); D.bg = buildBackdrop(); D.shelf = buildShelf(); }
 
   /* ---------- poses ---------- */
-  var HOOK = { x: 510, y: 730, s: 1.08 }, ROW6 = { x: 510, y: 1066, s: .85 }, ROW5 = { x: 510, y: 690, s: .85 };
+  var HOOK = { x: 510, y: 730, s: 1.08 }, ROW6 = { x: 510, y: 1125, s: .8 }, ROW5 = { x: 510, y: 712, s: .8 };
+  /* the hook slam: the board rises 320 px into place over 0.42 s; it starts 0.12 s before the loop point */
+  function slamU(t) { if (t >= DUR - .12) return t - (DUR - .12); if (t < 1) return t + .12; return 9; }
+  /* the GTA 6 row's drop: off the bottom during the 2013 page and the GTA 5 count, back on "But"; out again for the quote */
+  function off6(t) {
+    var a = eio(seg(t, T.y13 - .12, T.y13 + .18)) * (1 - eo(seg(t, T.fastUp, T.fastUp + .38)));
+    var b = eio(seg(t, T.out5, T.out5 + .35)) * (1 - eo(seg(t, T.qOut, T.qOut + .38)));
+    return 760 * Math.max(a, b);
+  }
   function pose6(t) {
-    var k = eio(seg(t, T.ask, T.ask + .55)), kb = eio(seg(t, T.qOut, T.qOut + .55)), m = k * (1 - kb);
-    var p = { x: lerp(HOOK.x, ROW6.x, m), y: lerp(HOOK.y, ROW6.y, m), s: lerp(HOOK.s, ROW6.s, m), mv: (k > 0 && k < 1) || (kb > 0 && kb < 1) };
-    /* fast: the GTA 6 board lifts and grows a little on its slam */
-    var f = eio(seg(t, T.fastUp, T.fastUp + .35)) * (1 - eio(seg(t, T.qOut - .1, T.qOut + .3)));
-    p.s += .06 * f * (1 - kb); p.y -= 10 * f * (1 - kb);
+    var k = eio(seg(t, T.ask, T.ask + .55)), m = t >= T.qOut ? 0 : k;
+    var p = { x: lerp(HOOK.x, ROW6.x, m), y: lerp(HOOK.y, ROW6.y, m), s: lerp(HOOK.s, ROW6.s, m), mv: k > 0 && k < 1 };
+    var o = off6(t); p.y += o; if (o > 0) p.mv = true;
+    var u = slamU(t); if (u < .42) { p.y += 320 * (1 - eo(u / .42)); p.mv = true; }
+    p.hide = t >= T.cut && t < DUR - .12;
     return p;
   }
 
@@ -533,53 +543,46 @@
   function dimA(t) { return seg(t, T.slowIn, T.slowIn + .3) * (1 - seg(t, T.fastUp - .1, T.fastUp + .15)); }
   function stampOnP(g, pc, x, y, rot, tl, tout, t) { slapOn(g, pc, x, y, rot, tl, tout, t, { from: 1.6 }); }
   /* the week flap: WEEK + one cell that flips 1..6 on the week ticks (time, not the value) */
-  function weekFlap(g, x, y, t, a) {
-    if (a <= 0) return; var n = 0; (T.wk || []).forEach(function (tt) { if (t >= tt) n++; });
-    var last = n ? T.wk[n - 1] : -9, k = clamp((t - last) / FD, 0, 1);
-    g.save(); g.globalAlpha *= a; g.translate(x, y);
-    rr(g, -150, -46, 300, 92, 12); g.fillStyle = HOUSE; g.fill(); g.lineWidth = 4; g.strokeStyle = GREY; rr(g, -148, -44, 296, 88, 11); g.stroke();
-    txt(g, 'WEEK', -128, 2, { px: 44, col: CRM, ls: 3 });
-    g.save(); g.translate(92, 0); g.scale(.33, .33); cell(g, -CW / 2, -CH / 2, CW, CH, n > 1 ? String(n - 1) : ' ', n ? String(n) : ' ', k, FLAPG); g.restore();
-    g.restore();
-  }
-  function hookType(g, dy, norec, t) {
-    var nr = NOREC; NOREC = nr || !!norec;
-    g.save(); g.translate(0, dy);
-    stk(g, 'GTA 6:', 510, 455, 140, { col: PINK, st: 'condensed', ls: 4 });
-    var bw = stk(g, 'BEFORE LAUNCH', 510, 975, 104, { col: CRM, st: 'condensed', ls: 2 });
-    /* a pink underline draws under BEFORE LAUNCH in the first 0.45 s (and is already drawn on the loop's way back) */
-    var u = t < 2 ? eo(seg(t, .06, .5)) : 0; g.fillStyle = PINK; g.fillRect(510 - bw / 2, 1042, bw * u, 12);
-    g.restore(); NOREC = nr;
+  function hookType(g, t) {
+    var nr = NOREC; NOREC = nr || false;
+    var w1 = stkW('GTA 6', 140) + 46, w2 = stkW('SOLD', 140), x0 = 510 - (w1 + w2) / 2;
+    stk(g, 'GTA 6', x0, 455, 140, { col: PINK, st: 'condensed', ls: 4, align: 'left' });
+    stk(g, 'SOLD', x0 + w1, 455, 140, { col: CRM, st: 'condensed', ls: 4, align: 'left' });
+    stk(g, 'PRE-RELEASE', 510, 975, 110, { col: CRM, st: 'condensed', ls: 3 });
+    NOREC = nr;
   }
   function props(g, t) {
-    var nr, k;
-    var p6 = pose6(t), dim = dimA(t);
-    /* ---- GTA 5 row: chip, week flap, grey board, SHIPPED tag (ask .. rec) ---- */
+    var nr, k, p6 = pose6(t), o6 = off6(t);
+    /* ---- GTA 5 row: chip, week pages, grey board, NEARLY 29M · SHIPPED tag (ask .. rec) ---- */
     if (t >= T.gDrop - .35 && t < T.out5 + .6) {
       var kg = seg(t, T.gDrop - .3, T.gDrop), fall = (1 - kg * kg) * 1300, go = eio(seg(t, T.out5, T.out5 + .5));
       nr = NOREC; NOREC = nr || kg < 1 || go > 0;
       g.save(); g.translate(-1100 * go, -fall);
-      var kk = kn(t, T.gDrop, .02) * kn(t, T.s29, .05);
-      board(g, B5, ROW5.x, ROW5.y, ROW5.s * kk, t);
+      board(g, B5, ROW5.x, ROW5.y, ROW5.s * kn(t, T.gDrop, .02) * kn(t, T.s29, .05), t);
       g.restore(); NOREC = nr;
       nr = NOREC; NOREC = nr || go > 0; g.save(); g.translate(-1100 * go, 0);
-      slapOn(g, D.c5, 240, 528, -.02, T.gDrop + .1, null, t);
-      weekFlap(g, 770, 528, t, fin(t, T.slowIn, .2));
-      slapOn(g, D.ship, 510, 846, .005, T.ship, null, t);
+      slapOn(g, D.c5, 250, 540, -.02, T.gDrop + .1, null, t);
+      /* six torn week pages, one dropped into its slot on each week tick */
+      for (var wi = 0; wi < 6; wi++) { var tw0 = T.wk[wi]; if (t < tw0 - .25) continue; drop(g, 400 + wi * 90, 540, (hash(wi * 3 + 1) - .5) * .12, tw0, null, t, function (q) { putW(q, D.wk[wi], 0, 0); }, { fd: .22, fall: 600, spin: .2 }); }
+      slapOn(g, D.ship, 510, 870, .005, T.ship, null, t);
       g.restore(); NOREC = nr;
     }
     /* the ? on the empty GTA 5 board */
     slapOn(g, D.q, 510, ROW5.y, .05, T.q, T.y13 - .05, t);
-    /* ---- the GTA 6 board ---- */
-    nr = NOREC; NOREC = nr || p6.mv;
-    g.save(); if (dim > 0) g.globalAlpha *= 1 - .5 * dim;
-    var gl = (t % (DUR / 3)) / 1.1;
-    board(g, B6, p6.x, p6.y, p6.s * kn(t, T.cal, .015) * kn(t, T.fastSlam + .24, .04), t, { glint: t < 1 ? t / .8 : gl });
+    /* ---- the GTA 6 board and its row ---- */
+    if (!p6.hide) {
+      nr = NOREC; NOREC = nr || p6.mv;
+      var gl = (t % (DUR / 3)) / 1.1;
+      board(g, B6, p6.x, p6.y, p6.s * kn(t, T.cal, .015) * kn(t, T.fastUp + .38, .04), t, { glint: gl });
+      NOREC = nr;
+    }
+    nr = NOREC; NOREC = nr || o6 > 0; g.save(); g.translate(0, o6);
+    slapOn(g, D.c6, 250, 960, -.02, T.ask + .45, T.qOut, t);
+    slapOn(g, D.zero, 790, 960, .03, T.day0, T.qOut, t);
+    /* BEFORE DAY ONE: the hero imprint, tilted across the GTA 6 counter */
+    slapOn(g, D.stamp, 510, 1312, -.06, T.stamp, T.qOut, t, { from: 1.25 });
     g.restore(); NOREC = nr;
-    slapOn(g, D.c6, 240, 930, -.02, T.ask + .45, T.endIn, t);
-    slapOn(g, D.dayzero, 810, 930, .03, T.day0, T.endIn, t);
-    slapOn(g, D.sold, 510, 1252, -.005, T.sold, T.endIn, t);
-    /* ---- hook: calendar, Rockstar tag; est: COPIES SOLD, BEFORE RELEASE DAY ---- */
+    /* ---- hook: calendar (from 2.0 s), Rockstar tag; est: COPIES SOLD, PRE-RELEASE ---- */
     if (t >= T.cal - .05 && t < T.ask + .5) {
       var ko = eio(seg(t, T.ask, T.ask + .45));
       nr = NOREC; NOREC = nr || ko > 0; g.save(); g.translate(700 * ko, 0);
@@ -591,48 +594,43 @@
     slapOn(g, D.tag6, 330, 1210, -.015, T.tag, T.ask, t);
     slapOn(g, D.copies, 510, 975, -.02, T.copies, T.ask, t);
     slapOn(g, D.prerel, 330, 1100, .015, T.prerel, T.ask, t);
-    /* ---- old: SEPTEMBER 17 / 2013, a big tear-off page over everything (plate cut to ink) ---- */
+    /* ---- old: SEPT 17 / 2013, a big tear-off page (plate cut to ink; the GTA 6 row is off the bottom) ---- */
     if (t >= T.y13 - .05 && t < T.y13out + .5) {
       var kt = seg(t, T.y13out, T.y13out + .45);
       nr = NOREC; NOREC = nr || kt > 0;
-      g.save(); g.translate(510, 820); g.rotate(-.4 * kt * kt); g.translate(320 * kt, -1500 * kt * kt);
+      g.save(); g.translate(510, 1010); g.rotate(-.4 * kt * kt); g.translate(320 * kt, -1500 * kt * kt);
       g.save(); g.globalAlpha *= fin(t, T.y13, .06); calStack(g, 0, 0, 560, 470); g.restore();
       slapOn(g, D.cal13, 0, 0, -.015, T.y13, null, t);
       g.restore(); NOREC = nr;
     }
-    /* ---- fast: BEFORE DAY ONE on the shelf ---- */
-    stampOnP(g, D.stamp, 360, 1372, -.04, T.stamp, T.endIn, t);
-    /* ---- rec: the quote plate takes the GTA 5 row's place ---- */
-    slapOn(g, D.quote, 510, 690, -.012, T.quote, T.qOut, t, { tape: true });
-    /* ---- end: equal chips; they peel before the loop ---- */
-    slapOn(g, D.yes, 300, 1250, -.02, T.vote, T.seamL, t, { od: .24 });
-    slapOn(g, D.no, 720, 1250, .02, T.vote + .07, T.seamL, t, { od: .24 });
-    /* ---- the hook type (frame 0; drops back for the loop) ---- */
-    if (t < T.out1 + .6) { var ty = -900 * eio(seg(t, T.out1, T.out1 + .45)); hookType(g, ty, t > T.out1, t); }
-    if (t >= DUR - .32) { k = seg(t, DUR - .3, DUR - .04); hookType(g, -900 * (1 - k * k), k < 1, t); }
+    /* ---- rec: the counters drop out; the quote plate sits low over the marina ---- */
+    slapOn(g, D.quote, 510, 1080, -.012, T.quote, T.qOut, t, { tape: true });
+    /* ---- end: equal chips, held to the cut ---- */
+    if (t < T.cut) { slapOn(g, D.yes, 300, 1150, -.02, T.vote, null, t); slapOn(g, D.no, 720, 1150, .02, T.vote + .05, null, t); }
+    /* ---- the hook type (frame 0 .. est; back at the cut) ---- */
+    if (t < T.out1 + .6) { var ty = -900 * eio(seg(t, T.out1, T.out1 + .45)); g.save(); g.translate(0, ty); nr = NOREC; NOREC = nr || ty < 0; hookType(g, t); NOREC = nr; g.restore(); }
+    if (t >= T.cut) hookType(g, t);
   }
 
   /* ---------- the plates: official Rockstar gameplay behind everything (rule 11) ---------- */
-  var GTA5P = { ls5: 1, hwy5: 1 };
+  var GTA5P = { ls5: 1, hwy5: 1 }, BASE = { keys: .3, drift: .34 };
   function plates(g, t) {
     var u = CLIP.activePlate(t); if (!u) return null;
-    var dim = .52 + .48 * (1 - seg(t, u.t0, u.t0 + .14)) + .48 * seg(t, u.t1 - .08, u.t1);
+    var base = BASE[u.clip] || (GTA5P[u.clip] ? .42 : .38), fade = u.t0 < .05 || u.freeze != null ? 0 : 1 - seg(t, u.t0, u.t0 + .14), dim = base + (1 - base) * Math.max(fade, u.freeze != null ? 0 : seg(t, u.t1 - .08, u.t1));
     CLIP.plate(g, t, 0, 0, W, H, { dim: Math.min(1, dim) });
     if (GTA5P[u.clip]) { g.save(); g.globalCompositeOperation = 'saturation'; g.fillStyle = 'rgba(128,128,128,.85)'; g.fillRect(0, 0, W, H); g.restore(); }
     /* ink at the top (captions) and toward the shelf, so type stays readable */
-    var gr = g.createLinearGradient(0, 0, 0, 640); gr.addColorStop(0, 'rgba(8,8,20,.7)'); gr.addColorStop(1, 'rgba(8,8,20,0)'); g.fillStyle = gr; g.fillRect(0, 0, W, 640);
-    gr = g.createLinearGradient(0, 1100, 0, SHY); gr.addColorStop(0, 'rgba(8,8,20,0)'); gr.addColorStop(1, 'rgba(8,8,20,.6)'); g.fillStyle = gr; g.fillRect(0, 1100, W, SHY - 1100);
-    gr = g.createLinearGradient(0, 1450, 0, H); gr.addColorStop(0, 'rgba(8,8,20,.15)'); gr.addColorStop(1, 'rgba(8,8,20,.55)'); g.fillStyle = gr; g.fillRect(0, 1450, W, H - 1450);
+    var gr = g.createLinearGradient(0, 0, 0, 560); gr.addColorStop(0, 'rgba(8,8,20,.62)'); gr.addColorStop(1, 'rgba(8,8,20,0)'); g.fillStyle = gr; g.fillRect(0, 0, W, 560);
     return u;
   }
   function plateLabel(g, t, u) {
     if (!u || !LIVE.text) return;
-    var a = fin(t, u.t0 + .1, .2) * (1 - seg(t, u.t1 - .15, u.t1)); if (a <= 0) return;
+    var a = (u.t0 < .05 || u.freeze != null ? 1 : fin(t, u.t0 + .1, .2)) * (1 - seg(t, u.t1 - .15, u.t1)); if (a <= 0) return;
     var pc = GTA5P[u.clip] ? D.f5 : D.f6; g.save(); g.globalAlpha *= a; putW(g, pc, 930 - pc.w / 2 + 36, 1410); g.restore();
   }
 
   /* ---------- captions: cream label tape in the upper third, phrase by phrase (the hook's words are the frame-0 props) ---------- */
-  var GLUE = { the: 1, a: 1, an: 1, your: 1, its: 1, of: 1, at: 1, to: 1, and: 1, in: 1, with: 1, on: 1, by: 1, so: 1, for: 1, own: 1, how: 1, that: 1, if: 1, you: 1, no: 1, or: 1, it: 1, was: 1, will: 1, most: 1, his: 1, is: 1, her: 1, new: 1, from: 1, as: 1, can: 1, over: 1 };
+  var GLUE = { the: 1, a: 1, an: 1, your: 1, its: 1, of: 1, at: 1, to: 1, and: 1, in: 1, with: 1, on: 1, by: 1, so: 1, for: 1, own: 1, how: 1, that: 1, if: 1, you: 1, no: 1, or: 1, it: 1, was: 1, will: 1, most: 1, his: 1, is: 1, her: 1, new: 1, from: 1, as: 1, can: 1, over: 1, gta: 1, did: 1 };
   var CAPS = (function () {
     var outc = [];
     VO.lines.forEach(function (l) {
@@ -663,6 +661,7 @@
     function fixLines() {
       for (var Ln = 0; Ln < lines.length - 1; Ln++) { var last = lines[Ln][lines[Ln].length - 1]; while (lines[Ln].length > 1 && GLUE[norm(words[last].w)]) { lines[Ln].pop(); lines[Ln + 1].unshift(last); last = lines[Ln][lines[Ln].length - 1]; } }
       var n = lines.length; if (n > 1 && lines[n - 1].length === 1 && lines[n - 2].length > 2 && !stressed(words[lines[n - 1][0]])) lines[n - 1].unshift(lines[n - 2].pop());
+      for (Ln = 0; Ln < lines.length - 1; Ln++) { last = lines[Ln][lines[Ln].length - 1]; while (lines[Ln].length > 1 && GLUE[norm(words[last].w)]) { lines[Ln].pop(); lines[Ln + 1].unshift(last); last = lines[Ln][lines[Ln].length - 1]; } }
       lw = lines.map(function (ln) { var w = 0; ln.forEach(function (i) { w += ws[i] + gap; }); return w; });
     }
     lay2(); fixLines();
@@ -679,8 +678,7 @@
       ln.forEach(function (i) {
         var w = words[i], nw = words[i + 1], cur = stressed(w) && t >= w.t0 - .03 && t < Math.min(w.t1 + .05, nw ? nw.t0 - .03 : 1e9) + .25;
         if (cur) { g.save(); g.globalCompositeOperation = 'multiply'; g.fillStyle = '#ffd84a'; g.fillRect(x - 6, y - cpx * .78, ws[i] + 12, cpx * .98); g.restore(); }
-        var isG = /^GTA\??$/.test(up[i]) || (/^[56]\.?,?$/.test(up[i]) && i > 0 && up[i - 1] === 'GTA');
-        g.fillStyle = isG ? '#d81b6a' : INK; g.fillText(up[i], x, y); x += ws[i] + gap;
+        g.fillStyle = INK; g.fillText(up[i], x, y); x += ws[i] + gap;
       });
       g.restore();
     });
@@ -694,7 +692,8 @@
   function stage(g) { g.fillStyle = STAGEC; g.fillRect(0, 0, W, H); }
   function railClip(g) { g.beginPath(); if (LIVE2.clip) g.rect(BX0, 0, BX1 - BX0, BY1); else g.rect(-500, -500, 2080, BY1 + 500); g.clip(); }
   /* a slow 1.04 push on the hook that releases, and again into the loop */
-  function push(t) { if (t < 3.4) return 1 + .04 * (1 - eio(seg(t, 0, 3.4))); if (t >= T.endIn) return 1 + .04 * eio(seg(t, T.endIn + .5, DUR)); return 1; }
+  function push(t) { if (t < 3.4) return 1 + .04 * (1 - eio(seg(t, 0, 3.4))); if (t >= T.qOut) return 1 + .04 * eio(seg(t, T.qOut + .3, DUR)); return 1; }
+  function push5(t) { return 1 + .1 * eio(seg(t, T.slowIn + .2, T.fastUp - .25)) * (1 - eio(seg(t, T.fastUp - .25, T.fastUp + .15))); }
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0);
     stage(g);
@@ -705,7 +704,9 @@
       g.drawImage(D.shelf, 0, SHY - 30);
     }
     var dw = .25 + .75 * seg(t, 0, 1) * (1 - seg(t, DUR - 1, DUR)), ddx = dw * (3 * osc(t, 17, .3) + 2 * osc(t, 29, 1.1)), ddy = dw * (3 * osc(t, 13, 2.1) + 2 * osc(t, 31, .7)), ps = push(t);
+    var p5 = push5(t);
     g.save(); railClip(g); g.translate(510 + ddx, 960 + ddy); g.scale(ps, ps); g.translate(-510, -960);
+    if (p5 > 1) { g.translate(510, ROW5.y); g.scale(p5, p5); g.translate(-510, -ROW5.y); }
     props(g, t); g.restore();
     if (LIVE2.bg && !POSTERMODE) plateLabel(g, t, pu);
     if (!POSTERMODE && LIVE.text) captions(g, t);
@@ -714,32 +715,34 @@
   function TEXTS(t) {
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
-    Tx('h1', 'GTA 6:', 0, T.out1); Tx('h1', 'GTA 6:', DUR - .1, DUR + 1);
-    Tx('h2', 'BEFORE LAUNCH', 0, T.out1); Tx('h2', 'BEFORE LAUNCH', DUR - .1, DUR + 1);
-    Tx('b6', '32.5M', 0, T.slowIn); Tx('b6', '32.5M', T.fastSlam + .3, DUR + 1);
+    Tx('h1', 'GTA 6 SOLD', 0, T.out1); Tx('h1', 'GTA 6 SOLD', T.cut, DUR + 1);
+    Tx('h2', 'PRE-RELEASE', 0, T.out1); Tx('h2', 'PRE-RELEASE', T.cut, DUR + 1);
+    Tx('b6', '32.5M', 0, T.y13); Tx('b6', '32.5M', T.fastUp + .3, T.out5); Tx('b6', '32.5M', T.qOut + .3, T.cut); Tx('b6', '32.5M', DUR - .05, DUR + 1);
     Tx('cal0', 'NOV 2026 DAY 0 LAUNCH NOV 19', T.cal + .1, T.ask);
     Tx('tag6', 'ROCKSTAR · NOV 20 2026', T.tag + .1, T.ask);
     Tx('copies', 'COPIES SOLD', T.copies + .1, T.ask); Tx('prerel', 'PRE-RELEASE', T.prerel + .1, T.ask);
     Tx('q', '?', T.q + .1, T.y13 - .05);
-    Tx('c5', 'GTA 5 · 2013', T.gDrop + .2, T.out5); Tx('c6', 'GTA 6 · 2026', T.ask + .55, T.endIn);
+    Tx('c5', 'GTA 5', T.gDrop + .2, T.out5); Tx('c6', 'GTA 6 · SOLD', T.ask + .55, T.y13); Tx('c6', 'GTA 6 · SOLD', T.fastUp + .3, T.out5);
     Tx('y13', 'SEPT 17 2013 GTA 5 LAUNCH', T.y13 + .1, T.y13out);
-    Tx('wk', 'WEEK 6', T.wk[5] + .1, T.out5);
-    Tx('b5', '~29M', T.s29 + .3, T.out5);
-    Tx('ship', 'SHIPPED TO STORES · TAKE-TWO · OCT 29 2013', T.ship + .1, T.out5);
-    Tx('day0', 'DAY 0', T.day0 + .1, T.endIn); Tx('sold', 'SOLD BEFORE LAUNCH · ROCKSTAR · NOV 20 2026', T.sold + .1, T.endIn);
-    Tx('stamp', 'BEFORE DAY ONE', T.stamp + .1, T.endIn);
-    Tx('quote', '“…A NEW RECORD ACROSS ALL PLATFORMS.”', T.quote + .1, T.qOut); Tx('qa', '— ROCKSTAR', T.quote + .1, T.qOut);
-    Tx('yes', 'YES', T.vote + .1, T.seamL); Tx('no', 'NOT YET', T.vote + .17, T.seamL);
+    Tx('wk', 'WK 1 2 3 4 5 6', T.wk[5] + .1, T.out5);
+    Tx('b5', '<29M', T.s29 + .3, T.out5);
+    Tx('ship', 'NEARLY 29M · SHIPPED TO STORES · TAKE-TWO · OCT 29 2013', T.ship + .1, T.out5);
+    Tx('day0', '0 DAYS', T.day0 + .1, T.out5);
+    Tx('stamp', 'BEFORE DAY ONE', T.stamp + .04, T.out5 + .25);
+    Tx('q1', '“A NEW RECORD”', T.quote + .03, T.qOut); Tx('qa', '— ROCKSTAR', T.quote + .03, T.qOut);
+    Tx('yes', 'YES', T.vote + .1, T.cut); Tx('no', 'NOT YET', T.vote + .1, T.cut);
     return o;
   }
 
   /* ---------- times and sound events, all from the voice ---------- */
   function initTimes() {
     CLIP.reset();
-    /* hook: the board is up on frame 0 (its last slam closed the previous loop); the calendar page slaps on in the
-       breath after "G T A six", the Rockstar tag lands by 1.5 s; the hook type lifts before est */
-    T.cal = G('cal', wend('hook', '6') + .04, 'slap', .3, 1.1, { m: .03 }); T.cal = Math.min(T.cal, 1.2);
+    /* hook: frame 0 is the GTA 6 board slamming up into place over the mural plate (the slam starts 0.12 s before
+       the loop point, so the last frame and frame 0 are one move). The Rockstar tag lands by 1.5 s; the day-0
+       calendar page waits until 2.0 s so the first two seconds carry one date */
+    EV.push({ t: 0, type: 'clat', g: .55, dur: .2, id: 'clat0' }); EV.push({ t: .29, type: 'thock', g: 1.1, id: 'land0' });
     T.tag = Math.min(1.5, wend('hook', '6') + .3); G('tag', T.tag, 'pin', .3, .8, { m: .03 });
+    T.cal = Math.max(2.0, G('cal', Math.max(2.0, wend('hook', 'copies') + .04), 'slap', .3, 1.1, { m: .03 }));
     T.out1 = G('out1', lastw('hook') + .12, 'swish', .3, .8, { m: .05 });
     /* est */
     T.copies = start('est') - .04; G('copies', T.copies, 'slap', .35, 1, { m: .04 });
@@ -749,42 +752,46 @@
     G('askw', T.ask - .05, 'swish', .2, .8, { m: .04 });
     T.gDrop = at('ask', 'gta'); G('gdrop', T.gDrop, 'thock', .35, 1.1, { m: .04 });
     G('q', after('ask'), 'slap', .35, 1.1, { m: .05 }); T.q = at('ask', 'gta') + .05;
-    /* old: the 2013 page slams on "2013" (the plate cuts to ink for it) */
+    /* old: the 2013 page slams on "5" (the plate cuts to ink; the GTA 6 row drops off the bottom) */
     T.y13 = at('old', '5') - .02; G('y13', T.y13, 'slap', .4, 1.1, { m: .04 });
+    G('drop6', T.y13 - .1, 'swish', .3, .7, { m: .04 });
     T.slowIn = start('slow') - .15; T.y13out = start('slow') + .5; G('y13out', T.y13out, 'tear', .3, .9, { m: .04 });
-    /* slow: a week tick per flap, the grey board lands ~29M */
+    /* slow: a torn week page per tick, the grey board lands <29M; push in on it */
     var a = start('slow'), b = at('slow', 'nearly'); T.wk = [];
-    for (var i = 0; i < 6; i++) { T.wk.push(a + (b - a) * i / 5.4); EV.push({ t: T.wk[i], type: 'tick', g: .45, id: 'wk' + i }); }
+    for (var i = 0; i < 6; i++) { T.wk.push(a + (b - a) * i / 5.4); EV.push({ t: T.wk[i], type: 'tick', g: .5, id: 'wk' + i }); }
     T.s29 = at('slow', '29') - .1;
-    B5.ev = [{ t: T.s29, chars: ['~', '2', '9', 'M'], slow: true, ticks: T.wk.slice() }];
+    B5.ev = [{ t: T.s29, chars: ['<', '2', '9', 'M'], slow: true, ticks: T.wk.slice() }];
     G('ship', after('slow'), 'clack', .35, 1.1, { m: .05 }); T.ship = at('slow', 'shipped') - .02;
     EV.push({ t: T.s29 - .02, type: 'clat', g: .5, dur: .3, id: 'clat5' });
-    /* fast: the GTA 6 board lifts and re-slams; DAY 0 and SOLD tags; BEFORE DAY ONE stamps in the pause */
+    /* fast: the GTA 6 row comes back up on "But" (the re-hook) and re-slams on "beat"; 0 DAYS, SOLD; the
+       BEFORE DAY ONE stamp lands in the pause and the DM frame holds plate-free */
     T.fastUp = start('fast') - .15; T.fastSlam = at('fast', 'beat');
+    G('up6', T.fastUp + .36, 'thock', .25, 1, { m: .03 });
     EV.push({ t: T.fastSlam - CLAT, type: 'clat', g: .55, dur: CLAT + .3, id: 'clat6' });
     T.day0 = at('fast', 'day') - .02; T.sold = at('fast', 'before') - .02;
-    T.stamp = G('stamp', after('fast') + .02, 'stamp', .35, 1.2, { m: .05 });
-    T.out5 = start('rec') - .35;
-    /* rec: the quote plate (captions off; the plate is the line) */
-    T.quote = G('quote', T.out5 + .02, 'slap', .3, 1.1, { m: .04 }); T.quote = Math.min(T.quote, T.out5 + .05); T.qOut = start('end') + .75;
-    /* end */
-    T.endIn = G('endIn', after('rec') - .05, 'swish', .3, .9, { m: .04 });
-    G('chips', wend('end', 'it') + .12, 'pin', .45, .8, { m: .03 });
-    T.vote = start('end') - .06;
-    T.seamL = DUR - .25; T.capEnd = DUR - .34;
-    var hookSlam = DUR - .26 - 4 * STAG;
-    B6.ev = [{ t: hookSlam - DUR, chars: B6.ev0.chars }, { t: T.fastSlam, chars: B6.ev0.chars }, { t: hookSlam, chars: B6.ev0.chars }];
-    EV.push({ t: hookSlam - CLAT, type: 'clat', g: .5, dur: CLAT + .25, id: 'clatEnd' });
-    STRESS = [['est', 'copies'], ['est', 'sold'], ['ask', 'fast'], ['old', '2013'], ['slow', 'six'], ['slow', '29'], ['fast', 'beat'], ['fast', 'one'], ['rec', 'record'], ['rec', 'rockstar'], ['end', 'buy'], ['end', 'launch']].map(function (p) { return at(p[0], p[1]); });
+    T.stamp = G('stamp', after('fast') + .02, 'stamp', .35, 1.4, { m: .05 });
+    T.out5 = T.stamp + 2.12;
+    G('out5', T.out5, 'swish', .3, .8, { m: .04 });
+    /* rec: both rows leave; the quote plate sits low over the marina (captions off; the plate is the line) */
+    T.quote = T.out5; G('quote', T.quote, 'slap', .3, 1.1, { m: .04 });
+    T.qOut = start('end');
+    /* end: the board comes back to the hook pose; equal chips held to the cut; then a hard cut to frame 0 */
+    T.endIn = T.qOut;
+    T.vote = T.qOut + .05; G('chips', T.vote, 'pin', .45, .8, { m: .03 });
+    T.cut = DUR - .25; T.seamL = T.cut; T.capEnd = T.cut - .02;
+    B6.ev = [{ t: T.fastSlam, chars: B6.ev0.chars }];
+    EV.push({ t: DUR - .12, type: 'clat', g: .55, dur: .12, id: 'clatEnd' });
+    STRESS = [['est', 'sold'], ['ask', 'fast'], ['old', '2013'], ['slow', '29'], ['fast', 'beat'], ['end', 'buy']].map(function (p) { return at(p[0], p[1]); });
     /* plates (SAFE-EDIT rule 11): a new official range each beat; frames with no plate stay all ours */
-    function P(name, t0, t1, from, speed, note) { var c = CLIP.manifest().clips[name], L = c.out - c.in - .04; speed = Math.min(speed || 1, L / (t1 - t0)); CLIP.use(name, t0, t1, { plate: true, from: from || 0, speed: speed, zoom: [1.04, 1.12], note: note }); }
-    P('mural', 1.3, start('est') - .05, 0, 1, 'plate under the hook board');
+    function P(name, t0, t1, from, speed, note, zoom) { var c = CLIP.manifest().clips[name], L = c.out - c.in - .04; speed = Math.min(speed || 1, L / (t1 - t0)); CLIP.use(name, t0, t1, { plate: true, from: from || 0, speed: speed, zoom: zoom || [1.04, 1.12], note: note }); }
+    P('mural', 0, start('est') - .05, 0, 1, 'plate under the hook board (frame 0)');
     P('boat', start('est') - .05, Math.min(start('ask') - .12, start('est') + 2.2), 0, .7, 'plate under COPIES SOLD');
     P('drive', start('ask') - .12, T.y13, 0, 1, 'plate under the two boards');
-    P('hwy5', T.y13 + 1.15, T.fastUp, 0, 1, 'GTA 5 plate under the week ticks, labeled');
-    P('bike', T.fastUp, T.stamp, 0, .58, 'GTA 6 plate under the re-slam');
-    P('marina', start('rec') - .05, T.endIn, 0, .6, 'GTA 6 plate under the Rockstar quote');
-    P('pool', T.endIn, DUR - .8, 0, .85, 'GTA 6 plate under the vote');
+    P('hwy5', start('slow') - .1, T.fastUp, 0, 1, 'GTA 5 plate under the week pages, labeled');
+    P('drift', T.fastUp, T.stamp, 0, .75, 'GTA 6 plate under the return and re-slam');
+    P('keys', T.stamp + 1.1, T.qOut, 0, .7, 'GTA 6 plate under the Rockstar quote');
+    P('pool', T.qOut, Math.min(T.cut - .55, T.qOut + 2.2), 0, .85, 'GTA 6 plate under the vote');
+    CLIP.use('mural', T.cut, DUR + .01, { plate: true, from: 0, freeze: 0, zoom: [1.04, 1.04], note: 'frame-0 plate held for the loop cut' });
     EV.sort(function (x, y) { return x.t - y.t; });
   }
 
@@ -837,7 +844,7 @@
     function swish(t, g) { nband(t, t + .2, 900, 3600, .2 * g, .03 * g, .8); }
     var LEVEL = { clat: 4, clack: 5, stamp: 1, ching: 2.4, thock: 5, slap: 3, pin: 4, tick: 6, print: 4, tear: 3, pour: 3, swish: 3 };
     var TRIM = window.SFX_TRIM || {};
-    var TYPE_DB = window.SFX_TYPE_DB || { clat: -17, clack: -16, stamp: -12, ching: -12, thock: -18, slap: -14, pin: -14, tick: -18, print: -18, tear: -15, pour: -20, swish: -16 };
+    var TYPE_DB = window.SFX_TYPE_DB || { clat: -17, clack: -16, stamp: -7, ching: -12, thock: -18, slap: -14, pin: -14, tick: -18, print: -18, tear: -15, pour: -20, swish: -16 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1) * Math.pow(10, ((TRIM[e.id] || 0) + (TYPE_DB[e.type] || 0)) / 20);
       if (e.type === 'stamp') stamp(e.t, g);
@@ -872,7 +879,7 @@
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 46px Archivo', '800 58px "Geist Mono"'];
     return Promise.all(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”‘’·→…#?‹|~$+—½@&!§'); })).then(function () { return document.fonts.ready; }).then(function () {
       buildTextures(); EV.length = 0; return CLIP.load('clips.json'); }).then(function () { initTimes();
-      window.FILM.POSTER = Math.round(Math.min(T.stamp + .2, T.out5 - .02) * 30) / 30 + 1 / 60;
+      window.FILM.POSTER = Math.round(Math.min(T.stamp + .4, T.out5 - .02) * 30) / 30 + 1 / 60;
       window.FILM.SHOTS = [{ id: 'hook', name: '32.5M', t0: 0, t1: start('ask') }, { id: 'ask', name: 'GTA 5', t0: start('ask'), t1: start('fast') }, { id: 'fast', name: 'Day one', t0: start('fast'), t1: start('rec') }, { id: 'rec', name: 'Record', t0: start('rec'), t1: start('end') }, { id: 'end', name: 'Before launch?', t0: start('end'), t1: DUR }];
       window.READY = true;
     });

@@ -1,6 +1,6 @@
 # SEO and posting text: GTA 6 sold 32.5 million before launch
 
-Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-preorders-vo.mp4` (voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-21 (day 3 after launch) for a US audience. Facts and sources: `BRIEF.md` §3. Gameplay in the background is official Rockstar video (SAFE-EDIT rule 11), muted and dimmed under our own graphics.
+Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-preorders-vo.mp4` (voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-21 (day 3 after launch) for a US audience. Facts and sources: `BRIEF.md` §3. Gameplay in the background is official Rockstar video (SAFE-EDIT rule 11), muted and dimmed under our own graphics. The hook says "32.5 million copies" and frame 0 reads GTA 6 SOLD / 32.5M / PRE-RELEASE.
 
 **Before posting:** re-open the Rockstar / Take-Two release. If the 32.5 million figure was revised, hold the film and re-voice the hook. Never call it "pre-orders" as Rockstar's claim: the release says "sold 32.5 million units pre-release" and does not say how many were pre-orders.
 
@@ -10,7 +10,7 @@ GTA 6 Sold 32.5 Million Before Launch 🤯
 Alternates (A/B or repost): "GTA 6 Beat GTA 5's First 6 Weeks Before Day One 🤯" · "GTA 6 Broke a Record Before It Even Came Out 🤯"
 
 ## Cover text
-GTA 6: 32.5M BEFORE LAUNCH
+GTA 6 SOLD 32.5M BEFORE LAUNCH
 
 ## Description
 GTA 6 sold 32.5 million copies before launch. Rockstar Games says "Grand Theft Auto VI sold 32.5 million units pre-release, a new record across all platforms." The release does not split that number into pre-orders and other copies, or say whether it counts copies bought by players or sent to stores.

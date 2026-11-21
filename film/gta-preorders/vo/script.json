@@ -28,21 +28,21 @@
   {
    "id": "hook",
    "at": 0.2,
-   "text": "GTA 6. 32.5 million. Before launch.",
-   "say": "G T A six. Thirty two point five million. Before launch.",
+   "text": "GTA 6. 32.5 million copies. Before launch.",
+   "say": "G T A six. Thirty two point five million copies. Before launch.",
    "pause": 0.55,
    "speed": 1.1
   },
   {
    "id": "est",
-   "at": 4.0,
+   "at": 4.25,
    "text": "That's copies sold before release day.",
    "pause": 0.3,
    "speed": 1.1
   },
   {
    "id": "ask",
-   "at": 6.3,
+   "at": 6.55,
    "text": "So how fast did GTA 5 sell?",
    "say": "So how fast did G T A five sell?",
    "pause": 0.35,
@@ -50,7 +50,7 @@
   },
   {
    "id": "old",
-   "at": 9.0,
+   "at": 9.25,
    "text": "GTA 5 came out in 2013.",
    "say": "G T A five came out in twenty thirteen.",
    "pause": 0.5,
@@ -58,7 +58,7 @@
   },
   {
    "id": "slow",
-   "at": 11.9,
+   "at": 12.15,
    "text": "Within six weeks, it had shipped nearly 29 million.",
    "say": "Within six weeks, it had shipped nearly twenty nine million.",
    "pause": 0.4,
@@ -66,7 +66,7 @@
   },
   {
    "id": "fast",
-   "at": 15.3,
+   "at": 15.55,
    "text": "But GTA 6 beat that before day one.",
    "say": "But G T A six beat that before day one.",
    "pause": 0.7,
@@ -74,20 +74,20 @@
   },
   {
    "id": "rec",
-   "at": 18.3,
+   "at": 19.1,
    "text": "A record across all platforms, Rockstar says.",
    "pause": 0.4,
    "speed": 1.1
   },
   {
    "id": "end",
-   "at": 21.05,
+   "at": 22.5,
    "text": "Did you buy it before launch?",
    "pause": 0,
    "speed": 1.1
   }
  ],
- "dur": 23.3,
+ "dur": 24.8,
  "tail": 0.55,
  "fit": {
   "min": 0.88,

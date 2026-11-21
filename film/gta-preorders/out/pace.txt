@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-preorders/out/gta-preorders-vo.mp4: 23.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.192, 0-3 s 1.426, median 0.986, still frames 0.1 %
+/home/user/molindesign/film/gta-preorders/out/gta-preorders-vo.mp4: 24.8 s, 1 hard cuts (0.4/10 s), motion 0-1 s 1.853, 0-3 s 2.443, median 1.369, still frames 0.1 %
 OK    no frozen stretches, opening moves
