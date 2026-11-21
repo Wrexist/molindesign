@@ -29,7 +29,7 @@ Foreground evidence clips (annotated, each under 5 s, about half the runtime): h
 | masked "Masks on. Still lit." | The real frozen looks frame (Jason in a bandana): red ring on the mask, lens ring on the lit description icon, STILL LIT HERE stamp + MASK WAS ON DURING THE CRIME chip; the stamp moves onto our LOOKS disc |
 | one "One: your car." | 1; car clip out of the tunnel, ring on the car, car disc; tray full |
 | question "So how do you shake them?" | All ours: four discs shake on ink under red/blue light sweeps |
-| red "Lose them, and the stars turn red." | red clip into the garage; lens on the real red stars; our star row flips red on "red"; RED = NEAR THE SCENE · GAMESPOT / THEY DON'T KNOW WHERE YOU ARE (36 px); then ours: a search-area circle with our car disc hidden in it and two cop dots asking "?" |
+| red "Break their line of sight, the stars flash. Then they turn red." | Ours first: big star row, a cop dot's sight line to our car cut by a wall, OUT OF SIGHT stamp on "sight", stars blink on "flash" (FLASHING = LOST SIGHT OF YOU · GAMESPOT); then the real red clip on "red" (RED = NEAR THE SCENE, / THEY DON'T KNOW WHERE YOU ARE). Earlier version: | red clip into the garage; lens on the real red stars; our star row flips red on "red"; RED = NEAR THE SCENE · GAMESPOT / THEY DON'T KNOW WHERE YOU ARE (36 px); then ours: a search-area circle with our car disc hidden in it and two cop dots asking "?" |
 | leave "Then leave the car. Its icon's gone." | icondrop clip, big lens on the HUD; real car icon vanishes, our car disc cracks and falls on the same frame |
 | burn "And she burns it." | burn clip, throw, ignition on the hit, flame held; BURNED chip |
 | loop "Now they only remember three." | van clip + lens on three red icons; 3 LEFT stamp; ALSO: WEAPON · CCTV ICONS · DEXERTO; card grows back into frame 0 |
@@ -41,3 +41,14 @@ Foreground evidence clips (annotated, each under 5 s, about half the runtime): h
 - No empty card band: our search-area panel fills the gap after the red clip; a plate sits under the gap after the split.
 - Clothes held on a steady frame (841.15 s), ring on the shirt; Lucia's ring starts when she is in frame; tray number badge steps aside for the STILL LIT HERE stamp; all mono chips >= 34 px; lens right edge <= 925.
 - Discs are torn cut paper with a cream backing and an off-register dark print; the shake beat has a big light bar with sweeping flat beams and a "?".
+
+## Round 3 (jury r2 fixes)
+- Red line re-voiced to GameSpot's ladder: "Break their line of sight, the stars flash. Then they turn red." Our star row blinks white on "flash", then turns red; chips print on their words.
+- Mask chip is now MASK ON IN THIS SHOT (no story claim).
+- The tray now rises when the chase card closes, so the source chip at y 1150 appears only after the stars have passed; the scope chip steps off while they cross its row.
+- CAR ICON: GONE slams on the word "gone", then lands in the tray's empty car slot. The vanish is held clean for 0.5 s (no flash); the flash is on the swap to BEFORE/NOW. The poster is the clean held vanish with our disc bursting.
+- Frame 0 focus moved to 0.42 so the in-game minimap (the pink box) is out of frame.
+- The burn shows only MOLOTOV; the flame is clean for 0.4 s before BURNED; ALSO/SOURCE chips moved to the loop beat.
+- The car disc's shards fall into the bottom band and rest on the floor there until the burn.
+- GTA 6 WANTED LEVEL is on frame 0 at 34 px under the headline, then rides up beside the pill.
+- Question line about 0.86x (the pace check stops it going faster); the shake beat's light bar sweeps full-height beams every 0.6 s, all ours (real footage stays at 80 %).

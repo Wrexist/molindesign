@@ -11,7 +11,7 @@ Alternates: "GTA 6 Wanted Level: What Those Icons Mean 🚔" · "Your Mask Doesn
 COPS REMEMBER 4 THINGS
 
 ## Description
-GTA 6's wanted level isn't just stars. Under them, icons show what the cops know about you, and in Rockstar's own getaway chase four are lit: that there are two of you, your clothes, what you look like, and your car. With a mask on during the crime, the description icon is still lit. To shake them: lose them and the stars turn red (per GameSpot, red means you're near the scene but the police don't know where you are), then leave the car. The car icon disappears the moment Lucia steps out, and she burns it. The cops still remember the other three. There are also weapon and CCTV icons, not lit in this chase.
+GTA 6's wanted level isn't just stars. Under them, icons show what the cops know about you, and in Rockstar's own getaway chase four are lit: that there are two of you, your clothes, what you look like, and your car. With a mask on in that shot, the description icon is still lit. To shake them: break their line of sight and the stars flash (GameSpot: flashing means they lost sight of you), then they turn red (near the scene, but the police don't know where you are). Then leave the car. The car icon disappears the moment Lucia steps out, and she burns it. The cops still remember the other three. There are also weapon and CCTV icons, not lit in this chase.
 
 How to lose the cops in GTA 6, read straight off the real HUD.
 

@@ -20,11 +20,11 @@
   var STY = .314;                                         // star row inside the HUD crop
   var LAB = ['TWO OF YOU', 'CLOTHES', 'LOOKS', 'CAR'];
   var ORDER = ['four', 'three', 'two', 'one'];
-  var LBIG = [MID - 400, 470, 800, 373];                  // the hook / loop lens (icons ~67 px)
+  var LBIG = [MID - 400, 515, 800, 373];                  // the hook / loop lens (icons ~67 px)
   var LMED = [925 - 600, 430, 600, 280];                  // a lens over a clip's HUD corner (right edge x 925)
   var LW = [92, 440, 833, 389];                           // the vanish lens: x 92-925, ~2.8x the HUD
   var LA = [MID - 350, 425, 700, 327], LB = [MID - 350, 790, 700, 327];   // BEFORE over NOW
-  var ROW1 = 928, ROW2 = 1008;                            // two chip rows above the credit at the card's foot
+  var ROW0 = 862, ROW1 = 940, ROW2 = 1018;                            // two chip rows above the credit at the card's foot
   var CREDY = 1098;
 
   /* ---------- math ---------- */
@@ -77,26 +77,25 @@
     T.m0 = start('masked') - .15; T.band = at('masked', 'masks') + .05; T.lit = at('masked', 'still') - .03;
     T.mEnd = Math.min(start('one') - .08, T.m0 + 2.26);
     /* question: all ours (a light bar over the tray) */
-    T.q0 = T.c1[3]; T.shake = at('question', 'shake') - .02; T.qEnd = start('red') + .2;
-    /* red: the real stars flip on "red"; then our search-area panel (ours) until Lucia's door opens */
-    T.stars = at('red', 'stars'); T.redW = at('red', 'red'); T.r0 = T.redW - .6; T.r1 = T.r0 + 1.45;
+    T.q0 = T.c1[3]; T.shake = at('question', 'shake') - .02; T.qEnd = start('red') - .05;
+    /* the ladder (GameSpot): out of sight -> the stars flash -> they turn red. Ours first, then the real red stars */
+    T.sight = at('red', 'sight'); T.flash = at('red', 'flash'); T.redW = at('red', 'red'); T.r0 = T.redW - .6; T.r1 = T.r0 + 1.45;
     /* leave: the real car icon vanishes 1.767 s into the icondrop cut (frame 54, 957.07 s), in the pause after "car." */
     T.vanish = silAfter(wend('leave', 'car') - .1)[0] + .12;
-    T.l0 = T.vanish - .75; T.lens2 = T.l0 + .08; T.lucia = T.vanish - .4; T.wide = T.vanish - .24;
-    T.split = T.vanish + .3;                              // the wide lens holds the vanish frame 0.3 s, then BEFORE over NOW
-    T.lEnd = at('gone', 'gone') + .05;
-    T.drop = T.vanish + .35; T.shat = T.drop + Math.sqrt((1440 - 1290) / 1700);
-    T.left = T.vanish + .8;
+    T.l0 = T.vanish - .75; T.lens2 = T.l0 + .08; T.wide = T.vanish - .24;
+    T.split = T.vanish + .5;                              // the clean wide lens holds the vanish 0.5 s, then a flash and BEFORE over NOW
+    T.goneW = at('gone', 'gone'); T.lEnd = T.goneW + .35;
+    T.drop = T.vanish + .04; T.shat = T.drop + Math.sqrt((1440 - 1290) / 1700);
     /* burn: ignition (1.62 s into the cut) on the hit after "burns it" */
     T.ign = Math.max(silAfter(wend('burn', 'it') - .1)[0] + .05, start('burn') + 1.0);
-    T.b0 = T.ign - .9; T.b1 = Math.min(start('loop') - .06, T.ign + .4);
+    T.b0 = T.ign - .9; T.b1 = Math.min(start('loop') - .06, T.ign + .4); T.left = T.b1 + .15;
     /* loop */
     T.back = DUR - .5; T.three = at('loop', 'three');
-    T.v0 = Math.max(T.b1 + .3, T.three - .3); T.v1 = T.back;
+    T.v0 = Math.max(T.b1 + .3, T.three - .2); T.v1 = T.back;
 
     /* foreground evidence uses (each under 4.9 s, a note on each) */
     var F0 = .7;   // 851.7 s: Jason fires out of the window, gun in frame
-    U.hook = CLIP.use('hud4', 0, T.hookCard, { from: F0, zoom: [1, 1], focus: [.3, .5], note: 'frame 0: Jason fires out of the getaway car, gun in frame; the lens is open on the real HUD from frame 0 and its 4 icons fly into our tray' });
+    U.hook = CLIP.use('hud4', 0, T.hookCard, { from: F0, zoom: [1, 1], focus: [.42, .5], note: 'frame 0: Jason fires out of the getaway car, gun in frame; the lens is open on the real HUD from frame 0 and its 4 icons fly into our tray' });
     U.hookHud = CLIP.use('hudhook', 0, T.hookCard, { from: F0, zoom: [1, 1], note: 'sharp HUD crop of the same range in the lens: 4 white stars; couple, hanger, description, car icons' });
     var Z = [
       { clip: 'duo2', from: .5, freeze: null, focus: [.72, .5], note: 'four: both of them lean out of the getaway car windows, a ring on each, lens on the couple icon' },
@@ -109,17 +108,18 @@
       if (z.freeze != null) o.freeze = z.freeze;
       U['c' + i] = CLIP.use(z.clip, T.c0[i], T.c1[i], o);
     });
-    U.masked = CLIP.use('looks', T.m0, T.mEnd, { from: .97, freeze: .03, zoom: [1.04, 1.12], focus: [.72, .5], note: 'masks on: the real frozen frame, Jason in a bandana while the description icon is still lit: STILL LIT HERE, MASK WAS ON DURING THE CRIME' });
+    U.masked = CLIP.use('looks', T.m0, T.mEnd, { from: .97, freeze: .03, zoom: [1.04, 1.12], focus: [.72, .5], note: 'masks on: the real frozen frame, Jason in a bandana while the description icon is still lit: STILL LIT HERE, MASK ON IN THIS SHOT' });
     U.red = CLIP.use('red', T.r0, T.r1, { from: 3.45 - (T.r1 - T.r0), speed: 1, zoom: [1.02, 1.1], focus: [.72, .5], note: 'red: the getaway car drives into the parking garage, lens on the real stars, red; our star row flips red on "red"' });
     U.redHud = CLIP.use('hudred', T.r0, T.r1, { from: U.red.from, note: 'sharp HUD crop in the lens: four red stars' });
     var dFrom = 1.767 - (T.vanish - T.l0);
-    U.drop = CLIP.use('icondrop', T.l0, T.lEnd, { from: dFrom, speed: 1, freeze: T.vanish - T.l0 + .02, zoom: [1.02, 1.07], focus: [.72, .5], note: 'leave: Lucia gets out of the parked car; the real car icon vanishes (957.07 s): flash, held 0.3 s, then the frame before over the frame after' });
+    U.drop = CLIP.use('icondrop', T.l0, T.lEnd, { from: dFrom, speed: 1, freeze: T.vanish - T.l0 + .02, zoom: [1.02, 1.07], focus: [.72, .5], note: 'leave: Lucia gets out of the parked car; the real car icon vanishes (957.07 s): flash, held 0.3 s, the clean frame held 0.5 s, then the frame before over the frame after' });
     U.dropHud = CLIP.use('huddrop', T.lens2, T.lEnd, { from: dFrom + (T.lens2 - T.l0), freeze: T.vanish - T.lens2 + .02, note: 'sharp HUD crop in the wide lens and the BEFORE / NOW split: 4 icons, then 3 (car gone, the rest slide right)' });
     U.burn = CLIP.use('burn', T.b0, T.b1, { from: 1.62 - (T.ign - T.b0), speed: 1, zoom: [1.0, 1.1], focus: [.6, .5], note: 'burn: Lucia throws the Molotov and the car catches fire, BURNED chip' });
     U.van = CLIP.use('van', T.v0, T.v1, { from: .4, speed: 1, zoom: [1.02, 1.1], focus: [.72, .5], note: 'loop: the van drives off, lens on the three icons left, 3 LEFT' });
     U.vanHud = CLIP.use('hudvan', T.v0, T.v1, { from: .4, speed: 1, note: 'sharp HUD crop in the lens: red stars, couple, hanger, description; no car' });
-    var eFrom = F0 - (DUR - T.back) + 1 / 30;
-    U.end = CLIP.use('hud4', T.back, DUR + .001, { from: eFrom, zoom: [1, 1], focus: [.3, .5], note: 'loop: the card grows back into the frame-0 chase' });
+    /* the encoder's last frame sits at (N - 0.5)/30 and frame 0 at 1/60: show the same source frame on both */
+    var tLast = (Math.round(DUR * 30) - .5) / 30, eFrom = F0 + 1 / 60 - (tLast - T.back);
+    U.end = CLIP.use('hud4', T.back, DUR + .001, { from: eFrom, zoom: [1, 1], focus: [.42, .5], note: 'loop: the card grows back into the frame-0 chase' });
     U.endHud = CLIP.use('hudhook', T.back, DUR + .001, { from: eFrom, zoom: [1, 1], note: 'loop: the frame-0 lens on the HUD' });
 
     /* background plates (rule 11): dimmed, under everything, each under 4.9 s, a new range each */
@@ -128,7 +128,6 @@
     plate('p4palms', T.hookCard + 3.4, T.hookCard + 3.4 + 3.95, 0);
     plate('p5cross', T.hookCard + 7.35, T.hookCard + 7.35 + 4.45, 0);
     plate('p3alley', T.hookCard + 11.8, T.q0 + .05, 0);
-    plate('p2flip', T.qEnd + .2, T.r1 + .05, 0);
     plate('p6load', T.lEnd + .45, T.b1, 0);
     plate('p7out', T.b1, T.v0 + .05, 0);
 
@@ -147,13 +146,15 @@
     }
     ev(T.m0, 'swish', .5); ev(T.band, 'scratch', .6); ev(T.lit, 'slam', .95);
     ev(T.q0 + .05, 'whoosh', .5); ev(T.shake, 'ratchet', .7, { t1: T.shake + .45 });
+    ev(T.sight + .05, 'thud', .7); ev(T.sight + .1, 'slam', .8);
+    for (i = 0; i < 4; i++) ev(T.flash + .02 + i * .16, 'tick', .55);
     ev(T.r0, 'swish', .45);
     for (i = 0; i < 4; i++) ev(T.redW + .05 + i * .06, 'tick', .6);
     ev(T.r1 + .02, 'swish', .5); ev(T.r1 + .25, 'tick', .4); ev(T.r1 + .65, 'tick', .4);
     ev(T.l0, 'swish', .45); ev(T.lens2, 'shutter', .6); ev(T.wide, 'zip', .5);
     ev(T.vanish, 'scratch', 1.2); ev(T.vanish + .01, 'slam', 1.7);
-    ev(T.split, 'shutter', .9); ev(T.shat, 'splat', 1.3); ev(T.shat + .01, 'thud', .9);
-    ev(T.left, 'thud', .6);
+    ev(T.shat, 'splat', 1.3); ev(T.shat + .01, 'thud', .9); ev(T.split, 'shutter', .9);
+    ev(T.goneW, 'slam', 1.1); ev(T.lEnd - .05, 'thud', .7); ev(T.left, 'thud', .6);
     ev(T.ign - .55, 'whoosh', .5, { d: .4 }); ev(T.ign, 'slam', 1.8); ev(T.ign + .02, 'whoosh', 1.1, { d: .7 });
     ev(T.v0, 'swish', .45); ev(silAfter(wend('loop', 'three') - .1)[0] + .02, 'slam', .9);
     ev(T.back - .02, 'whoosh', .55); ev(T.back + .05, 'slam', .55);
@@ -317,7 +318,7 @@
   /* ---------- the tray (our HUD): six stars and four discs ---------- */
   function trayGeo(t) {
     /* 0 = under the card; 1 = up in the middle (proof); q = up under the light bar (question) */
-    var up = eio(seg(t, T.hookOut - .05, T.hookOut + .3)) * (1 - eio(seg(t, T.pEnd - .12, T.pEnd + .2)));
+    var up = eio(seg(t, T.hookCard - .05, T.hookCard + .3)) * (1 - eio(seg(t, T.pEnd - .12, T.pEnd + .2)));
     var q = eio(seg(t, T.q0, T.q0 + .3)) * (1 - eio(seg(t, T.qEnd - .2, T.qEnd + .15)));
     return { y: lerp(lerp(1290, 800, up), 1000, q), sp: lerp(200, 205, Math.max(up, q)), r: lerp(78, 98, Math.max(up, q)), up: up };
   }
@@ -337,7 +338,8 @@
       var pop = lit ? 1 + .25 * knock(t, T.redW + (i - 2) * .06, 1, 24, 7) : 1;
       g.save(); g.translate(sx, y); g.scale(pop, pop);
       K.star(g, 0, 0, sz * .5, 5, .45);
-      g.fillStyle = !lit ? '#2a2633' : (redK && kr > .5 ? RED : CREAM); g.fill();
+      var blink = lit && t >= T.flash && t < T.redW && Math.floor((t - T.flash) / .16) % 2 === 1;
+      g.fillStyle = !lit ? '#2a2633' : (redK && kr > .5 ? RED : blink ? '#5a5560' : CREAM); g.fill();
       g.lineWidth = 5; g.strokeStyle = INK; g.stroke();
       g.restore();
     }
@@ -382,10 +384,18 @@
       K.sticker(g, 'HERE', 0, 20, 30, { col: RED, wide: false, lw: 0, shadow: false });
       g.restore();
     }
+    if (t >= T.lEnd - .05 && t < T.left) {
+      var gu = t - T.lEnd + .05, gs = gu < .14 ? lerp(1.35, 1, eo(gu / .14)) : 1 - .06 * knock(gu, .14, 1, 26, 7);
+      g.save(); g.translate(X1 - 120, G.y); g.rotate(-.06); g.scale(gs, gs); g.globalAlpha *= clamp(gu / .05, 0, 1) * (1 - seg(t, T.left - .08, T.left));
+      rr(g, -100, -58, 200, 116, 16); g.fillStyle = CREAM; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
+      K.sticker(g, 'CAR ICON:', 0, -18, 38, { col: RED, wide: false, lw: 0, shadow: false });
+      K.sticker(g, 'GONE', 0, 26, 44, { col: RED, wide: false, lw: 0, shadow: false });
+      g.restore();
+    }
     if (t >= T.left && t < T.back) {
       var u = t - T.left;
-      g.save(); g.translate(X1 - 114, G.y); g.rotate(-.06);
-      var sc = u < .14 ? lerp(1.8, 1, eo(u / .14)) : 1 - .06 * knock(u, .14, 1, 26, 7) - .14 * knock(t, T.three, 1, 22, 6); g.scale(sc, sc); g.globalAlpha *= clamp(u / .05, 0, 1);
+      g.save(); g.translate(X1 - 120, G.y); g.rotate(-.06);
+      var sc = u < .14 ? lerp(1.35, 1, eo(u / .14)) : 1 - .06 * knock(u, .14, 1, 26, 7) - .14 * knock(t, T.three, 1, 22, 6); g.scale(sc, sc); g.globalAlpha *= clamp(u / .05, 0, 1);
       rr(g, -98, -44, 196, 88, 16); g.fillStyle = CREAM; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
       K.sticker(g, '3 LEFT', 0, 4, 50, { col: RED, wide: false, lw: 0, shadow: false });
       g.restore();
@@ -400,20 +410,22 @@
     disc(g, t, 3, p[0] - fall * 50, y, r * (1 + .1 * knock(t, T.vanish, 1, 30, 8)), { crack: seg(t, T.vanish, T.vanish + .12), rot: rot });
   }
   function shards(g, t) {
-    var u = t - T.shat; if (u < 0 || u > .7) return;
-    var cx = MID + 300 - (T.shat - T.drop) * 50, cy = 1440, a = 1 - seg(u, .35, .7);
+    var u = t - T.shat; if (u < 0 || t > T.b0 + .2) return;
+    var cx = MID + 300 - (T.shat - T.drop) * 50, cy = 1440, a = 1 - seg(t, T.b0 - .1, T.b0 + .2);
     g.save(); g.globalAlpha *= a;
-    for (var k = 0; k < 9; k++) {
-      var ang = -Math.PI * (.08 + .84 * hash(k + 3)), sp = 380 + 420 * hash(k + 17), vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp;
-      var x = cx + vx * u, y = cy + vy * u + 1500 * u * u, rot = (hash(k + 29) - .5) * 14 * u, s = 18 + 22 * hash(k + 41);
-      x = clamp(x, X0 + 10, X1 - 10); if (y > 1600) continue;
+    for (var k = 0; k < 8; k++) {
+      /* each shard flies, falls and comes to rest on the floor of the empty band (y 1540-1720) */
+      var ang = -Math.PI * (.12 + .76 * hash(k + 3)), sp = 300 + 380 * hash(k + 17), vx = Math.cos(ang) * sp, vy = Math.sin(ang) * sp;
+      var floor = 1540 + 180 * hash(k + 53), land = (-vy + Math.sqrt(vy * vy + 4 * 1500 * (floor - cy))) / 3000, uu = Math.min(u, land);
+      var x = clamp(cx + vx * uu + (u > land ? vx * .08 * (1 - Math.exp(-(u - land) * 8)) : 0), 70, 1010), y = cy + vy * uu + 1500 * uu * uu;
+      var rot = (hash(k + 29) - .5) * 12 * uu + (u > land ? (hash(k + 61) - .5) * .4 : 0), s = 20 + 22 * hash(k + 41);
       g.save(); g.translate(x, y); g.rotate(rot);
       g.beginPath(); g.moveTo(-s, -s * .5); g.lineTo(s * .9, -s * .7); g.lineTo(s * .3, s * .8); g.closePath();
       g.fillStyle = k % 3 === 0 ? '#f3e6d6' : RED; g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke();
       g.restore();
     }
     /* the impact: a flat ink burst line, no glow */
-    var kk = eo(seg(u, 0, .18));
+    var kk = eo(seg(u, 0, .18)); if (u > .4) { g.restore(); return; }
     g.save(); g.globalAlpha *= 1 - seg(u, .1, .3); g.strokeStyle = CREAM; g.lineWidth = 6; g.lineCap = 'round';
     for (var j = 0; j < 7; j++) { var aa = -Math.PI * (j + .5) / 7; g.beginPath(); g.moveTo(cx + Math.cos(aa) * 40 * kk, cy + Math.sin(aa) * 40 * kk); g.lineTo(cx + Math.cos(aa) * 110 * kk, cy + Math.sin(aa) * 110 * kk); g.stroke(); }
     g.restore();
@@ -515,7 +527,7 @@
   }
 
   /* ---------- beats ---------- */
-  var HOOKPX = 118;
+  var HOOKPX = 118, SRCHW = 480;
   function hookText(g, t, u, a) {
     if (a <= 0) return;
     g.save(); g.globalAlpha *= a;
@@ -534,7 +546,7 @@
     if (t > T.shrink1 && cl > .9) credit(g, U.hook);
   }
   function proofBeat(g, t) {
-    var a = seg(t, T.hookCard, T.hookCard + .1) * (1 - seg(t, T.pEnd - .1, T.pEnd + .05));
+    var a = seg(t, T.hookCard + .15, T.hookCard + .25) * (1 - seg(t, T.pEnd - .1, T.pEnd + .05));
     chipAt(g, 'ROCKSTAR · AN EXTENDED LOOK', MID, 1160, RED, CREAM, a, 'center', 34);
     var G = trayGeo(t);
     g.save(); g.globalAlpha *= a; K.arrow(g, X1 - 40, G.y - 300, X1 - 70, G.y - 140, eo(seg(t, T.p0 + .2, T.p0 + .6)), CREAM, 9, .3); g.restore();
@@ -556,7 +568,7 @@
   }
   function maskChip(g, t) {
     var a = seg(t, T.c0[2] + .4, T.c0[2] + .5) * (1 - seg(t, T.mEnd - .1, T.mEnd));
-    chipAt(g, 'MASK WAS ON DURING THE CRIME', MID, ROW2, CREAM, INK, a, 'center', 34);
+    chipAt(g, 'MASK ON IN THIS SHOT', MID, ROW2, CREAM, INK, a, 'center', 34);
   }
   /* so how do you shake them? our light bar sweeps over the tray */
   function questionBeat(g, t) {
@@ -566,8 +578,8 @@
     g.save(); g.globalAlpha *= a;
     /* flat beams from each lamp, sweeping */
     [[-1, RED, 'rgba(224,48,58,'], [1, BLUE, 'rgba(61,123,255,']].forEach(function (s, j) {
-      var lx = x + s[0] * w * .25, ang = Math.PI / 2 + s[0] * .7 * Math.sin(u * 3.2 + j * Math.PI), on = (ph === j) ? .3 : .12;
-      g.save(); g.beginPath(); g.moveTo(lx, y); g.lineTo(lx + Math.cos(ang - .22) * 900, y + Math.sin(ang - .22) * 900); g.lineTo(lx + Math.cos(ang + .22) * 900, y + Math.sin(ang + .22) * 900); g.closePath();
+      var sw = ((u / .6 + j * .5) % 1), lx = x + s[0] * w * .25, ang = Math.PI / 2 + s[0] * (1.25 - 2.5 * sw), on = (ph === j) ? .3 : .14;
+      g.save(); g.beginPath(); g.moveTo(lx, y); g.lineTo(lx + Math.cos(ang - .2) * 1700, y + Math.sin(ang - .2) * 1700); g.lineTo(lx + Math.cos(ang + .2) * 1700, y + Math.sin(ang + .2) * 1700); g.closePath();
       g.fillStyle = s[2] + on + ')'; g.fill(); g.restore();
     });
     /* the bar: an ink housing, two lamps that swap */
@@ -578,6 +590,25 @@
     g.fillStyle = 'rgba(251,240,234,.5)'; for (var k = 0; k < 8; k++) g.fillRect(x - w / 2 + 40 + k * 76, y - h / 2 + 24, 8, h - 48);
     /* the cop's question over the tray */
     if (t >= T.shake) K.emote(g, '?', X1 - 90, 830, 1.1, t - T.shake, t);
+    g.restore();
+  }
+  /* ours: break their line of sight -> the stars flash. A cop dot's sight line to our car is cut by a wall */
+  function ladderBeat(g, t) {
+    var a = eo(seg(t, T.qEnd, T.qEnd + .2)) * (1 - seg(t, T.r0 - .1, T.r0 + .02));
+    if (a <= 0) return;
+    var u = t - T.qEnd;
+    g.save(); g.globalAlpha *= a;
+    stars(g, t, MID, 505, 104, false, 1);
+    var cy = 680, cx0 = 190, cx1 = 820, wk = eo(seg(t, T.sight - .25, T.sight + .05)), wy = lerp(430, cy, wk);
+    /* the sight line: solid until the wall lands, then it stops at the wall */
+    g.save(); g.strokeStyle = CREAM; g.lineWidth = 6; g.setLineDash([18, 12]); g.lineDashOffset = -u * 80;
+    g.beginPath(); g.moveTo(cx0 + 34, cy); g.lineTo(wk >= 1 ? MID - 30 : cx1 - 70, cy); g.stroke(); g.restore();
+    g.beginPath(); g.arc(cx0, cy, 34, 0, TAU); g.fillStyle = BLUE; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
+    g.beginPath(); g.arc(cx0, cy, 13, 0, TAU); g.fillStyle = CREAM; g.fill();
+    disc(g, t, 3, cx1 + 6 * Math.sin(u * 3), cy, 62, { rot: .05 });
+    /* the wall: an ink block with a cream edge, dropping in on "sight" */
+    g.save(); g.globalAlpha *= clamp(wk * 3, 0, 1); rr(g, MID - 30, wy - 95, 60, 190, 10); g.fillStyle = INK; g.fill(); g.lineWidth = 6; g.strokeStyle = CREAM; g.stroke(); g.restore();
+    if (t >= T.sight + .05) K.emote(g, '?', cx0 + 40, cy - 70, .8, t - T.sight - .05, t);
     g.restore();
   }
   function redBeat(g, t) {
@@ -591,7 +622,7 @@
   function searchBeat(g, t) {
     var a = eo(seg(t, T.r1 - .05, T.r1 + .2)) * (1 - seg(t, T.l0 - .08, T.l0 + .02));
     if (a <= 0) return;
-    var u = t - T.r1, cx = MID, cy = 640, R = 205 * (.85 + .15 * a);
+    var u = t - T.r1, cx = MID, cy = 615, R = 185 * (.85 + .15 * a);
     g.save(); g.globalAlpha *= a;
     g.save(); g.globalAlpha *= .22 + .08 * Math.sin(u * 9); g.beginPath(); g.arc(cx, cy, R, 0, TAU); g.fillStyle = RED; g.fill(); g.restore();
     g.save(); g.setLineDash([22, 14]); g.lineDashOffset = -u * 60; g.lineWidth = 8; g.strokeStyle = RED; g.beginPath(); g.arc(cx, cy, R, 0, TAU); g.stroke(); g.restore();
@@ -606,10 +637,12 @@
     g.restore();
   }
   function redChips(g, t) {
-    var a = seg(t, T.stars - .12, T.stars - .02) * (1 - seg(t, T.lucia - .1, T.lucia));
-    chipAt(g, 'RED = NEAR THE SCENE', X0, ROW1, RED, CREAM, a, 'left', 36);
-    chipAt(g, 'GAMESPOT', X1, ROW1, CREAM, INK, a, 'right', 30);
-    chipAt(g, "THEY DON'T KNOW WHERE YOU ARE", MID, ROW2, RED, CREAM, a, 'center', 36);
+    /* GameSpot's ladder, printed on the words: FLASHING on "flash", RED on "red"; they stay until the split */
+    var out = 1 - seg(t, T.split - .12, T.split - .02), a0 = seg(t, T.flash, T.flash + .1) * out, a1 = seg(t, T.redW, T.redW + .1) * out;
+    chipAt(g, 'FLASHING = LOST SIGHT OF YOU', X0, ROW0, CREAM, INK, a0, 'left', 34);
+    chipAt(g, 'RED = NEAR THE SCENE,', X0, ROW1, RED, CREAM, a1, 'left', 34);
+    chipAt(g, 'GAMESPOT', X1, ROW1, CREAM, INK, Math.max(a0, a1), 'right', 30);
+    chipAt(g, "THEY DON'T KNOW WHERE YOU ARE", X0, ROW2, RED, CREAM, a1, 'left', 34);
   }
   function leaveBeat(g, t) {
     if (t < T.l0 || t >= T.lEnd + .02) return;
@@ -618,12 +651,10 @@
     if (r[4] < .95) return;
     if (t >= T.split - .05) { g.save(); g.globalAlpha *= .55 * seg(t, T.split - .05, T.split + .1); g.fillStyle = INK; g.fillRect(CARD[0], CARD[1], CARD[2], CARD[3]); g.restore(); }
     credit(g, U.drop);
-    if (t >= T.lucia && t < T.split) ringOn(g, t, U.drop, .38, .74, 92, 140, eo(seg(t, T.lucia, T.lucia + .3)), 41, CREAM);
     if (t < T.lens2) return;
     if (t < T.split) {
       var L = lensRect(t, 'drop');
       lens(g, t, L, U.dropHud, true, t < T.vanish ? { x: ICX[3], y: ICY, rx: .16, ry: .16, k: eo(seg(t, T.lens2 + .25, T.lens2 + .5)), seed: 9, col: CREAM } : null);
-      if (t >= T.vanish) flash(g, L, 1 - seg(t, T.vanish, T.vanish + .16));
       return;
     }
     /* BEFORE over NOW, with a hard white flash on the swap */
@@ -635,12 +666,10 @@
     flash(g, A, 1 - seg(t, T.split, T.split + .12)); flash(g, B, 1 - seg(t, T.split, T.split + .12));
     credit(g, U.drop);   // on top of the split so the credit stays readable
   }
-  /* CAR ICON: GONE: on the seam between BEFORE and NOW, then up to the top of the burn card until the fire */
+  /* CAR ICON: GONE slams on the seam on the word "gone", then moves into the empty slot of our tray */
   function goneStamp(g, t) {
-    if (t < T.split + .02 || t >= T.ign - .02) return;
-    var m = eio(seg(t, T.b0 - .1, T.b0 + .2)), w = K.measure(g, 'CAR ICON: GONE', 56, { wide: false }) + 56 * .9;
-    var sx = lerp(1, .68, m), x = lerp(MID, X1 - 12 - w * sx / 2, m), y = lerp(770, CARD[1] + 72, m);
-    stamp(g, 'CAR ICON: GONE', x, y, 56, lerp(-.04, .03, m), t - T.split - .02, { s: sx, a: 1 - seg(t, T.ign - .1, T.ign - .02) });
+    if (t < T.goneW || t >= T.lEnd) return;
+    stamp(g, 'CAR ICON: GONE', MID, 771, 56, -.04, t - T.goneW, { a: 1 - seg(t, T.lEnd - .08, T.lEnd) });
   }
   function burnBeat(g, t) {
     if (t < T.b0 || t >= T.b1 + .02) return;
@@ -648,12 +677,12 @@
     drawCard(g, t, U.burn, r, 1, 'brightness(1.2)');
     if (r[4] < .95) return;
     credit(g, U.burn);
-    if (t >= T.ign) {
-      ringOn(g, t, U.burn, .52, .5, 230, 150, eo(seg(t, T.ign + .02, T.ign + .3)), 51, CREAM);
+    if (t >= T.ign + .4) {   /* the flame gets 0.4 s clean first */
+      ringOn(g, t, U.burn, .52, .5, 230, 150, eo(seg(t, T.ign + .4, T.ign + .65)), 51, CREAM);
       g.save(); g.translate(X1 - 130, CARD[1] + 80); g.rotate(.06);
-      var su = t - T.ign, sc = su < .14 ? lerp(2, 1, eo(su / .14)) : 1; g.scale(sc, sc);
+      var su = t - T.ign - .4, sc = su < .14 ? lerp(2, 1, eo(su / .14)) : 1; g.scale(sc, sc);
       chipAt(g, 'BURNED', 0, 0, RED, CREAM, 1, 'center', 46); g.restore();
-    } else chipAt(g, 'MOLOTOV', X0 + 10, CARD[1] + 72, CREAM, INK, seg(t, T.b0 + .15, T.b0 + .25), 'left', 34);
+    } else if (t < T.ign) chipAt(g, 'MOLOTOV', X0 + 10, CARD[1] + 72, CREAM, INK, seg(t, T.b0 + .15, T.b0 + .25), 'left', 34);
   }
   function loopBeat(g, t) {
     if (t < T.v0) return;
@@ -669,8 +698,8 @@
     lens(g, t, lensRect(t, 'van'), U.vanHud, true, { x: .737, y: ICY, rx: .34, ry: .17, k: eo(seg(t, T.three - .1, T.three + .2)), seed: 12, col: CREAM });
   }
   function footnote(g, t) {
-    var a = seg(t, T.b0 + .2, T.b0 + .3) * (1 - seg(t, T.back - .1, T.back));
-    chipAt(g, 'ALSO: WEAPON · CCTV ICONS', MID, ROW1, CREAM, INK, a, 'center', 34);
+    var a = seg(t, T.b1 - .25, T.b1 - .15) * (1 - seg(t, T.back - .1, T.back));
+    chipAt(g, 'ALSO: WEAPON · CCTV', MID, ROW1, CREAM, INK, a, 'center', 34);
     chipAt(g, 'SOURCE: DEXERTO', MID, ROW2, CREAM, INK, a, 'center', 34);
   }
 
@@ -685,7 +714,9 @@
     if (t >= T.m0 && t < T.mEnd + .02) maskedBeat(g, t);
     maskChip(g, t);
     if (t >= T.q0 && t < T.qEnd) questionBeat(g, t);
+    if (t >= T.qEnd && t < T.r0 + .02) ladderBeat(g, t);
     if (t >= T.r0 && t < T.r1 + .02) redBeat(g, t);
+    if (t >= T.sight && t < T.redW + .1) stamp(g, 'OUT OF SIGHT', MID, 778, 52, -.04, t - T.sight - .02, { a: 1 - seg(t, T.redW, T.redW + .1) });
     searchBeat(g, t);
     leaveBeat(g, t);
     burnBeat(g, t);
@@ -700,8 +731,11 @@
     var ha = 1 - seg(t, T.hookOut - .08, T.hookOut + .06);
     if (t < T.hookOut + .06) hookText(g, t, t + 1, ha);
     if (t >= T.back + .05) hookText(g, t, t - T.back - .05, 1);
-    chipAt(g, "IN ROCKSTAR'S OWN CHASE", MID, 1070, CREAM, INK, seg(t, .8, .9) * (1 - seg(t, T.pEnd - .12, T.pEnd)), 'center', 34);
-    chipAt(g, 'GTA 6 WANTED LEVEL', X1, PILLY, CREAM, INK, seg(t, 1.5, 1.6) * (1 - seg(t, T.back - .1, T.back)), 'right', 30);
+    /* the scope note: on the chase card, off while the tray's stars rise through its row */
+    chipAt(g, "IN ROCKSTAR'S OWN CHASE", MID, 1070, CREAM, INK, seg(t, .8, .9) * (1 - seg(t, T.hookCard - .1, T.hookCard)) + seg(t, T.hookCard + .3, T.hookCard + .4) * (1 - seg(t, T.pEnd - .12, T.pEnd)), 'center', 34);
+    /* the search phrase: under the headline on frame 0, up beside the pill for the body, back under the headline for the loop */
+    var sk = eio(seg(t, T.hookOut - .1, T.hookOut + .2)) * (1 - eio(seg(t, T.back, T.back + .3)));
+    chipAt(g, 'GTA 6 WANTED LEVEL', lerp(MID + SRCHW / 2, X1, sk), lerp(462, PILLY, sk), CREAM, INK, 1, 'right', 34);
     captions(g, t);
   }
   function render(t, samples, shutter, fps) {
@@ -719,18 +753,20 @@
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     Tx('pill', 'GTA 6', 0, DUR + 1);
     Tx('hook', 'COPS REMEMBER 4 THINGS', 0, T.hookOut - .04); Tx('hook', 'COPS REMEMBER 4 THINGS', T.back + .15, DUR + 1);
-    Tx('chase', "IN ROCKSTAR'S OWN CHASE", .85, T.pEnd - .1);
-    Tx('srch', 'GTA 6 WANTED LEVEL', 1.55, T.back - .05);
-    Tx('src', 'ROCKSTAR · AN EXTENDED LOOK', T.hookCard + .1, T.pEnd - .05);
-    Tx('mask', 'MASK WAS ON DURING THE CRIME', T.c0[2] + .45, T.mEnd - .05);
+    Tx('chase', "IN ROCKSTAR'S OWN CHASE", .85, T.hookCard - .1); Tx('chase', "IN ROCKSTAR'S OWN CHASE", T.hookCard + .35, T.pEnd - .1);
+    Tx('srch', 'GTA 6 WANTED LEVEL', 0, DUR + 1);
+    Tx('src', 'ROCKSTAR · AN EXTENDED LOOK', T.hookCard + .2, T.pEnd - .05);
+    Tx('mask', 'MASK ON IN THIS SHOT', T.c0[2] + .45, T.mEnd - .05);
     Tx('lit', 'STILL LIT HERE', T.lit + .05, T.mEnd); Tx('lit', 'STILL LIT HERE', T.mEnd + .05, T.r0 - .1);
-    Tx('red1', 'RED = NEAR THE SCENE', T.stars - .07, T.lucia - .05);
-    Tx('red2', "THEY DON'T KNOW WHERE YOU ARE", T.stars - .07, T.lucia - .05);
-    Tx('gspot', 'GAMESPOT', T.stars - .07, T.lucia - .05);
-    Tx('gone', 'CAR ICON: GONE', T.split + .07, T.ign - .1);
+    Tx('sight', 'OUT OF SIGHT', T.sight + .05, T.redW);
+    Tx('flash', 'FLASHING = LOST SIGHT OF YOU', T.flash + .05, T.split - .07);
+    Tx('red1', 'RED = NEAR THE SCENE,', T.redW + .05, T.split - .07);
+    Tx('red2', "THEY DON'T KNOW WHERE YOU ARE", T.redW + .05, T.split - .07);
+    Tx('gspot', 'GAMESPOT', T.flash + .05, T.split - .07);
+    Tx('gone', 'CAR ICON: GONE', T.goneW + .05, T.left - .05);
     Tx('left', '3 LEFT', T.left + .05, T.back);
-    Tx('also', 'ALSO: WEAPON · CCTV ICONS', T.b0 + .25, T.back - .05);
-    Tx('dex', 'SOURCE: DEXERTO', T.b0 + .25, T.back - .05);
+    Tx('also', 'ALSO: WEAPON · CCTV', T.b1 - .2, T.back - .05);
+    Tx('dex', 'SOURCE: DEXERTO', T.b1 - .2, T.back - .05);
     for (var i = 0; i < 4; i++) if (t >= T.fly[i] + .38 && t < T.back) Tx('lab' + i, LAB[i], 0, DUR);
     return o;
   }
@@ -759,8 +795,9 @@
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 84px Archivo', '600 30px "Geist Mono"', '700 30px "Geist Mono"'];
     return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0$–·→'); }))).then(function () {
       initTimes(); buildChunks(ctx);
+      SRCHW = K.chip(ctx, 'GTA 6 WANTED LEVEL', -9999, -9999, 34, {});
       HOOKPX = Math.min(124, Math.floor(124 * 800 / K.measure(ctx, 'COPS REMEMBER', 124, { wide: false })));
-      window.FILM.POSTER = T.split + .45;
+      window.FILM.POSTER = T.vanish + .42;
       window.FILM.SHOTS = [
         { id: 'hook', name: 'Four things', t0: 0, t1: T.hookOut }, { id: 'proof', name: 'Rockstar\'s chase', t0: T.hookOut, t1: T.n[0] },
         { id: 'four', name: '4 two of you', t0: T.n[0], t1: T.n[1] }, { id: 'three', name: '3 clothes', t0: T.n[1], t1: T.n[2] },
