@@ -1,0 +1,106 @@
+{
+ "about": "GTA 6 cops remember four things: a top-4 countdown of the four icons under the wanted stars in Rockstar's own 'An Extended Look' (rk721912, 26:48) getaway at 841-991 s (two of you, clothes, description, car), each proved by a muted under-5 s clip with the real HUD zoomed, then Rockstar's own fix: out of sight the stars turn red, they leave the car and the car icon disappears, Lucia burns it, and the loop line says they now only remember three. Trailer mode (SAFE-EDIT rule 7) for the evidence clips, rule 11 plates behind the other beats. Official footage only. Delta.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "Rockstar",
+  "Lucia"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 18
+ },
+ "dur": 30.25,
+ "fit": {
+  "min": 0.8,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.15,
+   "text": "GTA 6 cops remember four things.",
+   "say": "G T A six cops remember four things.",
+   "speed": 1.06
+  },
+  {
+   "id": "proof",
+   "at": 2.69,
+   "text": "Watch the icons in Rockstar's own chase."
+  },
+  {
+   "id": "four",
+   "at": 5.59,
+   "text": "Four: there are two of you.",
+   "speed": 1.08
+  },
+  {
+   "id": "three",
+   "at": 8.13,
+   "text": "Three: your clothes.",
+   "speed": 1.08
+  },
+  {
+   "id": "two",
+   "at": 9.6,
+   "text": "Two: what you look like.",
+   "speed": 1.08
+  },
+  {
+   "id": "masked",
+   "at": 11.79,
+   "text": "Masks on. Still lit."
+  },
+  {
+   "id": "one",
+   "at": 14.12,
+   "text": "One: your car.",
+   "speed": 1.08
+  },
+  {
+   "id": "question",
+   "at": 15.86,
+   "text": "So how do you shake them?",
+   "speed": 0.9
+  },
+  {
+   "id": "red",
+   "at": 17.6,
+   "text": "Break their line of sight, the stars flash. Then they turn red."
+  },
+  {
+   "id": "leave",
+   "at": 22.45,
+   "text": "Then leave the car."
+  },
+  {
+   "id": "gone",
+   "at": 24.21,
+   "text": "The car icon is gone."
+  },
+  {
+   "id": "burn",
+   "at": 25.75,
+   "text": "And she burns it."
+  },
+  {
+   "id": "loop",
+   "at": 27.58,
+   "text": "Now they only remember three."
+  }
+ ]
+}

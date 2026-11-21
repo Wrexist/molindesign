@@ -12,7 +12,11 @@
      freeze: null,   seconds after t0 at which the picture holds still (a freeze-frame to annotate)
      zoom: [1, 1.12] scale at t0 and t1 (slow push), focus: [.5, .5] point kept in view (0..1 of the frame)
      note: 'ROOF',   the annotation the film draws on top: required, lint fails without it
+     plate: false,   true = a background plate (Isac 2026-11-21: "more GTA real content playing in the background"):
+                     official Rockstar video only, drawn dimmed full-bleed UNDER our graphics with CLIP.plate(); lint
+                     holds plates to their own rules (rule 11) and keeps them out of the foreground caps
    })
+   CLIP.plate(g, t, x, y, w, h, {dim: .45, blur: 0})  draws the plate use at t (dimmed, optional blur) or nothing; returns it
    CLIP.active(t)                          the use on screen at t, or null
    CLIP.draw(g, t, x, y, w, h)             cover-fits the active use's frame into the rect; returns the use or null
    CLIP.toScreen(use, t, nx, ny, x, y, w, h)  a point (0..1 of the source frame) -> canvas px, for circles and arrows
@@ -48,13 +52,14 @@
     if (!MAN || !MAN.clips[name]) throw new Error('no clip ' + name + ' in clips.json');
     o = o || {};
     var u = { clip: name, t0: t0, t1: t1, from: o.from || 0, speed: o.speed == null ? 1 : o.speed, freeze: o.freeze == null ? null : o.freeze,
-      zoom: o.zoom || [1, 1.08], focus: o.focus || [.5, .5], note: o.note || '' };
+      zoom: o.zoom || [1, 1.08], focus: o.focus || [.5, .5], note: o.note || (o.plate ? 'PLATE' : ''), plate: !!o.plate };
     var live = (u.freeze == null ? t1 - t0 : Math.min(u.freeze, t1 - t0));
     u.srcTo = u.from + live * u.speed;
     USES.push(u); USES.sort(function (a, b) { return a.t0 - b.t0; });
     return u;
   }
-  function active(t) { for (var i = 0; i < USES.length; i++) if (t >= USES[i].t0 && t < USES[i].t1) return USES[i]; return null; }
+  function active(t) { for (var i = 0; i < USES.length; i++) if (!USES[i].plate && t >= USES[i].t0 && t < USES[i].t1) return USES[i]; return null; }
+  function activePlate(t) { for (var i = 0; i < USES.length; i++) if (USES[i].plate && t >= USES[i].t0 && t < USES[i].t1) return USES[i]; return null; }
 
   function frameAt(u, t) {
     var c = MAN.clips[u.clip], fr = FR[u.clip], local = t - u.t0;
@@ -79,6 +84,18 @@
     g.restore();
     return u;
   }
+  /* background plate: real gameplay behind our graphics, never the hero of the frame (SAFE-EDIT rule 11) */
+  function plate(g, t, x, y, w, h, o) {
+    var u = activePlate(t); if (!u) return null;
+    o = o || {}; var dim = o.dim == null ? .45 : Math.max(.35, o.dim);
+    var q = geom(u, t, x, y, w, h);
+    g.save(); g.beginPath(); g.rect(x, y, w, h); g.clip();
+    if (o.blur) g.filter = 'blur(' + o.blur + 'px)';
+    g.drawImage(q.img, q.x, q.y, q.w, q.h);
+    g.filter = 'none'; g.fillStyle = 'rgba(0,0,0,' + dim + ')'; g.fillRect(x, y, w, h);
+    g.restore();
+    return u;
+  }
   /* a point given as 0..1 of the source frame -> canvas px, for circles and arrows that sit on the picture */
   function toScreen(u, t, nx, ny, x, y, w, h) { var q = geom(u, t, x, y, w, h); return [q.x + nx * q.w, q.y + ny * q.h]; }
 
@@ -94,9 +111,9 @@
   }
 
   window.CLIP = {
-    load: load, use: use, active: active, draw: draw, toScreen: toScreen, frameAt: frameAt, credit: credit,
+    load: load, use: use, active: active, activePlate: activePlate, plate: plate, draw: draw, toScreen: toScreen, frameAt: frameAt, credit: credit,
     reset: function () { USES.length = 0; },
-    uses: function () { return USES.map(function (u) { return { clip: u.clip, t0: u.t0, t1: u.t1, from: u.from, srcTo: u.srcTo, note: u.note }; }); },
+    uses: function () { return USES.map(function (u) { return { clip: u.clip, t0: u.t0, t1: u.t1, from: u.from, srcTo: u.srcTo, note: u.note, plate: u.plate }; }); },
     manifest: function () { return MAN; }
   };
 })();

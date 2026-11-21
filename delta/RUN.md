@@ -75,7 +75,7 @@ Run `git fetch origin`. Work on your session's branch, starting from main plus t
 - No radio or trailer music.
 - Claim nothing Rockstar hasn't said.
 - Never post `film/gta-transition`.
-- TikTok is paused for Delta, and the channels never mix.
+- TikTok (Isac 2026-11-21): the PC also posts every queued Delta Short to the TikTok signed in on the PC (PC-AUTOPOST step 3b), never to @techexplained.daily; Delta and Tech, explained never mix.
 - Never call tiktok_publish.
 - If a previous run is still in progress, don't start a second video.
 

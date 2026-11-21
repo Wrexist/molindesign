@@ -1,0 +1,97 @@
+{
+ "film": "gta-preorders",
+ "sources": {
+  "extlook": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI: An Extended Look"
+  },
+  "gta5": {
+   "key": "generic-v4-ra124rca-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/ra124rca/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA V Gameplay Video (2013)"
+  },
+  "launch": {
+   "key": "twitter-2110704990339678208",
+   "url": "https://x.com/RockstarGames/status/2110717537964953810",
+   "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Launch Trailer"
+  }
+ },
+ "clips": {
+  "mural": {
+   "src": "extlook",
+   "in": 1026.3,
+   "out": 1029.7,
+   "fps": 30,
+   "frames": 102,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "boat": {
+   "src": "extlook",
+   "in": 1550.8,
+   "out": 1552.4,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "drive": {
+   "src": "extlook",
+   "in": 520.5,
+   "out": 524.8,
+   "fps": 30,
+   "frames": 129,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "pool": {
+   "src": "extlook",
+   "in": 1548.6,
+   "out": 1550.65,
+   "fps": 30,
+   "frames": 62,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "hwy5": {
+   "src": "gta5",
+   "in": 154.4,
+   "out": 158.7,
+   "fps": 30,
+   "frames": 129,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "keys": {
+   "src": "launch",
+   "in": 2.1,
+   "out": 4.25,
+   "fps": 30,
+   "frames": 65,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  },
+  "drift": {
+   "src": "launch",
+   "in": 46.35,
+   "out": 48.15,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  }
+ }
+}

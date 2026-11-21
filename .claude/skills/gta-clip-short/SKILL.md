@@ -10,7 +10,8 @@ One URL in, one Short draft out: `film/gta-<slug>/` (film, voice, `clips.json`),
 **Read first:** `delta/SAFE-EDIT.md` (the rules this skill enforces), `delta/RUN.md` (slots, gate, upload), `factory/LESSONS.md`. The video agents in `.claude/agents/` do research, film, jury and SEO exactly as in a normal Delta run; this skill adds the footage half.
 
 ## Why it is built like this (tell Isac if he asks for "just reupload it")
-- **Fan posts are not a source.** Most viral GTA 6 clips on X/TikTok are other people's edits, captures, AI fakes or plain real-world footage with "Vice City" text on it. SAFE-EDIT forbids other creators' clips even when credited, and YouTube's reused/inauthentic content rule demonetizes the **whole channel** (Delta, 161k), not just the video. Content ID claims also land on the channel.
+- **Fan posts (updated 2026-11-20):** creator clips are allowed in commentary mode only, SAFE-EDIT rule 10 (credited in the description, under 5 s, at most a third, clean). The note below is why the limits exist.
+- **Fan posts were not a source.** Most viral GTA 6 clips on X/TikTok are other people's edits, captures, AI fakes or plain real-world footage with "Vice City" text on it. SAFE-EDIT forbids other creators' clips even when credited, and YouTube's reused/inauthentic content rule demonetizes the **whole channel** (Delta, 161k), not just the video. Content ID claims also land on the channel.
 - **What is allowed:** official Rockstar video (trailers, Rockstar's own X/YouTube posts, rockstargames.com) cut into excerpts under 5 s, muted, annotated, at most about half of the runtime, never the same clip in two films; after launch (Nov 19), Isac's own capture (rule 8). Everything else on screen is our own graphics and our own voice.
 - A clip that only *shows* something is not enough: every excerpt is evidence for a point the voice makes (freeze, circle, label, quote).
 
@@ -49,6 +50,8 @@ CLIP.draw(g, t, x, y, w, h, use)                         // cover-fits the frame
 CLIP.toScreen(use, t, nx, ny, x, y, w, h)                // where a point of the picture is now: circles, arrows
 CLIP.credit(g, use, x, y)                                // "CLIP · ROCKSTAR GAMES · TRAILER 2" chip while it shows
 ```
+**Background plates (rule 11, Isac 2026-11-21):** keep real GTA 6 gameplay playing behind the graphics for most of the film. Cut several short ranges of official Rockstar video (An Extended Look is long and mostly unused; check other films' clips.json first), register each with `CLIP.use(name, t0, t1, {plate: true, from})` and draw it first in the frame with `CLIP.plate(g, t, 0, 0, W, H, {dim: .45})`, then our cards and captions on top. Each plate under 5 s, a new range every cut, creator clips never as plates, all real footage ≤ 85 % of the runtime.
+
 Rules the lint checks: each use under 5 s, a `note` on every use, footage at most 50% of the runtime, never more than 5 s of footage without our own graphics in between, no clip range already used by another film (a `-rN` filler remix may reuse its own). Rules the jury checks: a hook moving on frame 0, an annotation on every clip, our own graphics carrying the context, captions on, "GTA 6" pill on screen.
 
 ### 5. Render and check

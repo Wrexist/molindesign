@@ -22,11 +22,17 @@ claude -p "Follow delta/PC-AUTOPOST.md section 'Each tick' exactly." --permissio
    - If its `slot_utc` is less than 30 minutes away or past, use the next free 13:00, 19:00 or 23:00 ET slot at least 4 hours from any other Delta post, and note the change.
    - Download `video_url`, upload it as a Short, schedule it at the slot. Use `title`, `description`, `tags`, `playlist` (create the playlist if missing) exactly as given. Altered or synthetic content **No**, made for kids **No**, English (US), Gaming.
    - Run `python3 delta/queue.py set <slug> --status scheduled --youtube-id <id> --note "<scheduled ET time>"`.
+3b. **TikTok (Isac 2026-11-21: "a couple videos a day on TikTok and yt … whatever you can use, what is logged in right now").** For each item whose `status` is `ready` or `scheduled`, whose `tiktok_status` is missing or `ready`, and whose `slot_utc` is in the future:
+   - Open https://www.tiktok.com/tiktokstudio/upload in Chrome and read which account is signed in (the handle in the corner / profile menu).
+   - **If it is @techexplained.daily (Tech, explained), post nothing**: `queue.py set <slug> --tiktok-status skipped --tiktok-note "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"` once per tick for every such item, and stop TikTok for this tick. Any other account: use it, and write its handle in the note.
+   - Upload `video_url`. Caption: `title`, then a blank line, then the hashtags from the end of `description` (at most 5, never #ai). Schedule it at `slot_utc` (TikTok's scheduler; if the slot is under 20 minutes away, post now). AI-generated content label **off**, comments on, duet/stitch on. Don't add a sound in the web uploader (the film has voice and effects; Isac adds trending sounds in the app if he wants).
+   - `queue.py set <slug> --tiktok-status scheduled --tiktok-note "@<handle> <scheduled ET time>"`. On an error: `--tiktok-status failed --tiktok-note "<what happened>"` and go on.
+   - At most 4 TikTok posts per ET day, at least 3 hours apart.
 4. For each `scheduled` item whose slot passed at least 20 minutes ago: open the Short on the Delta channel, post `pinned_comment` and pin it (standing approval, Isac 2026-11-04), then `queue.py set <slug> --status commented`.
 5. On any error: `queue.py set <slug> --status failed --note "<what happened>"` and go on with the next item.
 6. Commit `delta/queue.json` ("Delta queue: PC tick <UTC time>") and `git push origin claude/delta-queue`.
 
-Rules: never call tiktok_publish or post to TikTok; never post `film/gta-transition`; never post the same slug twice.
+Rules: never call tiktok_publish (TikTok goes through the browser uploader in step 3b only); never post `film/gta-transition`; never post the same slug twice.
 
 ## Setup (once, on the PC)
 Task Scheduler → Create Task "Delta autopost": trigger daily, repeat every 2 hours indefinitely; action `cmd /c cd /d "D:\Projects\Website Factory - Molin Design" && claude -p "Follow delta/PC-AUTOPOST.md section 'Each tick' exactly." --permission-mode acceptEdits >> delta-autopost.log 2>&1`; "Run only when user is logged on" (Chrome and YouTube Studio need the signed-in session).

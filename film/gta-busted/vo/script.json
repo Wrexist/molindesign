@@ -1,0 +1,116 @@
+{
+ "about": "GTA 6 checklist Short (Delta, CNS-style 'do these N things before X' format, our own list): four things to do before you get busted. Losses on arrest per Game Rant (Hamza Haq, 2026-11-20): pocket cash taken by the cops, stolen/unregistered weapons and vehicles gone, stash bags confiscated, personal vehicle may be impounded; GamesRadar+ (Josh West, 2026-11-19): unowned (looted) guns lost forever if Wasted or Busted, owned guns recoverable from the trunk or an Ammu-Nation locker, Pay 'n' Sprays register a car for a fee, impounded if busted while driving your personal vehicle, up to $20,000 pocket cash per character, all pocket cash lost if Wasted or Busted. PowerPyx/VGC: BuckMe account from the Chapter 1 mission Buck Me, deposit at any ATM. Conflict noted in BRIEF.md: PC Gamer says death/arrest costs 'a few hundred dollars'. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "Ammu-Nation",
+  "Pay 'n' Spray",
+  "BuckMe",
+  "Rockstar"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 33
+ },
+ "dur": 41.1,
+ "tail": 0.8,
+ "fit": {
+  "min": 0.9,
+  "max": 1.1
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6: do these 4 before you get busted.",
+   "say": "G T A six. Do these four before you get busted.",
+   "pause": 0.3
+  },
+  {
+   "id": "stake",
+   "at": 4.53,
+   "text": "Or, they're gone for good.",
+   "pause": 0.2
+  },
+  {
+   "id": "gun",
+   "at": 6.8,
+   "text": "One: buy the gun you love.",
+   "pause": 0.1
+  },
+  {
+   "id": "loot",
+   "at": 9.34,
+   "text": "Guns you loot are lost when you're busted.",
+   "pause": 0.2
+  },
+  {
+   "id": "kept",
+   "at": 12.6,
+   "text": "Bought guns wait at Ammu-Nation or in your trunk.",
+   "say": "Bought guns wait at Ammu Nation, or in your trunk.",
+   "pause": 0.3
+  },
+  {
+   "id": "car",
+   "at": 16.57,
+   "text": "Two: register your ride at a Pay 'n' Spray.",
+   "say": "Two: register your ride at a Pay and Spray.",
+   "pause": 0.1
+  },
+  {
+   "id": "stolen",
+   "at": 20.18,
+   "text": "Stolen cars are gone after an arrest.",
+   "pause": 0.3
+  },
+  {
+   "id": "bags",
+   "at": 23.08,
+   "text": "Three: get stash bags to the fence first.",
+   "pause": 0.2
+  },
+  {
+   "id": "impound",
+   "at": 26.34,
+   "text": "But get busted in your own car? It's impounded. Buying it back costs you.",
+   "pause": 0.6
+  },
+  {
+   "id": "cash",
+   "at": 31.4,
+   "text": "Four, the most important one: bank your cash.",
+   "pause": 0.2
+  },
+  {
+   "id": "grand",
+   "at": 34.66,
+   "text": "You can carry $20,000. Guides say the cops keep all of it.",
+   "say": "You can carry twenty thousand dollars. Guides say the cops keep all of it.",
+   "pause": 0.5
+  },
+  {
+   "id": "end",
+   "at": 38.99,
+   "text": "How much are you carrying?",
+   "pause": 0,
+   "take": 1,
+   "say": "So... how much are you carrying?"
+  }
+ ],
+ "gap": 0.05
+}

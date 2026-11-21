@@ -1,0 +1,96 @@
+{
+ "about": "GTA 6 sold 32.5 million units before launch (Rockstar Games press release via Business Wire, Nov 20 2026, posted on Take-Two IR: 'Grand Theft Auto VI sold 32.5 million units pre-release, a new record across all platforms.'). Comparison, same company, its own unit count: GTA V 'already has sold-in nearly 29 million units, exceeding the lifetime sell-in of Grand Theft Auto IV on console in less than six weeks after launch' (Take-Two Q2 FY2014 results, Oct 29 2013, SEC 8-K Ex 99.1); GTA V launched Sept 17 2013 (Take-Two, Sept 18 2013, SEC 8-K Ex 99.1). Sold-in = shipped to stores; Rockstar does not define 'sold' for GTA VI. All read 2026-11-21. Sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1.0,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "GTA",
+  "GTA 6",
+  "GTA 5",
+  "Rockstar"
+ ],
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 23
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.2,
+   "text": "GTA 6. 32.5 million copies. Before launch.",
+   "say": "G T A six. Thirty two point five million copies. Before launch.",
+   "pause": 0.55,
+   "speed": 1.1
+  },
+  {
+   "id": "est",
+   "at": 4.25,
+   "text": "That's copies sold before release day.",
+   "pause": 0.3,
+   "speed": 1.1
+  },
+  {
+   "id": "ask",
+   "at": 6.55,
+   "text": "So how fast did GTA 5 sell?",
+   "say": "So how fast did G T A five sell?",
+   "pause": 0.35,
+   "speed": 1.1
+  },
+  {
+   "id": "old",
+   "at": 9.25,
+   "text": "GTA 5 came out in 2013.",
+   "say": "G T A five came out in twenty thirteen.",
+   "pause": 0.5,
+   "speed": 1.1
+  },
+  {
+   "id": "slow",
+   "at": 12.15,
+   "text": "Within six weeks, it had shipped nearly 29 million.",
+   "say": "Within six weeks, it had shipped nearly twenty nine million.",
+   "pause": 0.4,
+   "speed": 1.1
+  },
+  {
+   "id": "fast",
+   "at": 15.55,
+   "text": "But GTA 6 beat that before day one.",
+   "say": "But G T A six beat that before day one.",
+   "pause": 0.7,
+   "speed": 1.1
+  },
+  {
+   "id": "rec",
+   "at": 19.1,
+   "text": "A record across all platforms, Rockstar says.",
+   "pause": 0.4,
+   "speed": 1.1
+  },
+  {
+   "id": "end",
+   "at": 22.5,
+   "text": "Did you buy it before launch?",
+   "pause": 0,
+   "speed": 1.1
+  }
+ ],
+ "dur": 24.8,
+ "tail": 0.55,
+ "fit": {
+  "min": 0.88,
+  "max": 1.1
+ }
+}

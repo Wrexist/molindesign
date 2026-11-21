@@ -67,7 +67,7 @@ def cmd_add(a):
         sys.exit(f"{a.slug} is already queued")
     item = dict(slug=a.slug, channel="Delta (@deltaisac)", video_url=a.url,
                 slot_utc=slot.strftime("%Y-%m-%d %H:%M"), status="ready",
-                youtube_id="", note="", added=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"),
+                youtube_id="", note="", tiktok_status="ready", tiktok_note="", added=datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"),
                 altered_content="No", made_for_kids="No", language="English (US)",
                 category="Gaming", **from_seo(a.slug))
     q["items"].append(item)
@@ -85,6 +85,10 @@ def cmd_set(a):
                 i["youtube_id"] = a.youtube_id
             if a.note:
                 i["note"] = a.note
+            if a.tiktok_status:
+                i["tiktok_status"] = a.tiktok_status
+            if a.tiktok_note:
+                i["tiktok_note"] = a.tiktok_note
             save(q)
             print(json.dumps(i, ensure_ascii=False)[:300])
             return
@@ -93,13 +97,13 @@ def cmd_set(a):
 
 def cmd_list(_):
     for i in load()["items"]:
-        print(f"{i['slug']:20} {i['status']:10} {i['slot_utc']} UTC  {i['youtube_id'] or '-':12} {i['note'][:60]}")
+        print(f"{i['slug']:20} {i['status']:10} {i['slot_utc']} UTC  {i['youtube_id'] or '-':12} TT:{i.get('tiktok_status', '-'):9} {i['note'][:50]}")
 
 
 p = argparse.ArgumentParser()
 sp = p.add_subparsers(dest="cmd", required=True)
 x = sp.add_parser("add"); x.add_argument("slug"); x.add_argument("--url", required=True); x.add_argument("--slot", required=True, help="UTC, 'YYYY-MM-DD HH:MM'"); x.set_defaults(f=cmd_add)
-x = sp.add_parser("set"); x.add_argument("slug"); x.add_argument("--status", choices=STATUSES); x.add_argument("--youtube-id"); x.add_argument("--note"); x.set_defaults(f=cmd_set)
+x = sp.add_parser("set"); x.add_argument("slug"); x.add_argument("--status", choices=STATUSES); x.add_argument("--youtube-id"); x.add_argument("--note"); x.add_argument("--tiktok-status", choices=["ready", "scheduled", "posted", "skipped", "failed"], help="TikTok copy (Isac 2026-11-21: post on the TikTok logged in on the PC)"); x.add_argument("--tiktok-note"); x.set_defaults(f=cmd_set)
 x = sp.add_parser("list"); x.set_defaults(f=cmd_list)
 a = p.parse_args()
 a.f(a)

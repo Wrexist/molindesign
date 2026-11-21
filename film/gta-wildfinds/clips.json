@@ -1,0 +1,178 @@
+{
+ "film": "gta-wildfinds",
+ "sources": {
+  "typicalgamer": {
+   "key": "tiktok-7710277866440707336",
+   "url": "https://www.tiktok.com/@typicalgamer/video/7710277866440707336",
+   "title": "How did this even happen #GTA6 #gta #clips #funny #gameplay",
+   "uploader": "typicalgamer",
+   "verdict": "CREATOR",
+   "checked": "TikTok post by @typicalgamer 2026-11-20: continuous GTA 6 third-person driving in Vice City streets (GTA 6 HUD, Leonida traffic); no real-world footage, AI artifacts or mod menu seen. No watermark, logo or channel tag burned in; his flame-framed facecam (top) and word captions (y<800) are cropped out.",
+   "credit": "@typicalgamer"
+  },
+  "testyment": {
+   "key": "twitter-2123552190832799744",
+   "url": "https://x.com/Testyment/status/2123552776001404928",
+   "title": "TESTY - random NPC just got in my car and held me hostage in GTA 6, it's supp...",
+   "uploader": "TESTY",
+   "verdict": "CREATOR",
+   "checked": "X post by @Testyment 2026-11-19 23:03 UTC: continuous GTA 6 stream capture (GTA 6 minimap, in-game subtitles, Vice City streets); no real-world footage, AI artifacts or mod menu seen. No watermark or logo burned in; his facecam plus the stream counter and SUB GOAL overlay (x>=945) are cropped out.",
+   "credit": "@Testyment"
+  },
+  "nerpah": {
+   "key": "tiktok-7709707757007523102",
+   "url": "https://www.tiktok.com/@nerpah/video/7709707757007523102",
+   "title": "Giant Mutant Crab in GTA 6! New Easter Egg Revealed a GIANT Crab Atta...",
+   "uploader": "nerpah",
+   "verdict": "CREATOR",
+   "checked": "TikTok post by @nerpah 2026-11-19 02:43 UTC: GTA 6 gameplay (Jason in his safehouse, crab encounter with on-screen button prompt); no real-world footage, AI artifacts or mod menu seen. No watermark or logo burned in; his facecam (top half) and word captions (y<800) are cropped out.",
+   "credit": "@nerpah"
+  },
+  "lazarbeam": {
+   "key": "twitter-2123085534700666880",
+   "url": "https://x.com/Lazarbeam/status/2123085708072239142",
+   "title": "LAZAR - found bigfoot in GTA 6",
+   "uploader": "LAZAR",
+   "verdict": "CREATOR",
+   "checked": "X post by @Lazarbeam 2026-11-18 16:07 UTC (Nov 19 local time in Australia, launch rollout): continuous GTA 6 play (GTA 6 minimap, Leonida scrub), creature legs in-engine; no real-world footage, AI artifacts or mod menu seen. No watermark or logo burned in; his facecam (top-left, x<480) and minimap are cropped out.",
+   "credit": "@Lazarbeam"
+  },
+  "syndicate": {
+   "key": "twitter-2123214598668947457",
+   "url": "https://x.com/Syndicate/status/2123214735739138305",
+   "title": "Tom - I just got abducted by Aliens in GTA 6!",
+   "uploader": "Tom",
+   "verdict": "CREATOR",
+   "checked": "X post by @Syndicate 2026-11-19 00:40 UTC: continuous GTA 6 play at night (GTA 6 minimap, in-game subtitle What?, the player is lifted in a light beam); no real-world footage, AI artifacts or mod menu seen. No watermark or logo burned in; his facecam (top-right, x>=936) is cropped out.",
+   "credit": "@Syndicate"
+  },
+  "xl": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games (GTA VI: An Extended Look)"
+  }
+ },
+ "clips": {
+  "bent": {
+   "src": "typicalgamer",
+   "in": 10.25,
+   "out": 12.05,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1080:900:0:810"
+  },
+  "suit": {
+   "src": "testyment",
+   "in": 2.2,
+   "out": 4.0,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "920:720:0:0"
+  },
+  "crab": {
+   "src": "nerpah",
+   "in": 9.4,
+   "out": 11.2,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1080:1100:0:820"
+  },
+  "skunk": {
+   "src": "lazarbeam",
+   "in": 23.85,
+   "out": 25.65,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1400:1080:520:0"
+  },
+  "ufo": {
+   "src": "syndicate",
+   "in": 10.0,
+   "out": 11.8,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "900:720:0:0"
+  },
+  "p1wild": {
+   "src": "xl",
+   "in": 464.65,
+   "out": 467.5,
+   "fps": 30,
+   "frames": 86,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p2drive": {
+   "src": "xl",
+   "in": 510.0,
+   "out": 514.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p3coast": {
+   "src": "xl",
+   "in": 752.5,
+   "out": 756.5,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p4palms": {
+   "src": "xl",
+   "in": 760.0,
+   "out": 764.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p5van": {
+   "src": "xl",
+   "in": 600.0,
+   "out": 604.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p6aerial": {
+   "src": "xl",
+   "in": 676.0,
+   "out": 680.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p7night": {
+   "src": "xl",
+   "in": 1208.0,
+   "out": 1212.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1054:0:0"
+  },
+  "p8skyline": {
+   "src": "xl",
+   "in": 1545.2,
+   "out": 1548.3,
+   "fps": 30,
+   "frames": 93,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  }
+ }
+}

@@ -75,6 +75,7 @@ Sections 3–5 and 7 are re-ranked for this mode. When Isac gets the game, the c
 ## 3. Formats, ranked for Delta (what we can make, times what is getting views)
 | # | Format | Evidence | Footage (no-capture mode) | Delta can start |
 |---|---|---|---|---|
+| 0 | **"Do these N things before X" checklist** (missables, bonuses, before-you-start; CNS style) | @cnnstarr TikTok, Nov 19–21: 2.3M (Ultimate Edition before Ch. 2), 1.5M (where every Ultimate bonus is), 1.1M (6 things before Tourist Trap), 313k; 57–74 s each | best with own capture of each step; until then Rockstar plates behind every card (rule 11) + creator clips ≤ 1/3 for the exact spots, facts from guides (PowerPyx, IGN, VGC) | **Today** (Isac 2026-11-21: "this is what I want, a couple of videos a day on TikTok and YT") |
 | 1 | **GTA 5 vs GTA 6, same thing side by side** | 5.1M, 42k, Trailer vs Gameplay 469k | GTA V trailers (rockstargames.com) vs GTA VI trailers / Extended Look; GTA 6 gameplay side from creator clips | **Today** (A1 rebuild, A2) |
 | 2 | **Trailer vs Reality** (a trailer shot vs the same place in real gameplay) | Trailer vs Gameplay 469k | official trailer + creator gameplay clip | Today, once 3 clean clips are found |
 | 3 | **"Is this real?" / fake check** of viral clips | two of two links Isac sent on 2026-11-20 were not real GTA 6 | the viral clip (rule 10, only if clean) + official proof | Today |
@@ -131,6 +132,8 @@ Every long-form gets 3–5 Shorts cut from it that link to it (related video).
 - Titles that win: "GTA 6" first or second word, one concrete promise ("Every Plane", "Before You Buy", "Things I Wish I Knew", "vs"), at most one emoji. Avoid "INSANE details" lists: saturated.
 - Frame 0: the comparison or the thing itself, already moving. A split screen with two years ("2011 | 2023") reads in under a second muted.
 - End on a binary question for the pinned comment ("Which trailer wins?").
+
+- **CNS checklist anatomy (Isac's reference, @cnnstarr, read 2026-11-21 from two videos):** hook line = threat + count ("If you start Tourist Trap before doing these six things, they're gone forever. Here's exactly how."); a pinned header chip (CHAPTER 1 MISSABLES) and a big gold STEP n number top-right all video; each step names the exact place/mission in a game-HUD style card (purple card, gold outline, icon, small sub-label), then a checklist or tick card; a progress counter (CLAIMED 4/16) climbing to the end (goal gradient); word-by-word captions with 1–2 highlighted words; gameplay behind 100 % of frames; last step = "the most important one" (a manual save); 57–74 s. Our version keeps the anatomy, our own card design and colours, rule 10/11 footage, sourced facts (guides, not his list), and our own angle per topic; never copy his list or his look one to one. His videos carry a burned-in CNS logo, so his clips are topic-only.
 
 ## 7. Dependencies (in order of impact)
 1. **Clean creator-clip links.** Isac doesn't own the game yet (Nov 20), so the B-list runs on X/Instagram/TikTok links (no facecam, no watermark). Drop links in the topic; YouTube links can't be fetched from the cloud. When Isac gets the game, captures go back to #1.
