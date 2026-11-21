@@ -797,7 +797,7 @@
       initTimes(); buildChunks(ctx);
       SRCHW = K.chip(ctx, 'GTA 6 WANTED LEVEL', -9999, -9999, 34, {});
       HOOKPX = Math.min(124, Math.floor(124 * 800 / K.measure(ctx, 'COPS REMEMBER', 124, { wide: false })));
-      window.FILM.POSTER = T.vanish + .42;
+      window.FILM.POSTER = T.split + .45;
       window.FILM.SHOTS = [
         { id: 'hook', name: 'Four things', t0: 0, t1: T.hookOut }, { id: 'proof', name: 'Rockstar\'s chase', t0: T.hookOut, t1: T.n[0] },
         { id: 'four', name: '4 two of you', t0: T.n[0], t1: T.n[1] }, { id: 'three', name: '3 clothes', t0: T.n[1], t1: T.n[2] },
