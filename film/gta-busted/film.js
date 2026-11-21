@@ -53,6 +53,7 @@
 
   /* ---------- times ---------- */
   var T = {}, EV = [], P = [];
+  var JZ = [1.18, 1.08], JF = [.565, .42];   // jail plate: pushed so Lucia's face sits fully in frame (jury r1)
   function ev(t, type, g, extra) { var e = { t: t, type: type, g: g == null ? 1 : g }; if (extra) for (var k in extra) e[k] = extra[k]; EV.push(e); }
   function stampSfx(t, g) { ev(t, 'slam', .8 * (g || 1)); ev(t + .01, 'tick', .5 * (g || 1)); }
   function ripSfx(t) { ev(t, 'scratch', .9); ev(t + .03, 'swish', .6); }
@@ -66,49 +67,47 @@
   function initTimes() {
     EV.length = 0; P.length = 0; CLIP.reset();
     var h0 = LINE.hook.words[0].t0;
-    T.stamp = [0, 1, 2, 3].map(function (i) { return h0 + .25 + i * .3; });       // 0.45-1.35 s: four CONFISCATED stamps, payoff by 1.9 s
+    T.stamp = [0, 1, 2, 3].map(function (i) { return h0 + .1 + i * .3; });        // 0.3-1.2 s: four CONFISCATED stamps, payoff by 1.9 s
     T.gta = .25;
     T.dock = wend('hook', 'busted') + .02;                                       // the title flies into the header tape
-    T.gone = at('stake', 'gone');
-    T.q = start('q');
+    T.gone = start('stake') - .1;                                                // pre-rolled into the breath before "Or"
     T.step = [at('gun', 'one'), at('car', 'two'), at('bags', 'three'), at('cash', 'four')];
-    T.goneOut = T.step[0] - .9;
-    T.tray = [at('q', 'what'), at('q', 'do'), at('q', 'cops'), at('q', 'take')];
+    T.goneOut = T.step[0] + .05;
     T.lootDrop = start('loot') - .15; T.lootStamp = at('loot', 'loot') + .1;
     T.lock = at('kept', 'bought'); T.ammu = at('kept', 'ammunation'); T.trunk = at('kept', 'trunk');
     T.carIn = T.step[1]; T.sticker = at('car', 'register');
     T.keyIn = lastw('car') - .1; T.keyDrop = at('stolen', 'arrest');
     T.bagGo = lastw('bags');
-    T.hook = at('impound', 'busted'); T.impounded = at('impound', 'car') + .05;
+    T.hook = at('impound', 'busted'); T.impounded = at('impound', 'car') + .05; T.buy = at('impound', 'buying');
     T.atm = at('cash', 'bank');
-    T.brick = start('grand'); T.seize = at('grand', '20000') + .3; T.bank = lastw('grand') - .05;
-    T.end = start('end');
-    T.tear = [lastw('kept') + .04, lastw('stolen') + .04, lastw('bags') + .04, T.bank + .32];
+    T.brick = start('grand'); T.dm = at('grand', '20000'); T.seize = T.dm + .45;
+    T.sweep = at('grand', 'keep') + .02;                                         // a cop hand sweeps the brick off the tray (0.35 s)
+    T.kachunk = T.sweep + .85;                                                   // tray empty 0.3 s, then the brick re-forms in the ATM slot
+    T.bank = T.kachunk;
+    T.end = start('end'); T.endCard = T.kachunk + .3;
+    T.tear = [lastw('kept') + .04, lastw('stolen') + .04, lastw('bags') + .04, T.kachunk + .12];
     T.back = DUR - .2;                                                          // rows clear, the title slams back: last frame = frame 0
     T.loopPlate = DUR - .3;
 
-    /* plates (each < 4.9 s, new range every cut); the tray question and the $20,000 frame are all ours */
-    plate('p1jail', 0, T.dock - .25, { from: 1.42, zoom: [1.3, 1.14], focus: [.62, .45], dim: .36, note: 'frame 0: jail jumpsuit (Trailer 1, mood only), behind the title and the receipt' });
-    plate('p2cops', T.dock - .25, T.q - .02, { focus: [.42, .55], note: 'getaway with cop lights behind GONE FOR GOOD' });
+    /* plates (each < 4.9 s, new range every cut); from "bank" to the loop seam the frame is all ours */
+    plate('p1jail', 0, T.dock - .25, { from: 1.42, zoom: JZ, focus: JF, dim: .36, note: 'frame 0: jail jumpsuit (Trailer 1, mood only), behind the title and the receipt' });
+    plate('p2cops', T.dock - .25, T.step[0] - .05, { focus: [.42, .55], note: 'getaway with cop lights behind GONE FOR GOOD' });
     plate('p3rifle', T.step[0] - .05, start('loot') - .02, { focus: [.74, .5], note: 'Jason with a rifle behind the AMMU-NATION card' });
     plate('p4swamp', start('loot') - .02, start('kept') - .02, { focus: [.5, .5], zoom: [1.0, 1.16], note: 'armed men wading at sunset behind UNOWNED = LOST' });
     plate('p5trunk', start('kept') - .02, T.step[1] - .05, { focus: [.5, .5], note: 'open van trunk behind LOCKER / TRUNK' });
     plate('p6walk', T.step[1] - .05, start('stolen') - .02, { focus: [.55, .5], note: 'Jason walks to his red convertible behind the PAY N SPRAY card' });
     plate('p7chase', start('stolen') - .02, T.step[2] - .05, { focus: [.55, .5], note: 'car chase on a dirt road behind the STOLEN key' });
     plate('p8bag', T.step[2] - .05, start('impound') - .02, { focus: [.3, .55], note: 'runner with a bag to a motorbike behind the FENCE card' });
-    plate('p9drive', start('impound') - .02, T.step[3] - .05, { focus: [.42, .55], gray: 1, dim: .55, note: 'own red convertible in traffic, desaturated, behind the tow hook' });
-    plate('p10truck', T.step[3] - .05, T.brick - .02, { focus: [.38, .5], note: 'armored cash truck behind the ATM / BUCKME card' });
-    plate('p12sunset', T.end - .02, T.loopPlate, { focus: [.55, .5], note: 'skyline at sunset behind HOW MUCH ARE YOU CARRYING?' });
-    plate('p1jail', T.loopPlate, DUR + .001, { from: 1.12, zoom: [1.32, 1.3], focus: [.62, .45], dim: .36, note: 'loop: the 0.3 s of the jail plate that frame 0 continues from' });
+    plate('p9drive', start('impound') - .02, T.buy - .05, { focus: [.42, .55], gray: 1, dim: .45, note: 'own red convertible in traffic, desaturated, behind the tow hook' });
+    plate('p9back', T.buy - .05, T.step[3] - .05, { focus: [.5, .55], gray: 1, dim: .45, note: 'the convertible pulls over and parks, desaturated, behind the recovery fee' });
+    plate('p10truck', T.step[3] - .05, T.atm - .02, { focus: [.38, .5], note: 'armored cash truck behind the ATM / BUCKME card' });
+    plate('p1jail', T.loopPlate, DUR + .001, { from: 1.12, zoom: [JZ[0] + (JZ[0] - JZ[1]) * .3 / (T.dock - .25), JZ[0]], focus: JF, dim: .36, note: 'loop: the 0.3 s of the jail plate that frame 0 continues from' });
 
     /* sound: every hit short, on its word or in a written pause */
     ev(.01, 'whoosh', .55, { d: .5 });
-    ev(T.gta, 'pop', .6);
     T.stamp.forEach(function (t, i) { stampSfx(t, .85); });
     ev(T.dock - .05, 'swish', .7);
     stampSfx(T.gone, 1.1);
-    ev(T.q - .05, 'whoosh', .6, { d: .45 });
-    T.tray.forEach(function (t) { ev(t + .18, 'thud', .55); ev(t + .19, 'tick', .4); });
     T.step.forEach(function (t, i) { ev(t - .04, 'swish', .8); ev(t + .1, 'tick', .6); ev(t + .12, 'pop', .5); });
     ev(T.lootDrop + .3, 'thud', .7); stampSfx(T.lootStamp, .9);
     ev(T.lock + .15, 'thud', .5); ev(T.trunk + .1, 'thud', .5);
@@ -116,11 +115,13 @@
     ev(T.keyDrop, 'zip', .7); ev(T.keyDrop + .45, 'thud', .45);
     ev(T.bagGo - .1, 'whoosh', .5);
     ev(T.hook - .1, 'zip', .6); ev(T.impounded, 'slam', 1); ev(T.impounded + .02, 'ding', .35); ev(T.impounded + .05, 'key', .8);
+    ev(T.buy, 'pop', .6); ev(T.buy + .12, 'tick', .5);
     ev(T.atm, 'pop', .6);
-    ev(T.brick + .05, 'thud', .8); stampSfx(T.seize, 1);
-    ev(T.bank - .05, 'whoosh', .7, { d: .4 });
+    ev(T.brick + .05, 'thud', .8); ev(T.dm, 'slam', .7); stampSfx(T.seize, 1);
+    ev(T.sweep - .25, 'swish', .5); ev(T.sweep - .02, 'whoosh', .95, { d: .35 }); ev(T.sweep + .03, 'scratch', .7);
+    ev(T.kachunk - .25, 'whoosh', .55, { d: .3 }); ev(T.kachunk, 'slam', 1.1); ev(T.kachunk + .02, 'key', .9); ev(T.kachunk + .06, 'thud', .7);
     T.tear.forEach(function (t, i) { ripSfx(t); stampSfx(t + .14, i === 3 ? 1.15 : .85); if (i === 3) ev(t + .2, 'ding', .8); });
-    ev(T.end + .02, 'pop', .6);
+    ev(T.endCard + .02, 'pop', .6);
     ev(T.back + .02, 'swish', .6); ev(T.back + .1, 'thud', .5);
     EV.sort(function (a, b) { return a.t - b.t; });
   }
@@ -128,7 +129,7 @@
   /* ---------- captions: phrase cards of 2-4 words; 1-2 stressed words in coral; never end a card on a weak word ---------- */
   var CHUNKS = [], CPX = 86;
   var WEAK = { a: 1, an: 1, the: 1, is: 1, to: 1, in: 1, by: 1, you: 1, of: 1, for: 1, and: 1, on: 1, at: 1, or: 1, your: 1, are: 1, can: 1, do: 1, when: 1, after: 1, own: 1, get: 1, say: 1 };
-  var HOTW = { gone: 1, loot: 1, trunk: 1, register: 1, stolen: 1, fence: 1, impounded: 1, bank: 1, '20000': 1 };
+  var HOTW = { gone: 1, loot: 1, trunk: 1, register: 1, stolen: 1, fence: 1, impounded: 1, costs: 1, important: 1, bank: 1 };
   var NOCAP = { hook: 1, end: 1 };
   function buildChunks(g) {
     var GAP = CPX * .28;
@@ -137,6 +138,8 @@
     VO.lines.forEach(function (l) {
       if (NOCAP[l.id]) return;
       var lw = l.words; if (/^(one|two|three|four)$/.test(norm(lw[0].w))) lw = lw.slice(1);   // the STEP tag says the number
+      /* the $20,000 line: only "YOU CAN CARRY" is a caption; the hero number and the hedged stamp say the rest (one $20,000 on screen) */
+      if (l.id === 'grand') lw = lw.slice(0, 3);
       var ws = lw.map(function (w) { var s = w.w.replace(/[,:.]$/, '').replace(/[.,]$/, '').toUpperCase(); return { w: s, raw: w.w, t0: w.t0, t1: w.t1, hot: !!HOTW[norm(w.w)] }; });
       var phrases = [], cur = [];
       ws.forEach(function (w) { cur.push(w); if (/[.?!,:]$/.test(w.raw)) { phrases.push(cur); cur = []; } });
@@ -168,7 +171,7 @@
       c.rows.forEach(function (row, r) {
         var ws = row.map(function (w) { return tw(g, w.w, CPX); });
         var wsum = ws.reduce(function (a, b) { return a + b; }, 0) + gap * (row.length - 1), x = MID - wsum / 2, s = Math.min(1, 800 / wsum);
-        var y = (n === 1 ? CAPY + 46 : CAPY + r * 96) + (1 - k) * 16;
+        var y = (n === 1 ? CAPY + 46 : CAPY + r * 96) + (1 - k) * 16 - (c.line === 'cash' ? 40 : 0);
         g.save(); g.translate(MID, y); g.scale(s, s); g.translate(-MID, -y);
         row.forEach(function (w, j) {
           var on = t >= w.t0 && t < w.t1 + .05;
@@ -186,8 +189,7 @@
   function plates(g, t) {
     var u = CLIP.activePlate(t);
     if (u) {
-      var dim = u.dim != null ? u.dim : .5;
-      if (u === P[0]) dim = lerp(.36, .5, seg(t, T.stamp[0], T.dock));
+      var dim = u.dim != null ? u.dim : .38;   // about 40 %: the footage reads on a phone (jury r1)
       g.save();
       if (u.gray) g.filter = 'grayscale(' + (.25 + .75 * seg(t, T.hook - .3, T.hook + .2)) + ') contrast(1.05)';
       CLIP.plate(g, t, 0, 0, W, H, { dim: dim });
@@ -202,11 +204,11 @@
       for (var y = -60; y < H; y += 60) { g.beginPath(); g.moveTo(0, y + off); g.lineTo(W, y + off); g.stroke(); }
       g.restore();
     }
-    /* ink gradients top and bottom keep every word at >= 4.5:1 */
-    var a = g.createLinearGradient(0, 0, 0, 560); a.addColorStop(0, 'rgba(13,11,18,.82)'); a.addColorStop(1, 'rgba(13,11,18,0)');
-    g.fillStyle = a; g.fillRect(0, 0, W, 560);
-    var b = g.createLinearGradient(0, 980, 0, H); b.addColorStop(0, 'rgba(13,11,18,0)'); b.addColorStop(.35, 'rgba(13,11,18,.55)'); b.addColorStop(1, 'rgba(13,11,18,.92)');
-    g.fillStyle = b; g.fillRect(0, 980, W, H - 980);
+    /* ink only where text sits: a soft band behind the captions (y 260-460) and under the receipt */
+    var a = g.createLinearGradient(0, 160, 0, 540); a.addColorStop(0, 'rgba(13,11,18,0)'); a.addColorStop(.3, 'rgba(13,11,18,.5)'); a.addColorStop(.75, 'rgba(13,11,18,.45)'); a.addColorStop(1, 'rgba(13,11,18,0)');
+    g.fillStyle = a; g.fillRect(0, 160, W, 380);
+    var b = g.createLinearGradient(0, 1000, 0, H); b.addColorStop(0, 'rgba(13,11,18,0)'); b.addColorStop(.2, 'rgba(13,11,18,.4)'); b.addColorStop(1, 'rgba(13,11,18,.75)');
+    g.fillStyle = b; g.fillRect(0, 1000, W, H - 1000);
   }
 
   /* ---------- icons, drawn flat in a ±60 box (ink strokes, cream fill) ---------- */
@@ -240,9 +242,8 @@
   var ROWS = [{ k: 'gun', s: 'FIREARMS' }, { k: 'car', s: 'VEHICLE' }, { k: 'bag', s: 'STASH BAGS' }, { k: 'cash', s: 'POCKET CASH' }];
   var RX = 118, RW = 784, RY = 1070, RH = 360, ROWH = 58, ROW0 = RY + 52;
   function recOffset(t) {
-    /* frame 0: rising from below; the end: drops back to that place for the loop */
-    var a = (1 - eo(seg(t, 0, .9))) * 300, b = eio(seg(t, T.back + .02, DUR)) * 300;
-    return Math.max(a, b);
+    /* frame 0: the receipt is already in place, sharp, four ruled rows (jury r1); a small settle on each KEPT is the only move */
+    return 0;
   }
   function kept(t) { var n = 0; for (var i = 0; i < 4; i++) if (t >= T.tear[i] + .14) n++; return n; }
   function receipt(g, t) {
@@ -263,8 +264,8 @@
       var y = ROW0 + i * ROWH, cy = y + ROWH / 2;
       g.strokeStyle = 'rgba(63,95,158,.45)'; g.lineWidth = 2; g.beginPath(); g.moveTo(RX + 16, y + ROWH); g.lineTo(RX + RW - 16, y + ROWH); g.stroke();
       rr(g, RX + 20, cy - 20, 40, 40, 6); g.strokeStyle = BLUE; g.lineWidth = 3; g.stroke();
-      var on = t >= T.stamp[i] - .12 && t < T.back;
-      var ik = on ? eo(seg(t, T.stamp[i] - .12, T.stamp[i] + .02)) : 0;
+      var on = t >= T.stamp[i] - .12 && t < T.back + .12;
+      var ik = on ? eo(seg(t, T.stamp[i] - .12, T.stamp[i] + .02)) * (1 - seg(t, T.back, T.back + .12)) : 0;
       if (ik > 0) {
         g.save(); g.globalAlpha *= ik; g.translate(RX + 104, cy - (1 - ik) * 40); icon(g, ROWS[i].k, .46, CREAM); g.restore();
         g.save(); g.globalAlpha *= ik; txt(g, ROWS[i].s, RX + 150, cy + 2, 40, { wt: 800, st: 'condensed', align: 'left', col: INK }); g.restore();
@@ -274,7 +275,7 @@
     /* foot: perforation + KEPT n/4 */
     var fy = ROW0 + 4 * ROWH + 36;
     g.save(); g.setLineDash([10, 10]); g.strokeStyle = 'rgba(22,18,28,.5)'; g.lineWidth = 3; g.beginPath(); g.moveTo(RX + 16, fy - 32); g.lineTo(RX + RW - 16, fy - 32); g.stroke(); g.restore();
-    var n = kept(t), cnt = seg(t, T.stamp[0], T.stamp[0] + .2) * (t < T.back ? 1 : 0);
+    var n = kept(t), cnt = seg(t, T.stamp[0], T.stamp[0] + .2) * (1 - seg(t, T.back, T.back + .12));
     if (cnt > 0) {
       g.save(); g.globalAlpha *= cnt;
       txt(g, 'KEPT', RX + RW - 176, fy + 2, 38, { wt: 900, st: 'condensed', align: 'right', col: INK });
@@ -289,8 +290,9 @@
   function cx0() { return RX + RW - 150; }
   /* the stamp on a row: CONFISCATED (oxblood) until its tear, then the strip rips off and a coral KEPT slams in */
   function rowStamp(g, t, i, cx, cy) {
-    var ts = T.stamp[i], tr = T.tear[i], alive = t < T.back;
-    if (t < ts || !alive) return;
+    var ts = T.stamp[i], tr = T.tear[i], fade = 1 - seg(t, T.back, T.back + .12);
+    if (t < ts || fade <= 0) return;
+    g.save(); g.globalAlpha *= fade;
     if (t < tr + .5) {
       var u = t - ts, sc = lerp(1.7, 1, eo(clamp(u / .12, 0, 1))), rip = seg(t, tr, tr + .5);
       g.save();
@@ -306,8 +308,8 @@
     if (t >= tr + .14) {
       var v = t - tr - .14, s2 = lerp(1.8, 1, eo(clamp(v / .12, 0, 1))) - .08 * knock(v, .12, 1, 26, 7);
       g.save(); g.translate(cx, cy); g.rotate(-.05); g.scale(s2, s2);
-      rr(g, -92, -24, 184, 48, 24); g.fillStyle = CORAL; g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke();
-      txt(g, 'KEPT', -12, 2, 36, { wt: 900, col: INK, ls: 2 });
+      rr(g, -92, -24, 184, 48, 24); g.fillStyle = i === 2 ? TAPE : CORAL; g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke();
+      txt(g, i === 2 ? 'SOLD' : 'KEPT', -12, 2, 36, { wt: 900, col: INK, ls: 2 });   // stash bags are sold at the fence, not kept (jury r1)
       g.lineWidth = 6; g.lineCap = g.lineJoin = 'round'; g.beginPath(); g.moveTo(42, 0); g.lineTo(54, 12); g.lineTo(74, -12); g.stroke();
       g.restore();
       /* the dip: busted in your own car, the vehicle row gets an impound tag on its KEPT */
@@ -320,6 +322,21 @@
         g.restore();
       }
     }
+    g.restore();
+  }
+  /* the count on frame 0: a coral 4 badge on the receipt; on "busted" it flies up into the STEP tag; it pops back for the loop */
+  var BX = RX + RW - 84, BY = RY - 34;
+  function badge(g, t) {
+    var fly = eio(seg(t, T.dock - .05, T.dock + .3)), back = seg(t, T.back + .04, T.back + .14);
+    var k = back > 0 ? 0 : fly, a = back > 0 ? back : 1 - seg(fly, .65, 1);
+    if (a <= 0) return;
+    var x = lerp(BX, 840, k), y = lerp(BY, 150, k), s = lerp(1, .55, k) * (back > 0 && back < 1 ? lerp(1.4, 1, eo(back)) : 1);
+    g.save(); g.globalAlpha *= a; g.translate(x, y); g.rotate(.08 + .04 * Math.sin(t * 2.4)); g.scale(s, s);
+    g.fillStyle = 'rgba(0,0,0,.45)'; g.beginPath(); g.arc(7, 9, 76, 0, TAU); g.fill();
+    g.beginPath(); g.arc(0, 0, 76, 0, TAU); g.fillStyle = CORAL; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
+    g.beginPath(); g.arc(0, 0, 62, 0, TAU); g.lineWidth = 3; g.strokeStyle = 'rgba(22,18,28,.55)'; g.stroke();
+    txt(g, '4', 0, 8, 128, { wt: 900, st: 'condensed', col: CREAM, stroke: INK, lw: 10 });
+    g.restore();
   }
 
   /* ---------- pinned header tape, GTA 6 pill, the frame-0 title ---------- */
@@ -361,7 +378,7 @@
     K.sticker(g, 'BEFORE YOU', 0, -78, TPX, { col: CREAM, wide: false, lw: TPX * .14 });
     K.sticker(g, 'GET BUSTED', 0, 78, TPX, { col: CORAL, wide: false, lw: TPX * .14 });
     g.restore();
-    var pk = back ? seg(t, T.back + .08, T.back + .18) : eo(seg(t, T.gta, T.gta + .15)) * (1 - seg(t, T.dock, T.dock + .2));
+    var pk = back ? seg(t, T.back + .08, T.back + .18) : 1 - seg(t, T.dock, T.dock + .2);   // GTA 6 on frame 0 (jury r1)
     if (pk > 0) pill(g, MID - 62, 158 + drift * (back ? 0 : 1) * .5, pk);
   }
 
@@ -370,13 +387,19 @@
     var k = seg(t, T.dock + .1, T.dock + .35) * (1 - seg(t, T.back, T.back + .15)); if (k <= 0) return;
     var n = 0, flip = 1; T.step.forEach(function (s, i) { if (t >= s + .1) n = i + 1; var f = Math.abs(seg(t, s - .1, s + .3) - .5) * 2; if (t > s - .1 && t < s + .3) flip = Math.min(flip, f); });
     var cx = 840, cy = 128, w = 168, h = 150;
-    g.save(); g.globalAlpha *= k; g.translate(cx, cy); g.rotate(.05 + .02 * Math.sin(t * 1.7)); g.scale(Math.max(.02, flip), 1);
+    var p4 = t >= T.step[3] + .1 ? 1 + .12 * knock(t, T.step[3] + .1, 1, 18, 5) : 1;   // the most important one: the tag knocks
+    g.save(); g.globalAlpha *= k; g.translate(cx, cy); g.rotate(.05 + .02 * Math.sin(t * 1.7)); g.scale(Math.max(.02, flip) * p4, p4);
     g.fillStyle = 'rgba(0,0,0,.4)'; rr(g, -w / 2 + 6, -h / 2 + 8, w, h, 10); g.fill();
     g.beginPath(); g.moveTo(-w / 2 + 26, -h / 2); g.lineTo(w / 2 - 26, -h / 2); g.lineTo(w / 2, -h / 2 + 26); g.lineTo(w / 2, h / 2); g.lineTo(-w / 2, h / 2); g.lineTo(-w / 2, -h / 2 + 26); g.closePath();
     g.fillStyle = n === 4 ? CORAL : MANILA; g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke();
     g.beginPath(); g.arc(0, -h / 2 + 20, 9, 0, TAU); g.fillStyle = INK; g.fill();
-    txt(g, n ? 'STEP' : 'STEPS', 0, -h / 2 + 50, 30, { fam: '"Geist Mono"', wt: 700, col: INK, ls: 3 });
-    txt(g, n ? String(n) : '4', 0, 22, 96, { wt: 900, st: 'condensed', col: INK });
+    if (n) {
+      txt(g, 'STEP', 0, -h / 2 + 50, 30, { fam: '"Geist Mono"', wt: 700, col: INK, ls: 3 });
+      txt(g, String(n), 0, 22, 96, { wt: 900, st: 'condensed', col: INK });
+    } else {   /* before step 1 it reads 4 STEPS, numeral first, so it never reads as STEP 4 (jury r1) */
+      txt(g, '4', 0, -8, 72, { wt: 900, st: 'condensed', col: INK });
+      txt(g, 'STEPS', 0, 46, 44, { wt: 900, st: 'condensed', col: INK, ls: 2 });
+    }
     g.restore();
     /* the string */
     g.save(); g.globalAlpha *= k; g.strokeStyle = 'rgba(246,239,226,.7)'; g.lineWidth = 3; g.beginPath(); g.moveTo(cx - 2, cy - h / 2 + 12); g.quadraticCurveTo(cx - 40, cy - 110, cx - 70, cy - 120); g.stroke(); g.restore();
@@ -387,7 +410,7 @@
     { title: 'AMMU-NATION', sub: 'WEAPON LOCKER · MOST STORES', src: 'GAMESRADAR+ · GAME RANT', k: 'gun' },
     { title: "PAY 'N' SPRAY", sub: 'REGISTER · FOR A FEE', src: 'GAMESRADAR+ · GAME RANT', k: 'car' },
     { title: 'FENCE', sub: 'DROP STASH BAGS FIRST', src: 'GAME RANT · NOV 20', k: 'bag' },
-    { title: 'IMPOUND LOT', sub: 'BUSTED IN YOUR OWN CAR', src: 'GAMESRADAR+ · GAME RANT', k: 'car', alert: 1 },
+    { title: 'IMPOUND LOT', sub: 'PAY TO GET IT BACK', src: 'GAMESRADAR+ · GAME RANT', k: 'car', alert: 1 },
     { title: 'ATM / BUCKME', sub: 'BUCKME UNLOCKS IN CH. 1', src: 'GAMESRADAR+ · POWERPYX', k: 'cash' }
   ];
   var CY0 = 482, CH = 222;
@@ -434,18 +457,6 @@
     var gr = g.createLinearGradient(0, -90, 0, 90); gr.addColorStop(0, '#8d929c'); gr.addColorStop(1, '#5d626c'); g.fillStyle = gr; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
     g.beginPath(); g.moveTo(-340, -60); g.lineTo(340, -60); g.lineTo(372, 64); g.lineTo(-372, 64); g.closePath(); g.fillStyle = '#4a4f58'; g.fill();
     g.beginPath(); g.moveTo(-420, 90); g.lineTo(420, 90); g.lineTo(420, 118); g.lineTo(-420, 118); g.closePath(); g.fillStyle = '#3b3f47'; g.fill(); g.stroke();
-    g.restore();
-  }
-  function trayScene(g, t) {
-    var a = T.q - .25, b = T.step[0] + .05; if (t < a || t > b + .3) return;
-    var dy = (1 - eo(seg(t, a, a + .45))) * 500, out = eio(seg(t, b - .2, b + .25));
-    g.save(); g.translate(out * -1000, dy);
-    tray(g, MID, 920, 1);
-    T.tray.forEach(function (tt, i) {
-      var k = seg(t, tt, tt + .2); if (k <= 0) return;
-      var y = lerp(560, 880, eo(k)) - 30 * knock(t, tt + .2, 1, 22, 8), x = 220 + i * 190;
-      g.save(); g.translate(x, y); g.rotate((i % 2 ? .12 : -.1) + (1 - k) * .6); icon(g, ROWS[i].k, 1.35, CREAM); g.restore();
-    });
     g.restore();
   }
   function gunScene(g, t) {
@@ -555,17 +566,28 @@
     g.save(); g.translate(cx - 20, cy - 92); g.rotate(-.12 + lift * -.05); rr(g, -88, -26, 176, 52, 6); g.fillStyle = CREAM; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke();
     txt(g, 'REGISTERED', 0, 2, 30, { wt: 900, st: 'condensed', col: INK, ls: 1 }); g.restore();
     if (t >= T.impounded) stampAt(g, 'IMPOUNDED', MID, 1022, 48, t - T.impounded, -.06, '#f0a33a', true);
+    /* the way out costs you: a fee tag drops onto the hook cable (GamesRadar+: ScooterBros, "for a significant fee") */
+    var fk = seg(t, T.buy - .05, T.buy + .2);
+    if (fk > 0) {
+      var fy = lerp(720, cy - 40, eo(fk)), fsw = Math.sin((t - T.buy) * 5) * .3 * Math.exp(-(t - T.buy) * 1.5);
+      g.save(); g.translate(cx + 300, fy); g.rotate(fsw);
+      g.strokeStyle = CREAM; g.lineWidth = 3; g.beginPath(); g.moveTo(-6, -40); g.lineTo(0, -6); g.stroke();
+      rr(g, -78, -6, 156, 76, 10); g.fillStyle = MANILA; g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke();
+      g.beginPath(); g.arc(0, 8, 7, 0, TAU); g.fillStyle = INK; g.fill();
+      txt(g, '$$$', 0, 42, 46, { wt: 900, st: 'condensed', col: OX, ls: 3 });
+      g.restore();
+    }
     g.restore();
   }
   function atmScene(g, t) {
     /* step 4: an ATM front with the BuckMe screen; the $20,000 brick goes in on T.bank */
-    var a = T.step[3], b = T.brick; var after = t >= T.bank - .35 && t < T.bank + .55;
+    var a = T.step[3], b = T.brick; var after = t >= T.kachunk - .45 && t < T.endCard + .1;
     if (!(t >= a - .05 && t < b + .3) && !after) return;
-    var al = after ? seg(t, T.bank - .35, T.bank - .15) * (1 - seg(t, T.bank + .3, T.bank + .5)) : seg(t, a, a + .2) * (1 - seg(t, b - .1, b + .15));
-    var dy = after ? (1 - eo(seg(t, T.bank - .35, T.bank - .05))) * 120 : (1 - eo(seg(t, a, a + .3))) * 140;
+    var al = after ? seg(t, T.kachunk - .45, T.kachunk - .25) * (1 - seg(t, T.endCard - .12, T.endCard + .05)) : seg(t, a, a + .2) * (1 - seg(t, b - .1, b + .15));
+    var dy = after ? (1 - eo(seg(t, T.kachunk - .45, T.kachunk - .15))) * 120 + 10 * knock(t, T.kachunk, 1, 30, 9) : (1 - eo(seg(t, a, a + .3))) * 140;
     if (al <= 0) return;
-    var x = 510, y = 885 + dy;
-    g.save(); g.globalAlpha *= al; g.translate(x, y);
+    var x = 510, y = 862 + dy;
+    g.save(); g.globalAlpha *= al; g.translate(x, y); g.scale(.9, .9);
     g.fillStyle = 'rgba(0,0,0,.45)'; rr(g, -250 + 10, -170 + 10, 500, 320, 18); g.fill();
     rr(g, -250, -170, 500, 320, 18); g.fillStyle = '#4e5562'; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
     rr(g, -170, -140, 340, 130, 10); g.fillStyle = '#1d3b2e'; g.fill(); g.stroke();
@@ -573,25 +595,90 @@
     txt(g, 'DEPOSIT', 0, -46, 30, { fam: '"Geist Mono"', wt: 700, col: '#9df0b8', ls: 3 });
     rr(g, -150, 30, 300, 26, 13); g.fillStyle = INK; g.fill();
     for (var r = 0; r < 3; r++) for (var c = 0; c < 3; c++) { rr(g, -70 + c * 50, 76 + r * 22, 40, 16, 4); g.fillStyle = '#c9ccd3'; g.fill(); }
+    /* ka-chunk: the re-formed brick sits in the slot, then is pulled in */
+    if (after && t >= T.kachunk - .02) {
+      var pin = eio(seg(t, T.kachunk + .05, T.kachunk + .3));
+      g.save(); g.beginPath(); g.rect(-160, -40, 320, 83); g.clip();
+      g.translate(0, 43 - 46 * (1 - pin)); g.scale(.9, .9); icon(g, 'cash', 1.2, '#cfe8bf', t, 4); g.restore();
+    }
+    g.restore();
+  }
+  /* our own flat cop hand: navy sleeve, cuff, palm leading to the left (pushes things off the tray) */
+  function copHand(g, x, y, s) {
+    g.save(); g.translate(x, y); g.scale(s, s); g.lineJoin = g.lineCap = 'round'; g.strokeStyle = INK; g.lineWidth = 7;
+    rr(g, 70, -58, 640, 116, 18); g.fillStyle = '#22335c'; g.fill(); g.stroke();
+    g.fillStyle = '#2f4678'; g.fillRect(150, -50, 8, 100); g.fillRect(170, -50, 8, 100);
+    g.beginPath(); g.arc(120, 0, 9, 0, TAU); g.fillStyle = TAPE; g.fill(); g.stroke();
+    rr(g, 52, -64, 40, 128, 10); g.fillStyle = '#e9e2d4'; g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(56, -46); g.quadraticCurveTo(-10, -60, -70, -40);
+    for (var f = 0; f < 4; f++) { var fy = -38 + f * 24; g.lineTo(-118 + (f === 0 || f === 3 ? 18 : 0), fy); g.quadraticCurveTo(-134 + (f === 0 || f === 3 ? 18 : 0), fy + 11, -118 + (f === 0 || f === 3 ? 18 : 0), fy + 22); }
+    g.quadraticCurveTo(-20, 64, 56, 48); g.closePath(); g.fillStyle = '#d9a77f'; g.fill(); g.stroke();
+    g.beginPath(); g.moveTo(-10, -50); g.quadraticCurveTo(-40, -86, -76, -78); g.lineWidth = 7; g.stroke();
+    g.restore();
+  }
+  function rnd(i) { var x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }   // seeded, pure
+  function bill(g, x, y, r, s) {
+    g.save(); g.translate(x, y); g.rotate(r); g.scale(s, s);
+    rr(g, -52, -24, 104, 48, 4); g.fillStyle = '#cfe8bf'; g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke();
+    g.beginPath(); g.arc(0, 0, 12, 0, TAU); g.lineWidth = 3; g.stroke();
     g.restore();
   }
   function brickScene(g, t) {
-    /* the DM frame: $20,000 on the tray, seized on "Guides"; then it slides into the ATM slot and the row is kept */
-    var a = T.brick - .05, b = T.bank + .3; if (t < a || t > b) return;
-    var kin = eo(seg(t, a, a + .35)), go = eio(seg(t, T.bank - .05, T.bank + .3));
-    tray(g, MID, 1110 + (1 - kin) * 400 + go * 500, .95);
-    var bx = MID, by = lerp(1400, 1010, kin) + go * 60, bs = lerp(1, .25, go);
-    g.save(); g.translate(bx, by - go * 155); g.scale(bs, bs);
-    for (var i = 3; i >= 0; i--) { g.save(); g.translate(i * 6, 60 - i * 40); icon(g, 'cash', 3.4, '#cfe8bf', t, 2.6); g.restore(); }
-    g.restore();
-    var lk = (1 - seg(t, T.bank - .05, T.bank + .1)) * kin;
+    /* the DM frame: $20,000 on the tray; the stamp is hedged (GUIDES SAY); a cop hand sweeps the brick off in 0.35 s,
+       bills fan out off-frame, the tray sits empty 0.3 s, then the brick re-forms in the ATM slot (ka-chunk) and the row is KEPT */
+    var a = T.brick - .05, b = T.kachunk + .3; if (t < a || t > b) return;
+    var kin = eo(seg(t, a, a + .35)), drop = eio(seg(t, T.kachunk - .3, T.kachunk));
+    var sw = seg(t, T.sweep, T.sweep + .35);
+    tray(g, MID, 1110 + (1 - kin) * 400 + drop * 520, .95);
+    /* the brick: four bundles; the hand pushes them left, they break apart into flying bills */
+    var bx = MID - eio(sw) * 260, by = lerp(1400, 1010, kin) + drop * 520;
+    if (sw < .55) {
+      g.save(); g.globalAlpha *= 1 - seg(sw, .3, .55); g.translate(bx, by); g.rotate(-.25 * sw);
+      for (var i = 3; i >= 0; i--) { g.save(); g.translate(i * 6 - sw * i * 40, 60 - i * 40 - sw * i * 30); icon(g, 'cash', 3.4, '#cfe8bf', t, 2.6); g.restore(); }
+      g.restore();
+    }
+    if (t >= T.sweep + .08) {
+      var u = t - T.sweep - .08;
+      for (var j = 0; j < 14; j++) {
+        var vx = -900 - rnd(j) * 1100, vy = -1100 + rnd(j + 40) * 900, sp = (rnd(j + 80) - .5) * 16;
+        var x = MID - 60 + (rnd(j + 7) - .5) * 220 + vx * u, y = 1000 + (rnd(j + 9) - .5) * 120 + vy * u + 1400 * u * u;
+        if (x < -150 || y > H + 100) continue;
+        bill(g, x, y, sp * u + rnd(j + 3), 1.3 + rnd(j + 5) * .6);
+      }
+    }
+    /* the hand: in from the right on "keep", sweeps across, out left */
+    var hin = eo(seg(t, T.sweep - .28, T.sweep)), hx = lerp(1250, MID + 290, hin) - eio(sw) * 1500;
+    if (t > T.sweep - .3 && t < T.sweep + .5) copHand(g, hx, 990 + 10 * Math.sin(sw * Math.PI), 1);
+    /* hero: one $20,000, then the hedged stamp; both clear on the ka-chunk */
+    var lk = seg(t, T.dm - .02, T.dm + .08) * (1 - seg(t, T.kachunk - .25, T.kachunk - .05));
     if (lk > 0) {
       g.save(); g.globalAlpha *= lk;
-      K.sticker(g, '$20,000', MID, 600, 170, { col: CREAM, wide: false, lw: 22 });
-      txt(g, 'MAX POCKET CASH, PER CHARACTER', MID, 712, 36, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 1, stroke: INK, lw: 6 });
-      if (t >= T.seize) stampAt(g, 'COPS TAKE IT', MID, 1280, 72, t - T.seize, -.07, OX, true);
-      if (t >= T.seize + .2) txt(g, 'PER GAME RANT · GAMESRADAR+', MID, 1385, 32, { fam: '"Geist Mono"', wt: 700, col: CREAM, ls: 1, stroke: INK, lw: 6 });
+      K.slam(g, '$20,000', MID, 600, 170, t - T.dm, { col: CREAM, wide: false, rot: 0, from: 1.12, lw: 22 });
+      if (t >= T.dm + .15) txt(g, 'MAX POCKET CASH, PER CHARACTER', MID, 706, 36, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 1, stroke: INK, lw: 6 });
+      if (t >= T.seize) hedged(g, MID, 1290, t - T.seize);
+      if (t >= T.seize + .2) txt(g, 'PER GAME RANT · GAMESRADAR+', MID, 1400, 34, { fam: '"Geist Mono"', wt: 700, col: CREAM, ls: 1, stroke: INK, lw: 6 });
       g.restore();
+    }
+  }
+  /* the hedge is in the stamp itself: GUIDES SAY over COPS TAKE IT (jury r1, Truth) */
+  function hedged(g, x, y, u) {
+    var sc = lerp(1.35, 1, eo(clamp(u / .12, 0, 1))) - .06 * knock(u, .12, 1, 26, 7), px = 72;
+    g.save(); g.translate(x, y); g.rotate(-.06); g.scale(sc, sc); g.globalAlpha *= clamp(u / .05, 0, 1);
+    var w = tw(g, 'COPS TAKE IT', px, { st: 'condensed', ls: 3 }) + px * 1.1, h = 168;
+    rr(g, -w / 2, -h / 2, w, h, 10); g.fillStyle = OX; g.fill(); g.lineWidth = 5; g.strokeStyle = INK; g.stroke();
+    txt(g, 'GUIDES SAY', 0, -h / 2 + 36, 44, { wt: 900, st: 'condensed', col: TAPE, ls: 6 });
+    g.strokeStyle = 'rgba(246,239,226,.5)'; g.lineWidth = 3; g.beginPath(); g.moveTo(-w / 2 + 24, -h / 2 + 64); g.lineTo(w / 2 - 24, -h / 2 + 64); g.stroke();
+    txt(g, 'COPS TAKE IT', 0, 30, px, { wt: 900, st: 'condensed', col: CREAM, ls: 3, stroke: INK, lw: 5 });
+    g.restore();
+  }
+  /* bills fly back in from the left and re-form in the ATM slot */
+  function billsHome(g, t) {
+    var a = T.kachunk - .3, b = T.kachunk; if (t < a || t > b) return;
+    var sx = MID, sy = 862 + 43 * .9;
+    for (var j = 0; j < 8; j++) {
+      var k = eio(seg(t, a + j * .02, b - .02)), x0 = -120 - rnd(j + 20) * 200, y0 = 520 + rnd(j + 30) * 600;
+      if (k <= 0 || k >= 1) continue;
+      bill(g, lerp(x0, sx, k), lerp(y0, sy, k) - Math.sin(k * Math.PI) * 120, (1 - k) * (rnd(j) * 4 - 2), lerp(1.4, .5, k));
     }
   }
   function goneStamp(g, t) {
@@ -605,29 +692,21 @@
   function fine(g, t) {
     /* fine print that scopes a step, held long enough to read */
     var k = win(t, T.lootStamp + .15, T.tear[0], .2, .2);
-    if (k > 0) { g.save(); g.globalAlpha *= k; txt(g, 'EXCEPT GOLD-ICON UNIQUE VARIANTS', MID, 1046, 36, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 0, stroke: INK, lw: 6 }); g.restore(); }
+    if (k > 0) { g.save(); g.globalAlpha *= k; txt(g, 'EXCEPT GOLD-ICON UNIQUE VARIANTS', MID, 1026, 36, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 0, stroke: INK, lw: 6 }); g.restore(); }
     k = win(t, T.step[3] + .1, T.brick, .15, .15);
-    if (k > 0) { g.save(); g.globalAlpha *= k; txt(g, 'BANK = SAFER, NOT FREE', MID, 1046, 36, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 1, stroke: INK, lw: 6 }); g.restore(); }
-  }
-  function bankLineUnused(g, t) {
-    /* the 4/4 hero: KEPT 4/4 big, fine print BANK = SAFER, NOT FREE */
-    var a = T.tear[3] + .14, b = T.end + .1; if (t < a || t > b + .2) return;
-    var k = win(t, a, b + .2, .12, .25);
-    g.save(); g.globalAlpha *= k;
-    stampAt(g, 'ALL 4 KEPT', MID, 610, 92, t - a, -.06, CORAL, true);
-    txt(g, 'BANK = SAFER, NOT FREE · SMALL FEES FROM CH. 2', MID, 712, 30, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 0, stroke: INK, lw: 6 });
-    g.restore();
+    if (k > 0) { g.save(); g.globalAlpha *= k; txt(g, 'BANK = SAFER, NOT FREE', MID, 1024, 36, { fam: '"Geist Mono"', wt: 700, col: TAPE, ls: 1, stroke: INK, lw: 6 }); g.restore(); }
   }
   var EPX = 120;
   function endCard(g, t) {
-    var a = T.bank + .06, b = T.back; if (t < a - .05 || t > b + .15) return;
+    /* the caption is the voice: HOW MUCH ARE YOU / CARRYING? (jury r1) */
+    var a = T.endCard, b = T.back; if (t < a - .05 || t > b + .15) return;
     var k = 1 - seg(t, b, b + .12);
     g.save(); g.globalAlpha *= k;
-    K.slam(g, 'HOW MUCH', MID, 640, EPX, t - a, { col: CREAM, wide: false, rot: -.03, from: 1.08 });
-    K.slam(g, 'ON YOU?', MID, 790, EPX, t - a - .12, { col: CORAL, wide: false, rot: -.03, from: 1.08 });
+    K.slam(g, 'HOW MUCH ARE YOU', MID, 620, EPX, t - a, { col: CREAM, wide: false, rot: -.03, from: 1.08 });
+    K.slam(g, 'CARRYING?', MID, 770, EPX * 1.25, t - a - .12, { col: CORAL, wide: false, rot: -.03, from: 1.08 });
     /* a pocket that bounces: the viewer's own */
     var bob = Math.sin((t - a) * 5) * 10;
-    g.save(); g.globalAlpha *= seg(t, T.bank + .4, T.bank + .6); g.translate(MID, 950 + bob + 60 * (1 - eo(seg(t, T.bank + .4, T.bank + .7)))); g.rotate(-.05);
+    g.save(); g.globalAlpha *= seg(t, a + .35, a + .55); g.translate(MID, 960 + bob + 60 * (1 - eo(seg(t, a + .35, a + .65)))); g.rotate(-.05);
     g.beginPath(); g.moveTo(-110, -50); g.lineTo(110, -50); g.lineTo(96, 50); g.quadraticCurveTo(0, 96, -96, 50); g.closePath(); g.fillStyle = '#34507a'; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
     g.setLineDash([10, 8]); g.strokeStyle = MANILA; g.lineWidth = 3; g.beginPath(); g.moveTo(-96, -34); g.lineTo(96, -34); g.stroke(); g.setLineDash([]);
     g.save(); g.translate(30, -62 + Math.sin((t - a) * 3) * 6); g.rotate(-.3); icon(g, 'cash', 1.1, '#cfe8bf'); g.restore();
@@ -640,18 +719,14 @@
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.filter = 'none';
     plates(g, t);
-    trayScene(g, t);
     for (var i = 0; i < 5; i++) card(g, t, i);
     gunScene(g, t); keptScene(g, t); carScene(g, t); stolenScene(g, t); bagScene(g, t); impoundScene(g, t);
-    atmScene(g, t); brickScene(g, t);
-    receipt(g, t);
+    atmScene(g, t); brickScene(g, t); billsHome(g, t);
+    receipt(g, t); badge(g, t);
     goneStamp(g, t);
     fine(g, t);
     endCard(g, t);
     header(g, t); stepTag(g, t);
-    /* step 4 ribbon */
-    var rk = win(t, T.step[3] + .1, T.brick, .15, .2);
-    if (rk > 0) { g.save(); g.globalAlpha *= rk; g.translate(510, 462); g.rotate(-.03); var w = tw(g, 'THE MOST IMPORTANT ONE', 40, { st: 'condensed', ls: 2 }) + 50; g.fillStyle = CORAL; rr(g, -w / 2, -30, w, 60, 8); g.fill(); g.lineWidth = 4; g.strokeStyle = INK; g.stroke(); txt(g, 'THE MOST IMPORTANT ONE', 0, 2, 40, { wt: 900, st: 'condensed', col: INK, ls: 2 }); g.restore(); }
     title(g, t);
     captions(g, t);
   }
@@ -674,12 +749,16 @@
     Tx('owned', 'UNOWNED = LOST', T.lootStamp + .12, start('kept') + .1);
     Tx('fine', 'EXCEPT GOLD-ICON UNIQUE VARIANTS', T.lootStamp + .35, T.tear[0] - .2);
     Tx('bank', 'BANK = SAFER, NOT FREE', T.step[3] + .25, T.brick - .15);
+    Tx('fee', '$$$', T.buy + .15, T.step[3] + .1);
+    Tx('steps', '4 STEPS', T.dock + .35, T.step[0] - .1);
     Tx('stolen', 'STOLEN', T.keyIn + .3, T.keyDrop);
     Tx('drop', 'DROP FIRST', T.step[2] + .2, T.bagGo + .05);
     Tx('imp', 'IMPOUNDED', T.impounded + .12, T.step[3] + .1);
-    Tx('dm', '$20,000', T.brick + .35, T.bank);
-    Tx('seize', 'COPS TAKE IT', T.seize + .12, T.bank);
-    Tx('end', 'HOW MUCH ON YOU?', T.bank + .32, T.back);
+    Tx('dm', '$20,000', T.dm + .12, T.kachunk - .1);
+    Tx('guides', 'GUIDES SAY', T.seize + .12, T.kachunk - .1);
+    Tx('seize', 'COPS TAKE IT', T.seize + .12, T.kachunk - .1);
+    Tx('end1', 'HOW MUCH ARE YOU', T.endCard + .08, T.back);
+    Tx('end2', 'CARRYING?', T.endCard + .2, T.back);
     return o;
   }
 
@@ -710,11 +789,10 @@
     return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0$–·→'); }))).then(function () {
       initTimes(); buildChunks(ctx);
       TPX = Math.min(160, Math.floor(160 * 820 / Math.max(K.measure(ctx, 'BEFORE YOU', 160, { wide: false }), K.measure(ctx, 'GET BUSTED', 160, { wide: false }))));
-      EPX = Math.min(150, Math.floor(150 * 700 / Math.max(K.measure(ctx, 'HOW MUCH', 150, { wide: false }), K.measure(ctx, 'ON YOU?', 150, { wide: false }))));
-      window.FILM.POSTER = T.seize + .6;
+      EPX = Math.min(120, Math.floor(120 * 780 / Math.max(K.measure(ctx, 'HOW MUCH ARE YOU', 120, { wide: false }), K.measure(ctx, 'CARRYING?', 150, { wide: false }) / 1.25)));
+      window.FILM.POSTER = T.seize + .45;   // stamp landed, no caption, one $20,000, before the sweep
       window.FILM.SHOTS = [
-        { id: 'hook', name: 'Before you get busted', t0: 0, t1: T.q },
-        { id: 'q', name: 'What the cops take', t0: T.q, t1: T.step[0] },
+        { id: 'hook', name: 'Before you get busted', t0: 0, t1: T.step[0] },
         { id: 'gun', name: '1 Ammu-Nation', t0: T.step[0], t1: T.step[1] },
         { id: 'car', name: "2 Pay 'n' Spray", t0: T.step[1], t1: T.step[2] },
         { id: 'bags', name: '3 Fence', t0: T.step[2], t1: T.step[3] },

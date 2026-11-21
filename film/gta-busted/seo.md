@@ -1,6 +1,6 @@
 # SEO and posting text: do these 4 before you get busted
 
-Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-busted-vo.mp4` (voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-21 for a US audience. Facts and sources: `BRIEF.md` §3. Footage: short, muted, dimmed background plates from Rockstar's own trailers and An Extended Look behind our own graphics (SAFE-EDIT rule 11); the tray question and the $20,000 frame are all ours.
+Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-busted-vo.mp4` (voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-21 for a US audience. Facts and sources: `BRIEF.md` §3. Footage: short, muted, dimmed background plates from Rockstar's own trailers and An Extended Look behind our own graphics (SAFE-EDIT rule 11); the ATM, the $20,000 frame and the end card are all ours.
 
 ## YouTube Shorts title
 GTA 6: Do These 4 Things Before You Get Busted 🚨
@@ -14,7 +14,7 @@ BEFORE YOU GET BUSTED
 Getting busted in GTA 6 costs you more than a respawn. Guides say the cops take your pocket cash, guns you looted, stolen cars and the stash bags you were carrying. Four things to do first:
 
 1. Buy the gun you love: guns you loot are lost when you're busted; bought ones wait in an Ammu-Nation weapon locker (most stores) or your personal vehicle's trunk. Gold-icon Unique Weapon Variants stay unlocked once found.
-2. Register your ride at a Pay 'n' Spray (for a fee): stolen cars are gone after an arrest. Get busted in your own car and it can be impounded.
+2. Register your ride at a Pay 'n' Spray (for a fee): stolen cars are gone after an arrest. Get busted in your own car and it's impounded; getting it back through ScooterBros costs "a significant fee" (GamesRadar+).
 3. Get stash bags to a fence first.
 4. Bank your cash at an ATM or in BuckMe (unlocks in the Chapter 1 mission "Buck Me"). Each character can carry up to $20,000, and Game Rant and GamesRadar+ say all of it goes when you're busted (PC Gamer reports a smaller penalty of a few hundred dollars). The bank is safer, not free: small fees apply from Chapter 2.
 
@@ -28,7 +28,7 @@ PowerPyx, Buck Me walkthrough (Nov 18, 2026): https://www.powerpyx.com/gta-6-buc
 VGC, Buck Me walkthrough (Nov 18, 2026): https://www.videogameschronicle.com/guide/gta-6-buck-me-mission-walkthrough/
 PC Gamer, bank and cash (Nov 19, 2026): https://www.pcgamer.com/games/grand-theft-auto/gta-6-bank-cash/
 
-Gameplay clips: Rockstar Games (GTA VI Trailers 1 and 2, Launch Trailer, An Extended Look), used for commentary.
+Gameplay clips: Rockstar Games (GTA VI Trailer 1, Launch Trailer, An Extended Look), used for commentary.
 
 Made with our own graphics and official Rockstar footage. Not affiliated with Rockstar Games or Take-Two.
 

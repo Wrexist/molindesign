@@ -26,7 +26,7 @@
   "score_db": 0,
   "smr_db": 33
  },
- "dur": 41.85,
+ "dur": 41.1,
  "tail": 0.8,
  "fit": {
   "min": 0.9,
@@ -47,74 +47,69 @@
    "pause": 0.2
   },
   {
-   "id": "q",
-   "at": 6.71,
-   "text": "So what do the cops take?",
-   "pause": 0.5
-  },
-  {
    "id": "gun",
-   "at": 9.26,
+   "at": 6.8,
    "text": "One: buy the gun you love.",
    "pause": 0.1
   },
   {
    "id": "loot",
-   "at": 11.8,
+   "at": 9.34,
    "text": "Guns you loot are lost when you're busted.",
    "pause": 0.2
   },
   {
    "id": "kept",
-   "at": 15.06,
+   "at": 12.6,
    "text": "Bought guns wait at Ammu-Nation or in your trunk.",
    "say": "Bought guns wait at Ammu Nation, or in your trunk.",
    "pause": 0.3
   },
   {
    "id": "car",
-   "at": 19.03,
+   "at": 16.57,
    "text": "Two: register your ride at a Pay 'n' Spray.",
    "say": "Two: register your ride at a Pay and Spray.",
    "pause": 0.1
   },
   {
    "id": "stolen",
-   "at": 22.64,
+   "at": 20.18,
    "text": "Stolen cars are gone after an arrest.",
    "pause": 0.3
   },
   {
    "id": "bags",
-   "at": 25.54,
+   "at": 23.08,
    "text": "Three: get stash bags to the fence first.",
    "pause": 0.2
   },
   {
    "id": "impound",
-   "at": 28.8,
-   "text": "But get busted in your own car? It's impounded.",
+   "at": 26.34,
+   "text": "But get busted in your own car? It's impounded. Buying it back costs you.",
    "pause": 0.6
   },
   {
    "id": "cash",
-   "at": 32.41,
+   "at": 31.4,
    "text": "Four, the most important one: bank your cash.",
    "pause": 0.2
   },
   {
    "id": "grand",
-   "at": 35.67,
+   "at": 34.66,
    "text": "You can carry $20,000. Guides say the cops keep all of it.",
    "say": "You can carry twenty thousand dollars. Guides say the cops keep all of it.",
    "pause": 0.5
   },
   {
    "id": "end",
-   "at": 40.0,
+   "at": 38.99,
    "text": "How much are you carrying?",
    "pause": 0,
-   "take": 1
+   "take": 1,
+   "say": "So... how much are you carrying?"
   }
  ],
  "gap": 0.05
