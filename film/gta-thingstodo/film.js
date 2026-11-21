@@ -13,17 +13,17 @@
   var X0 = 90, X1 = 930, MID = 510, CAPY = 212, PILLY = 100;
   var PLATE = [0, 395, W, 860];                  // the full-width footage plate (above the strip)
   var TEASE = [0, 360, W, 1080];                 // frame 0 / last frame: the freefall plate
-  var GC = 250, GG = 20, GX = MID - (3 * GC + 2 * GG) / 2, GY = 455;             // grid: x 115-905, y 455-1245
-  var SC = 78, SG = 14, SX = MID - (9 * SC + 8 * SG) / 2, SY = 1300;             // strip: x 103-917, y 1300-1378
+  var GC = 250, GG = 20, GX = MID - (3 * GC + 2 * GG) / 2, GY = 500;             // grid: x 115-905, y 500-1290
+  var SC = 84, SG = 8, SX = MID - (9 * SC + 8 * SG) / 2, SY = 1290;             // strip: x 100-920, y 1290-1374
   var ITEMS = [
-    { id: 'airboat', label: 'AIRBOAT', clip: 'airboat' },
-    { id: 'hoops', label: 'HOOPS', clip: 'hoops' },
-    { id: 'dive', label: 'SCUBA DIVE', clip: 'dive' },
-    { id: 'gym', label: 'GYM', clip: 'gym' },
     { id: 'jetski', label: 'JET SKI', clip: 'jetski' },
-    { id: 'kayak', label: 'KAYAK', clip: 'kayak' },
     { id: 'race', label: 'TRACK RACE', clip: 'race' },
     { id: 'dirtbike', label: 'DIRT BIKE', clip: 'dirtbike' },
+    { id: 'airboat', label: 'AIRBOAT', clip: 'airboat' },
+    { id: 'kayak', label: 'KAYAK', clip: 'kayak' },
+    { id: 'gym', label: 'GYM', clip: 'gym' },
+    { id: 'hoops', label: 'HOOPS', clip: 'hoops' },
+    { id: 'dive', label: 'SCUBA DIVE', clip: 'dive' },
     { id: 'base', label: 'BASE JUMP', clip: 'basejump' }
   ];
 
@@ -59,24 +59,25 @@
   function silAfter(t) { for (var i = 0; i < VAD.length; i++) if (VAD[i][1] > t + .05) return VAD[i]; return [t + .1, t + .4]; }
   function initTimes() {
     EV.length = 0; CLIP.reset();
-    T.tz0 = .7; T.tz1 = 1.0;                    // the freefall plate shrinks into slot 9; the empty grid is there by 1.2 s
+    T.tz0 = 1.55; T.tz1 = 1.9;                  // the freefall plate holds full width under the hook, then shrinks into slot 9
     T.count = at('hook', 'count');
     T.lit = []; T.ex = []; T.fl = []; T.tk = [];
     ITEMS.forEach(function (it, i) {
       var id = it.id, w0 = LINE[id].words[0];
       T.lit[i] = w0.t0 - .04;                    // the slot lights on the spoken number
-      T.ex[i] = Math.min(w0.t0 + .2, LINE[id].words[1].t0 - .15);   // the plate grows out of it while the number is said
+      T.ex[i] = LINE[id].words[1].t0 - .14;     // the plate grows out of it just before the item is named
       var nxt = i < 8 ? LINE[ITEMS[i + 1].id].words[0].t0 : start('end');
-      T.fl[i] = Math.min(lastw(id) + .1, nxt - .62);   // the footage flips into the pictogram
+      T.fl[i] = id === 'race' || id === 'dirtbike' ? nxt - .62 : Math.min(lastw(id) + .18, nxt - .62);   // the races hold for the LAP read   // the footage flips into the pictogram
       T.tk[i] = T.fl[i] + .4;                    // the pictogram lands in its slot
     });
     /* #9: roof run + freefall, our canopy beat, then the real canopy */
-    T.bj1 = T.ex[8] + 1.25;
-    T.ch0 = T.bj1 + .3;
-    T.fl[8] = Math.min(T.ch0 + 1.0, start('end') - .42); T.tk[8] = T.fl[8] + .4;
+    T.ex[8] = at('base', 'base') - .1;
+    T.ch0 = silAfter(wend('base', 'tower') - .1)[0] + .02;   // the real canopy opens on the hit, in the pause after "tower"
+    T.bj1 = T.ch0 - .3;
+    T.fl[8] = Math.min(T.ch0 + 1.05, start('end') - .45); T.tk[8] = T.fl[8] + .4;
     T.src = at('end', 'all');
-    T.which = Math.max(wend('end', 'look') + .03, at('end', 'which') - .35);   // WHICH FIRST? lands in the pause before the question
-    T.back = DUR - .35;                          // un-tick, slot 9 grows back into the freefall plate: last frame = frame 0
+    T.which = T.tk[8] + .55;                     // the one end question (the voice asks it while it holds)
+    T.back = DUR - .85;                          // un-tick, slot 9 grows back into the freefall plate: last frame = frame 0
 
     /* clip uses: each under 4.9 s, annotated; footage share and runs checked by clipkit.py lint */
     U.tease = CLIP.use('basejump', 0, T.tz1, { from: 2.2, speed: 1, zoom: [1.0, 1.08], focus: [.5, .55], note: 'frame 0: freefall over the city under 9 THINGS TO DO; shrinks into the empty slot 9' });
@@ -85,9 +86,9 @@
       airboat: { from: .4, zoom: [1.0, 1.1], focus: [.48, .62], note: 'fan airboat in the swamp channel, circle on the boat, AIRBOAT chip' },
       hoops: { from: .3, zoom: [1.0, 1.08], focus: [.42, .45], note: 'man shoots at the hoop under the stilt house, circle follows the hoop, HOOPS chip' },
       dive: { from: .3, zoom: [1.0, 1.1], focus: [.48, .55], note: 'scuba diver in the cave arch, brightened, circle on the diver, SCUBA DIVE chip' },
-      gym: { from: .4, zoom: [1.0, 1.08], focus: [.5, .55], note: 'bench press top-down, circle on the bar, GYM chip' },
-      jetski: { from: 0, zoom: [1.0, 1.1], focus: [.52, .6], note: 'two jet skis at sunset, circle on the riders, JET SKI chip' },
-      kayak: { from: .2, zoom: [1.0, 1.08], focus: [.45, .45], note: 'green kayak, circle on it, arrow up to the downtown skyline, KAYAK chip' },
+      gym: { from: .4, zoom: [1.0, 1.08], focus: [.5, .55], note: 'bench press top-down, ring on the bar and GAINZ plates, GYM chip' },
+      jetski: { from: 0, zoom: [1.0, 1.1], focus: [.52, .6], note: 'two jet skis at sunset, arrow to the riders, JET SKI chip' },
+      kayak: { from: .2, zoom: [1.0, 1.08], focus: [.45, .45], note: 'green kayak, arrow from it up to the downtown skyline, KAYAK chip' },
       race: { from: .6, zoom: [1.0, 1.06], focus: [1.0, .55], note: 'circuit race, LAP 1/2 chip by the lap HUD, circle on the leading car, TRACK RACE chip' },
       dirtbike: { from: .6, zoom: [1.0, 1.06], focus: [.7, .55], note: 'dirt bike race, LAP 1/2 chip by the lap HUD, circle on the rider, DIRT BIKE chip' },
       base: { from: .45, zoom: [1.0, 1.12], focus: [.5, .5], note: 'she runs off the roof edge into freefall over the city, arrow on her, BASE JUMP chip' }
@@ -98,7 +99,7 @@
       U[it.id] = CLIP.use(it.clip, T.ex[i], t1, { from: from, speed: Math.min(1, (len - from) / (t1 - T.ex[i])), zoom: z.zoom, focus: z.focus, note: z.note });
       U[it.id].item = i;
     });
-    U.chute = CLIP.use('chute', T.ch0, T.fl[8], { from: .15, speed: 1, zoom: [1.12, 1.0], focus: [.45, .35], note: 'the orange canopy opens over the skyline, circle on the canopy' });
+    U.chute = CLIP.use('chute', T.ch0, T.fl[8], { from: .1, speed: 1, freeze: .45, zoom: [1.18, 1.0], focus: [.45, .35], note: 'the orange canopy over the skyline, held on the hit, circle on the canopy' });
     U.chute.item = 8;
     var backFrom = 2.2 - (DUR - T.back);
     U.end = CLIP.use('basejump', T.back, DUR + .001, { from: backFrom, speed: 1, zoom: [1.12, 1.0], focus: [.5, .55], note: 'loop: slot 9 grows back into the freefall plate of frame 0' });
@@ -112,15 +113,14 @@
       ev(T.lit[i] + .02, 'pop', .55);
       ev(T.ex[i] - .02, 'swish', .55);
       ev(T.fl[i] - .02, 'zip', .4);
-      ev(T.tk[i], 'slam', i === 8 ? .95 : .6);
-      ev(T.tk[i] + .07, 'ratchet', .5, { t1: T.tk[i] + .22 });
+      ev(T.tk[i], i === 8 ? 'slam' : 'thud', i === 8 ? .95 : .5);
     });
     ev(T.ex[8] + .5, 'whoosh', .55, { d: .9 });   // the wind as she leaves the roof
     ev(T.bj1 - .02, 'rise', .7, { t1: T.ch0 });
-    ev(T.ch0, 'thud', .8);                        // the canopy opens
-    ev(T.tk[8] + .1, 'ding', .9);
-    ev(T.which + .02, 'slam', .55);
-    ev(T.back - .05, 'whoosh', .5); ev(T.back + .12, 'thud', .45);
+    ev(T.ch0, 'slam', 1);                         // the canopy opens
+    ev(T.tk[8] + .06, 'ding', .9);                // 9/9 COMPLETE
+    ev(T.which + .02, 'pop', .55);
+    ev(T.back - .05, 'whoosh', .5); ev(T.back + .3, 'thud', .45);
     EV.sort(function (a, b) { return a.t - b.t; });
   }
 
@@ -154,7 +154,8 @@
           for (var b = 1; b < c.length; b++) { var a1 = c.slice(0, b), a2 = c.slice(b), sc = Math.max(width(a1), width(a2)) + (WEAK[norm(a1[a1.length - 1].w)] ? 120 : 0); if (!best || sc < best.sc) best = { sc: sc, r: [a1, a2] }; }
           c.rows = best.r;
         }
-        c.line = l.id; CHUNKS.push(c);
+        c.line = l.id; if (l.id === 'end' && /\?$/.test(c[c.length - 1].raw)) return;   // WHICH FIRST? on the card says it once
+        CHUNKS.push(c);
       });
     });
     CHUNKS.forEach(function (c, i) { var nx = CHUNKS[i + 1]; c.t0 = c[0].t0 - .05; c.t1 = nx ? Math.min(nx[0].t0 - .08, c[c.length - 1].t1 + .6) : c[c.length - 1].t1 + .4; });
@@ -200,10 +201,10 @@
     g.restore();
   }
   /* the counter: N/9, top right; the new number slams in when a pictogram lands */
-  function doneCount(t) { var n = 0; for (var i = 0; i < 9; i++) if (t >= T.tk[i]) n++; if (t >= T.back) n = Math.max(0, Math.round(9 * (1 - seg(t, T.back, T.back + .22)))); return n; }
+  function doneCount(t) { var n = 0; for (var i = 0; i < 9; i++) if (t >= T.lit[i]) n++; if (t >= T.back) n = Math.max(0, Math.round(9 * (1 - seg(t, T.back, T.back + .22)))); return n; }
   function counter(g, t) {
     var n = doneCount(t), last = -1;
-    for (var i = 0; i < 9; i++) if (t >= T.tk[i] && t < T.back) last = T.tk[i];
+    for (var i = 0; i < 9; i++) if (t >= T.lit[i] && t < T.back) last = T.lit[i];
     var u = last < 0 ? 9 : t - last, sc = u < .14 ? lerp(1.7, 1, eo(u / .14)) : 1 - .1 * knock(u, .14, 1, 26, 7);
     g.save();
     var w9 = K.measure(g, '/9', 72, { wide: false }), wn = K.measure(g, String(n), 96, { wide: false });
@@ -244,14 +245,16 @@
         g.save(); rr(g, -hw + 6 * s, -hw + 10 * s, r[2], r[3], rad); g.fillStyle = 'rgba(0,0,0,.45)'; g.fill(); g.restore();
         rr(g, -hw, -hw, r[2], r[3], rad); g.fillStyle = HOT; g.fill(); g.lineWidth = Math.max(3, 6 * s); g.strokeStyle = INK; g.stroke();
         var lab = 1 - seg(m, .05, .4);
-        g.save(); g.translate(0, -18 * s * lab); pict(g, t, i, r[2] * .0036 * lerp(1, .8, lab)); g.restore();
+        g.save(); g.translate(0, -18 * s * lab); pict(g, t, PI[ITEMS[i].id], r[2] * lerp(.0047, .0029, lab)); g.restore();
         if (lab > 0) { g.save(); g.globalAlpha *= lab; g.translate(0, hw - 34 * s); K.sticker(g, ITEMS[i].label, 0, 0, 30, { fam: '"Geist Mono", monospace', wt: 700, col: INK, wide: false, lw: 0, shadow: false }); g.restore(); }
         /* the tick */
         var tk = eo(seg(t, T.tk[i] + .05, T.tk[i] + .25));
         if (tk > 0) { g.save(); g.lineCap = g.lineJoin = 'round'; g.strokeStyle = CREAM; g.lineWidth = 12 * s; g.beginPath(); g.moveTo(hw - 62 * s, -hw + 40 * s); g.lineTo(hw - 46 * s, -hw + 56 * s); g.lineTo(hw - 18 * s, -hw + 20 * s); g.setLineDash([80 * s * tk, 200]); g.stroke(); g.restore(); }
       } else {
-        rr(g, -hw, -hw, r[2], r[3], rad); g.fillStyle = lit > 0 ? 'rgba(255,79,163,.18)' : 'rgba(251,240,234,.06)'; g.fill();
-        g.setLineDash([18 * s, 12 * s]); g.lineDashOffset = -t * 30; g.lineWidth = Math.max(3, 6 * s); g.strokeStyle = lit > 0 || rip > .3 ? HOT : 'rgba(251,240,234,.4)'; g.stroke(); g.setLineDash([]);
+        g.save(); rr(g, -hw + 5 * s, -hw + 8 * s, r[2], r[3], rad); g.fillStyle = 'rgba(0,0,0,.4)'; g.fill(); g.restore();
+        rr(g, -hw, -hw, r[2], r[3], rad); g.fillStyle = lit > 0 ? '#3a1d4a' : '#221a3f'; g.fill();
+        g.lineWidth = Math.max(3, 6 * s); g.strokeStyle = lit > 0 || rip > .3 || (i === 0 && t > T.count + .45 && Math.sin(t * 14) > 0) ? HOT : INK; g.stroke();
+        g.save(); rr(g, -hw + 14 * s, -hw + 14 * s, r[2] - 28 * s, r[3] - 28 * s, rad * .7); g.lineWidth = Math.max(2, 3 * s); g.strokeStyle = 'rgba(251,240,234,.12)'; g.stroke(); g.restore();
         var nk = lit > 0 ? lerp(1.6, 1, eo(seg(t, T.lit[i], T.lit[i] + .14))) : 1;
         g.save(); g.scale(nk, nk); g.globalAlpha *= lit > 0 ? 1 : .34;
         K.sticker(g, String(i + 1), 0, 6 * s, 150 * s, { col: lit > 0 ? HOT : CREAM, wide: false, lw: lit > 0 ? 14 * s : 0, shadow: lit > 0 });
@@ -262,6 +265,7 @@
   }
 
   /* ---------- our pictograms, drawn in a ±100 box, ink strokes ---------- */
+  var PI = { airboat: 0, hoops: 1, dive: 2, gym: 3, jetski: 4, kayak: 5, race: 6, dirtbike: 7, base: 8 };   // pictogram per item, whatever its slot
   function pict(g, t, i, s) {
     g.save(); g.scale(s, s); g.lineCap = g.lineJoin = 'round'; g.strokeStyle = INK; g.fillStyle = CREAM; g.lineWidth = 11;
     var w = Math.sin(t * 5 + i);
@@ -361,17 +365,17 @@
     if (id === 'airboat') circleOn(g, t, u, r, .48, .7, 190, 140, 3, a0);
     else if (id === 'hoops') { p = track(u, t, [[.3, .38, .25], [.9, .45, .33], [1.9, .47, .35], [2.8, .47, .35]]); circleOn(g, t, u, r, p[0], p[1], 170, 120, 5, a0); }
     else if (id === 'dive') circleOn(g, t, u, r, .48, .62, 150, 200, 7, a0);
-    else if (id === 'gym') circleOn(g, t, u, r, .5, .55, 330, 120, 9, a0);
-    else if (id === 'jetski') { p = track(u, t, [[0, .55, .62], [.6, .48, .62], [1.2, .5, .67], [1.8, .48, .66]]); circleOn(g, t, u, r, p[0], p[1], 220, 120, 11, a0); }
+    else if (id === 'gym') { p = track(u, t, [[.4, .5, .58], [.93, .5, .64], [1.87, .5, .66], [2.8, .5, .58]]); circleOn(g, t, u, r, p[0], p[1], 400, 95, 9, a0); }
+    else if (id === 'jetski') { p = track(u, t, [[0, .55, .62], [.6, .48, .62], [1.2, .5, .67], [1.8, .48, .66]]); var q = CLIP.toScreen(u, t, p[0], p[1], r[0], r[1], r[2], r[3]);
+      g.save(); g.beginPath(); g.rect(X0, r[1], X1 - X0, r[3]); g.clip(); K.arrow(g, X0 + 60, r[1] + 200, clamp(q[0] - 90, X0 + 80, X1 - 60), q[1] - 70, eo(seg(t, a0, a0 + .35)), HOT, 12, -.25); g.restore(); }
     else if (id === 'kayak') {
-      circleOn(g, t, u, r, .52, .75, 170, 140, 13, a0);
       var s0 = CLIP.toScreen(u, t, .5, .58, r[0], r[1], r[2], r[3]), s1 = CLIP.toScreen(u, t, .42, .2, r[0], r[1], r[2], r[3]);
-      g.save(); g.beginPath(); g.rect(X0, r[1], X1 - X0, r[3]); g.clip(); K.arrow(g, s0[0], s0[1], clamp(s1[0], X0 + 40, X1 - 40), s1[1] + 40, eo(seg(t, a0 + .3, a0 + .6)), CREAM, 10, .2); g.restore();
+      g.save(); g.beginPath(); g.rect(X0, r[1], X1 - X0, r[3]); g.clip(); K.arrow(g, s0[0], s0[1], clamp(s1[0], X0 + 40, X1 - 40), s1[1] + 40, eo(seg(t, a0, a0 + .4)), HOT, 12, .2); g.restore();
     }
     else if (id === 'race' || id === 'dirtbike') {
       if (id === 'race') circleOn(g, t, u, r, .55, .6, 200, 130, 15, a0);
       else { p = track(u, t, [[.6, .47, .55], [1.9, .58, .6], [2.9, .53, .6]]); circleOn(g, t, u, r, p[0], p[1], 120, 150, 17, a0); }
-      chipAt(g, 'LAP 1/2', X1, r[1] + r[3] - 170, CREAM, INK, seg(t, a0 - .12, a0), 'right', 44);
+      chipAt(g, 'LAP 1/2', X1, r[1] + r[3] - 170, CREAM, INK, seg(t, u.t0 + .25, u.t0 + .3), 'right', 44);
       g.save(); g.globalAlpha *= seg(t, a0 + .1, a0 + .25); K.arrow(g, X1 - 70, r[1] + r[3] - 130, X1 - 20, r[1] + r[3] - 90, eo(seg(t, a0 + .2, a0 + .45)), CREAM, 9, .3); g.restore();
     }
     else if (id === 'base') { p = track(u, t, [[.45, .42, .57], [.93, .47, .55], [1.2, .5, .42], [1.7, .47, .42]]); circleOn(g, t, u, r, p[0], p[1], 150, 190, 19, a0); }
@@ -400,7 +404,7 @@
       g.save(); g.translate(cx, cy); g.scale(Math.max(.001, fo), 1);
       rr(g, -card[2] / 2, -card[3] / 2, card[2], card[3], lerp(0, 30 * slot[2] / GC, sh)); g.fillStyle = HOT; g.fill(); g.lineWidth = 6; g.strokeStyle = INK; g.stroke();
       var ps = Math.min(card[2], side) * .0036 * lerp(1.15, .8, sh);
-      pict(g, t, i, ps);
+      pict(g, t, PI[ITEMS[i].id], ps);
       g.restore();
     }
   }
@@ -440,7 +444,7 @@
   }
 
   /* ---------- hook frame (frame 0 and the last frame) ---------- */
-  var HOOKPX = 120;
+  var HOOKPX = 120, WPX = 100;
   function hookText(g, t, u) {
     K.slam(g, '9 THINGS TO DO', MID, 255, HOOKPX, u, { col: CREAM, rot: -.03, wide: false, from: .8 });
   }
@@ -452,13 +456,26 @@
       if (k < .05) credit(g, U.tease, r);
     }
   }
+  function stamp(g, s, x, y, px, u, rot) {
+    g.save(); g.translate(x, y); g.rotate(rot); var sc = lerp(1.5, 1, eo(clamp(u / .16, 0, 1))) - .06 * knock(u, .16, 1, 26, 7); g.scale(sc, sc); g.globalAlpha *= clamp(u / .06, 0, 1);
+    var w = K.measure(g, s, px, { wide: false }) + px * .9, h = px * 1.5;
+    g.fillStyle = HOT; rr(g, -w / 2, -h / 2, w, h, px * .22); g.fill(); g.lineWidth = 7; g.strokeStyle = INK; g.stroke();
+    K.sticker(g, s, 0, 3, px, { col: CREAM, wide: false, lw: px * .15 });
+    g.restore();
+  }
   function ending(g, t) {
     /* the source tag, then WHICH FIRST? + comment prompt, held; a pink ring hops slot to slot (every slot, evenly) */
     var out = 1 - seg(t, T.back, T.back + .15);
-    chipAt(g, 'ROCKSTAR · AN EXTENDED LOOK', MID, 1412, CREAM, INK, seg(t, T.tk[8] + .1, T.tk[8] + .25) * out, 'center', 34);
+    chipAt(g, 'ROCKSTAR · AN EXTENDED LOOK', MID, 1426, CREAM, INK, seg(t, T.tk[8], T.tk[8] + .12) * out, 'center', 30);
+    /* 9/9 COMPLETE: slams across the grid on the landing, then settles above it */
+    var cu = t - T.tk[8] - .04;
+    if (cu > 0 && out > 0) {
+      var mv = eio(seg(cu, .55, .9)), cy = lerp(890, 440, mv), cs = lerp(1.45, 1, mv);
+      g.save(); g.globalAlpha *= out; g.translate(MID, cy); g.scale(cs, cs); stamp(g, '9/9 COMPLETE', 0, 0, 58, cu, -.05); g.restore();
+    }
     if (t >= T.which - .05 && out > 0) {
       g.save(); g.globalAlpha *= out;
-      K.slam(g, 'WHICH FIRST?', MID, 1322, 96, t - T.which + .05, { col: HOT, rot: -.03, wide: false, from: .75 });
+      K.slam(g, 'WHICH FIRST?', MID, 1334, WPX, t - T.which + .05, { col: HOT, rot: -.03, wide: false, from: .75 });
       var hop = Math.floor((t - T.which) / .3), j = ((hop % 9) + 9) % 9, gr = gridRect(j);
       if (t > T.which + .2) { g.lineWidth = 10; g.strokeStyle = CREAM; rr(g, gr[0] - 10, gr[1] - 10, gr[2] + 20, gr[3] + 20, 38); g.stroke(); }
       g.restore();
@@ -475,7 +492,7 @@
     var cur = current(t); if (cur >= 0 && t >= T.ex[cur]) itemPlate(g, t, cur);
     if (t >= T.tk[8]) ending(g, t);
     if (t >= T.back) {
-      var k = eio(seg(t, T.back + .05, DUR)), r = lerpR(gridRect(8), TEASE, k);
+      var k = eio(seg(t, T.back + .05, T.back + .35)), r = lerpR(gridRect(8), TEASE, k);
       drawUse(g, t, U.end, r);
       if (k > .95) credit(g, U.end, r);
     }
@@ -484,12 +501,13 @@
     /* hook words: landed on frame 0, leave as item 1 lights; slam back for the loop */
     var ha = 1 - seg(t, T.lit[0] - .25, T.lit[0] - .05);
     if (ha > 0 && t < T.back) { g.save(); g.globalAlpha *= ha; hookText(g, t, t + 1); g.restore(); }
-    if (t >= T.back) hookText(g, t, t - T.back - .05 + (DUR - T.back > .5 ? 0 : 0));
+    if (t >= T.back + .2) hookText(g, t, t - T.back - .2);
     if (t >= T.count - .05 && t < T.lit[0]) { g.save(); g.globalAlpha *= ha; K.popWords(g, ['COUNT', '*ALONG'], MID, 380, 64, t - T.count + .05, { hot: HOT, gap: .14, wide: false }); g.restore(); }
     captions(g, t);
   }
   function render(t, samples, shutter, fps) {
     t = clamp(t, 0, DUR); samples = samples || 1;
+    if (t < .01 || t > DUR - .5) samples = 1;   // frame 0 and the settled loop frames are sharp, so the last frame equals frame 0
     if (samples === 1) { frame(ctx, t); return; }
     var span = (shutter || .5) / (fps || 30);
     for (var k = 0; k < samples; k++) { frame(tctx, clamp(t - span / 2 + span * (k + .5) / samples, 0, DUR)); actx.globalAlpha = k === 0 ? 1 : 1 / (k + 1); actx.drawImage(tmp, 0, 0); }
@@ -507,10 +525,11 @@
       Tx('l' + i, it.label, T.ex[i] + .3, i === 8 ? T.fl[8] - .1 : T.fl[i] - .1);           // the chip on the plate
       if (m < .3 && t >= T.tk[i] && t < T.back) Tx('l' + i, it.label, 0, DUR + 1);       // the label in its slot
     });
-    if (t >= U.race.t0 + .14 && t < U.race.t1 - .05) Tx('lap', 'LAP 1/2', 0, DUR);
-    if (t >= U.dirtbike.t0 + .14 && t < U.dirtbike.t1 - .05) Tx('lap', 'LAP 1/2', 0, DUR);
-    Tx('src', 'ROCKSTAR · AN EXTENDED LOOK', T.tk[8] + .2, T.back + .1);
+    if (t >= U.race.t0 + .26 && t < U.race.t1 - .02) Tx('lap', 'LAP 1/2', 0, DUR);
+    if (t >= U.dirtbike.t0 + .26 && t < U.dirtbike.t1 - .02) Tx('lap', 'LAP 1/2', 0, DUR);
+    Tx('src', 'ROCKSTAR · AN EXTENDED LOOK', T.tk[8] + .06, T.back + .12);
     Tx('which', 'WHICH FIRST?', T.which + .1, T.back + .08);
+    Tx('done', '9/9 COMPLETE', T.tk[8] + .1, T.back + .08);
     return o;
   }
 
@@ -538,6 +557,7 @@
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 84px Archivo', '600 30px "Geist Mono"', '700 30px "Geist Mono"'];
     return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0$–·→'); }))).then(function () {
       initTimes(); buildChunks(ctx);
+      WPX = Math.min(110, Math.floor(110 * 790 / K.measure(ctx, 'WHICH FIRST?', 110, { wide: false })));
       HOOKPX = Math.min(130, Math.floor(130 * 800 / K.measure(ctx, '9 THINGS TO DO', 130, { wide: false })));
       window.FILM.POSTER = .45;
       window.FILM.SHOTS = [{ id: 'hook', name: 'Nine things', t0: 0, t1: T.lit[0] }].concat(ITEMS.map(function (it, i) { return { id: it.id, name: (i + 1) + ' ' + it.label.toLowerCase(), t0: T.lit[i], t1: i < 8 ? T.lit[i + 1] : T.tk[8] }; })).concat([{ id: 'end', name: 'Which first?', t0: T.tk[8], t1: DUR }]);

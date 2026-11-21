@@ -25,7 +25,7 @@
   "score_db": 0,
   "smr_db": 22
  },
- "dur": 30.25,
+ "dur": 29.3,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -39,65 +39,63 @@
    "speed": 1.06
   },
   {
-   "id": "airboat",
-   "at": 3.45,
-   "text": "One: airboat the swamps.",
-   "speed": 1.04
-  },
-  {
-   "id": "hoops",
-   "at": 5.87,
-   "text": "Two: shoot hoops.",
-   "speed": 1.04
-  },
-  {
-   "id": "dive",
-   "at": 8.08,
-   "text": "Three: scuba dive.",
-   "speed": 1.08,
-   "take": 1
-  },
-  {
-   "id": "gym",
-   "at": 10.26,
-   "text": "Four: hit the gym.",
-   "speed": 1.04
-  },
-  {
    "id": "jetski",
-   "at": 12.24,
-   "text": "Five: ride a jet ski.",
-   "speed": 1.04
-  },
-  {
-   "id": "kayak",
-   "at": 14.54,
-   "text": "Six: kayak in front of the skyline.",
-   "speed": 1.04,
-   "take": 0
+   "at": 3.0,
+   "text": "One: ride a jet ski.",
+   "speed": 1.1
   },
   {
    "id": "race",
-   "at": 17.58,
-   "text": "Seven: race on a track.",
-   "speed": 1.04
+   "at": 5.25,
+   "text": "Two: race on a track.",
+   "speed": 1.1
   },
   {
    "id": "dirtbike",
-   "at": 20.0,
-   "text": "Eight: dirt bike races.",
-   "speed": 1.04
+   "at": 7.38,
+   "text": "Three: dirt bike races.",
+   "speed": 1.1
+  },
+  {
+   "id": "airboat",
+   "at": 9.91,
+   "text": "Four: airboat the swamps.",
+   "speed": 1.1
+  },
+  {
+   "id": "kayak",
+   "at": 12.49,
+   "text": "Five: kayak in front of the skyline.",
+   "speed": 1.1
+  },
+  {
+   "id": "gym",
+   "at": 15.45,
+   "text": "Six: hit the gym.",
+   "speed": 1.1
+  },
+  {
+   "id": "hoops",
+   "at": 17.51,
+   "text": "Seven: shoot hoops.",
+   "speed": 1.1
+  },
+  {
+   "id": "dive",
+   "at": 19.57,
+   "text": "Eight: scuba dive.",
+   "speed": 1.1
   },
   {
    "id": "base",
-   "at": 22.71,
-   "text": "Nine: BASE jump off a tower.",
-   "say": "Nine. Base jump off a tower.",
+   "at": 21.86,
+   "text": "Nine: BASE jump. Off a tower.",
+   "say": "Nine. Base jump. Off a tower.",
    "speed": 1.04
   },
   {
    "id": "end",
-   "at": 25.75,
+   "at": 25.55,
    "text": "All from Rockstar's own Extended Look. Which one are you doing first?",
    "speed": 1.06
   }
