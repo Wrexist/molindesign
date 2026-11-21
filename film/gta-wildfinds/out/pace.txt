@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-wildfinds/out/gta-wildfinds-vo.mp4: 32.7 s, 2 hard cuts (0.6/10 s), motion 0-1 s 0.676, 0-3 s 1.635, median 0.909, still frames 3.2 %
+OK    no frozen stretches, opening moves

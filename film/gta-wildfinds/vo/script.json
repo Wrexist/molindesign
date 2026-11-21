@@ -27,7 +27,7 @@
   "db": -6,
   "score_db": 0
  },
- "dur": 30.6,
+ "dur": 32.7,
  "lines": [
   {
    "id": "hook",
@@ -38,68 +38,68 @@
   },
   {
    "id": "list",
-   "at": 2.4,
+   "at": 2.5,
    "text": "That's number one of five GTA 6 secrets.",
    "say": "That's number one, of five G T A six secrets.",
    "speed": 1.04
   },
   {
    "id": "bent",
-   "at": 5.3,
+   "at": 6.05,
    "text": "Five: his car is bent like a banana.",
    "say": "Five. His car is bent like a banana.",
    "speed": 1.04
   },
   {
    "id": "scoliosis",
-   "at": 8.2,
+   "at": 8.6,
    "text": "He calls it scoliosis.",
    "speed": 1.0
   },
   {
    "id": "suit",
-   "at": 9.8,
+   "at": 10.25,
    "text": "Four: a man in a suit gets in your car.",
    "say": "Four. A man in a suit gets in your car.",
    "speed": 1.04
   },
   {
    "id": "drive",
-   "at": 13.3,
+   "at": 13.4,
    "text": "Stay calm and drive. Sounds like Collateral, 2004.",
    "say": "Stay calm, and drive. Sounds like Collateral, two thousand four.",
    "speed": 1.04
   },
   {
    "id": "crab",
-   "at": 16.2,
+   "at": 17.05,
    "text": "Three: a giant crab jumps Jason at home.",
    "say": "Three. A giant crab jumps Jason, at home.",
    "speed": 1.04
   },
   {
    "id": "skunk",
-   "at": 19.1,
+   "at": 20.4,
    "text": "Two: the Skunk Ape, Florida's Bigfoot. Up close.",
    "say": "Two. The Skunk Ape, Florida's Bigfoot. Up close.",
    "speed": 1.04
   },
   {
    "id": "dark",
-   "at": 22.0,
+   "at": 23.95,
    "text": "One: a car on a dark road. Nobody around.",
    "say": "One. A car on a dark road. Nobody around.",
    "speed": 0.98
   },
   {
    "id": "trophy",
-   "at": 25.2,
+   "at": 27.4,
    "text": "Its trophy is called The Truth Is Out There.",
    "speed": 1.02
   },
   {
    "id": "loop",
-   "at": 28.4,
+   "at": 30.25,
    "text": "Walk toward that light, and…",
    "say": "Walk toward that light, and",
    "speed": 0.98

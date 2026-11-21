@@ -142,3 +142,4 @@ Gameplay clips: @typicalgamer (TikTok), @Testyment (X), @nerpah (TikTok), @Lazar
 
 ## Log
 - 2026-11-21: brief, script, 5 creator clips and 8 plates cut and frame-checked by the video-researcher.
+- 2026-11-21 (director): plates re-cut for cross-film clashes (coordinator): p2drive 506.0–510.0 → 510.0–514.0 (gta-busted keeps 505–509); p5van 978.5–982.5 → 600.0–604.0 (a sunny bar terrace; gta-wanted owns 840–1000 s); p6aerial 994.5–998.5 → 676.0–680.0 (rooftop over Vice City). Each range checked with ffmpeg scene detection (no cut inside). Script re-timed (line `at`s moved, dur 32.7 s) so no line overruns its slot; the word "Its" is heard as "It's" by Whisper (homophone, kept). Film built: TREATMENT.md, film.js (beam-drop countdown dial).
