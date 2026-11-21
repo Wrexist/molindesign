@@ -46,11 +46,12 @@
   var VAD = window.VAD || [];
   function silAfter(t) { for (var i = 0; i < VAD.length; i++) if (VAD[i][1] > t + .05) return VAD[i]; return [t + .1, t + .3]; }
   var ITEMS = ['bent', 'suit', 'crab', 'skunk', 'dark'], NUMW = ['five', 'four', 'three', 'two', 'one'];
+  var CL = 1.45, CL1 = 1.4;                       // on-screen seconds per item card, and for the #1 UFO card
   function initTimes() {
     EV.length = 0; CLIP.reset();
     /* hook: the card under the light is already on at frame 0; she is taken (beamed up) at T.taken */
-    T.taken = 1.45; T.search = 1.6;
-    T.l0 = start('list') - .08; T.one = at('list', 'one'); T.of5 = at('list', 'five'); T.secrets = at('list', 'secrets');
+    T.taken = 1.6; T.search = 1.7;
+    T.l0 = start('list') - .08; T.one = at('list', 'one'); T.of5 = at('list', 'five'); T.secrets = at('list', 'finds');
     /* items: the dial slams on the number word, the card drops right after it */
     T.n = ITEMS.map(function (id, i) { return at(id, NUMW[i]) - .04; });
     T.item = ITEMS.map(function (id) { return start(id) - .12; });
@@ -59,33 +60,35 @@
     T.suitIn = at('suit', 'man') - .32;
     T.dr0 = start('drive') - .1; T.sounds = at('drive', 'sounds'); T.coll = at('drive', 'collateral'); T.y04 = at('drive', '2004');
     T.crabIn = at('crab', 'crab') - .32; T.home = at('crab', 'home');
-    T.skIn = at('skunk', 'floridas') - .32; T.skw = at('skunk', 'skunk'); T.flo = at('skunk', 'floridas'); T.close = at('skunk', 'up');
-    T.road = wend('dark', 'one') + .02; T.nobody = at('dark', 'nobody');
+    T.skw = at('skunk', 'skunk'); T.flo = at('skunk', 'floridas'); T.close = at('skunk', 'up');
+    T.skIn = wend('skunk', 'close') + .38 - CL;
+    T.oneIn = at('dark', 'ufo') - .3; T.road = T.oneIn + CL1;   // #1: the real light first, then our map of where
     T.tr0 = start('trophy') - .1; T.called = at('trophy', 'called'); T.tis = at('trophy', 'is'); T.truth = at('trophy', 'truth');
     T.lp0 = start('loop') - .1; T.walk = at('loop', 'walk'); T.light = at('loop', 'light');
     T.back = DUR - .45;                           // the hook frame rebuilds: the last frame is frame 0
-    T.ufoIn = at('loop', 'light') - .1;        // the real light is lowered in on "that light"
+    T.ufoIn = wend('loop', 'light') + .05;       // the real light is lowered in after "that light"
 
-    /* creator clips: each short, annotated, inside our own card; clipkit.py lint holds the share to rule 10 */
-    var CL = 1.62;                                // on-screen budget per item card
-    U.hook = CLIP.use('ufo', 0, T.taken + .2, { from: .95, speed: .5, zoom: [1.2, 1.2], focus: [.58, .4], note: 'hook: Lucia under the light on a dark road, she starts to glow white; the card is beamed up (she is taken)' });
-    U.bent = CLIP.use('bent', T.bentIn, Math.min(T.xray, T.bentIn + 1.75), { speed: .95, freeze: 1.7 / .95, zoom: [1.0, 1.06], focus: [.5, .55], note: 'the bent black muscle car from above, ringed; freeze, then it flips into our X-ray spine' });
-    U.suit = CLIP.use('suit', T.suitIn, T.suitIn + CL + .1, { speed: 1.75 / (CL + .1), zoom: [1.8, 1.86], focus: [.32, .5], note: 'zoomed to the small man in the dark suit; a ring follows him across the street to the silver sedan' });
-    U.crab = CLIP.use('crab', T.crabIn, Math.max(T.crabIn + CL, wend('crab', 'home') + .05), { speed: 1.75 / Math.max(CL, wend('crab', 'home') + .05 - T.crabIn), zoom: [1.0, 1.08], focus: [.5, .4], note: 'the giant crab on top of Jason on his floor, ringed; chip AT HOME, IN HIS CLIP' });
-    U.skunk = CLIP.use('skunk', T.skIn, Math.max(T.skIn + CL, wend('skunk', 'close') + .1), { speed: 1.75 / Math.max(CL, wend('skunk', 'close') + .1 - T.skIn), zoom: [1.0, 1.14], focus: [.3, .5], note: 'exposure lifted: the hairy legs walk past the knocked-down player; chips SKUNK APE, FLORIDA LEGEND' });
+    /* creator clips: each short, annotated, inside our own card; clipkit.py lint holds the share to rule 10 (<= 34 %) */
+    U.hook = CLIP.use('ufo', 0, T.taken + .2, { from: .95, speed: .47, zoom: [1.2, 1.2], focus: [.58, .4], note: 'hook: Lucia under the light on a dark road, she starts to glow white; the card is beamed up (she is taken)' });
+    U.bent = CLIP.use('bent', T.bentIn, T.bentIn + CL, { from: .18, speed: .75, freeze: 1.0, zoom: [1.0, 1.0], focus: [.5, .55], note: 'the bent black muscle car from above; freeze on the most kinked frame, coral curve along its bent side against a straight dashed line' });
+    U.suit = CLIP.use('suit', T.suitIn, T.suitIn + CL, { speed: 1.75 / CL, zoom: [2.2, 2.2], focus: [.15, .72], note: 'zoomed 2.2x and following the man in the dark suit across the street to the silver sedan; ring on him' });
+    U.crab = CLIP.use('crab', T.crabIn, T.crabIn + CL, { speed: 1.75 / CL, zoom: [1.0, 1.08], focus: [.5, .4], note: 'the giant crab on top of Jason on his floor, ringed; chip IN HIS CLIP' });
+    U.skunk = CLIP.use('skunk', T.skIn, T.skIn + CL, { speed: 1.75 / CL, zoom: [1.0, 1.14], focus: [.3, .5], note: 'exposure lifted: the hairy legs walk past the knocked-down player; chips SKUNK APE, FLORIDA LEGEND, a height bar beside it' });
+    U.one = CLIP.use('ufo', T.oneIn, T.road, { from: 1.0, speed: .77 / CL1, zoom: [1.12, 1.3], focus: [.6, .45], note: '#1 proof: the player engulfed in white light on the dark road; the beam widens to a white-out' });
     var lp = DUR - T.ufoIn;
     U.loop = CLIP.use('ufo', T.ufoIn, DUR, { from: .95 - lp * .5, speed: .5, zoom: [1.2, 1.2], focus: [.58, .4], note: 'loop: she looks up at the light and starts to glow; the beam widens into the hook frame' });
 
-    /* background plates (rule 11): real GTA 6 gameplay from An Extended Look, dimmed, always under our cards */
-    function plate(name, t0, t1, from, len) { return CLIP.use(name, t0, t1, { plate: true, from: from || 0, speed: Math.min(1, (len - (from || 0) - .05) / (t1 - t0)), zoom: [1.12, 1.2], focus: [.5, .5] }); }
+    /* background plates (rule 11): real GTA 6 gameplay from An Extended Look, dimmed, always under our cards.
+       All-ours stretches: the X-ray (after the bent card), the Collateral card and the #1 map. */
+    function plate(name, t0, t1, from, len, dim) { var u = CLIP.use(name, t0, t1, { plate: true, from: from || 0, speed: Math.min(1, (len - (from || 0) - .05) / (t1 - t0)), zoom: [1.12, 1.2], focus: [.5, .5] }); u.dim = dim || .58; return u; }
     P.night = plate('p7night', 0, T.l0, 0, 2.0);
-    P.palms = plate('p4palms', T.l0, T.item[0], 0, 4.0);
-    P.drive = plate('p2drive', T.item[0], T.item[1], 0, 4.0);
-    P.van = plate('p5van', T.item[1], T.dr0, 0, 4.0);
-    P.aerial = plate('p6aerial', T.dr0, T.sounds - .05, 0, 4.0);
+    P.palms = plate('p4palms', T.l0, T.item[0], 0, 4.0, .66);
+    P.drive = plate('p2drive', T.item[0], U.bent.t1 + .1, 0, 4.0);
+    P.van = plate('p5van', T.item[1], T.dr0, 0, 4.0, .68);
     P.coast = plate('p3coast', T.item[2], T.item[3], 0, 4.0);
     P.wild = plate('p1wild', T.item[3], T.item[4], 0, 2.85);
-    P.night2 = plate('p7night', T.item[4], T.tr0, 2.05, 4.0);
+    P.night2 = plate('p7night', T.item[4], T.road, 2.05, 4.0);
+    P.aerial = plate('p6aerial', T.tr0 - .1, T.ufoIn, 0, 4.0);
     P.sky = plate('p8skyline', T.ufoIn, DUR - .05, 0, 3.1);
 
     /* sound: hits sit in the voice's silences or on the landing */
@@ -93,16 +96,17 @@
     ev(T.taken - .05, 'whoosh', .5);
     ev(T.one + .02, 'slam', .55); ev(T.of5 + .05, 'pop', .4);
     T.n.forEach(function (n, i) { ev(n + .02, 'slam', .65); ev(n + .1, 'tick', .4); });
-    [T.bentIn, T.suitIn, T.crabIn, T.skIn, T.road - .1].forEach(function (d) { ev(d, 'whoosh', .45); ev(d + .36, 'thud', .5); });
+    [T.bentIn, T.suitIn, T.crabIn, T.skIn, T.oneIn].forEach(function (d) { ev(d, 'whoosh', .45); ev(d + .36, 'thud', .5); });
     [U.bent.t1, U.suit.t1, U.crab.t1, U.skunk.t1].forEach(function (e) { ev(e - .38, 'swish', .35); });
     ev(T.banana + .05, 'boing', .35);
     ev(U.bent.t0 + U.bent.freeze, 'shutter', .45);
-    ev(T.xray + .02, 'zip', .4);
+    ev(U.bent.t1 + .02, 'zip', .4);
     ev(T.dr0 + .08, 'key', .35);
     ev(T.y04 + .02, 'slam', .5);
     ev(T.home + .05, 'pop', .4);
     ev(T.close, 'thud', .35);
     ev(T.truth - .05, 'ding', .5);
+    ev(T.road - .45, 'rise', .4, { t1: T.road - .05 }); ev(T.road - .03, 'slam', .6); ev(T.road + .05, 'shutter', .35);
     ev(T.ufoIn, 'rise', .35, { t1: T.back });
     ev(T.back + .05, 'whoosh', .4);
     EV.sort(function (a, b) { return a.t - b.t; });
@@ -145,14 +149,14 @@
         c.line = l.id; CHUNKS.push(c);
       });
     });
-    CHUNKS.forEach(function (c, i) { var nx = CHUNKS[i + 1]; c.t0 = c[0].t0 - .05; c.t1 = nx ? Math.min(nx[0].t0 - .08, c[c.length - 1].t1 + .6) : c[c.length - 1].t1 + .4; });
+    CHUNKS.forEach(function (c, i) { var nx = CHUNKS[i + 1]; c.t0 = c[0].t0 - .05; c.t1 = nx ? Math.min(nx[0].t0 - .1, c[c.length - 1].t1 + .4) : c[c.length - 1].t1 + .4; });
   }
   function captions(g, t) {
     if (t > T.back - .05) return;
     for (var i = 0; i < CHUNKS.length; i++) {
       var c = CHUNKS[i]; if (t < c.t0 || t >= c.t1) continue;
       var k = eo(seg(t, c.t0, c.t0 + .12)), gap = CPX * .3, n = c.rows.length;
-      g.save(); g.globalAlpha *= k * (1 - seg(t, c.t1 - .07, c.t1));
+      g.save(); g.globalAlpha *= k * (1 - seg(t, c.t1 - .1, c.t1));
       c.rows.forEach(function (row, r) {
         var ws = row.map(function (w) { return K.measure(g, w.w, CPX, { wide: false }); });
         var tw = ws.reduce(function (a, b) { return a + b; }, 0) + gap * (row.length - 1), x = MID - tw / 2, s = Math.min(1, 830 / tw);
@@ -184,7 +188,7 @@
     sky(g, t);
     var a = seg(t, .05, .45) * (1 - seg(t, T.back - .1, DUR - .05));
     if (a > 0) {
-      g.save(); g.globalAlpha = a; CLIP.plate(g, t, 0, 0, W, H, { dim: .5 }); g.restore();
+      var pu = CLIP.activePlate(t); g.save(); g.globalAlpha = a; CLIP.plate(g, t, 0, 0, W, H, { dim: pu && pu.dim ? pu.dim : .58 }); g.restore();
       g.save(); g.globalAlpha = .22 * a; g.fillStyle = BG; g.fillRect(0, 0, W, H); g.restore();
     }
   }
@@ -266,7 +270,7 @@
     var i = -1; for (var k = 0; k < 5; k++) if (t >= T.n[k] - .02) i = k;
     if (i < 0 || t > T.back - .05) return;
     var n0 = T.n[i], nxt = i < 4 ? T.n[i + 1] - .02 : T.back - .05;
-    var dIn = [T.bentIn, T.suitIn, T.crabIn, T.skw - .1, T.road - .1][i];
+    var dIn = [T.bentIn, T.suitIn, T.crabIn, T.skw - .1, T.oneIn][i];
     var u = t - n0, k = eo(clamp(u / .14, 0, 1)), down = 1 - eio(seg(t, nxt - .14, nxt));
     var go = eio(seg(t, dIn - .12, dIn + .3));
     var x = lerp(540, DIALC[0], go), y = lerp(860, DIALC[1], go), r = lerp(210, DIALC[2], go);
@@ -319,18 +323,53 @@
       dialShape(g, t, 0, 0, 210, 1, 5, osc(t, 7) * .03 + (1 - k), MINT);
       g.restore();
     }
+    chipAt(g, 'GTA 6 SECRETS', MID, 1250, COR, INK, seg(t, T.secrets - .05, T.secrets + .1) * gone, 'center', 44);
+  }
+  /* the menu: five small drawn icons (banana car, suit, claw, footprint, saucer); big in a row on "five", then a strip
+     along the bottom where the current one is ringed and the passed ones go out one by one */
+  function icon(g, t, i, x, y, s) {
+    g.save(); g.translate(x, y); g.scale(s, s); g.lineJoin = g.lineCap = 'round'; g.lineWidth = 6; g.strokeStyle = INK;
+    g.beginPath(); g.arc(0, 0, 62, 0, TAU); g.fillStyle = CREAM; g.fill(); g.stroke();
+    if (i === 0) {        /* a banana-bent car */
+      g.beginPath(); g.moveTo(-44, 10); g.quadraticCurveTo(0, -30, 44, 10); g.lineTo(44, 24); g.quadraticCurveTo(0, -12, -44, 24); g.closePath(); g.fillStyle = '#2b2b33'; g.fill(); g.stroke();
+      g.fillStyle = YEL; g.beginPath(); g.arc(-26, 30, 9, 0, TAU); g.arc(26, 30, 9, 0, TAU); g.fill();
+    } else if (i === 1) { /* a suit and tie */
+      g.beginPath(); g.moveTo(-40, 48); g.lineTo(-34, -20); g.quadraticCurveTo(0, -40, 34, -20); g.lineTo(40, 48); g.closePath(); g.fillStyle = '#20232c'; g.fill(); g.stroke();
+      g.fillStyle = CREAM; g.beginPath(); g.moveTo(-12, -30); g.lineTo(0, 6); g.lineTo(12, -30); g.closePath(); g.fill();
+      g.fillStyle = COR; g.beginPath(); g.moveTo(-5, -22); g.lineTo(5, -22); g.lineTo(3, 18); g.lineTo(-3, 18); g.closePath(); g.fill();
+    } else if (i === 2) { /* a crab claw */
+      g.save(); g.rotate(-.3 + Math.sin(t * 6) * .12); g.fillStyle = '#d9533c';
+      g.beginPath(); g.moveTo(-10, 40); g.quadraticCurveTo(-30, -10, 0, -40); g.lineTo(8, -12); g.quadraticCurveTo(26, -34, 34, -22); g.quadraticCurveTo(28, 10, 10, 40); g.closePath(); g.fill(); g.stroke(); g.restore();
+    } else if (i === 3) { /* a footprint */
+      g.fillStyle = '#6b4a33'; g.beginPath(); g.ellipse(0, 10, 20, 32, 0, 0, TAU); g.fill(); g.stroke();
+      for (var k = 0; k < 4; k++) { g.beginPath(); g.arc(-15 + k * 10, -30 - (k === 0 ? 0 : 3), 6, 0, TAU); g.fill(); }
+    } else {              /* a saucer with its beam */
+      g.fillStyle = 'rgba(255,236,214,.9)'; g.beginPath(); g.moveTo(-10, 4); g.lineTo(10, 4); g.lineTo(28, 46); g.lineTo(-28, 46); g.closePath(); g.fill();
+      g.fillStyle = MINT; g.beginPath(); g.ellipse(0, -14, 20, 16, 0, Math.PI, TAU); g.fill(); g.stroke();
+      g.fillStyle = '#8d93a3'; g.beginPath(); g.ellipse(0, -6, 44, 13, 0, 0, TAU); g.fill(); g.stroke();
+    }
+    g.restore();
+  }
+  function menu(g, t) {
+    if (t < T.of5 || t > T.back - .05) return;
+    var dock = eio(seg(t, T.n[0] - .25, T.n[0] + .15)), cur = -1;
+    for (var k = 0; k < 5; k++) if (t >= T.n[k] - .02) cur = k;
     for (var i = 0; i < 5; i++) {
-      var ui = t - (T.of5 + .04 + i * .07); if (ui < 0) continue;
-      var kk = eo(clamp(ui / .14, 0, 1)), cx = 190 + i * 175, cy = 1080 + Math.sin(t * 3 + i) * 5;
-      g.save(); g.globalAlpha *= gone * clamp(ui / .05, 0, 1); g.translate(lerp(cx, 540, 1 - gone), cy); g.scale(lerp(1.5, 1, kk), lerp(1.5, 1, kk));
-      dialShape(g, t, 0, 0, 70, 5 - i, 5 - i, 0, i === 4 ? MINT : COR);
+      var ui = t - (T.of5 + .04 + i * .08); if (ui < 0) continue;
+      var kk = eo(clamp(ui / .14, 0, 1));
+      var x = lerp(150 + i * 195, 400 + i * 96, dock), y = lerp(1080, 1405, dock) + Math.sin(t * 3 + i) * 4 * (1 - dock);
+      var s = lerp(1.25, .62, dock) * lerp(1.5, 1, kk), done = i < cur ? 1 - .7 * seg(t, T.n[i + 1] - .05, T.n[i + 1] + .2) : 1;
+      if (i === cur) s *= 1 + .18 * eo(seg(t, T.n[i], T.n[i] + .2)) - .1 * knock(t, T.n[i] + .05, 1, 24, 8);
+      g.save(); g.globalAlpha *= clamp(ui / .05, 0, 1) * (1 - seg(t, T.back - .3, T.back - .05)) * done;
+      if (i === cur) { g.beginPath(); g.arc(x, y, 62 * s + 10, 0, TAU); g.lineWidth = 8; g.strokeStyle = i === 4 ? MINT : COR; g.stroke(); }
+      icon(g, t, i, x, y, s);
       g.restore();
     }
-    chipAt(g, 'GTA 6 SECRETS', MID, 1250, COR, INK, seg(t, T.secrets - .05, T.secrets + .1) * gone, 'center', 44);
   }
 
   /* ---------- #5 the bent car ---------- */
-  var LBENT = { x: 520, y: 820, w: 820, h: 700, r: -.03 };
+  var LBENT = { x: 540, y: 840, w: 1000, h: 830, r: -.02 };
+  var BENDK = [[.40, .22], [.385, .33], [.41, .47], [.37, .58], [.31, .70], [.30, .82], [.31, .92]];
   function banana(g, t, x, y, s, k) {
     if (k <= 0) return;
     g.save(); g.translate(x + (1 - k) * 300, y); g.rotate(-.35 + osc(t, 9) * .06 + (1 - k) * .8); g.scale(s, s);
@@ -342,18 +381,25 @@
   }
   function beatBent(g, t) {
     clipCard(g, t, U.bent, LBENT, T.bentIn, U.bent.t1 + .02, function (g2) {
-      var p = cpt(U.bent, t, LBENT, .55, .52);
-      K.scribble(g2, p[0], p[1], 250, 300, eo(seg(t, T.bentIn + .45, T.bentIn + .9)), COR, 12, 5);
+      var fz = U.bent.t0 + U.bent.freeze; if (t < fz + .05) return;
+      var k = eo(seg(t, fz + .05, fz + .35));
+      /* what a straight car would be (dashed) against its real side, which kinks */
+      var a = cpt(U.bent, t, LBENT, BENDK[0][0], BENDK[0][1]), b = cpt(U.bent, t, LBENT, BENDK[6][0], BENDK[6][1]);
+      g2.save(); g2.setLineDash([22, 16]); g2.lineWidth = 7; g2.strokeStyle = CREAM; g2.globalAlpha *= k; g2.beginPath(); g2.moveTo(a[0], a[1]); g2.lineTo(b[0], b[1]); g2.stroke(); g2.restore();
+      g2.save(); g2.lineWidth = 13; g2.strokeStyle = COR; g2.lineCap = g2.lineJoin = 'round'; g2.beginPath();
+      var n = 1 + Math.floor(k * 5.99);
+      for (var i = 0; i <= n; i++) { var p = cpt(U.bent, t, LBENT, BENDK[i][0], BENDK[i][1]); if (i) g2.lineTo(p[0], p[1]); else g2.moveTo(p[0], p[1]); }
+      g2.stroke(); g2.restore();
     });
-    chipAt(g, 'IN HIS CLIP', X0, 1225, COR, INK, seg(t, T.bentIn + .4, T.bentIn + .55) * (1 - seg(t, T.xray + .4, T.xray + .55)));
-    banana(g, t, 735, 1360, .85, eo(seg(t, T.banana - .05, T.banana + .3)) * (1 - seg(t, T.suitIn - .1, T.suitIn + .1)));
+    chipAt(g, 'IN HIS CLIP', X0, 1315, COR, INK, seg(t, T.bentIn + .4, T.bentIn + .55) * (1 - seg(t, T.xray + .5, T.xray + .65)));
+    banana(g, t, 790, 1290, .72, eo(seg(t, T.banana - .05, T.banana + .3)) * (1 - seg(t, T.suitIn - .1, T.suitIn + .1)));
     if (t >= U.bent.t1 - .05) xray(g, t);
   }
   /* "He calls it scoliosis": our X-ray of the bent car, a spine drawn on along its bend */
   function xray(g, t) {
     var k = eo(seg(t, U.bent.t1 - .05, U.bent.t1 + .25)), out = 1 - eio(seg(t, T.suitIn - .1, T.suitIn + .2));
     if (out <= 0) return;
-    g.save(); g.translate(LBENT.x, LBENT.y); g.rotate(LBENT.r); g.scale(k * out, 1 * out);
+    g.save(); g.translate(LBENT.x, LBENT.y - 20); g.rotate(LBENT.r); g.scale(k * out, 1 * out);
     cardFrame(g, 0, 0, 760, 640, XRAY);
     g.save(); rr(g, -380, -320, 760, 640, 20); g.clip();
     g.strokeStyle = 'rgba(170,220,255,.12)'; g.lineWidth = 2;
@@ -375,7 +421,7 @@
     }
     g.restore();
     g.restore();
-    chipAt(g, 'HE SAYS', X1, 1225, CREAM, INK, seg(t, T.xray, T.xray + .15) * out, 'right');
+    chipAt(g, 'HE SAYS', X1, 1315, CREAM, INK, seg(t, T.xray, T.xray + .15) * out, 'right');
   }
 
   /* ---------- #4 the man in the suit ---------- */
@@ -406,9 +452,10 @@
     g.restore();
   }
   function beatSuit(g, t) {
+    var fm = track(U.suit, t, SUITK); U.suit.focus = [fm[0] + .06, fm[1] - .08];   // the 2.2x window follows him
     clipCard(g, t, U.suit, LSUIT, T.suitIn, U.suit.t1, function (g2) {
       var m = track(U.suit, t, SUITK), p = cpt(U.suit, t, LSUIT, m[0], m[1] - .06);
-      K.scribble(g2, p[0], p[1], 110, 170, eo(seg(t, T.suitIn + .4, T.suitIn + .8)), COR, 11, 8);
+      K.scribble(g2, p[0], p[1], 150, 250, eo(seg(t, T.suitIn + .4, T.suitIn + .8)), COR, 12, 8);
     });
     chipAt(g, 'IN HIS CLIP', X1, 1225, COR, INK, seg(t, T.suitIn + .38, T.suitIn + .53) * (1 - seg(t, T.dr0 + .3, T.dr0 + .45)), 'right');
     /* after the card: our drawing of him getting in */
@@ -470,7 +517,7 @@
   }
 
   /* ---------- #2 the Skunk Ape ---------- */
-  var LSK = { x: 560, y: 810, w: 800, h: 720, r: .03 };
+  var LSK = { x: 570, y: 790, w: 800, h: 720, r: .03 };
   function footprint(g, t, x, y, k, big) {
     if (k <= 0) return;
     g.save(); g.translate(x, y); g.rotate(.2); g.scale(lerp(1.4, 1, eo(k)) * (big || 1), lerp(1.4, 1, eo(k)) * (big || 1)); g.globalAlpha *= clamp(k * 4, 0, 1);
@@ -479,32 +526,61 @@
     for (var i = 0; i < 5; i++) { g.beginPath(); g.ellipse(-44 + i * 22, -88 - (i === 0 ? 0 : 8 - Math.abs(i - 2) * 3), 12, 16, 0, 0, TAU); g.fill(); g.stroke(); }
     g.restore();
   }
+  /* how big? a drawn Jason beside a drawn hairy shape, no number (nobody measured it) */
+  function heights(g, t, x, y, k) {
+    if (k <= 0) return;
+    g.save(); g.translate(x, y); g.scale(.8, .8); g.globalAlpha *= clamp(k * 2, 0, 1); g.lineJoin = g.lineCap = 'round';
+    g.fillStyle = 'rgba(12,17,36,.75)'; rr(g, -110, -280, 260, 300, 22); g.fill();
+    g.strokeStyle = CREAM; g.lineWidth = 4; g.beginPath(); g.moveTo(-90, 0); g.lineTo(130, 0); g.stroke();
+    /* Jason */
+    g.fillStyle = CREAM; g.beginPath(); g.arc(-45, -128, 16, 0, TAU); g.fill(); rr(g, -62, -108, 34, 66, 10); g.fill(); g.fillRect(-60, -46, 12, 46); g.fillRect(-42, -46, 12, 46);
+    /* the ape, rising to its height */
+    var h = 240 * eo(k);
+    g.fillStyle = '#6b4a33'; g.strokeStyle = INK; g.lineWidth = 4;
+    g.beginPath(); g.moveTo(10, 0); g.lineTo(18, -h * .5); g.quadraticCurveTo(14, -h * .82, 50, -h * .9); g.arc(62, -h * .9, 22, Math.PI, TAU); g.quadraticCurveTo(110, -h * .82, 106, -h * .5); g.lineTo(114, 0); g.closePath(); g.fill(); g.stroke();
+    /* the coral height bar with a question mark */
+    g.strokeStyle = COR; g.lineWidth = 8; g.beginPath(); g.moveTo(-82, 0); g.lineTo(-82, -h); g.moveTo(-96, -h); g.lineTo(-68, -h); g.stroke();
+    K.sticker(g, '?', -82, -h - 32, 46, { col: COR, ink: INK, wide: false, lw: 8 });
+    g.restore();
+  }
   function beatSkunk(g, t) {
     LSK.push = function (tt) { return .1 * eio(seg(tt, T.close - .05, T.close + .4)); };
     clipCard(g, t, U.skunk, LSK, T.skIn, U.skunk.t1, function (g2) {
       var p = cpt(U.skunk, t, LSK, .2, .45);
       K.scribble(g2, p[0], p[1], 190, 300, eo(seg(t, T.skIn + .42, T.skIn + .85)), COR, 12, 9);
-    }, 'brightness(1.45) contrast(1.08) saturate(1.1)');
+    }, 'brightness(1.8) contrast(1.08) saturate(1.1)');
     var out = 1 - seg(t, T.n[4] + .4, T.n[4] + .55);
-    chipAt(g, 'SKUNK APE', X1, 1225, COR, INK, seg(t, T.skw + .1, T.skw + .25) * out, 'right');
-    chipAt(g, 'FLORIDA LEGEND', X1, 1320, CREAM, INK, seg(t, T.flo - .02, T.flo + .13) * out, 'right');
+    chipAt(g, 'SKUNK APE', X1, 1240, COR, INK, seg(t, T.skw + .1, T.skw + .25) * out, 'right');
+    chipAt(g, 'FLORIDA LEGEND', X1, 1330, CREAM, INK, seg(t, T.flo - .02, T.flo + .13) * out, 'right');
     footprint(g, t, 540, 900, seg(t, T.skw - .05, T.skw + .25) * (1 - seg(t, T.skIn + .3, T.skIn + .4)), 1.7);
-    footprint(g, t, 260, 1270, seg(t, U.skunk.t1 - .15, U.skunk.t1 + .15) * out, 1);
+    heights(g, t, 190, 1400, eo(seg(t, T.skIn + .45, T.skIn + .8)) * out);
   }
 
   /* ---------- #1 a car on a dark road: the dip ---------- */
   var LROAD = { x: 540, y: 820, w: 820, h: 640, r: 0 };
+  var LONE = { x: 540, y: 790, w: 800, h: 780, r: 0 };
   function beatDark(g, t) {
-    var a = seg(t, T.road + .28, T.road + .43) * (1 - seg(t, T.tr0 + .3, T.tr0 + .45));
-    chipAt(g, 'KELLY COUNTY · AFTER 2 AM', MID, 1225, COR, INK, a, 'center');
-    chipAt(g, 'PER GUIDES', MID, 1320, CREAM, INK, a, 'center', 34);
-    chipAt(g, 'OUR DRAWING', X1, 1395, CREAM, INK, a, 'right', 32);
-    var d = drop(t, T.road - .1, T.tr0 + .05); if (!d.on) return;
-    beam(g, t, LROAD.x, LROAD.y - LROAD.h / 2 + d.oy + 40, 180, LROAD.w + 140, d.beam);
-    g.save(); g.translate(LROAD.x, LROAD.y + d.oy); g.scale(1 + .03 * knock(t, d.land, 1, 24, 8), 1 + .03 * knock(t, d.land, 1, 24, 8));
+    var a = seg(t, T.n[4] + .45, T.n[4] + .6) * (1 - seg(t, T.tr0 + .3, T.tr0 + .45));
+    chipAt(g, 'KELLY COUNTY · AFTER 2 AM', MID, 1250, COR, INK, a, 'center');
+    chipAt(g, 'PER GUIDES', MID, 1330, CREAM, INK, a, 'center', 34);
+    /* the real proof: she is engulfed, our beam widens to a white-out */
+    if (t < T.road + .05) {
+      LONE.push = function (tt) { return .12 * eio(seg(tt, T.road - .6, T.road)); };
+      clipCard(g, t, U.one, LONE, T.oneIn, T.road + 2, function (g2) {
+        var w = seg(t, T.road - .55, T.road - .02);
+        g2.fillStyle = 'rgba(255,248,236,' + (w * w * .95) + ')'; g2.fillRect(-LONE.w / 2, -LONE.h / 2, LONE.w, LONE.h);
+      });
+      var bw = seg(t, T.road - .6, T.road);
+      beam(g, t, LONE.x, H + 40, 300, lerp(900, 1600, bw), bw * .9);
+    }
+    K.flash(g, W, H, t - T.road, .9);
+    if (t < T.road) return;
+    /* then where: our map card, quick */
+    var kk = cd(t, T.road, 12), out = 1 - eio(seg(t, T.tr0 - .05, T.tr0 + .25));
+    if (out <= 0) return;
+    g.save(); g.translate(LROAD.x, LROAD.y); var sc = lerp(1.15, 1, kk) * out; g.scale(sc, sc); g.globalAlpha *= clamp(kk * 2, 0, 1);
     cardFrame(g, 0, 0, LROAD.w, LROAD.h, '#0b1230');
     g.save(); rr(g, -LROAD.w / 2, -LROAD.h / 2, LROAD.w, LROAD.h, 20); g.clip();
-    /* our road: trees, the moon, a pole, the road running to the horizon, the parked car with its hazards on */
     g.fillStyle = '#e9e4d2'; g.beginPath(); g.arc(250, -230, 34, 0, TAU); g.fill();
     g.fillStyle = '#0f1a2c'; g.beginPath(); g.moveTo(-410, -20);
     for (var i = 0; i <= 16; i++) g.lineTo(-410 + i * 52, -60 - 50 * hash(i + 4) - (i % 3) * 18);
@@ -514,22 +590,17 @@
     var mv = (t - T.road) * .35;
     g.fillStyle = 'rgba(255,210,63,.75)';
     for (var m = 0; m < 6; m++) { var v = ((m / 6 + mv) % 1), yy = -20 + v * v * 340, ww = 4 + v * 16; g.fillRect(-ww / 2, yy, ww, 8 + v * 40); }
-    g.strokeStyle = '#05070f'; g.lineWidth = 8; g.beginPath(); g.moveTo(-250, -240); g.lineTo(-250, 60); g.stroke(); g.beginPath(); g.moveTo(-290, -210); g.lineTo(-210, -210); g.stroke();
-    /* the car, from behind */
+    /* the parked car with its lights on, and the beam coming down on the road ahead of it */
     g.save(); g.translate(60, 90);
     g.fillStyle = '#7a1f22'; g.strokeStyle = INK; g.lineWidth = 6; rr(g, -150, -60, 300, 110, 22); g.fill(); g.stroke();
     g.beginPath(); g.moveTo(-110, -60); g.lineTo(-80, -120); g.lineTo(80, -120); g.lineTo(110, -60); g.closePath(); g.fill(); g.stroke();
-    g.fillStyle = '#1a2238'; g.beginPath(); g.moveTo(-92, -66); g.lineTo(-72, -110); g.lineTo(72, -110); g.lineTo(92, -66); g.closePath(); g.fill();
     var blink = Math.sin((t - T.road) * TAU * 1.6) > 0 ? 1 : .15;
-    [-120, 120].forEach(function (lx) {
-      g.fillStyle = 'rgba(255,106,77,' + blink + ')'; rr(g, lx - 22, -40, 44, 24, 6); g.fill();
-      if (blink > .5) { var gl = g.createRadialGradient(lx, -28, 4, lx, -28, 110); gl.addColorStop(0, 'rgba(255,106,77,.6)'); gl.addColorStop(1, 'rgba(255,106,77,0)'); g.fillStyle = gl; g.fillRect(lx - 110, -138, 220, 220); }
-    });
-    g.fillStyle = INK; [-110, 110].forEach(function (wx) { g.fillRect(wx - 26, 50, 52, 30); });
+    [-120, 120].forEach(function (lx) { g.fillStyle = 'rgba(255,106,77,' + blink + ')'; rr(g, lx - 22, -40, 44, 24, 6); g.fill(); });
+    g.restore();
+    beam(g, t, -120, 60, 60, 220, .8);
+    g.fillStyle = MINT; g.beginPath(); g.ellipse(-120, -250, 70, 18, 0, 0, TAU); g.fill(); g.beginPath(); g.ellipse(-120, -262, 30, 22, 0, Math.PI, TAU); g.fill();
     g.restore();
     g.restore();
-    g.restore();
-    if (t > T.nobody - .05 && t < T.tr0 + .05) K.emote(g, 'dots', 760, 640 + d.oy, 1.3, t - T.nobody + .05, t);
   }
 
   /* ---------- the trophy: all ours ---------- */
@@ -595,6 +666,7 @@
     if (t >= T.n[4] - .1 && t < T.tr0 + .5) beatDark(g, t);
     if (t >= T.tr0 - .1 && t < T.ufoIn + .2) beatTrophy(g, t);
     if (t >= T.lp0) beatLoop(g, t);
+    menu(g, t);
     dial(g, t);
     pill(g, t);
     captions(g, t);
@@ -614,7 +686,7 @@
     Tx('pill', 'GTA 6', 0, DUR + 1);
     Tx('hook', 'ALIENS TAKE YOU?', 0, T.l0 - .1); Tx('hook', 'ALIENS TAKE YOU?', T.back + .1, DUR + 1);
     Tx('search', 'GTA 6 SECRETS', T.search + .1, T.n[0] - .1);
-    Tx('clip5', 'IN HIS CLIP', T.bentIn + .5, T.xray + .45);
+    Tx('clip5', 'IN HIS CLIP', T.bentIn + .5, T.xray + .55);
     Tx('scol', 'HE SAYS', T.xray + .1, T.suitIn);
     Tx('clip4', 'IN HIS CLIP', T.suitIn + .48, T.dr0 + .35);
     Tx('quote', 'STAY CALM. AND DRIVE.', T.dr0 + .3, T.n[2] - .3);
@@ -623,9 +695,8 @@
     Tx('clip3', 'IN HIS CLIP', T.crabIn + .48, T.n[3] + .35);
     Tx('skunk', 'SKUNK APE', T.skw + .2, T.n[4] + .45);
     Tx('flo', 'FLORIDA LEGEND', T.flo + .08, T.n[4] + .45);
-    Tx('kelly', 'KELLY COUNTY · AFTER 2 AM', T.road + .38, T.tr0 + .35);
-    Tx('guides', 'PER GUIDES', T.road + .38, T.tr0 + .35);
-    Tx('draw1', 'OUR DRAWING', T.road + .38, T.tr0 + .35);
+    Tx('kelly', 'KELLY COUNTY · AFTER 2 AM', T.n[4] + .55, T.tr0 + .35);
+    Tx('guides', 'PER GUIDES', T.n[4] + .55, T.tr0 + .35);
     Tx('plaque', 'THE TRUTH IS OUT THERE', T.tis + .05, T.ufoIn - .05);
     Tx('tname', 'TROPHY NAME · PER GUIDES', T.tr0 + .6, T.ufoIn - .05);
     return o;

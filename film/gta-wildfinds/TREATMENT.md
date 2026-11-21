@@ -26,7 +26,7 @@ Frame 0: the night plate (dimmed real GTA 6 night road), a giant coral beam cone
 | drive "Stay calm and drive. Sounds like Collateral, 2004." | quote card STAY CALM. AND DRIVE. (IN-GAME LINE · HIS CLIP) on p6aerial; taxi-yellow stripe card 2004 · COLLATERAL slams |
 | crab "Three: a giant crab jumps Jason at home." | dial 3; `crab` card, ring on the claw; chip AT HOME · IN HIS CLIP; p3coast plate |
 | skunk "Two: the Skunk Ape, Florida's Bigfoot. Up close." | dial 2; `skunk` card lifted exposure; height bar next to the legs; chips SKUNK APE and FLORIDA LEGEND; p1wild plate |
-| dark "One: a car on a dark road. Nobody around." | dial 1; p7night (second half); our drawn empty road, a parked car with coral hazard blinks, nothing else (the dip) |
+| dark "One: a UFO, on a dark road." | dial 1; the real engulf clip in the beam, whiting out (r2), then our 1.2 s map: the road, the parked car, a saucer and its beam; KELLY COUNTY · AFTER 2 AM, PER GUIDES |
 | trophy "Its trophy is called The Truth Is Out There." | bronze trophy drawn, plaque THE TRUTH IS OUT THERE · PER GUIDES; p8skyline plate |
 | loop "Walk toward that light, and…" | `ufo` card again (first part of the cut: she looks up, the light grows), beam widens; the hook frame rebuilds |
 

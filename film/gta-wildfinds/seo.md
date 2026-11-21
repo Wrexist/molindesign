@@ -1,17 +1,17 @@
 # SEO and posting text: GTA 6 lets aliens take you
 
-Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-wildfinds-vo.mp4` (32.7 s, voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-21 for a US audience. Facts and sources: `BRIEF.md`. Contains about 10.9 s (33 %) of muted gameplay clips from five creators, used for commentary (SAFE-EDIT rule 10; facecams, stream overlays and captions cropped out), and dimmed background footage from Rockstar's GTA VI: An Extended Look (rule 11). Remove a creator's clip at once if they object or a claim lands.
+Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-wildfinds-vo.mp4` (32.3 s, voice + sound effects, no music). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-21 for a US audience. Facts and sources: `BRIEF.md`. Contains about 10.6 s (33 %) of muted gameplay clips from five creators, used for commentary (SAFE-EDIT rule 10; facecams, stream overlays and captions cropped out), and dimmed background footage from Rockstar's GTA VI: An Extended Look (rule 11). Remove a creator's clip at once if they object or a claim lands.
 
 ## YouTube Shorts title
 GTA 6 Lets Aliens Take You 🛸
 
-Alternates: "5 Wild GTA 6 Secrets Found Launch Week 🛸" · "GTA 6 Has a UFO That Takes YOU 🛸"
+Alternates: "5 Wild GTA 6 Finds From Launch Week 🛸" · "GTA 6 Has a UFO That Takes YOU 🛸"
 
 ## Cover text
 ALIENS TAKE YOU?
 
 ## Description
-Five wild GTA 6 secrets from launch week, counted down. A car bent like a banana (he says it has scoliosis). A man in a suit who gets in your car and tells you to stay calm and drive, like Collateral (2004). A giant crab that jumps Jason at home. The Skunk Ape, Florida's Bigfoot, up close. And number one: a car on a dark road in Kelly County, after 2 AM. Walk toward that light, and the aliens take you. Its trophy is called The Truth Is Out There.
+Five wild GTA 6 finds from launch week, counted down. A car bent like a banana (he says it has scoliosis). A man in a suit who got in his car and told him to stay calm and drive, like Collateral (2004). A giant crab that jumps Jason at home. The Skunk Ape, Florida's Bigfoot, up close. And number one: a UFO on a dark road in Kelly County, after 2 AM. Walk toward that light, and the aliens take you. Its trophy is called The Truth Is Out There.
 
 Which one have you found? Tell us in the comments.
 
