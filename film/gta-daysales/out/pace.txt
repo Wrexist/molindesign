@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-daysales/out/gta-daysales-vo.mp4: 27.4 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.391, 0-3 s 0.52, median 0.457, still frames 0.2 %
+OK    no frozen stretches, opening moves

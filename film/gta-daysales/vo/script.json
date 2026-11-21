@@ -86,10 +86,11 @@
    "at": 24.95,
    "text": "Did you buy it on day one?",
    "pause": 0,
-   "speed": 1.1
+   "speed": 1.1,
+   "say": "Did you buy it, on day one?"
   }
  ],
- "dur": 27.6,
+ "dur": 27.4,
  "tail": 0.55,
  "fit": {
   "min": 0.88,
