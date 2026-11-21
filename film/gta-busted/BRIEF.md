@@ -54,22 +54,22 @@ Getting busted in GTA 6 costs you four things you can protect ahead of time (loo
 - SEO-farm pages (metaforge, 6cheats, rosenberryrooms, ofzenandcomputing, games.gg) agree with the above but are not used as sources.
 - Nothing here is from Rockstar's own pages; the guides are post-launch hands-on. The voice never attributes a rule to Rockstar.
 
-## 4. Script and arc (13 lines, 98 written words, chained ~40 s; scriptlint OK)
+## 4. Script and arc (13 lines, 98 written words, chained ~42 s with `say` spellings; scriptlint OK)
 | id | at | Line (`say` where spelled) | Tension | Turn |
 |---|---|---|---|---|
 | hook | 0.2 | GTA 6: do these 4 before you get busted. ("G T A six. Do these four…") | 4 | |
-| stake | 3.81 | Or they're gone for good. | 4 | |
-| q | 6.0 | So what do the cops take? | 3 | So |
-| gun | 8.54 | One: buy the gun you love. | 3 | One |
-| loot | 11.08 | Guns you loot are lost when you're busted. | 4 | |
-| kept | 14.34 | Bought ones wait at Ammu-Nation or in your trunk. | 3 | |
-| car | 18.31 | Two: register your ride at a Pay 'n' Spray. ("Pay and Spray") | 3 | Two |
-| stolen | 21.92 | Stolen cars are gone after an arrest. | 4 | |
-| bags | 24.82 | Three: get stash bags to a fence first. | 3 | Three |
-| impound | 28.08 | But get busted in your own car? It's impounded. | **2 (dip)** | But |
-| cash | 31.7 | Four, the most important one: bank your cash. | 4 | Four |
-| grand | 34.95 | You can carry $20,000. The cops keep every dollar. | 5 | |
-| end | 38.92 | How much are you carrying? | 5 | |
+| stake | 4.53 | Or they're gone for good. | 4 | |
+| q | 6.71 | So what do the cops take? | 3 | So |
+| gun | 9.26 | One: buy the gun you love. | 3 | One |
+| loot | 11.8 | Guns you loot are lost when you're busted. | 4 | |
+| kept | 15.06 | Bought ones wait at Ammu-Nation or in your trunk. | 3 | |
+| car | 19.03 | Two: register your ride at a Pay 'n' Spray. ("Pay and Spray") | 3 | Two |
+| stolen | 22.64 | Stolen cars are gone after an arrest. | 4 | |
+| bags | 25.54 | Three: get stash bags to a fence first. | 3 | Three |
+| impound | 28.8 | But get busted in your own car? It's impounded. | **2 (dip)** | But |
+| cash | 32.41 | Four, the most important one: bank your cash. | 4 | Four |
+| grand | 35.67 | You can carry $20,000. The cops keep every dollar. | 5 | |
+| end | 40.0 | How much are you carrying? | 5 | |
 
 Arc: `4 4 3 3 4 3 3 4 3 2 4 5 5`. The dip is the viewer's safety net failing: they did step 2 (registered the car) and the cops take it anyway. "Four, the most important one" climbs out of it, the $20,000 sweep is the peak. Loop: "How much are you carrying?" → "GTA 6: do these 4 before you get busted." (the answer to the question is the reason to watch again). The question (line 3) is answered by the four steps; the last step is the biggest.
 
