@@ -249,6 +249,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | hotcharging (HuNgKnkM_ss) | Nov 19 00:00 | 34 s | 7.06 r1 → 7.4 r2 + polish | 3 (30 min) | – | 5 | warm-is-normal myth + "your phone did that" twist + "check yours"; 7 PM ET slot; read at 6 h and 24 h |
 | juicejacking (7W8_b2eL6kc) | Nov 20 00:00 | 34 s | 7.0 r1 → 7.8 r2 + polish | – | – | 6 | myth vs record: "probably isn't hacking you" + FBI post named no case + "never tap Trust"; 7 PM ET slot; read at 6 h and 24 h |
 | wifibattery (WJUwLbc8-MA) | Nov 20 18:00 | 38 s | 7.3 r1 → 7.6 r2 + polish | – | – | 6 | myth: "barely saves battery" + iPhone Control Center only disconnects + "Settings › Battery, not the toggles"; 1 PM ET slot; read at 6 h and 24 h |
+| trackeralert (PTX9WvpLPi8) | Nov 21 18:00 | 34 s | 7.06 r1 → 7.6 r2 + polish | 1 (25 min) | – | 6 | safety alert + "Bluetooth off won't stop it" twist (Apple + Google) + "check yours"; Sat 1 PM ET slot; read at 6 h and 24 h |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -394,6 +395,14 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Craft (repeat): with the bench at y 1150 the lower third went empty for 3 s. An empty dashed slot that the tape later prints into fills it and builds anticipation.
 - Wow: the 5G status tile (the film's thread since frame 0) rides the coral chart line from SLOW through the crossing to FAST.
 - Tooling: the container restarted mid-fix and the resumed director was lost. A fresh director told "some fixes may be half-applied, read film.js first" picked it up cleanly. Save fix lists to a file so they survive.
+
+### trackeralert (#38), jury r1 7.06 / Truth 8.5 → r2 7.6 / Truth 9.0 (post), 3 of 4 r2 polish items applied — scheduled Nov 21 13:00 ET (PTX9WvpLPi8)
+- Two LESSONS repeats cost a point each in r1: a quote plate that printed the answer while the voice was still on "Apple and Google say" (spoiler, see #36), and the hero stamp still on screen under the next caption. Setup lines get chips only (APPLE, GOOGLE); the stamp peels before the next line starts.
+- readcheck sets the stamp's size, not the jury. A one-line WON'T STOP IT needed 2.23 s in a 1.92 s window, so the stamp went to two lines at 156 px (about 600 px wide). Plan the pause after the twist (cap 1.3 s) in the script so the hero can be big.
+- Safety topics: the source's caveats are part of the truth. The disable step lost Truth until its fine print shipped (may reset when turned off, owner may see last location, law enforcement may need it). Keep each maker's steps complete ("Tap Continue" before Play Sound) and credit each step to its own maker.
+- Motion blur averages a highlight that switches on mid-frame into a grey ghost box. Key highlight and pill states to the frame time so every sub-sample agrees.
+- Whisper heard "alerts" as "alert": a 0.15 s tail fade clipped final consonants. Use 0.3–0.35 s fades on lines ending in s, d or t.
+- A blank re-created banner reads as a placeholder; print the maker's real alert name in it ("Unknown tracker alert").
 
 ### wifibattery (#37), jury r1 7.3 / Truth 8.5 → r2 7.6 / Truth 9.0 (post), all 8 r2 polish items applied — scheduled Nov 20 13:00 ET (WJUwLbc8-MA)
 - Truth: the hook follows the source's strength. Apple says Wi-Fi and Bluetooth draw "minimal" power, not zero, so the backlog's "won't save your battery" became "barely saves battery". A hook that overclaims costs Truth before the jury even scores craft.
