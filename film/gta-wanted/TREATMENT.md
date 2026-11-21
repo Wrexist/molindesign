@@ -23,13 +23,21 @@ Foreground evidence clips (annotated, each under 5 s, about half the runtime): h
 |---|---|
 | hook "GTA 6 cops remember four things." | Full-bleed chase → card; magnifier on the real HUD; 4 icons fly into our tray; chips IN ROCKSTAR'S OWN CHASE, GTA 6 WANTED LEVEL |
 | proof "Watch the icons in Rockstar's own chase." | Helicopter plate behind; tray rises to centre, discs pulse in turn; ROCKSTAR · AN EXTENDED LOOK tag |
-| four "Four: that there's two of you." | 4 slams; duo clip (both masked), rings on both people, lens on the couple icon, disc flies to slot 1 |
+| four "Four: there are two of you." | 4 slams; duo clip (both masked), rings on both people, lens on the couple icon, disc flies to slot 1 |
 | three "Three: your clothes." | 3; clothes clip (Jason out of the window), ring on his shirt, hanger disc |
 | two "Two: what you look like." | 2; masked clip (Lucia close), ring on her face, head disc |
-| masked "Masks on. Still lit." | All ours: the head disc huge, a bandana slides onto it, it stays lit with a STILL LIT stamp |
+| masked "Masks on. Still lit." | The real frozen looks frame (Jason in a bandana): red ring on the mask, lens ring on the lit description icon, STILL LIT HERE stamp + MASK WAS ON DURING THE CRIME chip; the stamp moves onto our LOOKS disc |
 | one "One: your car." | 1; car clip out of the tunnel, ring on the car, car disc; tray full |
 | question "So how do you shake them?" | All ours: four discs shake on ink under red/blue light sweeps |
-| red "Get out of sight, and the stars turn red." | red clip into the garage; our six-star row flips white → red on "red"; lens on the real red stars; RED = THEY DON'T KNOW WHERE YOU ARE · GAMESPOT |
+| red "Lose them, and the stars turn red." | red clip into the garage; lens on the real red stars; our star row flips red on "red"; RED = NEAR THE SCENE · GAMESPOT / THEY DON'T KNOW WHERE YOU ARE (36 px); then ours: a search-area circle with our car disc hidden in it and two cop dots asking "?" |
 | leave "Then leave the car. Its icon's gone." | icondrop clip, big lens on the HUD; real car icon vanishes, our car disc cracks and falls on the same frame |
-| burn "And Lucia burns it." | burn clip, throw, ignition on the hit, flame held; BURNED chip |
+| burn "And she burns it." | burn clip, throw, ignition on the hit, flame held; BURNED chip |
 | loop "Now they only remember three." | van clip + lens on three red icons; 3 LEFT stamp; ALSO: WEAPON · CCTV ICONS · DEXERTO; card grows back into frame 0 |
+
+## Round 2 (jury r1 fixes)
+- Frame 0 is 851.7 s (Jason firing out of the window, gun in frame) with the cream lens already open on the real HUD (icons ~67 px).
+- Leave/gone split into two lines with a ~0.9 s pause after "car." (VAD 22.71-23.59): the car icon vanishes in a wide lens (x 92-925, ~2.8x), white flash, 0.3 s hold, then BEFORE (4 icons, ring on the car) over NOW (3 icons, bracket) with a hard flash and a CAR ICON: GONE stamp on the seam; our car disc cracks, falls and shatters at y 1440. This is the poster.
+- Vanish and ignition hits are the loudest raw events (g 2.4); smr_db lowered 22 -> 11 so they land near -6 dBFS.
+- No empty card band: our search-area panel fills the gap after the red clip; a plate sits under the gap after the split.
+- Clothes held on a steady frame (841.15 s), ring on the shirt; Lucia's ring starts when she is in frame; tray number badge steps aside for the STILL LIT HERE stamp; all mono chips >= 34 px; lens right edge <= 925.
+- Discs are torn cut paper with a cream backing and an off-register dark print; the shake beat has a big light bar with sweeping flat beams and a "?".

@@ -22,9 +22,9 @@
  "duck": {
   "db": -6,
   "score_db": 0,
-  "smr_db": 22
+  "smr_db": 18
  },
- "dur": 28.3,
+ "dur": 29.2,
  "fit": {
   "min": 0.8,
   "max": 1.1
@@ -45,7 +45,7 @@
   {
    "id": "four",
    "at": 5.59,
-   "text": "Four: that there's two of you.",
+   "text": "Four: there are two of you.",
    "speed": 1.08
   },
   {
@@ -67,33 +67,38 @@
   },
   {
    "id": "one",
-   "at": 13.62,
+   "at": 14.12,
    "text": "One: your car.",
    "speed": 1.08
   },
   {
    "id": "question",
-   "at": 15.36,
+   "at": 15.86,
    "text": "So how do you shake them?"
   },
   {
    "id": "red",
-   "at": 17.63,
-   "text": "Get out of sight, and the stars turn red."
+   "at": 18.13,
+   "text": "Lose them, and the stars turn red."
   },
   {
    "id": "leave",
-   "at": 21.24,
-   "text": "Then leave the car. Its icon's gone."
+   "at": 21.74,
+   "text": "Then leave the car."
+  },
+  {
+   "id": "gone",
+   "at": 23.5,
+   "text": "The car icon is gone."
   },
   {
    "id": "burn",
-   "at": 24.14,
+   "at": 25.04,
    "text": "And she burns it."
   },
   {
    "id": "loop",
-   "at": 25.97,
+   "at": 26.87,
    "text": "Now they only remember three."
   }
  ]
