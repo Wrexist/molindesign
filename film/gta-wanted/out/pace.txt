@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-wanted/out/gta-wanted-vo.mp4: 28.3 s, 3 hard cuts (1.1/10 s), motion 0-1 s 3.646, 0-3 s 2.784, median 2.049, still frames 1.2 %
+OK    no frozen stretches, opening moves

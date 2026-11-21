@@ -1,0 +1,196 @@
+{
+ "film": "gta-wanted",
+ "sources": {
+  "extlook": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · An Extended Look"
+  }
+ },
+ "clips": {
+  "hud4": {
+   "src": "extlook",
+   "in": 851.0,
+   "out": 854.0,
+   "fps": 30,
+   "frames": 90,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "clothes": {
+   "src": "extlook",
+   "in": 841.0,
+   "out": 844.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "car": {
+   "src": "extlook",
+   "in": 919.3,
+   "out": 923.3,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "red": {
+   "src": "extlook",
+   "in": 950.0,
+   "out": 953.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "icondrop": {
+   "src": "extlook",
+   "in": 955.3,
+   "out": 957.9,
+   "fps": 30,
+   "frames": 78,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "burn": {
+   "src": "extlook",
+   "in": 962.8,
+   "out": 966.8,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "van": {
+   "src": "extlook",
+   "in": 983.0,
+   "out": 986.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p1heli": {
+   "src": "extlook",
+   "in": 845.0,
+   "out": 848.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p2flip": {
+   "src": "extlook",
+   "in": 860.5,
+   "out": 863.5,
+   "fps": 30,
+   "frames": 90,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p3alley": {
+   "src": "extlook",
+   "in": 925.0,
+   "out": 929.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p4palms": {
+   "src": "extlook",
+   "in": 936.0,
+   "out": 940.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p5cross": {
+   "src": "extlook",
+   "in": 944.0,
+   "out": 948.5,
+   "fps": 30,
+   "frames": 135,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "p6load": {
+   "src": "extlook",
+   "in": 970.0,
+   "out": 974.5,
+   "fps": 30,
+   "frames": 135,
+   "w": 1280,
+   "crop": "1920:1050:0:30"
+  },
+  "p7out": {
+   "src": "extlook",
+   "in": 975.0,
+   "out": 978.3,
+   "fps": 30,
+   "frames": 99,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "hudhook": {
+   "src": "extlook",
+   "in": 851.0,
+   "out": 854.0,
+   "fps": 30,
+   "frames": 90,
+   "w": 600,
+   "crop": "300:140:1620:0"
+  },
+  "huddrop": {
+   "src": "extlook",
+   "in": 955.3,
+   "out": 957.9,
+   "fps": 30,
+   "frames": 78,
+   "w": 600,
+   "crop": "300:140:1620:0"
+  },
+  "hudred": {
+   "src": "extlook",
+   "in": 950.0,
+   "out": 953.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 600,
+   "crop": "300:140:1620:0"
+  },
+  "hudvan": {
+   "src": "extlook",
+   "in": 983.0,
+   "out": 986.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 600,
+   "crop": "300:140:1620:0"
+  },
+  "duo2": {
+   "src": "extlook",
+   "in": 929.0,
+   "out": 931.5,
+   "fps": 30,
+   "frames": 75,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "looks": {
+   "src": "extlook",
+   "in": 869.4,
+   "out": 871.6,
+   "fps": 30,
+   "frames": 66,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  }
+ }
+}
