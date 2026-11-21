@@ -1,6 +1,6 @@
 # GTA 6 made $3.79 billion in one day (Delta, launch-week news Short)
 
-Slug `gta-daysales` · researched and scripted 2026-11-21 · channel **Delta** (YouTube Shorts @deltaisac, never Tech, explained). American English, US audience, Ming US_James (seed 7, engine/duck block copied from film/gta-streampeak), own flat hand-built graphics, **no music**, **no footage**, no Rockstar or Take-Two logo, no key art, no box art, no "AI" anywhere. News Short under delta/RUN.md "Launch week": 20-30 s, one simple set, the number as the hero, frame-0 hook rule (question or number in 5 words or fewer on frame 0, payoff on screen by 2.0 s).
+Slug `gta-daysales` · researched and scripted 2026-11-21 · channel **Delta** (YouTube Shorts @deltaisac, never Tech, explained). American English, US audience, Ming US_James (seed 7, engine/duck block copied from film/gta-streampeak), own flat hand-built graphics, **no music**, no Rockstar or Take-Two logo, no key art, no box art, no "AI" anywhere. **Footage (remake 2026-11-21):** short muted excerpts of Rockstar's own GTA VI Launch Trailer and GTA V Official Trailer (2013) on a video wall behind the counter (delta/RUN.md "Default format", SAFE-EDIT rule 7); see §7. News Short under delta/RUN.md "Launch week": 20-30 s, one simple set, the number as the hero, frame-0 hook rule (question or number in 5 words or fewer on frame 0, payoff on screen by 2.0 s).
 
 **Truth-proofing (read first).**
 - **Whose number.** $3.79 billion is **Take-Two's own estimate** (the release's footnote: "*based on company estimates through end of day November 19th worldwide"). The voice says "by Take-Two's own estimate"; the screen carries `TAKE-TWO ESTIMATE` on the hook and on every GTA 6 number beat. Never "confirmed", "official total" or "audited".
@@ -87,5 +87,23 @@ Not used before as a set: gta-streampeak had a small till/receipt on one beat (`
 - Pinned comment: "Did you buy GTA 6 on day one? Yes or not yet?"
 - Re-read the Take-Two release before posting; if the figure is revised, re-voice the hook.
 
+## 7. Footage sources (trailer mode, remake 2026-11-21)
+Why: Isac (2026-11-21) said the first cut ignored what Delta has learned. `delta/VIDEO-PLAN.md` §2: pure-graphics Shorts stall near 1.2k views and 9 of the top 10 GTA 6 Shorts show the game; `delta/RUN.md` "Default format" makes footage the default for news Shorts too. The voice track, script and every fact and truth label above are unchanged; only the picture was rebuilt.
+
+**Set idea:** the shop wall behind the counter is a video wall. A teal roller blind goes up on the footage and comes down between clips, so our own set and graphics stand between every excerpt. Graphics carry every number; the footage shows the game the number is about. GTA 5 clips are desaturated (the grey side, matching the grey 2013 register).
+
+| Clip | Source (cache key, verdict) | Source in-out (s) | On screen (s) | What our graphics say over it |
+|---|---|---|---|---|
+| plane | GTA VI Launch Trailer, Rockstar Games' X post x.com/RockstarGames/status/2110717537964953810 (`twitter-2110704990339678208`, OFFICIAL: uploader_id RockstarGames) | 54.52-56.30 | 0.00-3.29 (slowed 0.54x) and 26.69-27.40 (held on its first frame, the loop) | frame 0: `GTA 6: $3.79 BILLION`, `IN ONE DAY` stamp, `DAY 1 SALES`, `TAKE-TWO ESTIMATE` |
+| michael | GTA V Official Trailer (2013), Rockstar's CDN videos-rockstargames-com.akamaized.net/v4/a8k183c8 (`generic-v4-a8k183c8-flv-en-us-720p-mp4`, OFFICIAL: Rockstar host) | 7.76-9.32 | ≈8.72-11.01, greyed | `SEPT 2013` card, the grey GTA 5 register drops in front, caption "In 2013, GTA 5 made over $800 million" |
+| street | same GTA V trailer | 46.86-48.40 | ≈14.45-16.71, greyed and slowed | "But GTA 5 hit one billion in three days", DAY 2 / DAY 3 print on the grey tape |
+| car | GTA VI Launch Trailer (as above) | 25.74-27.06 | ≈21.37-22.24 | quote plate `"BIGGEST ENTERTAINMENT LAUNCH IN HISTORY" · TAKE-TWO`, the pour, `1 DAY $3.79B TAKE-TWO ESTIMATE` |
+| bike | GTA VI Launch Trailer | 48.55-50.35 | ≈22.24-23.11 | same |
+| marina | GTA VI Launch Trailer | 4.40-6.00 | ≈23.11-23.99 | same |
+| balcony | GTA VI Launch Trailer | 66.45-67.78 | ≈23.99-24.86 | same |
+
+Exact on-screen times are written by `node render.mjs clips` to `out/clips-used.json` (they follow the voice's word times). Rules held (clipkit lint): every use under 5 s, a note on every use, no unbroken footage stretch over 5 s (longest run 3.5 s), Rockstar footage about 44 % of the runtime (cap 50 %), muted, no clip range used by another Delta film (the Launch Trailer and the GTA V 2013 Official Trailer were unused; gta-sametrailer used the 2011 GTA V trailer, gta-thingstodo the Extended Look). No Rockstar logo, title card or key art frames (all cuts sit inside shots, away from the logo cards at 22-26 s and 76-90 s). Description closing line: "Trailer clips: Rockstar Games (GTA VI Launch Trailer, GTA V Official Trailer), used for commentary. Not affiliated with Rockstar Games or Take-Two." On screen while a clip plays: `CLIP · ROCKSTAR GAMES · LAUNCH TRAILER` / `CLIP · ROCKSTAR GAMES · GTA V TRAILER (2013)`.
+
 ## Log
 - 2026-11-21: researched and scripted (video-researcher). Verified $3.79B day one retail sales, footnote "company estimates through end of day November 19th worldwide" and "biggest entertainment launch in history" at take2games.com; GTA V "more than $800 million" first day (Sept 18 2013, excl. Japan and Brazil) and "more than $1 billion during its first three days" (Sept 20 2013) at the SEC 8-K exhibits. Chose GTA 5 (same company, same measure) over a movie comparison. No ratio voiced; "one day", never "24 hours".
+- 2026-11-21: picture remake with official footage (Isac: use what Delta learned). Voice, script, facts and labels unchanged; the wall became a video wall with 7 muted Rockstar clips (Launch Trailer, GTA V 2013 Official Trailer) cut with clipkit, behind the hook, the two 2013 beats and the record line. See §7.

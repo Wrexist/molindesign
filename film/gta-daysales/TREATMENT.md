@@ -32,3 +32,13 @@
 - Every GTA 6 number beat carries `TAKE-TWO ESTIMATE` (hook chip, est receipt line, fast chip).
 - GTA 5 numbers always show `+` and carry `EXCL. JAPAN & BRAZIL` and `2013 DOLLARS`; day 2 has no number on the tape (unknown).
 - "One day" / "day one" only, never "24 hours". No ratio on screen.
+
+## Remake 2026-11-21: the video wall
+Footage is the Delta default now (delta/RUN.md, VIDEO-PLAN §2). The voice and every label stay; the teal wall becomes a video wall with a roller blind.
+| Beat | Wall | Why |
+|---|---|---|
+| hook 0-3.3 s | Launch Trailer: the pink-smoke stunt plane over the Vice beach, full width above the counter (66 % of the frame), slowed; the register is still under the counter | Frame 0 is the game itself, big and moving, under the 4-word headline; the pink smoke matches the pink register. The blind comes down after "One day." as the register rises with the ka-ching. |
+| old 8.7-11.0 s | GTA V 2013 trailer, Michael and Franklin at the pool, greyed | "In 2013" shown, not just said; the grey GTA 5 register drops in front of its own game. |
+| slow 14.5-16.7 s | GTA V 2013 trailer, street chase with the helicopter, greyed and slowed | The slow grey stretch the jury called dead gets motion while it stays grey and quiet. |
+| rec 21.4-24.9 s | four Launch Trailer shots, hard cuts ~0.87 s each (Lucia in the convertible, the dirt-bike jump, the marina, the balcony) | The payoff over a fast run of the new game, behind the pour and the quote plate. |
+| end/loop 26.7-27.4 s | the blind goes up on the plane's first frame as the register sinks | Last frame = frame 0. |

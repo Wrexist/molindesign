@@ -8,10 +8,14 @@
    (window.VO) with at(id, word); every hit sits in a pause the voice track really leaves (vo/vad.js). Pure function of t.
    Contract: window.FILM, DUR, render(t), READY, EV, TEXTS(t), SCORE(ctx). Set: the checkout counter (teal cut-paper
    wall, pendant lamps, a cream counter, a pink cash register as the hero, a grey 2013 register, receipt tape).
-   No Rockstar or Take-Two logos or art (names typed in our font), no footage, no music. Engine from gta-streampeak. */
+   No Rockstar or Take-Two logos or art (names typed in our font), no music. Engine from gta-streampeak.
+   Footage (Delta default format, delta/RUN.md 2026-11-21): the shop wall is a video wall. Short muted excerpts of Rockstar's
+   own GTA VI Launch Trailer and GTA V Official Trailer (2013) play behind the counter on the hook, the 2013 beats (shown
+   desaturated: the grey side) and the record line; a roller blind comes down over the wall between them, so our own set
+   and graphics sit between every clip (film/kit/clip.js, clips.json, linted by delta/clips/clipkit.py). */
 (function () {
   'use strict';
-  var W = 1080, H = 1920, VO = window.VO, DUR = VO.dur, CX = 510;
+  var W = 1080, H = 1920, VO = window.VO, DUR = VO.dur, CX = 510, CLIP = window.CLIP;
   var BG = '#0e2a24', CREAM = '#fbf6ea';
   var HOT = '#e0283c', TEAL = '#2347c8', ORG = '#ff6a1f';
   var INK = '#14213d', PAPER = '#f2e5cd', NEWS = '#efe5cf', KRAFT = '#b8834b', KRAFT2 = '#8a5a2e', BENCH = '#1c1042';
@@ -487,6 +491,7 @@
   function buildPieces() {
     buildRegisters();
     D.oneday = buildStamp(['IN ONE DAY'], 104, 620, OXI);
+    D.d1s = chipPiece([['DAY 1 SALES', 64, MINT, 4]], 440, '#0c1816', MINT, { lh: 70, pad: 22, ring: 'rgba(141,255,196,.4)' });
     D.est0 = chipPiece([['TAKE-TWO ESTIMATE', 50, INK, 3], ['WORLDWIDE · THRU NOV 19, 2026', 36, '#3b3f5e', 2]], 600, CRM, INK, { lh: 54, pad: 22 });
     D.q = cardPiece(260, 260, INK, [['?', 214, CRM, 6]], { ring: 'rgba(251,245,230,.35)' });
     D.y2013 = datePiece('SEPT', '2013', 250, GREY2);
@@ -657,12 +662,15 @@
     g.save(); var kq = kn(t, GT.q || 1e9, .06); g.translate(GX, CTOP - 560); g.scale(kq, kq); g.translate(-GX, -(CTOP - 560)); slapOn(g, D.q, GX, CTOP - 560, .04, T.q, T.gDrop - .3, t); g.restore();
     stampOnP(g, D.y2013, 232, 720, -.04, T.y13, T.slowIn, t);
     /* ---- the pink register ---- */
-    nr = NOREC; NOREC = nr || moving;
+    var rdy = regDy(t);
+    nr = NOREC; NOREC = nr || moving || rdy > 0;
     var pr = pp;
     g.save();
+    /* hook and loop: the register rises from behind the counter after the footage, and sinks back for the loop */
+    if (rdy > 0) { g.beginPath(); g.rect(0, 0, W, CTOP + 24); g.clip(); }
     if (dim > 0) g.globalAlpha *= 1 - .45 * dim;
     var dsw = T.ask + .3, dB = t >= dsw && t < T.endIn + .35, fl = Math.sin(TAU * 5 * t / DUR + .7) > .994 ? .4 : 1;
-    pinkReg(g, pr.x, pr.s, { disp: dB ? D.pdB : D.pdA, dk: dB ? kn(t, dsw, .12) : kn(t, T.endIn + .35, .12), da: fl, drawer: drawerAt(t), plate: fin(t, T.ask + .4, .2) * (1 - seg(t, T.endIn, T.endIn + .2)), tape: function (q, layer) { pinkTape(q, t, layer); } });
+    pinkReg(g, pr.x, pr.s, { disp: dB ? D.pdB : D.pdA, dk: dB ? kn(t, dsw, .12) : kn(t, T.endIn + .35, .12), da: fl, drawer: drawerAt(t), dy: rdy, plate: fin(t, T.ask + .4, .2) * (1 - seg(t, T.endIn, T.endIn + .2)), tape: function (q, layer) { pinkTape(q, t, layer); } });
     g.restore();
     NOREC = nr;
     loops(g, t);
@@ -676,6 +684,7 @@
     }
     /* ---- hook: IN ONE DAY stamp; TAKE-TWO ESTIMATE chip (hook, est) ---- */
     stampOnP(g, D.oneday, 510, 1050, -.06, T.oneday, T.out1, t);
+    slapOn(g, D.d1s, 510, 1190, .015, T.d1s, T.out1, t);
     if (t < T.ask + .5) { slapOn(g, D.est0, 510, 1360, .01, T.est0, T.ask, t); if (t >= T.hl && t < T.ask) hilite(g, 290, 1314, 742, 1356, eo(seg(t, T.hl, T.hl + .35))); }
     /* ---- old: fine print under the grey register ---- */
     if (t < T.endIn + .5) slapOn(g, D.fine5, GX - 8, 1352, -.01, T.fine5, T.endIn, t);
@@ -725,6 +734,11 @@
       g.restore();
     });
     g.restore(); NOREC = nr;
+  }
+  function regDy(t) {
+    if (t < T.rise + .7) return 820 * (1 - cd(t, T.rise, 11));
+    if (t >= T.sink) return 820 * eio(seg(t, T.sink, T.sink + .4));
+    return 0;
   }
   function dimA(t) { return seg(t, T.slowIn, T.slowIn + .3) * (1 - seg(t, T.pour - .1, T.pour + .15)); }
   function stampOnP(g, pc, x, y, rot, tl, tout, t) { slapOn(g, pc, x, y, rot, tl, tout, t, { from: 1.6 }); }
@@ -795,6 +809,42 @@
     g.restore(); unst(g); ls(g, 0);
   }
 
+  /* =====================================================================================================
+     THE VIDEO WALL: official footage behind the counter. Each window is a roller blind going up (the teal wall
+     rolls away from the bottom up) and coming back down; the 2013 windows are desaturated (the grey side).
+     ===================================================================================================== */
+  var FW = [], WALLB = CTOP - 12;
+  function win(t) { for (var i = 0; i < FW.length; i++) { var w = FW[i]; if (t >= w.t0 && t < w.t1) return w; } return null; }
+  function blindY(w, t) {
+    var up = w.up ? 1 - eio(seg(t, w.t0, w.t0 + w.up)) : 0, dn = w.dn ? eio(seg(t, w.t1 - w.dn, w.t1)) : 0;
+    return WALLB * Math.max(up, dn);
+  }
+  function footage(g, t) {
+    var w = win(t); if (!w) return;
+    var u = CLIP.active(t); if (!u) return;
+    var ya = blindY(w, t); if (ya >= WALLB - 1) return;
+    g.save(); g.beginPath(); g.rect(0, ya, W, WALLB - ya); g.clip();
+    if (w.grey) g.filter = 'saturate(.22) contrast(1.06) brightness(.82)';
+    CLIP.draw(g, t, 0, 0, W, WALLB, u);
+    g.filter = 'none';
+    /* ink falls off the top (headline and captions read on it) and pools at the counter */
+    var tg = g.createLinearGradient(0, 0, 0, 760); tg.addColorStop(0, 'rgba(8,10,24,' + (w.hook ? .62 : .5) + ')'); tg.addColorStop(1, 'rgba(8,10,24,0)'); g.fillStyle = tg; g.fillRect(0, 0, W, 760);
+    var bg2 = g.createLinearGradient(0, WALLB - 260, 0, WALLB); bg2.addColorStop(0, 'rgba(8,10,24,0)'); bg2.addColorStop(1, 'rgba(8,10,24,.45)'); g.fillStyle = bg2; g.fillRect(0, WALLB - 260, W, 260);
+    g.restore();
+    /* the blind's bottom rail (only while it moves) */
+    if (ya > 1 && ya < WALLB - 1) {
+      g.fillStyle = 'rgba(0,0,0,.35)'; g.fillRect(0, ya, W, 14);
+      g.fillStyle = TEAL2; g.fillRect(0, ya - 22, W, 22); g.fillStyle = 'rgba(200,255,240,.22)'; g.fillRect(0, ya - 22, W, 3);
+      g.fillStyle = MUST; rr(g, 498, ya - 6, 24, 40, 6); g.fill();
+    }
+  }
+  function footCredit(g, t) {
+    var w = win(t); if (!w) return; var u = CLIP.active(t); if (!u) return;
+    var ya = blindY(w, t), a = 1 - seg(ya, 120, 300); if (a <= 0) return;
+    var src = CLIP.manifest().sources[CLIP.manifest().clips[u.clip].src];
+    chip(g, ('CLIP · ' + src.credit).toUpperCase(), 510, 262, { px: 36, a: a, bg: 'rgba(11,8,32,.82)', fg: CREAM, shadow: false, wt: 800, ls: 2 });
+  }
+
   var NOISE, POSTERMODE = false;
   var STAGEC = '#08302f';
   function stage(g) { g.fillStyle = STAGEC; g.fillRect(0, 0, W, H); }
@@ -811,10 +861,12 @@
       var lx = 510 + 110 * osc(t, 3, .4), ly = 900 + 70 * osc(t, 2, 1.3), gl = g.createRadialGradient(lx, ly, 60, lx, ly, 780);
       gl.addColorStop(0, 'rgba(255,214,150,.16)'); gl.addColorStop(.6, 'rgba(255,120,170,.05)'); gl.addColorStop(1, 'rgba(255,120,170,0)'); g.fillStyle = gl; g.fillRect(0, 0, W, H);
       var dm = dimA(t); if (dm > 0) { g.fillStyle = 'rgba(0,14,14,' + (.35 * dm).toFixed(3) + ')'; g.fillRect(0, 0, W, H); }
+      if (LIVE2.clip !== 'off') footage(g, t);
     }
     var ddx = 4 * osc(t, 17, .3) + 2 * osc(t, 29, 1.1), ddy = 3 * osc(t, 13, 2.1) + 2 * osc(t, 31, .7), ps = push(t) * punch(t);
     g.save(); railClip(g); g.translate(510 + ddx, 960 + ddy); g.scale(ps, ps); g.translate(-510, -960);
     props(g, t); g.restore();
+    footCredit(g, t);
     if (!POSTERMODE && LIVE.text) captions(g, t);
     if (LIVE.grain && NOISE && LIVE2.bg) { g.globalAlpha = .05; g.globalCompositeOperation = 'overlay'; var o = Math.floor(t * 24) * 37 % 256; g.fillStyle = g.createPattern(NOISE, 'repeat'); g.translate(-o, -o); g.fillRect(o, o, W, H); g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1; g.globalCompositeOperation = 'source-over'; }
   }
@@ -822,7 +874,7 @@
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     Tx('big', 'GTA 6: $3.79 BILLION', 0, T.out1); Tx('big', 'GTA 6: $3.79 BILLION', DUR - .1, DUR + 1);
-    Tx('dispA', 'DAY 1 SALES', 0, T.ask + .3); Tx('dispA', 'DAY 1 SALES', T.endIn + .45, DUR + 1); Tx('dispB', '$3.79B', T.ask + .4, T.endIn + .35); Tx('nts', 'NOT TO SCALE', T.nts + .1, T.endIn);
+    Tx('d1s', 'DAY 1 SALES', T.d1s + .1, T.out1); Tx('dispA', 'DAY 1 SALES', T.rise + .4, T.ask + .3); Tx('dispA', 'DAY 1 SALES', T.endIn + .45, T.sink); Tx('dispB', '$3.79B', T.ask + .4, T.endIn + .35); Tx('nts', 'NOT TO SCALE', T.nts + .1, T.endIn);
     Tx('oneday', 'IN ONE DAY', T.oneday + .1, T.out1);
     Tx('est0a', 'TAKE-TWO ESTIMATE', T.est0 + .1, T.ask); Tx('est0b', 'WORLDWIDE · THRU NOV 19, 2026', T.est0 + .1, T.ask);
     ROWS.forEach(function (r0, i) { if (r0.text) Tx('row' + i, r0.text, r0.tp + .25, T.tear); });
@@ -846,11 +898,20 @@
     /* hook: the register on frame 0 with $3.79B up and the tape already printing; IN ONE DAY stamps with the
        ka-ching and a drawer pop in the breath after "G T A six" (payoff on screen by 2.0 s); the estimate chip
        lands during "billion"; type and stamp lift in the pause before est */
+    CLIP.reset(); FW.length = 0;
     G('key0', .1, 'tick', .12, .7, { m: .03 });
     T.oneday = G('oneday', wend('hook', '6') + .03, 'pin', .3, 1.3, { m: .03, dur: .09 }); T.oneday = Math.min(T.oneday, 1.1);
     T.est0 = at('hook', 'billion') + .05;
     T.ching0 = G('ching0', lastw('hook') + .1, 'pin', .35, .8, { m: .1 });
-    T.drw = [[T.oneday, 1.0]];
+    T.d1s = at('hook', '$3.79') - .03;
+    /* the hook plays on the video wall: the launch trailer's stunt plane over the beach; the blind comes down after
+       "One day." and the register rises from behind the counter with the ka-ching */
+    T.hookOff = lastw('hook') + .05; T.rise = T.hookOff + .1;
+    T.drw = [[T.rise + .32, .8]];
+    FW.push({ t0: 0, t1: T.hookOff + .36, up: 0, dn: .36, hook: true });
+    var plen = CLIP.manifest().clips.plane.frames / 30 - .04;
+    CLIP.use('plane', 0, T.hookOff + .36, { from: 0, speed: plen / (T.hookOff + .36), zoom: [1.34, 1.42], focus: [.42, .24], note: 'GTA 6 (Launch Trailer): stunt plane over the Vice beach under GTA 6: $3.79 BILLION, IN ONE DAY stamp, DAY 1 SALES chip' });
+    G('blind0', T.hookOff + .02, 'swish', .2, .7, { m: .03 });
     EV.push({ t: T.oneday, type: 'ching', g: 1.3, id: 'ching1' });
     T.out1 = G('out1', T.ching0 + .45, 'swish', .3, .9, { m: .05 });
     /* est: the receipt prints its header as the words land */
@@ -873,6 +934,11 @@
     /* old: SEPT 2013 slams; the grey register drops on "GTA 5"; $800M+ on "800"; day 1 prints on "day one" */
     T.y13 = G('y13', at('old', '2013') + .05, 'slap', .3, 1.1, { m: .04 }); T.y13 = at('old', '2013') + .02;
     T.gDrop = G('gdrop', wend('old', '2013') + .1, 'thock', .3, 1.3, { m: .04 }); T.gDrop = Math.min(T.gDrop, at('old', 'gta'));
+    /* the 2013 side on the wall (desaturated): GTA V's own trailer, Michael and Franklin at the pool */
+    var o0 = vadEndBefore(start('old'), lastw('ask')) + .03, o1 = at('old', 'made') - .5;
+    FW.push({ t0: o0, t1: o1, up: .32, dn: .3, grey: true });
+    CLIP.use('michael', o0, o1, { from: 0, speed: (CLIP.manifest().clips.michael.frames / 30 - .05) / (o1 - o0), zoom: [1.02, 1.1], focus: [.66, .45], note: 'GTA 5 (2013 trailer), greyed: SEPT 2013 card slams, the grey GTA 5 register drops in front of it' });
+    G('blind1', o0, 'swish', .2, .6, { m: .03 }); G('blind1d', o1 - .3, 'swish', .25, .5, { m: .03 });
     T.g800 = at('old', '800') - .02;
     T.fine5 = at('old', 'million') + .1;
     GROWS.length = 0; GFEED.length = 0;
@@ -882,6 +948,10 @@
     G('gp1', after('old'), 'print', .4, .8, { dur: .22 });
     /* slow: the pink side dims; DAY 2 (no number: unknown); DAY 3; TOTAL $1B+ with the display on "days" */
     T.slowIn = start('slow') - .15;
+    var s0 = start('slow') - .3, s1 = at('slow', 'three') + .02;
+    FW.push({ t0: s0, t1: s1, up: .32, dn: .3, grey: true });
+    CLIP.use('street', s0, s1, { from: 0, speed: (CLIP.manifest().clips.street.frames / 30 - .05) / (s1 - s0), zoom: [1.0, 1.08], focus: [.5, .45], note: 'GTA 5 (2013 trailer), greyed and slowed: the slow side while DAY 2 and DAY 3 print on the grey tape' });
+    G('blind2', s0, 'swish', .25, .6, { m: .03 }); G('blind2d', s1 - .3, 'swish', .25, .5, { m: .03 });
     gfeed(at('slow', 'hit') - .02, 34, '-', 0, .25); gfeed(at('slow', 'hit') + .08, 70, 'DAY 2', 56, .3);
     gfeed(at('slow', 'three') - .1, 34, '-', 0, .25); gfeed(at('slow', 'three'), 70, 'DAY 3', 56, .3);
     gfeed(at('slow', 'days') - .02, 76, 'TOTAL $1B+', 56, .3);
@@ -900,10 +970,25 @@
     T.quote = G('quote', start('rec') - .4, 'slap', .3, 1.2, { m: .04 }); T.quote = Math.min(T.quote, start('rec') - .3);
     /* end: everything drops away; the pink register returns to the frame-0 place; YES / NOT YET (equal) */
     T.endIn = G('endIn', after('rec') - .05, 'tear', .3, 1, { m: .04 });
+    /* the record line over a fast run of four launch-trailer shots, behind the pour and the quote plate */
+    var r0 = T.quote - .08, r1 = Math.min(r0 + 4.4, T.endIn + .08), rs = [['car', .05, [.4, .45], 'Lucia in the convertible', [1.2, 1.26]], ['bike', .25, [.55, .38], 'the dirt-bike jump over the tracks', [1.4, 1.46]], ['marina', .1, [.5, .5], 'the marina from the air', [1.1, 1.16]], ['balcony', .05, [.51, .4], 'Jason and Lucia on the balcony at sunset', [1.3, 1.36]]];
+    T.rq = r0;
+    FW.push({ t0: r0, t1: r1, up: .3, dn: .3 });
+    rs.forEach(function (c, i) {
+      var a = lerp(r0, r1, i / 4), b = lerp(r0, r1, (i + 1) / 4);
+      CLIP.use(c[0], a, b, { from: c[1], speed: 1, zoom: c[4], focus: c[2], note: 'GTA 6 (Launch Trailer) run under the quote plate "BIGGEST ENTERTAINMENT LAUNCH IN HISTORY" · TAKE-TWO: ' + c[3] });
+      if (i) G('cut' + i, a, 'tick', .12, .6, { m: .02 });
+    });
+    G('blind3', r0, 'swish', .2, .6, { m: .03 });
     G('chips', wend('end', 'it') + .12, 'pin', .45, .9, { m: .03 });
     T.vote = T.endIn + .03;
     T.seamL = DUR - .31; T.capEnd = DUR - .34;
     G('seam', DUR - .06, 'thock', .25, .8);
+    /* loop: the register sinks, the blind goes up on frame 0's plane (held on its first frame) */
+    T.sink = wend('end', 'one') + .06;
+    FW.push({ t0: T.sink, t1: DUR + .001, up: .4, dn: 0, hook: true });
+    CLIP.use('plane', T.sink, DUR + .001, { from: 0, freeze: 0, zoom: [1.3, 1.34], focus: [.42, .24], note: 'loop: the blind rises on the frame-0 plane shot as GTA 6: $3.79 BILLION drops back in' });
+    G('blind4', T.sink + .02, 'swish', .25, .6, { m: .03 });
     STRESS = [['est', 'day'], ['est', 'estimate'], ['ask', 'lot'], ['old', '2013'], ['old', '800'], ['slow', 'billion'], ['slow', 'three'], ['fast', 'three'], ['fast', 'single'], ['end', 'buy'], ['end', 'day']].map(function (p) { return at(p[0], p[1]); });
     EV.sort(function (a, b) { return a.t - b.t; });
   }
@@ -983,9 +1068,9 @@
     for (var i = 0; i < id.data.length; i += 4) { var v = 120 + r() * 135; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
     ng.putImageData(id, 0, 0);
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 46px Archivo', '800 58px "Geist Mono"'];
-    return Promise.all(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”‘’·→…#?‹|~$+—½@&!§'); })).then(function () { return document.fonts.ready; }).then(function () {
+    return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”‘’·→…#?‹|~$+—½@&!§'); }))).then(function () { return document.fonts.ready; }).then(function () {
       buildTextures(); EV.length = 0; initTimes();
-      window.FILM.POSTER = Math.round((T.past3 + .5) * 30) / 30 + 1 / 60;
+      window.FILM.POSTER = Math.round((T.est0 + .35) * 30) / 30 + 1 / 60;  /* the cover: the plane on the wall under GTA 6: $3.79 BILLION, IN ONE DAY, DAY 1 SALES, TAKE-TWO ESTIMATE */
       window.FILM.SHOTS = [{ id: 'hook', name: '$3.79B', t0: 0, t1: start('ask') }, { id: 'ask', name: 'GTA 5', t0: start('ask'), t1: start('fast') }, { id: 'fast', name: 'One day', t0: start('fast'), t1: start('rec') }, { id: 'rec', name: 'Record', t0: start('rec'), t1: start('end') }, { id: 'end', name: 'Day one?', t0: start('end'), t1: DUR }];
       window.READY = true;
     });
