@@ -1,0 +1,125 @@
+{
+ "about": "Should you restart your phone every week. Factory #39, backlog row 43, slug restartphone. One hard idea: the NSA's Mobile Device Best Practices sheet says 'Power the device off and on weekly'; some spyware can't survive a restart (Kaspersky, Operation Triangulation, June 2023: 'does not support persistence'), so a reboot can clear it; but the NSA's own chart rates the weekly restart 'Sometimes prevents', and Kaspersky said phones 'may be reinfected after rebooting'; a restart doesn't close the hole, an update can (Apple iOS 16.5.1, June 21, 2023, credited Kaspersky); so update and restart weekly; Samsung Galaxy phones can Restart on schedule (Settings > Device care > Auto optimization > Auto restart, samsung.com/us). Sources read 2026-11-22, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "NSA",
+  "Kaspersky",
+  "Apple",
+  "Samsung",
+  "Galaxy",
+  "iPhones"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24.5
+ },
+ "dur": 35.13,
+ "tail": 0.15,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "The NSA says restart weekly.",
+   "pause": 0.6,
+   "at": 0.2,
+   "say": "The N S A says restart weekly.",
+   "tail_fade": 0.3
+  },
+  {
+   "id": "ask",
+   "text": "So should you restart your phone every week?",
+   "pause": 0.55,
+   "at": 2.66,
+   "tail_fade": 0.15,
+   "speed": 0.982
+  },
+  {
+   "id": "quote",
+   "text": "Their guide says: power the device off and on weekly.",
+   "pause": 0.6,
+   "at": 5.14,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "why",
+   "text": "Why? Some spyware can't survive a restart.",
+   "pause": 0.45,
+   "at": 8.42,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "wipe",
+   "text": "So a reboot can wipe it out.",
+   "pause": 0.7,
+   "at": 11.64,
+   "tail_fade": 0.3,
+   "speed": 0.864
+  },
+  {
+   "id": "twist",
+   "text": "But the NSA's own chart says: sometimes.",
+   "pause": 1.6,
+   "at": 14.1,
+   "say": "But the N S A's own chart says... sometimes.",
+   "tail_fade": 0.35
+  },
+  {
+   "id": "dip",
+   "text": "In 2023, Kaspersky said those iPhones may get reinfected.",
+   "pause": 0.45,
+   "at": 18.14,
+   "say": "In twenty twenty-three, Kaspersky said those iPhones may get reinfected.",
+   "tail_fade": 0.3
+  },
+  {
+   "id": "hole",
+   "text": "A restart doesn't close the hole.",
+   "pause": 0.6,
+   "at": 21.98,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "update",
+   "text": "An update can. Apple fixed one that June.",
+   "pause": 0.7,
+   "at": 24.02,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "answer",
+   "text": "So update it, and restart weekly.",
+   "pause": 0.55,
+   "at": 27.14,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "samsung",
+   "text": "Samsung Galaxy phones can restart on a schedule.",
+   "pause": 0.6,
+   "at": 29.45,
+   "say": "And Samsung Galaxy phones can restart on a schedule.",
+   "tail_fade": 0.15
+  },
+  {
+   "id": "end",
+   "text": "Did you restart this week? Yes or no.",
+   "pause": 0,
+   "at": 32.47,
+   "say": "Did you restart this week? Yes, or no?",
+   "tail_fade": 0.15
+  }
+ ]
+}
