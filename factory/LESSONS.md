@@ -453,3 +453,9 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Court-case films: the picture must not put a person's or character's card inside the frame of a holding the court denied for them. gta-lawsuit r2 framed "LACEY JONAS" under "CAN BE A 'PORTRAIT'" while the court held she was not recognizable as Lohan (Truth 7.5). Show a general holding on a nameless prop and print its condition big.
 - Never roll a dated calendar or counter with labels attached (GTA 6 / ROCKSTAR chips over 2019-2025 rolling years cost gta-lawsuit r1 a Truth point; a STORY 32% roll on the way to 55% nearly cost the storylength remake). Slam the final value instead.
 - A held film with a sound script can pass after a full new set: gta-storylength went 6.9 → 7.3 with a stopwatch / punch card / button box and the same voice.
+
+### Delta long-form 2026-11-22: gta-everytrailer (director)
+- Long-form voices leave the SFX gate no room: with default pauses most hero hits (slams, stamps) were silently dropped by the VAD gate. What fixed it: lengthen the script `pause` on the line before each hero beat (.7–.9 s), set the VAD margin to .08, and place each hit on the first pause at or after its word (fallback: the nearest). Count the hits that survive (about 70 here) before rendering.
+- A four-minute voice synth outlives the 30-minute background-command limit; run the voice step with a 2-hour timeout (cached takes resume if it is killed).
+- At SAMPLES=16 and WORKERS=2, a 264 s 1080p film renders at about 300 ms per frame (about 40 min). Budget for it.
+- Whisper drops a leading "Chapter" through the mix even when the clean take passes, and which chapter fails flips with tiny noise changes. A steady fix: open each chapter card on the card hit inside the pause before the line (BODY.card .75 keeps the hit clear of the voice), and dip the room tone for the line's first word. Don't chase it with re-rolls.
