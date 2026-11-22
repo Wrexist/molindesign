@@ -1,0 +1,586 @@
+{
+ "about": "Delta long-form L1 (16:9, 1920x1080): GTA 5 vs GTA 6, every trailer side by side. Six chapters, each with a title card: the first trailers (GTA V Trailer, Nov 2 2011 vs GTA VI Trailer 1, Dec 2023), three heroes vs two (GTA V Gameplay Video 2013 + Official Trailer vs GTA VI Trailer 2, May 2025, and An Extended Look), the map (Los Santos and Blaine County vs the state of Leonida), the gameplay reveal (GTA V Gameplay Video, July 2013, under 5 min vs An Extended Look, Aug 27 2026, 26:48), the last trailer and the slipped dates, launch day (Take-Two: GTA V more than $800M day one; GTA VI $3.79B day one, 32.5M units pre-release). Official Rockstar clips only, each under 5 s, our graphics between them. Facts and sources in BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 0.97,
+ "pace": {
+  "max": 3.3
+ },
+ "names": [
+  "GTA",
+  "Rockstar",
+  "Los Santos",
+  "Blaine County",
+  "Leonida",
+  "Vice City",
+  "Michael",
+  "Franklin",
+  "Trevor",
+  "Jason",
+  "Lucia"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.2
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 22
+ },
+ "captions": {
+  "max_words": 8,
+  "max_chars": 46,
+  "min_s": 0.9
+ },
+ "chapters": [
+  {
+   "n": 1,
+   "line": "ch1",
+   "card": "THE FIRST TRAILER"
+  },
+  {
+   "n": 2,
+   "line": "ch2",
+   "card": "THREE HEROES, THEN TWO"
+  },
+  {
+   "n": 3,
+   "line": "ch3",
+   "card": "THE MAP"
+  },
+  {
+   "n": 4,
+   "line": "ch4",
+   "card": "THE GAMEPLAY REVEAL"
+  },
+  {
+   "n": 5,
+   "line": "ch5",
+   "card": "THE LAST TRAILER"
+  },
+  {
+   "n": 6,
+   "line": "ch6",
+   "card": "LAUNCH DAY"
+  }
+ ],
+ "dur": 264.15,
+ "fit": {
+  "min": 0.88,
+  "max": 1.06
+ },
+ "lines": [
+  {
+   "id": "hook",
+   "at": 0.3,
+   "text": "GTA 5 vs GTA 6.",
+   "pause": 0.45,
+   "say": "GTA 5 versus GTA 6."
+  },
+  {
+   "id": "open2",
+   "at": 2.77,
+   "text": "Every trailer, side by side.",
+   "pause": 0.45
+  },
+  {
+   "id": "open3",
+   "at": 5.17,
+   "text": "Two launches, thirteen years apart.",
+   "pause": 0.5
+  },
+  {
+   "id": "open4",
+   "at": 7.54,
+   "text": "And the same moves keep showing up.",
+   "pause": 0.5
+  },
+  {
+   "id": "open5",
+   "at": 10.16,
+   "text": "So did Rockstar run the same playbook twice?",
+   "pause": 0.6
+  },
+  {
+   "id": "open6",
+   "at": 13.49,
+   "text": "Six chapters. Let's line them up.",
+   "pause": 1.1
+  },
+  {
+   "id": "ch1",
+   "at": 16.92,
+   "text": "Chapter one. The first trailer.",
+   "pause": 0.9,
+   "chapter": 1
+  },
+  {
+   "id": "t1a",
+   "at": 19.97,
+   "text": "November 2011. The first GTA 5 trailer drops.",
+   "say": "November twenty eleven. The first GTA 5 trailer drops.",
+   "pause": 0.5
+  },
+  {
+   "id": "t1b",
+   "at": 24.48,
+   "text": "December 2023. GTA 6 Trailer 1 lands.",
+   "say": "December twenty twenty-three. GTA 6 Trailer 1 lands.",
+   "pause": 0.75
+  },
+  {
+   "id": "t1c",
+   "at": 28.63,
+   "text": "Twelve years apart. Same first four beats, same order.",
+   "pause": 0.5
+  },
+  {
+   "id": "t1d",
+   "at": 32.31,
+   "text": "Sunset. Beach. Rockstar Games Presents.",
+   "pause": 0.4
+  },
+  {
+   "id": "t1e",
+   "at": 35.72,
+   "text": "Then someone tearing across the water.",
+   "pause": 0.55
+  },
+  {
+   "id": "t1f",
+   "at": 38.46,
+   "text": "Both trailers also leave the city for the wild.",
+   "pause": 0.5
+  },
+  {
+   "id": "t1g",
+   "at": 41.77,
+   "text": "Hikers on a mountain in 2011.",
+   "say": "Hikers on a mountain in twenty eleven.",
+   "pause": 0.35
+  },
+  {
+   "id": "t1h",
+   "at": 44.1,
+   "text": "Flamingos in a swamp in 2023.",
+   "say": "Flamingos in a swamp in twenty twenty-three.",
+   "pause": 0.55
+  },
+  {
+   "id": "t1i",
+   "at": 47.22,
+   "text": "Both stop on one face, looking out at the view.",
+   "pause": 0.45
+  },
+  {
+   "id": "t1j",
+   "at": 50.7,
+   "text": "Michael above Los Santos. Lucia at a window.",
+   "pause": 0.6
+  },
+  {
+   "id": "t1k",
+   "at": 54.27,
+   "text": "But one thing doesn't match at all.",
+   "pause": 0.45
+  },
+  {
+   "id": "t1l",
+   "at": 56.84,
+   "text": "GTA 6 Trailer 1 got over 93 million YouTube views.",
+   "say": "GTA 6 Trailer 1 got over ninety-three million YouTube views.",
+   "pause": 0.7
+  },
+  {
+   "id": "t1m",
+   "at": 61.21,
+   "text": "In its first 24 hours.",
+   "say": "In its first twenty-four hours.",
+   "pause": 0.4
+  },
+  {
+   "id": "t1n",
+   "at": 63.17,
+   "text": "YouTube called it a record for a non-music debut.",
+   "pause": 1.1
+  },
+  {
+   "id": "ch2",
+   "at": 67.25,
+   "text": "Chapter two. Three heroes, then two.",
+   "pause": 0.9,
+   "chapter": 2
+  },
+  {
+   "id": "h2a",
+   "at": 70.99,
+   "text": "GTA 5 split its story three ways.",
+   "pause": 0.45
+  },
+  {
+   "id": "h2b",
+   "at": 73.94,
+   "text": "Michael. Franklin. Trevor.",
+   "pause": 0.55
+  },
+  {
+   "id": "h2c",
+   "at": 76.6,
+   "text": "The gameplay video showed you jumping between them.",
+   "pause": 0.4
+  },
+  {
+   "id": "h2d",
+   "at": 79.43,
+   "text": "The camera pulls up into the sky.",
+   "pause": 0.3
+  },
+  {
+   "id": "h2e",
+   "at": 81.85,
+   "text": "Then it drops into someone else's life.",
+   "pause": 0.6
+  },
+  {
+   "id": "h2f",
+   "at": 84.85,
+   "text": "GTA 6 cuts that down to two.",
+   "pause": 0.4
+  },
+  {
+   "id": "h2g",
+   "at": 87.49,
+   "text": "Jason and Lucia.",
+   "pause": 0.55
+  },
+  {
+   "id": "h2h",
+   "at": 89.51,
+   "text": "Trailer 2, in May 2025, shows Jason first.",
+   "say": "Trailer 2, in May twenty twenty-five, shows Jason first.",
+   "pause": 0.4
+  },
+  {
+   "id": "h2i",
+   "at": 93.19,
+   "text": "Then Lucia, outside a prison fence.",
+   "pause": 0.55
+  },
+  {
+   "id": "h2j",
+   "at": 96.25,
+   "text": "Three stories in GTA 5. One story for two people in GTA 6.",
+   "pause": 0.7
+  },
+  {
+   "id": "h2k",
+   "at": 101.26,
+   "text": "In Rockstar's words, they have to rely on each other.",
+   "pause": 1.1
+  },
+  {
+   "id": "ch3",
+   "at": 105.24,
+   "text": "Chapter three. The map.",
+   "pause": 0.9,
+   "chapter": 3
+  },
+  {
+   "id": "m3a",
+   "at": 108.21,
+   "text": "GTA 5 gave you Los Santos and Blaine County.",
+   "pause": 0.45
+  },
+  {
+   "id": "m3b",
+   "at": 112.12,
+   "text": "One city, its hills, and a desert behind it.",
+   "pause": 0.55
+  },
+  {
+   "id": "m3c",
+   "at": 115.59,
+   "text": "GTA 6 goes for a whole state.",
+   "pause": 0.4
+  },
+  {
+   "id": "m3d",
+   "at": 118.2,
+   "text": "Rockstar calls it Leonida.",
+   "pause": 0.4
+  },
+  {
+   "id": "m3e",
+   "at": 120.27,
+   "text": "Its big city is back: Vice City, USA.",
+   "say": "Its big city is back: Vice City, U S A.",
+   "pause": 0.8
+  },
+  {
+   "id": "m3f",
+   "at": 124.17,
+   "text": "Now watch the same kind of shot in both.",
+   "pause": 0.45
+  },
+  {
+   "id": "m3g",
+   "at": 127.32,
+   "text": "A speedboat under a bridge in Los Santos.",
+   "pause": 0.4
+  },
+  {
+   "id": "m3h",
+   "at": 130.14,
+   "text": "Two people on a jet ski in Leonida.",
+   "pause": 0.55
+  },
+  {
+   "id": "m3i",
+   "at": 133.09,
+   "text": "And the skyline as the sun goes down.",
+   "pause": 0.4
+  },
+  {
+   "id": "m3j",
+   "at": 135.87,
+   "text": "Los Santos at dusk. Leonida with helicopters overhead.",
+   "pause": 1.1
+  },
+  {
+   "id": "ch4",
+   "at": 140.56,
+   "text": "Chapter four. The gameplay reveal.",
+   "pause": 0.9,
+   "chapter": 4
+  },
+  {
+   "id": "g4a",
+   "at": 143.82,
+   "text": "July 2013. GTA 5 shows its first gameplay video.",
+   "say": "July twenty thirteen. GTA 5 shows its first gameplay video.",
+   "pause": 0.45
+  },
+  {
+   "id": "g4b",
+   "at": 148.62,
+   "text": "It runs just under five minutes.",
+   "pause": 0.55
+  },
+  {
+   "id": "g4c",
+   "at": 151.0,
+   "text": "August 2026. GTA 6 answers with An Extended Look.",
+   "say": "August twenty twenty-six. GTA 6 answers with An Extended Look.",
+   "pause": 0.45
+  },
+  {
+   "id": "g4d",
+   "at": 155.28,
+   "text": "26 minutes and 48 seconds.",
+   "pause": 0.4,
+   "say": "Twenty-six minutes and forty-eight seconds."
+  },
+  {
+   "id": "g4e",
+   "at": 157.82,
+   "text": "That's more than five times as long.",
+   "pause": 0.6
+  },
+  {
+   "id": "g4f",
+   "at": 160.48,
+   "text": "And the beats line up again.",
+   "pause": 0.4
+  },
+  {
+   "id": "g4g",
+   "at": 162.47,
+   "text": "Get in a car, check the minimap, drive.",
+   "pause": 0.55
+  },
+  {
+   "id": "g4h",
+   "at": 165.44,
+   "text": "Then put on a mask and rob a store.",
+   "pause": 0.6
+  },
+  {
+   "id": "g4i",
+   "at": 168.31,
+   "text": "Rockstar says An Extended Look is in-game footage.",
+   "pause": 0.3
+  },
+  {
+   "id": "g4j",
+   "at": 171.62,
+   "text": "All of it, captured on a PlayStation 5.",
+   "pause": 1.1
+  },
+  {
+   "id": "ch5",
+   "at": 175.25,
+   "text": "Chapter five. The last trailer.",
+   "pause": 0.9,
+   "chapter": 5
+  },
+  {
+   "id": "l5a",
+   "at": 178.27,
+   "text": "2013. The GTA 5 Official Trailer. One minute long.",
+   "say": "Twenty thirteen. The GTA 5 Official Trailer. One minute long.",
+   "pause": 0.45
+  },
+  {
+   "id": "l5b",
+   "at": 182.93,
+   "text": "October 2026. The GTA 6 Launch Trailer. About a minute and a half.",
+   "say": "October twenty twenty-six. The GTA 6 Launch Trailer. About a minute and a half.",
+   "pause": 0.5
+  },
+  {
+   "id": "l5c",
+   "at": 188.23,
+   "text": "Both end on a date.",
+   "pause": 0.55
+  },
+  {
+   "id": "l5d",
+   "at": 190.07,
+   "text": "And both games missed their first one.",
+   "pause": 0.6
+  },
+  {
+   "id": "l5e",
+   "at": 192.79,
+   "text": "GTA 5 was due in spring 2013.",
+   "say": "GTA 5 was due in spring twenty thirteen.",
+   "pause": 0.3
+  },
+  {
+   "id": "l5f",
+   "at": 196.21,
+   "text": "It slipped to September 17.",
+   "say": "It slipped to September seventeenth.",
+   "pause": 0.75
+  },
+  {
+   "id": "l5g",
+   "at": 199.09,
+   "text": "GTA 6 Trailer 1 ended on 2025.",
+   "say": "GTA 6 Trailer 1 ended on twenty twenty-five.",
+   "pause": 0.35
+  },
+  {
+   "id": "l5h",
+   "at": 202.56,
+   "text": "Trailer 2 ended on May 26, 2026.",
+   "say": "Trailer 2 ended on May twenty-sixth, twenty twenty-six.",
+   "pause": 0.9
+  },
+  {
+   "id": "l5i",
+   "at": 206.73,
+   "text": "It came out November 19, 2026.",
+   "say": "It came out November nineteenth, twenty twenty-six.",
+   "pause": 0.6
+  },
+  {
+   "id": "l5j",
+   "at": 210.06,
+   "text": "First trailer to launch, GTA 5 took about 22 months.",
+   "say": "First trailer to launch, GTA 5 took about twenty-two months.",
+   "pause": 0.4
+  },
+  {
+   "id": "l5k",
+   "at": 213.71,
+   "text": "GTA 6 took almost three years.",
+   "pause": 1.1
+  },
+  {
+   "id": "ch6",
+   "at": 217.54,
+   "text": "Chapter six. Launch day.",
+   "pause": 0.9,
+   "chapter": 6
+  },
+  {
+   "id": "n6a",
+   "at": 220.46,
+   "text": "September 17, 2013. GTA 5 launches.",
+   "say": "September seventeenth, twenty thirteen. GTA 5 launches.",
+   "pause": 0.7
+  },
+  {
+   "id": "n6b",
+   "at": 225.19,
+   "text": "Day one: more than $800 million.",
+   "say": "Day one: more than eight hundred million dollars.",
+   "pause": 0.6
+  },
+  {
+   "id": "n6c",
+   "at": 228.65,
+   "text": "Thirteen years later, GTA 6 launches.",
+   "pause": 0.4
+  },
+  {
+   "id": "n6d",
+   "at": 231.68,
+   "text": "Day one: $3.79 billion.",
+   "say": "Day one: three point seven nine billion dollars.",
+   "pause": 0.8
+  },
+  {
+   "id": "n6e",
+   "at": 235.58,
+   "text": "That's more than four times the GTA 5 number.",
+   "pause": 0.7
+  },
+  {
+   "id": "n6f",
+   "at": 239.01,
+   "text": "Plus 32.5 million copies sold before it even came out.",
+   "say": "Plus thirty-two point five million copies sold before it even came out.",
+   "pause": 0.6
+  },
+  {
+   "id": "n6g",
+   "at": 243.53,
+   "text": "So, same playbook?",
+   "pause": 0.4
+  },
+  {
+   "id": "n6h",
+   "at": 245.57,
+   "text": "First trailer, heroes, map, gameplay, last trailer. Yes.",
+   "pause": 0.5
+  },
+  {
+   "id": "n6i",
+   "at": 249.09,
+   "text": "Same five moves. A very different scoreboard.",
+   "pause": 0.7,
+   "take": 1
+  },
+  {
+   "id": "n6j",
+   "at": 252.16,
+   "text": "Now you pick. Which first trailer wins?",
+   "pause": 0.4
+  },
+  {
+   "id": "n6k",
+   "at": 255.23,
+   "text": "2011, or 2023? Tell me in the comments.",
+   "say": "Twenty eleven, or twenty twenty-three? Tell me in the comments.",
+   "pause": 0.6
+  }
+ ],
+ "tail": 5.0
+}

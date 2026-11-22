@@ -1,0 +1,466 @@
+{
+ "film": "gta-everytrailer",
+ "sources": {
+  "v11": {
+   "key": "generic-v4-s6c5c8co-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/s6c5c8co/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA V Trailer (2011)"
+  },
+  "vot": {
+   "key": "generic-v4-a8k183c8-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/a8k183c8/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA V Official Trailer (2013)"
+  },
+  "vgp": {
+   "key": "generic-v4-ra124rca-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/ra124rca/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA V Gameplay Video (2013)"
+  },
+  "t1": {
+   "key": "twitter-1731998653743517697",
+   "url": "https://x.com/RockstarGames/status/1732149328779571313",
+   "title": "Rockstar Games - Hello @X, watch Grand Theft Auto VI Trailer 1",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Trailer 1 (2023)"
+  },
+  "t2": {
+   "key": "twitter-1919733318217576448",
+   "url": "https://x.com/RockstarGames/status/1919746311382851812",
+   "title": "Rockstar Games - Watch Grand Theft Auto VI Trailer 2 Now  Explore Vice City and beyond at",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Trailer 2 (2025)"
+  },
+  "lt": {
+   "key": "twitter-2110704990339678208",
+   "url": "https://x.com/RockstarGames/status/2110717537964953810",
+   "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Launch Trailer (2026)"
+  },
+  "el": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI: An Extended Look (2026)"
+  }
+ },
+ "clips": {
+  "sky5": {
+   "src": "v11",
+   "in": 63.0,
+   "out": 64.3,
+   "fps": 30,
+   "frames": 39,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "signs": {
+   "src": "v11",
+   "in": 31.4,
+   "out": 32.7,
+   "fps": 30,
+   "frames": 39,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "hike": {
+   "src": "v11",
+   "in": 19.95,
+   "out": 22.75,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "mike": {
+   "src": "v11",
+   "in": 39.45,
+   "out": 42.35,
+   "fps": 30,
+   "frames": 87,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "plane5": {
+   "src": "v11",
+   "in": 70.9,
+   "out": 71.8,
+   "fps": 30,
+   "frames": 27,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "michael": {
+   "src": "vot",
+   "in": 3.0,
+   "out": 5.5,
+   "fps": 30,
+   "frames": 75,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "franklin": {
+   "src": "vot",
+   "in": 33.35,
+   "out": 34.8,
+   "fps": 30,
+   "frames": 44,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "trevor": {
+   "src": "vot",
+   "in": 11.0,
+   "out": 13.25,
+   "fps": 30,
+   "frames": 68,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "chute": {
+   "src": "vot",
+   "in": 44.5,
+   "out": 46.7,
+   "fps": 30,
+   "frames": 66,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "minigun": {
+   "src": "vot",
+   "in": 52.4,
+   "out": 54.7,
+   "fps": 30,
+   "frames": 69,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "roof": {
+   "src": "vgp",
+   "in": 58.3,
+   "out": 60.85,
+   "fps": 30,
+   "frames": 77,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "switch": {
+   "src": "vgp",
+   "in": 129.3,
+   "out": 133.6,
+   "fps": 30,
+   "frames": 129,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "desert": {
+   "src": "vgp",
+   "in": 12.0,
+   "out": 13.6,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "speed": {
+   "src": "vgp",
+   "in": 19.4,
+   "out": 21.9,
+   "fps": 30,
+   "frames": 75,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "canal": {
+   "src": "vgp",
+   "in": 24.2,
+   "out": 25.85,
+   "fps": 30,
+   "frames": 50,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "truck": {
+   "src": "vgp",
+   "in": 30.0,
+   "out": 31.2,
+   "fps": 30,
+   "frames": 36,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "rob5": {
+   "src": "vgp",
+   "in": 244.6,
+   "out": 247.15,
+   "fps": 30,
+   "frames": 77,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "vcnight": {
+   "src": "t1",
+   "in": 31.0,
+   "out": 32.5,
+   "fps": 30,
+   "frames": 45,
+   "w": 1280,
+   "crop": null
+  },
+  "swamp": {
+   "src": "t1",
+   "in": 19.2,
+   "out": 22.6,
+   "fps": 30,
+   "frames": 102,
+   "w": 1280,
+   "crop": null
+  },
+  "lucia1": {
+   "src": "t1",
+   "in": 6.55,
+   "out": 8.4,
+   "fps": 30,
+   "frames": 56,
+   "w": 1280,
+   "crop": null
+  },
+  "jason": {
+   "src": "t2",
+   "in": 19.3,
+   "out": 22.9,
+   "fps": 30,
+   "frames": 108,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "fence": {
+   "src": "t2",
+   "in": 63.4,
+   "out": 65.9,
+   "fps": 30,
+   "frames": 75,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "islands": {
+   "src": "t2",
+   "in": 6.3,
+   "out": 7.9,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "highway": {
+   "src": "t2",
+   "in": 35.0,
+   "out": 37.8,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "jetski": {
+   "src": "t2",
+   "in": 140.0,
+   "out": 141.75,
+   "fps": 30,
+   "frames": 53,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "lean": {
+   "src": "lt",
+   "in": 40.0,
+   "out": 41.6,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  },
+  "lowrider": {
+   "src": "lt",
+   "in": 18.1,
+   "out": 20.4,
+   "fps": 30,
+   "frames": 69,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  },
+  "iguana": {
+   "src": "lt",
+   "in": 20.5,
+   "out": 21.9,
+   "fps": 30,
+   "frames": 42,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  },
+  "pcanyon": {
+   "src": "vgp",
+   "in": 162.0,
+   "out": 163.8,
+   "fps": 30,
+   "frames": 54,
+   "w": 960,
+   "crop": "1280:720:0:0"
+  },
+  "pvchute": {
+   "src": "vgp",
+   "in": 211.0,
+   "out": 214.5,
+   "fps": 30,
+   "frames": 105,
+   "w": 960,
+   "crop": "1280:720:0:0"
+  },
+  "pwindow": {
+   "src": "vgp",
+   "in": 272.0,
+   "out": 276.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 960,
+   "crop": "1280:720:0:0"
+  },
+  "pdock": {
+   "src": "t2",
+   "in": 81.4,
+   "out": 84.9,
+   "fps": 30,
+   "frames": 105,
+   "w": 960,
+   "crop": "1920:864:0:108"
+  },
+  "pstreet": {
+   "src": "t2",
+   "in": 152.9,
+   "out": 155.9,
+   "fps": 30,
+   "frames": 90,
+   "w": 960,
+   "crop": "1920:864:0:108"
+  },
+  "pcause": {
+   "src": "t1",
+   "in": 36.0,
+   "out": 36.9,
+   "fps": 30,
+   "frames": 27,
+   "w": 960,
+   "crop": null
+  },
+  "sky6": {
+   "src": "el",
+   "in": 1570.0,
+   "out": 1572.75,
+   "fps": 30,
+   "frames": 83,
+   "w": 1280,
+   "crop": "1920:1062:0:0"
+  },
+  "walk": {
+   "src": "el",
+   "in": 605.0,
+   "out": 608.8,
+   "fps": 30,
+   "frames": 114,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "helis": {
+   "src": "el",
+   "in": 745.0,
+   "out": 749.4,
+   "fps": 30,
+   "frames": 132,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "conv": {
+   "src": "el",
+   "in": 499.5,
+   "out": 503.8,
+   "fps": 30,
+   "frames": 129,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "rob6": {
+   "src": "el",
+   "in": 720.7,
+   "out": 722.45,
+   "fps": 30,
+   "frames": 53,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "boat": {
+   "src": "el",
+   "in": 1573.0,
+   "out": 1575.8,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "pelst": {
+   "src": "el",
+   "in": 880.0,
+   "out": 881.9,
+   "fps": 30,
+   "frames": 57,
+   "w": 960,
+   "crop": "1920:1080:0:0"
+  },
+  "pel365": {
+   "src": "el",
+   "in": 365.2,
+   "out": 368.8,
+   "fps": 30,
+   "frames": 108,
+   "w": 960,
+   "crop": "1920:1080:0:0"
+  },
+  "pel380": {
+   "src": "el",
+   "in": 380.0,
+   "out": 382.6,
+   "fps": 30,
+   "frames": 78,
+   "w": 960,
+   "crop": "1920:1080:0:0"
+  },
+  "pc6": {
+   "src": "t2",
+   "in": 89.9,
+   "out": 92.9,
+   "fps": 30,
+   "frames": 90,
+   "w": 960,
+   "crop": "1920:864:0:108"
+  }
+ }
+}

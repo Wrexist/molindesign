@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-everytrailer/out/gta-everytrailer-vo.mp4: 264.1 s, 1 hard cuts (0.0/10 s), motion 0-1 s 0.536, 0-3 s 0.457, median 0.126, still frames 26.8 %
+OK    no frozen stretches, opening moves
