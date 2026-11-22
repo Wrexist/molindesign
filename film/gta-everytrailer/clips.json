@@ -8,7 +8,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA V Trailer (2011)"
+   "credit": "Rockstar Games · GTA V Trailer (2011)"
   },
   "vot": {
    "key": "generic-v4-a8k183c8-flv-en-us-720p-mp4",
@@ -17,7 +17,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA V Official Trailer (2013)"
+   "credit": "Rockstar Games · GTA V Official Trailer (2013)"
   },
   "vgp": {
    "key": "generic-v4-ra124rca-flv-en-us-720p-mp4",
@@ -26,7 +26,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA V Gameplay Video (2013)"
+   "credit": "Rockstar Games · GTA V Gameplay Video (2013)"
   },
   "t1": {
    "key": "twitter-1731998653743517697",
@@ -35,7 +35,7 @@
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA VI Trailer 1 (2023)"
+   "credit": "Rockstar Games · GTA VI Trailer 1 (2023)"
   },
   "t2": {
    "key": "twitter-1919733318217576448",
@@ -44,7 +44,7 @@
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA VI Trailer 2 (2025)"
+   "credit": "Rockstar Games · GTA VI Trailer 2 (2025)"
   },
   "lt": {
    "key": "twitter-2110704990339678208",
@@ -53,7 +53,7 @@
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA VI Launch Trailer (2026)"
+   "credit": "Rockstar Games · GTA VI Launch Trailer (2026)"
   },
   "el": {
    "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
@@ -62,7 +62,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games \u00b7 GTA VI: An Extended Look (2026)"
+   "credit": "Rockstar Games · GTA VI: An Extended Look (2026)"
   }
  },
  "clips": {
@@ -231,9 +231,9 @@
   "swamp": {
    "src": "t1",
    "in": 19.2,
-   "out": 22.6,
+   "out": 21.65,
    "fps": 30,
-   "frames": 102,
+   "frames": 74,
    "w": 1280,
    "crop": null
   },

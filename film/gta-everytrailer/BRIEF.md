@@ -202,3 +202,13 @@ Never on screen: Rockstar's logo or key-art end cards (we redraw the dates), tra
     - Loudness −14.0 LUFS, true peak −2.5 dBTP.
     - pacecheck OK: median motion 0.136, motion 0–3 s 0.725.
     - No black frames.
+- 2026-11-22 (director, after jury r2: 7.2 overall, Truth 8.0). **Status: HELD after r2.** The Truth fixes below are applied; the film needs a fresh jury r3 in a later run.
+  - **Swamp clip:** `swamp` now ends at t1 21.65 s, not 22.6, so the city beach no longer plays under "leave the city for the wild". The clip runs slower to fill its slot, so nothing freezes, and MATCH lands on the flamingos.
+  - **Payoff clipboard:** rows 1, 3, 4 and 5 are ticked in both columns, matching the MATCH ticks shown in chapters 1, 3, 4 and 5. Row 2 (the heroes) gets an X in the GTA 6 column. The chip reads `YES · 4 OF 5 MATCH`. The voice is unchanged.
+  - **Gameplay runtime:** the 4:50 bar is labelled `GAMEPLAY VIDEO · ROCKSTAR-HOSTED CUT`, not JULY 9, 2013, because the file Rockstar hosts is a post-launch re-cut.
+  - **Maps:** the scale note is now a prominent cream chip, `NOT TO SCALE · NO SIZE CLAIM`.
+  - **seo.md:**
+    - The description no longer says "same five moves".
+    - The alternate title has no emoji.
+    - Chapter stamps follow the first word of each chapter line: 0:00 / 0:17 / 1:07 / 1:46 / 2:21 / 2:56 / 3:39.
+  - **Render:** only the changed frames were re-rendered (SAMPLES=16), then the film was re-encoded and re-mixed. Checks: clip lint ok (Rockstar foreground 26 %, plates 16 %), readcheck 0 FAIL, in-context listen 0 FIX, −14.0 LUFS (true peak −2.5 dBTP), pacecheck OK, no black frames.

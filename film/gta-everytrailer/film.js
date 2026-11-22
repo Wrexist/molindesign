@@ -698,7 +698,7 @@
       var vk = cd(t, h('vice') - .05, 11);
       if (vk > 0) { circ(g, 1640, 820, 18 * vk); g.fillStyle = CREAM; g.fill(); chip(g, 'VICE CITY, USA', 1640, 880, { px: 44, bg: ACC, fg: INK, a: vk, s: lerp(1.3, 1, vk) }); }
     }
-    chip(g, 'OUR SKETCH · NOT TO SCALE', 960, 915, { px: 34, fam: MONO, wt: 600, bg: 'rgba(22,26,36,.9)', fg: DIM });
+    chip(g, 'NOT TO SCALE · NO SIZE CLAIM', 960, 915, { px: 46, wt: 900, bg: CREAM, fg: INK });
     /* pin windows with the clips */
     function pin(u, x, y, side, label) {
       if (!u || t < u.t0 - .05 || t > u.t1 + .05) return;
@@ -729,7 +729,7 @@
     var c5 = fin(t, s.t0 + .25), c6 = fin(t, at('g4c', 'august') - .15);
     if (c5 > 0) {
       g.save(); g.globalAlpha = c5;
-      gtaChip(g, 5, 140, 320, 1, 'GAMEPLAY VIDEO · JULY 9, 2013');
+      gtaChip(g, 5, 140, 320, 1, 'GAMEPLAY VIDEO · ROCKSTAR-HOSTED CUT');
       rr(g, x0, 380, Math.max(16, 4.83 * px * k5), 110, 12); g.fillStyle = COOL; g.fill();
       if (k5 >= 1) txt(g, '4:50', x0 + 4.83 * px + 30, 438, 80, CREAM, { align: 'left', wt: 900 });
       g.restore();
@@ -911,11 +911,14 @@
   /* chapter 6 · same playbook: the five plays tick, the scoreboard differs */
   function sSame(g, t, s) {
     g.save(); push(g, t, s);
-    var hit = { 0: at('n6h', 'opening') - .05, 4: at('n6h', 'late') - .05 };
+    var hit = { 0: at('n6h', 'opening') - .05, 2: at('n6h', 'opening') + .35, 3: at('n6h', 'opening') + .65, 4: at('n6h', 'late') - .05 };
     clipboard(g, t, 520, 560, { rot: -.02, rows: function (i) { return hit[i] == null ? .3 : 1; }, tick: function (i, six) { return hit[i] == null ? -1 : t - hit[i] - (six ? .12 : 0); } });
-    [0, 4].forEach(function (i) { var hk = eio(seg(t, hit[i] + .25, hit[i] + .6)); if (hk > 0) { g.save(); g.translate(520, 560); g.rotate(-.02); rr(g, -350, -140 + i * 100 - 40, 700 * hk, 80, 12); g.lineWidth = 6; g.strokeStyle = ACC; g.stroke(); g.restore(); } });
+    g.save(); g.translate(520, 560); g.rotate(-.02);
+    var xk = eio(seg(t, at('n6h', 'beats') + .1, at('n6h', 'beats') + .35));
+    if (xk > 0) { g.save(); g.strokeStyle = ACC; g.lineWidth = 8; g.lineCap = 'round'; g.beginPath(); g.moveTo(272, -58); g.lineTo(272 + 36 * xk, -58 + 36 * xk); g.moveTo(308, -58); g.lineTo(308 - 36 * xk, -58 + 36 * xk); g.stroke(); g.restore(); }
+    g.restore();
     var y = fin(t, h('yes') - .05);
-    if (y > 0) chip(g, 'YES · SAME START, SAME DELAY', 520, 965 - 30, { px: 50, bg: ACC, fg: INK, a: y, s: lerp(1.2, 1, cd(t, h('yes') - .05, 11)) });
+    if (y > 0) chip(g, 'YES · 4 OF 5 MATCH', 520, 965 - 30, { px: 50, bg: ACC, fg: INK, a: y, s: lerp(1.2, 1, cd(t, h('yes') - .05, 11)) });
     var sb = cd(t, at('n6i', 'different') - .15, 10);
     var q = fin(t, s.t0 + .1);
     g.save(); g.globalAlpha = q; txt(g, 'SAME PLAYBOOK?', 1080, 210, 84, CREAM, { align: 'left', wt: 900, wide: true, max: 720 }); g.restore();
@@ -1131,7 +1134,7 @@
     T('days5', '685 DAYS', at('l5j', '22') + .1, S('days').t1); T('days6', '1,081 DAYS', at('l5k', 'took') + .1, S('days').t1);
     T('money', '$800M+ vs $3.79B', h('b379') + .15, h('c325'));
     T('copies', '32.5M COPIES SOLD BEFORE LAUNCH', h('c325') + .15, S('launch').t1);
-    T('same', 'YES · SAME START, SAME DELAY', h('yes') + .15, S('same').t1);
+    T('same', 'YES · 4 OF 5 MATCH', h('yes') + .15, S('same').t1);
     T('vote', 'WHICH FIRST TRAILER WINS?', at('n6j', 'which'), DUR);
 
     EV.sort(function (a, b) { return a.t - b.t; });

@@ -1,20 +1,20 @@
 # SEO and posting text: GTA 5 vs GTA 6, every trailer (Delta long-form L1)
 
-Channel: **Delta** (YouTube @deltaisac) only, regular long-form video (not a Short). Upload `out/gta-everytrailer-vo.mp4` (16:9, 1920x1080, voice + sound effects, no music, 4:26). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Playlist: GTA 6 Facts. Facts and sources: `BRIEF.md`. Draft by the researcher; chapter times filled by the director from the voice layout (each chapter starts on its title card; chapters run 16–51 s); the video-seo agent finishes it.
+Channel: **Delta** (YouTube @deltaisac) only, regular long-form video (not a Short). Upload `out/gta-everytrailer-vo.mp4` (16:9, 1920x1080, voice + sound effects, no music, 4:26). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Playlist: GTA 6 Facts. Facts and sources: `BRIEF.md`. Draft by the researcher; chapter times filled by the director from the voice layout (each chapter stamp is the chapter line's first word, the title card opens 0.7 s before; chapters run 17–50 s); the video-seo agent finishes it.
 
 ## Title
 GTA 5 vs GTA 6: Every Trailer, Side by Side
 
 Alternates (A/B test):
 - GTA 5 vs GTA 6: Rockstar Used the Same Playbook Twice?
-- GTA 5 vs GTA 6: Every Trailer Compared (13 Years Apart) 🎬
+- GTA 5 vs GTA 6: Every Trailer Compared (13 Years Apart)
 
 ## Thumbnail
 `out/thumbnail.jpg` (1280x720, `node render.mjs thumb --film gta-everytrailer`): split frame, GTA 5 sunset skyline with the oil pump (GTA V Trailer, 2011) left, GTA 6 sunset through a fence (Trailer 1, 2023) right, so each year chip matches its frame, a hot seam between; huge `GTA 5` / `GTA 6` with a `vs` disc on the seam, `2011` / `2023` chips, and `EVERY TRAILER, SIDE BY SIDE`. Our own type, no Rockstar logo or key art. A/B alternate: the researcher's `SAME PLAYBOOK?` over the same split.
 
 ## Description
 ```
-GTA 5 vs GTA 6, every official trailer side by side: the first trailers, the heroes, the map, the gameplay reveal, the last trailer, and launch day. Thirteen years apart, Rockstar made the same five moves. The scoreboard did not match.
+GTA 5 vs GTA 6, every official trailer side by side: the first trailers, the heroes, the map, the gameplay reveal, the last trailer, and launch day. Thirteen years apart, the two launches open the same way, and both missed their first release date. The scoreboard did not match.
 
 Both first trailers hit the same four opening beats in the same order. GTA 5 split its story between Michael, Franklin and Trevor; GTA 6 tells one story about Jason and Lucia. Both games missed their first release date. GTA 5 made more than 800 million dollars on day one. GTA 6 made 3.79 billion.
 
@@ -22,12 +22,12 @@ Which first trailer wins, 2011 or 2023?
 
 Chapters
 0:00 Same playbook?
-0:16 1. The first trailer
-1:06 2. Three heroes, then two
-1:45 3. The map
-2:20 4. The gameplay reveal
-2:55 5. The last trailer
-3:38 6. Launch day
+0:17 1. The first trailer
+1:07 2. Three heroes, then two
+1:46 3. The map
+2:21 4. The gameplay reveal
+2:56 5. The last trailer
+3:39 6. Launch day
 
 Sources
 - Rockstar Games, Grand Theft Auto V Trailer (November 2, 2011): https://www.rockstargames.com/videos/s6c5c8co
