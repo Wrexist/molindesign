@@ -1,0 +1,2 @@
+/home/user/molindesign/film/restartphone/out/restartphone-vo.mp4: 35.1 s, 1 hard cuts (0.3/10 s), motion 0-1 s 1.213, 0-3 s 0.862, median 0.123, still frames 28.3 %
+OK    no frozen stretches, opening moves
