@@ -1,6 +1,6 @@
 # SEO and posting text: GTA 5 vs GTA 6, every trailer (Delta long-form L1)
 
-Channel: **Delta** (YouTube @deltaisac) only, regular long-form video (not a Short). Upload `out/gta-everytrailer-vo.mp4` (16:9, 1920x1080, voice + sound effects, no music, 4:24). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Playlist: GTA 6 Facts. Facts and sources: `BRIEF.md`. Draft by the researcher; chapter times filled by the director from the voice layout (each chapter starts on its title card; chapters run 16–50 s); the video-seo agent finishes it.
+Channel: **Delta** (YouTube @deltaisac) only, regular long-form video (not a Short). Upload `out/gta-everytrailer-vo.mp4` (16:9, 1920x1080, voice + sound effects, no music, 4:26). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Playlist: GTA 6 Facts. Facts and sources: `BRIEF.md`. Draft by the researcher; chapter times filled by the director from the voice layout (each chapter starts on its title card; chapters run 16–51 s); the video-seo agent finishes it.
 
 ## Title
 GTA 5 vs GTA 6: Every Trailer, Side by Side
@@ -10,7 +10,7 @@ Alternates (A/B test):
 - GTA 5 vs GTA 6: Every Trailer Compared (13 Years Apart) 🎬
 
 ## Thumbnail
-`out/thumbnail.jpg` (1280x720, `node render.mjs thumb --film gta-everytrailer`): split frame, GTA 5 sunset skyline with the oil pump (GTA V Trailer, 2011) left, GTA 6 sunset skyline (An Extended Look) right, a hot seam between; huge `GTA 5` / `GTA 6` with a `vs` disc on the seam, `2011` / `2023` chips, and `EVERY TRAILER, SIDE BY SIDE`. Our own type, no Rockstar logo or key art. A/B alternate: the researcher's `SAME PLAYBOOK?` over the same split.
+`out/thumbnail.jpg` (1280x720, `node render.mjs thumb --film gta-everytrailer`): split frame, GTA 5 sunset skyline with the oil pump (GTA V Trailer, 2011) left, GTA 6 sunset through a fence (Trailer 1, 2023) right, so each year chip matches its frame, a hot seam between; huge `GTA 5` / `GTA 6` with a `vs` disc on the seam, `2011` / `2023` chips, and `EVERY TRAILER, SIDE BY SIDE`. Our own type, no Rockstar logo or key art. A/B alternate: the researcher's `SAME PLAYBOOK?` over the same split.
 
 ## Description
 ```
@@ -24,10 +24,10 @@ Chapters
 0:00 Same playbook?
 0:16 1. The first trailer
 1:06 2. Three heroes, then two
-1:44 3. The map
-2:19 4. The gameplay reveal
-2:54 5. The last trailer
-3:36 6. Launch day
+1:45 3. The map
+2:20 4. The gameplay reveal
+2:55 5. The last trailer
+3:38 6. Launch day
 
 Sources
 - Rockstar Games, Grand Theft Auto V Trailer (November 2, 2011): https://www.rockstargames.com/videos/s6c5c8co

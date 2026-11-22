@@ -172,3 +172,33 @@ Never on screen: Rockstar's logo or key-art end cards (we redraw the dates), tra
 ## Log
 - 2026-11-22 (researcher): identified a8k183c8 = "Grand Theft Auto V - Official Trailer" (2013, ends SEPTEMBER 17) and ra124rca = "Grand Theft Auto V - Gameplay Video" (Rockstar page titles via WebFetch; content on contact sheets). Rockstar's own graph API was off-limits from this session, so video-page dates for a8k183c8 and ra124rca come from the PlayStation Blog (Rockstar's own post) and press; the voice keeps only the dates that are primary-sourced or seen on screen. scriptlint OK (0 fail, 0 warn).
 - 2026-11-22 (director): built `film.js` (33 scenes over six chapters on one split seam: GTA 5 panel left, GTA 6 right, VS badge that turns into a MATCH tick; ink ground, cream type, one orange accent; Archivo + Geist Mono). The voice layout runs to 264.1 s (4:24, tail 5 s), not 283 s, after pause tuning: t1b .75, t1l .7, h2j .7, l5f .75, l5h .9, n6a .7, n6d .8, n6e .7, m3e .8. These give the hero SFX (slams, stamps) room past the VAD gate (margin .08 for long-form). Text/say splits for Whisper: hook says "versus", g4d says the runtime in words, n6b/n6d text "Day one: …", n6f says "thirty-two point five million", m3b text "One city, its hills, and a desert behind it." n6i was re-rolled to take 1. Also added `"hero's"→heroes` and `"it's"→its` to the shared SAME map in `film/tools/voiceover.py` (normalization only). The El (An Extended Look) `src.mp4` was missing from `/mnt/project-files/delta/sources/generic-v4-rk721912-flv-en-us-1080p-mp4/`, so I downloaded it again from Rockstar's CDN. Clips: 46 uses, all < 5 s, none reusing gta-sametrailer/gta-daysales ranges. Plates (dimmed ≥ 35 %): the researcher's list plus el 365.2–368.8, el 380.0–382.6 and t2 89.9–92.9 (unused elsewhere). GTA V footage gets a grade (contrast 1.08, saturate 1.12, brightness 1.03) so the 720p source sits closer to the 2023 footage. Chapter 1's order claim uses our checklist only (no sametrailer clips). The picture was rendered with SAMPLES=16 at WORKERS=2. After the first full render: the t2 pair's left chip said GTA 5 over Jason (fixed: both chips GTA 6). Chapter cards now open 0.7 s before their line, with the card hit in the pause, so "Chapter" starts clean. The room tone dips for 0.8 s under each chapter line's first word: Whisper kept dropping "Chapter" through the mix (ch1 or ch4, flipping with -60 dB changes). The quote card is shortened to "…rely on each other more than ever…" so the card reads in time. Dashed date slots, a sheen on the date rows and on the end panels, and a bobbing comments arrow cure three frozen holds (190.8, 208.2, 259.0 s). Added `'first': '1'` to SAME (Whisper writes "1st"). Changed frames were re-rendered in place at the same 16 samples, then re-encoded. Final checks: clip lint ok (46 uses, Rockstar footage 28 %, with plates 42 %); readcheck 0 FAIL; listen check and in-context check 0 FIX; −14.0 LUFS (true peak −2.5 dBTP); pacecheck OK (no frozen stretch, median motion 0.126); no black. Runtime 4:24 (264.1 s). Chapters 0:00 / 0:16 / 1:06 / 1:44 / 2:19 / 2:54 / 3:36.
+- 2026-11-22 (director, jury r1 → r2; r1 scored 7.0 overall, 8.0 Truth): 
+  - Truth fixes:
+    - The GTA 6 switch wheel is gone. GTA 6 is now two portrait cards (JASON, LUCIA) under a `ONE STORY` bar, with nothing on that side until "two". h2f is re-voiced as "GTA 6 tells one story, about two people." and h2j as "Three stories in GTA 5. One shared story in GTA 6."
+    - Year chips now match their footage. Frame 0, the end vote and the thumbnail use GTA VI Trailer 1 at 5.0–6.45 s (sunset through a fence, `t1sun`, a range no other film uses) under `2023`, in place of the Extended Look skyline. The `sky6` clip is dropped.
+    - l5i now reads "GTA 6 came out November 19, 2026."
+  - Side by side:
+    - Every pair runs both clips together (stagger 0.45 s, union ≤ 4.6 s, MATCH while both play): hikers/swamp, Michael/Lucia, speedboat/jet ski, dusk/helicopters, parachute+lowrider, then minigun+iguana. Rooftop trio + Jason/Lucia also play together at open3.
+    - Michael is on screen while he is named.
+  - Views (chapter 1 record beat):
+    - A dimmed Trailer 1 street plate (t1 27.0–29.0, `pt1st`) sits under the views card from its start.
+    - The `?` sliver shakes on "match".
+    - `93,000,000+` lands on the word, with its slam in the next pause.
+    - t1k pause is 0.3.
+  - Hook:
+    - The frame-0 title is static and centred.
+    - open4 now teases chapters 5 and 6: "Both games were late for their first release date." It plays over crossed `SPRING 2013` / `2025` cards, then `$800M+` vs `$3.79B`. The first two wordings were each misheard by Whisper ("miss", "slip").
+  - Payoff: n6h is "Same opening beats. Same late launch. Yes." Only rows 1 and 5 are ticked, with an outline. n6i is "Same playbook. A very different scoreboard." The scoreboard reads `MORE THAN 4× ON DAY ONE`.
+  - Craft:
+    - The outgoing scene fades during every wipe, and the hook chips fade before the deck arrives.
+    - Runtime and date cards land with their scene.
+    - At the end, 2011 and 2023 are both cream. The bobbing arrow is replaced by `YOUR PICK: 2011 OR 2023`, the end credits are hidden, and the hold ends on a `WATCH NEXT` pair of 640×360 end-screen slots.
+  - Fix 6 (split-face composite) is skipped.
+  - Voice is now 266.1 s (4:26), with chapters at 0:16 / 1:06 / 1:45 / 2:20 / 2:55 / 3:38. Full picture re-render at SAMPLES=16, WORKERS=2.
+  - r2 finishing: the room tone now stays off for each whole chapter line, because Whisper dropped "Chapter" on ch1 again. Added `Jet Ski` to `names`. Added `beets`→beats and `flamengos`→flamingos to SAME (spelling only). Repeating light passes over the map (m3a–m3b), the date rows and the 32.5M card fix five 1.0–1.3 s holds that pacecheck found. Final checks:
+    - clip lint ok: 47 uses; Rockstar foreground footage 26 %, plates 16 %, 41 % real footage on screen.
+    - readcheck 0 FAIL.
+    - Listen and in-context checks: 0 FIX.
+    - Loudness −14.0 LUFS, true peak −2.5 dBTP.
+    - pacecheck OK: median motion 0.136, motion 0–3 s 0.725.
+    - No black frames.

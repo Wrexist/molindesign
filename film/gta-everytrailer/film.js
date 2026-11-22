@@ -76,7 +76,7 @@
   }
 
   /* a hero beat: the picture lands where its sound can sit (a real pause near the word), so no stamp is silent */
-  var HT = {}, HDIFF = {};
+  var HT = {}, HDIFF = {}, ES = 0;
   /* prefers the first pause at or after the word (the picture answers the voice), else the nearest one before it */
   function HB(id, t, type, o, tol) {
     tol = tol == null ? 1.6 : tol; FREE = FREE || free(window.VAD ? .08 : .2);
@@ -140,6 +140,8 @@
     gr.addColorStop(0, 'rgba(255,240,225,0)'); gr.addColorStop(.5, 'rgba(255,240,225,' + a + ')'); gr.addColorStop(1, 'rgba(255,240,225,0)');
     g.fillStyle = gr; g.fillRect(x, y, w, h); g.restore();
   }
+  /* a light band that passes over a card again and again between a and b: long holds never read as a still */
+  function loopSheen(g, t, x, y, w, h, a, b, al) { if (t < a || t > b) return; sheen(g, x, y, w, h, ((t - a) % 1.7) / 1.4, al || .16); }
   function strike(g, x0, y, x1, k, col) { if (k <= 0) return; g.save(); g.strokeStyle = col || ACC; g.lineWidth = 10; g.lineCap = 'round'; g.beginPath(); g.moveTo(x0, y); g.lineTo(lerp(x0, x1, k), y - (x1 - x0) * .05 * k); g.stroke(); g.restore(); }
 
   /* ---------- background: ink, a slow warm/cool light that never stops moving ---------- */
@@ -172,7 +174,7 @@
     for (var i = 0; i < 14; i++) { var px = b.x + 20 + ((i * 66 + t * 40) % (b.w - 20)); rr(g, px, b.y + 16, 34, 20, 4); g.fill(); rr(g, px, b.y + b.h - 36, 34, 20, 4); g.fill(); }
     g.restore();
     if (o && o.ta != null && o.ta < 1) { g.save(); g.globalAlpha *= o.ta; }
-    if (o && o.big) txt(g, o.big, b.x + b.w / 2, b.y + b.h / 2 - (o.small ? 26 : 0), o.bpx || 96, o.side === 6 ? ACC : CREAM, { wt: 900, wide: true, max: b.w - 90 });
+    if (o && o.big) txt(g, o.big, b.x + b.w / 2, b.y + b.h / 2 - (o.small ? 26 : 0), o.bpx || 96, o.col || (o.side === 6 ? ACC : CREAM), { wt: 900, wide: true, max: b.w - 90 });
     if (o && o.small) txt(g, o.small, b.x + b.w / 2, b.y + b.h / 2 + (o.bpx || 96) * .55 + 10, 38, DIM, { fam: MONO, wt: 600, ls: 2 });
     if (o && o.ta != null && o.ta < 1) g.restore();
   }
@@ -208,7 +210,7 @@
     var na = o.noteT == null ? 1 : fin(t, o.noteT, .3);
     if (o.note && na > 0) { g.save(); g.globalAlpha *= na; txt(g, o.note, b.x + 4, b.y + b.h + 50 + (1 - na) * 16, 46, CREAM, { align: 'left', wt: 800 }); g.restore(); }
     var cu = u || o.creditUse;
-    if (cu && (!o.creditUse || t >= cu.t0 - .1) && !(o.quiet && t < o.quiet)) txt(g, CREDIT[srcOf(cu)], b.x + 4, b.y + b.h + 104, 34, DIM, { align: 'left', fam: MONO, wt: 600 });
+    if (cu && !o.nocred && (!o.creditUse || t >= cu.t0 - .1) && !(o.quiet && t < o.quiet)) txt(g, CREDIT[srcOf(cu)], b.x + 4, b.y + b.h + 104, 34, DIM, { align: 'left', fam: MONO, wt: 600 });
     g.restore();
   }
   /* the seam between the two panels; m = 0..1 match tick */
@@ -288,32 +290,46 @@
   function sHook(g, t, s) {
     var end2 = s.final;
     g.save(); push(g, t, s, .02);
-    panel(g, t, { x: 60, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.sky5b : U.sky5], side: 5, slate: { big: '2011', bpx: 150 }, quiet: end2 ? null : 1.2 });
-    panel(g, t, { x: 980, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.sky6b : U.sky6], side: 6, slate: { big: '2023', bpx: 150 }, quiet: end2 ? null : 1.2 });
-    g.restore();
+    var outA = end2 ? 1 - fin(t, ES - .1, .4) : 1;
+    g.save(); g.globalAlpha *= outA;
+    panel(g, t, { x: 60, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.sky5b : U.sky5], side: 5, slate: { big: '2011', bpx: 150 }, quiet: end2 ? null : 1.2, nocred: end2 });
+    panel(g, t, { x: 980, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.t1sb : U.t1s], side: 6, slate: { big: '2023', bpx: 150, col: end2 ? CREAM : null }, quiet: end2 ? null : 1.2, nocred: end2 });
+    g.restore(); g.restore();
+    var lv = 1 - seg(t, s.t1 - .4, s.t1 - .15);   // outgoing chips clear their line before the next scene's header arrives
     if (!end2) {
-      /* frame 0: GTA 5 vs GTA 6, already gliding (≥ 300 px in the first second) */
-      var gx = lerp(780, 960, eo(seg(t, 0, 1.1)));
+      /* frame 0: GTA 5 vs GTA 6, sharp and centred on the seam from the first frame (the clips carry the motion) */
+      var gx = 960;
       txt(g, 'GTA 5', gx - 110, 880, 140, CREAM, { align: 'right', wt: 900, wide: true });
       txt(g, 'vs', gx, 880, 100, ACC, { wt: 900 });
       txt(g, 'GTA 6', gx + 110, 880, 140, CREAM, { align: 'left', wt: 900, wide: true });
       var ya = fin(t, 1.0, .35);
-      if (ya > 0) { gtaChip(g, 5, 60, 72, ya, '2011'); gtaChip(g, 6, 1860, 72, ya, '2023', 'right'); }
-      var sa = fin(t, at('hook', 'vs') + .6, .3);
+      ya *= lv; if (ya > 0) { gtaChip(g, 5, 60, 72, ya, '2011'); gtaChip(g, 6, 1860, 72, ya, '2023', 'right'); }
+      var sa = fin(t, at('hook', 'vs') + .6, .3) * lv;
       if (sa > 0) { g.save(); g.globalAlpha = sa; txt(g, 'EVERY TRAILER, SIDE BY SIDE', 960, 1005, 44, DIM, { fam: MONO, wt: 700, ls: 6 }); g.restore(); }
     } else {
       var q = fin(t, at('n6j', 'which') - .1, .35);
       g.save(); g.globalAlpha = q; txt(g, 'WHICH FIRST TRAILER WINS?', 960, 790, 96, CREAM, { wt: 900, wide: true }); g.restore();
       var c2 = fin(t, at('n6k', '2011') - .1, .3);
       if (c2 > 0) {
-        chip(g, '2011', 500, 120, { px: 64, bg: COOLD, fg: CREAM, s: lerp(.8, 1, c2), a: c2, line: 'rgba(157,176,198,.6)' });
-        chip(g, '2023', 1420, 120, { px: 64, bg: COOLD, fg: CREAM, s: lerp(.8, 1, c2), a: c2, line: 'rgba(157,176,198,.6)' });
+        chip(g, '2011', 500, 120, { px: 64, bg: COOLD, fg: CREAM, s: lerp(.8, 1, c2), a: c2 * outA, line: 'rgba(157,176,198,.6)' });
+        chip(g, '2023', 1420, 120, { px: 64, bg: COOLD, fg: CREAM, s: lerp(.8, 1, c2), a: c2 * outA, line: 'rgba(157,176,198,.6)' });
       }
       var cm = fin(t, at('n6k', 'comments') - .2, .3);
-      if (cm > 0) { g.save(); g.globalAlpha = cm; txt(g, 'TELL ME IN THE COMMENTS ↓', 960, 885 + Math.sin((t - at('n6k', 'comments')) * 5) * 6 * cm, 48, ACC2, { fam: MONO, wt: 700, ls: 4 }); g.restore(); }
-      var sw0 = at('n6k', '2011'); if (t > sw0) { var su = ((t - sw0) % 1.8) / 1.4; g.save(); push(g, t, s, .02); sheen(g, 60, 120, 880, 560, su, .3); sheen(g, 980, 120, 880, 560, su - .25, .3); g.restore(); }
+      cm *= outA; if (cm > 0) { g.save(); g.globalAlpha = cm; txt(g, 'YOUR PICK: 2011 OR 2023', 960, 885, 48, CREAM, { fam: MONO, wt: 700, ls: 4 }); g.restore(); }
+      var sw0 = at('n6k', '2011'); if (t > sw0 && t < ES + .3) { var su = ((t - sw0) % 1.8) / 1.4; g.save(); g.globalAlpha *= outA; push(g, t, s, .02); sheen(g, 60, 120, 880, 560, su, .3); sheen(g, 980, 120, 880, 560, su - .25, .3); g.restore(); }
+      /* end hold: two slots for YouTube's end-screen videos */
+      var ek = fin(t, ES + .1, .5);
+      if (ek > 0) {
+        g.save(); g.globalAlpha = ek;
+        txt(g, 'WATCH NEXT', 960, 250, 64, CREAM, { wt: 900, wide: true });
+        [[280, 340], [1000, 340]].forEach(function (p, i) {
+          rr(g, p[0], p[1] + (1 - ek) * 40, 640, 360, 18); g.fillStyle = PANEL; g.fill(); g.lineWidth = 3; g.strokeStyle = i ? 'rgba(255,90,54,.7)' : 'rgba(157,176,198,.55)'; g.stroke();
+          sheen(g, p[0], p[1], 640, 360, ((t - ES - i * .5) % 2.2) / 1.8, .12);
+        });
+        g.restore();
+      }
     }
-    seam(g, t, 0, 1);
+    seam(g, t, 0, end2 ? 1 - fin(t, ES - .1, .4) : 1);
   }
 
   /* 1 · the seven trailers, dealt like tickets */
@@ -343,7 +359,7 @@
   /* 2 · thirteen years apart */
   function sApart(g, t, s) {
     g.save(); push(g, t, s);
-    gtaChip(g, 5, PL.x, 135, 1, 'LAUNCHED 2013'); gtaChip(g, 6, PR.x, 135, fin(t, start('open4') - .3), 'LAUNCHED 2026');
+    gtaChip(g, 5, PL.x, 135, 1, 'LAUNCHED 2013'); gtaChip(g, 6, PR.x, 135, fin(t, start('open3') + .3), 'LAUNCHED 2026');
     panel(g, t, PL, { uses: [U.roof], side: 5, slate: { big: 'GTA 5', small: 'SEPT 17, 2013' }, note: 'MICHAEL, FRANKLIN, TREVOR', noteT: U.roof.t0 + .2 });
     panel(g, t, PR, { uses: [U.lean], side: 6, slate: { big: 'GTA 6', small: 'NOV 19, 2026', side: 6 }, note: 'JASON AND LUCIA', noteT: U.lean.t0 + .2 });
     g.restore();
@@ -352,6 +368,35 @@
     if (k > 0) {
       chip(g, '13 YEARS APART', 960, 880, { px: 70, bg: ACC, fg: INK, wide: true, wt: 900, s: lerp(1.4, 1, k) * kn(t, h('apart') + .1, .04), a: clamp(k * 2, 0, 1), r: 20 });
     }
+  }
+
+  /* 2b · the stake up front: both missed their date, then the day-one gap (flashes of chapters 5 and 6) */
+  function sTease(g, t, s) {
+    g.save(); push(g, t, s);
+    var mid = s.t0 + 1.35, p1 = 1 - fin(t, mid - .15, .2), p2 = fin(t, mid, .2);
+    var ka = cd(t, s.t0 + .1, 11), kb = cd(t, s.t0 + .25, 11);
+    if (p1 > 0) {
+      g.save(); g.globalAlpha *= p1;
+      chip(g, 'COMING UP · CHAPTER 5', 960, 200, { px: 36, fam: MONO, wt: 700, bg: CREAM, fg: INK });
+      gtaChip(g, 5, 170, 330, ka); gtaChip(g, 6, 1090, 330, kb);
+      dateCard(g, 170, 390, 660, 280, 'FIRST DATE', 'SPRING 2013', 5, ka);
+      dateCard(g, 1090, 390, 660, 280, 'FIRST DATE', '2025', 6, kb);
+      strike(g, 210, 560, 790, eio(seg(t, s.t0 + .55, s.t0 + .8)));
+      strike(g, 1130, 560, 1710, eio(seg(t, s.t0 + .7, s.t0 + .95)));
+      g.restore();
+    }
+    if (p2 > 0) {
+      g.save(); g.globalAlpha *= p2;
+      chip(g, 'COMING UP · CHAPTER 6', 960, 200, { px: 36, fam: MONO, wt: 700, bg: CREAM, fg: INK });
+      txt(g, 'DAY ONE', 960, 330, 44, DIM, { fam: MONO, wt: 700, ls: 4 });
+      var m5 = cd(t, mid + .05, 12), m6 = cd(t, mid + .3, 12);
+      gtaChip(g, 5, 170, 420, m5); gtaChip(g, 6, 1090, 420, m6);
+      if (m5 > 0) { g.save(); g.globalAlpha *= clamp(m5 * 1.5, 0, 1); txt(g, '$800M+', 500, 600 + (1 - m5) * 50, 170, COOL, { wt: 900, wide: true }); g.restore(); }
+      if (m6 > 0) { g.save(); g.globalAlpha *= clamp(m6 * 1.5, 0, 1); txt(g, '$3.79B', 1420, 600 + (1 - m6) * 50, 190, ACC2, { wt: 900, wide: true }); g.restore(); }
+      g.restore();
+    }
+    g.restore();
+    seam(g, t, 0, 1);
   }
 
   /* 3 · our playbook clipboard: five plays, two columns */
@@ -498,8 +543,11 @@
     var lw = lerp(870, 150, sh), sx = 70 + lw + 20;
     g.save(); push(g, t, s);
     var bl = { x: 70, y: 180, w: lw, h: 490 }, br = { x: sx + 20, y: 180, w: 1850 - sx - 20, h: 490 };
+    var shk = at('t1k', 'match'), sx2 = Math.sin((t - shk) * 55) * 14 * Math.max(0, 1 - Math.abs(t - shk - .3) / .45);
+    g.save(); g.translate(sx2, 0);
     rr(g, bl.x, bl.y, bl.w, bl.h, 18); g.fillStyle = PANEL; g.fill(); g.lineWidth = 3; g.strokeStyle = 'rgba(157,176,198,.55)'; g.stroke();
     txt(g, sh > .6 ? '?' : 'GTA 5', bl.x + bl.w / 2, bl.y + bl.h / 2, sh > .6 ? 120 : 90, COOL, { wt: 900 });
+    g.restore();
     rr(g, br.x, br.y, br.w, br.h, 18); g.fillStyle = 'rgba(22,26,36,.82)'; g.fill(); g.lineWidth = 3; g.strokeStyle = ACC; g.stroke();
     gtaChip(g, 6, br.x, 135, 1, 'TRAILER 1');
     if (sh < .6) gtaChip(g, 5, 70, 135, 1 - sh / .6, 'GTA V TRAILER');
@@ -566,23 +614,28 @@
     g.restore();
   }
 
-  /* chapter 2 · three becomes two */
+  /* chapter 2 · three stories, then one story about two people (no wheel on the GTA 6 side: no switching is claimed) */
+  function portrait(g, x, y, name, k, nk) {
+    if (k <= 0) return;
+    g.save(); g.globalAlpha *= clamp(k * 1.5, 0, 1); g.translate(x, y + (1 - k) * 60);
+    rr(g, -150, -210, 300, 400, 22); g.fillStyle = PANEL2; g.fill(); g.lineWidth = 3; g.strokeStyle = 'rgba(255,90,54,.85)'; g.stroke();
+    g.fillStyle = 'rgba(243,239,230,.16)'; circ(g, 0, -70, 66); g.fill();
+    g.beginPath(); g.moveTo(-120, 150); g.quadraticCurveTo(-110, 10, 0, 10); g.quadraticCurveTo(110, 10, 120, 150); g.closePath(); g.fill();
+    if (nk > 0) { g.globalAlpha *= nk; txt(g, name, 0, 245, 52, CREAM, { wt: 900, wide: true }); }
+    g.restore();
+  }
   function sTwo(g, t, s) {
     g.save(); push(g, t, s);
     gtaChip(g, 5, 180, 160, 1); gtaChip(g, 6, 1100, 160, 1);
-    wheel(g, t, 520, 520, 300, ['MICHAEL', 'FRANKLIN', 'TREVOR'], -1, { col: COOL, px: 36, ccol: COOL });
-    var dk = eio(seg(t, at('h2f', 'two') - .1, at('h2f', 'two') + .6));
-    var names = t < at('h2g', 'jason') - .15 ? ['?', '?', '?'] : ['JASON', 'LUCIA', '–'];
-    if (dk <= 0) wheel(g, t, 1400, 520, 300, ['?', '?', '?'], -1, { px: 44, ccol: ACC, k: function (i) { return cd(t, s.t0 + .1 + i * .1, 10); } });
-    else {
-      /* the third slot falls away, the other two widen */
-      g.save(); g.globalAlpha = 1 - dk; g.translate(0, dk * 240); g.beginPath(); g.arc(1400, 520, 300, -Math.PI / 2 + 2 * TAU / 3 + .07, -Math.PI / 2 + TAU - .07); g.arc(1400, 520, 156, -Math.PI / 2 + TAU - .07, -Math.PI / 2 + 2 * TAU / 3 + .07, true); g.closePath(); g.fillStyle = PANEL2; g.fill(); g.restore();
-      wheel(g, t, 1400, 520, 300, [names[0], names[1]], -1, { px: 48, ccol: ACC, center: 2, k: function () { return 1; } });
-      if (t > at('h2g', 'jason') - .15) { var jk = cd(t, at('h2g', 'jason') - .15, 12); g.save(); g.globalAlpha = jk; wheel(g, t, 1400, 520, 300, ['JASON', 'LUCIA'], t > at('h2g', 'lucia') - .1 ? 1 : 0, { px: 48, ccol: ACC, center: 2 }); g.restore(); }
-    }
-    var x = fin(t, at('h2f', 'two') + .2);
-    if (x > 0) { g.globalAlpha = x; txt(g, '3  →  2', 960, 905, 80, CREAM, { wt: 900, wide: true }); }
+    wheel(g, t, 520, 500, 280, ['MICHAEL', 'FRANKLIN', 'TREVOR'], -1, { col: COOL, px: 34, ccol: COOL });
+    txt(g, '3 STORIES', 520, 880, 64, COOL, { wt: 900, wide: true });
+    var tw = at('h2f', 'two') - .1, kj = cd(t, tw, 11), kl = cd(t, tw + .15, 11);
+    portrait(g, 1260, 470, 'JASON', kj, fin(t, at('h2g', 'jason') - .1));
+    portrait(g, 1640, 470, 'LUCIA', kl, fin(t, at('h2g', 'lucia') - .1));
+    var bk = eio(seg(t, at('h2f', 'people') - .05, at('h2f', 'people') + .4));
+    if (bk > 0) { rr(g, 1110, 845, 680 * bk, 80, 16); g.fillStyle = ACC; g.fill(); if (bk > .7) { g.save(); g.globalAlpha *= (bk - .7) / .3; txt(g, 'ONE STORY', 1450, 887, 52, INK, { wt: 900, wide: true }); g.restore(); } }
     g.restore();
+    seam(g, t, 0, 1);
   }
 
   /* chapter 2 · scoreboard */
@@ -673,7 +726,7 @@
     g.fillStyle = FAINT; g.fillRect(x0, 818, 1640, 3);
     g.restore();
     var k5 = eio(seg(t, at('g4b', 'runs') - .1, at('g4b', 'minutes') + .2)), k6 = eio(seg(t, at('g4d', '26') - .2, wend('g4d', 'seconds')));
-    var c5 = fin(t, at('g4a', 'july') - .15), c6 = fin(t, at('g4c', 'august') - .15);
+    var c5 = fin(t, s.t0 + .25), c6 = fin(t, at('g4c', 'august') - .15);
     if (c5 > 0) {
       g.save(); g.globalAlpha = c5;
       gtaChip(g, 5, 140, 320, 1, 'GAMEPLAY VIDEO · JULY 9, 2013');
@@ -731,7 +784,7 @@
   function sDates(g, t, s) {
     var dip = fin(t, at('l5d', 'missed') - .2, .5);
     g.save(); push(g, t, s);
-    var ca = fin(t, s.t0 + .1), cb = cd(t, at('l5c', 'date') - .15, 10);
+    var ca = fin(t, s.t0 + .1), cb = cd(t, s.t0 + .2, 10);
     /* l5c: both trailers end on a date: our redrawn end cards */
     var up = eio(seg(t, start('l5d') - .1, start('l5d') + .6));
     g.save(); g.globalAlpha = 1 - up; g.translate(0, -up * 120);
@@ -763,6 +816,8 @@
       strike(g, 900, 710, 1260, eio(seg(t, h('x3') - .05, h('x3') + .25)));
       dateCard(g, 1340, 580, 460, 230, 'RELEASED', 'NOV 19, 2026', 6, e6c, 'LAUNCH TRAILER END');
       if (e6c > 0) tickMark(g, 1760, 610, e6c, e6c, ACC);
+      loopSheen(g, t, 400, 270, 1120, 230, at('l5e', 'spring') + .3, start('l5g') - .2, .24);
+      loopSheen(g, t, 400, 580, 1400, 230, start('l5g') + .6, at('l5i', 'november'), .24);
       var sw = at('l5i', 'november') + .2;
       sheen(g, 400, 580, 1400, 230, seg(t, sw, sw + 1.3), .28);
       sheen(g, 400, 270, 1120, 230, seg(t, sw + .5, sw + 1.8), .22);
@@ -856,10 +911,11 @@
   /* chapter 6 · same playbook: the five plays tick, the scoreboard differs */
   function sSame(g, t, s) {
     g.save(); push(g, t, s);
-    var hits = ['first', 'heroes', 'map', 'gameplay', 'last'];
-    clipboard(g, t, 520, 560, { rot: -.02, tick: function (i, six) { return t - (at('n6h', hits[i]) - .05) - (six ? .12 : 0); } });
+    var hit = { 0: at('n6h', 'opening') - .05, 4: at('n6h', 'late') - .05 };
+    clipboard(g, t, 520, 560, { rot: -.02, rows: function (i) { return hit[i] == null ? .3 : 1; }, tick: function (i, six) { return hit[i] == null ? -1 : t - hit[i] - (six ? .12 : 0); } });
+    [0, 4].forEach(function (i) { var hk = eio(seg(t, hit[i] + .25, hit[i] + .6)); if (hk > 0) { g.save(); g.translate(520, 560); g.rotate(-.02); rr(g, -350, -140 + i * 100 - 40, 700 * hk, 80, 12); g.lineWidth = 6; g.strokeStyle = ACC; g.stroke(); g.restore(); } });
     var y = fin(t, h('yes') - .05);
-    if (y > 0) chip(g, 'YES · SAME 5 MOVES', 520, 965 - 30, { px: 52, bg: ACC, fg: INK, a: y, s: lerp(1.2, 1, cd(t, h('yes') - .05, 11)) });
+    if (y > 0) chip(g, 'YES · SAME START, SAME DELAY', 520, 965 - 30, { px: 50, bg: ACC, fg: INK, a: y, s: lerp(1.2, 1, cd(t, h('yes') - .05, 11)) });
     var sb = cd(t, at('n6i', 'different') - .15, 10);
     var q = fin(t, s.t0 + .1);
     g.save(); g.globalAlpha = q; txt(g, 'SAME PLAYBOOK?', 1080, 210, 84, CREAM, { align: 'left', wt: 900, wide: true, max: 720 }); g.restore();
@@ -870,7 +926,7 @@
       gtaChip(g, 5, 1130, 480, 1); txt(g, '$800M+', 1760, 482, 84, COOL, { align: 'right', wt: 900 });
       g.fillStyle = FAINT; g.fillRect(1130, 560, 620, 3);
       gtaChip(g, 6, 1130, 650, 1); txt(g, '$3.79B', 1760, 652, 96, ACC2, { align: 'right', wt: 900 });
-      txt(g, 'A VERY DIFFERENT SCOREBOARD', 1440, 770, 38, CREAM, { wt: 800 });
+      txt(g, 'MORE THAN 4× ON DAY ONE', 1440, 770, 40, CREAM, { wt: 800 });
       g.restore();
     }
     g.restore();
@@ -880,7 +936,7 @@
   function wipe(g, t, s, prev) {
     var k = eio(seg(t, s.t0 - .02, s.t0 + .4));
     if (k >= 1 || !prev || s.wipe === 'none') { s.draw(g, t, s); return; }
-    prev.draw(g, t, prev);
+    g.save(); g.globalAlpha = 1 - k; prev.draw(g, t, prev); g.restore();
     g.save(); g.beginPath();
     if (s.wipe === 'seam') { var hw = k * 980; g.rect(960 - hw, 0, hw * 2, H); }
     else { var x = -200 + k * (W + 400); g.moveTo(-10, -10); g.lineTo(x + 90, -10); g.lineTo(x - 90, H + 10); g.lineTo(-10, H + 10); g.closePath(); }
@@ -898,6 +954,7 @@
     stage(g, t);
     var i = sceneAt(t), s = SC[i];
     g.save(); wipe(g, t, s, i > 0 ? SC[i - 1] : null); g.restore();
+    if (s.idle) { g.save(); s.idle(g, t, s); g.restore(); }
     g.setTransform(1, 0, 0, 1, 0, 0); g.globalAlpha = 1;
     chrome(g, t, s);
     captions(g, t, s);
@@ -910,6 +967,7 @@
     sc('hook', 0, sHook, { wipe: 'none' });
     sc('deck', start('open2') - .3, sDeck);
     sc('apart', start('open3') - .3, sApart);
+    sc('tease', start('open4') - .3, sTease);
     sc('book', start('open5') - .3, sBook);
     sc('rail', start('open6') - .3, sRail);
     var cards = [];
@@ -920,11 +978,11 @@
     sc('wild', start('t1f') - .3, splitScene({ chips: ['GTA V TRAILER', 'TRAILER 1'],
       L: function () { return { uses: [U.hike], slate: { big: 'THE CITY…', bpx: 90 }, note: 'HIKERS ON A MOUNTAIN', noteT: U.hike.t0 + .2 }; },
       R: function () { return { uses: [U.swamp], slate: { big: 'THE CITY…', bpx: 90, side: 6 }, note: 'A SWAMP, THEN FLAMINGOS', noteT: U.swamp.t0 + .2 }; },
-      match: function () { return U.swamp.t1 - .3; } }));
+      match: function () { return U.hike.t1 - .7; } }));
     sc('face', start('t1i') - .3, splitScene({ chips: ['GTA V TRAILER', 'TRAILER 1'],
       L: function () { return { uses: [U.mike], slate: { big: 'ONE FACE', bpx: 90 }, note: 'MICHAEL ABOVE LOS SANTOS', noteT: at('t1j', 'michael') - .1 }; },
       R: function () { return { uses: [U.lucia1], slate: { big: 'ONE FACE', bpx: 90, side: 6 }, note: 'LUCIA AT A WINDOW', noteT: at('t1j', 'lucia') - .1 }; },
-      match: function () { return U.lucia1.t1 - .25; } }));
+      match: function () { return U.mike.t1 - .7; } }));
     sc('views', start('t1k') - .3, sViews);
     card(2, 'ch2');
     sc('wheel', start('h2a') - .3, sWheel);
@@ -933,17 +991,17 @@
       L: function () { return { side: 6, uses: [U.jason], slate: { big: 'JASON', bpx: 110, small: 'FIRST · 0:19', side: 6 }, note: 'JASON FIRST · 0:19', noteT: U.jason.t0 + .2 }; },
       R: function () { return { uses: [U.fence], slate: { big: 'LUCIA', bpx: 110, small: 'THEN · 1:03', side: 6 }, note: 'THEN LUCIA · 1:03', noteT: U.fence.t0 + .2 }; } }));
     sc('score', start('h2j') - .3, sScore);
-    sc('quote', start('h2k') - .62, sQuote);
+    sc('quote', start('h2k') - .55, sQuote);
     card(3, 'ch3');
-    sc('maps', start('m3a') - .3, sMaps);
+    sc('maps', start('m3a') - .3, sMaps, { idle: function (g, t, s) { loopSheen(g, t, 90, 190, 820, 600, s.t0 + .8, start('m3c') - .2, .2); } });
     sc('boats', start('m3f') - .3, splitScene({ chips: ['GAMEPLAY VIDEO · 2013', 'TRAILER 2 · 2025'],
       L: function () { return { uses: [U.speed], slate: { big: 'SAME SHOT?', bpx: 84 }, note: 'SPEEDBOAT · LOS SANTOS', noteT: U.speed.t0 + .2 }; },
       R: function () { return { uses: [U.jetski], slate: { big: 'SAME SHOT?', bpx: 84, side: 6 }, note: 'JET SKI · LEONIDA', noteT: U.jetski.t0 + .2 }; },
-      match: function () { return U.jetski.t1 - .3; } }));
+      match: function () { return U.speed.t1 - .7; } }));
     sc('dusk', start('m3i') - .3, splitScene({ chips: ['GAMEPLAY VIDEO · 2013', 'AN EXTENDED LOOK · 2026'],
       L: function () { return { uses: [U.canal], slate: { big: 'SUNDOWN', bpx: 96 }, note: 'LOS SANTOS AT DUSK', noteT: U.canal.t0 + .2 }; },
       R: function () { return { uses: [U.helis], slate: { big: 'SUNDOWN', bpx: 96, side: 6 }, note: 'HELICOPTERS OVERHEAD', noteT: U.helis.t0 + .2 }; },
-      match: function () { return U.helis.t1 - .4; } }));
+      match: function () { return U.canal.t1 - .7; } }));
     card(4, 'ch4');
     sc('runtime', start('g4a') - .3, sRuntime);
     sc('beats4', start('g4f') - .3, splitScene({ chips: ['GAMEPLAY VIDEO · 2013', 'AN EXTENDED LOOK · 2026'],
@@ -958,23 +1016,25 @@
     sc('dates', start('l5c') - .3, sDates);
     sc('days', start('l5j') - .3, sDays);
     card(6, 'ch6');
-    sc('launch', start('n6a') - .3, sLaunch);
+    sc('launch', start('n6a') - .3, sLaunch, { idle: function (g, t, s) { loopSheen(g, t, 100, 130, 700, 270, h('c325') + .5, s.t1, .22); } });
     sc('same', start('n6g') - .3, sSame);
     sc('end', start('n6j') - .3, sHook, { final: true });
     SC.forEach(function (s2, i) { s2.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; if (!s2.wipe) s2.wipe = 'slide'; });
 
     /* ---- clip uses: each under 5 s; at least 0.35 s of our own graphics between footage runs ---- */
     use('sky5', 'sky5', 0, start('open2') - .1, { note: 'GTA V Trailer (2011) sunset skyline with oil pump, left of the seam under GTA 5 vs GTA 6', zoom: [1.0, 1.08], focus: [.45, .5] });
-    use('sky6', 'sky6', 0, start('open2') - .1, { note: 'GTA VI An Extended Look sunset skyline, right of the seam under GTA 5 vs GTA 6', zoom: [1.0, 1.1], focus: [.5, .5] });
-    use('roof', 'roof', start('open3') - .1, Math.min(start('open3') + 2.4, start('open4') - .45), { note: 'GTA V Gameplay Video: Michael, Franklin, Trevor on a rooftop, labeled, under 13 YEARS APART', zoom: [1.02, 1.1], focus: [.55, .5] });
-    use('lean', 'lean', start('open4') - .05, start('open4') + 1.9, { note: 'GTA VI Launch Trailer: Jason and Lucia leaning on a car, labeled', zoom: [1.0, 1.08], focus: [.4, .5] });
+    use('t1s', 't1sun', 0, start('open2') - .1, { note: 'GTA VI Trailer 1 (2023) sunset through a fence, right of the seam under GTA 5 vs GTA 6 and the 2023 chip', zoom: [1.0, 1.08], focus: [.5, .5] });
+    use('roof', 'roof', start('open3') - .1, Math.min(start('open3') + 2.4, start('open4') - .45), { note: 'GTA V Gameplay Video: Michael, Franklin, Trevor on a rooftop, labeled, left of the seam under 13 YEARS APART', zoom: [1.02, 1.1], focus: [.55, .5] });
+    use('lean', 'lean', start('open3') + .35, U.roof.t1, { note: 'GTA VI Launch Trailer: Jason and Lucia leaning on a car, right of the seam, running with the rooftop trio', zoom: [1.0, 1.08], focus: [.4, .5] });
     use('signs', 'signs', start('t1a') + .1, start('t1a') + 2.1, { note: 'GTA V Trailer (2011) freeway signs under the NOV 2, 2011 date chip', focus: [.6, .4] });
     use('vcnight', 'vcnight', start('t1b') + .1, start('t1b') + 2.3, { note: 'GTA VI Trailer 1 Vice City aerial at night under the DEC 4, 2023 date chip' });
-    use('hike', 'hike', at('t1g', 'hikers') - .25, Math.min(at('t1g', 'hikers') + 2.55, start('t1h') - .4), { note: 'GTA V Trailer: hikers on a mountain, labeled HIKERS ON A MOUNTAIN', focus: [.5, .45] });
-    use('swamp', 'swamp', start('t1h') - .05, start('t1h') + 3.0, { note: 'GTA VI Trailer 1: swamp then flamingos, labeled, seam ticks MATCH' });
-    use('mike', 'mike', at('t1i', 'one') - .2, Math.min(at('t1i', 'one') + 2.6, at('t1j', 'michael') + .9), { note: 'GTA V Trailer: Michael above the skyline, labeled', focus: [.7, .4] });
-    var mke = U.mike.t1 + .4;
-    use('lucia1', 'lucia1', Math.max(mke, at('t1j', 'lucia') - .3), Math.max(mke, at('t1j', 'lucia') - .3) + 1.8, { note: 'GTA VI Trailer 1: Lucia at a window, labeled, seam ticks MATCH', focus: [.35, .45] });
+    var w0 = at('t1g', 'hikers') - .55;
+    use('hike', 'hike', w0, w0 + 4.2, { note: 'GTA V Trailer: hikers on a mountain, labeled, running beside the swamp', focus: [.5, .45] });
+    use('swamp', 'swamp', w0 + .45, w0 + 4.55, { note: 'GTA VI Trailer 1: swamp then flamingos, labeled, beside the hikers; seam ticks MATCH' });
+    var f0 = at('t1j', 'michael') - 1.6;
+    use('mike', 'mike', f0, f0 + 4.2, { note: 'GTA V Trailer: Michael above the skyline, on screen while he is named', focus: [.7, .4] });
+
+    use('lucia1', 'lucia1', f0 + .45, f0 + 4.55, { note: 'GTA VI Trailer 1: Lucia at a window, beside Michael; seam ticks MATCH', focus: [.35, .45] });
     /* chapter 2 */
     var h0 = at('h2b', 'michael') - .25;
     use('michael', 'michael', h0, at('h2b', 'franklin') - .1, { note: 'GTA V Official Trailer: Michael, the wheel lights MICHAEL', focus: [.7, .4] });
@@ -989,10 +1049,12 @@
     use('desert', 'desert', at('m3b', 'desert') - .6, at('m3b', 'desert') + 1.6, { note: 'GTA V Gameplay Video: desert town in a pin window on our sketch map, THE DESERT OUT BACK' });
     use('islands', 'islands', at('m3c', 'whole') - .2, Math.min(at('m3c', 'whole') + 1.9, at('m3e', 'vice') - .75), { note: 'GTA VI Trailer 2: islands from the air in a pin window on our sketch of Leonida, ISLANDS' });
     use('highway', 'highway', at('m3e', 'vice') - .35, Math.min(at('m3e', 'vice') + 2.4, start('m3f') - .2), { note: 'GTA VI Trailer 2: highway into the city with the VICE CITY, USA chip' });
-    use('speed', 'speed', at('m3g', 'speedboat') - .3, Math.min(at('m3g', 'speedboat') + 2.0, start('m3h') - .45), { note: 'GTA V Gameplay Video: speedboat under a bridge, labeled' });
-    use('jetski', 'jetski', at('m3h', 'jet') - .3, at('m3h', 'jet') + 1.9, { note: 'GTA VI Trailer 2: jet ski with the skyline behind, labeled, seam ticks MATCH' });
-    use('canal', 'canal', at('m3j', 'los') - .3, at('m3j', 'los') + 1.7, { note: 'GTA V Gameplay Video: Los Santos at dusk over a canal, labeled' });
-    use('helis', 'helis', Math.max(U.canal.t1 + .4, at('m3j', 'leonida') - .3), Math.max(U.canal.t1 + .4, at('m3j', 'leonida') - .3) + 3.0, { note: 'GTA VI An Extended Look: skyline with helicopters, labeled', focus: [.6, .3] });
+    var b0 = at('m3g', 'speedboat') - .35;
+    use('speed', 'speed', b0, b0 + 4.0, { note: 'GTA V Gameplay Video: speedboat under a bridge, labeled, beside the jet ski' });
+    use('jetski', 'jetski', b0 + .45, b0 + 4.3, { note: 'GTA VI Trailer 2: jet ski with the skyline behind, beside the speedboat; seam ticks MATCH' });
+    var d0 = at('m3j', 'los') - 1.0;
+    use('canal', 'canal', d0, d0 + 4.0, { note: 'GTA V Gameplay Video: Los Santos at dusk over a canal, beside the helicopters' });
+    use('helis', 'helis', d0 + .45, d0 + 4.45, { note: 'GTA VI An Extended Look: skyline with helicopters, beside Los Santos at dusk; seam ticks MATCH', focus: [.6, .3] });
     /* chapter 4 */
     var g0 = at('g4g', 'car') - .25;
     use('truck', 'truck', g0, g0 + 2.0, { note: 'GTA V Gameplay Video: truck on a desert road, our ring on the minimap', zoom: [1, 1.05], focus: [.3, .7] });
@@ -1000,23 +1062,25 @@
     use('rob5', 'rob5', Math.max(U.conv.t1 + .4, at('g4h', 'mask') - .3), Math.max(U.conv.t1 + .4, at('g4h', 'mask') - .3) + 2.3, { note: 'GTA V Gameplay Video: masked crew in a jewelry store, labeled' });
     use('rob6', 'rob6', U.rob5.t0 + .3, U.rob5.t0 + .3 + 1.7, { note: 'GTA VI An Extended Look: bandana robbery in a store, labeled, seam ticks MATCH', focus: [.5, .4] });
     /* chapter 5 */
-    use('chute', 'chute', start('l5a') + .05, start('l5a') + 2.1, { note: 'GTA V Official Trailer: parachute at night, RUNTIME 1:00' });
-    use('minigun', 'minigun', start('l5a') + 2.1, Math.min(start('l5a') + 4.3, start('l5b') - .4), { note: 'GTA V Official Trailer: minigun, a plane goes down, RUNTIME 1:00' });
-    var lb = Math.max(U.minigun.t1 + .4, start('l5b') + .1);
-    use('lowrider', 'lowrider', lb, lb + 2.2, { note: 'GTA VI Launch Trailer: green lowrider with a crew, RUNTIME 1:29' });
-    use('iguana', 'iguana', lb + 2.6, Math.min(lb + 4.0, start('l5c') - .35), { note: 'GTA VI Launch Trailer: iguana on the road, RUNTIME 1:29 (our slate between it and the lowrider)' });
+    use('chute', 'chute', start('l5a') + .05, start('l5a') + 2.3, { note: 'GTA V Official Trailer: parachute at night, RUNTIME 1:00, beside the lowrider' });
+    use('lowrider', 'lowrider', start('l5a') + .5, start('l5a') + 2.6, { note: 'GTA VI Launch Trailer: green lowrider with a crew, beside the parachute' });
+    use('minigun', 'minigun', start('l5b') + .05, start('l5b') + 2.3, { note: 'GTA V Official Trailer: minigun, a plane goes down, beside the iguana' });
+
+    use('iguana', 'iguana', start('l5b') + .5, Math.min(start('l5b') + 2.6, start('l5c') - .35), { note: 'GTA VI Launch Trailer: iguana on the road, RUNTIME 1:29, beside the minigun' });
     /* chapter 6 */
     use('plane5', 'plane5', at('n6a', 'gta') - .2, at('n6a', 'gta') + 1.6, { note: 'GTA V Trailer (2011): plane over the city at dusk under SEPT 17, 2013, before the $800M+ stack' });
     use('boat', 'boat', start('n6c') - .1, Math.min(start('n6c') + 2.8, at('n6d', 'day') - .25), { note: 'GTA VI An Extended Look: boat crew on the water under NOV 19, 2026, before the $3.79B stack' });
     /* end: the frame-0 sunsets again, under the vote */
     use('sky5b', 'sky5', start('n6j') - .2, start('n6j') + 2.6, { note: 'end vote: GTA V Trailer (2011) sunset skyline under WHICH FIRST TRAILER WINS? (same use as frame 0)', zoom: [1.08, 1.0], focus: [.45, .5] });
-    use('sky6b', 'sky6', start('n6j') - .2, start('n6j') + 2.6, { note: 'end vote: GTA VI An Extended Look sunset skyline under WHICH FIRST TRAILER WINS? (same use as frame 0)', zoom: [1.1, 1.0] });
+    use('t1sb', 't1sun', start('n6j') - .2, start('n6j') + 2.6, { note: 'end vote: GTA VI Trailer 1 (2023) sunset under WHICH FIRST TRAILER WINS? (same use as frame 0)', zoom: [1.08, 1.0] });
+    ES = wend('n6k', 'comments') + .5;
 
     /* ---- background plates (rule 11): dimmed, under our cards only ---- */
     plate('p1', 'pdock', S('book').t0, S('book').t1);
     plate('p2', 'pstreet', S('rail').t0, S('rail').t1);
     plate('pc1', 'pvchute', S('c1').t0, S('c1').t1);
-    plate('pv', 'pcause', at('t1l', '93') - .4, S('views').t1);
+    plate('pv1', 'pt1st', S('views').t0, S('views').t0 + 4.8);
+    plate('pv', 'pcause', S('views').t0 + 5.1, S('views').t1);
     plate('pc2', 'pel365', S('c2').t0, S('c2').t1);
     plate('pc3', 'pcanyon', S('c3').t0, S('c3').t1);
     plate('pc4', 'pwindow', S('c4').t0, S('c4').t1);
@@ -1033,12 +1097,12 @@
     for (var i = 0; i < 6; i++) G(at('open6', 'six') + .02 + i * .22, 'tick', { g: .5 }, .5);
     HB('d2011', wend('t1a', '2011') + .05, 'pop'); HB('d2023', wend('t1b', '2023') + .05, 'pop');
     ['beach', 'presents'].forEach(function (w) { G(at('t1d', w) - .1, 'tick', { g: .8 }, .4); }); G(at('t1e', 'water') - .1, 'tick', { g: .8 }, .4);
-    [U.swamp.t1 - .3, U.lucia1.t1 - .25, U.jetski.t1 - .3, U.helis.t1 - .4, U.rob6.t1 - .3].forEach(function (tt) { G(tt, 'ding1', null, .5); });
+    [U.hike.t1 - .7, U.mike.t1 - .7, U.speed.t1 - .7, U.canal.t1 - .7, U.rob6.t1 - .3].forEach(function (tt) { G(tt, 'ding1', null, .5); });
     G(at('t1k', 'doesnt') - .2, 'whoosh', null, .5);
-    HB('n93', at('t1l', '93') - .15, 'slam', null, 2.3); HB('h24', at('t1m', '24') - .1, 'pop'); HB('rec', start('t1n') - .1, 'stamp');
+    HB('n93s', at('t1l', '93') - .15, 'slam', null, 2.3); HT.n93 = at('t1l', '93') - .1; HDIFF.n93 = 0; HB('h24', at('t1m', '24') - .1, 'pop'); HB('rec', start('t1n') - .1, 'stamp');
     ['michael', 'franklin', 'trevor'].forEach(function (w) { G(at('h2b', w) - .1, 'tick', { g: .8 }, .4); });
     G(U.sw.t0 + (U.sw.t1 - U.sw.t0) * .3, 'rise', { t1: U.sw.t0 + (U.sw.t1 - U.sw.t0) * .6 }, .6);
-    G(at('h2f', 'two') + .1, 'whoosh', null, .5); HB('sc3', at('h2j', 'three') - .1, 'pop'); HT.sc1 = at('h2j', 'one') - .1; HDIFF.sc1 = 0;
+    G(at('h2f', 'two') + .1, 'whoosh', null, .5); HB('sc3', at('h2j', 'three') - .1, 'pop'); HT.sc1 = at('h2j', 'one') - .5; HDIFF.sc1 = 0;
     G(S('quote').t0 + .1, 'flip', { g: 1 }, .5);
     G(at('m3c', 'state') - .3, 'whoosh', null, .5); HB('vice', at('m3e', 'vice') - .15, 'pop', null, 2.3);
     G(at('g4b', 'runs') - .1, 'rise', { t1: at('g4b', 'minutes') + .2 }, .4); G(at('g4d', '26') - .2, 'rise', { t1: wend('g4d', 'seconds') }, .4); HB('x55', start('g4e') - .1, 'stamp');
@@ -1049,7 +1113,7 @@
     G(at('l5j', 'gta') - .1, 'rise', { t1: at('l5j', '22') }, .4); G(at('l5k', 'gta') - .1, 'rise', { t1: at('l5k', 'took') }, .4);
     HB('m800', start('n6b') - .55, 'rise', { t1: start('n6b') }, .6); HB('b379', at('n6d', '3.79') - .1, 'slam');
     HB('x4', at('n6e', 'times') - .1, 'stamp'); HB('c325', start('n6f') - .4, 'pop', null, .6);
-    ['first', 'heroes', 'map', 'gameplay', 'last'].forEach(function (w) { G(at('n6h', w) - .05, 'tick', { g: .9 }, .4); });
+    ['opening', 'late'].forEach(function (w) { G(at('n6h', w) - .05, 'tick', { g: .9 }, .4); });
     HB('yes', at('n6h', 'yes') - .1, 'stamp'); G(at('n6i', 'different') - .15, 'pop', null, .5);
     G(at('n6k', '2011') - .1, 'pop', null, .5);
     /* ---- texts that must stay readable ---- */
@@ -1067,7 +1131,7 @@
     T('days5', '685 DAYS', at('l5j', '22') + .1, S('days').t1); T('days6', '1,081 DAYS', at('l5k', 'took') + .1, S('days').t1);
     T('money', '$800M+ vs $3.79B', h('b379') + .15, h('c325'));
     T('copies', '32.5M COPIES SOLD BEFORE LAUNCH', h('c325') + .15, S('launch').t1);
-    T('same', 'YES · SAME 5 MOVES', h('yes') + .15, S('same').t1);
+    T('same', 'YES · SAME START, SAME DELAY', h('yes') + .15, S('same').t1);
     T('vote', 'WHICH FIRST TRAILER WINS?', at('n6j', 'which'), DUR);
 
     EV.sort(function (a, b) { return a.t - b.t; });
@@ -1119,7 +1183,7 @@
     /* room tone, so the gaps are never digital zero */
     (function () { var o = bus(1, 0), lp = ac.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 900; lp.Q.value = .5; var n = noise(0, DUR); n.connect(lp); lp.connect(o); o.gain.value = .012;
       /* the tone steps aside for each chapter line's first word: "Chapter" is the word the listen check kept losing under it */
-      [1, 2, 3, 4, 5, 6].forEach(function (i) { var w = LINE['ch' + i].t0; o.gain.setValueAtTime(.012, w - .4); o.gain.linearRampToValueAtTime(0, w - .2); o.gain.setValueAtTime(0, w + .6); o.gain.linearRampToValueAtTime(.012, w + 1); }); })();
+      [1, 2, 3, 4, 5, 6].forEach(function (i) { var w = LINE['ch' + i].t0, we = LINE['ch' + i].t1; o.gain.setValueAtTime(.012, w - .75); o.gain.linearRampToValueAtTime(0, w - .45); o.gain.setValueAtTime(0, we + .1); o.gain.linearRampToValueAtTime(.012, we + .5); }); })();
   }
 
   /* YouTube thumbnail (1920x1080, saved at 1280x720): the two sunsets, the phrase */
@@ -1133,7 +1197,7 @@
       var gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, 'rgba(0,0,0,.05)'); gr.addColorStop(.55, 'rgba(0,0,0,.15)'); gr.addColorStop(1, 'rgba(0,0,0,.8)'); g.fillStyle = gr; g.fillRect(x, 0, 952, H);
       g.restore();
     }
-    half(U.sky5, 0, 5); half(U.sky6, 968, 6);
+    half(U.sky5, 0, 5); half(U.t1s, 968, 6);
     g.fillStyle = ACC; g.fillRect(952, 0, 16, H);
     chip(g, '2011', 60, 90, { px: 64, bg: COOLD, fg: CREAM, align: 'left' }); chip(g, '2023', 1860, 90, { px: 64, bg: ACC, fg: INK, align: 'right' });
     g.save(); g.shadowColor = 'rgba(0,0,0,.7)'; g.shadowBlur = 30;

@@ -8,7 +8,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA V Trailer (2011)"
+   "credit": "Rockstar Games \u00b7 GTA V Trailer (2011)"
   },
   "vot": {
    "key": "generic-v4-a8k183c8-flv-en-us-720p-mp4",
@@ -17,7 +17,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA V Official Trailer (2013)"
+   "credit": "Rockstar Games \u00b7 GTA V Official Trailer (2013)"
   },
   "vgp": {
    "key": "generic-v4-ra124rca-flv-en-us-720p-mp4",
@@ -26,7 +26,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA V Gameplay Video (2013)"
+   "credit": "Rockstar Games \u00b7 GTA V Gameplay Video (2013)"
   },
   "t1": {
    "key": "twitter-1731998653743517697",
@@ -35,7 +35,7 @@
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA VI Trailer 1 (2023)"
+   "credit": "Rockstar Games \u00b7 GTA VI Trailer 1 (2023)"
   },
   "t2": {
    "key": "twitter-1919733318217576448",
@@ -44,7 +44,7 @@
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA VI Trailer 2 (2025)"
+   "credit": "Rockstar Games \u00b7 GTA VI Trailer 2 (2025)"
   },
   "lt": {
    "key": "twitter-2110704990339678208",
@@ -53,7 +53,7 @@
    "uploader": "Rockstar Games",
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA VI Launch Trailer (2026)"
+   "credit": "Rockstar Games \u00b7 GTA VI Launch Trailer (2026)"
   },
   "el": {
    "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
@@ -62,7 +62,7 @@
    "uploader": null,
    "verdict": "OFFICIAL",
    "checked": null,
-   "credit": "Rockstar Games · GTA VI: An Extended Look (2026)"
+   "credit": "Rockstar Games \u00b7 GTA VI: An Extended Look (2026)"
   }
  },
  "clips": {
@@ -372,15 +372,6 @@
    "w": 960,
    "crop": null
   },
-  "sky6": {
-   "src": "el",
-   "in": 1570.0,
-   "out": 1572.75,
-   "fps": 30,
-   "frames": 83,
-   "w": 1280,
-   "crop": "1920:1062:0:0"
-  },
   "walk": {
    "src": "el",
    "in": 605.0,
@@ -461,6 +452,24 @@
    "frames": 90,
    "w": 960,
    "crop": "1920:864:0:108"
+  },
+  "t1sun": {
+   "src": "t1",
+   "in": 5.0,
+   "out": 6.45,
+   "fps": 30,
+   "frames": 44,
+   "w": 1280,
+   "crop": null
+  },
+  "pt1st": {
+   "src": "t1",
+   "in": 27.0,
+   "out": 29.0,
+   "fps": 30,
+   "frames": 60,
+   "w": 960,
+   "crop": null
   }
  }
 }
