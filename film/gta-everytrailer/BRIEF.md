@@ -31,6 +31,7 @@ Question the film answers (line `open5`): "So did Rockstar run the same playbook
 |---|---|---|---|
 | F1 | GTA V's first trailer, Rockstar Games, **November 2, 2011** | t1a | rockstargames.com/videos/s6c5c8co (createdFormatted "November 2, 2011", read for gta-sametrailer 2026-11-20); page title re-read today |
 | F2 | GTA VI Trailer 1, posted by @RockstarGames **Dec 4, 2023** ET (Dec 5 UTC) | t1b | x.com/RockstarGames/status/1732149328779571313; YouTube blog data window "Dec 4 – Dec 5 2023" |
+| F2b | "12 YEARS APART" chip: Nov 2, 2011 (F1) to Dec 4, 2023 (F2) = 12 years 1 month (jury r4) | t1c | OUR MATH from F1, F2 |
 | F3 | The first four beats are in the same order in both (sunset → beach → ROCKSTAR GAMES PRESENTS → someone across the water) | t1c–t1e | gta-sametrailer BRIEF (GTA V 6.4/9.1/12.0/18.8 s; GTA VI 2.7/11.6/14.6/23.3 s), re-seen on today's contact sheets. Shown with our own drawn checklist, **not** with those clips (gta-sametrailer already used those ranges) |
 | F4 | Both leave the city: hikers on a mountain (GTA V 20–22.8 s) / swamp and flamingos (GTA VI 19.1–23.2 s) | t1f–t1h | the trailers (contact sheets). No "then" for GTA VI: its swamp comes before the boat |
 | F5 | Both show one face looking out: Michael above the Los Santos skyline (GTA V 39.4–42.4 s) / Lucia at a window (GTA VI 6.5–8.4 s) | t1i–t1j | the trailers. "Michael": the 2011 man is Michael De Santa (same face as GTA V Official Trailer 3–5.5 s). We don't say "bus" (can't confirm) |
