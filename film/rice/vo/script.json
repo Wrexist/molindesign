@@ -1,0 +1,125 @@
+{
+ "about": "Should you put a wet phone in rice. Factory #40, backlog row 45, slug rice. One hard idea: Apple's own support page ('If you see a liquid-detection alert on your iPhone', Oct 30, 2024) says 'Don't put your iPhone in a bag of rice. Doing so could allow small particles of rice to damage your iPhone', on the same list as heat, compressed air and cotton swabs; charging while the connector is wet can corrode the pins; instead tap it gently against your hand with the connector down, leave it in a dry area with some airflow, and it might take up to 24 hours to fully dry; check yours: try charging later, and the liquid alert (iPhone XS, XR or later) means it's still wet. Sources read 2026-11-23, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "iPhone",
+  "Apple"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24.5
+ },
+ "dur": 38.22,
+ "tail": 0.3,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Don't put your iPhone in rice.",
+   "pause": 0.6,
+   "at": 0.2,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "belief",
+   "text": "A wet phone in rice? Classic fix.",
+   "pause": 0.4,
+   "at": 2.51,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "ask",
+   "text": "So why does Apple say no?",
+   "pause": 0.5,
+   "at": 5.49,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "page",
+   "text": "Its own page lists what not to do.",
+   "pause": 0.3,
+   "at": 7.71,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "list",
+   "text": "No heat. No cotton swabs.",
+   "pause": 0.3,
+   "at": 10.74,
+   "tail_fade": 0.35,
+   "say": "No heat. No cotton swabs."
+  },
+  {
+   "id": "rice",
+   "text": "And no bag of rice.",
+   "pause": 1.05,
+   "at": 12.92,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "twist",
+   "text": "Tiny rice bits could damage your iPhone.",
+   "pause": 0.95,
+   "at": 15.33,
+   "tail_fade": 0.15,
+   "say": "Tiny rice bits... could damage your iPhone."
+  },
+  {
+   "id": "dip",
+   "text": "But charging it wet can corrode the pins.",
+   "pause": 0.9,
+   "at": 19.31,
+   "tail_fade": 0.35
+  },
+  {
+   "id": "tap",
+   "text": "Tap it gently against your hand, port down.",
+   "pause": 0.4,
+   "at": 22.45,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "air",
+   "text": "Then leave it somewhere dry, with airflow.",
+   "pause": 0.4,
+   "at": 25.51,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "day",
+   "text": "It might take up to a day.",
+   "pause": 0.6,
+   "at": 28.33,
+   "tail_fade": 0.15,
+   "say": "It might take... up to a day."
+  },
+  {
+   "id": "check",
+   "text": "Check yours, charge it later. Liquid alert? Still wet.",
+   "pause": 0.9,
+   "at": 30.93,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "end",
+   "text": "Ever put a phone in rice? Yes or no.",
+   "pause": 0,
+   "at": 35.35,
+   "tail_fade": 0.15,
+   "say": "Ever put a phone in rice? Yes, or no?"
+  }
+ ]
+}
