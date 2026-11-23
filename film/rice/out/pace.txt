@@ -1,0 +1,2 @@
+/home/user/molindesign/film/rice/out/rice-vo.mp4: 38.2 s, 1 hard cuts (0.3/10 s), motion 0-1 s 0.504, 0-3 s 0.418, median 0.171, still frames 23.0 %
+OK    no frozen stretches, opening moves
