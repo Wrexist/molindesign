@@ -804,7 +804,7 @@
         rr(g, b[0], 270 + (b[1] - 270) + (1 - gk) * 40, b[2], 230, 16); g.fillStyle = i < 2 ? 'rgba(52,61,78,.9)' : 'rgba(64,32,22,.9)'; g.fill(); g.stroke(); g.restore();
       });
       var e5a = cd(t, at('l5e', 'spring') - .15, 11), x5 = cd(t, h('x1') - .05, 11), e5b = cd(t, h('d1') - .05, 11);
-      dateCard(g, 400, 270, 500, 230, 'PLANNED', 'SPRING 2013', 5, e5a, 'TAKE-TWO, 2012');
+      dateCard(g, 400, 270, 500, 230, 'PLANNED', 'SPRING 2013', 5, e5a, 'TAKE-TWO, JAN 2013');
       strike(g, 430, 400, 870, eio(seg(t, h('x1') - .05, h('x1') + .25)));
       if (x5 > 0) { g.save(); g.globalAlpha = x5; txt(g, '→', 960, 385, 80, DIM, { wt: 900 }); g.restore(); }
       dateCard(g, 1020, 270, 500, 230, 'RELEASED', 'SEPT 17, 2013', 5, e5b, 'TAKE-TWO, JAN 31, 2013');
@@ -895,7 +895,7 @@
     if (mt > 0) {
       g.save(); g.translate(960, 500); g.scale(lerp(1.3, 1, mt), lerp(1.3, 1, mt)); g.globalAlpha = clamp(mt * 2, 0, 1);
       rr(g, -250, -80, 500, 160, 18); g.fillStyle = CREAM; g.fill();
-      txt(g, 'MORE THAN 4×', 0, -16, 58, INK, { wt: 900, max: 450 }); txt(g, 'OUR MATH', 0, 44, 30, '#4a5260', { fam: MONO, wt: 700 }); g.restore();
+      txt(g, 'MORE THAN 4×', 0, -16, 58, INK, { wt: 900, max: 450 }); txt(g, 'OUR MATH · NOT INFLATION-ADJUSTED', 0, 44, 24, '#4a5260', { fam: MONO, wt: 700 }); g.restore();
     }
     var pr = cd(t, h('c325') - .05, 10);
     if (pr > 0) {
