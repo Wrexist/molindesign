@@ -210,7 +210,7 @@
     var na = o.noteT == null ? 1 : fin(t, o.noteT, .3);
     if (o.note && na > 0) { g.save(); g.globalAlpha *= na; txt(g, o.note, b.x + 4, b.y + b.h + 50 + (1 - na) * 16, 46, CREAM, { align: 'left', wt: 800 }); g.restore(); }
     var cu = u || o.creditUse;
-    if (cu && !o.nocred && (!o.creditUse || t >= cu.t0 - .1) && !(o.quiet && t < o.quiet)) txt(g, CREDIT[srcOf(cu)], b.x + 4, b.y + b.h + 104, 34, DIM, { align: 'left', fam: MONO, wt: 600 });
+    if (cu && !o.nocred && (!o.creditUse || t >= cu.t0 - .1) && !(o.quiet && t < o.quiet)) txt(g, CREDIT[srcOf(cu)], b.x + 4, b.y + b.h + (o.credUp ? 46 : 104), 34, DIM, { align: 'left', fam: MONO, wt: 600 });
     g.restore();
   }
   /* the seam between the two panels; m = 0..1 match tick */
@@ -292,8 +292,8 @@
     g.save(); push(g, t, s, .02);
     var outA = end2 ? 1 - fin(t, ES - .1, .4) : 1;
     g.save(); g.globalAlpha *= outA;
-    panel(g, t, { x: 60, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.sky5b : U.sky5], side: 5, slate: { big: '2011', bpx: 150 }, quiet: end2 ? null : 1.2, nocred: end2 });
-    panel(g, t, { x: 980, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.t1sb : U.t1s], side: 6, slate: { big: '2023', bpx: 150, col: end2 ? CREAM : null }, quiet: end2 ? null : 1.2, nocred: end2 });
+    panel(g, t, { x: 60, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.sky5b : U.sky5], side: 5, slate: { big: '2011', bpx: 150 }, quiet: end2 ? null : 1.2, nocred: end2, credUp: !end2 });
+    panel(g, t, { x: 980, y: 120, w: 880, h: 560 }, { uses: [end2 ? U.t1sb : U.t1s], side: 6, slate: { big: '2023', bpx: 150, col: end2 ? CREAM : null }, quiet: end2 ? null : 1.2, nocred: end2, credUp: !end2 });
     g.restore(); g.restore();
     var lv = 1 - seg(t, s.t1 - .4, s.t1 - .15);   // outgoing chips clear their line before the next scene's header arrives
     if (!end2) {
@@ -646,7 +646,7 @@
     rr(g, 1000, 220, 800, 560, 22); g.fillStyle = PANEL; g.fill(); g.strokeStyle = ACC; g.stroke();
     gtaChip(g, 5, 120, 170, 1); gtaChip(g, 6, 1000, 170, 1);
     if (a > 0) { g.save(); g.globalAlpha = clamp(a * 1.5, 0, 1); txt(g, '3', 520, 430 + (1 - a) * 60, 260, COOL, { wt: 900 }); txt(g, 'STORIES', 520, 640, 80, CREAM, { wt: 900, wide: true }); g.restore(); }
-    if (b > 0) { g.save(); g.globalAlpha = clamp(b * 1.5, 0, 1); txt(g, '1', 1400, 430 + (1 - b) * 60, 260, ACC, { wt: 900 }); txt(g, 'STORY · 2 PEOPLE', 1400, 640, 72, CREAM, { wt: 900, wide: true }); g.restore(); }
+    if (b > 0) { g.save(); g.globalAlpha = clamp(b * 1.5, 0, 1); txt(g, '1', 1400, 430 + (1 - b) * 60, 260, ACC, { wt: 900 }); txt(g, 'STORY · 2 PEOPLE', 1400, 640, 72, CREAM, { wt: 900, wide: true, max: 760 });   /* jury r4 fix 1: fit the panel */ g.restore(); }
     g.restore();
     seam(g, t, 0, 1);
   }
@@ -919,6 +919,7 @@
     g.restore();
     var y = fin(t, h('yes') - .05);
     if (y > 0) chip(g, 'YES · 4 OF 5 MATCH', 520, 965 - 30, { px: 50, bg: ACC, fg: INK, a: y, s: lerp(1.2, 1, cd(t, h('yes') - .05, 11)) });
+    if (y > 0) chip(g, 'OUR READING', 520, 1035, { px: 30, fam: MONO, wt: 700, bg: 'rgba(12,14,19,.85)', fg: CREAM, a: y });   /* jury r3 fix 8 */
     var sb = cd(t, at('n6i', 'different') - .15, 10);
     var q = fin(t, s.t0 + .1);
     g.save(); g.globalAlpha = q; txt(g, 'SAME PLAYBOOK?', 1080, 210, 84, CREAM, { align: 'left', wt: 900, wide: true, max: 720 }); g.restore();
@@ -998,9 +999,8 @@
     card(3, 'ch3');
     sc('maps', start('m3a') - .3, sMaps, { idle: function (g, t, s) { loopSheen(g, t, 90, 190, 820, 600, s.t0 + .8, start('m3c') - .2, .2); } });
     sc('boats', start('m3f') - .3, splitScene({ chips: ['GAMEPLAY VIDEO · 2013', 'TRAILER 2 · 2025'],
-      L: function () { return { uses: [U.speed], slate: { big: 'SAME SHOT?', bpx: 84 }, note: 'SPEEDBOAT · LOS SANTOS', noteT: U.speed.t0 + .2 }; },
-      R: function () { return { uses: [U.jetski], slate: { big: 'SAME SHOT?', bpx: 84, side: 6 }, note: 'JET SKI · LEONIDA', noteT: U.jetski.t0 + .2 }; },
-      match: function () { return U.speed.t1 - .7; } }));
+      L: function () { return { uses: [U.speed], slate: { big: 'SAME KIND OF SHOT', bpx: 64 }, note: 'SPEEDBOAT · LOS SANTOS', noteT: U.speed.t0 + .2 }; },
+      R: function () { return { uses: [U.jetski], slate: { big: 'SAME KIND OF SHOT', bpx: 64, side: 6 }, note: 'JET SKI · LEONIDA', noteT: U.jetski.t0 + .2 }; } }));   /* jury r3 fix 8: no MATCH tick, it's our reading, not a verified check */
     sc('dusk', start('m3i') - .3, splitScene({ chips: ['GAMEPLAY VIDEO · 2013', 'AN EXTENDED LOOK · 2026'],
       L: function () { return { uses: [U.canal], slate: { big: 'SUNDOWN', bpx: 96 }, note: 'LOS SANTOS AT DUSK', noteT: U.canal.t0 + .2 }; },
       R: function () { return { uses: [U.helis], slate: { big: 'SUNDOWN', bpx: 96, side: 6 }, note: 'HELICOPTERS OVERHEAD', noteT: U.helis.t0 + .2 }; },
@@ -1015,7 +1015,7 @@
     card(5, 'ch5');
     sc('last', start('l5a') - .3, splitScene({ chips: ['OFFICIAL TRAILER · 2013', 'LAUNCH TRAILER · OCT 15, 2026'],
       L: function () { return { uses: [U.chute, U.minigun], slate: { big: '1:00', bpx: 130, small: 'ONE MINUTE' }, note: 'RUNTIME 1:00', noteT: start('l5a') + .3 }; },
-      R: function () { return { uses: [U.lowrider, U.iguana], slate: { big: '1:29', bpx: 130, small: 'ABOUT 1.5 MINUTES', side: 6 }, note: 'RUNTIME 1:29', noteT: start('l5b') + .3 }; } }));
+      R: function () { return { uses: [U.lowrider, U.iguana], slate: { big: 'NEXT', bpx: 130, small: 'GTA 6 LAUNCH TRAILER', side: 6 }, note: 'RUNTIME 1:29', noteT: start('l5b') + .3 }; } }));
     sc('dates', start('l5c') - .3, sDates);
     sc('days', start('l5j') - .3, sDays);
     card(6, 'ch6');
@@ -1054,7 +1054,7 @@
     use('highway', 'highway', at('m3e', 'vice') - .35, Math.min(at('m3e', 'vice') + 2.4, start('m3f') - .2), { note: 'GTA VI Trailer 2: highway into the city with the VICE CITY, USA chip' });
     var b0 = at('m3g', 'speedboat') - .35;
     use('speed', 'speed', b0, b0 + 4.0, { note: 'GTA V Gameplay Video: speedboat under a bridge, labeled, beside the jet ski' });
-    use('jetski', 'jetski', b0 + .45, b0 + 4.3, { note: 'GTA VI Trailer 2: jet ski with the skyline behind, beside the speedboat; seam ticks MATCH' });
+    use('jetski', 'jetski', b0 + .45, b0 + 4.3, { note: 'GTA VI Trailer 2: jet ski with the skyline behind, beside the speedboat; labeled SAME KIND OF SHOT (no match tick)' });
     var d0 = at('m3j', 'los') - 1.0;
     use('canal', 'canal', d0, d0 + 4.0, { note: 'GTA V Gameplay Video: Los Santos at dusk over a canal, beside the helicopters' });
     use('helis', 'helis', d0 + .45, d0 + 4.45, { note: 'GTA VI An Extended Look: skyline with helicopters, beside Los Santos at dusk; seam ticks MATCH', focus: [.6, .3] });
@@ -1074,9 +1074,15 @@
     use('plane5', 'plane5', at('n6a', 'gta') - .2, at('n6a', 'gta') + 1.6, { note: 'GTA V Trailer (2011): plane over the city at dusk under SEPT 17, 2013, before the $800M+ stack' });
     use('boat', 'boat', start('n6c') - .1, Math.min(start('n6c') + 2.8, at('n6d', 'day') - .25), { note: 'GTA VI An Extended Look: boat crew on the water under NOV 19, 2026, before the $3.79B stack' });
     /* end: the frame-0 sunsets again, under the vote */
-    use('sky5b', 'sky5', start('n6j') - .2, start('n6j') + 2.6, { note: 'end vote: GTA V Trailer (2011) sunset skyline under WHICH FIRST TRAILER WINS? (same use as frame 0)', zoom: [1.08, 1.0], focus: [.45, .5] });
-    use('t1sb', 't1sun', start('n6j') - .2, start('n6j') + 2.6, { note: 'end vote: GTA VI Trailer 1 (2023) sunset under WHICH FIRST TRAILER WINS? (same use as frame 0)', zoom: [1.08, 1.0] });
+    /* end (jury r3 fix 4): the frame-0 sunsets stay on screen under the vote. One use per panel, slow motion (about 0.5x),
+       then an annotated freeze, ending as the end card takes over; 4.9 s keeps the footage under the 5 s unbroken cap */
     ES = wend('n6k', 'comments') + .5;
+    var ev0 = ES + .35 - 4.9;
+    [['sky5b', 'sky5', 'end vote: GTA V Trailer (2011) sunset skyline, slowed then frozen under 2011 OR 2023? (same clip as frame 0)', [.45, .5]],
+     ['t1sb', 't1sun', 'end vote: GTA VI Trailer 1 (2023) sunset, slowed then frozen under 2011 OR 2023? (same clip as frame 0)', [.5, .5]]].forEach(function (e) {
+      var c = CLIP.manifest().clips[e[1]], len = c.frames / 30 - .05, sp = .5;
+      U[e[0]] = CLIP.use(e[1], ev0, ES + .35, { from: 0, speed: sp, freeze: len / sp, zoom: [1.08, 1.0], focus: e[3], note: e[2] });
+    });
 
     /* ---- background plates (rule 11): dimmed, under our cards only ---- */
     plate('p1', 'pdock', S('book').t0, S('book').t1);
@@ -1135,6 +1141,7 @@
     T('money', '$800M+ vs $3.79B', h('b379') + .15, h('c325'));
     T('copies', '32.5M COPIES SOLD BEFORE LAUNCH', h('c325') + .15, S('launch').t1);
     T('same', 'YES · 4 OF 5 MATCH', h('yes') + .15, S('same').t1);
+    T('ourread', 'OUR READING', h('yes') + .15, S('same').t1);
     T('vote', 'WHICH FIRST TRAILER WINS?', at('n6j', 'which'), DUR);
 
     EV.sort(function (a, b) { return a.t - b.t; });

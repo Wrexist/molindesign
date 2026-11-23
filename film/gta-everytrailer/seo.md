@@ -14,9 +14,9 @@ Alternates (A/B test):
 
 ## Description
 ```
-GTA 5 vs GTA 6, every official trailer side by side: the first trailers, the heroes, the map, the gameplay reveal, the last trailer, and launch day. Thirteen years apart, the two launches open the same way, and both missed their first release date. The scoreboard did not match.
+GTA 5 vs GTA 6, every official trailer side by side: the first trailers, the heroes, the map, the gameplay reveal, the last trailer, and launch day. Thirteen years apart, the two first trailers open the same way, and both missed their first release date. The scoreboard did not match.
 
-Both first trailers hit the same four opening beats in the same order. GTA 5 split its story between Michael, Franklin and Trevor; GTA 6 tells one story about Jason and Lucia. Both games missed their first release date. GTA 5 made more than 800 million dollars on day one. GTA 6 made 3.79 billion.
+Both first trailers hit the same four opening beats in the same order. GTA 5 split its story between Michael, Franklin and Trevor; GTA 6 tells one story about Jason and Lucia. Both games missed their first release date. GTA 5 sold more than 800 million dollars on day one. GTA 6 sold 3.79 billion (Take-Two estimates).
 
 Which first trailer wins, 2011 or 2023?
 
