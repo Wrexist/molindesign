@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-texts/out/gta-texts-vo.mp4: 24.6 s, 1 hard cuts (0.4/10 s), motion 0-1 s 1.035, 0-3 s 1.077, median 0.534, still frames 2.6 %
+OK    no frozen stretches, opening moves

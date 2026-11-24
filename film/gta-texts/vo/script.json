@@ -1,0 +1,86 @@
+{
+  "about": "GTA 6 'It has X, shown' (Delta, slug gta-texts): in Rockstar's 'An Extended Look' (Aug 27 2026, 'captured entirely from in-game footage on the PlayStation 5'), masked gunmen take over a company's opening party (23:00-23:18, 1380-1398 s); Lucia hides among the guests and texts, and her messages pop up on screen as floating bubbles: 'GUYS EVERYWHERE' while Jason moves through the dark (23:47-23:51, 1427-1431 s) and '10+ guys, auto weps, explosives, sound military...' while she types (23:53-23:58, 1433-1438 s). Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Extended Look",
+    "Lucia",
+    "Jason"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "dur": 24.6,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6: Lucia sends Jason texts, mid-takeover.",
+      "say": "G T A six. Lucia sends Jason texts, mid take-over.",
+      "pause": 0.35
+    },
+    {
+      "id": "party",
+      "at": 4.2,
+      "text": "It starts at a company's big opening party.",
+      "pause": 0.3
+    },
+    {
+      "id": "gunmen",
+      "at": 6.6,
+      "text": "Then masked men with rifles crash it.",
+      "pause": 0.35
+    },
+    {
+      "id": "jason",
+      "at": 8.8,
+      "text": "Jason creeps through the dark. Her text pops up: guys everywhere.",
+      "pause": 0.45
+    },
+    {
+      "id": "hide",
+      "at": 12.8,
+      "text": "She's hiding with the guests, phone out.",
+      "pause": 0.35
+    },
+    {
+      "id": "intel",
+      "at": 15.2,
+      "text": "Ten plus guys. Auto weapons. Explosives.",
+      "pause": 0.45
+    },
+    {
+      "id": "close",
+      "at": 18.6,
+      "text": "And one gunman is right there.",
+      "pause": 0.45
+    },
+    {
+      "id": "end",
+      "at": 21.0,
+      "text": "Would you have sent it? Because again,",
+      "pause": 0
+    }
+  ]
+}
