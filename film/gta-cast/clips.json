@@ -1,0 +1,187 @@
+{
+ "film": "gta-cast",
+ "sources": {
+  "xl": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · An Extended Look"
+  },
+  "calsrc": {
+   "key": "lib-cal-hampton-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Cal_Hampton_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "boobiesrc": {
+   "key": "lib-boobie-ike-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Boobie_Ike_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "drequansrc": {
+   "key": "lib-drequan-priest-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "DreQuan_Priest_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "dimezsrc": {
+   "key": "lib-real-dimez-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Real_Dimez_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "briansrc": {
+   "key": "lib-brian-heder-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Brian_Heder_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "raulsrc": {
+   "key": "lib-raul-bautista-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Raul_Bautista_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "on": {
+   "key": "lib-20261110-grand-theft-auto-vi-out-now-off",
+   "url": "https://www.youtube.com/@RockstarGames",
+   "title": "20261110_Grand Theft Auto VI： Out Now_official_yt.mp4",
+   "uploader": "@RockstarGames",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · Out Now trailer"
+  }
+ },
+ "clips": {
+  "jason": {
+   "src": "xl",
+   "in": 182.65,
+   "out": 184.1,
+   "fps": 30,
+   "frames": 44,
+   "w": 1280,
+   "crop": "1918:1078:0:2"
+  },
+  "lucia": {
+   "src": "xl",
+   "in": 209.1,
+   "out": 211.65,
+   "fps": 30,
+   "frames": 77,
+   "w": 1280,
+   "crop": "1920:1014:0:66"
+  },
+  "cal": {
+   "src": "calsrc",
+   "in": 0.0,
+   "out": 1.0,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": "2160:2160:0:0"
+  },
+  "boobie": {
+   "src": "boobiesrc",
+   "in": 0.0,
+   "out": 1.0,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": "2160:2160:0:0"
+  },
+  "drequan": {
+   "src": "drequansrc",
+   "in": 0.0,
+   "out": 1.0,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": "2160:2160:0:0"
+  },
+  "dimez": {
+   "src": "dimezsrc",
+   "in": 0.0,
+   "out": 1.0,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": "2160:2160:0:0"
+  },
+  "brian": {
+   "src": "briansrc",
+   "in": 0.0,
+   "out": 1.0,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": "2160:2160:0:0"
+  },
+  "raul": {
+   "src": "raulsrc",
+   "in": 0.0,
+   "out": 1.5,
+   "fps": 30,
+   "frames": 45,
+   "w": 1280,
+   "crop": "2160:2160:0:0"
+  },
+  "pclub": {
+   "src": "on",
+   "in": 2.2,
+   "out": 4.6,
+   "fps": 30,
+   "frames": 72,
+   "w": 1280,
+   "crop": "3840:1920:0:120"
+  },
+  "pboat": {
+   "src": "on",
+   "in": 11.0,
+   "out": 12.8,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "3840:1920:0:120"
+  },
+  "pstreet": {
+   "src": "on",
+   "in": 18.0,
+   "out": 18.9,
+   "fps": 30,
+   "frames": 27,
+   "w": 1280,
+   "crop": "3840:1920:0:120"
+  },
+  "pclub2": {
+   "src": "on",
+   "in": 19.0,
+   "out": 20.6,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "3840:1920:0:120"
+  }
+ }
+}
