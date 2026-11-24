@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-trunkstream/out/gta-trunkstream-vo.mp4: 27.6 s, 1 hard cuts (0.4/10 s), motion 0-1 s 1.115, 0-3 s 2.02, median 0.387, still frames 3.3 %
+OK    no frozen stretches, opening moves

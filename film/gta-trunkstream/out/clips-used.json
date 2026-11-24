@@ -1,0 +1,59 @@
+{
+ "DUR": 27.6,
+ "uses": [
+  {
+   "clip": "trunk",
+   "t0": 0,
+   "t1": 2.95,
+   "from": 0,
+   "srcTo": 1.6225000000000003,
+   "note": "hook: him lying in the open trunk, then up with his phone (1092.0-1093.6 s), arrow + ring, STREAMER IN THE TRUNK, LIVE 51k RE-DRAWN",
+   "plate": false
+  },
+  {
+   "clip": "selfie",
+   "t0": 5.050000000000001,
+   "t1": 6.8500000000000005,
+   "from": 0,
+   "srcTo": 1.7999999999999998,
+   "note": "goes live: him filming himself (1095.4-1099.3 s), phone ringed + HIS PHONE tag, GOES LIVE chip",
+   "plate": false
+  },
+  {
+   "clip": "selfie2",
+   "t0": 7.8,
+   "t1": 10.6,
+   "from": 0,
+   "srcTo": 1.9999999999999993,
+   "note": "he asks his chat (1100.0-1102.0 s: \"chat, what do I do?\") on our phone, his quote as a sticker above it",
+   "plate": false
+  },
+  {
+   "clip": "selfie2",
+   "t0": 21.15,
+   "t1": 24.8,
+   "from": 2.05,
+   "srcTo": 3.8500000000000005,
+   "note": "first stream: his selfie (1102.05-1103.85 s, slowed) on our phone under the re-drawn chat line and LIVE 53k",
+   "plate": false
+  },
+  {
+   "clip": "pbike",
+   "t0": 24.45,
+   "t1": 27.05,
+   "from": 0,
+   "srcTo": 2.6000000000000014,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "trunk",
+   "t0": 26.75,
+   "t1": 27.62,
+   "from": 0,
+   "srcTo": 0.04350000000000005,
+   "note": "loop seam: frame-0 layout returns (STREAMER IN THE TRUNK), arrow on him",
+   "plate": false
+  }
+ ]
+}
