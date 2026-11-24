@@ -1,0 +1,194 @@
+{
+ "DUR": 27.35,
+ "uses": [
+  {
+   "clip": "pstreet",
+   "t0": 0,
+   "t1": 1.5,
+   "from": 0,
+   "srcTo": 0.8600000000000001,
+   "note": "background plate behind the lineup board",
+   "plate": true
+  },
+  {
+   "clip": "jason",
+   "t0": 1.52,
+   "t1": 2.8200000000000003,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Jason Duval, card 1: number and name on the card (An Extended Look) (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "pboat",
+   "t0": 4.97,
+   "t1": 6.77,
+   "from": 0,
+   "srcTo": 1.76,
+   "note": "background plate behind the lineup board",
+   "plate": true
+  },
+  {
+   "clip": "lucia",
+   "t0": 5,
+   "t1": 6.3,
+   "from": 0.3,
+   "srcTo": 1.2,
+   "note": "Lucia Caminos, card 2: number and name (An Extended Look) (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "cal",
+   "t0": 8.2,
+   "t1": 9.5,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Cal Hampton, card 3: number and name (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "pclub",
+   "t0": 10.570000000000002,
+   "t1": 12.970000000000002,
+   "from": 0,
+   "srcTo": 2.36,
+   "note": "background plate behind the lineup board",
+   "plate": true
+  },
+  {
+   "clip": "boobie",
+   "t0": 10.8,
+   "t1": 12.100000000000001,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Boobie Ike, card 4: number and name (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "drequan",
+   "t0": 13.5,
+   "t1": 14.8,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Dre'Quan Priest, card 5: number and name (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "pclub2",
+   "t0": 15.72,
+   "t1": 17.32,
+   "from": 0,
+   "srcTo": 1.56,
+   "note": "background plate behind the lineup board",
+   "plate": true
+  },
+  {
+   "clip": "dimez",
+   "t0": 15.75,
+   "t1": 17.05,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Real Dimez (Bae-Luxe and Roxy), card 6: names (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "raul",
+   "t0": 18.75,
+   "t1": 20.05,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Raul Bautista, card 7: number and name (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "brian",
+   "t0": 21.46,
+   "t1": 22.76,
+   "from": 0,
+   "srcTo": 0.9,
+   "note": "Brian Heder, card 8: number, name and Rockstar's line about him (plays, then holds its last frame)",
+   "plate": false
+  },
+  {
+   "clip": "jason",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 1.1,
+   "srcTo": 1.1,
+   "note": "ballot tile 1: still of JASON DUVAL with number and name",
+   "plate": false
+  },
+  {
+   "clip": "lucia",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 0.9,
+   "srcTo": 0.9,
+   "note": "ballot tile 2: still of LUCIA CAMINOS with number and name",
+   "plate": false
+  },
+  {
+   "clip": "cal",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 0,
+   "srcTo": 0,
+   "note": "ballot tile 3: still of CAL HAMPTON with number and name",
+   "plate": false
+  },
+  {
+   "clip": "boobie",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 0.8,
+   "srcTo": 0.8,
+   "note": "ballot tile 4: still of BOOBIE IKE with number and name",
+   "plate": false
+  },
+  {
+   "clip": "drequan",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 0.8,
+   "srcTo": 0.8,
+   "note": "ballot tile 5: still of DRE'QUAN PRIEST with number and name",
+   "plate": false
+  },
+  {
+   "clip": "dimez",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 0.8,
+   "srcTo": 0.8,
+   "note": "ballot tile 6: still of REAL DIMEZ with number and name",
+   "plate": false
+  },
+  {
+   "clip": "raul",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 1.2,
+   "srcTo": 1.2,
+   "note": "ballot tile 7: still of RAUL BAUTISTA with number and name",
+   "plate": false
+  },
+  {
+   "clip": "brian",
+   "t0": 23.78,
+   "t1": 26.78,
+   "from": 0.8,
+   "srcTo": 0.8,
+   "note": "ballot tile 8: still of BRIAN HEDER with number and name",
+   "plate": false
+  },
+  {
+   "clip": "pstreet",
+   "t0": 26.25,
+   "t1": 27.37,
+   "from": 0,
+   "srcTo": 0,
+   "note": "background plate behind the lineup board",
+   "plate": true
+  }
+ ]
+}

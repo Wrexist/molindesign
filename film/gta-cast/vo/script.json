@@ -1,0 +1,111 @@
+{
+  "about": "GTA 6's 8 people (Delta, catalog Short, slug gta-cast). Every role line comes from Rockstar's own People pages at rockstargames.com/VI/only-in-leonida/<name> (read 2026-11-24, server-rendered text): Jason 'wants an easy life, but things just keep getting harder'; Lucia 'Lucia's father taught her to fight as soon as she could walk'; Cal 'snooping on Coast Guard comms' while 'hanging at home'; Boobie 'all smiles until it's time to talk business'; Dre'Quan 'always more of a hustler than a gangster'; Real Dimez (Bae-Luxe and Roxy) 'friends since high school', tagline 'Viral videos. Viral hooks.'; Raul 'a seasoned bank robber always on the hunt for talent'; Brian 'been around long enough to let others do his dirty work'. Order = Rockstar's People menu. GTA VI out Nov 19 2026 (rockstargames.com/VI). Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.1,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Jason",
+    "Lucia",
+    "Cal",
+    "Boobie",
+    "Dre'Quan",
+    "Real Dimez",
+    "Raul",
+    "Brian",
+    "Coast Guard"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "dur": 27.35,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.88,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.2,
+      "text": "GTA 6. Who do you trust?",
+      "say": "G T A six. Who do you trust?",
+      "pause": 0.3
+    },
+    {
+      "id": "jason",
+      "at": 2.1,
+      "text": "Jason wants an easy life. It just gets harder.",
+      "pause": 0.2
+    },
+    {
+      "id": "lucia",
+      "at": 5.0,
+      "text": "Lucia learned to fight as soon as she could walk.",
+      "pause": 0.2
+    },
+    {
+      "id": "cal",
+      "at": 8.2,
+      "text": "Cal snoops on the Coast Guard from home.",
+      "pause": 0.15,
+      "say": "Cal snoops on the Coast Guard. From home."
+    },
+    {
+      "id": "boobie",
+      "at": 10.8,
+      "text": "Boobie's all smiles, until it's business.",
+      "say": "Boobie's all smiles. Until it's business.",
+      "pause": 0.2
+    },
+    {
+      "id": "drequan",
+      "at": 13.5,
+      "text": "Dre'Quan's more hustler than gangster.",
+      "say": "Dray-kwon's more hustler than gangster.",
+      "pause": 0.15
+    },
+    {
+      "id": "dimez",
+      "at": 15.75,
+      "text": "Real Dimez: two friends, viral hooks.",
+      "pause": 0.2,
+      "pronounce": {
+        "Dimez": "Dimes"
+      }
+    },
+    {
+      "id": "raul",
+      "at": 18.75,
+      "text": "Raul's a bank robber, hunting talent.",
+      "pause": 0.25,
+      "say": "Rah-ool's a bank robber, hunting talent."
+    },
+    {
+      "id": "brian",
+      "at": 21.3,
+      "text": "And Brian? He lets others do his dirty work.",
+      "pause": 0.35
+    },
+    {
+      "id": "end",
+      "at": 24.1,
+      "text": "So who do you trust? Drop the number.",
+      "pause": 0
+    }
+  ]
+}
