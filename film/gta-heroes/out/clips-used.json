@@ -1,0 +1,68 @@
+{
+ "DUR": 30,
+ "uses": [
+  {
+   "clip": "vcity",
+   "t0": 15.370000000000001,
+   "t1": 17.740000000000002,
+   "from": 0,
+   "srcTo": 0.82,
+   "note": "GTA V Los Santos on the voice: 2013, Los Santos (bike + skyline only, 1x, held on the skyline)",
+   "plate": false
+  },
+  {
+   "clip": "michael",
+   "t0": 17.740000000000002,
+   "t1": 18.380000000000003,
+   "from": 0,
+   "srcTo": 0.6400000000000006,
+   "note": "Michael on the spoken name",
+   "plate": false
+  },
+  {
+   "clip": "franklin",
+   "t0": 18.380000000000003,
+   "t1": 19.14,
+   "from": 0.2,
+   "srcTo": 0.959999999999998,
+   "note": "Franklin on the spoken name",
+   "plate": false
+  },
+  {
+   "clip": "trevor",
+   "t0": 19.14,
+   "t1": 19.93,
+   "from": 0,
+   "srcTo": 0.7899999999999991,
+   "note": "Trevor on the spoken name",
+   "plate": false
+  },
+  {
+   "clip": "roof",
+   "t0": 21.959999999999997,
+   "t1": 25.03,
+   "from": 0.6,
+   "srcTo": 1.9500000000000002,
+   "note": "Vice City at night behind the desk on: back to Vice City",
+   "plate": true
+  },
+  {
+   "clip": "jason",
+   "t0": 25.599999999999998,
+   "t1": 26.12,
+   "from": 0,
+   "srcTo": 0.5200000000000031,
+   "note": "Jason on the spoken name (rockstargames.com/VI character clip)",
+   "plate": false
+  },
+  {
+   "clip": "lucia",
+   "t0": 26.12,
+   "t1": 26.89,
+   "from": 0.55,
+   "srcTo": 1.3199999999999996,
+   "note": "Lucia on the spoken name (rockstargames.com/VI character clip)",
+   "plate": false
+  }
+ ]
+}
