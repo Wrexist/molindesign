@@ -1,0 +1,2 @@
+/home/user/molindesign/film/findableoff/out/findableoff-vo.mp4: 38.3 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.518, 0-3 s 0.56, median 0.249, still frames 3.9 %
+OK    no frozen stretches, opening moves
