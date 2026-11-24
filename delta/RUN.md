@@ -1,12 +1,16 @@
 # Delta run (what each scheduled Delta run does)
 
-The scheduled task "Delta GTA daily run" fires 3 times a day (08:17, 14:17, 20:17 Stockholm) and follows this file. Change the procedure here, not in the task's prompt.
+Two scheduled tasks make Delta Shorts, 6 runs a day: "Delta GTA daily run" (08:17, 14:17 Stockholm; its old prompt can't be edited, this file wins over it) and "Delta GTA extra runs" (02:17, 11:17, 19:17, 23:17 Stockholm, added 2026-11-24). Both follow this file. Change the procedure here, not in the task's prompt.
 
-**Volume (Isac 2026-11-12: "pump more videos a day out on Delta with GTA content, use GTA media"):** up to **3 fresh Shorts a day** at 13:00, 19:00 and 23:00 ET, plus **1 filler** at 09:00 ET (a remix of an older Delta Short, `factory/REPOST.md`). Each run makes or schedules one fresh Short. The first run of the ET day also does the filler.
+**Volume (Isac 2026-11-24: "make massive uploads, a ton of videos a day, real GTA 6 content"):** up to **6 Shorts a day**, at 07:00, 10:00, 13:00, 16:00, 19:00 and 22:00 ET, 3 h apart (`delta/queue.py` holds the slots: `--slot next` picks the next free one, the PC's `reslot` moves past-due ones). Each run makes **one** fresh Short and queues it. Fillers count toward the 6.
+- **Why 6 and not 15:** YouTube has no upload cap, but its spam and "inauthentic / repetitive content" policies (monetization) look at sameness across a channel, and the Shorts feed first tests each new Short on a slice of the channel's own viewers, so many near-identical Shorts a day split those viewers and drag each Short's reach down. Six distinct Shorts that each passed a fresh jury is a launch-window pace big GTA news channels hold, and it's about what 6 runs a day can make without skipping the gate.
+- **Raise it only on numbers:** after 7 days at 6 a day, read `factory/stats.py`. If the median views per Short held (within 20 % of the week before), go to 8 a day (set SLOTS_ET and MIN_GAP_H in delta/queue.py, 2.5 h gaps). If it fell more than 30 %, drop back to 4.
+- **Never loosen to get volume:** the jury gate (7.0, Truth 8.5), the repost rule (same video never within a week, `factory/repost.py check`), the clip caps (SAFE-EDIT rules 3, 7, 10, 11) and one topic per Short stay. Two Shorts on the same news item in one day count as repetitive: make the second a different angle or skip it.
+- **Footage source (2026-11-24):** besides the trailers already cached, the official clips from Isac's library D:\GTA6-Library are now in `/mnt/project-files/delta/sources/lib-*`: the 8 character clips from rockstargames.com/VI (Jason, Lucia, Boobie, Brian, Cal, DreQuan, Raul, Real Dimez; 1–1.5 s high-bitrate loops, good as hero plates), the "Out Now" spot (Nov 10, 30 s) and the Extended Look teaser. All are OFFICIAL in clipkit. Add more from the library with `clipkit.py fetch <file> --origin <official page> [--uploader-id @RockstarGames]`.
 
 ## Launch week, Nov 18–25 2026 (Isac 2026-11-18: "Do it")
 This section wins over the rest of the file until the end of Tue Nov 25 ET. Why: the 2026-11-18 progress check (Claude Doc "Delta channel: progress and growth plan") found remix fillers get the fewest views (records-r1: 166) and seven Shorts in a row stopped at about 1,200 views, which points at the first 1–2 seconds.
-- **No fillers.** Skip step 3. The 09:00 ET slot is free for a fresh Short. Still at most 4 posts a day, at least 4 h apart.
+- **No fillers.** Skip step 3. The 09:00 ET slot is free for a fresh Short. Still at most 6 posts a day, at least 3 h apart.
 - **News first.** At the start of each run, check for a new **official** launch number or fact: Take-Two or Rockstar press releases and Newswire, Take-Two investor posts, review aggregates (Metacritic, OpenCritic), official player or sales counts, YouTube's own GTA VI posts. If one landed since the last Delta Short and no Delta Short covers it, make that the run's Short, ahead of the queue and backlog. Unconfirmed reports (leakers, "sources say") are not news: skip them or label them as a rumor.
   - Speed over polish: aim to queue it for the next free slot. 20–30 s, the number as the hero.
   - **Footage too (Isac 2026-11-21: use what you learned):** a news Short is not graphics-only. Put official Rockstar footage (trailer mode, cached in `/mnt/project-files/delta/sources/`) or clean rule-10 creator clips behind or between the number beats, cut with `clipkit.py` and linted by make.sh. Graphics carry the number; footage shows the game the number is about.
@@ -47,15 +51,15 @@ Run `git fetch origin`. Work on your session's branch, starting from main plus t
    - A pinned-comment question.
    - The closing line "Made with our own graphics. Not affiliated with Rockstar Games or Take-Two.", or the trailer-clips line when clips are used.
 5. **Gate and upload.**
-   - Gate: `python3 factory/repost.py check gta-<slug> --channel delta --at "<slot UTC>"` must pass for every post, fresh or filler.
+   - Gate: `python3 factory/repost.py check gta-<slug> --channel delta --at "$(python3 delta/queue.py next-slot)"` must pass for every post, fresh or filler (run next-slot on the queue.json you just pulled).
    - Upload: send `<slug>-vo.mp4` to Higgsfield (media_upload, curl PUT, media_confirm).
-   - **Queue it for the PC (Isac 2026-11-14: "Always go, don't ask me. Make it automatic and seamless").** Never ask Isac for a go and never call start_remote_control for a post. Instead: `git fetch origin claude/delta-queue`, check out `delta/queue.json` from it (`git show origin/claude/delta-queue:delta/queue.json > delta/queue.json`, or start empty if the branch is missing), run `python3 delta/queue.py add gta-<slug> --url <Higgsfield URL> --slot "<slot UTC>"`, then commit only that file to `claude/delta-queue` (a worktree or `git commit` on that branch) and push it. The PC's scheduled task (`delta/PC-AUTOPOST.md`, every 2 h) uploads it, schedules it, writes back the video ID and posts the pinned question after go-live.
+   - **Queue it for the PC (Isac 2026-11-14: "Always go, don't ask me. Make it automatic and seamless").** Never ask Isac for a go and never call start_remote_control for a post. Instead: `git fetch origin claude/delta-queue`, check out `delta/queue.json` from it (`git show origin/claude/delta-queue:delta/queue.json > delta/queue.json`, or start empty if the branch is missing), run `python3 delta/queue.py add gta-<slug> --url <Higgsfield URL> --slot next` (or the exact slot you gated with `python3 delta/queue.py next-slot`), then commit only that file to `claude/delta-queue` (a worktree or `git commit` on that branch) and push it. The PC's scheduled task (`delta/PC-AUTOPOST.md`, every 2 h) uploads it, schedules it, writes back the video ID and posts the pinned question after go-live.
    - At the start of every run, read `origin/claude/delta-queue:delta/queue.json`: copy each new `youtube_id` into backlog.csv and posts.csv, and report any `failed` item to Isac in one line.
    - Before picking a slot, count `ready` and `scheduled` queue items as taken slots.
 6. **PC instructions** (the PC task follows `delta/PC-AUTOPOST.md`; these are its rules).
    - FIRST switch to the channel **Delta (@deltaisac)** in YouTube Studio and confirm it.
    - Never change the name, banner or about text, and never touch existing videos.
-   - Schedule in the slot that passed the gate (09:00 filler; 13:00, 19:00 or 23:00 ET fresh).
+   - Schedule in the slot from queue.json (07:00, 10:00, 13:00, 16:00, 19:00 or 22:00 ET).
    - Settings: Altered content NO, not made for kids, English (US), Gaming.
    - Playlist: "GTA 6 Facts", "GTA History" or "Mysteries and Easter Eggs".
    - Paste the full title and description into the instructions.

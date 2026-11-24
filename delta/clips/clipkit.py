@@ -105,11 +105,18 @@ def cmd_fetch(a):
     local = Path(src).expanduser()
     if local.exists():
         info = {'title': local.name, 'webpage_url': str(local), 'extractor_key': 'local'}
+        if a.origin:  # a file from D:\\GTA6-Library (or another copy) whose official origin is known: judge it by that origin
+            m = re.match(r'https?://(?:www\.)?([a-z0-9.-]+)/', a.origin.lower())
+            host = m.group(1) if m else ''
+            info.update(webpage_url=a.origin, uploader=a.uploader_id or host, uploader_id=a.uploader_id or '',
+                        extractor_key=next((k for k in ('youtube', 'twitter', 'instagram', 'tiktok') if k in host or (k == 'twitter' and 'x.com' == host)), 'local'))
         try:
             info['duration'] = float(sh(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(local)]).stdout)
         except Exception:
             pass
         key = key_for(info, local)
+        if a.origin:
+            key = 'lib-' + key[len('own-'):]
     else:
         if not shutil.which('yt-dlp'):
             sys.exit('yt-dlp is missing: pip install yt-dlp')
@@ -371,6 +378,8 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest='cmd', required=True)
     f = sub.add_parser('fetch'); f.add_argument('src'); f.add_argument('--own', action='store_true')
+    f.add_argument('--origin', help="local file only: the official page it was downloaded from (judged by delta/clips/OFFICIAL.json), e.g. a copy from D:\\GTA6-Library")
+    f.add_argument('--uploader-id', help='with --origin on youtube/x/tiktok: the uploader account id shown on that page, e.g. @RockstarGames')
     c = sub.add_parser('cut'); c.add_argument('source'); c.add_argument('--film', required=True)
     c.add_argument('--clip', action='append', required=True); c.add_argument('--as', dest='alias')
     c.add_argument('--credit'); c.add_argument('--commentary', action='store_true'); c.add_argument('--checked'); c.add_argument('--crop', help='W:H:X:Y manual crop in source pixels (cut out a facecam or burned-in captions; never a watermark)'); c.add_argument('--w', type=int, default=1280)
