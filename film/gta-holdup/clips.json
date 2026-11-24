@@ -1,0 +1,97 @@
+{
+ "film": "gta-holdup",
+ "sources": {
+  "t1": {
+   "key": "twitter-1731998653743517697",
+   "url": "https://x.com/RockstarGames/status/1732149328779571313",
+   "title": "Rockstar Games - Hello @X, watch Grand Theft Auto VI Trailer 1",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · Trailer 1"
+  },
+  "el": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · An Extended Look"
+  },
+  "lt": {
+   "key": "twitter-2110704990339678208",
+   "url": "https://x.com/RockstarGames/status/2110717537964953810",
+   "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · Launch Trailer"
+  }
+ },
+ "clips": {
+  "tend": {
+   "src": "t1",
+   "in": 76.5,
+   "out": 78.35,
+   "fps": 30,
+   "frames": 56,
+   "w": 1280,
+   "crop": null
+  },
+  "t1aisle": {
+   "src": "t1",
+   "in": 68.7,
+   "out": 70.2,
+   "fps": 30,
+   "frames": 45,
+   "w": 1280,
+   "crop": null
+  },
+  "elstore": {
+   "src": "el",
+   "in": 705.8,
+   "out": 710.9,
+   "fps": 30,
+   "frames": 153,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "elsame": {
+   "src": "el",
+   "in": 715.6,
+   "out": 717.05,
+   "fps": 30,
+   "frames": 44,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "pback": {
+   "src": "el",
+   "in": 712.9,
+   "out": 714.9,
+   "fps": 30,
+   "frames": 60,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "pcar": {
+   "src": "el",
+   "in": 729.2,
+   "out": 731.55,
+   "fps": 30,
+   "frames": 71,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "pclub": {
+   "src": "lt",
+   "in": 44.45,
+   "out": 46.2,
+   "fps": 30,
+   "frames": 53,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  }
+ }
+}

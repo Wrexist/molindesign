@@ -1,0 +1,113 @@
+{
+ "DUR": 25.85,
+ "uses": [
+  {
+   "clip": "tend",
+   "t0": 0,
+   "t1": 2.45,
+   "from": 0.6,
+   "srcTo": 1.7025000000000001,
+   "note": "Trailer 1 last shot (76.5-78.4 s): bandana ringed, arrow, A STORE HOLDUP, CAM 1 DEC 04 2023; cut before the VI logo",
+   "plate": false
+  },
+  {
+   "clip": "tend",
+   "t0": 2.45,
+   "t1": 3.85,
+   "from": 1.4,
+   "srcTo": 1.82,
+   "note": "Trailer 1 last shot, guns up, punched in 1.3x: bandana ringed + RED BANDANA tag",
+   "plate": false
+  },
+  {
+   "clip": "t1aisle",
+   "t0": 3.85,
+   "t1": 4.859999999999999,
+   "from": 0.2,
+   "srcTo": 1.2099999999999993,
+   "note": "Trailer 1 aisle shot (68.7-70.2 s) under \"red bandana\", punched in 2x on her face: bandana ringed + RED BANDANA tag",
+   "plate": false
+  },
+  {
+   "clip": "pclub",
+   "t0": 6.750000000000001,
+   "t1": 9.92,
+   "from": 0,
+   "srcTo": 1.7266666666666666,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "elstore",
+   "t0": 9.87,
+   "t1": 11.77,
+   "from": 0,
+   "srcTo": 1.9000000000000004,
+   "note": "Extended Look store holdup (705.8-707.7 s), CAM 2 AUG 27 2026 + EXTENDED LOOK chip",
+   "plate": false
+  },
+  {
+   "clip": "t1aisle",
+   "t0": 12.62,
+   "t1": 14.85,
+   "from": 0.85,
+   "srcTo": 1.46,
+   "note": "match, top: Trailer 1 aisle (69.55-70.16 s), bandana and e-Cola sign ringed, SAME BANDANA / SAME SIGN",
+   "plate": false
+  },
+  {
+   "clip": "elsame",
+   "t0": 12.62,
+   "t1": 14.85,
+   "from": 0.55,
+   "srcTo": 1.15,
+   "note": "match, bottom: Extended Look aisle (716.15-716.75 s), bandana and e-Cola sign ringed, SAME BANDANA / SAME SIGN",
+   "plate": false
+  },
+  {
+   "clip": "elstore",
+   "t0": 15.1,
+   "t1": 17.4,
+   "from": 2.4,
+   "srcTo": 4.699999999999999,
+   "note": "Extended Look HUD (708.2-710.5 s): pushed in 3x onto the top-right HUD, framed + HUD tag",
+   "plate": false
+  },
+  {
+   "clip": "pcar",
+   "t0": 20.2,
+   "t1": 23.200000000000003,
+   "from": 0,
+   "srcTo": 2.3266666666666667,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "tend",
+   "t0": 24.36,
+   "t1": 25.700000000000003,
+   "from": 1.75,
+   "srcTo": 1.75,
+   "note": "vote tile 1: still of the Trailer 1 holdup, TRAILER 1",
+   "plate": false
+  },
+  {
+   "clip": "elsame",
+   "t0": 24.36,
+   "t1": 25.700000000000003,
+   "from": 0.3,
+   "srcTo": 0.3,
+   "note": "vote tile 2: still of the Extended Look holdup, EXTENDED LOOK",
+   "plate": false
+  },
+  {
+   "clip": "tend",
+   "t0": 25.400000000000002,
+   "t1": 25.87,
+   "from": 0.3975000000000003,
+   "srcTo": 0.6089999999999998,
+   "note": "loop seam: frame-0 layout returns (TRAILER 1 ENDED ON THIS), Trailer 1 last shot",
+   "plate": false
+  }
+ ]
+}
