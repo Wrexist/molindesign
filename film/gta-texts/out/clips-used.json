@@ -1,0 +1,77 @@
+{
+ "DUR": 24.6,
+ "uses": [
+  {
+   "clip": "jason",
+   "t0": 0,
+   "t1": 4.08,
+   "from": 1,
+   "srcTo": 4.6,
+   "note": "frame 0: Jason crouched in the dark office, Lucia's GUYS EVERYWHERE bubble on screen, ring on the bubble, title GUYS EVERYWHERE",
+   "plate": false
+  },
+  {
+   "clip": "party",
+   "t0": 4.08,
+   "t1": 6.5,
+   "from": 0.8,
+   "srcTo": 3.2199999999999998,
+   "note": "plate: the host on the stairs at the opening party, behind our invitation card",
+   "plate": true
+  },
+  {
+   "clip": "gunmen",
+   "t0": 6.5,
+   "t1": 8.700000000000001,
+   "from": 0.75,
+   "srcTo": 2.950000000000001,
+   "note": "masked men in white coveralls with rifles walk in; MASKED GUNMEN chip, ring on the masked face",
+   "plate": false
+  },
+  {
+   "clip": "jplate",
+   "t0": 8.700000000000001,
+   "t1": 12.700000000000001,
+   "from": 0,
+   "srcTo": 4,
+   "note": "plate: Jason crouching with his pistol in the dark office, behind our phone",
+   "plate": true
+  },
+  {
+   "clip": "lucia",
+   "t0": 12.700000000000001,
+   "t1": 15.1,
+   "from": 0.78,
+   "srcTo": 3.179999999999999,
+   "note": "Lucia crouched among the guests typing on her phone, her text bubble bottom left; ring on the phone, arrow to the bubble",
+   "plate": false
+  },
+  {
+   "clip": "lplate",
+   "t0": 15.1,
+   "t1": 17.68,
+   "from": 0,
+   "srcTo": 2.58,
+   "note": "plate: a gunman on his radio, Lucia looking up, behind our phone with her full text",
+   "plate": true
+  },
+  {
+   "clip": "pass",
+   "t0": 18.5,
+   "t1": 20.58,
+   "from": 0,
+   "srcTo": 2.0799999999999983,
+   "note": "a masked gunman walks up past the glowing table, her bubble still on screen; ring on him, RIGHT THERE chip",
+   "plate": false
+  },
+  {
+   "clip": "jason",
+   "t0": 23.900000000000002,
+   "t1": 24.601000000000003,
+   "from": 3.95,
+   "srcTo": 4.651000000000001,
+   "note": "loop: back to Jason and the GUYS EVERYWHERE bubble under the title",
+   "plate": false
+  }
+ ]
+}

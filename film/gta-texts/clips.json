@@ -1,0 +1,79 @@
+{
+ "film": "gta-texts",
+ "sources": {
+  "el": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · An Extended Look"
+  }
+ },
+ "clips": {
+  "jason": {
+   "src": "el",
+   "in": 1426.6,
+   "out": 1431.3,
+   "fps": 30,
+   "frames": 141,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "party": {
+   "src": "el",
+   "in": 1381.5,
+   "out": 1386.0,
+   "fps": 30,
+   "frames": 135,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "gunmen": {
+   "src": "el",
+   "in": 1393.6,
+   "out": 1397.8,
+   "fps": 30,
+   "frames": 126,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "jplate": {
+   "src": "el",
+   "in": 1408.0,
+   "out": 1413.0,
+   "fps": 30,
+   "frames": 150,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "lucia": {
+   "src": "el",
+   "in": 1432.8,
+   "out": 1437.0,
+   "fps": 30,
+   "frames": 126,
+   "w": 1280,
+   "crop": "1920:1080:0:0"
+  },
+  "pass": {
+   "src": "el",
+   "in": 1437.0,
+   "out": 1440.4,
+   "fps": 30,
+   "frames": 102,
+   "w": 1280,
+   "crop": "1920:1078:0:2"
+  },
+  "lplate": {
+   "src": "el",
+   "in": 1440.8,
+   "out": 1444.8,
+   "fps": 30,
+   "frames": 120,
+   "w": 1280,
+   "crop": "1920:1012:0:68"
+  }
+ }
+}
