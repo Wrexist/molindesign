@@ -407,7 +407,9 @@
         "GTA 6 launch",
         "most watched game launch",
         "GTA 6 vs Valorant"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-heroes",
@@ -435,7 +437,9 @@
         "GTA 3 main character name",
         "Tommy Vercetti",
         "Niko Bellic"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-lootrun",
@@ -462,7 +466,9 @@
         "GTA 6 secret",
         "GTA 6 cash bag",
         "GTA 6 puzzle"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-stashhouse",
@@ -489,7 +495,9 @@
         "GTA 6 free weapons",
         "GTA 6 secret",
         "GTA 6 mystery"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-chapter1",
@@ -498,7 +506,7 @@
       "slot_utc": "2026-11-26 12:00",
       "status": "ready",
       "youtube_id": "",
-      "note": "Re-slotted 2026-11-23 18:00 UTC -> 2026-11-26 12:00 UTC (Thu Nov 26 07:00 ET). Moved by cloud run 2026-11-21: Sat 23:00 ET slot went to launch news gta-daysales; now Mon Nov 23 13:00 ET.",
+      "note": "Not uploaded 2026-11-24 PC tick: YouTube daily upload limit reached (needs one-time verification or 24 h wait). Still ready.",
       "added": "2026-11-20 18:11",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -517,7 +525,9 @@
         "GTA 6 Dinka Enduro",
         "GTA 6 Crest Kayak",
         "GTA 6 Ganado Retro Build"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-eastereggs",
@@ -526,7 +536,7 @@
       "slot_utc": "2026-11-25 21:00",
       "status": "ready",
       "youtube_id": "",
-      "note": "Re-slotted 2026-11-23 00:00 UTC -> 2026-11-25 21:00 UTC (Wed Nov 25 16:00 ET).",
+      "note": "Not uploaded 2026-11-24 PC tick: YouTube daily upload limit reached (needs one-time verification or 24 h wait). Still ready.",
       "added": "2026-11-20 18:20",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -545,7 +555,9 @@
         "GTA 6 Michael boat",
         "GTA 6 dog jet ski",
         "GTA 6 easter egg tower"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-settings",
@@ -573,7 +585,9 @@
         "GTA 6 brightness reduction",
         "GTA 6 30 fps",
         "GTA 6 graphics settings"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-sametrailer",
@@ -582,7 +596,7 @@
       "slot_utc": "2026-11-26 00:00",
       "status": "ready",
       "youtube_id": "",
-      "note": "Re-slotted 2026-11-23 04:00 UTC -> 2026-11-26 00:00 UTC (Wed Nov 25 19:00 ET).",
+      "note": "Not uploaded 2026-11-24 PC tick: YouTube daily upload limit reached (needs one-time verification or 24 h wait). Still ready.",
       "added": "2026-11-20 23:43",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -600,7 +614,9 @@
         "GTA 6 vs GTA 5 comparison",
         "Vice City",
         "Vinewood"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-thingstodo",
@@ -609,7 +625,7 @@
       "slot_utc": "2026-11-26 03:00",
       "status": "ready",
       "youtube_id": "",
-      "note": "Re-slotted 2026-11-23 14:00 UTC -> 2026-11-26 03:00 UTC (Wed Nov 25 22:00 ET).",
+      "note": "Not uploaded 2026-11-24 PC tick: YouTube daily upload limit reached (needs one-time verification or 24 h wait). Still ready.",
       "added": "2026-11-21 00:59",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -628,7 +644,9 @@
         "GTA 6 gym",
         "GTA 6 races",
         "Vice City"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-daysales",
@@ -655,7 +673,9 @@
         "GTA 6 record",
         "biggest entertainment launch in history",
         "GTA 5 first day sales"
-      ]
+      ],
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix"
     },
     {
       "slug": "gta-wildfinds",
@@ -664,9 +684,9 @@
       "slot_utc": "2026-11-26 15:00",
       "status": "ready",
       "youtube_id": "",
-      "note": "Re-slotted 2026-11-24 00:00 UTC -> 2026-11-26 15:00 UTC (Thu Nov 26 10:00 ET).",
-      "tiktok_status": "ready",
-      "tiktok_note": "",
+      "note": "Not uploaded 2026-11-24 PC tick: YouTube daily upload limit reached (needs one-time verification or 24 h wait). Still ready.",
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix",
       "added": "2026-11-21 11:32",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -697,8 +717,8 @@
       "status": "scheduled",
       "youtube_id": "exfJEbb8drI",
       "note": "Scheduled Mon Nov 23 23:00 ET (Nov 24 05:00 Stockholm)",
-      "tiktok_status": "ready",
-      "tiktok_note": "",
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix",
       "added": "2026-11-21 12:09",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -727,8 +747,8 @@
       "status": "scheduled",
       "youtube_id": "qXXSK9KLaDI",
       "note": "Scheduled Tue Nov 24 09:00 ET (15:00 Stockholm); created playlist GTA 6 Tips",
-      "tiktok_status": "ready",
-      "tiktok_note": "",
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix",
       "added": "2026-11-21 12:57",
       "altered_content": "No",
       "made_for_kids": "No",
@@ -756,8 +776,8 @@
       "status": "scheduled",
       "youtube_id": "e56AEbLx5z4",
       "note": "Scheduled Tue Nov 24 13:00 ET (19:00 Stockholm)",
-      "tiktok_status": "ready",
-      "tiktok_note": "",
+      "tiktok_status": "skipped",
+      "tiktok_note": "signed-in TikTok is Tech, explained; Delta and Tech, explained never mix",
       "added": "2026-11-21 13:22",
       "altered_content": "No",
       "made_for_kids": "No",
