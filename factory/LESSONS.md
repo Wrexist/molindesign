@@ -251,6 +251,7 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 | wifibattery (WJUwLbc8-MA) | Nov 20 18:00 | 38 s | 7.3 r1 → 7.6 r2 + polish | – | – | 6 | myth: "barely saves battery" + iPhone Control Center only disconnects + "Settings › Battery, not the toggles"; 1 PM ET slot; read at 6 h and 24 h |
 | trackeralert (PTX9WvpLPi8) | Nov 21 18:00 | 34 s | 7.06 r1 → 7.6 r2 + polish | 1 (25 min) | – | 6 | safety alert + "Bluetooth off won't stop it" twist (Apple + Google) + "check yours"; Sat 1 PM ET slot; read at 6 h and 24 h |
 | restartphone (dgybgH4UMNM) | Nov 22 18:00 | 35 s | 6.9 r1 → 7.6 r2 + polish | 3 (25 min) | – | 5 | agency advice + "its own chart says sometimes" twist + "update closes the hole" + Samsung Auto restart; Sun 1 PM ET slot; read at 6 h and 24 h |
+| rice (SPcupM4VnXI) | Nov 24 18:00 | 38 s | 7.0 r1 → 7.5 r2 + polish | ? (25 min) | – | 6 | Apple support myth-buster ("could allow small particles of rice to damage"), tap/airflow/don't charge wet, Liquid Detected check; Tue 1 PM ET slot, a day late (PC off Nov 23) |
 | Parked, never posted | | | | | | | temperature, password, gpus, wifi, math |
 
 ## Delta
@@ -396,6 +397,15 @@ Read 2026-11-04 05:50 UTC; Nov 6–11 rows added 2026-11-11 05:50 UTC. YT = YouT
 - Craft (repeat): with the bench at y 1150 the lower third went empty for 3 s. An empty dashed slot that the tape later prints into fills it and builds anticipation.
 - Wow: the 5G status tile (the film's thread since frame 0) rides the coral chart line from SLOW through the crossing to FAST.
 - Tooling: the container restarted mid-fix and the resumed director was lost. A fresh director told "some fixes may be half-applied, read film.js first" picked it up cleanly. Save fix lists to a file so they survive.
+
+### rice (#40), jury r1 7.0 / Truth 8.5 → r2 7.5 / Truth 9.0 (post), all 6 r2 polish items applied — scheduled Nov 24 13:00 ET (SPcupM4VnXI)
+- The PC can be off for a whole day. The Nov 23 slots passed while it was offline (checked 08:15, 11:00 and 15:00 UTC); the film went out the next day once Isac switched it on. Hand off as early as possible in the run, re-run repost.py check for the new day, and stop retrying after two misses: tell Isac once that the PC needs to be on.
+- Keep the source's modal verb: Apple says rice "could" damage it and never says rice doesn't dry a phone. "Could" stayed in the voice, the clipping and the title ("Rice Could Damage Your iPhone, Apple Says").
+- When two pages from the same maker disagree (30 minutes vs 5 hours before charging), put no number in the voice; quote both in the description.
+- Print a line on the word it names (CORRODE on "corrode", STILL WET on "Still"), not on the line before. Re-lay the pauses (≤ 1.3 s) so readcheck still passes.
+- Don't let the picture claim a state the voice hasn't: no charging bolt before the alert, and no rice in the frame while the voice is on water damage.
+- A planted detail has to read at phone size: the grain in the port went from 20 to about 70 px before the jury counted it.
+- Rebuild the PC instruction text from seo.json (scratchpad mkpc.py, rebuilt Nov 24 after a container reset). It asserts no `<`/`>`, Altered content No and no AI tag.
 
 ### restartphone (#39), jury r1 6.9 / Truth 8.0 → r2 7.6 / Truth 9.0 (post), all 5 r2 polish items applied — scheduled Nov 22 13:00 ET (dgybgH4UMNM)
 - Blocked primary source: the NSA PDF returns 403 to the container (media.defense.gov, nsa.gov, the Army copy). Have the PC open it in a browser and copy the exact strings before render; it also corrected the chart's layout (practices are columns, not rows) and the footer date (Oct 2020, not the 2021 upload path). Put such strings in one constant block in film.js so a correction is one edit.
