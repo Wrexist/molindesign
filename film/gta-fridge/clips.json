@@ -1,0 +1,79 @@
+{
+ "film": "gta-fridge",
+ "sources": {
+  "el": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · An Extended Look"
+  }
+ },
+ "clips": {
+  "menuA": {
+   "src": "el",
+   "in": 438.45,
+   "out": 439.0,
+   "fps": 30,
+   "frames": 17,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "walk": {
+   "src": "el",
+   "in": 435.3,
+   "out": 437.35,
+   "fps": 30,
+   "frames": 62,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "menuB": {
+   "src": "el",
+   "in": 438.95,
+   "out": 439.38,
+   "fps": 30,
+   "frames": 13,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "magnet": {
+   "src": "el",
+   "in": 439.45,
+   "out": 440.75,
+   "fps": 30,
+   "frames": 39,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "drink": {
+   "src": "el",
+   "in": 442.85,
+   "out": 443.5,
+   "fps": 30,
+   "frames": 20,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "pwalk": {
+   "src": "el",
+   "in": 430.0,
+   "out": 434.0,
+   "fps": 30,
+   "frames": 120,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "pkitchen": {
+   "src": "el",
+   "in": 440.8,
+   "out": 442.8,
+   "fps": 30,
+   "frames": 60,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  }
+ }
+}

@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-fridge/out/gta-fridge-vo.mp4: 28.0 s, 1 hard cuts (0.4/10 s), motion 0-1 s 1.595, 0-3 s 2.566, median 0.523, still frames 0.1 %
+OK    no frozen stretches, opening moves

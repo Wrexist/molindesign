@@ -1,0 +1,96 @@
+{
+  "about": "GTA 6 'It has X, shown' (Delta, slug gta-fridge): in Rockstar's 'An Extended Look' (Aug 27 2026, 'captured entirely from in-game footage on the PlayStation 5'), a man walks up to a fridge in a pink apartment, a FRIDGE button prompt appears, the fridge opens on a selection list (LOGGER BEER, LAVAZAS BEER, BLITZ BERRY SMOOTHIE, BLITZ GREEN SMOOTHIE, PROTEIN SHAKE; the smoothie and shake rows carry two small icons the beer rows don't), a FLEECA BANK magnet sits on the door, and with a bottle in hand the prompts read DRINK / DROP (7:15-7:23, 435-443.5 s). Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Fleeca",
+    "Lavazas",
+    "Blitz",
+    "Logger"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "dur": 27.95,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6 has a fridge menu.",
+      "say": "G T A six has a fridge menu.",
+      "pause": 0.35
+    },
+    {
+      "id": "walk",
+      "at": 2.2,
+      "text": "Walk up, and the prompt just says: fridge.",
+      "pause": 0.35
+    },
+    {
+      "id": "open",
+      "at": 5.0,
+      "text": "Open it, and you pick from a list.",
+      "pause": 0.35
+    },
+    {
+      "id": "items",
+      "at": 7.6,
+      "text": "Logger and Lavazas beer, berry and green Blitz smoothies, and a protein shake.",
+      "say": "Logger and Lah-vah-zas beer, berry and green Blitz smoothies, and a protein shake.",
+      "pause": 0.4
+    },
+    {
+      "id": "icons",
+      "at": 12.5,
+      "text": "The beers get no icons. The smoothies and the shake get two. Rockstar hasn't said what they do.",
+      "pause": 0.4
+    },
+    {
+      "id": "magnet",
+      "at": 18.8,
+      "text": "Fleeca Bank is even on the fridge door.",
+      "say": "Flee-ka Bank is even on the fridge door.",
+      "pause": 0.35
+    },
+    {
+      "id": "drink",
+      "at": 21.55,
+      "text": "Drink, or drop. That's the prompt once you grab one.",
+      "pause": 0.4,
+      "take": 1
+    },
+    {
+      "id": "end",
+      "at": 24.5,
+      "text": "Beer or smoothie? Pick one,",
+      "pause": 0.4
+    },
+    {
+      "id": "loop",
+      "at": 27.25,
+      "text": "because",
+      "pause": 0
+    }
+  ]
+}
