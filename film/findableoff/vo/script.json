@@ -1,0 +1,123 @@
+{
+ "about": "Can you find your iPhone when it's off. Factory #41, backlog row 46, slug findableoff. One hard idea: Apple's iPhone User Guide ('Add your iPhone to Find My') says 'On a supported iPhone, turning on the Find My network allows you to locate your iPhone for up to 24 hours after it's turned off, or up to 5 hours when it's in power reserve mode'; Apple 102648 says the Find My network is 'a crowdsourced network of over a billion Apple devices that use Bluetooth technology to detect the location of an accessory or device, and report their approximate location back to the owner'; it only works with the Find My network switch on, so check yours: Settings > your name > Find My > Find My iPhone, both switches on. Sources read 2026-11-24, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "iPhone",
+  "Apple",
+  "Find My",
+  "Wi-Fi",
+  "Bluetooth"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 24.5
+ },
+ "dur": 38.28,
+ "tail": 0.2,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Turned off? Your iPhone's still findable.",
+   "pause": 0.6,
+   "at": 0.2,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "ask",
+   "text": "So how do you find an iPhone that's off?",
+   "pause": 0.4,
+   "at": 3.5,
+   "tail_fade": 0.15,
+   "say": "So, how do you find an iPhone that's off?"
+  },
+  {
+   "id": "lost",
+   "text": "Say you lose it, switched off.",
+   "pause": 0.4,
+   "at": 6.47,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "gone",
+   "text": "No Wi-Fi. No cellular. Looks gone.",
+   "pause": 0.6,
+   "at": 8.79,
+   "tail_fade": 0.15,
+   "say": "No Wi-Fi. No cellular. Looks... gone."
+  },
+  {
+   "id": "twist",
+   "text": "But Apple says a supported iPhone can still be located.",
+   "pause": 0.3,
+   "at": 12.57,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "hours",
+   "text": "For up to 24 hours after it's turned off.",
+   "pause": 1.1,
+   "at": 15.97,
+   "tail_fade": 0.3,
+   "say": "For up to twenty-four hours... after it's turned off."
+  },
+  {
+   "id": "network",
+   "text": "Over a billion Apple devices help find it.",
+   "pause": 0.3,
+   "at": 19.64,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "relay",
+   "text": "They spot it by Bluetooth and report back.",
+   "pause": 0.6,
+   "at": 22.48,
+   "tail_fade": 0.15,
+   "say": "They spot it, by Bluetooth, and report back."
+  },
+  {
+   "id": "dip",
+   "text": "Except that needs a switch called Find My network.",
+   "pause": 0.9,
+   "at": 26.08,
+   "tail_fade": 0.35
+  },
+  {
+   "id": "path",
+   "text": "Check yours: Settings, your name, Find My.",
+   "pause": 0.4,
+   "at": 29.55,
+   "tail_fade": 0.15,
+   "say": "Check yours. Settings, your name, Find My."
+  },
+  {
+   "id": "toggle",
+   "text": "Tap Find My iPhone. Turn both switches on.",
+   "pause": 0.6,
+   "at": 33.04,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "end",
+   "text": "Were yours on? Yes or no.",
+   "pause": 0,
+   "at": 36.36,
+   "tail_fade": 0.15,
+   "say": "Were yours on? Yes, or no?"
+  }
+ ]
+}
