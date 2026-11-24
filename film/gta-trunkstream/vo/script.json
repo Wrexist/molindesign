@@ -1,0 +1,106 @@
+{
+  "about": "GTA 6 'It has X, shown' (Delta, slug gta-trunkstream): in Rockstar's 'An Extended Look' (Aug 27 2026, 'captured entirely from in-game footage on the PlayStation 5'), a man rides in the trunk of a car the woman has just stolen and films himself on his phone (18:12-18:24, 1092-1104 s); during the police chase that follows the screen shows a livestream overlay: LIVE 51k, then LIVE 53k, a scrolling chat ('KING OF TRUNK!!!', 'first stream!!!') and a VIEW LIVESTREAM button prompt (1104-1108 s). Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Extended Look"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "dur": 27.6,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6 has a trunk streamer.",
+      "say": "G T A six has a trunk streamer.",
+      "pause": 0.35
+    },
+    {
+      "id": "steal",
+      "at": 2.7,
+      "text": "She steals a car. He's in the trunk.",
+      "pause": 0.35
+    },
+    {
+      "id": "live",
+      "at": 5.2,
+      "text": "So he does what streamers do. He goes live.",
+      "pause": 0.45
+    },
+    {
+      "id": "ask",
+      "at": 8.0,
+      "text": "He even asks his chat what to do.",
+      "pause": 0.4
+    },
+    {
+      "id": "cops",
+      "at": 10.6,
+      "text": "Then real cops show up.",
+      "pause": 0.35
+    },
+    {
+      "id": "count",
+      "at": 12.3,
+      "text": "His stream says LIVE: 51K.",
+      "say": "His stream says live: fifty-one K.",
+      "pause": 0.4
+    },
+    {
+      "id": "more",
+      "at": 14.55,
+      "text": "Then 53K.",
+      "say": "Then fifty-three K.",
+      "pause": 0.4
+    },
+    {
+      "id": "chat",
+      "at": 16.35,
+      "text": "The chat calls him king of trunk.",
+      "pause": 0.45
+    },
+    {
+      "id": "button",
+      "at": 18.7,
+      "text": "There's even a button: view livestream.",
+      "pause": 0.45,
+      "say": "There is even a button: view livestream."
+    },
+    {
+      "id": "first",
+      "at": 21.45,
+      "text": "Someone typed: first stream. At 53K.",
+      "say": "Someone typed: first stream. At fifty-three K.",
+      "pause": 0.4
+    },
+    {
+      "id": "end",
+      "at": 24.7,
+      "text": "Would you watch him? Be honest. Because again,",
+      "pause": 0
+    }
+  ]
+}

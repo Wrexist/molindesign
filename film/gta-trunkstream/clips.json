@@ -1,0 +1,52 @@
+{
+ "film": "gta-trunkstream",
+ "sources": {
+  "el": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · An Extended Look"
+  }
+ },
+ "clips": {
+  "trunk": {
+   "src": "el",
+   "in": 1092.0,
+   "out": 1094.9,
+   "fps": 30,
+   "frames": 87,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "selfie": {
+   "src": "el",
+   "in": 1095.4,
+   "out": 1099.4,
+   "fps": 30,
+   "frames": 120,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "selfie2": {
+   "src": "el",
+   "in": 1100.0,
+   "out": 1103.9,
+   "fps": 30,
+   "frames": 117,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "pbike": {
+   "src": "el",
+   "in": 1087.6,
+   "out": 1091.6,
+   "fps": 30,
+   "frames": 120,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  }
+ }
+}
