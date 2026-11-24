@@ -1,0 +1,106 @@
+{
+ "film": "gta-heroes",
+ "sources": {
+  "v": {
+   "key": "generic-v4-a8k183c8-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/a8k183c8/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · GTA V trailer 2013"
+  },
+  "lt": {
+   "key": "twitter-2110704990339678208",
+   "url": "https://x.com/RockstarGames/status/2110717537964953810",
+   "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · GTA VI launch trailer"
+  },
+  "j": {
+   "key": "lib-jason-duval-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Jason_Duval_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  },
+  "l": {
+   "key": "lib-lucia-caminos-video-clip",
+   "url": "https://www.rockstargames.com/VI/media/videos",
+   "title": "Lucia_Caminos_Video_Clip.mp4",
+   "uploader": "rockstargames.com",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · rockstargames.com/VI"
+  }
+ },
+ "clips": {
+  "vcity": {
+   "src": "v",
+   "in": 48.5,
+   "out": 49.4,
+   "fps": 30,
+   "frames": 27,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "michael": {
+   "src": "v",
+   "in": 25.3,
+   "out": 26.9,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "franklin": {
+   "src": "v",
+   "in": 32.0,
+   "out": 33.3,
+   "fps": 30,
+   "frames": 39,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "trevor": {
+   "src": "v",
+   "in": 15.0,
+   "out": 16.6,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": "1280:576:0:72"
+  },
+  "roof": {
+   "src": "lt",
+   "in": 51.9,
+   "out": 53.9,
+   "fps": 30,
+   "frames": 60,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  },
+  "jason": {
+   "src": "j",
+   "in": 0.0,
+   "out": 1.0,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": "3840:2160:0:0"
+  },
+  "lucia": {
+   "src": "l",
+   "in": 0.0,
+   "out": 1.5,
+   "fps": 30,
+   "frames": 45,
+   "w": 1280,
+   "crop": "3840:2160:0:0"
+  }
+ }
+}

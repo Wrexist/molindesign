@@ -1,2 +1,2 @@
-/home/user/molindesign/film/gta-heroes/out/gta-heroes-vo.mp4: 30.0 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.317, 0-3 s 1.162, median 0.389, still frames 0.1 %
+/home/user/molindesign/film/gta-heroes/out/gta-heroes-vo.mp4: 30.0 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.317, 0-3 s 1.164, median 0.461, still frames 0.1 %
 OK    no frozen stretches, opening moves

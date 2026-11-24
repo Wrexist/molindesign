@@ -803,6 +803,7 @@
       /* the desk lamp's warm pool drifts (periodic in DUR, so the loop is exact) */
       var lx = 470 + 110 * osc(t, 2, .4), ly = 820 + 90 * osc(t, 3, 1.3), gl = g.createRadialGradient(lx, ly, 80, lx, ly, 900);
       gl.addColorStop(0, 'rgba(255,214,150,.17)'); gl.addColorStop(.55, 'rgba(255,190,120,.06)'); gl.addColorStop(1, 'rgba(255,190,120,0)'); g.fillStyle = gl; g.fillRect(0, 0, W, H);
+      plateLayer(g, t); printLayer(g, t);
     }
     var ddx = 3 * osc(t, 17, .3) + 2 * osc(t, 29, 1.1), ddy = 3 * osc(t, 13, 2.1) + 2 * osc(t, 31, .7), ps = push(t);
     g.save(); railClip(g); g.translate(510 + ddx, 900 + ddy); g.scale(ps, ps); g.translate(-510, -900);
@@ -889,6 +890,7 @@
     C.c5.blank = C.c5b; C.vi.blank = C.vib;
     STRESS = [['claude', 'claude'], ['claude', 'silent'], ['tommy', 'tommy'], ['cj', 'cj'], ['niko', 'again'], ['niko', 'niko'], ['five', 'enough'], ['q', '6'], ['back', 'vice'], ['back', '24'], ['two', 'two'], ['end', 'number']].map(function (p) { return at(p[0], p[1]); });
     cardExtras();
+    clipUses();
     EV.sort(function (a, b) { return a.t - b.t; });
   }
   /* the extras that ride on single cards */
@@ -913,6 +915,64 @@
       g.beginPath(); g.arc(ax, ay, 10, 0, TAU); g.fillStyle = STR; g.fill(); NOREC = nr;
       stampLocal(g, D.again, ex, ey + 4, .03, T.again + .22, t);
     };
+  }
+
+  /* =====================================================================================================
+     FOOTAGE (footage upgrade 2026-11-24): official Rockstar video as evidence photos on the desk.
+     GTA V: a Los Santos print on "Los Santos", then Michael, Franklin and Trevor, each on his own spoken name.
+     GTA VI: Vice City at night behind the desk on "Back to Vice City" (rule 11 plate), then Jason and Lucia on their names.
+     Every use is muted, under 5 s, and lands on the word it proves (SAFE-EDIT rules 7 and 11).
+     ===================================================================================================== */
+  var PR = [];   // print uses, in order
+  function fit(name, t0, t1, o) {
+    o = o || {}; var c = CLIP.manifest().clips[name], len = c.frames / 30 - .05, from = o.from || 0;
+    var u = CLIP.use(name, t0, t1, { plate: !!o.plate, from: from, speed: Math.min(1, (len - from) / (t1 - t0)), zoom: o.zoom || [1.04, 1.12], focus: o.focus || [.5, .45], note: o.note });
+    if (!o.plate) PR.push(u); return u;
+  }
+  function clipUses() {
+    CLIP.reset(); PR.length = 0;
+    var aM = at('three', 'michael') - .06, aF = at('three', 'franklin') - .06, aT = at('three', 'trevor') - .06;
+    T.p1in = at('five', 'los') - .12; T.p1out = T.sweep;
+    CLIP.use('vcity', T.p1in, aM, { from: 0, speed: 1, freeze: .82, zoom: [1.04, 1.16], focus: [.5, .5], note: 'GTA V Los Santos on the voice: 2013, Los Santos (bike + skyline only, 1x, held on the skyline)' }); PR.push(CLIP.active(T.p1in + .01));
+    fit('michael', aM, aF, { note: 'Michael on the spoken name', focus: [.62, .4] });
+    fit('franklin', aF, aT, { note: 'Franklin on the spoken name', focus: [.62, .35], from: .2 });
+    fit('trevor', aT, T.p1out + .3, { note: 'Trevor on the spoken name', focus: [.5, .38] });
+    fit('roof', T.backMove - .12, T.twoBack + .25, { plate: true, note: 'Vice City at night behind the desk on: back to Vice City', zoom: [1.1, 1.0], focus: [.5, .5], from: .6 });
+    var aJ = at('two', 'jason') - .08, aL = at('two', 'lucia') - .08;
+    T.p2in = C.two[0].tear + .06; T.p2out = T.endSweep;
+    fit('jason', T.p2in, aL, { note: 'Jason on the spoken name (rockstargames.com/VI character clip)', focus: [.55, .3], zoom: [1.12, 1.2] });
+    fit('lucia', aL, T.p2out + .3, { note: 'Lucia on the spoken name (rockstargames.com/VI character clip)', focus: [.6, .38], zoom: [1.15, 1.22], from: .55 });
+    EV.push({ t: T.p1in, type: 'swish', g: .7, id: 'p1in' }); EV.push({ t: T.p2in, type: 'swish', g: .7, id: 'p2in' });
+    [aM, aF, aT, aL].forEach(function (a, i) { EV.push({ t: a, type: 'tock', g: .6, id: 'pcut' + i }); });
+  }
+  /* the evidence print: a white-bordered photo lying on the felt under the case cards */
+  var PW = 880, PH = 495, PX = 540, PY = 1530;
+  function printLayer(g, t) {
+    var u = CLIP.active(t); if (!u) return;
+    var inA = t < T.p2in - .01 ? T.p1in : T.p2in, outA = t < T.p2in - .01 ? T.p1out : T.p2out;
+    var ki = eo(seg(t, inA, inA + .32)), ko = eio(seg(t, outA, outA + .3)), dy = 700 * (1 - ki) + 760 * ko;
+    var rot = (t < T.p2in ? -.018 : .016) + .06 * (1 - ki), B = 18;
+    g.save(); g.translate(PX, PY + dy); g.rotate(rot);
+    g.shadowColor = 'rgba(0,0,0,.55)'; g.shadowBlur = 26; g.shadowOffsetY = 14;
+    g.fillStyle = '#f4efe4'; g.fillRect(-PW / 2 - B, -PH / 2 - B, PW + 2 * B, PH + 2 * B + 26);
+    g.shadowColor = 'transparent';
+    /* a hard cut on each name: a 2-frame flash so the swap reads as a new photo */
+    CLIP.draw(g, t, -PW / 2, -PH / 2, PW, PH, u);
+    var fl = 1 - seg(t, u.t0, u.t0 + .08); if (fl > 0 && u.t0 > inA + .05) { g.fillStyle = 'rgba(255,250,240,' + (.5 * fl) + ')'; g.fillRect(-PW / 2, -PH / 2, PW, PH); }
+    g.fillStyle = 'rgba(255,240,210,.06)'; g.fillRect(-PW / 2, -PH / 2, PW, PH);
+    tape(g, -PW / 2 + 60, -PH / 2 - 6, 130, 34, -.3); tape(g, PW / 2 - 60, -PH / 2 - 6, 130, 34, .28);
+    g.font = '700 28px "Geist Mono", monospace'; var cw = g.measureText('CLIP · ' + String(CLIP.manifest().sources[CLIP.manifest().clips[u.clip].src].credit).toUpperCase()).width;
+    CLIP.credit(g, u, PW / 2 - 22 - cw, -PH / 2 + 48, '700 28px "Geist Mono", monospace');
+    g.restore();
+  }
+  function plateLayer(g, t) {
+    var u = CLIP.activePlate(t); if (!u) return;
+    var k = seg(t, u.t0, u.t0 + .25) * (1 - seg(t, u.t1 - .25, u.t1));
+    g.save(); g.globalAlpha = k; CLIP.plate(g, t, 0, 0, W, H, { dim: .35 });
+    /* keep a green felt edge so the desk still reads as a desk */
+    var gr = g.createRadialGradient(540, 900, 300, 540, 900, 1250); gr.addColorStop(0, 'rgba(10,40,28,0)'); gr.addColorStop(1, 'rgba(10,40,28,.3)'); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+    g.restore();
+    if (k > .5) CLIP.credit(g, u, 110, 1482, '700 28px "Geist Mono", monospace');
   }
 
   function render(t, samples, shutter, fps) {
@@ -982,7 +1042,7 @@
     for (var i = 0; i < id.data.length; i += 4) { var v = 120 + r() * 135; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
     ng.putImageData(id, 0, 0);
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 46px Archivo', '700 40px "Geist Mono"', '800 58px "Geist Mono"'];
-    return Promise.all(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”‘’·→…#?‹|~$+—½@&!§'); })).then(function () { return document.fonts.ready; }).then(function () {
+    return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”‘’·→…#?‹|~$+—½@&!§'); }))).then(function () { return document.fonts.ready; }).then(function () {
       buildTextures(); EV.length = 0; initTimes();
       window.FILM.POSTER = Math.round((T.yrs + .7) * 30) / 30 + 1 / 60;
       window.FILM.SHOTS = [{ id: 'hook', name: 'Name them', t0: 0, t1: start('claude') }, { id: 'claude', name: 'Claude', t0: start('claude'), t1: start('tommy') }, { id: 'tommy', name: 'Tommy', t0: start('tommy'), t1: start('cj') }, { id: 'cj', name: 'CJ', t0: start('cj'), t1: start('niko') }, { id: 'niko', name: 'Niko', t0: start('niko'), t1: start('five') }, { id: 'five', name: 'Three leads', t0: start('five'), t1: start('q') }, { id: 'q', name: 'GTA 6', t0: start('q'), t1: start('two') }, { id: 'two', name: 'Jason and Lucia', t0: start('two'), t1: start('end') }, { id: 'end', name: 'Vote', t0: start('end'), t1: DUR }];

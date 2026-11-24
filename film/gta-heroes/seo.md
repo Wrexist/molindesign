@@ -1,6 +1,6 @@
 # SEO and posting text: every main GTA hero
 
-Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-heroes-vo.mp4` (30.0 s, voice + sound effects, no music, no footage). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-20 (day 2 after the GTA 6 launch) for a US audience. Facts and sources: `BRIEF.md`.
+Channel: **Delta** (YouTube @deltaisac) only. Upload `out/gta-heroes-vo.mp4` (30.0 s, voice + sound effects, no music; footage upgrade 2026-11-24: short official Rockstar clips as evidence photos for the GTA V and GTA VI cards). Altered content: No. Made for kids: No. Language: English (US). Category: Gaming. Written 2026-11-20 (day 2 after the GTA 6 launch) for a US audience. Facts and sources: `BRIEF.md`.
 
 **Before posting:** nothing time-sensitive; the facts are history. Keep "Main" in the title and the scope line in the description (spin-offs and GTA 1/2 are left out on purpose).
 
@@ -47,7 +47,7 @@ Sources (read November 20, 2026):
 
 Grand Theft Auto is a trademark of Take-Two Interactive. All hero cards are our own type and paper graphics, not character art.
 
-Made with our own graphics. Not affiliated with Rockstar Games or Take-Two.
+Clips: Rockstar Games (Grand Theft Auto V Official Trailer, 2013; Grand Theft Auto VI Launch Trailer; Jason and Lucia character clips from rockstargames.com/VI), used for commentary. Not affiliated with Rockstar Games or Take-Two.
 
 #GTA6 #GTA #GrandTheftAuto #GTAV #GTASanAndreas #Shorts
 
