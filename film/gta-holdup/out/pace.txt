@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-holdup/out/gta-holdup-vo.mp4: 25.9 s, 2 hard cuts (0.8/10 s), motion 0-1 s 1.279, 0-3 s 1.331, median 0.726, still frames 0.1 %
+OK    no frozen stretches, opening moves

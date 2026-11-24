@@ -1,0 +1,99 @@
+{
+  "about": "GTA 6 Trailer vs Reality: the store holdup (Delta, slug gta-holdup). Rockstar's GTA VI Trailer 1 (December 4, 2023, rockstargames.com/VI/an-extended-look lists the date) ends on a masked pair with a red bandana bursting into a convenience store, guns up (Trailer 1, 76.5-78.4 s, then the VI logo). Rockstar's 'An Extended Look' (August 27, 2026, 'Captured entirely from in-game footage on the PlayStation 5') shows store holdups again (705-733 s): a low camera on a red-bandana robber and a masked partner in store aisles, and a third-person store shot with a HUD (wanted stars, ammo 20 / 73, pistol icon) at 706-711 s. Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Extended Look",
+    "HUD"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "dur": 25.85,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.88,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6's first trailer ended here.",
+      "say": "G T A six's first trailer ended here.",
+      "pause": 0.3
+    },
+    {
+      "id": "t1",
+      "at": 2.5,
+      "text": "A holdup. Guns up, red bandana.",
+      "pause": 0.3
+    },
+    {
+      "id": "date",
+      "at": 5.05,
+      "text": "That was December 2023.",
+      "say": "That was December, twenty twenty-three.",
+      "pause": 0.3
+    },
+    {
+      "id": "dip",
+      "at": 6.95,
+      "text": "Just a trailer moment? Or in the game too?",
+      "pause": 0.4
+    },
+    {
+      "id": "el",
+      "at": 9.95,
+      "text": "In August, the Extended Look showed holdups again.",
+      "pause": 0.3
+    },
+    {
+      "id": "same",
+      "at": 12.75,
+      "text": "Same red bandana. Same low camera.",
+      "pause": 0.4
+    },
+    {
+      "id": "hud",
+      "at": 15.25,
+      "text": "And this time, the HUD is on.",
+      "say": "And this time, the H U D is on.",
+      "pause": 0.2
+    },
+    {
+      "id": "stars",
+      "at": 18.2,
+      "text": "Wanted stars and an ammo count.",
+      "pause": 0.35
+    },
+    {
+      "id": "cap",
+      "at": 20.4,
+      "text": "Rockstar says that whole video is in-game footage.",
+      "pause": 0.4
+    },
+    {
+      "id": "end",
+      "at": 23.35,
+      "text": "Trailer or game: which holdup hits harder?",
+      "pause": 0
+    }
+  ]
+}
