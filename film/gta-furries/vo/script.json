@@ -1,0 +1,86 @@
+{
+  "about": "GTA 6 'It has X, shown' (Delta, slug gta-furries): an in-game TV ad from the 'Anti-Furry Association' says furry activity is illegal in Leonida and to report it (Dexerto, PinkNews, EarlyGame, Nov 18-19 2026). Reviewers (CNET's David Lumb via Dexerto/PinkNews; GQ via Dexerto) met a man in a fox suit under a police helicopter; you can break the blockade and help the furries escape to a compound. Creator clips from @nerpah's run (rule 10, facecam cropped): the van meet-up, the hideout gun wall, the reward prompt GUN / CASH ($15,000). The reward is only claimed as shown in that player's run. Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Leonida",
+    "furry",
+    "furries"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 14
+  },
+  "dur": 24.05,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "In GTA 6, being a furry is illegal.",
+      "say": "In G T A six, being a furry is illegal.",
+      "pause": 0.35
+    },
+    {
+      "id": "ad",
+      "at": 2.8,
+      "text": "An in-game TV ad says: report any furry activity.",
+      "pause": 0.45
+    },
+    {
+      "id": "dip",
+      "at": 6.15,
+      "text": "So what happens when the cops find one?",
+      "pause": 0.4
+    },
+    {
+      "id": "fox",
+      "at": 8.6,
+      "text": "Reviewers met a furry, under a police helicopter.",
+      "pause": 0.4
+    },
+    {
+      "id": "free",
+      "at": 11.55,
+      "text": "Break the blockade, and you can help them escape.",
+      "pause": 0.35
+    },
+    {
+      "id": "wall",
+      "at": 14.45,
+      "text": "Their hideout? A whole wall of guns.",
+      "pause": 0.4
+    },
+    {
+      "id": "pay",
+      "at": 16.8,
+      "text": "In this player's run, the reward: a gun, or $15,000.",
+      "pause": 0.45,
+      "say": "In this player's run, the reward: a gun, or fifteen thousand dollars."
+    },
+    {
+      "id": "end",
+      "at": 21.05,
+      "text": "Gun or cash? Which one are you taking?",
+      "pause": 0.3
+    }
+  ]
+}

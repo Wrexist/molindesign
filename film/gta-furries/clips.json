@@ -1,0 +1,133 @@
+{
+ "film": "gta-furries",
+ "sources": {
+  "fur": {
+   "key": "tiktok-7710008941240962335",
+   "url": "https://www.tiktok.com/@nerpah/video/7710008941240962335",
+   "title": "GTA 6's Secret Furry Side Quest Gameplay! Help Furries Escape Police ...",
+   "uploader": "nerpah",
+   "verdict": "CREATOR",
+   "checked": "2026-11-25: 1080p fetched by format id; top half is the creator's facecam and burned-in captions, cropped out (1080:1040:0:880, rule 10 facecam); no watermark or channel logo in the gameplay pane; in-game subtitles only; ranges chosen to avoid subtitles with profanity (4.5-7.0, 34.5-35.5)",
+   "credit": "@nerpah"
+  },
+  "t1": {
+   "key": "twitter-1731998653743517697",
+   "url": "https://x.com/RockstarGames/status/1732149328779571313",
+   "title": "Rockstar Games - Hello @X, watch Grand Theft Auto VI Trailer 1",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games"
+  },
+  "t2": {
+   "key": "twitter-1919733318217576448",
+   "url": "https://x.com/RockstarGames/status/1919746311382851812",
+   "title": "Rockstar Games - Watch Grand Theft Auto VI Trailer 2 Now  Explore Vice City and beyond at",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games"
+  },
+  "on": {
+   "key": "lib-20261110-grand-theft-auto-vi-out-now-off",
+   "url": "https://www.youtube.com/@RockstarGames",
+   "title": "20261110_Grand Theft Auto VI： Out Now_official_yt.mp4",
+   "uploader": "@RockstarGames",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games"
+  }
+ },
+ "clips": {
+  "van": {
+   "src": "fur",
+   "in": 1.2,
+   "out": 4.2,
+   "fps": 30,
+   "frames": 90,
+   "w": 1080,
+   "crop": "1080:1040:0:880"
+  },
+  "arsenal": {
+   "src": "fur",
+   "in": 42.0,
+   "out": 45.0,
+   "fps": 30,
+   "frames": 90,
+   "w": 1080,
+   "crop": "1080:1040:0:880"
+  },
+  "choice": {
+   "src": "fur",
+   "in": 56.0,
+   "out": 59.0,
+   "fps": 30,
+   "frames": 90,
+   "w": 1080,
+   "crop": "1080:1040:0:880"
+  },
+  "pnight": {
+   "src": "t1",
+   "in": 25.3,
+   "out": 26.9,
+   "fps": 30,
+   "frames": 48,
+   "w": 1280,
+   "crop": null
+  },
+  "pheli": {
+   "src": "t1",
+   "in": 45.48,
+   "out": 46.47,
+   "fps": 30,
+   "frames": 30,
+   "w": 1280,
+   "crop": null
+  },
+  "pcops": {
+   "src": "t2",
+   "in": 45.6,
+   "out": 48.0,
+   "fps": 30,
+   "frames": 72,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "praid": {
+   "src": "on",
+   "in": 13.5,
+   "out": 14.7,
+   "fps": 30,
+   "frames": 36,
+   "w": 1280,
+   "crop": "3840:1920:0:120"
+  },
+  "pseam": {
+   "src": "t1",
+   "in": 24.95,
+   "out": 25.3,
+   "fps": 30,
+   "frames": 11,
+   "w": 1280,
+   "crop": null
+  },
+  "ppolice": {
+   "src": "t2",
+   "in": 107.78,
+   "out": 109.2,
+   "fps": 30,
+   "frames": 43,
+   "w": 1280,
+   "crop": "1920:836:0:108"
+  },
+  "ptruck": {
+   "src": "t2",
+   "in": 120.75,
+   "out": 122.85,
+   "fps": 30,
+   "frames": 63,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  }
+ }
+}
