@@ -1,0 +1,2 @@
+/home/user/molindesign/film/publicwifi/out/publicwifi-vo.mp4: 34.5 s, 1 hard cuts (0.3/10 s), motion 0-1 s 1.491, 0-3 s 0.609, median 0.143, still frames 21.7 %
+OK    no frozen stretches, opening moves
