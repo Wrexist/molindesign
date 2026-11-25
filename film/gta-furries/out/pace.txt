@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-furries/out/gta-furries-vo.mp4: 24.1 s, 1 hard cuts (0.4/10 s), motion 0-1 s 1.47, 0-3 s 1.57, median 0.767, still frames 0.1 %
+OK    no frozen stretches, opening moves

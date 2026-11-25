@@ -1,0 +1,95 @@
+{
+ "DUR": 24.05,
+ "uses": [
+  {
+   "clip": "pnight",
+   "t0": 0,
+   "t1": 2.06,
+   "from": 0,
+   "srcTo": 1.56,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "praid",
+   "t0": 2.06,
+   "t1": 3.58,
+   "from": 0,
+   "srcTo": 1.16,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "ppolice",
+   "t0": 3.58,
+   "t1": 5.4,
+   "from": 0,
+   "srcTo": 1.3933333333333333,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "pcops",
+   "t0": 5.4,
+   "t1": 8.4,
+   "from": 0,
+   "srcTo": 2.36,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "pheli",
+   "t0": 8.4,
+   "t1": 9.67,
+   "from": 0,
+   "srcTo": 0.96,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "ptruck",
+   "t0": 9.67,
+   "t1": 11.55,
+   "from": 0,
+   "srcTo": 1.8800000000000008,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "van",
+   "t0": 11.350000000000001,
+   "t1": 14.100000000000001,
+   "from": 0.2,
+   "srcTo": 2.8125,
+   "note": "free: the furries at the white van, ringed on \"them\", escape arrow; card breaks out from behind our barricades",
+   "plate": false
+  },
+  {
+   "clip": "arsenal",
+   "t0": 14.46,
+   "t1": 16.86,
+   "from": 0.3,
+   "srcTo": 2.6999999999999984,
+   "note": "wall: the hideout garage, pushed in on the gun wall on \"wall\", yellow corner brackets, HIDEOUT chip",
+   "plate": false
+  },
+  {
+   "clip": "choice",
+   "t0": 18.11,
+   "t1": 20.71,
+   "from": 0.22,
+   "srcTo": 1.62,
+   "note": "pay (hero): the reward prompt GUN / CASH ($15,000), pushed in and ringed, enlarged in our prompt panel below; $15,000 slams on the word",
+   "plate": false
+  },
+  {
+   "clip": "pseam",
+   "t0": 23.650000000000002,
+   "t1": 24.07,
+   "from": 0,
+   "srcTo": 0.32666666666666666,
+   "note": "background plate",
+   "plate": true
+  }
+ ]
+}
