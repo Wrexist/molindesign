@@ -1,0 +1,46 @@
+# Jury r1: publicwifi (Factory #42)
+
+Film: film/publicwifi/out/publicwifi-vo.mp4 (34.47 s). Judged cold, sound-off first, then with the mix.
+Measured: −14.0 LUFS integrated, true peak −2.6 dBTP, no black frames, 7.1 MB. pacecheck OK (motion 0–1 s 1.488, 0–3 s 0.614, 20.1 % still frames, no frozen stretch). In-mix Whisper wer 0.00 on all 12 lines.
+
+## Scores
+
+| # | Criterion | Score | Why |
+|---|---|---|---|
+| 1 | Hook | 7.0 | Frame 0 is 3 words (SAFE? / FREE_AIRPORT_WIFI / RE-CREATED) and moves. But the still is a muted brown room and a tilted list card, with no visible danger, and the search phrase is still typing at 2.5 s ("IS PUBLIC WIFI SA"). It is complete only at about 3.0 s, so it misses the 2 s target. |
+| 2 | Retention | 7.0 | Something changes about every 1–1.5 s and the scene colours mark the acts (brown, green, red, purple). Two dead spots: an empty black hero plate at 14.0–15.3 s, and a lone phone on an empty green stage under the wipe at 17.45–17.8 s while "Except scammers…" is spoken. |
+| 3 | Clarity | 6.5 | The one idea (encryption protects the trip, not the site) lands. The end test contradicts itself, though. The first bar, shown on "check the site's name", is **lumembank** (the fake). The bar that slides in on "Apple says some **fakes** change one or two letters" is **lumenbank** (the real one). Following the film's own staging, a careful viewer answers LEFT, but the pinned answer is RIGHT. |
+| 4 | Truth | 8.0 | Every quote matches BRIEF §3 with correct ellipses. "Usually" is on screen from 1.0 s and through the hero, and "IF YOU VISIT A SCAMMER'S SITE" scopes "sealed". No real brand or domain appears (.example names, FICTIONAL BANK, MADE-UP ADDRESSES, generic shop icons). Deductions: (a) at 24.6–25.3 s the chip reads **SEALED  HONEST** without the ≠ for about 20 frames, under the caption "can't make a site honest", which is the opposite claim with the sound off. This repeats LESSONS whatif-password r2 (a mark must land on the same frame as the state it changes) and math r2 (draw the mismatch as ≠), so −1. (b) The FTC strings are still marked BROWSER CONFIRMATION PENDING in film.js, which is a posting gate. (c) The "COPIED" chip at 9–10 s goes a little beyond the FTC ("at risk", "hackers snooping"). Tolerable. |
+| 5 | Motion and design craft | 6.5 | Type is clean, every label sits inside x 90–930 and above y 1450, and the hero card is fine to screenshot. Deductions: the empty stage under the 17.5 s wipe repeats LESSONS gps r1 / wifi r1–r2 (−1). The SEALED ≠ HONEST chip stays over the new address-bar scene at 25.6–26.6 s and labels the wrong prop (vision r2 / temperature r2 pattern). The hero capsule, the "native move", is about 40–60 px on the track at 8–13 s and about 150 px at the shop; the brief asked for ≥ 500 px. The black hero plate sits empty for 1.2 s, and the top of the phone sticks out above it at the left (14–17 s). |
+| 6 | Voice and sound | 6.0 | The voice is clean: the hook is in the first words, pauses are ≤ 1.26 s, and Whisper scores 0 errors. Only 4 sound effects in 34 s. All sit in real gaps (thump 16.46 after "safe." 16.04; knock 23.16 after "scammer." 22.78; slap 25.42 after "honest." 25.06; click 31.82 after "letters." 31.27), but they measure −28 to −32 dB RMS in their windows, below the −30/−18 dB phone-speaker threshold in LESSONS (wifi r2, whatif-password r2). That is a repeat (−1). The seal snapping on, the LEFT/RIGHT slam and the frame-0 entrance are silent. |
+| 7 | Loop and ending | 6.0 | Mechanically clean. The film's last ~0.3 s is frame 0 itself, so the 6.86 vs 5.98 seam diff is **not visible as a bump**: you see one torn-paper wipe at 34.15–34.3 s, then the same picture continues. That wipe takes the end card down only ~0.1 s after "right?" ends, so the clean comparison is up for only ~1.7 s (32.4–34.1). In meaning, "Left or right?" does not lead into "Airport Wi-Fi is usually safe now." |
+| 8 | Shareability | 7.0 | "Spot the fake address" is a real DM moment, and the poster (USUALLY SAFE + FTC FEB 2023 + "But fake sites are encrypted too.") carries the scope. The contradictory staging will split the comments in a bad way: people will "prove" the pinned answer wrong using the film itself. |
+
+**Overall: 6.7** (54.0 / 8 = 6.75, not rounded up). Truth 8.0.
+**Verdict: don't post.** Truth is under 8.5 and the overall is under 7.0. The misses are mechanical (frame sync, ordering, levels, one empty stage), so one fix round should clear it.
+
+Comparison: #41 (findableoff) has no jury score in backlog.csv. Recent first rounds landed at 6.9–7.3, and the best r2 is juicejacking at 7.8. This cut sits at the low end of the r1 band. Three LESSONS repeats cost a point each (≠ late, empty stage under the wipe, quiet hits).
+
+## Checks you asked for
+1. **Truth vs sources:** the FTC hero quote, A10 and A11, the Apple sfri40697 quote and Chrome 95617 ("…check the site name in the address bar.") all match, ellipses included. "Usually safe" has clear scope: caption at 1.0 s, USUALLY · FTC chip at 1.5 s, the FTC date plate from 0.8–1.0 s, and the hero card + stamp + PUBLIC WI-FI · FTC · FEB 2023. Overstated: only the 0.7 s "SEALED HONEST" and, mildly, "COPIED". The FTC strings still need the browser check.
+2. **Fake addresses:** no real brand or domain. Which one is fake is **not** clear (see Clarity). Also, MADE-UP ADDRESSES sits under the right card only, which reads as "the right one is made up", an accidental hint that also misdescribes the left one.
+3. **#41 lessons:** scope chip ≥ 44 px by 0.8 s: the FTC plate (~110 px tall) is at ~30 % opacity at 0.8 and full at 1.0, so a borderline pass. Hero props ≥ 160 px: phone yes, capsule no (track run). Navy-on-navy: none found, pass. SFX synced to words: yes, all in gaps; too quiet. Poster carries scope: yes.
+4. **Loop seam:** no visible bump (see Loop).
+5. Music and AI label: not penalised.
+
+## Fixes, ranked by impact
+1. **24.6–25.3 s, ≠ missing (Truth).** The chip reads "SEALED  HONEST" for about 20 frames. Key the ≠ to the chip's first frame (draw it at full opacity the moment the plate appears) and keep the slap at 25.42 as an accent pop on the ≠ only. Check frames 24.6, 24.8 and 25.0 from out/frames/.
+2. **26.0–33.9 s, end test order (Clarity/Truth/Shareability).** Bar 1 on "check the site's name" must be REAL (`lumenbank.example`). Bar 2, sliding in on "some fakes change one or two letters", must be FAKE (`lumembank.example`). At `end`, keep REAL LEFT and FAKE RIGHT so the staging, the word "lumen" and the pinned answer all agree. Centre one MADE-UP ADDRESSES tag (36 px) under **both** cards (x ≈ 540), and put RE-CREATED next to it, not under one card.
+3. **FTC strings (Truth gate).** Have the PC confirm A7, A10, A11 and the "February 2023" date line in a browser, and remove PENDING from film.js before posting.
+4. **Sound (Voice/sound).** Raise every hit to about −18 dB RMS with a 1–3 kHz paper-slap layer, still ≥ 3 dB under the voice. Add a pop for the seal snap in the 0.52 s gap after "do." (~11.9–12.4 s) and a slam for LEFT/RIGHT in the 0.54 s gap after "fake," (~32.86–33.40 s). Re-run the SFX gate on the final mix.
+5. **17.45–17.8 s, empty stage under the wipe (Craft, LESSONS repeat).** Build the red bank scene in full under the tear's first frame. Drop the lone phone on the empty green stage.
+6. **WOW: make the pneumatic run the hero (Craft/Shareability).** At `sealed` (20.24–22.8 s), push the camera 1.0 → 1.25× and run the sealed capsule at ≥ 450 px long down the track into the fake shop, the shutter slamming on the knock at 23.16. Show the capsule's cap coming off as a ≥ 300 px shadow on the blind at 23.3–24.5 s, so "arrives sealed, right to the scammer" is one unbroken image people can screenshot. On the 8–13 s track, scale the slip and capsule to ≥ 160 px.
+7. **14.0–15.3 s, empty hero plate.** Raise the black plate on "calls" (~14.2) but keep it ≤ 0.4 s before the stamp, or ink a 20 % ghost outline of USUALLY SAFE that fills on "usually" (15.28). Hide the phone top that sticks out at the plate's top-left.
+8. **25.6–26.6 s, SEALED ≠ HONEST lingers over the address bar.** Peel it before the purple tear covers 50 % of the frame; otherwise it labels the first address.
+9. **0.0–2.0 s, search phrase late (Hook).** Start typing at 1.0 s and finish IS PUBLIC WIFI SAFE by 2.0 s (it is at "SA" at 2.5 now). Give frame 0 one danger cue that needs no words, e.g. an open-network "no seal" mark on the row or a faint periscope tip poking out behind the phone, without adding words.
+10. **34.1–34.3 s, end card cut short (Loop).** Hold the clean LEFT/RIGHT card until ≥ 34.25 s and run the tear in the last 0.15 s. Optional fake-shop tell at 18–21 s: tilt one sign letter ≥ 15° on "fake" so the shop reads as off with the sound off.
+
+## Generic / AI-made look
+- The 12-storefront grid at 11–14 s reads as an icon kit (identical shops, glyph swaps).
+- Stamp-plus-navy-chip on every scene is becoming the channel's formula (LESSONS password r2). Here the stamp is used once, which is good, but there are 9+ navy/cream pills.
+- The flat brown/green/red/purple flood backgrounds with torn edges are on-house but leave y 1450–1920 as plain colour in every scene (outside the safe zone, so no penalty, but the frame looks under-dressed on a full-screen preview).
