@@ -1,0 +1,119 @@
+{
+  "about": "GTA 6 Extended Look deep dive (Delta, slug gta-afterdark): in Rockstar's 'An Extended Look' (Aug 27 2026, 'captured entirely from in-game footage on the PlayStation 5') a run of night shots from 20:14 holds: a purple-lit tower, a selfie in a red car by a HOTEL DIXON sign, a pool party, a race at sunset, a packed dance floor and a woman holding a drink on a balcony (prompt DRINK R1 / DROP). In the race the HUD position goes 6/6 to 2/6 while its timer moves 00:04.79 to 00:08.26 and PROGRESS goes 5% to 10%. Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Hotel Dixon"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 15
+  },
+  "dur": 28.5,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6. Last to 2nd.",
+      "say": "GTA six. Last to second.",
+      "pause": 0.45
+    },
+    {
+      "id": "timer",
+      "at": 2.45,
+      "text": "Under 3.5 seconds.",
+      "pause": 0.35,
+      "say": "Under three and a half seconds."
+    },
+    {
+      "id": "race",
+      "at": 4.5,
+      "text": "A race at sunset, in Rockstar's Extended Look. Captured in-game, they say.",
+      "pause": 0.35
+    },
+    {
+      "id": "c6",
+      "at": 8.6,
+      "text": "Six of six.",
+      "pause": 0.45
+    },
+    {
+      "id": "c5",
+      "at": 10.05,
+      "text": "Five.",
+      "pause": 0.45,
+      "take": 3,
+      "speed": 1.2
+    },
+    {
+      "id": "c4",
+      "at": 10.8,
+      "text": "Four.",
+      "pause": 0.45
+    },
+    {
+      "id": "c3",
+      "at": 11.45,
+      "text": "Three.",
+      "pause": 0.45,
+      "take": 1
+    },
+    {
+      "id": "c2",
+      "at": 12.4,
+      "text": "Two.",
+      "pause": 0.45
+    },
+    {
+      "id": "prog",
+      "at": 13.0,
+      "text": "And progress says just ten percent, so far.",
+      "pause": 0.4
+    },
+    {
+      "id": "run",
+      "at": 15.65,
+      "text": "Part of a run of night scenes.",
+      "pause": 0.35,
+      "say": "Part of a run, of night scenes."
+    },
+    {
+      "id": "tour",
+      "at": 18.05,
+      "text": "A purple tower. A pool party. A packed dance floor.",
+      "pause": 0.35
+    },
+    {
+      "id": "drink",
+      "at": 21.5,
+      "text": "And up on a balcony, the prompt says: drink.",
+      "pause": 0.4
+    },
+    {
+      "id": "end",
+      "at": 24.4,
+      "text": "Pool party, dance floor, or the race in last place?",
+      "pause": 0
+    }
+  ]
+}

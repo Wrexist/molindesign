@@ -1,0 +1,39 @@
+{
+  "channel": "Delta (YouTube @deltaisac)",
+  "platforms": [
+    "youtube_shorts",
+    "tiktok"
+  ],
+  "upload_file": "out/gta-afterdark-vo.mp4",
+  "title": "GTA 6: Last to 2nd in 3.47 Seconds 🏁",
+  "youtube_title": "GTA 6: Last to 2nd in 3.47 Seconds 🏁",
+  "youtube_description": "GTA 6: last to second in under three and a half seconds. In Rockstar's An Extended Look (at 20:21), a race at sunset shows its HUD in the corner: the shot opens at 6 of 6 with its timer at 00:04.79, and by 00:08.26 it reads 2 of 6. In between it ticks 5, 4, 3, 2, and PROGRESS still says only 10%. That race sits in a run of night shots (20:14 to 20:34): a tower lit purple, a selfie by the Hotel Dixon sign, a pool party, the race, a packed dance floor, a balcony where the button prompt reads Drink and Drop, and two more city shots after it. Rockstar says the Extended Look was \"captured entirely from in-game footage on the PlayStation 5\".\n\nPool party, dance floor or a race from last place: where are you spending your first night in Vice City?\n\nSources (Rockstar Games, read Nov 25, 2026):\n- Grand Theft Auto VI: An Extended Look, August 27, 2026, 20:14 to 20:34 (\"Captured entirely from in-game footage on the PlayStation 5\"): https://www.rockstargames.com/VI/an-extended-look\n- Grand Theft Auto VI, out November 19, 2026: https://www.rockstargames.com/VI\n\nEvery HUD value in this Short was read frame by frame off Rockstar's video; 3.47 s is 00:08.26 minus 00:04.79 on the HUD's own timer. The timer readout, the leaderboard, the progress track, the timeline strip and the vote are our own graphics; the hook plays the race shot at 3.3x speed (labelled); the zoomed HUD and prompt are Rockstar's own frames, enlarged. We don't know whether this race is a side activity or a story mission, or how it ends.\n\nClips: Rockstar Games (Grand Theft Auto VI: An Extended Look), used for commentary. Not affiliated with Rockstar Games or Take-Two.\n\n#GTA6 #GTAVI #GTA6ExtendedLook #GTA6Racing #ViceCity",
+  "hashtags": [
+    "#GTA6",
+    "#GTAVI",
+    "#GTA6ExtendedLook",
+    "#GTA6Racing",
+    "#ViceCity"
+  ],
+  "pinned_comment": "Pool party, dance floor or a race from last place: where are you spending your first night in Vice City?",
+  "playlist": "GTA 6 Facts",
+  "cover_text": "LAST → 2ND IN 3.47 S",
+  "keywords": [
+    "GTA 6 race",
+    "GTA 6 racing",
+    "GTA 6 street race",
+    "GTA 6 Extended Look",
+    "GTA 6 nightlife",
+    "GTA 6 Vice City night",
+    "GTA 6 HUD",
+    "Rockstar Games"
+  ],
+  "source_urls": [
+    "https://www.rockstargames.com/VI/an-extended-look",
+    "https://www.rockstargames.com/VI"
+  ],
+  "altered_content": false,
+  "made_for_kids": false,
+  "language": "en-US",
+  "category": "Gaming"
+}

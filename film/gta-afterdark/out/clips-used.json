@@ -1,0 +1,158 @@
+{
+ "DUR": 28.5,
+ "uses": [
+  {
+   "clip": "race",
+   "t0": 0,
+   "t1": 0.3,
+   "from": 0,
+   "srcTo": 0.0003,
+   "note": "hook: frame 0 holds the race at 6/6 (HUD zoomed and ringed), GTA 6 LAST -> ?",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 0.3,
+   "t1": 1.53,
+   "from": 0,
+   "srcTo": 4.01,
+   "note": "hook: the race sped up (labelled on the HUD tag), HUD 6/6 -> 3/6, our board swaps on each place",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 1.53,
+   "t1": 2.46,
+   "from": 4.01,
+   "srcTo": 4.103,
+   "note": "hook payoff: HUD 2/6 (00:08.26), 2ND, stamp 3.47 S / 4 PLACES",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 4.24,
+   "t1": 8.29,
+   "from": 0.55,
+   "srcTo": 3.9000000000000004,
+   "note": "plate: the race at sunset under the source card",
+   "plate": true
+  },
+  {
+   "clip": "race",
+   "t0": 8.29,
+   "t1": 9.645,
+   "from": 0,
+   "srcTo": 0.3794000000000002,
+   "note": "count: HUD 6/6 zoomed and ringed, our board",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 9.645,
+   "t1": 10.555,
+   "from": 0.52,
+   "srcTo": 0.7748000000000002,
+   "note": "count: HUD 5/6 zoomed and ringed, our board",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 10.555,
+   "t1": 11.25,
+   "from": 1.65,
+   "srcTo": 1.8446,
+   "note": "count: HUD 4/6 zoomed and ringed, our board",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 11.25,
+   "t1": 12.015,
+   "from": 2.25,
+   "srcTo": 2.4642,
+   "note": "count: HUD 3/6 zoomed and ringed, our board",
+   "plate": false
+  },
+  {
+   "clip": "race",
+   "t0": 12.015,
+   "t1": 13.040000000000001,
+   "from": 4.01,
+   "srcTo": 4.1,
+   "note": "count: HUD 2/6 zoomed and ringed, our board",
+   "plate": false
+  },
+  {
+   "clip": "pselfie",
+   "t0": 15.39,
+   "t1": 17.9,
+   "from": 0,
+   "srcTo": 1.8,
+   "note": "plate: the selfie by the red car, under the strip",
+   "plate": true
+  },
+  {
+   "clip": "tower",
+   "t0": 17.9,
+   "t1": 18.990000000000002,
+   "from": 0.2,
+   "srcTo": 1.1810000000000032,
+   "note": "tour: the tower lit purple, 20:14",
+   "plate": false
+  },
+  {
+   "clip": "pool",
+   "t0": 18.990000000000002,
+   "t1": 19.93,
+   "from": 0.4,
+   "srcTo": 1.1519999999999984,
+   "note": "tour: the pool party, 20:18",
+   "plate": false
+  },
+  {
+   "clip": "dance",
+   "t0": 19.93,
+   "t1": 21.07,
+   "from": 0.3,
+   "srcTo": 1.3260000000000005,
+   "note": "tour: the packed dance floor, 20:27",
+   "plate": false
+  },
+  {
+   "clip": "balc",
+   "t0": 21.52,
+   "t1": 24.41,
+   "from": 0.3,
+   "srcTo": 2.2,
+   "note": "balcony: she holds a drink; ring on the prompt, zoom on DRINK (R1) / DROP, 20:29",
+   "plate": false
+  },
+  {
+   "clip": "ppool",
+   "t0": 24.09,
+   "t1": 26.16,
+   "from": 0,
+   "srcTo": 1.2,
+   "note": "plate",
+   "plate": true
+  },
+  {
+   "clip": "pdance",
+   "t0": 26.16,
+   "t1": 27.91,
+   "from": 0,
+   "srcTo": 1.05,
+   "note": "plate",
+   "plate": true
+  },
+  {
+   "clip": "race",
+   "t0": 27.91,
+   "t1": 28.52,
+   "from": 0,
+   "srcTo": 0.0006099999999999994,
+   "note": "loop seam: the frame-0 layout returns (race at 6/6, LAST -> ?)",
+   "plate": false
+  }
+ ]
+}
