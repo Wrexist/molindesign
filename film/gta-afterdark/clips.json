@@ -1,0 +1,88 @@
+{
+  "film": "gta-afterdark",
+  "sources": {
+    "el": {
+      "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+      "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+      "title": "en-us-1080p",
+      "uploader": null,
+      "verdict": "OFFICIAL",
+      "checked": null,
+      "credit": "Rockstar \u00b7 An Extended Look"
+    }
+  },
+  "clips": {
+    "race": {
+      "src": "el",
+      "in": 1221.45,
+      "out": 1225.58,
+      "fps": 30,
+      "frames": 124,
+      "w": 1920,
+      "crop": "1920:1080:0:0"
+    },
+    "balc": {
+      "src": "el",
+      "in": 1229.05,
+      "out": 1231.3,
+      "fps": 30,
+      "frames": 68,
+      "w": 1920,
+      "crop": "1920:1080:0:0"
+    },
+    "tower": {
+      "src": "el",
+      "in": 1214.05,
+      "out": 1215.7,
+      "fps": 30,
+      "frames": 50,
+      "w": 1280,
+      "crop": "1920:1072:0:0"
+    },
+    "pool": {
+      "src": "el",
+      "in": 1218.0,
+      "out": 1220.0,
+      "fps": 30,
+      "frames": 60,
+      "w": 1280,
+      "crop": "1920:1078:0:0"
+    },
+    "dance": {
+      "src": "el",
+      "in": 1226.8,
+      "out": 1228.6,
+      "fps": 30,
+      "frames": 54,
+      "w": 1280,
+      "crop": "1920:1080:0:0"
+    },
+    "ppool": {
+      "src": "el",
+      "in": 1220.1,
+      "out": 1221.35,
+      "fps": 30,
+      "frames": 38,
+      "w": 1280,
+      "crop": "1920:1078:0:0"
+    },
+    "pdance": {
+      "src": "el",
+      "in": 1225.65,
+      "out": 1226.75,
+      "fps": 30,
+      "frames": 33,
+      "w": 1280,
+      "crop": "1920:1080:0:0"
+    },
+    "pselfie": {
+      "src": "el",
+      "in": 1215.85,
+      "out": 1217.7,
+      "fps": 30,
+      "frames": 56,
+      "w": 1280,
+      "crop": "1920:1080:0:0"
+    }
+  }
+}

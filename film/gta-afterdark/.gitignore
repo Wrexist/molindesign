@@ -1,0 +1,17 @@
+out/*.mp4
+out/check/
+out/events.json
+out/frames/
+out/jury/
+out/make.log
+out/mix.log
+out/mix.wav
+out/mixrun.log
+out/picrun.log
+out/picture.log
+out/render.log
+out/video.mp4
+out/vo/
+out/voice*.log
+out/voice.log
+clips/
