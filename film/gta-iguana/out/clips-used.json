@@ -1,0 +1,59 @@
+{
+ "DUR": 27.2,
+ "uses": [
+  {
+   "clip": "shot",
+   "t0": 0,
+   "t1": 2.4400000000000004,
+   "from": 0,
+   "srcTo": 0,
+   "note": "hook: Rockstar's Only in Leonida screenshot (Leonida_Keys_02) as a photo print, iguana ringed, ROCKSTAR SCREENSHOT stamp, GTA 6 HAS IGUANAS; flips to its caption",
+   "plate": false
+  },
+  {
+   "clip": "shot",
+   "t0": 5.709999999999999,
+   "t1": 9.250000000000002,
+   "from": 0,
+   "srcTo": 0,
+   "note": "street: the same screenshot, close on the iguana then out to the blue mobility scooter; IN THE STREET + SCOOTER tags, rings, alt-text strip above",
+   "plate": false
+  },
+  {
+   "clip": "pmarina",
+   "t0": 8.9,
+   "t1": 10.19,
+   "from": 0,
+   "srcTo": 1.2899999999999991,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "pbeach",
+   "t0": 10.19,
+   "t1": 11.38,
+   "from": 0,
+   "srcTo": 1.1900000000000013,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "shot",
+   "t0": 11.68,
+   "t1": 14.8,
+   "from": 0,
+   "srcTo": 0,
+   "note": "turn: a small crop of Rockstar's iguana beside our FWC field-guide marks, IN GAME",
+   "plate": false
+  },
+  {
+   "clip": "shot",
+   "t0": 24.2,
+   "t1": 27.22,
+   "from": 0,
+   "srcTo": 0,
+   "note": "end vote: the print returns and pushes back to the frame-0 crop; BRAKE? YES / NO; iguana ringed",
+   "plate": false
+  }
+ ]
+}

@@ -1,0 +1,99 @@
+{
+  "about": "GTA 6 'It has X, shown' + real Florida (Delta, slug gta-iguana): Rockstar's own Only in Leonida page captions a screenshot 'An iguana walks in front of a mobility scooter in the Leonida Keys', the iguana is on the street in front of a blue mobility scooter (the trailer iguana is not used: that shot is in gta-everytrailer). Real world, labeled REAL FLORIDA: FWC says green iguanas are not native to Florida and are invasive; NWS Miami tweeted on Jan 21 2020 'don't be surprised if you see Iguanas falling from the trees tonight'; FWC says 5,195 cold-stunned green iguanas were brought in under EO 26-03 on Feb 1-2, 2026. Never claims iguanas fall, freeze or get hit in the game. Sources in BRIEF.md.",
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar",
+    "Leonida",
+    "Leonida Keys",
+    "Florida",
+    "Miami",
+    "iguana"
+  ],
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "dur": 27.2,
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6 has iguanas.",
+      "say": "G T A six has iguanas.",
+      "pause": 0.35
+    },
+    {
+      "id": "caption",
+      "at": 2.22,
+      "text": "Rockstar's own caption calls it an iguana, in the Leonida Keys.",
+      "say": "Rockstar's own caption calls it an iguana, in the Lee-oh-nee-dah Keys.",
+      "pause": 0.5,
+      "take": 3
+    },
+    {
+      "id": "street",
+      "at": 6.04,
+      "text": "Right in the street, in front of a mobility scooter.",
+      "pause": 0.45
+    },
+    {
+      "id": "dip",
+      "at": 9.15,
+      "text": "Just a cute background detail?",
+      "pause": 0.5
+    },
+    {
+      "id": "turn",
+      "at": 11.35,
+      "text": "Except in real Florida, green iguanas are invasive.",
+      "pause": 0.4
+    },
+    {
+      "id": "nws",
+      "at": 14.65,
+      "text": "Miami's weather service once forecast falling iguanas.",
+      "pause": 0.7,
+      "take": 1
+    },
+    {
+      "id": "cold",
+      "at": 18.05,
+      "text": "Last winter, a cold snap stunned them.",
+      "pause": 0.35
+    },
+    {
+      "id": "count",
+      "at": 20.95,
+      "text": "People turned in over 5,000 in two days.",
+      "say": "People turned in over five thousand in two days.",
+      "pause": 0.5,
+      "take": 1
+    },
+    {
+      "id": "end",
+      "at": 24.55,
+      "text": "Would you brake for one? Yes or no.",
+      "pause": 0
+    }
+  ]
+}
