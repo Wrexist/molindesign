@@ -1,0 +1,119 @@
+{
+ "about": "Is public Wi-Fi safe. Factory #42, backlog row 47, slug publicwifi. One hard idea: the FTC's consumer advice 'Are Public Wi-Fi Networks Safe? What You Need To Know' (February 2023) says 'Because of the widespread use of encryption, connecting through a public Wi-Fi network is usually safe', but also that scammers 'create fake websites and encrypt them' and 'your data may be encrypted on its way to the site, but it won't be safe from scammers operating the site'; Apple's Safari guide says 'Some fraudulent websites masquerade as trusted websites by changing one or two letters of the website address', so check the site's name letter by letter. Sources read 2026-11-25, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "Wi-Fi",
+  "FTC",
+  "Apple"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 27.4
+ },
+ "dur": 34.45,
+ "tail": 0.2,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "Airport Wi-Fi is usually safe now.",
+   "pause": 0.6,
+   "at": 0.2,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "ask",
+   "text": "That's the FTC. So is public Wi-Fi safe?",
+   "pause": 0.4,
+   "at": 2.9,
+   "tail_fade": 0.15,
+   "say": "That's the F T C. So, is public Wi-Fi safe?"
+  },
+  {
+   "id": "then",
+   "text": "Early on, it often wasn't.",
+   "pause": 0.4,
+   "at": 6.28,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "snoop",
+   "text": "Most sites didn't scramble your logins.",
+   "pause": 0.4,
+   "at": 8.22,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "now",
+   "text": "But today, most sites do. It's called encryption.",
+   "pause": 0.4,
+   "at": 10.62,
+   "tail_fade": 0.15,
+   "say": "But today, most sites do. It's called encryption.",
+   "take": 1
+  },
+  {
+   "id": "hero",
+   "text": "That's why the FTC calls it usually safe.",
+   "pause": 1.1,
+   "at": 13.5,
+   "tail_fade": 0.15,
+   "say": "That's why the F T C calls it... usually safe."
+  },
+  {
+   "id": "dip",
+   "text": "Except scammers encrypt their fake sites too.",
+   "pause": 0.4,
+   "at": 17.3,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "sealed",
+   "text": "Your data arrives sealed. Right to the scammer.",
+   "pause": 0.7,
+   "at": 20.24,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "honest",
+   "text": "Encryption can't make a site honest.",
+   "pause": 0.6,
+   "at": 23.54,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "check",
+   "text": "So check the site's name, letter by letter.",
+   "pause": 0.3,
+   "at": 25.74,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "apple",
+   "text": "Apple says some fakes change one or two letters.",
+   "pause": 0.7,
+   "at": 28.63,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "end",
+   "text": "Which one's the fake? Left or right?",
+   "pause": 0,
+   "at": 32.08,
+   "tail_fade": 0.3
+  }
+ ]
+}
