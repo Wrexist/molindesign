@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-iguana/out/gta-iguana-vo.mp4: 27.2 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.82, 0-3 s 1.432, median 0.35, still frames 11.4 %
+OK    no frozen stretches, opening moves
