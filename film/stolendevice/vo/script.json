@@ -1,0 +1,125 @@
+{
+ "about": "Can a thief who knows your passcode take your iPhone. Factory #43, backlog row 49, slug stolendevice. One hard idea: Apple's 'About Stolen Device Protection for iPhone' (120340, Published Date: October 22, 2026) says its requirements 'help prevent someone who has stolen your iPhone and knows your passcode from making critical changes'; away from familiar locations such as home or work, saved passwords, Lost Mode off and erase need Face ID or Touch ID 'with no passcode alternative or fallback', and changing the Apple Account password needs Face ID or Touch ID, an hour's wait, then Face ID or Touch ID again, 'so that you can mark your device as lost'. Apple Pay still works with the passcode. It 'must be turned on before the device is lost or stolen' and 'might be turned on by default'. Check: Settings > Face ID & Passcode > Stolen Device Protection. Sources read 2026-11-28, see BRIEF.md.",
+ "engine": "ming",
+ "ming": {
+  "voice": "US_James",
+  "seed": 7
+ },
+ "lang": "en-us",
+ "speed": 1,
+ "pace": {
+  "max": 3.5
+ },
+ "names": [
+  "iPhone",
+  "Apple",
+  "Apple Pay",
+  "Apple Account",
+  "Face ID",
+  "Stolen Device Protection"
+ ],
+ "pronounce": {},
+ "chain": {
+  "room": 0.25
+ },
+ "duck": {
+  "db": -6,
+  "score_db": 0,
+  "smr_db": 26.1
+ },
+ "dur": 36.55,
+ "tail": 0.2,
+ "lines": [
+  {
+   "id": "hook",
+   "text": "They watched you type your passcode.",
+   "pause": 0.4,
+   "at": 0.2,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "took",
+   "text": "Then they took your iPhone.",
+   "pause": 0.4,
+   "at": 2.58,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "ask",
+   "text": "Can a thief with your passcode lock you out?",
+   "pause": 0.4,
+   "at": 4.39,
+   "tail_fade": 0.3,
+   "speed": 0.86
+  },
+  {
+   "id": "keys",
+   "text": "With one setting off, it opens your saved passwords.",
+   "pause": 0.3,
+   "at": 7.44,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "dip",
+   "text": "It can even change your Apple Account password.",
+   "pause": 0.9,
+   "at": 10.47,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "twist",
+   "text": "But not with Stolen Device Protection on.",
+   "pause": 0.4,
+   "at": 13.61,
+   "tail_fade": 0.35
+  },
+  {
+   "id": "away",
+   "text": "Away from home or work, those need your face or fingerprint.",
+   "pause": 0.3,
+   "at": 16.17,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "delay",
+   "text": "Changing that password takes a scan, an hour, another scan.",
+   "pause": 1.1,
+   "at": 19.77,
+   "tail_fade": 0.15,
+   "say": "Changing that password takes a scan... an hour... another scan."
+  },
+  {
+   "id": "hour",
+   "text": "That hour lets you mark it as lost.",
+   "pause": 0.4,
+   "at": 24.69,
+   "tail_fade": 0.3
+  },
+  {
+   "id": "pay",
+   "text": "Apple Pay still takes your passcode, though.",
+   "pause": 0.4,
+   "at": 27.7,
+   "tail_fade": 0.15
+  },
+  {
+   "id": "check",
+   "text": "Check yours: Settings, Face ID and Passcode.",
+   "pause": 0.4,
+   "at": 30.56,
+   "tail_fade": 0.3,
+   "say": "Check yours. Settings, Face ID and Passcode."
+  },
+  {
+   "id": "end",
+   "text": "It must be on before the theft. Is yours?",
+   "pause": 0,
+   "at": 33.5,
+   "tail_fade": 0.3
+  }
+ ],
+ "fit": {
+  "min": 0.85,
+  "max": 1.1
+ }
+}

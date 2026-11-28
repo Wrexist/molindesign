@@ -1,0 +1,98 @@
+{
+ "title": "What can a thief do with your iPhone passcode?",
+ "caption": "Can a thief with your iPhone passcode lock you out?\nWith Stolen Device Protection on, away from home or work, they need your face or fingerprint, and an hour.\nIs yours on: yes or no?",
+ "hashtags": [
+  "#techexplained",
+  "#iphone",
+  "#stolendeviceprotection",
+  "#iphonesecurity",
+  "#iphonetips"
+ ],
+ "keywords": [
+  "thief knows my iphone passcode",
+  "stolen device protection",
+  "what is stolen device protection",
+  "should i turn on stolen device protection",
+  "how to turn on stolen device protection",
+  "is stolen device protection on by default",
+  "can a thief unlock my iphone",
+  "stolen device protection security delay"
+ ],
+ "cover_text": "Passcode seen",
+ "cover_time": 0.0,
+ "pinned_comment": "Is yours on? Settings › Face ID & Passcode (Touch ID & Passcode on iPhones with Touch ID) › enter your passcode › Stolen Device Protection. Apple says it \"might be turned on by default,\" so it's worth a 10-second look. It needs iOS 17.3 or later and \"must be turned on before the device is lost or stolen.\" YES or NO?",
+ "pinned_backups": [
+  {
+   "if": "YES / NO answers, or \"mine was already on\"",
+   "reply": "Nice. Apple says it \"might be turned on by default,\" so plenty of people find it already on. If yours was off, it's one switch: Settings › Face ID & Passcode › Stolen Device Protection."
+  },
+  {
+   "if": "What if I'm at home? / Doesn't it work at home?",
+   "reply": "At home it steps back on purpose. Apple: \"When your iPhone is in a familiar location, these additional steps are not required, and you can use your iPhone passcode like usual.\" Familiar locations \"typically include your home, work, and certain other locations where you regularly use your phone.\" If you want the extra steps everywhere, Apple says you can set it to always require them."
+  },
+  {
+   "if": "Can't the thief just turn it off?",
+   "reply": "Not with your passcode alone, away from a familiar place. \"Turn off Stolen Device Protection\" is on Apple's Security Delay list, the same one as changing your Apple Account password: Face ID or Touch ID, an hour's wait, then Face ID or Touch ID again."
+  },
+  {
+   "if": "So after an hour they're in?",
+   "reply": "No, after the hour Apple asks for a second Face ID or Touch ID scan, and the thief doesn't have your face or finger. The hour is for you: Apple says the delay is there \"so that you can mark your device as lost and make sure your Apple Account is secure.\""
+  },
+  {
+   "if": "Can they still use Apple Pay?",
+   "reply": "Yes, and we didn't want to hide that. Apple: \"You can still use your iPhone passcode for purchases with Apple Pay.\" That's one more reason to mark the phone as lost quickly if it's taken."
+  },
+  {
+   "if": "I can't turn it on / the switch is greyed out",
+   "reply": "Apple lists what it needs first: \"To turn on Stolen Device Protection, you must use two-factor authentication for your Apple Account and set up or enable the following on your iPhone: a device passcode; Face ID or Touch ID; and Significant Locations.\" Find My has to be on too, and it needs iOS 17.3 or later."
+  },
+  {
+   "if": "What about Android?",
+   "reply": "This one is iPhone only: every fact in it comes from Apple's own support pages. We didn't cover Android's settings, so we won't guess here."
+  }
+ ],
+ "post_time_et": "YouTube Shorts: 13:00 ET (EST) Sun Nov 29, 2026 = 18:00 UTC Sun Nov 29. The earliest slot after publicwifi (18:00 UTC Sat Nov 28, fallback 00:00 UTC Sun Nov 29) that is safe whichever one publicwifi takes: 24 h after its main slot, 18 h after its fallback, so the two never share a first evening. The only slot in between, 19:00 ET Sat (00:00 UTC Sun), is publicwifi's own fallback, and even when free it would land 6 h after publicwifi. 4 days after findableoff (the other iPhone-security film, 18:00 UTC Wed Nov 25), so the day's gap is kept, and 8 days after trackeralert. Sunday midday is phone time at home, and it's the right moment for a 10-second Settings check. python3 factory/repost.py check stolendevice --channel tech --at \"2026-11-29 18:00\" passed on 2026-11-28 (R1 no stolendevice post within 7 days on tech/youtube; R6 0 posts already on 2026-11-29 ET, max 3). Note: posts.csv on the branches repost.py reads does not list publicwifi yet, so the 4 h spacing from publicwifi was checked by hand above. GATE: schedule only after the fix pass lands and its jury round passes (r1 asked for fixes 1-4 before posting). Fallbacks: 19:00 ET Sun Nov 29 = 00:00 UTC Mon Nov 30, then 13:00 ET Mon Nov 30 = 18:00 UTC Mon Nov 30 (both checked, PASS R1, R6). Pick the time from YouTube Studio's dropdown and check the saved UTC time. TikTok: on hold.",
+ "post_time_stockholm": "19:00 Sun Nov 29 (Sweden CET, US EST, 6 h apart). Fallbacks: 01:00 Mon Nov 30, then 19:00 Mon Nov 30.",
+ "sounds": [],
+ "sound_note": "None, by request: no music suggestion, and TikTok is on hold. YouTube Shorts goes out with the film's own mix (no music in this film). When TikTok resumes, out/stolendevice-voice-only.mp4 is the cut to lay a sound under.",
+ "youtube_title": "Stolen Device Protection Slows Passcode Thieves 😱",
+ "youtube_title_alternatives": [
+  "Can a Thief Use Your iPhone Passcode? 🤔",
+  "Your iPhone Passcode Isn't Enough Away From Home 😱"
+ ],
+ "youtube_title_check": "Google US suggestions checked Nov 28, 2026 (suggestqueries, gl=us, hl=en): \"stolen device protection\" completes to \"…iphone how to turn off\", \"…is turned on\", \"…ipad\", \"…on iphone\", \"…off\", \"…greyed out\", \"…apple\"; \"stolen device protection iphone\" to \"…how to turn on\", \"…setting\", \"…face id not working\", \"…reddit\", \"…randomly turned on\"; \"should i turn on stolen device protection\" to \"…on my iphone\", \"…reddit\", \"can i turn on stolen device protection without face id\"; \"what is stolen device protection\" to \"…on iphone\", \"…and how do i turn it off\"; \"what does stolen device protection do\" is its own completion; \"is stolen device protection on by default\" is its own completion (plus \"…iphone\", \"…turned on by default\"); \"stolen device protection security delay\" to \"…at home\", \"turn off stolen device protection security delay\"; \"stolen device protection apple pay\" to \"if someone steals my phone can they use apple pay\"; \"can a thief\" to \"can a thief unlock my iphone\", \"…without passcode\"; \"iphone thief passcode\" to \"stolen iphone passcode\", \"what can a thief do with a locked iphone\"; \"someone stole my iphone and knows my passcode\" to \"…knows the passcode\". The brief's on-screen phrase \"thief knows my iphone passcode\" and \"what can a thief do with my iphone passcode\" have no completions. Chosen: \"Stolen Device Protection Slows Passcode Thieves 😱\" (6 words): the setting's own name is words 1-3 and the biggest query family; \"Slows\" is the consequence verb and stays inside Apple's \"help prevent\": the Security Delay is literally a wait. Not \"Stops\" (the backlog's verb, flagged in BRIEF §5.6 as stronger than \"help prevent\"; at a familiar place the passcode still works \"like usual\", and Apple Pay still takes it) and not \"Blocks\" (same overclaim). 😱 because it's a threat film. Alternatives: \"Can a Thief Use Your iPhone Passcode? 🤔\" (7 words, the film's own question and the shape of \"can a thief unlock my iphone\"; for a title test if the main one stalls) and \"Your iPhone Passcode Isn't Enough Away From Home 😱\" (8 words, one over the cap, the brief's belief-break with the scope added; the brief's \"…Isn't Enough Anymore\" is rejected, because \"anymore\" implies it's on for everyone while Apple only says it \"might be turned on by default\"). Rejected: anything with \"Stops\", \"Blocks\" or \"Thief-Proof\"; \"Your iPhone Makes a Thief Wait an Hour\" (the jury read the poster's hour-only line as \"the thief just waits\"; it drops the face or fingerprint).",
+ "youtube_description": "Can a thief who saw your iPhone passcode lock you out? Apple's support article \"About Stolen Device Protection for iPhone\" (Published Date: October 22, 2026) says the feature's extra steps \"help prevent someone who has stolen your iPhone and knows your passcode from making critical changes to your account or device.\"\n\nWhat it adds, in Apple's iOS 17.3 notes: \"Stolen Device Protection increases security of iPhone and Apple ID by requiring Face ID or Touch ID with no passcode fallback to perform certain actions.\" With the setting off, your passcode works for those actions like it always has.\n\nWith it on, when your iPhone is \"away from familiar locations such as home or work\":\n- Face ID or Touch ID, \"with no passcode alternative or fallback,\" for actions on Apple's list such as \"Use passwords or passkeys saved in Keychain\", \"Turn off Lost Mode\" and \"Erase all content and settings\".\n- A Security Delay for changes such as \"Change your Apple Account password\", \"Change your passcode\" and \"Turn off Stolen Device Protection\". Apple: these \"require you to wait an hour and then perform an additional Face ID or Touch ID authentication.\"\n\nWhy the hour? Apple: \"the security delay is designed to prevent a thief from performing critical operations so that you can mark your device as lost and make sure your Apple Account is secure.\"\n\nThe fine print, also from Apple:\n- \"When your iPhone is in a familiar location, these additional steps are not required, and you can use your iPhone passcode like usual.\" You can also set it to always require them.\n- \"Your iPhone may end the security delay early after it detects that you've arrived at a familiar location.\"\n- \"You can still use your iPhone passcode for purchases with Apple Pay.\"\n- \"Stolen Device Protection is available with iOS 17.3 or later and must be turned on before the device is lost or stolen.\"\n- \"Stolen Device Protection might be turned on by default.\"\n\nCheck yours: Settings › Face ID & Passcode (Touch ID & Passcode on iPhones with Touch ID) › enter your passcode › Stolen Device Protection. To turn it on, Apple says you need two-factor authentication for your Apple Account, a device passcode, Face ID or Touch ID, Significant Locations, and Find My turned on.\n\nFine print: The search bar, the Settings screen and the Apple quote cards are re-created by hand from Apple's wording. The phone, locks, keys, map, clock and laptop are our own paper drawings; the map is not a real place. Not affiliated with Apple.\n\nSources:\n- Apple Support, \"About Stolen Device Protection for iPhone\" (Published Date: October 22, 2026), read Nov 28, 2026: https://support.apple.com/en-us/120340\n- Apple Support, \"About iOS 17 Updates\", iOS 17.3 section, read Nov 28, 2026: https://support.apple.com/en-us/118723\n- Apple Support, \"Apple security releases\" (iOS 17.3, 22 Jan 2024), read Nov 28, 2026: https://support.apple.com/en-us/100100\n\nHow tech works, part 26.\n\n#techexplained #iphone #stolendeviceprotection",
+ "youtube_tags": [
+  "stolen device protection",
+  "stolen device protection iphone",
+  "what is stolen device protection",
+  "what does stolen device protection do",
+  "should i turn on stolen device protection",
+  "how to turn on stolen device protection",
+  "is stolen device protection on by default",
+  "stolen device protection security delay",
+  "stolen device protection apple pay",
+  "can a thief unlock my iphone",
+  "stolen iphone passcode",
+  "stolen iphone protection",
+  "iphone security settings",
+  "how tech works",
+  "tech explained"
+ ],
+ "youtube_playlist": "How tech works",
+ "youtube_altered_content": "No",
+ "series": "How tech works, part 26",
+ "disclosure": "None in any copy, per Isac's rule of 2026-11-03: no AI tag, no voice or narration line, no AI hashtag. YouTube Altered content: No (hand-made paper phone, padlocks, keys, switch, map card, clock, laptop and pay card; re-created search bar, Settings screen and Apple quote cards tagged RE-CREATED; no people at all, no real person's voice, no realistic footage, no real UI screenshot or Apple logo). The fine print's re-created/not-affiliated notes are picture and brand notes, not an AI disclosure. TikTok's is_aigc toggle per factory/TIKTOK-PLAYBOOK.md row 14, handled by the orchestrator when TikTok resumes.",
+ "packaging_score": {
+  "score": 5,
+  "of": 6,
+  "mine": "1: the viewer's own iPhone, passcode and Settings app.",
+  "myth_threat": "1: threat: with one setting off, someone who saw your passcode can open your saved passwords and change your Apple Account password; belief broken: \"my passcode protects me\".",
+  "frame0_test": "0: frame 0 is a phone on a table with its passcode pad being seen (PASSCODE SEEN) and the typed search bar by about 1.5 s; familiar, but nothing to check in the first second (as BRIEF §0 scored it).",
+  "takeaway": "1: Settings › Face ID & Passcode › Stolen Device Protection, a 10-second check, asked again in the pinned comment.",
+  "title": "1: \"Stolen Device Protection Slows Passcode Thieves 😱\": the setting's name in words 1-3, consequence verb \"Slows\" scoped to Apple's \"help prevent\", 6 words, one emoji.",
+  "searched": "1: \"stolen device protection\", \"what is stolen device protection\", \"should i turn on stolen device protection\", \"is stolen device protection on by default\" and \"can a thief unlock my iphone\" are Google US completions (checked Nov 28, 2026). Volume not measured."
+ },
+ "youtube_description_chars": 2964,
+ "youtube_tags_chars": 458
+}
