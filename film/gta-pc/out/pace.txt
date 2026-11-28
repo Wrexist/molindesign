@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-pc/out/gta-pc-vo.mp4: 41.9 s, 0 hard cuts (0.0/10 s), motion 0-1 s 0.268, 0-3 s 0.238, median 0.308, still frames 8.0 %
+WARN  motion over 0-3 s is 0.24 (< 0.3); every Short over 300 views had 0.24+, most 0.30+

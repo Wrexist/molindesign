@@ -1,5 +1,5 @@
 {
-  "about": "Will GTA 6 come to PC: Rockstar's own GTA 6 page lists two platforms, PlayStation 5 and Xbox Series X|S, and PC is not one. Take-Two's CEO: 'Rockstar always starts on console.' Every main GTA since GTA III reached PC later: III to IV under eight months each, GTA V almost nineteen months (after two console generations), Red Dead 2 just over a year. No GTA 6 PC version announced. Factory Delta #8.",
+  "about": "Will GTA 6 come to PC: GTA 6 is out (Nov 19 2026) and Rockstar's own GTA 6 page lists two platforms, PlayStation 5 and Xbox Series X|S; PC is not one. Take-Two's CEO: 'Rockstar always starts on console.' Every main GTA since GTA III reached PC later: III to IV under eight months each, GTA V almost nineteen months (after two console generations), Red Dead 2 just over a year. No GTA 6 PC version announced. Delta, revived 2026-11-28 with official footage.",
   "engine": "ming",
   "ming": {
     "voice": "US_James",
@@ -32,8 +32,8 @@
     {
       "id": "hook",
       "at": 0.3,
-      "text": "GTA 6, PC players: bad news.",
-      "say": "G T A 6, P C players: bad news.",
+      "text": "GTA 6 is out. Not on PC.",
+      "say": "G T A 6 is out. Not on P C.",
       "speed": 1.1
     },
     {

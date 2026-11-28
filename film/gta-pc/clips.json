@@ -1,0 +1,115 @@
+{
+ "film": "gta-pc",
+ "sources": {
+  "t2": {
+   "key": "twitter-1919733318217576448",
+   "url": "https://x.com/RockstarGames/status/1919746311382851812",
+   "title": "Rockstar Games - Watch Grand Theft Auto VI Trailer 2 Now  Explore Vice City and beyond at",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Trailer 2"
+  },
+  "lt": {
+   "key": "twitter-2110704990339678208",
+   "url": "https://x.com/RockstarGames/status/2110717537964953810",
+   "title": "Rockstar Games - Watch the Grand Theft Auto VI Launch Trailer, featuring the debut of ...",
+   "uploader": "Rockstar Games",
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA VI Launch Trailer"
+  },
+  "vgp": {
+   "key": "generic-v4-ra124rca-flv-en-us-720p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/ra124rca/flv/en-us-720p.mp4",
+   "title": "en-us-720p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar Games · GTA V Gameplay Video (2013)"
+  }
+ },
+ "clips": {
+  "drive": {
+   "src": "t2",
+   "in": 27.2,
+   "out": 30.0,
+   "fps": 30,
+   "frames": 84,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "drive2": {
+   "src": "t2",
+   "in": 30.2,
+   "out": 34.0,
+   "fps": 30,
+   "frames": 114,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "gym": {
+   "src": "t2",
+   "in": 38.4,
+   "out": 41.5,
+   "fps": 30,
+   "frames": 93,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "walk": {
+   "src": "t2",
+   "in": 23.4,
+   "out": 26.4,
+   "fps": 30,
+   "frames": 90,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "polish": {
+   "src": "lt",
+   "in": 6.2,
+   "out": 9.1,
+   "fps": 30,
+   "frames": 87,
+   "w": 1280,
+   "crop": "1920:960:0:60"
+  },
+  "v5jump": {
+   "src": "vgp",
+   "in": 115.7,
+   "out": 118.1,
+   "fps": 30,
+   "frames": 72,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "v5heli": {
+   "src": "vgp",
+   "in": 91.6,
+   "out": 93.4,
+   "fps": 30,
+   "frames": 54,
+   "w": 1280,
+   "crop": "1280:720:0:0"
+  },
+  "window": {
+   "src": "t2",
+   "in": 52.0,
+   "out": 55.8,
+   "fps": 30,
+   "frames": 114,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  },
+  "tower": {
+   "src": "t2",
+   "in": 50.0,
+   "out": 51.7,
+   "fps": 30,
+   "frames": 51,
+   "w": 1280,
+   "crop": "1920:864:0:108"
+  }
+ }
+}
