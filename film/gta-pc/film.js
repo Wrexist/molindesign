@@ -5,7 +5,10 @@
    four short bars stop before a dashed 8 MO line, GTA 5's runs nearly the full width to ALMOST 19 MONTHS (the one hero
    number), and the GTA 6 row waits at the bottom with an open bar and a "?". Frame 0 is a flat PC monitor that can't
    get GTA 6 next to two generic console boxes; the end vote sits on the same monitor and dissolves into frame 0.
-   Own flat shapes in a Vice City palette. No Rockstar footage, logo or key art, no console logos, no music. */
+   Own flat shapes in a Vice City palette, no logos or key art, no console logos, no music.
+   Revived 2026-11-28 (Delta, footage default): official Rockstar video, muted, each use under 5 s (SAFE-EDIT rules 7, 11):
+   frame 0 and the end show GTA VI Trailer 2 (27.2-30.0, 30.2-34.0 s) in our frame; dimmed plates sit behind the chart
+   (Trailer 2, Launch Trailer; GTA V's 2013 Gameplay Video greyed for the GTA 5 beats). Ranges in clips.json. */
 (function () {
   'use strict';
   var W = 1080, H = 1920, VO = window.VO, DUR = VO.dur, CX = 510;
@@ -233,7 +236,8 @@
     var off = o.off || 0, sy = Math.max(.012, 1 - eio(seg(off, 0, .6))), sx = 1 - eio(seg(off, .6, 1));
     if (sx > .001) {
       g.save(); g.translate(CX, SCY); g.scale(sx, sy); g.translate(-CX, -SCY);
-      if (o.scr === 'wait') {
+      if (o.scr === 'tv') { /* the over() callback draws the footage */ }
+      else if (o.scr === 'wait') {
         g.fillStyle = PURP2; g.fillRect(SX0, SY0, SX1 - SX0, SY1 - SY0);
         for (var d = 0; d < 3; d++) { var dk = .35 + .65 * Math.max(0, Math.sin(t * 4 - d * .9)); g.fillStyle = 'rgba(251,240,234,' + dk.toFixed(3) + ')'; g.beginPath(); g.arc(CX - 110 + d * 110, SCY + 30, 34, 0, 6.283); g.fill(); }
       } else dlWindow(g, t, SY0, { pct: o.pct == null ? 99 : o.pct, q: o.q, dim: o.dim });
@@ -253,17 +257,52 @@
   /* =====================================================================================================
      SCENE 1 · hook: the PC's GTA 6 download, stuck at 99 %; it jitters back, BAD NEWS on "bad", the screen clicks off
      ===================================================================================================== */
-  var T = {};
+  var T = {}, U = {};
+  var FX0 = 100, FY0 = 448, FW = 820, FH = 462;               /* the footage card: 16:9, under the frame-0 question */
+  function footCard(g, t, u, a) {
+    if (a <= 0 || !u || !window.CLIP || !CLIP.manifest()) return;
+    g.save(); g.globalAlpha *= a;
+    rr(g, FX0 + 8, FY0 + 12, FW, FH, 26); g.fillStyle = 'rgba(0,0,0,.45)'; g.fill();
+    g.save(); rr(g, FX0, FY0, FW, FH, 26); g.clip(); CLIP.draw(g, t, FX0, FY0, FW, FH, u); g.restore();
+    rr(g, FX0, FY0, FW, FH, 26); g.strokeStyle = CREAM; g.lineWidth = 5; g.stroke();
+    g.restore();
+    if (a > .5) CLIP.credit(g, u, FX0 + 24, FY0 + FH - 24, '700 30px "Geist Mono", monospace');
+  }
+  /* the three platform slots, as on Rockstar's page: two teal ticks and a dashed PC slot that gets NOT LISTED */
+  function hookSlots(g, t, home) {
+    var Y = [1000, 1110, 1220], NM = ['PLAYSTATION 5', 'XBOX SERIES X|S'], T0 = [T.s1, T.s2];
+    for (var j = 0; j < 2; j++) {
+      var k = home ? 0 : fin(t, T0[j]); if (k <= 0) continue;
+      g.save(); g.globalAlpha *= k; rr(g, 150, Y[j] - 40, 720, 80, 14); g.fillStyle = TEAL; g.fill(); g.restore();
+      txt(g, NM[j] + '  ✓', CX, Y[j] + 2, { px: 52, align: 'center', col: BG, a: k, s: pin(t, T0[j]), ls: 2 });
+    }
+    var pk = home ? 0 : fin(t, T.s3);
+    if (pk > 0) {
+      g.save(); g.globalAlpha *= pk; rr(g, 150, Y[2] - 40, 720, 80, 14); g.fillStyle = 'rgba(11,8,32,.85)'; g.fill();
+      g.setLineDash([20, 12]); g.lineDashOffset = -t * 30; g.strokeStyle = HOT; g.lineWidth = 5; g.stroke(); g.setLineDash([]); g.restore();
+      txt(g, 'PC', 190, Y[2] + 2, { px: 52, col: CREAM, a: pk, ls: 2 });
+      bigQ(g, 330, Y[2] + 2, 64, pk * (1 - fin(t, T.hnl)), t);
+    }
+    if (!home) stampText(g, 'NOT LISTED', 610, Y[2] + 2, t, T.hnl, DUR, 58, HOT, -.05);
+  }
+  function fullBleed(g, t, u, dim) {
+    if (!u || !window.CLIP || !CLIP.manifest()) return;
+    CLIP.draw(g, t, 0, 0, W, H, u);
+    g.fillStyle = 'rgba(11,8,32,' + dim + ')'; g.fillRect(0, 0, W, H);
+    var gr = g.createLinearGradient(0, 200, 0, 600); gr.addColorStop(0, 'rgba(11,8,32,.55)'); gr.addColorStop(1, 'rgba(11,8,32,0)'); g.fillStyle = gr; g.fillRect(0, 200, W, 400);
+  }
   function rigScene(g, t, home) {
-    var bad = home ? 1e9 : at('hook', 'bad');
-    var jit = !home && t >= GT.stall && t < GT.stall + .32;
-    var badA = home ? 0 : fin(t, bad), offK = home ? 0 : seg(t, GT.crt - .14, GT.crt + .12);
-    /* the console names come in with the spoken "players" (frame 0 carries 4 words: GTA 6 · PC, 99%) */
-    var la = home ? 0 : fin(t, at('hook', 'players') - .1);
-    monitor(g, t, { top: 300, pct: jit ? 97 : 99, off: offK, over: function (gg) {
-      chip(gg, 'BAD NEWS', CX, 640, { px: 108, wt: 900, bg: HOT, fg: BG, a: badA, s: pinS(t, bad), rot: -.03 });
-    } });
-    desk(g, t, 1, la);
+    fullBleed(g, home ? 0 : t, U.hook, .35);
+    /* frame 0: the question in four words, big; the game full-bleed behind it */
+    var qs = home ? 1 : kn(t, T.hnl);
+    g.save(); g.translate(CX, 352); g.scale(qs, qs); var qpx = 124; font(g, qpx, 900); wide(g); while (g.measureText('GTA 6 ON PC?').width > 800 && qpx > 60) { qpx -= 4; font(g, qpx, 900); wide(g); } g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = 'rgba(0,0,0,.4)'; g.fillText('GTA 6 ON PC?', 6, 9); g.fillStyle = CREAM; g.fillText('GTA 6 ', -g.measureText('ON PC?').width / 2, 0);
+    g.fillStyle = HOT; g.fillText('ON PC?', g.measureText('GTA 6 ').width / 2, 0); g.restore();
+    recBox(g, 90, 290, 930, 414, 'GTA 6 ON PC?');
+    var oa = home ? 0 : fin(t, T.out);
+    chip(g, 'OUT NOW', CX, 470, { px: 44, wt: 900, cond: true, bg: CREAM, fg: BG, a: oa, s: pin(t, T.out), shadow: false, ls: 2 });
+    hookSlots(g, t, home);
+    if (U.hook) CLIP.credit(g, U.hook, 110, 1430, '700 30px "Geist Mono", monospace');
   }
 
   /* =====================================================================================================
@@ -289,7 +328,7 @@
   /* our re-creation of the page, never a screenshot: a cream RE-CREATED tag, top right, inside x 930 */
   function recreated(g, x, y, a) { chip(g, 'RE-CREATED', x, y, { px: 38, wt: 900, cond: true, bg: CREAM, fg: BG, a: a == null ? 1 : a, shadow: false, ls: 2, pad: 14 }); }
   function browser(g, t) {
-    var two = at('page', 'two'), no = at('pair', 'no');
+    var two = at('page', 'two');
     rr(g, 110 + 8, 470 + 12, 800, 650, 26); g.fillStyle = 'rgba(0,0,0,.42)'; g.fill();
     rr(g, 110, 470, 800, 650, 26); g.fillStyle = PURP; g.fill(); g.strokeStyle = 'rgba(251,240,234,.32)'; g.lineWidth = 4; g.stroke();
     g.save(); rr(g, 110, 470, 800, 650, 26); g.clip(); g.fillStyle = PURP2; g.fillRect(110, 470, 800, 74); g.restore();
@@ -297,10 +336,10 @@
     chip(g, 'ROCKSTARGAMES.COM/VI', 442, 507, { px: 38, wt: 800, cond: true, line: 'rgba(251,240,234,.45)', lw: 2, fill: 'rgba(11,8,32,.85)', fg: CREAM, shadow: false, ls: 2 });
     recreated(g, 806, 507);
     g.save(); font(g, 112, 900); wide(g); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = CREAM; g.fillText('GTA VI', CX, 622); g.restore();
-    txt(g, 'COMING NOVEMBER 19, 2026', CX, 702, { px: 42, align: 'center', col: TEAL, ls: 2, rise: 0 });
+    txt(g, 'OUT NOW · NOV 19, 2026', CX, 702, { px: 42, align: 'center', col: TEAL, ls: 2, rise: 0 });
     txt(g, 'PLATFORMS', 150, 776, { px: 40, ls: 3, rise: 0 });
     chip(g, '2', 402, 776, { px: 46, wt: 900, bg: HOT, fg: BG, a: fin(t, two - .05), s: pin(t, two - .05), shadow: false, pad: 18 });
-    var SL = [{ y: 848, name: 'PLAYSTATION 5', t0: GT.slot1, f: at('pair', 'playstation') }, { y: 948, name: 'XBOX SERIES X|S', t0: GT.slot2, f: at('pair', 'xbox') }];
+    var SL = [{ y: 868, name: 'PLAYSTATION 5', t0: GT.slot1, f: at('page', 'playstation') }, { y: 988, name: 'XBOX SERIES X|S', t0: GT.slot2, f: at('page', 'xbox') }];
     SL.forEach(function (s, j) {
       /* the two empty slots pop in on "two"; they lock with a clack in the pause after "platforms." */
       var p0 = two - .05 + j * .12, k = eo(seg(t, p0, p0 + .16)), y = s.y - (1 - k) * 60;
@@ -315,14 +354,6 @@
       g.restore();
       txt(g, s.name, CX, y + 2, { px: 52, align: 'center', col: BG, a: fk * k, s: pin(t, s.f - .05), ls: 2 });
     });
-    /* the third, dashed slot appears on "No" */
-    var pk = fin(t, no - .05);
-    if (pk > 0) {
-      g.save(); g.globalAlpha *= pk; rr(g, 150, 1008, 720, 80, 14); g.fillStyle = 'rgba(255,79,163,.12)'; g.fill();
-      g.setLineDash([20, 12]); g.lineDashOffset = -t * 30; g.strokeStyle = HOT; g.lineWidth = 5; g.stroke(); g.setLineDash([]); g.restore();
-      txt(g, 'PC', 190, 1050, { px: 52, col: CREAM, a: pk, ls: 2 });
-    }
-    stampText(g, 'NOT LISTED', 640, 1048, t, GT.notlisted, T.dock - .1, 58, HOT, -.05);
   }
   /* the docked strip: the page, in one line */
   function strip(g, t, a) {
@@ -344,7 +375,7 @@
     g.restore();
     [[6, '6 MO'], [12, '1 YR'], [18, '18 MO']].forEach(function (m, i) {
       var x = BX + m[0] * PXM, fl = i === 1 && t >= GT.yr1 ? kn(t, GT.yr1) : 1;
-      txt(g, m[1], x, 1384, { px: 38, align: 'center', a: a * (1 - .3 * (dimK || 0)), rise: 0, s: fl, col: i === 1 && t >= GT.yr1 && t < GT.yr1 + .6 ? ORG : CREAM });
+      txt(g, m[1], x, 1408, { px: 38, align: 'center', a: a * (1 - .3 * (dimK || 0)), rise: 0, s: fl, col: i === 1 && t >= GT.yr1 && t < GT.yr1 + .6 ? ORG : CREAM });
     });
   }
   function bar(g, x0, y, len, h, col, a) { if (a <= 0 || len <= 0) return; g.save(); g.globalAlpha *= a; rr(g, x0 + 4, y + 6, len, h, h * .22); g.fillStyle = 'rgba(0,0,0,.35)'; g.fill(); rr(g, x0, y, len, h, h * .22); g.fillStyle = col; g.fill(); g.restore(); }
@@ -379,10 +410,10 @@
     font(g, 88, 900); ls(g, 1);
     /* ALWAYS gets a pink highlight on its spoken word, CONSOLE on its own */
     var w1 = g.measureText('“ROCKSTAR ').width, w2 = g.measureText('ALWAYS').width, x0 = 6 - (w1 + w2) / 2, hA = seg(t, at('boss', 'always') - .05, at('boss', 'always') + .1);
-    if (hA > 0) { g.save(); g.globalAlpha *= hA; g.fillStyle = HOT; rr(g, x0 + w1 - 10, -138 - 50, w2 + 20, 98, 14); g.fill(); g.restore(); }
+    /* no highlight on ALWAYS (jury r2: GTA 1 and 2 came out on PC first) */
     g.textAlign = 'left'; g.fillText('“ROCKSTAR ', x0, -138); g.fillText('ALWAYS', x0 + w1, -138); g.textAlign = 'center';
     g.fillText('STARTS ON', 6, -50);
-    var cs = kn(t, at('boss', 'console')); g.save(); g.translate(6, 38); g.scale(cs, cs); g.fillStyle = '#c2186b'; g.fillText('CONSOLE…”', 0, 0); g.restore();
+    var cs = kn(t, at('boss', 'console')); g.save(); g.translate(6, 38); g.scale(cs, cs); g.fillStyle = INK; g.fillText('CONSOLE…”', 0, 0); g.restore();
     g.fillStyle = INK; font(g, 40, 900); ls(g, 2); g.fillText('STRAUSS ZELNICK · TAKE-TWO CEO', 6, 126);
     g.fillStyle = '#5d586e'; font(g, 38, 700); g.fillText('TO BLOOMBERG · VIA VGC, MAY 2026', 6, 178);
     g.restore(); g.__st = null;
@@ -403,7 +434,7 @@
     if (cardK < 1) {
       g.save(); g.globalAlpha *= 1 - cardK; g.translate(CX, lerp(795, 505, cardK)); g.scale(lerp(1, .4, cardK), lerp(1, .12, cardK)); g.translate(-CX, -795);
       browser(g, t); g.restore();
-      credit(g, 'READ 31 OCT 2026', CX, 1160, fin(t, S('board').t0 + .4) * (1 - cardK));
+      credit(g, 'READ 28 NOV 2026', CX, 1160, fin(t, S('board').t0 + .4) * (1 - cardK));
       /* the PC, small, waiting under the page */
       var mA = 1 - cardK, ask = at('ask', 'wait');
       if (mA > 0) {
@@ -411,6 +442,7 @@
         monitor(g, t, { scr: 'wait', top: 470, shade: .15, over: function (gg) { bigQ(gg, CX, 790, 300 * kn(t, ask), fin(t, start('ask')), t, CREAM); } });
         g.restore();
         chip(g, 'PC', 742, 1310, { px: 48, wt: 900, bg: CREAM, fg: BG, a: mA, shadow: false, pad: 20, s: kn(t, at('ask', 'pc')) });
+        g.save(); g.globalAlpha *= mA; stampText(g, 'NOT LISTED', CX - 50, 1300, t, T.nl, DUR, 58, HOT, -.05); g.restore();
       }
     }
     /* --- chart phase --- */
@@ -464,14 +496,14 @@
     chip(g, '8 MONTHS', PL, 1190, { px: 58, wt: 900, bg: ORG, fg: BG, a: uA, s: pinS(t, at('fast', 'eight') - .05) * kn(t, GT.under8), rot: .015 });
     /* the counter: one number in the plate. ~7 → ~6 → ~7 → ~7 as the short bars land, then it climbs with GTA 5's bar to 19 */
     var tw = at('twice', 'two'), V = vBar(t), climbing = t >= T.vpc && V.mo >= 7, landed = t >= T.vland;
-    var cntA = (lastMo != null ? fin(t, T.fast[0] + .35) : 0) * out(t, tw + .1, .3) * (1 - .55 * dimK);
+    var cntA = (lastMo != null ? fin(t, T.fast[0] + .35) : 0) * out(t, tw + .1, .3) * (1 - .55 * dimK) * (climbing && !landed ? 0 : 1) * (t >= T.vpc && !landed ? 0 : 1);
     if (cntA > 0) {
       var val = landed ? 19 : climbing ? Math.max(7, V.mo) : lastMo, str = (landed || climbing) ? String(val) : '~' + val;
       var px = landed ? 236 : climbing ? lerp(150, 230, clamp((val - 7) / 12, 0, 1)) : 150;
       var ks = landed ? kn(t, T.vland) : (!climbing ? kn(t, lastT) : 1);
       g.save(); g.globalAlpha *= cntA; g.translate(PL, 770); g.scale(ks, ks); font(g, Math.round(px), 900); g.textAlign = 'center'; g.textBaseline = 'middle';
       g.fillStyle = 'rgba(0,0,0,.35)'; g.fillText(str, 8, 12); g.fillStyle = landed ? ORG : CREAM; g.fillText(str, 0, 0); g.restore();
-      txt(g, 'ALMOST', PL, 640, { px: 60, align: 'center', a: cntA * fin(t, T.vland + .02), ls: 4 });
+      txt(g, 'GTA 5: ALMOST', PL, 640, { px: 56, align: 'center', a: cntA * fin(t, T.vland + .02), ls: 3 });
       txt(g, 'MONTHS', PL, 906, { px: 60, align: 'center', a: cntA, ls: 4, rise: 0 });
     }
     /* hero: GTA 5's bar, from "PC" to "19", through the 8 MO line, overshooting ~20 px and settling at 574 days */
@@ -486,7 +518,7 @@
       if (dA > 0) txt(g, Math.round(574 * eio(dk)) + ' DAYS', PL, 1138, { px: 48, align: 'center', a: dA, rise: 0, ls: 3 });
       stampText(g, '574 DAYS', PL, 1138, t, GT.hero, at('rdr', 'red') - .2, 46, CREAM, -.03);
       /* twice: pins on the bar, the years above it; three cards in the plate */
-      var p1 = at('twice', 'two'), p2 = at('twice', 'generations'), p3 = at('twice', 'first'), pc = GT.pcpin, cOut = at('rdr', 'just') - .2;
+      var p1 = at('twice', 'two'), p2 = at('twice', 'generations'), p3 = at('twice', 'first'), pc = GT.pcpin, cOut = start('rdr') + .25;
       var cA1 = fin(t, p1 - .05) * out(t, cOut, .3);
       if (cA1 > 0 || t >= p1) {
         var pinA = (1 - .55 * dimK);
@@ -496,9 +528,9 @@
           g.save(); g.globalAlpha *= a; g.fillStyle = P[3]; g.fillRect(P[0] - 3, V_BY - 6, 6, V_BH + 12); g.restore();
           if (P[2]) txt(g, P[2], P[4] === 'right' ? P[0] + 10 : P[0], 1004, { px: 40, align: P[4], col: CREAM, a: a, rise: 0, s: kn(t, P[1]) });
         });
-        chip(g, '2013 · PS3 · XBOX 360', PL, 652, { px: 46, wt: 900, cond: true, bg: TEAL, fg: BG, a: cA1, s: pinS(t, p1 - .05), maxw: 390, w: 390 });
-        chip(g, '2014 · PS4 · XBOX ONE', PL, 754, { px: 46, wt: 900, cond: true, bg: TEAL, fg: BG, a: fin(t, p2 - .05) * out(t, cOut, .3), s: pinS(t, p2 - .05), maxw: 390, w: 390 });
-        chip(g, '2015 · PC', PL, 856, { px: 50, wt: 900, cond: true, bg: HOT, fg: BG, a: fin(t, p3 - .05) * out(t, cOut, .3), s: pinS(t, p3 - .05) * kn(t, pc), maxw: 390, w: 390 });
+        chip(g, '2013 · PS3 · 360', PL, 652, { px: 46, wt: 900, cond: true, bg: TEAL, fg: BG, a: cA1, s: pinS(t, p1 - .05), maxw: 390, w: 390 });
+        chip(g, '2014 · PS4 · ONE', PL, 754, { px: 46, wt: 900, cond: true, bg: TEAL, fg: BG, a: fin(t, p1 + .1) * out(t, cOut, .3), s: pinS(t, p1 + .1) * kn(t, p2), maxw: 390, w: 390 });
+        chip(g, '2015 · PC', PL, 856, { px: 50, wt: 900, cond: true, bg: HOT, fg: BG, a: fin(t, p1 + .25) * out(t, cOut, .3), s: pinS(t, p1 + .25) * kn(t, pc), maxw: 390, w: 390 });
       }
       /* the hero number stays on its bar once the plate moves on */
       chip(g, 'ALMOST 19 MO', CX + 20, V_BY + V_BH / 2, { px: 40, wt: 900, cond: true, bg: 'rgba(11,8,32,.92)', fg: CREAM, shadow: false, pad: 12, a: fin(t, tw - .1) * vA, ls: 2 });
@@ -512,9 +544,9 @@
       chip(g, '12 MO', mx(R_DAYS) - 56, R_BY + 22, { px: 36, wt: 900, cond: true, bg: 'rgba(11,8,32,.92)', fg: CREAM, shadow: false, pad: 10, a: fin(t, GT.rdrland) * rA, s: kn(t, GT.rdrland), ls: 1 });
     }
     /* JUST OVER A YEAR: on "just", cleared before "And" */
-    var jA = fin(t, at('rdr', 'just') - .05) * out(t, start('none') - .05, .3);
-    chip(g, 'JUST OVER', PL, 700, { px: 58, wt: 900, bg: CREAM, fg: BG, a: jA, s: pinS(t, at('rdr', 'just') - .05), rot: -.02 });
-    chip(g, 'A YEAR', PL, 794, { px: 58, wt: 900, bg: ORG, fg: BG, a: jA, s: pinS(t, at('rdr', 'year') - .05) * kn(t, GT.rdrland), rot: .015 });
+    var jA = fin(t, T.rland - .15) * out(t, start('none') - .05, .3);
+    chip(g, 'JUST OVER', PL, 700, { px: 58, wt: 900, bg: CREAM, fg: BG, a: jA, s: pinS(t, T.rland - .15), rot: -.02 });
+    chip(g, 'A YEAR', PL, 794, { px: 58, wt: 900, bg: ORG, fg: BG, a: jA, s: pinS(t, T.rland - .1) * kn(t, GT.rdrland), rot: .015 });
     /* none: the strip opens back into the page card; NO PC DATE on its PC slot */
     var pA = fin(t, T.plate - .05);
     if (pA > 0) {
@@ -530,21 +562,21 @@
         rr(g, 524, R[1] - 34, 362, 68, 12); g.fillStyle = TEAL; g.fill();
         txt(g, R[0], PL, R[1] + 1, { px: 42, align: 'center', col: BG, rise: 0, ls: 1 });
       });
-      rr(g, 524, 856, 362, 68, 12); g.fillStyle = 'rgba(255,79,163,.12)'; g.fill(); g.setLineDash([16, 10]); g.lineDashOffset = -t * 30; g.strokeStyle = HOT; g.lineWidth = 4; g.stroke(); g.setLineDash([]);
-      txt(g, 'PC', 536, 891, { px: 40, rise: 0, ls: 2, a: 1 - fin(t, T.nopc - .1) });   /* the stamp names the slot once it lands */
       g.restore();
-      stampText(g, 'NO PC DATE', 732, 890, t, T.nopc, DUR, 40, HOT, -.05);
     }
     /* the GTA 6 row: from the dock to the end, with its open bar */
     gtaRow(g, t, cA);
-    /* our math, small, at the GTA 6 row's end */
+    /* our math: a dashed ghost bar from GTA 6's pin, to scale at GTA 5's 574 days (jury r2 fix 3) */
     var oA = fin(t, T.math) * cA;
     if (oA > 0) {
-      g.save(); g.globalAlpha *= oA; rr(g, 536, 1236, 374, 132, 14); g.fillStyle = 'rgba(11,8,32,.92)'; g.fill(); g.setLineDash([10, 8]); g.strokeStyle = 'rgba(251,240,234,.55)'; g.lineWidth = 2; g.stroke(); g.setLineDash([]); g.restore();
-      txt(g, 'IF PAST GAPS REPEAT:', 723, 1262, { px: 38, align: 'center', a: oA, rise: 0, ls: 1, wt: 800, col: 'rgba(251,240,234,.85)' });
-      txt(g, 'MID-2027 TO MID-2028', 723, 1302, { px: 38, align: 'center', a: oA, rise: 0, ls: 1, col: ORG });
-      txt(g, 'OUR MATH, NOT ROCKSTAR', 723, 1342, { px: 38, align: 'center', a: oA, rise: 0, ls: 1, wt: 800, col: 'rgba(251,240,234,.85)' });
+      var gk = eio(seg(qt(t), T.math, T.math + .9)), gl = (mx(V_DAYS) - BX) * gk, gy = G_BY - 6;
+      g.save(); g.globalAlpha *= oA; rr(g, BX, gy, gl, 52, 12); g.fillStyle = 'rgba(255,79,163,.16)'; g.fill();
+      g.setLineDash([14, 9]); g.lineDashOffset = -t * 20; g.strokeStyle = 'rgba(255,79,163,.9)'; g.lineWidth = 3; g.stroke(); g.setLineDash([]); g.restore();
+      var la = oA * seg(t, T.math + .7, T.math + 1);
+      txt(g, 'JUNE 2028?', mx(V_DAYS) - 14, gy + 27, { px: 40, align: 'right', a: la, rise: 0, ls: 1, col: ORG, s: kn(t, T.math + .9) });
+      txt(g, 'IF LIKE GTA 5 · OUR MATH', BX, gy + 84, { px: 36, a: la, rise: 0, ls: 1, col: CREAM });
     }
+    stampText(g, 'NO PC DATE', 740, 1236, t, T.nopc, DUR, 42, HOT, -.04);
     /* boss: the quote card over the chart */
     plateQuote(g, t);
   }
@@ -554,14 +586,13 @@
      ===================================================================================================== */
   function endScene(g, t) {
     var s0 = S('end').t0, wt = at('end', 'wait'), by = at('end', 'buy'), v0 = s0 + .2;
-    monitor(g, t, { top: 470, pct: 99, dim: .8, over: function (gg) {
-      chip(gg, 'GTA 6 · NOV 19, 2026', CX, 586, { px: 46, wt: 900, cond: true, line: CREAM, lw: 3, fill: 'rgba(11,8,32,.9)', fg: CREAM, a: fin(t, s0 + .1), shadow: false, ls: 2 });
-      /* the vote: both options land together, same style, neither picked */
-      chip(gg, 'WAIT', CX, 730, { px: 92, wt: 900, bg: CREAM, fg: BG, a: fin(t, v0), s: pin(t, v0) * kn(t, wt), rot: -.02 });
-      txt(gg, 'OR', CX, 826, { px: 44, align: 'center', a: fin(t, v0), rise: 0, ls: 4 });
-      chip(gg, 'BUY A CONSOLE', CX, 920, { px: 92, wt: 900, bg: CREAM, fg: BG, a: fin(t, v0), s: pin(t, v0) * kn(t, by), rot: .02, maxw: 720 });
-    } });
+    fullBleed(g, t, U.end, .45);
+    chip(g, 'GTA 6 · PS5 · XBOX SERIES X|S', CX, 586, { px: 46, wt: 900, cond: true, line: CREAM, lw: 3, fill: 'rgba(11,8,32,.9)', fg: CREAM, a: fin(t, s0 + .1), shadow: false, ls: 2 });
+    chip(g, 'WAIT', CX, 760, { px: 104, wt: 900, bg: CREAM, fg: BG, a: fin(t, v0), s: pin(t, v0) * kn(t, wt), rot: -.02 });
+    txt(g, 'OR', CX, 880, { px: 48, align: 'center', a: fin(t, v0), rise: 0, ls: 4 });
+    chip(g, 'BUY A CONSOLE', CX, 1000, { px: 100, wt: 900, bg: CREAM, fg: BG, a: fin(t, v0), s: pin(t, v0) * kn(t, by), rot: .02, maxw: 800 });
     desk(g, t, 1, 1);
+    if (U.end) CLIP.credit(g, U.end, 110, 1430, '700 30px "Geist Mono", monospace');
   }
 
   /* ---------- captions (the voice, phrase by phrase; the hook line is carried by the picture) ---------- */
@@ -611,7 +642,7 @@
     lay(); fixLines();
     function widest() { return Math.max.apply(null, lw) - gap; }
     while ((lines.length > 2 || widest() > maxw) && cpx > 52) { cpx -= 4; g.font = '800 ' + cpx + 'px Archivo'; wide(g); ws = words.map(function (w) { return g.measureText(w.w).width; }); gap = cpx * .28; lay(); fixLines(); }
-    var lh = cpx * 1.16, y0 = 392 - (lines.length - 1) * lh / 2;
+    var lh = cpx * 1.16, y0 = 392 - (lines.length - 1) * lh;
     g.globalAlpha = fi * outk * wipeHide(t) * (alpha == null ? 1 : alpha);
     lines.forEach(function (ln, li) {
       var x = CX - (lw[li] - gap) / 2, y = y0 + li * lh + (1 - Math.min(1, k)) * 36;
@@ -630,6 +661,20 @@
   function S(id) { for (var i = 0; i < SC.length; i++) if (SC[i].id === id) return SC[i]; }
   var SCENES = { rig: function (g, t) { rigScene(g, t, false); }, board: chartScene, end: endScene };
   function stage(g) { g.fillStyle = BG; g.fillRect(0, 0, W, H); }
+  /* the plate: official gameplay behind our graphics (rule 11), dimmed; GTA 5's 2013 video greyed as "then" */
+  var GREY = { v5jump: 1, v5heli: 1 };
+  function plateLayer(g, t) {
+    if (!window.CLIP || !CLIP.manifest()) return;
+    var u = CLIP.activePlate(t); if (!u) return;
+    var k = Math.min(seg(t, u.t0, u.t0 + .25), 1 - seg(t, u.t1 - .25, u.t1));
+    g.save(); g.globalAlpha = .35 + .65 * k;
+    if (GREY[u.clip]) { g.filter = 'grayscale(1) contrast(1.1)'; CLIP.plate(g, t, 0, 0, W, H, { dim: .5 }); }
+    else CLIP.plate(g, t, 0, 0, W, H, { dim: .55, blur: 2 });
+    g.filter = 'none'; g.restore();
+    /* a tint in the film's ink so the cream type keeps its contrast */
+    g.fillStyle = 'rgba(11,8,32,.35)'; g.fillRect(0, 0, W, H);
+    if (GREY[u.clip]) txt(g, 'GTA 5 · 2013 FOOTAGE', 910, 572, { px: 36, align: 'right', a: .9 * k, rise: 0, ls: 2, col: 'rgba(251,240,234,.8)' });
+  }
   function sceneAt(t) { for (var i = SC.length - 1; i >= 0; i--) if (t >= SC[i].t0) return i; return 0; }
   function drawScene(g, Sc, t) {
     g.save();
@@ -641,7 +686,7 @@
   var POSTERMODE = false;
   function frame(g, t) {
     g.setTransform(1, 0, 0, 1, 0, 0);
-    stage(g);
+    stage(g); plateLayer(g, t);
     var si = sceneAt(t), Sc = SC[si], Nx = SC[si + 1];
     var sk = Nx && Nx.swipe ? eio(seg(t, Nx.t0 - SWIPE, Nx.t0)) : 0;
     var pre = Sc.swipe && t < Sc.t0 + PRE;
@@ -649,7 +694,7 @@
     if (sk > 0) {
       var ly = H * (1 - sk) - 70, x;
       g.save(); g.beginPath(); g.moveTo(0, H); for (x = 0; x <= W; x += 30) g.lineTo(x, edgeY(x, ly, t)); g.lineTo(W, H); g.closePath(); g.clip();
-      stage(g); INCOMING = true; drawScene(g, Nx, Nx.t0 + PRE); INCOMING = false; g.restore();
+      stage(g); plateLayer(g, t); INCOMING = true; drawScene(g, Nx, Nx.t0 + PRE); INCOMING = false; g.restore();
       g.save(); g.lineJoin = 'round'; g.beginPath(); g.rect(90, 0, 840, 1448); g.clip();
       [[HOT, 10, 0], [TEAL, 6, 16]].forEach(function (c) { g.strokeStyle = c[0]; g.lineWidth = c[1]; g.beginPath(); for (x = 0; x <= W; x += 30) { var yy = edgeY(x, ly, t) + c[2]; if (x === 0) g.moveTo(x, yy); else g.lineTo(x, yy); } g.stroke(); });
       g.restore();
@@ -677,14 +722,16 @@
     var o = [];
     function Tx(id, text, a, b) { if (t >= a && t < b) o.push({ id: id, text: text, x0: 0, y0: 0, x1: 0, y1: 0 }); }
     var b0 = S('board').t0, e0 = S('end').t0;
-    Tx('win', 'GTA 6 · PC 99%', 0, b0 - .3); Tx('win', 'GTA 6 · PC 99%', HOME + .3, DUR + 1);
-    Tx('cons', 'PS5 XBOX', at('hook', 'players') + .1, b0 - .3); Tx('cons', 'PS5 XBOX', e0, DUR + 1);
-    Tx('url', 'ROCKSTARGAMES.COM/VI', b0, T.dock - .1);
-    Tx('com', 'COMING NOVEMBER 19, 2026', b0, T.dock - .1);
-    Tx('read', 'READ 31 OCT 2026', b0 + .5, T.dock - .1);
-    Tx('ps5', 'PLAYSTATION 5', at('pair', 'playstation') + .1, T.dock - .1);
-    Tx('xbx', 'XBOX SERIES X|S', at('pair', 'xbox') + .1, T.dock - .1);
-    Tx('nl', 'NOT LISTED', GT.notlisted + .05, T.dock - .1);
+    Tx('q', 'GTA 6 ON PC?', 0, b0 - .3); Tx('q', 'GTA 6 ON PC?', HOME + .3, DUR + 1);
+    Tx('out', 'OUT NOW', T.out + .1, b0 - .3);
+    Tx('hs1', 'PLAYSTATION 5 ✓', T.s1 + .1, b0 - .3); Tx('hs2', 'XBOX SERIES X|S ✓', T.s2 + .1, b0 - .3); Tx('hs3', 'PC', T.s3 + .1, b0 - .3);
+    Tx('hnl', 'NOT LISTED', T.hnl + .05, b0 - .3);
+        Tx('url', 'ROCKSTARGAMES.COM/VI', b0, T.dock - .1);
+    Tx('com', 'OUT NOW · NOV 19, 2026', b0, T.dock - .1);
+    Tx('read', 'READ 28 NOV 2026', b0 + .5, T.dock - .1);
+    Tx('ps5', 'PLAYSTATION 5', at('page', 'playstation') + .1, T.dock - .1);
+    Tx('xbx', 'XBOX SERIES X|S', at('page', 'xbox') + .1, T.dock - .1);
+    Tx('nl', 'NOT LISTED', T.nl + .05, T.dock - .1);
     Tx('strip', 'GTA 6 PAGE: PS5 · XBOX SERIES X|S NO PC', T.dock + .1, T.plate - .1);
     Tx('quote', '“ROCKSTAR ALWAYS STARTS ON CONSOLE…”', T.cardIn - .1, GT.cardout + .1);
     Tx('who', 'STRAUSS ZELNICK · TAKE-TWO CEO', T.cardIn - .1, GT.cardout + .1);
@@ -692,24 +739,25 @@
     Tx('g6', 'GTA 6 · NOV 19, 2026', T.dock + .1, e0 - .2);
     SHORT.forEach(function (r, j) { Tx('r' + j, r.name, T.fast[j] + .05, e0 - .2); Tx('m' + j, r.mo, T.fast[j] + .5, e0 - .2); });
     Tx('cnt', '~7 MONTHS', T.fast[0] + .5, T.vpc);
+    Tx('g5a', 'GTA 5: ALMOST', T.vland + .1, at('twice', 'two') + .02);
     Tx('u8', 'ALL UNDER 8 MONTHS', at('fast', 'under') + .1, T.vpc + .05);
     Tx('v', 'GTA 5 · 2013', at('hero', 'gta') + .05, e0 - .2);
     Tx('hero', 'ALMOST 19 MONTHS', T.vland + .1, at('twice', 'two') + .02);
     Tx('days', '574 DAYS', GT.hero + .1, at('rdr', 'red') - .2);
-    Tx('c1', '2013 · PS3 · XBOX 360', at('twice', 'two') + .1, at('rdr', 'just') - .35);
+    Tx('c1', '2013 · PS3 · 360', at('twice', 'two') + .1, start('rdr') + .25);
     Tx('y45', '2014 2015', GT.pcpin + .1, e0 - .2);
-    Tx('c2', '2014 · PS4 · XBOX ONE', at('twice', 'generations') + .1, at('rdr', 'just') - .35);
-    Tx('c3', '2015 · PC', at('twice', 'first') + .1, at('rdr', 'just') - .35);
+    Tx('c2', '2014 · PS4 · ONE', at('twice', 'two') + .2, start('rdr') + .25);
+    Tx('c3', '2015 · PC', at('twice', 'two') + .35, start('rdr') + .25);
     Tx('a19', 'ALMOST 19 MO', at('twice', 'two') + .1, e0 - .2);
     Tx('rdr', 'RED DEAD 2 · 2018', at('rdr', 'red') + .05, e0 - .2);
     Tx('r12', '12 MO', GT.rdrland + .1, e0 - .2);
     /* JUST OVER A YEAR shows with the caption that says the same words, and clears before "And" (jury r1): not timed here */
-    Tx('math', 'IF PAST GAPS REPEAT: MID-2027 TO MID-2028 OUR MATH, NOT ROCKSTAR', T.math + .15, e0 - .2);
+    Tx('math', 'JUNE 2028? IF LIKE GTA 5 · OUR MATH', T.math + .8, e0 - .2);
     /* the page card's slots were read at 7.5–13.8 s; only its heading and the PC slot are new here */
     Tx('pg', 'GTA 6 PAGE · PC', T.plate + .1, e0 - .2);
     Tx('nopc', 'NO PC DATE', T.nopc + .05, e0 - .2);
     Tx('vote', 'WAIT OR BUY A CONSOLE', e0 + .4, HOME);
-    Tx('nov', 'GTA 6 · NOV 19, 2026', e0 + .25, HOME);
+    Tx('nov', 'GTA 6 · PS5 · XBOX SERIES X|S', e0 + .25, HOME);
     return o;
   }
 
@@ -717,20 +765,23 @@
   function initTimes() {
     SC = [
       { id: 'rig', name: 'Bad news', t0: 0 },
-      { id: 'board', name: 'The wait chart', t0: start('page') - .05, swipe: true },
+      { id: 'board', name: 'The wait chart', t0: start('page') + .3, swipe: true },
       { id: 'end', name: 'Wait or buy', t0: start('end') - .05, swipe: true }
     ];
     SC.forEach(function (s, i) { s.t1 = i + 1 < SC.length ? SC[i + 1].t0 : DUR; });
     HOME = DUR - .45;
-    /* frame 0: the PC's power blip, before the first word and under it in level */
+    /* frame 0: a blip under the question; the two console slots tick in before the first word lands */
     G('on', .04, 'pop', .06, .45);
-    /* hook: the download stutters in the comma after "6,"; the screen clicks off after "news." */
-    G('stall', vadEndBefore(at('hook', 'pc'), .5) + .155, 'tick', .06, .9);
-    G('crt', after('hook'), 'crt', .12, .9);
+    T.s1 = .35; T.s2 = .6; T.s3 = .85;
+    G('hs1', T.s1, 'tick', .1, .8); G('hs2', T.s2, 'tick', .1, .8);
+    /* hook: NOT LISTED lands on the spoken "Not" (payoff on screen by ~1.4 s); its thud sits in the pause after "PC." */
+    T.hnl = at('hook', 'not') - .15; T.out = at('hook', 'out') - .05;
+    G('hnl', after('hook'), 'stamp', .2, 1);
     /* page: the two platform slots drop in after "platforms." */
     G('slot1', after('page'), 'clack', .1, .9); G('slot2', GT.slot1 + .13, 'clack', .05, .8);
-    /* pair: NOT LISTED stamps the PC slot after "No PC." */
-    G('notlisted', after('pair'), 'stamp', .1, 1);
+    G('w_board', S('board').t0 - SWIPE + .02, 'tear', .25, .85);
+    /* NOT LISTED stamps the PC prop, outside the re-created card */
+    T.nl = at('page', 'xbox') + .35; G('notlisted', GT.slot2 + .3, 'stamp', .2, 1);
     /* ask: the page docks and the quote card lands after "wait?" */
     T.cardIn = G('card', after('ask'), 'paper', .12, 1); T.dock = T.cardIn;
     /* boss: the card leaves after "console." */
@@ -751,17 +802,36 @@
     /* rdr: the 1 YR line ticks after "2018?"; the bar settles with a clack after "year." */
     G('yr1', vadEndBefore(at('rdr', 'just'), at('rdr', '2018')) + .155, 'tick', .05, .9);
     T.rland = at('rdr', 'year') + .3; G('rdrland', after('rdr'), 'clack', .12, 1);
-    T.math = at('rdr', 'just') + .1;
+    T.math = start('none') + .1;
     /* none: the page card comes back on "Rockstar"; NO PC DATE stamps it on "announced" (no pause there, so it is
        silent); the "?" blips after "all." */
     T.plate = at('none', 'rockstar') - .1; T.nopc = at('none', 'announced');
+    G('nopcS', T.nopc, 'stamp', .6, 1);
     G('qblip', after('none'), 'blip', .12, .8);
     /* the cut to the end and the swish home */
     G('w_end', S('end').t0 - SWIPE + .02, 'tear', .2, .85);
     G('home', HOME - .05, 'swish', .2, .8);
-    STRESS = [['page', 'two'], ['pair', 'no'], ['ask', 'wait'], ['boss', 'always'], ['fast', 'eight'], ['hero', '19'],
+    STRESS = [['page', 'two'], ['ask', 'wait'], ['boss', 'always'], ['fast', 'eight'], ['hero', '19'],
       ['twice', 'two'], ['rdr', 'year'], ['none', 'all']].map(function (p) { return at(p[0], p[1], p[2]); });
     EV.sort(function (a, b) { return a.t - b.t; });
+  }
+
+  /* the footage: two foreground uses (frame 0, the end) and dimmed plates behind the chart (rule 11).
+     Plates + foreground stay under 85 % of the runtime; each use under 5 s, each range used once. */
+  function clipUses() {
+    CLIP.reset(); U = {};
+    function fit(name, t0, t1) { var c = CLIP.manifest().clips[name]; return Math.min(1, (c.frames / 30 - .05) / (t1 - t0)); }
+    U.hook = CLIP.use('drive', 0, start('page') + .3, { speed: fit('drive', 0, start('page') + .3), zoom: [1.0, 1.18], focus: [.62, .45], note: 'frame 0: GTA 6 gameplay (Trailer 2) under GTA 6 ON PC?, then the PS5 / XBOX ticks and NOT LISTED on PC' });
+    var e0 = start('end') - .05;
+    U.end = CLIP.use('drive2', e0, DUR + .02, { speed: fit('drive2', e0, DUR + .02), zoom: [1.15, 1.0], focus: [.62, .45], note: 'end: the game on the screen above the PS5 / XBOX boxes, vote WAIT or BUY A CONSOLE over it' });
+    function plate(name, t0, t1) { return CLIP.use(name, t0, t1, { plate: true, speed: fit(name, t0, t1), zoom: [1.08, 1.0], focus: [.5, .5], note: 'background plate' }); }
+    plate('polish', start('page') - .05, start('ask') - .05);
+    plate('window', start('ask') - .05, Math.min(start('ask') + 4.0, start('fast') - .05));
+    plate('gym', start('fast') - .05, start('hero') - .05);
+    plate('v5jump', start('hero') - .05, Math.min(start('hero') + 3.6, start('twice') - .05));
+    plate('v5heli', start('twice') - .05, start('rdr') - .05);
+    plate('shop', start('rdr') - .05, start('none') - .05);
+    plate('tower', start('none') - .05, start('none') + 2.0);
   }
 
   function render(t, samples, shutter, fps) {
@@ -801,7 +871,7 @@
     function blip(t, g) { osc('square', 660, t, t + .07, [[t, 0], [t + .003, .05 * g], [t + .06, 0]]); osc('square', 990, t + .07, t + .16, [[t + .07, 0], [t + .073, .05 * g], [t + .15, 0]]); }
     function paper(t, g) { band(t, t + .18, 2500, 4500, .07 * g, .02 * g, 1.5); tick(t + .1, .25 * g); thump(t + .1, .18 * g); }
     /* balanced on the final mix (hit peak vs the neighbouring voice): the hero stamp loudest, every hit >= 3 dB under the voice */
-    var LEVEL = { crt: 1.5, tick: 1.5, stamp: .5, tear: 20, blip: 8.5, pop: 3.5, swish: 10, whoosh: 10, paper: 1.8, ratchet: 4, clack: 1.7 };
+    var LEVEL = { crt: 4.5, tick: 4.5, stamp: 1.5, tear: 30, blip: 20, pop: 10, swish: 16, whoosh: 16, paper: 5, ratchet: 10, clack: 5 };
     EV.forEach(function (e) {
       var g = (e.g == null ? 1 : e.g) * (LEVEL[e.type] || 1);
       if (e.type === 'clack') clack(e.t, g);
@@ -835,8 +905,8 @@
     for (var i = 0; i < id.data.length; i += 4) { var v = 120 + r() * 135; id.data[i] = id.data[i + 1] = id.data[i + 2] = v; id.data[i + 3] = 255; }
     ng.putImageData(id, 0, 0);
     var fonts = ['900 84px Archivo', '800 84px Archivo', '700 46px Archivo', '600 46px Archivo', '500 30px "Geist Mono"', '400 60px "Instrument Serif"'];
-    return Promise.all(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”’·→…#?‹|~'); })).then(function () { return document.fonts.ready; }).then(function () {
-      STEX = {};
+    return Promise.all([CLIP.load('clips.json')].concat(fonts.map(function (f) { return document.fonts.load(f, 'Aa0%°×−≈≠µ“”’·→…#?‹|~✓'); }))).then(function () { return document.fonts.ready; }).then(function () {
+      STEX = {}; clipUses();
       window.READY = true;
     });
   }

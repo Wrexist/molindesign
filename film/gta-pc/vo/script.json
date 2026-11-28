@@ -1,5 +1,5 @@
 {
-  "about": "Will GTA 6 come to PC: Rockstar's own GTA 6 page lists two platforms, PlayStation 5 and Xbox Series X|S, and PC is not one. Take-Two's CEO: 'Rockstar always starts on console.' Every main GTA since GTA III reached PC later: III to IV under eight months each, GTA V almost nineteen months (after two console generations), Red Dead 2 just over a year. No GTA 6 PC version announced. Factory Delta #8.",
+  "about": "Will GTA 6 come to PC: GTA 6 is out (Nov 19 2026) and Rockstar's own GTA 6 page lists two platforms, PlayStation 5 and Xbox Series X|S; PC is not one. Take-Two's CEO: 'Rockstar always starts on console.' Every main GTA since GTA III reached PC later: III to IV under eight months each, GTA V almost nineteen months (after two console generations), Red Dead 2 just over a year. No GTA 6 PC version announced. Delta, revived 2026-11-28 with official footage.",
   "engine": "ming",
   "ming": {
     "voice": "US_James",
@@ -26,75 +26,69 @@
   "duck": {
     "db": -6,
     "score_db": 0,
-    "smr_db": 36
+    "smr_db": 22
   },
   "lines": [
     {
       "id": "hook",
       "at": 0.3,
-      "text": "GTA 6, PC players: bad news.",
-      "say": "G T A 6, P C players: bad news.",
+      "text": "GTA 6 is out. Not on PC.",
+      "say": "G T A 6 is out. Not on P C.",
       "speed": 1.1
     },
     {
       "id": "page",
       "at": 3.75,
-      "text": "Rockstar's own GTA 6 page lists two platforms.",
-      "say": "Rockstar's own G T A 6 page lists two platforms."
-    },
-    {
-      "id": "pair",
-      "at": 7.5,
-      "text": "PlayStation 5 and Xbox Series X and S. No PC.",
-      "say": "PlayStation five and Xbox Series X and S. No P C."
+      "text": "Rockstar's page lists two: PlayStation 5 and Xbox.",
+      "say": "Rockstar's page lists two: PlayStation five and Xbox."
     },
     {
       "id": "ask",
-      "at": 11.7,
+      "at": 7.4,
       "text": "So how long will PC players wait?",
       "say": "So how long will P C players wait?"
     },
     {
       "id": "boss",
-      "at": 14.2,
+      "at": 9.9,
       "text": "Take-Two's boss says Rockstar always starts on console.",
       "say": "Take-Two's boss says Rockstar always starts on console."
     },
     {
       "id": "fast",
-      "at": 17.75,
+      "at": 13.45,
       "text": "GTA 3 to GTA 4: under eight months each.",
       "say": "G T A 3 to G T A 4: under eight months each."
     },
     {
       "id": "hero",
-      "at": 21.7,
+      "at": 17.4,
       "text": "Then GTA 5. PC players waited almost 19 months.",
       "say": "Then G T A 5. P C players waited almost nineteen months."
     },
     {
       "id": "twice",
-      "at": 26.55,
+      "at": 22.25,
       "text": "It came out on two console generations first."
     },
     {
       "id": "rdr",
-      "at": 29.6,
+      "at": 25.3,
       "text": "Red Dead 2, in 2018? Just over a year.",
       "say": "Red Dead 2, in twenty eighteen? Just over a year."
     },
     {
       "id": "none",
-      "at": 33.05,
+      "at": 28.75,
       "text": "And for GTA 6, Rockstar hasn't announced PC at all.",
       "say": "And for G T A 6, Rockstar hasn't announced P C at all."
     },
     {
       "id": "end",
-      "at": 37.95,
+      "at": 33.65,
       "text": "So, PC players: wait, or buy a console?",
       "say": "So, P C players: wait, or buy a console?"
     }
   ],
-  "dur": 41.9
+  "dur": 37.6
 }

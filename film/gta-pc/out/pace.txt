@@ -1,0 +1,2 @@
+/home/user/molindesign/film/gta-pc/out/gta-pc-vo.mp4: 37.6 s, 0 hard cuts (0.0/10 s), motion 0-1 s 1.032, 0-3 s 1.001, median 0.503, still frames 9.7 %
+OK    no frozen stretches, opening moves

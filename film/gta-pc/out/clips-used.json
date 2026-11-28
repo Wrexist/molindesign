@@ -1,0 +1,86 @@
+{
+ "DUR": 37.6,
+ "uses": [
+  {
+   "clip": "drive",
+   "t0": 0,
+   "t1": 4.05,
+   "from": 0,
+   "srcTo": 3.95,
+   "note": "frame 0: GTA 6 gameplay (Trailer 2) under GTA 6 ON PC?, then the PS5 / XBOX ticks and NOT LISTED on PC",
+   "plate": false
+  },
+  {
+   "clip": "polish",
+   "t0": 3.7,
+   "t1": 7.3500000000000005,
+   "from": 0,
+   "srcTo": 2.85,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "window",
+   "t0": 7.3500000000000005,
+   "t1": 11.4,
+   "from": 0,
+   "srcTo": 3.75,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "gym",
+   "t0": 13.399999999999999,
+   "t1": 17.349999999999998,
+   "from": 0,
+   "srcTo": 3.0500000000000003,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "v5jump",
+   "t0": 17.349999999999998,
+   "t1": 21,
+   "from": 0,
+   "srcTo": 2.35,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "v5heli",
+   "t0": 22.2,
+   "t1": 25.25,
+   "from": 0,
+   "srcTo": 1.75,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "shop",
+   "t0": 25.25,
+   "t1": 28.7,
+   "from": 0,
+   "srcTo": 2.95,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "tower",
+   "t0": 28.7,
+   "t1": 30.75,
+   "from": 0,
+   "srcTo": 1.65,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "drive2",
+   "t0": 33.6,
+   "t1": 37.620000000000005,
+   "from": 0,
+   "srcTo": 2.85,
+   "note": "end: the game on the screen above the PS5 / XBOX boxes, vote WAIT or BUY A CONSOLE over it",
+   "plate": false
+  }
+ ]
+}
