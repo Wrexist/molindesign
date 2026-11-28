@@ -1,0 +1,79 @@
+{
+ "film": "gta-calmchaos",
+ "sources": {
+  "el": {
+   "key": "generic-v4-rk721912-flv-en-us-1080p-mp4",
+   "url": "https://videos-rockstargames-com.akamaized.net/v4/rk721912/flv/en-us-1080p.mp4",
+   "title": "en-us-1080p",
+   "uploader": null,
+   "verdict": "OFFICIAL",
+   "checked": null,
+   "credit": "Rockstar · An Extended Look"
+  }
+ },
+ "clips": {
+  "sign": {
+   "src": "el",
+   "in": 790.0,
+   "out": 793.8,
+   "fps": 30,
+   "frames": 114,
+   "w": 1920,
+   "crop": "1920:860:0:212"
+  },
+  "talk": {
+   "src": "el",
+   "in": 794.0,
+   "out": 797.0,
+   "fps": 30,
+   "frames": 90,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "back": {
+   "src": "el",
+   "in": 821.0,
+   "out": 823.8,
+   "fps": 30,
+   "frames": 84,
+   "w": 1920,
+   "crop": "1920:936:0:144"
+  },
+  "masks": {
+   "src": "el",
+   "in": 828.0,
+   "out": 831.0,
+   "fps": 30,
+   "frames": 90,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "cops": {
+   "src": "el",
+   "in": 848.6,
+   "out": 850.9,
+   "fps": 30,
+   "frames": 69,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "pmask": {
+   "src": "el",
+   "in": 832.4,
+   "out": 836.4,
+   "fps": 30,
+   "frames": 120,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  },
+  "shoot": {
+   "src": "el",
+   "in": 840.55,
+   "out": 841.0,
+   "fps": 30,
+   "frames": 14,
+   "w": 1920,
+   "crop": "1920:1080:0:0"
+  }
+ }
+}

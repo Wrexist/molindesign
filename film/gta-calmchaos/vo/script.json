@@ -1,0 +1,93 @@
+{
+  "engine": "ming",
+  "ming": {
+    "voice": "US_James",
+    "seed": 7
+  },
+  "lang": "en-us",
+  "speed": 1.05,
+  "pace": {
+    "max": 3.5
+  },
+  "chain": {
+    "room": 0.25
+  },
+  "duck": {
+    "db": -6,
+    "score_db": 0,
+    "smr_db": 23
+  },
+  "tail": 0.7,
+  "fit": {
+    "min": 0.8,
+    "max": 1.1
+  },
+  "about": "GTA 6 detail (Delta, slug gta-calmchaos): in Rockstar's 'An Extended Look' (Aug 27 2026, 'captured entirely from in-game footage on the PlayStation 5'), one continuous stretch runs from a calm car conversation (13:10, 790 s; they argue whether the guy they're texting is a cop: 'A dude could be a cop for all we know' / 'He's not a cop... he's just cautious') to a man yelling in the back seat (13:41), bandana masks (13:48), a rifle out the window (13:58) and a police truck flipping in a street shootout (14:09, 849.5 s): about 59 seconds. Sources in BRIEF.md.",
+  "names": [
+    "GTA",
+    "GTA 6",
+    "Rockstar"
+  ],
+  "dur": 27.6,
+  "lines": [
+    {
+      "id": "hook",
+      "at": 0.12,
+      "text": "GTA 6, small talk to shootout in under a minute.",
+      "say": "G T A six. Small talk to shootout, in under a minute.",
+      "pause": 0.35
+    },
+    {
+      "id": "talk",
+      "at": 3.0,
+      "text": "The clock starts. Two people in a car, arguing if the guy they're texting is a cop.",
+      "pause": 0.35
+    },
+    {
+      "id": "quote",
+      "at": 8.1,
+      "text": "One says he could be. The other says he's just cautious.",
+      "pause": 0.4
+    },
+    {
+      "id": "back",
+      "at": 12.2,
+      "text": "At 31, a guy yelling in the back seat.",
+      "pause": 0.3,
+      "say": "At thirty-one, a guy yelling in the back seat."
+    },
+    {
+      "id": "masks",
+      "at": 14.95,
+      "text": "38. Masks on.",
+      "pause": 0.3,
+      "say": "Thirty-eight. Masks on."
+    },
+    {
+      "id": "rifle",
+      "at": 16.85,
+      "text": "50. Shooting out the window.",
+      "pause": 0.3,
+      "say": "Fifty. Shooting out the window."
+    },
+    {
+      "id": "cops",
+      "at": 19.15,
+      "text": "59. A police truck, flipping.",
+      "pause": 0.4,
+      "say": "Fifty-nine. A police truck, flipping."
+    },
+    {
+      "id": "end",
+      "at": 21.75,
+      "text": "One minute, calm to chaos. Small talk or shootout? Which one are you here for?",
+      "pause": 0.35
+    },
+    {
+      "id": "loop",
+      "at": 26.6,
+      "text": "Because again,",
+      "pause": 0
+    }
+  ]
+}
