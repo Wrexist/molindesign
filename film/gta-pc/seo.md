@@ -15,7 +15,7 @@ GTA 6 is out, but not on PC. Rockstar's own GTA 6 page lists exactly two platfor
 
 PC players: would you wait, or buy a console?
 
-Sources (read Nov 28, 2026):
+Sources (Rockstar's GTA 6 page re-read Nov 28, 2026; the rest read Oct 31, 2026):
 - Rockstar Games, Grand Theft Auto VI (platforms: PlayStation 5, Xbox Series X|S): https://www.rockstargames.com/VI
 - VGC, Zelnick on console first (May 5, 2026): https://www.videogameschronicle.com/news/rockstar-games-like-gta-release-on-console-before-pc-because-thats-the-core-consumer-take-two-ceo-zelnick-says/
 - Rockstar Newswire, GTA V for PC (April 14, 2015): https://www.rockstargames.com/newswire/article/25o2411812a31k/grand-theft-auto-v-is-now-available-for-pc
