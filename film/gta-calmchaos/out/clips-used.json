@@ -1,0 +1,86 @@
+{
+ "DUR": 27.6,
+ "uses": [
+  {
+   "clip": "cops",
+   "t0": 0,
+   "t1": 2.85,
+   "from": 0.95,
+   "srcTo": 1.5099999999999998,
+   "note": "hook: the police truck flipping at 14:09, ringed; GTA 6 SMALL TALK TO SHOOTOUT, stopwatch 0:59, FROM 0:00 CALM",
+   "plate": false
+  },
+  {
+   "clip": "sign",
+   "t0": 4.340000000000001,
+   "t1": 6.859999999999999,
+   "from": 0.3,
+   "srcTo": 2.8199999999999985,
+   "note": "0:00 the calm car (13:10): ring on the phone in hand, CALM. TEXTING., stopwatch from 0:00",
+   "plate": false
+  },
+  {
+   "clip": "talk",
+   "t0": 6.859999999999999,
+   "t1": 11.66,
+   "from": 0,
+   "srcTo": 2.96,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "back",
+   "t0": 12.84,
+   "t1": 14.75,
+   "from": 0.1,
+   "srcTo": 1.9145,
+   "note": "0:31 a man yelling in the back seat (13:41), ring + BACK SEAT, stopwatch 0:31",
+   "plate": false
+  },
+  {
+   "clip": "masks",
+   "t0": 15.21,
+   "t1": 16.650000000000002,
+   "from": 0.25,
+   "srcTo": 1.258000000000001,
+   "note": "0:38 bandana mask on at the wheel (13:48), ring + MASKS ON, stopwatch 0:38",
+   "plate": false
+  },
+  {
+   "clip": "shoot",
+   "t0": 17.45,
+   "t1": 18.95,
+   "from": 0,
+   "srcTo": 0.43000000000000005,
+   "note": "0:50 shooting out of the car window, police truck ahead (14:00), ring + SHOOTING, stopwatch 0:50",
+   "plate": false
+  },
+  {
+   "clip": "cops",
+   "t0": 19.97,
+   "t1": 22.08,
+   "from": 0.75,
+   "srcTo": 2.2269999999999994,
+   "note": "0:59 the police truck flips (14:09), ring + POLICE TRUCK, stopwatch 0:58/0:59",
+   "plate": false
+  },
+  {
+   "clip": "pmask",
+   "t0": 22.08,
+   "t1": 23.21,
+   "from": 0,
+   "srcTo": 1.1300000000000026,
+   "note": "background plate",
+   "plate": true
+  },
+  {
+   "clip": "cops",
+   "t0": 26.6,
+   "t1": 27.62,
+   "from": 0.95,
+   "srcTo": 1.3069999999999997,
+   "note": "loop seam: the frame-0 layout returns",
+   "plate": false
+  }
+ ]
+}

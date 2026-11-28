@@ -37,6 +37,9 @@ OVERLAP = 0.25         # the same source range in two films counts as reuse abov
 
 
 def cache_root():
+    # DELTA_SOURCES overrides the cache (a 2 GB source can't be symlinked into the network mount; keep it local).
+    if os.environ.get('DELTA_SOURCES'):
+        return Path(os.environ['DELTA_SOURCES'])
     pf = Path('/mnt/project-files/')
     if pf.is_dir() and os.access(pf, os.W_OK):
         return pf / 'delta' / 'sources'
